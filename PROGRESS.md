@@ -8,7 +8,7 @@ M1 is done (`docs/data/usda-probe.md`). Next: M2. Slice 1: extend the probe to t
 
 ## Blocking (needs Jared)
 
-- None.
+- **IFPS PLU list reuse** (blocks PLU codes only, needed by M5): ask IFPS (ifpsglobal.com) whether Orchard may bundle the exported PLU list in a free app. Their site has a liability disclaimer but no license.
 
 ## Decisions
 
@@ -19,6 +19,7 @@ M1 is done (`docs/data/usda-probe.md`). Next: M2. Slice 1: extend the probe to t
 - 2026-11-16 · D6 · Prerender with React Router library mode plus `scripts/prerender.ts` (renderToString per route, about 40 lines), not framework mode · proven end to end in M0; framework mode with the Cloudflare plugin would have been an unverified combination
 - 2026-11-16 · D7 · Jared generates all artwork in ChatGPT from prompts Claude writes; Claude processes and checks the files, and Jared approves them (engineering plan §5, art track; workflow built in M3) · ChatGPT made the design language and the mockups, and Jared already has the subscription
 - 2026-11-17 · D8 · USDA movement data is reference data: typical origins and the supply index come from a 3-year snapshot rebuilt once a year and reviewed with the content. No monthly refresh; Today uses the typical index, and advisories cover unusual seasons. Items without usable USDA data (domestic citrus) get cited editorial origins and a null index · the probe showed the data is stable year to year, and a live feed risks silent verdict changes when USDA reporting changes
+- 2026-11-17 · D9 · Three more reference sources, rebuilt yearly like D8: a variety calendar from USDA terminal market reports (same API), UC Davis Postharvest fact sheets as the citation base for structured storage fields, and the IFPS PLU code list for label advice (only once IFPS confirms reuse) · each fills a gap the movement data leaves, at no recurring cost
 
 ## Open questions for Jared (non-blocking)
 

@@ -57,6 +57,8 @@ data/
   advisories.yaml            scoped, expiring exceptions
   usda/typical-origins.csv   derived from USDA (committed, with source + date header)
   usda/supply-index.csv      derived from USDA (committed)
+  usda/variety-calendar.csv  derived from USDA terminal market reports (committed)
+  plu.csv                    IFPS PLU codes → item and variety (only once IFPS confirms reuse)
   geo/states.csv             state, name, price region, locally checked
   geo/zip3-state.csv         ZIP prefix → state (used on the phone; no API call)
 scripts/                     data-build.ts, usda-fetch.ts, usda-derive.ts, content-report.ts
@@ -75,11 +77,13 @@ docs/                        specs, design, decisions, reviews, archive
 
 ### 4.1 Inputs (validated by `npm run data:build`)
 
-- **Item** (`content/items/*.yaml`): id, names, synonyms, misspellings, category, `purchaseRank`, evidence basis (`supply+assessment` or `assessment-only`), card line, pick cues (3–5), avoid cues (1–2), store and ripen ranges with ripeness assumptions, prep, type notes. Also its origins, each with quality windows: half-month ranges rated `prime`, `fair` or `poor`, with at least 2 source IDs per range. Plus `status` (`draft` or `reviewed`), `reviewedOn` and `reviewer`. Word limits come from product spec §8.
+- **Item** (`content/items/*.yaml`): id, names, synonyms, misspellings, category, `purchaseRank`, evidence basis (`supply+assessment` or `assessment-only`), card line, pick cues (3–5), avoid cues (1–2), store and ripen ranges with ripeness assumptions (storage temperature band, ethylene producer or sensitive, and storage life, cited to the UC Davis Postharvest Center fact sheets where they cover the item), prep, type notes. Also its origins, each with quality windows: half-month ranges rated `prime`, `fair` or `poor`, with at least 2 source IDs per range. Plus `status` (`draft` or `reviewed`), `reviewedOn` and `reviewer`. Word limits come from product spec §8.
 - **Variety** (inside its item file, for the 3 guides): traits on the group's anchored 1–5 scales, best uses, label/PLU text, freshest months only where evidence exists.
 - **Advisory:** items, optional origins, scope (states or price regions), `from` ≤ `to` ≤ `from` + 90 days, imposed verdict, note, `reviewedOn`, `status`.
-- **Typical origins:** item × month → ranked origins covering at least 70% of reported volume (ranks only; never shown as shares).
-- **Supply index:** item × month → value, or `null` with a reason (`no_data`, `no_baseline`). Missing never becomes 0.
+- **Typical origins:** item × month → ranked origins covering at least 70% of reported volume (ranks only; never shown as shares). Where USDA doesn't report domestic supply (citrus), the item file lists cited editorial origins instead (D8).
+- **Supply index:** item × month → value, or `null` with a reason (`no_data`, `no_baseline`, `not_reported`). Missing never becomes 0.
+- **Variety calendar** (D9): item × variety × month → the share of USDA terminal market price quotes (11 cities, 3 years) naming that variety, and the origins quoted. Evidence of presence, not volume. It backs a variety's "freshest months" and cross-checks typical origins.
+- **PLU codes** (D9, only once IFPS confirms reuse): PLU → item, variety, size, organic. Label-based advice accepts a sticker code as well as an origin.
 
 `data:build` fails on any schema error, unknown ID, duplicate key, a range with fewer than 2 sources, an inverted or over-long advisory, or a NaN. With `--production` it also fails on any `draft` record. It writes compact JSON to `src/generated/` and prints a coverage report: items, origins rated, and windows without a rating.
 
@@ -120,12 +124,12 @@ Each milestone takes 1–3 sessions and ends with something Jared can review. Th
 | --- | --- | --- | --- |
 | M0 | **Scaffold and deploy.** Vite + React + TS app and Worker via the Cloudflare Vite plugin; Tailwind, React Compiler, Biome, Vitest, Playwright; CI; a placeholder page deployed; settle the prerender mechanism (§2) | The `workers.dev` URL opens on Jared's phone; CI is green | Cloudflare account; Jared runs `wrangler login` once |
 | M1 | **USDA probe** (runs alongside M0–M3). Fetch movement data for 5 candidate items; write a one-page `docs/data/usda-probe.md` | Clear answers: which reports and fields, units, history depth, and whether typical origins (≥ 70%) and a supply index are computable. Also whether regional arrival data exists (for regional verdicts in v1.1). **If not computable, Jared decides the evidence fallback** | USDA API key |
-| M2 | **Content schemas and the verdict engine.** zod schemas, `data:build`, `rules.yaml`, `sources.yaml`, engine, Today grouping. 5 draft items (content batch 1) | Engine tests pass (§6). Jared reviews batch 1 through `npm run content:report`, a readable table of verdicts per window with citations | — |
+| M2 | **Content schemas and the verdict engine.** Reference-data coverage across the launch candidates (which items USDA reports, typical origins, variety calendar from terminal markets); zod schemas, `data:build`, `rules.yaml`, `sources.yaml`, engine, Today grouping. 5 draft items (content batch 1) | Engine tests pass (§6). Jared reviews batch 1 through `npm run content:report`, a readable table of verdicts per window with citations | — |
 | M3 | **Today and item page, styled.** Tokens from the design system, verdict marks, cards that expand in place, item page in product order, location and date chip (display), draft badge in previews; build-time prerendering of Today and item pages; the art workflow (art track below) with the first batch of thumbnails | **Jared's first real review on his phone** | — |
 | M4 | **Offline and in-store mode.** Precache, readiness line, updates that activate on the next launch, in-store toggle (wake lock, 18 px type, high contrast, no motion, `persist()`) | E2E: after one visit, go offline and open an item never visited | — |
-| M5 | **Place, date and advisories.** Worker HTML injection; ZIP entry → state on the phone; saved place; advisories by state and region; Alaska and Hawaii banner; "Locally checked"; planning date with the typical-outlook banner; "Share for this date"; label-based advice; recompute at midnight and on `visibilitychange` | Unit tests for place and window math; e2e for a pinned date and a changed ZIP | — |
+| M5 | **Place, date and advisories.** Worker HTML injection; ZIP entry → state on the phone; saved place; advisories by state and region; Alaska and Hawaii banner; "Locally checked"; planning date with the typical-outlook banner; "Share for this date"; label-based advice (origin, plus PLU code if licensed); recompute at midnight and on `visibilitychange` | Unit tests for place and window math; e2e for a pinned date and a changed ZIP | — |
 | M6 | **Browse, search, Calendar, Methods.** Categories; MiniSearch with synonyms and misspellings; no-match flow; Calendar as a month list on phone and a heatmap with a table equivalent on wider screens; Methods and privacy pages; headless component library adopted here or in M5, whichever first needs a complex control | Every item reachable in ≤ 3 taps or one search; "scallion" and "corriander" find the right items | — |
-| M7 | **Variety guides:** apples, mandarins & oranges, pears. Traits, finder, cards on phone, a sortable table on wider screens, variety pages | Jared reviews the 3 guides | Variety content |
+| M7 | **Variety guides:** apples, mandarins & oranges, pears. Freshest months from the variety calendar plus citations; traits, finder, cards on phone, a sortable table on wider screens, variety pages | Jared reviews the 3 guides | Variety content |
 | M8 | **Feedback and measurement.** D1 tables; feedback, taste, request and event endpoints; rate limiting; `web-vitals` + `verdict-visible` beacon; privacy-safe logging | A test proves no ZIP or IP reaches logs or D1; a feedback row records app version, date, state, item and origin | — |
 | M9 | **Launch readiness.** All launch content reviewed, illustrations, Turnstile, CSP and security headers, axe plus a quick VoiceOver/TalkBack pass, a performance check on a mid-range Android, offline check on a real iPhone, production domain | Jared decides launch, using the D4 gates | Domain, devices, D4 |
 
