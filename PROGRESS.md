@@ -4,12 +4,11 @@ Updated: 2026-11-16 · Phase: build · Current milestone: M0 (scaffold and deplo
 
 ## Next concrete action
 
-M0 (engineering plan §5): install Node 24 LTS, scaffold the Vite + React + TypeScript app and Worker with the Cloudflare Vite plugin, and add Tailwind, Biome, Vitest, Playwright and the CI workflow. Deploy a placeholder page once Cloudflare is available. In parallel, M1 (the USDA probe) starts as soon as the API key arrives.
+M0 (engineering plan §5): install Node 24 LTS, scaffold the Vite + React + TypeScript app and Worker with the Cloudflare Vite plugin, and add Tailwind, Biome, Vitest, Playwright and the CI workflow. Deploy a placeholder page once Cloudflare is available. M1 (USDA probe) is unblocked: the key is in `.env` (gitignored) and returned the report list (1,051 reports) on 2026-11-16.
 
 ## Blocking (needs Jared)
 
-- **Cloudflare account, then `wrangler login` on this machine.** Blocks the M0 deploy step only.
-- **USDA My Market News API key.** Blocks M1, the USDA probe.
+- **`wrangler login` on this machine** (OAuth; not the global API key). Blocks the M0 deploy step only.
 
 ## Decisions
 
