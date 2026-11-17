@@ -1,7 +1,7 @@
 # Orchard Editorial Design System
 ## Seasonal Produce Guide reference for coding and graphics agents
 
-**Version:** 1.2  
+**Version:** 1.3  
 **Established:** November 16, 2026  
 **Owner:** Jared Peterson  
 **Status:** Approved visual direction; implementation values and unpictured states are an initial baseline requiring browser verification.
@@ -88,10 +88,12 @@ These are implementable starting values chosen to express the approved direction
 | Rule | #CEC3AD | Decorative separators |
 | Peak icon | #A56B12 | Small star, paired with a verdict word |
 | Good icon | #3B6C47 | Small check, paired with a verdict word |
+| Skip icon | #8B5E3C | Small clock, paired with explicit wording; never an alarming red |
+| Limited evidence icon | #6F625A | Information symbol; same value as secondary ink, so it reads as neutral |
 
 Use the main ink or olive for normal verdict text. The gold token is for the star, not small body copy.
 
-Calculated solid-color contrast against the canvas is approximately 13.82:1 for ink, 5.45:1 for secondary ink, 7.12:1 for olive, 4.73:1 for accent, and 5.69:1 for the good icon. White on the accent fill is approximately 5.10:1. These calculations do not certify textured backgrounds, opacity changes, or full components. The pale rule is decorative; it is not sufficient as the sole boundary or indicator for an interactive control.
+Calculated solid-color contrast against the canvas is approximately 13.82:1 for ink, 5.45:1 for secondary ink, 7.12:1 for olive, 4.73:1 for accent, 5.69:1 for the good icon, and 5.17:1 for the skip icon. The limited-evidence icon shares secondary ink's 5.45:1. White on the accent fill is approximately 5.10:1. These calculations do not certify textured backgrounds, opacity changes, or full components. The pale rule is decorative; it is not sufficient as the sole boundary or indicator for an interactive control.
 
 ### Paper
 
@@ -114,6 +116,8 @@ Dark mode is part of the product requirements. A proposed mode study exists, but
 | Rule | #665B50 |
 | Peak icon | #E6B65C |
 | Good icon | #B0C7A6 |
+| Skip icon | #D8AE8E |
+| Limited evidence icon | #C1B5A5 |
 
 Recheck foregrounds on filled controls in dark mode. Do not blindly reuse white text on a light accent. Inspect transparent artwork for pale halos. In-store mode uses the high-contrast light treatment.
 
@@ -159,6 +163,8 @@ Copy these values into the application’s token layer when implementation begin
   --color-rule: #cec3ad;
   --color-peak-icon: #a56b12;
   --color-good-icon: #3b6c47;
+  --color-skip-icon: #8b5e3c;
+  --color-limited-icon: #6f625a;
 
   --font-editorial: Georgia, "Times New Roman", serif;
   --font-functional: system-ui, -apple-system, BlinkMacSystemFont,
@@ -240,10 +246,9 @@ A separate text link, such as “Picking & storage,” opens the detail page. Ad
 | Peak | Small ochre star and “Peak” in dark olive or ink |
 | Good | Small green check and “Good” in dark olive or ink |
 | Skip for now | Small clock and explicit wording; secondary explanation |
-| Reliable year-round guidance | Quiet dash or equivalent restrained icon plus explicit wording |
 | Limited evidence | Neutral information symbol and explicit wording |
 
-Visual labels must follow the product’s approved terminology and contract. If methodology changes, update labels consistently. This table describes presentation, not new verdict logic.
+Reliable year-round, Last call, Advisory and Good value are markers, not verdicts: small text tags under the verdict word, per the product spec. Visual labels must follow the product’s approved terminology and contract. If methodology changes, update labels consistently. This table describes presentation, not new verdict logic.
 
 No filled pill backgrounds, large medallions, numerical scores invented for display, or alarming red treatment for ordinary seasonal advice. Never convey a verdict only through color.
 
@@ -331,7 +336,7 @@ The original mobile Today synthesis remains the approved visual anchor. Eight co
 | 07 Mobile seasonal calendar | Month-based seasonal list | [Open](references/07-mobile-calendar.png) |
 | 08 Standard, dark, and in-store | Proposed mode adaptations | [Open](references/08-modes-standard-dark-instore.png) |
 
-The calendar study is a phone list, not an approved exact heatmap or season-strip mapping. The mode study does not establish measured accessibility compliance. Mockups sometimes use italic practical text or place search differently; implement the documented functional type and navigation behavior instead of copying those deviations.
+The calendar study is a phone list, not an approved exact heatmap or season-strip mapping. The mode study does not establish measured accessibility compliance. Mockups sometimes use italic practical text or place search differently; implement the documented functional type and navigation behavior instead of copying those deviations. The anchor’s “Peak now” heading is an older label; use the product spec’s “Best right now”.
 
 Future briefs should identify the task, screen size, exact content, specific decision being explored, and supplied references if any. Prefer focused revisions over reopening the whole direction.
 
@@ -365,4 +370,5 @@ The immediate task completed by version 1.1 is strengthening this single referen
 | 1.0 | Codifies the approved synthesis, subtle verdict preference, implementation baselines, asset guidance, and reference-development workflow |
 | 1.1 | Adds reference-free art direction, painting and composition recipes, portable image prompts, reconstruction review criteria, and an index of eight generated draft studies |
 | 1.2 | Moves sections 7–8 (illustration system, prompt pack) to illustration-guide.md; reference images are now stored in references/ and linked locally |
+| 1.3 | Adds Skip and Limited evidence icon tokens; treats Reliable year-round as a marker rather than a verdict treatment; notes that the anchor’s “Peak now” heading is superseded by “Best right now” |
 
