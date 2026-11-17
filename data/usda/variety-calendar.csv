@@ -1,0 +1,1565 @@
+# source: USDA AMS Market News terminal market price reports, 12 cities (usda:derive)
+# from: 2023-11
+# to: 2026-10
+# derived: 2026-11-17
+item,variety,month,share,origins
+apples,granny-smith,1,1,us-wa
+apples,granny-smith,2,1,us-wa
+apples,granny-smith,3,0.999,us-wa
+apples,granny-smith,4,1,us-wa
+apples,granny-smith,5,1,us-wa
+apples,granny-smith,6,1,us-wa
+apples,granny-smith,7,1,us-wa
+apples,granny-smith,8,1,us-wa
+apples,granny-smith,9,1,us-wa
+apples,granny-smith,10,1,us-wa
+apples,granny-smith,11,0.997,us-wa
+apples,granny-smith,12,1,us-wa
+apples,golden-delicious,1,1,us-wa us-pa us-ny
+apples,golden-delicious,2,1,us-wa us-pa us-ny
+apples,golden-delicious,3,1,us-wa us-pa us-ny
+apples,golden-delicious,4,1,us-wa us-pa us-ny
+apples,golden-delicious,5,1,us-wa us-pa us-ny
+apples,golden-delicious,6,1,us-wa us-pa us-ny
+apples,golden-delicious,7,1,us-wa us-pa us-ny
+apples,golden-delicious,8,0.995,us-wa us-pa us-ny
+apples,golden-delicious,9,0.969,us-wa us-pa us-ny
+apples,golden-delicious,10,1,us-wa us-pa us-ny
+apples,golden-delicious,11,0.993,us-wa us-pa us-ny
+apples,golden-delicious,12,0.997,us-wa us-pa us-ny
+apples,red-delicious,1,1,us-wa us-pa us-mi
+apples,red-delicious,2,1,us-wa us-pa us-mi
+apples,red-delicious,3,1,us-wa us-pa us-mi
+apples,red-delicious,4,1,us-wa us-pa us-mi
+apples,red-delicious,5,1,us-wa us-pa us-mi
+apples,red-delicious,6,1,us-wa us-pa us-mi
+apples,red-delicious,7,0.998,us-wa us-pa us-mi
+apples,red-delicious,8,0.969,us-wa us-pa us-mi
+apples,red-delicious,9,0.984,us-wa us-pa us-mi
+apples,red-delicious,10,1,us-wa us-pa us-mi
+apples,red-delicious,11,0.997,us-wa us-pa us-mi
+apples,red-delicious,12,1,us-wa us-pa us-mi
+apples,gala,1,0.969,us-wa us-pa us-ny
+apples,gala,2,0.975,us-wa us-pa us-ny
+apples,gala,3,0.999,us-wa us-pa us-ny
+apples,gala,4,1,us-wa us-pa us-ny
+apples,gala,5,1,us-wa us-pa us-ny
+apples,gala,6,1,us-wa us-pa us-ny
+apples,gala,7,0.992,us-wa us-pa us-ny
+apples,gala,8,0.936,us-wa us-pa us-ny
+apples,gala,9,0.955,us-wa us-pa us-ny
+apples,gala,10,0.968,us-wa us-pa us-ny
+apples,gala,11,0.969,us-wa us-pa us-ny
+apples,gala,12,0.969,us-wa us-pa us-ny
+apples,fuji,1,1,us-wa us-pa us-ny
+apples,fuji,2,0.995,us-wa us-pa us-ny
+apples,fuji,3,0.967,us-wa us-pa us-ny
+apples,fuji,4,0.969,us-wa us-pa us-ny
+apples,fuji,5,0.959,us-wa us-pa us-ny
+apples,fuji,6,0.948,us-wa us-pa us-ny
+apples,fuji,7,0.967,us-wa us-pa us-ny
+apples,fuji,8,0.967,us-wa us-pa us-ny
+apples,fuji,9,0.967,us-wa us-pa us-ny
+apples,fuji,10,0.969,us-wa us-pa us-ny
+apples,fuji,11,0.998,us-wa us-pa us-ny
+apples,fuji,12,1,us-wa us-pa us-ny
+apples,honeycrisp,1,0.897,us-wa us-ny us-pa
+apples,honeycrisp,2,0.908,us-wa us-ny us-pa
+apples,honeycrisp,3,0.928,us-wa us-ny us-pa
+apples,honeycrisp,4,0.85,us-wa us-ny us-pa
+apples,honeycrisp,5,0.835,us-wa us-ny us-pa
+apples,honeycrisp,6,0.841,us-wa us-ny us-pa
+apples,honeycrisp,7,0.838,us-wa us-ny us-pa
+apples,honeycrisp,8,0.893,us-wa us-ny us-pa
+apples,honeycrisp,9,0.923,us-wa us-ny us-pa
+apples,honeycrisp,10,0.932,us-wa us-ny us-pa
+apples,honeycrisp,11,0.896,us-wa us-ny us-pa
+apples,honeycrisp,12,0.883,us-wa us-ny us-pa
+apples,pink-lady-cripps-pink,1,0.876,us-wa us-ny us-pa
+apples,pink-lady-cripps-pink,2,0.881,us-wa us-ny us-pa
+apples,pink-lady-cripps-pink,3,0.895,us-wa us-ny us-pa
+apples,pink-lady-cripps-pink,4,0.88,us-wa us-ny us-pa
+apples,pink-lady-cripps-pink,5,0.871,us-wa us-ny us-pa
+apples,pink-lady-cripps-pink,6,0.833,us-wa us-ny us-pa
+apples,pink-lady-cripps-pink,7,0.805,us-wa us-ny us-pa
+apples,pink-lady-cripps-pink,8,0.842,us-wa us-ny us-pa
+apples,pink-lady-cripps-pink,9,0.809,us-wa us-ny us-pa
+apples,pink-lady-cripps-pink,10,0.819,us-wa us-ny us-pa
+apples,pink-lady-cripps-pink,11,0.813,us-wa us-ny us-pa
+apples,pink-lady-cripps-pink,12,0.829,us-wa us-ny us-pa
+apples,mcintosh,1,0.511,us-ny us-mi us-wa
+apples,mcintosh,2,0.535,us-ny us-mi us-wa
+apples,mcintosh,3,0.513,us-ny us-mi us-wa
+apples,mcintosh,4,0.541,us-ny us-mi us-wa
+apples,mcintosh,5,0.587,us-ny us-mi us-wa
+apples,mcintosh,6,0.592,us-ny us-mi us-wa
+apples,mcintosh,7,0.509,us-ny us-mi us-wa
+apples,mcintosh,8,0.428,us-ny us-mi us-wa
+apples,mcintosh,9,0.48,us-ny us-mi us-wa
+apples,mcintosh,10,0.532,us-ny us-mi us-wa
+apples,mcintosh,11,0.544,us-ny us-mi us-wa
+apples,mcintosh,12,0.531,us-ny us-mi us-wa
+apples,ambrosia,1,0.48,us-wa us-ny
+apples,ambrosia,2,0.478,us-wa us-ny
+apples,ambrosia,3,0.491,us-wa us-ny
+apples,ambrosia,4,0.541,us-wa us-ny
+apples,ambrosia,5,0.466,us-wa us-ny
+apples,ambrosia,6,0.429,us-wa us-ny
+apples,ambrosia,7,0.387,us-wa us-ny
+apples,ambrosia,8,0.326,us-wa us-ny
+apples,ambrosia,9,0.29,us-wa us-ny
+apples,ambrosia,10,0.379,us-wa us-ny
+apples,ambrosia,11,0.433,us-wa us-ny
+apples,ambrosia,12,0.519,us-wa us-ny
+apples,jonagold,1,0.413,us-wa us-mi us-ny
+apples,jonagold,2,0.342,us-wa us-mi us-ny
+apples,jonagold,3,0.328,us-wa us-mi us-ny
+apples,jonagold,4,0.315,us-wa us-mi us-ny
+apples,jonagold,5,0.331,us-wa us-mi us-ny
+apples,jonagold,6,0.387,us-wa us-mi us-ny
+apples,jonagold,7,0.353,us-wa us-mi us-ny
+apples,jonagold,8,0.288,us-wa us-mi us-ny
+apples,jonagold,9,0.21,us-wa us-mi us-ny
+apples,jonagold,10,0.337,us-wa us-mi us-ny
+apples,jonagold,11,0.414,us-wa us-mi us-ny
+apples,jonagold,12,0.469,us-wa us-mi us-ny
+apples,cosmic-crisp,1,0.265,us-wa
+apples,cosmic-crisp,2,0.283,us-wa
+apples,cosmic-crisp,3,0.301,us-wa
+apples,cosmic-crisp,4,0.359,us-wa
+apples,cosmic-crisp,5,0.348,us-wa
+apples,cosmic-crisp,6,0.426,us-wa
+apples,cosmic-crisp,7,0.38,us-wa
+apples,cosmic-crisp,8,0.419,us-wa
+apples,cosmic-crisp,9,0.419,us-wa
+apples,cosmic-crisp,10,0.41,us-wa
+apples,cosmic-crisp,11,0.093,us-wa
+apples,cosmic-crisp,12,0.251,us-wa
+apples,cortland,1,0.324,us-ny us-nh us-wa
+apples,cortland,2,0.336,us-ny us-nh us-wa
+apples,cortland,3,0.317,us-ny us-nh us-wa
+apples,cortland,4,0.309,us-ny us-nh us-wa
+apples,cortland,5,0.243,us-ny us-nh us-wa
+apples,cortland,6,0.162,us-ny us-nh us-wa
+apples,cortland,7,0.099,us-ny us-nh us-wa
+apples,cortland,8,0.099,us-ny us-nh us-wa
+apples,cortland,9,0.249,us-ny us-nh us-wa
+apples,cortland,10,0.379,us-ny us-nh us-wa
+apples,cortland,11,0.349,us-ny us-nh us-wa
+apples,cortland,12,0.357,us-ny us-nh us-wa
+apples,braeburn,1,0.342,us-wa
+apples,braeburn,2,0.347,us-wa
+apples,braeburn,3,0.368,us-wa
+apples,braeburn,4,0.338,us-wa
+apples,braeburn,5,0.265,us-wa
+apples,braeburn,6,0.216,us-wa
+apples,braeburn,7,0.201,us-wa
+apples,braeburn,8,0.202,us-wa
+apples,braeburn,9,0.121,us-wa
+apples,braeburn,10,0.071,us-wa
+apples,braeburn,11,0.223,us-wa
+apples,braeburn,12,0.312,us-wa
+apples,rome,1,0.322,us-ny us-nc us-va
+apples,rome,2,0.311,us-ny us-nc us-va
+apples,rome,3,0.266,us-ny us-nc us-va
+apples,rome,4,0.321,us-ny us-nc us-va
+apples,rome,5,0.205,us-ny us-nc us-va
+apples,rome,6,0.112,us-ny us-nc us-va
+apples,rome,7,0.051,us-ny us-nc us-va
+apples,rome,8,0.019,us-ny us-nc us-va
+apples,rome,9,0.091,us-ny us-nc us-va
+apples,rome,10,0.162,us-ny us-nc us-va
+apples,rome,11,0.293,us-ny us-nc us-va
+apples,rome,12,0.315,us-ny us-nc us-va
+apples,ginger-gold,1,0.184,us-pa us-ny us-wa
+apples,ginger-gold,2,0.124,us-pa us-ny us-wa
+apples,ginger-gold,3,0.098,us-pa us-ny us-wa
+apples,ginger-gold,4,0.061,us-pa us-ny us-wa
+apples,ginger-gold,5,0.043,us-pa us-ny us-wa
+apples,ginger-gold,6,0.003,us-pa us-ny us-wa
+apples,ginger-gold,7,0.02,us-pa us-ny us-wa
+apples,ginger-gold,8,0.211,us-pa us-ny us-wa
+apples,ginger-gold,9,0.516,us-pa us-ny us-wa
+apples,ginger-gold,10,0.487,us-pa us-ny us-wa
+apples,ginger-gold,11,0.375,us-pa us-ny us-wa
+apples,ginger-gold,12,0.262,us-pa us-ny us-wa
+apples,empire,1,0.155,us-ny us-va
+apples,empire,2,0.167,us-ny us-va
+apples,empire,3,0.153,us-ny us-va
+apples,empire,4,0.148,us-ny us-va
+apples,empire,5,0.129,us-ny us-va
+apples,empire,6,0.076,us-ny us-va
+apples,empire,7,0.027,us-ny us-va
+apples,empire,8,0.039,us-ny us-va
+apples,empire,9,0.008,us-ny us-va
+apples,empire,10,0.124,us-ny us-va
+apples,empire,11,0.16,us-ny us-va
+apples,empire,12,0.174,us-ny us-va
+apples,lady-apples,1,0.186,us-ny us-ca
+apples,lady-apples,2,0.137,us-ny us-ca
+apples,lady-apples,3,0.132,us-ny us-ca
+apples,lady-apples,4,0.133,us-ny us-ca
+apples,lady-apples,5,0.076,us-ny us-ca
+apples,lady-apples,6,0.005,us-ny us-ca
+apples,lady-apples,7,0,us-ny us-ca
+apples,lady-apples,8,0,us-ny us-ca
+apples,lady-apples,9,0.036,us-ny us-ca
+apples,lady-apples,10,0.159,us-ny us-ca
+apples,lady-apples,11,0.164,us-ny us-ca
+apples,lady-apples,12,0.184,us-ny us-ca
+apples,macoun,1,0.179,us-ny us-nh us-me
+apples,macoun,2,0.15,us-ny us-nh us-me
+apples,macoun,3,0.102,us-ny us-nh us-me
+apples,macoun,4,0.085,us-ny us-nh us-me
+apples,macoun,5,0.091,us-ny us-nh us-me
+apples,macoun,6,0.018,us-ny us-nh us-me
+apples,macoun,7,0,us-ny us-nh us-me
+apples,macoun,8,0,us-ny us-nh us-me
+apples,macoun,9,0.009,us-ny us-nh us-me
+apples,macoun,10,0.163,us-ny us-nh us-me
+apples,macoun,11,0.15,us-ny us-nh us-me
+apples,macoun,12,0.153,us-ny us-nh us-me
+apples,paula-red,1,0.097,us-mi us-ny
+apples,paula-red,2,0.032,us-mi us-ny
+apples,paula-red,3,0.031,us-mi us-ny
+apples,paula-red,4,0.01,us-mi us-ny
+apples,paula-red,5,0,us-mi us-ny
+apples,paula-red,6,0,us-mi us-ny
+apples,paula-red,7,0,us-mi us-ny
+apples,paula-red,8,0.088,us-mi us-ny
+apples,paula-red,9,0.316,us-mi us-ny
+apples,paula-red,10,0.226,us-mi us-ny
+apples,paula-red,11,0.148,us-mi us-ny
+apples,paula-red,12,0.125,us-mi us-ny
+apples,royal-gala,1,0.066,us-wa cl
+apples,royal-gala,2,0.07,us-wa cl
+apples,royal-gala,3,0.034,us-wa cl
+apples,royal-gala,4,0.062,us-wa cl
+apples,royal-gala,5,0.115,us-wa cl
+apples,royal-gala,6,0.144,us-wa cl
+apples,royal-gala,7,0.078,us-wa cl
+apples,royal-gala,8,0.133,us-wa cl
+apples,royal-gala,9,0.127,us-wa cl
+apples,royal-gala,10,0.085,us-wa cl
+apples,royal-gala,11,0.075,us-wa cl
+apples,royal-gala,12,0.053,us-wa cl
+apples,stayman,1,0.126,us-pa us-nc us-ny
+apples,stayman,2,0.075,us-pa us-nc us-ny
+apples,stayman,3,0.065,us-pa us-nc us-ny
+apples,stayman,4,0.042,us-pa us-nc us-ny
+apples,stayman,5,0.024,us-pa us-nc us-ny
+apples,stayman,6,0.032,us-pa us-nc us-ny
+apples,stayman,7,0.008,us-pa us-nc us-ny
+apples,stayman,8,0.002,us-pa us-nc us-ny
+apples,stayman,9,0.105,us-pa us-nc us-ny
+apples,stayman,10,0.144,us-pa us-nc us-ny
+apples,stayman,11,0.179,us-pa us-nc us-ny
+apples,stayman,12,0.151,us-pa us-nc us-ny
+apples,cameo,1,0.092,us-nc
+apples,cameo,2,0.064,us-nc
+apples,cameo,3,0.036,us-nc
+apples,cameo,4,0.031,us-nc
+apples,cameo,5,0.011,us-nc
+apples,cameo,6,0,us-nc
+apples,cameo,7,0,us-nc
+apples,cameo,8,0,us-nc
+apples,cameo,9,0.066,us-nc
+apples,cameo,10,0.076,us-nc
+apples,cameo,11,0.119,us-nc
+apples,cameo,12,0.095,us-nc
+apples,arkansas-black,1,0.106,us-nc us-ca us-de
+apples,arkansas-black,2,0.076,us-nc us-ca us-de
+apples,arkansas-black,3,0.088,us-nc us-ca us-de
+apples,arkansas-black,4,0.049,us-nc us-ca us-de
+apples,arkansas-black,5,0.011,us-nc us-ca us-de
+apples,arkansas-black,6,0,us-nc us-ca us-de
+apples,arkansas-black,7,0,us-nc us-ca us-de
+apples,arkansas-black,8,0,us-nc us-ca us-de
+apples,arkansas-black,9,0.006,us-nc us-ca us-de
+apples,arkansas-black,10,0.034,us-nc us-ca us-de
+apples,arkansas-black,11,0.099,us-nc us-ca us-de
+apples,arkansas-black,12,0.112,us-nc us-ca us-de
+apples,jonathan,1,0.003,us-mi us-pa us-wa
+apples,jonathan,2,0,us-mi us-pa us-wa
+apples,jonathan,3,0,us-mi us-pa us-wa
+apples,jonathan,4,0.02,us-mi us-pa us-wa
+apples,jonathan,5,0.049,us-mi us-pa us-wa
+apples,jonathan,6,0.063,us-mi us-pa us-wa
+apples,jonathan,7,0.066,us-mi us-pa us-wa
+apples,jonathan,8,0.056,us-mi us-pa us-wa
+apples,jonathan,9,0.002,us-mi us-pa us-wa
+apples,jonathan,10,0.075,us-mi us-pa us-wa
+apples,jonathan,11,0.099,us-mi us-pa us-wa
+apples,jonathan,12,0.026,us-mi us-pa us-wa
+apples,mutsu,1,0.031,us-nc
+apples,mutsu,2,0.03,us-nc
+apples,mutsu,3,0.006,us-nc
+apples,mutsu,4,0,us-nc
+apples,mutsu,5,0,us-nc
+apples,mutsu,6,0,us-nc
+apples,mutsu,7,0,us-nc
+apples,mutsu,8,0.039,us-nc
+apples,mutsu,9,0.127,us-nc
+apples,mutsu,10,0.125,us-nc
+apples,mutsu,11,0.046,us-nc
+apples,mutsu,12,0.051,us-nc
+apples,stayman-winesap,1,0.063,us-nc
+apples,stayman-winesap,2,0.062,us-nc
+apples,stayman-winesap,3,0.036,us-nc
+apples,stayman-winesap,4,0.031,us-nc
+apples,stayman-winesap,5,0.011,us-nc
+apples,stayman-winesap,6,0,us-nc
+apples,stayman-winesap,7,0,us-nc
+apples,stayman-winesap,8,0,us-nc
+apples,stayman-winesap,9,0,us-nc
+apples,stayman-winesap,10,0.003,us-nc
+apples,stayman-winesap,11,0.031,us-nc
+apples,stayman-winesap,12,0.051,us-nc
+apples,smitten,1,0.034,us-wa nz
+apples,smitten,2,0.03,us-wa nz
+apples,smitten,3,0.03,us-wa nz
+apples,smitten,4,0.031,us-wa nz
+apples,smitten,5,0.002,us-wa nz
+apples,smitten,6,0,us-wa nz
+apples,smitten,7,0,us-wa nz
+apples,smitten,8,0,us-wa nz
+apples,smitten,9,0,us-wa nz
+apples,smitten,10,0.006,us-wa nz
+apples,smitten,11,0.064,us-wa nz
+apples,smitten,12,0.067,us-wa nz
+apples,gold-supreme,1,0.032,us-wa
+apples,gold-supreme,2,0.032,us-wa
+apples,gold-supreme,3,0.03,us-wa
+apples,gold-supreme,4,0,us-wa
+apples,gold-supreme,5,0,us-wa
+apples,gold-supreme,6,0,us-wa
+apples,gold-supreme,7,0,us-wa
+apples,gold-supreme,8,0,us-wa
+apples,gold-supreme,9,0.019,us-wa
+apples,gold-supreme,10,0.028,us-wa
+apples,gold-supreme,11,0.046,us-wa
+apples,gold-supreme,12,0.031,us-wa
+apples,pinova-sonata,1,0.038,us-wa
+apples,pinova-sonata,2,0.062,us-wa
+apples,pinova-sonata,3,0.034,us-wa
+apples,pinova-sonata,4,0.018,us-wa
+apples,pinova-sonata,5,0,us-wa
+apples,pinova-sonata,6,0,us-wa
+apples,pinova-sonata,7,0,us-wa
+apples,pinova-sonata,8,0,us-wa
+apples,pinova-sonata,9,0,us-wa
+apples,pinova-sonata,10,0,us-wa
+apples,pinova-sonata,11,0.018,us-wa
+apples,pinova-sonata,12,0.031,us-wa
+apples,red-york,1,0.028,us-va us-wv
+apples,red-york,2,0.04,us-va us-wv
+apples,red-york,3,0.011,us-va us-wv
+apples,red-york,4,0,us-va us-wv
+apples,red-york,5,0,us-va us-wv
+apples,red-york,6,0,us-va us-wv
+apples,red-york,7,0,us-va us-wv
+apples,red-york,8,0,us-va us-wv
+apples,red-york,9,0,us-va us-wv
+apples,red-york,10,0,us-va us-wv
+apples,red-york,11,0.036,us-va us-wv
+apples,red-york,12,0.058,us-va us-wv
+apples,idared,1,0.005,us-pa
+apples,idared,2,0.013,us-pa
+apples,idared,3,0.01,us-pa
+apples,idared,4,0.013,us-pa
+apples,idared,5,0.033,us-pa
+apples,idared,6,0.008,us-pa
+apples,idared,7,0,us-pa
+apples,idared,8,0,us-pa
+apples,idared,9,0,us-pa
+apples,idared,10,0.015,us-pa
+apples,idared,11,0.028,us-pa
+apples,idared,12,0.025,us-pa
+apples,crispin,1,0,us-ny us-md
+apples,crispin,2,0.032,us-ny us-md
+apples,crispin,3,0.031,us-ny us-md
+apples,crispin,4,0.016,us-ny us-md
+apples,crispin,5,0,us-ny us-md
+apples,crispin,6,0,us-ny us-md
+apples,crispin,7,0.003,us-ny us-md
+apples,crispin,8,0.033,us-ny us-md
+apples,crispin,9,0.014,us-ny us-md
+apples,crispin,10,0,us-ny us-md
+apples,crispin,11,0,us-ny us-md
+apples,crispin,12,0,us-ny us-md
+apples,red-stayman,1,0.031,us-pa us-ny us-nc
+apples,red-stayman,2,0.016,us-pa us-ny us-nc
+apples,red-stayman,3,0,us-pa us-ny us-nc
+apples,red-stayman,4,0.028,us-pa us-ny us-nc
+apples,red-stayman,5,0.008,us-pa us-ny us-nc
+apples,red-stayman,6,0,us-pa us-ny us-nc
+apples,red-stayman,7,0,us-pa us-ny us-nc
+apples,red-stayman,8,0,us-pa us-ny us-nc
+apples,red-stayman,9,0.009,us-pa us-ny us-nc
+apples,red-stayman,10,0.015,us-pa us-ny us-nc
+apples,red-stayman,11,0.007,us-pa us-ny us-nc
+apples,red-stayman,12,0.003,us-pa us-ny us-nc
+apples,winesap,1,0.029,us-pa us-nj
+apples,winesap,2,0.002,us-pa us-nj
+apples,winesap,3,0,us-pa us-nj
+apples,winesap,4,0,us-pa us-nj
+apples,winesap,5,0,us-pa us-nj
+apples,winesap,6,0,us-pa us-nj
+apples,winesap,7,0,us-pa us-nj
+apples,winesap,8,0,us-pa us-nj
+apples,winesap,9,0.025,us-pa us-nj
+apples,winesap,10,0.046,us-pa us-nj
+apples,winesap,11,0.007,us-pa us-nj
+apples,winesap,12,0.008,us-pa us-nj
+apples,jersey-mac,1,0,us-ny
+apples,jersey-mac,2,0,us-ny
+apples,jersey-mac,3,0,us-ny
+apples,jersey-mac,4,0,us-ny
+apples,jersey-mac,5,0,us-ny
+apples,jersey-mac,6,0,us-ny
+apples,jersey-mac,7,0,us-ny
+apples,jersey-mac,8,0.037,us-ny
+apples,jersey-mac,9,0.036,us-ny
+apples,jersey-mac,10,0.007,us-ny
+apples,jersey-mac,11,0,us-ny
+apples,jersey-mac,12,0,us-ny
+apples,mutsu-crispin,1,0.006,us-nc
+apples,mutsu-crispin,2,0.002,us-nc
+apples,mutsu-crispin,3,0,us-nc
+apples,mutsu-crispin,4,0,us-nc
+apples,mutsu-crispin,5,0,us-nc
+apples,mutsu-crispin,6,0,us-nc
+apples,mutsu-crispin,7,0,us-nc
+apples,mutsu-crispin,8,0,us-nc
+apples,mutsu-crispin,9,0,us-nc
+apples,mutsu-crispin,10,0,us-nc
+apples,mutsu-crispin,11,0.031,us-nc
+apples,mutsu-crispin,12,0.028,us-nc
+apples,lodi,1,0,us-nc
+apples,lodi,2,0,us-nc
+apples,lodi,3,0,us-nc
+apples,lodi,4,0,us-nc
+apples,lodi,5,0,us-nc
+apples,lodi,6,0.032,us-nc
+apples,lodi,7,0.018,us-nc
+apples,lodi,8,0,us-nc
+apples,lodi,9,0,us-nc
+apples,lodi,10,0,us-nc
+apples,lodi,11,0,us-nc
+apples,lodi,12,0,us-nc
+apples,red-rome,1,0,us-pa
+apples,red-rome,2,0,us-pa
+apples,red-rome,3,0,us-pa
+apples,red-rome,4,0,us-pa
+apples,red-rome,5,0,us-pa
+apples,red-rome,6,0,us-pa
+apples,red-rome,7,0,us-pa
+apples,red-rome,8,0,us-pa
+apples,red-rome,9,0,us-pa
+apples,red-rome,10,0.012,us-pa
+apples,red-rome,11,0.031,us-pa
+apples,red-rome,12,0.006,us-pa
+apples,crab-apples,1,0,us-ny
+apples,crab-apples,2,0,us-ny
+apples,crab-apples,3,0,us-ny
+apples,crab-apples,4,0,us-ny
+apples,crab-apples,5,0,us-ny
+apples,crab-apples,6,0,us-ny
+apples,crab-apples,7,0,us-ny
+apples,crab-apples,8,0,us-ny
+apples,crab-apples,9,0.028,us-ny
+apples,crab-apples,10,0,us-ny
+apples,crab-apples,11,0,us-ny
+apples,crab-apples,12,0,us-ny
+pears,d-anjou,1,0.972,us-wa us-or ar
+pears,d-anjou,2,0.97,us-wa us-or ar
+pears,d-anjou,3,0.97,us-wa us-or ar
+pears,d-anjou,4,0.963,us-wa us-or ar
+pears,d-anjou,5,0.943,us-wa us-or ar
+pears,d-anjou,6,0.956,us-wa us-or ar
+pears,d-anjou,7,0.931,us-wa us-or ar
+pears,d-anjou,8,0.921,us-wa us-or ar
+pears,d-anjou,9,0.829,us-wa us-or ar
+pears,d-anjou,10,0.824,us-wa us-or ar
+pears,d-anjou,11,0.876,us-wa us-or ar
+pears,d-anjou,12,0.933,us-wa us-or ar
+pears,bartlett,1,0.844,us-wa ar us-or
+pears,bartlett,2,0.846,us-wa ar us-or
+pears,bartlett,3,0.847,us-wa ar us-or
+pears,bartlett,4,0.838,us-wa ar us-or
+pears,bartlett,5,0.828,us-wa ar us-or
+pears,bartlett,6,0.788,us-wa ar us-or
+pears,bartlett,7,0.923,us-wa ar us-or
+pears,bartlett,8,0.95,us-wa ar us-or
+pears,bartlett,9,0.939,us-wa ar us-or
+pears,bartlett,10,0.936,us-wa ar us-or
+pears,bartlett,11,0.941,us-wa ar us-or
+pears,bartlett,12,0.885,us-wa ar us-or
+pears,bosc,1,0.867,us-wa us-or us-ca
+pears,bosc,2,0.847,us-wa us-or us-ca
+pears,bosc,3,0.803,us-wa us-or us-ca
+pears,bosc,4,0.79,us-wa us-or us-ca
+pears,bosc,5,0.742,us-wa us-or us-ca
+pears,bosc,6,0.778,us-wa us-or us-ca
+pears,bosc,7,0.802,us-wa us-or us-ca
+pears,bosc,8,0.798,us-wa us-or us-ca
+pears,bosc,9,0.808,us-wa us-or us-ca
+pears,bosc,10,0.836,us-wa us-or us-ca
+pears,bosc,11,0.85,us-wa us-or us-ca
+pears,bosc,12,0.86,us-wa us-or us-ca
+pears,forelle,1,0.551,cl us-or us-wa
+pears,forelle,2,0.438,cl us-or us-wa
+pears,forelle,3,0.443,cl us-or us-wa
+pears,forelle,4,0.476,cl us-or us-wa
+pears,forelle,5,0.606,cl us-or us-wa
+pears,forelle,6,0.624,cl us-or us-wa
+pears,forelle,7,0.48,cl us-or us-wa
+pears,forelle,8,0.291,cl us-or us-wa
+pears,forelle,9,0.197,cl us-or us-wa
+pears,forelle,10,0.421,cl us-or us-wa
+pears,forelle,11,0.48,cl us-or us-wa
+pears,forelle,12,0.561,cl us-or us-wa
+pears,red-d-anjou,1,0.452,us-wa us-or
+pears,red-d-anjou,2,0.487,us-wa us-or
+pears,red-d-anjou,3,0.543,us-wa us-or
+pears,red-d-anjou,4,0.48,us-wa us-or
+pears,red-d-anjou,5,0.449,us-wa us-or
+pears,red-d-anjou,6,0.42,us-wa us-or
+pears,red-d-anjou,7,0.294,us-wa us-or
+pears,red-d-anjou,8,0.253,us-wa us-or
+pears,red-d-anjou,9,0.15,us-wa us-or
+pears,red-d-anjou,10,0.162,us-wa us-or
+pears,red-d-anjou,11,0.327,us-wa us-or
+pears,red-d-anjou,12,0.422,us-wa us-or
+pears,comice,1,0.34,us-or us-wa cl
+pears,comice,2,0.322,us-or us-wa cl
+pears,comice,3,0.27,us-or us-wa cl
+pears,comice,4,0.157,us-or us-wa cl
+pears,comice,5,0.142,us-or us-wa cl
+pears,comice,6,0.086,us-or us-wa cl
+pears,comice,7,0.036,us-or us-wa cl
+pears,comice,8,0.034,us-or us-wa cl
+pears,comice,9,0.131,us-or us-wa cl
+pears,comice,10,0.286,us-or us-wa cl
+pears,comice,11,0.322,us-or us-wa cl
+pears,comice,12,0.394,us-or us-wa cl
+pears,stark-crimson,1,0.279,us-or us-wa us-ca
+pears,stark-crimson,2,0.234,us-or us-wa us-ca
+pears,stark-crimson,3,0.125,us-or us-wa us-ca
+pears,stark-crimson,4,0.045,us-or us-wa us-ca
+pears,stark-crimson,5,0.006,us-or us-wa us-ca
+pears,stark-crimson,6,0,us-or us-wa us-ca
+pears,stark-crimson,7,0.084,us-or us-wa us-ca
+pears,stark-crimson,8,0.248,us-or us-wa us-ca
+pears,stark-crimson,9,0.313,us-or us-wa us-ca
+pears,stark-crimson,10,0.421,us-or us-wa us-ca
+pears,stark-crimson,11,0.418,us-or us-wa us-ca
+pears,stark-crimson,12,0.313,us-or us-wa us-ca
+pears,seckel,1,0.06,us-or us-wa us-ca
+pears,seckel,2,0.081,us-or us-wa us-ca
+pears,seckel,3,0.118,us-or us-wa us-ca
+pears,seckel,4,0.089,us-or us-wa us-ca
+pears,seckel,5,0.068,us-or us-wa us-ca
+pears,seckel,6,0.045,us-or us-wa us-ca
+pears,seckel,7,0.011,us-or us-wa us-ca
+pears,seckel,8,0.008,us-or us-wa us-ca
+pears,seckel,9,0.056,us-or us-wa us-ca
+pears,seckel,10,0.11,us-or us-wa us-ca
+pears,seckel,11,0.088,us-or us-wa us-ca
+pears,seckel,12,0.129,us-or us-wa us-ca
+pears,red-bartlett,1,0.06,us-or us-wa ar
+pears,red-bartlett,2,0.062,us-or us-wa ar
+pears,red-bartlett,3,0.057,us-or us-wa ar
+pears,red-bartlett,4,0.103,us-or us-wa ar
+pears,red-bartlett,5,0.096,us-or us-wa ar
+pears,red-bartlett,6,0.055,us-or us-wa ar
+pears,red-bartlett,7,0.033,us-or us-wa ar
+pears,red-bartlett,8,0.034,us-or us-wa ar
+pears,red-bartlett,9,0.028,us-or us-wa ar
+pears,red-bartlett,10,0.004,us-or us-wa ar
+pears,red-bartlett,11,0.055,us-or us-wa ar
+pears,red-bartlett,12,0.061,us-or us-wa ar
+pears,star-crimson,1,0.029,us-wa us-ca
+pears,star-crimson,2,0,us-wa us-ca
+pears,star-crimson,3,0,us-wa us-ca
+pears,star-crimson,4,0,us-wa us-ca
+pears,star-crimson,5,0,us-wa us-ca
+pears,star-crimson,6,0,us-wa us-ca
+pears,star-crimson,7,0.033,us-wa us-ca
+pears,star-crimson,8,0.073,us-wa us-ca
+pears,star-crimson,9,0.142,us-wa us-ca
+pears,star-crimson,10,0.182,us-wa us-ca
+pears,star-crimson,11,0.075,us-wa us-ca
+pears,star-crimson,12,0.062,us-wa us-ca
+pears,summer-bartlett,1,0,cl ar
+pears,summer-bartlett,2,0.064,cl ar
+pears,summer-bartlett,3,0.119,cl ar
+pears,summer-bartlett,4,0.092,cl ar
+pears,summer-bartlett,5,0.074,cl ar
+pears,summer-bartlett,6,0.063,cl ar
+pears,summer-bartlett,7,0.051,cl ar
+pears,summer-bartlett,8,0.025,cl ar
+pears,summer-bartlett,9,0,cl ar
+pears,summer-bartlett,10,0,cl ar
+pears,summer-bartlett,11,0,cl ar
+pears,summer-bartlett,12,0,cl ar
+pears,williams,1,0,ar cl
+pears,williams,2,0,ar cl
+pears,williams,3,0.024,ar cl
+pears,williams,4,0.028,ar cl
+pears,williams,5,0.094,ar cl
+pears,williams,6,0.071,ar cl
+pears,williams,7,0.062,ar cl
+pears,williams,8,0.062,ar cl
+pears,williams,9,0.008,ar cl
+pears,williams,10,0,ar cl
+pears,williams,11,0,ar cl
+pears,williams,12,0,ar cl
+pears,crimson-red,1,0.031,us-ca
+pears,crimson-red,2,0.002,us-ca
+pears,crimson-red,3,0,us-ca
+pears,crimson-red,4,0,us-ca
+pears,crimson-red,5,0,us-ca
+pears,crimson-red,6,0,us-ca
+pears,crimson-red,7,0.009,us-ca
+pears,crimson-red,8,0.087,us-ca
+pears,crimson-red,9,0.072,us-ca
+pears,crimson-red,10,0.064,us-ca
+pears,crimson-red,11,0.031,us-ca
+pears,crimson-red,12,0.031,us-ca
+pears,french-butter,1,0.034,us-ca us-or us-wa
+pears,french-butter,2,0,us-ca us-or us-wa
+pears,french-butter,3,0,us-ca us-or us-wa
+pears,french-butter,4,0,us-ca us-or us-wa
+pears,french-butter,5,0,us-ca us-or us-wa
+pears,french-butter,6,0,us-ca us-or us-wa
+pears,french-butter,7,0,us-ca us-or us-wa
+pears,french-butter,8,0,us-ca us-or us-wa
+pears,french-butter,9,0.027,us-ca us-or us-wa
+pears,french-butter,10,0.06,us-ca us-or us-wa
+pears,french-butter,11,0.081,us-ca us-or us-wa
+pears,french-butter,12,0.055,us-ca us-or us-wa
+pears,unspecified,1,0.026,us-or us-wa
+pears,unspecified,2,0.025,us-or us-wa
+pears,unspecified,3,0.007,us-or us-wa
+pears,unspecified,4,0.038,us-or us-wa
+pears,unspecified,5,0.031,us-or us-wa
+pears,unspecified,6,0.032,us-or us-wa
+pears,unspecified,7,0.027,us-or us-wa
+pears,unspecified,8,0,us-or us-wa
+pears,unspecified,9,0.017,us-or us-wa
+pears,unspecified,10,0.016,us-or us-wa
+pears,unspecified,11,0,us-or us-wa
+pears,unspecified,12,0.012,us-or us-wa
+pears,taylors-gold,1,0.032,us-or us-wa us-ca
+pears,taylors-gold,2,0.027,us-or us-wa us-ca
+pears,taylors-gold,3,0.03,us-or us-wa us-ca
+pears,taylors-gold,4,0.011,us-or us-wa us-ca
+pears,taylors-gold,5,0,us-or us-wa us-ca
+pears,taylors-gold,6,0,us-or us-wa us-ca
+pears,taylors-gold,7,0,us-or us-wa us-ca
+pears,taylors-gold,8,0,us-or us-wa us-ca
+pears,taylors-gold,9,0.014,us-or us-wa us-ca
+pears,taylors-gold,10,0.037,us-or us-wa us-ca
+pears,taylors-gold,11,0.039,us-or us-wa us-ca
+pears,taylors-gold,12,0.025,us-or us-wa us-ca
+pears,concorde,1,0.04,us-wa us-or
+pears,concorde,2,0,us-wa us-or
+pears,concorde,3,0,us-wa us-or
+pears,concorde,4,0,us-wa us-or
+pears,concorde,5,0,us-wa us-or
+pears,concorde,6,0,us-wa us-or
+pears,concorde,7,0,us-wa us-or
+pears,concorde,8,0,us-wa us-or
+pears,concorde,9,0,us-wa us-or
+pears,concorde,10,0,us-wa us-or
+pears,concorde,11,0.08,us-wa us-or
+pears,concorde,12,0.072,us-wa us-or
+pears,sunsprite,1,0,us-ca
+pears,sunsprite,2,0,us-ca
+pears,sunsprite,3,0,us-ca
+pears,sunsprite,4,0,us-ca
+pears,sunsprite,5,0,us-ca
+pears,sunsprite,6,0,us-ca
+pears,sunsprite,7,0.018,us-ca
+pears,sunsprite,8,0.048,us-ca
+pears,sunsprite,9,0.064,us-ca
+pears,sunsprite,10,0.045,us-ca
+pears,sunsprite,11,0.007,us-ca
+pears,sunsprite,12,0,us-ca
+pears,beurre-bosc,1,0,ar
+pears,beurre-bosc,2,0,ar
+pears,beurre-bosc,3,0.009,ar
+pears,beurre-bosc,4,0.031,ar
+pears,beurre-bosc,5,0.033,ar
+pears,beurre-bosc,6,0.032,ar
+pears,beurre-bosc,7,0.033,ar
+pears,beurre-bosc,8,0.025,ar
+pears,beurre-bosc,9,0,ar
+pears,beurre-bosc,10,0,ar
+pears,beurre-bosc,11,0,ar
+pears,beurre-bosc,12,0,ar
+pears,abate-fetel,1,0,ar
+pears,abate-fetel,2,0,ar
+pears,abate-fetel,3,0,ar
+pears,abate-fetel,4,0.021,ar
+pears,abate-fetel,5,0.035,ar
+pears,abate-fetel,6,0.011,ar
+pears,abate-fetel,7,0,ar
+pears,abate-fetel,8,0,ar
+pears,abate-fetel,9,0,ar
+pears,abate-fetel,10,0,ar
+pears,abate-fetel,11,0,ar
+pears,abate-fetel,12,0,ar
+pears,packham-triumph,1,0.005,us-or ar
+pears,packham-triumph,2,0.002,us-or ar
+pears,packham-triumph,3,0,us-or ar
+pears,packham-triumph,4,0,us-or ar
+pears,packham-triumph,5,0,us-or ar
+pears,packham-triumph,6,0.005,us-or ar
+pears,packham-triumph,7,0.012,us-or ar
+pears,packham-triumph,8,0,us-or ar
+pears,packham-triumph,9,0,us-or ar
+pears,packham-triumph,10,0,us-or ar
+pears,packham-triumph,11,0.026,us-or ar
+pears,packham-triumph,12,0.006,us-or ar
+pears,mountain-bartlett,1,0,us-ca
+pears,mountain-bartlett,2,0,us-ca
+pears,mountain-bartlett,3,0,us-ca
+pears,mountain-bartlett,4,0,us-ca
+pears,mountain-bartlett,5,0,us-ca
+pears,mountain-bartlett,6,0,us-ca
+pears,mountain-bartlett,7,0.002,us-ca
+pears,mountain-bartlett,8,0,us-ca
+pears,mountain-bartlett,9,0.009,us-ca
+pears,mountain-bartlett,10,0.028,us-ca
+pears,mountain-bartlett,11,0,us-ca
+pears,mountain-bartlett,12,0,us-ca
+mandarins,tangerines-w-murcott-afourer,1,0.455,pe us-ca cl
+mandarins,tangerines-w-murcott-afourer,2,0.464,pe us-ca cl
+mandarins,tangerines-w-murcott-afourer,3,0.388,pe us-ca cl
+mandarins,tangerines-w-murcott-afourer,4,0.268,pe us-ca cl
+mandarins,tangerines-w-murcott-afourer,5,0.201,pe us-ca cl
+mandarins,tangerines-w-murcott-afourer,6,0.389,pe us-ca cl
+mandarins,tangerines-w-murcott-afourer,7,0.763,pe us-ca cl
+mandarins,tangerines-w-murcott-afourer,8,0.902,pe us-ca cl
+mandarins,tangerines-w-murcott-afourer,9,0.907,pe us-ca cl
+mandarins,tangerines-w-murcott-afourer,10,0.836,pe us-ca cl
+mandarins,tangerines-w-murcott-afourer,11,0.683,pe us-ca cl
+mandarins,tangerines-w-murcott-afourer,12,0.507,pe us-ca cl
+mandarins,clementines-unspecified,1,0.667,us-ca pe cl
+mandarins,clementines-unspecified,2,0.635,us-ca pe cl
+mandarins,clementines-unspecified,3,0.483,us-ca pe cl
+mandarins,clementines-unspecified,4,0.488,us-ca pe cl
+mandarins,clementines-unspecified,5,0.442,us-ca pe cl
+mandarins,clementines-unspecified,6,0.465,us-ca pe cl
+mandarins,clementines-unspecified,7,0.57,us-ca pe cl
+mandarins,clementines-unspecified,8,0.599,us-ca pe cl
+mandarins,clementines-unspecified,9,0.528,us-ca pe cl
+mandarins,clementines-unspecified,10,0.509,us-ca pe cl
+mandarins,clementines-unspecified,11,0.536,us-ca pe cl
+mandarins,clementines-unspecified,12,0.656,us-ca pe cl
+mandarins,tangelos-minneola,1,0.261,us-ca pe
+mandarins,tangelos-minneola,2,0.627,us-ca pe
+mandarins,tangelos-minneola,3,0.631,us-ca pe
+mandarins,tangelos-minneola,4,0.738,us-ca pe
+mandarins,tangelos-minneola,5,0.563,us-ca pe
+mandarins,tangelos-minneola,6,0.27,us-ca pe
+mandarins,tangelos-minneola,7,0.154,us-ca pe
+mandarins,tangelos-minneola,8,0.37,us-ca pe
+mandarins,tangelos-minneola,9,0.525,us-ca pe
+mandarins,tangelos-minneola,10,0.412,us-ca pe
+mandarins,tangelos-minneola,11,0.179,us-ca pe
+mandarins,tangelos-minneola,12,0.146,us-ca pe
+mandarins,tangerines-unspecified,1,0.29,us-ca pe ma
+mandarins,tangerines-unspecified,2,0.41,us-ca pe ma
+mandarins,tangerines-unspecified,3,0.445,us-ca pe ma
+mandarins,tangerines-unspecified,4,0.405,us-ca pe ma
+mandarins,tangerines-unspecified,5,0.387,us-ca pe ma
+mandarins,tangerines-unspecified,6,0.411,us-ca pe ma
+mandarins,tangerines-unspecified,7,0.318,us-ca pe ma
+mandarins,tangerines-unspecified,8,0.263,us-ca pe ma
+mandarins,tangerines-unspecified,9,0.251,us-ca pe ma
+mandarins,tangerines-unspecified,10,0.256,us-ca pe ma
+mandarins,tangerines-unspecified,11,0.153,us-ca pe ma
+mandarins,tangerines-unspecified,12,0.245,us-ca pe ma
+mandarins,tangerines-tango,1,0.256,us-ca pe us-fl
+mandarins,tangerines-tango,2,0.453,us-ca pe us-fl
+mandarins,tangerines-tango,3,0.357,us-ca pe us-fl
+mandarins,tangerines-tango,4,0.408,us-ca pe us-fl
+mandarins,tangerines-tango,5,0.384,us-ca pe us-fl
+mandarins,tangerines-tango,6,0.172,us-ca pe us-fl
+mandarins,tangerines-tango,7,0.068,us-ca pe us-fl
+mandarins,tangerines-tango,8,0.215,us-ca pe us-fl
+mandarins,tangerines-tango,9,0.332,us-ca pe us-fl
+mandarins,tangerines-tango,10,0.305,us-ca pe us-fl
+mandarins,tangerines-tango,11,0.329,us-ca pe us-fl
+mandarins,tangerines-tango,12,0.182,us-ca pe us-fl
+mandarins,tangerines-nadorcott,1,0.037,ma za
+mandarins,tangerines-nadorcott,2,0.347,ma za
+mandarins,tangerines-nadorcott,3,0.559,ma za
+mandarins,tangerines-nadorcott,4,0.645,ma za
+mandarins,tangerines-nadorcott,5,0.54,ma za
+mandarins,tangerines-nadorcott,6,0.256,ma za
+mandarins,tangerines-nadorcott,7,0.138,ma za
+mandarins,tangerines-nadorcott,8,0.093,ma za
+mandarins,tangerines-nadorcott,9,0.173,ma za
+mandarins,tangerines-nadorcott,10,0.17,ma za
+mandarins,tangerines-nadorcott,11,0.046,ma za
+mandarins,tangerines-nadorcott,12,0.016,ma za
+mandarins,tangerines-honey,1,0.227,pe us-fl us-ca
+mandarins,tangerines-honey,2,0.115,pe us-fl us-ca
+mandarins,tangerines-honey,3,0.035,pe us-fl us-ca
+mandarins,tangerines-honey,4,0.009,pe us-fl us-ca
+mandarins,tangerines-honey,5,0,pe us-fl us-ca
+mandarins,tangerines-honey,6,0,pe us-fl us-ca
+mandarins,tangerines-honey,7,0,pe us-fl us-ca
+mandarins,tangerines-honey,8,0,pe us-fl us-ca
+mandarins,tangerines-honey,9,0,pe us-fl us-ca
+mandarins,tangerines-honey,10,0.072,pe us-fl us-ca
+mandarins,tangerines-honey,11,0.266,pe us-fl us-ca
+mandarins,tangerines-honey,12,0.342,pe us-fl us-ca
+mandarins,tangerines-orri,1,0.057,il pe us-fl
+mandarins,tangerines-orri,2,0.043,il pe us-fl
+mandarins,tangerines-orri,3,0.073,il pe us-fl
+mandarins,tangerines-orri,4,0.152,il pe us-fl
+mandarins,tangerines-orri,5,0.244,il pe us-fl
+mandarins,tangerines-orri,6,0.159,il pe us-fl
+mandarins,tangerines-orri,7,0.028,il pe us-fl
+mandarins,tangerines-orri,8,0.042,il pe us-fl
+mandarins,tangerines-orri,9,0.071,il pe us-fl
+mandarins,tangerines-orri,10,0.033,il pe us-fl
+mandarins,tangerines-orri,11,0.02,il pe us-fl
+mandarins,tangerines-orri,12,0.035,il pe us-fl
+mandarins,tangerines-daisy,1,0.113,au us-ca
+mandarins,tangerines-daisy,2,0.066,au us-ca
+mandarins,tangerines-daisy,3,0.056,au us-ca
+mandarins,tangerines-daisy,4,0.065,au us-ca
+mandarins,tangerines-daisy,5,0.01,au us-ca
+mandarins,tangerines-daisy,6,0,au us-ca
+mandarins,tangerines-daisy,7,0.08,au us-ca
+mandarins,tangerines-daisy,8,0.173,au us-ca
+mandarins,tangerines-daisy,9,0.183,au us-ca
+mandarins,tangerines-daisy,10,0.072,au us-ca
+mandarins,tangerines-daisy,11,0.039,au us-ca
+mandarins,tangerines-daisy,12,0.077,au us-ca
+mandarins,tangerines-fallglo,1,0.129,us-fl
+mandarins,tangerines-fallglo,2,0.063,us-fl
+mandarins,tangerines-fallglo,3,0,us-fl
+mandarins,tangerines-fallglo,4,0,us-fl
+mandarins,tangerines-fallglo,5,0,us-fl
+mandarins,tangerines-fallglo,6,0,us-fl
+mandarins,tangerines-fallglo,7,0,us-fl
+mandarins,tangerines-fallglo,8,0,us-fl
+mandarins,tangerines-fallglo,9,0.005,us-fl
+mandarins,tangerines-fallglo,10,0.125,us-fl
+mandarins,tangerines-fallglo,11,0.305,us-fl
+mandarins,tangerines-fallglo,12,0.229,us-fl
+mandarins,tangerines-golden-nugget,1,0.002,us-ca
+mandarins,tangerines-golden-nugget,2,0.042,us-ca
+mandarins,tangerines-golden-nugget,3,0.095,us-ca
+mandarins,tangerines-golden-nugget,4,0.172,us-ca
+mandarins,tangerines-golden-nugget,5,0.173,us-ca
+mandarins,tangerines-golden-nugget,6,0.169,us-ca
+mandarins,tangerines-golden-nugget,7,0.084,us-ca
+mandarins,tangerines-golden-nugget,8,0.07,us-ca
+mandarins,tangerines-golden-nugget,9,0.007,us-ca
+mandarins,tangerines-golden-nugget,10,0,us-ca
+mandarins,tangerines-golden-nugget,11,0,us-ca
+mandarins,tangerines-golden-nugget,12,0,us-ca
+mandarins,tangerines-honey-mandarins,1,0.04,us-ca us-fl mx
+mandarins,tangerines-honey-mandarins,2,0.064,us-ca us-fl mx
+mandarins,tangerines-honey-mandarins,3,0.061,us-ca us-fl mx
+mandarins,tangerines-honey-mandarins,4,0.018,us-ca us-fl mx
+mandarins,tangerines-honey-mandarins,5,0.028,us-ca us-fl mx
+mandarins,tangerines-honey-mandarins,6,0.035,us-ca us-fl mx
+mandarins,tangerines-honey-mandarins,7,0.036,us-ca us-fl mx
+mandarins,tangerines-honey-mandarins,8,0.036,us-ca us-fl mx
+mandarins,tangerines-honey-mandarins,9,0.008,us-ca us-fl mx
+mandarins,tangerines-honey-mandarins,10,0,us-ca us-fl mx
+mandarins,tangerines-honey-mandarins,11,0.034,us-ca us-fl mx
+mandarins,tangerines-honey-mandarins,12,0.026,us-ca us-fl mx
+mandarins,tangelos-nova,1,0.011,za ma uy
+mandarins,tangelos-nova,2,0.031,za ma uy
+mandarins,tangelos-nova,3,0.044,za ma uy
+mandarins,tangelos-nova,4,0,za ma uy
+mandarins,tangelos-nova,5,0,za ma uy
+mandarins,tangelos-nova,6,0.009,za ma uy
+mandarins,tangelos-nova,7,0.096,za ma uy
+mandarins,tangelos-nova,8,0.103,za ma uy
+mandarins,tangelos-nova,9,0.042,za ma uy
+mandarins,tangelos-nova,10,0,za ma uy
+mandarins,tangelos-nova,11,0,za ma uy
+mandarins,tangelos-nova,12,0,za ma uy
+mandarins,tangerines-pixie,1,0,us-ca
+mandarins,tangerines-pixie,2,0.028,us-ca
+mandarins,tangerines-pixie,3,0.022,us-ca
+mandarins,tangerines-pixie,4,0.069,us-ca
+mandarins,tangerines-pixie,5,0.093,us-ca
+mandarins,tangerines-pixie,6,0.043,us-ca
+mandarins,tangerines-pixie,7,0.034,us-ca
+mandarins,tangerines-pixie,8,0.021,us-ca
+mandarins,tangerines-pixie,9,0,us-ca
+mandarins,tangerines-pixie,10,0,us-ca
+mandarins,tangerines-pixie,11,0,us-ca
+mandarins,tangerines-pixie,12,0,us-ca
+mandarins,tangerines-paige,1,0.058,us-ca
+mandarins,tangerines-paige,2,0.033,us-ca
+mandarins,tangerines-paige,3,0.031,us-ca
+mandarins,tangerines-paige,4,0.033,us-ca
+mandarins,tangerines-paige,5,0.035,us-ca
+mandarins,tangerines-paige,6,0.037,us-ca
+mandarins,tangerines-paige,7,0.016,us-ca
+mandarins,tangerines-paige,8,0,us-ca
+mandarins,tangerines-paige,9,0,us-ca
+mandarins,tangerines-paige,10,0,us-ca
+mandarins,tangerines-paige,11,0,us-ca
+mandarins,tangerines-paige,12,0.016,us-ca
+mandarins,tangerines-malvasios,1,0.065,pe
+mandarins,tangerines-malvasios,2,0.003,pe
+mandarins,tangerines-malvasios,3,0,pe
+mandarins,tangerines-malvasios,4,0,pe
+mandarins,tangerines-malvasios,5,0,pe
+mandarins,tangerines-malvasios,6,0,pe
+mandarins,tangerines-malvasios,7,0,pe
+mandarins,tangerines-malvasios,8,0,pe
+mandarins,tangerines-malvasios,9,0,pe
+mandarins,tangerines-malvasios,10,0.039,pe
+mandarins,tangerines-malvasios,11,0.032,pe
+mandarins,tangerines-malvasios,12,0.034,pe
+mandarins,tangelos-seminole,1,0.019,us-ca
+mandarins,tangelos-seminole,2,0.03,us-ca
+mandarins,tangelos-seminole,3,0.031,us-ca
+mandarins,tangelos-seminole,4,0.017,us-ca
+mandarins,tangelos-seminole,5,0,us-ca
+mandarins,tangelos-seminole,6,0,us-ca
+mandarins,tangelos-seminole,7,0,us-ca
+mandarins,tangelos-seminole,8,0,us-ca
+mandarins,tangelos-seminole,9,0,us-ca
+mandarins,tangelos-seminole,10,0,us-ca
+mandarins,tangelos-seminole,11,0,us-ca
+mandarins,tangelos-seminole,12,0,us-ca
+mandarins,tangerines-sunburst,1,0.028,us-fl
+mandarins,tangerines-sunburst,2,0,us-fl
+mandarins,tangerines-sunburst,3,0,us-fl
+mandarins,tangerines-sunburst,4,0,us-fl
+mandarins,tangerines-sunburst,5,0,us-fl
+mandarins,tangerines-sunburst,6,0,us-fl
+mandarins,tangerines-sunburst,7,0,us-fl
+mandarins,tangerines-sunburst,8,0,us-fl
+mandarins,tangerines-sunburst,9,0,us-fl
+mandarins,tangerines-sunburst,10,0,us-fl
+mandarins,tangerines-sunburst,11,0,us-fl
+mandarins,tangerines-sunburst,12,0.043,us-fl
+mandarins,tangerines-tangerina,1,0.006,cl us-ca
+mandarins,tangerines-tangerina,2,0,cl us-ca
+mandarins,tangerines-tangerina,3,0,cl us-ca
+mandarins,tangerines-tangerina,4,0,cl us-ca
+mandarins,tangerines-tangerina,5,0,cl us-ca
+mandarins,tangerines-tangerina,6,0,cl us-ca
+mandarins,tangerines-tangerina,7,0,cl us-ca
+mandarins,tangerines-tangerina,8,0,cl us-ca
+mandarins,tangerines-tangerina,9,0,cl us-ca
+mandarins,tangerines-tangerina,10,0,cl us-ca
+mandarins,tangerines-tangerina,11,0.013,cl us-ca
+mandarins,tangerines-tangerina,12,0.026,cl us-ca
+mandarins,tangerines-shasta-gold,1,0,us-ca
+mandarins,tangerines-shasta-gold,2,0,us-ca
+mandarins,tangerines-shasta-gold,3,0,us-ca
+mandarins,tangerines-shasta-gold,4,0.03,us-ca
+mandarins,tangerines-shasta-gold,5,0,us-ca
+mandarins,tangerines-shasta-gold,6,0,us-ca
+mandarins,tangerines-shasta-gold,7,0,us-ca
+mandarins,tangerines-shasta-gold,8,0,us-ca
+mandarins,tangerines-shasta-gold,9,0,us-ca
+mandarins,tangerines-shasta-gold,10,0,us-ca
+mandarins,tangerines-shasta-gold,11,0,us-ca
+mandarins,tangerines-shasta-gold,12,0,us-ca
+oranges,oranges-navel,1,1,us-ca cl za
+oranges,oranges-navel,2,1,us-ca cl za
+oranges,oranges-navel,3,1,us-ca cl za
+oranges,oranges-navel,4,1,us-ca cl za
+oranges,oranges-navel,5,1,us-ca cl za
+oranges,oranges-navel,6,0.998,us-ca cl za
+oranges,oranges-navel,7,0.965,us-ca cl za
+oranges,oranges-navel,8,0.933,us-ca cl za
+oranges,oranges-navel,9,0.945,us-ca cl za
+oranges,oranges-navel,10,0.903,us-ca cl za
+oranges,oranges-navel,11,0.985,us-ca cl za
+oranges,oranges-navel,12,1,us-ca cl za
+oranges,oranges-valencia,1,0.626,us-ca us-fl mx
+oranges,oranges-valencia,2,0.731,us-ca us-fl mx
+oranges,oranges-valencia,3,0.807,us-ca us-fl mx
+oranges,oranges-valencia,4,0.876,us-ca us-fl mx
+oranges,oranges-valencia,5,0.902,us-ca us-fl mx
+oranges,oranges-valencia,6,0.883,us-ca us-fl mx
+oranges,oranges-valencia,7,0.92,us-ca us-fl mx
+oranges,oranges-valencia,8,0.981,us-ca us-fl mx
+oranges,oranges-valencia,9,0.95,us-ca us-fl mx
+oranges,oranges-valencia,10,0.922,us-ca us-fl mx
+oranges,oranges-valencia,11,0.748,us-ca us-fl mx
+oranges,oranges-valencia,12,0.612,us-ca us-fl mx
+oranges,oranges-hamlin,1,0.563,us-fl
+oranges,oranges-hamlin,2,0.346,us-fl
+oranges,oranges-hamlin,3,0.119,us-fl
+oranges,oranges-hamlin,4,0.066,us-fl
+oranges,oranges-hamlin,5,0.049,us-fl
+oranges,oranges-hamlin,6,0.032,us-fl
+oranges,oranges-hamlin,7,0,us-fl
+oranges,oranges-hamlin,8,0,us-fl
+oranges,oranges-hamlin,9,0,us-fl
+oranges,oranges-hamlin,10,0.274,us-fl
+oranges,oranges-hamlin,11,0.647,us-fl
+oranges,oranges-hamlin,12,0.667,us-fl
+oranges,blood-orange-moro,1,0.296,us-ca
+oranges,blood-orange-moro,2,0.334,us-ca
+oranges,blood-orange-moro,3,0.378,us-ca
+oranges,blood-orange-moro,4,0.364,us-ca
+oranges,blood-orange-moro,5,0.35,us-ca
+oranges,blood-orange-moro,6,0.269,us-ca
+oranges,blood-orange-moro,7,0.138,us-ca
+oranges,blood-orange-moro,8,0.091,us-ca
+oranges,blood-orange-moro,9,0.089,us-ca
+oranges,blood-orange-moro,10,0.091,us-ca
+oranges,blood-orange-moro,11,0.073,us-ca
+oranges,blood-orange-moro,12,0.081,us-ca
+oranges,blood-orange-red,1,0.218,us-ca au
+oranges,blood-orange-red,2,0.229,us-ca au
+oranges,blood-orange-red,3,0.189,us-ca au
+oranges,blood-orange-red,4,0.205,us-ca au
+oranges,blood-orange-red,5,0.162,us-ca au
+oranges,blood-orange-red,6,0.12,us-ca au
+oranges,blood-orange-red,7,0.083,us-ca au
+oranges,blood-orange-red,8,0.043,us-ca au
+oranges,blood-orange-red,9,0.152,us-ca au
+oranges,blood-orange-red,10,0.194,us-ca au
+oranges,blood-orange-red,11,0.116,us-ca au
+oranges,blood-orange-red,12,0.072,us-ca au
+oranges,blood-orange-unspecified,1,0.175,us-ca au
+oranges,blood-orange-unspecified,2,0.188,us-ca au
+oranges,blood-orange-unspecified,3,0.179,us-ca au
+oranges,blood-orange-unspecified,4,0.174,us-ca au
+oranges,blood-orange-unspecified,5,0.131,us-ca au
+oranges,blood-orange-unspecified,6,0.088,us-ca au
+oranges,blood-orange-unspecified,7,0.071,us-ca au
+oranges,blood-orange-unspecified,8,0.064,us-ca au
+oranges,blood-orange-unspecified,9,0.039,us-ca au
+oranges,blood-orange-unspecified,10,0.082,us-ca au
+oranges,blood-orange-unspecified,11,0.094,us-ca au
+oranges,blood-orange-unspecified,12,0.055,us-ca au
+oranges,oranges-valencia-seedless,1,0.14,za cl uy
+oranges,oranges-valencia-seedless,2,0.073,za cl uy
+oranges,oranges-valencia-seedless,3,0.055,za cl uy
+oranges,oranges-valencia-seedless,4,0.032,za cl uy
+oranges,oranges-valencia-seedless,5,0.033,za cl uy
+oranges,oranges-valencia-seedless,6,0.032,za cl uy
+oranges,oranges-valencia-seedless,7,0.048,za cl uy
+oranges,oranges-valencia-seedless,8,0.078,za cl uy
+oranges,oranges-valencia-seedless,9,0.074,za cl uy
+oranges,oranges-valencia-seedless,10,0.206,za cl uy
+oranges,oranges-valencia-seedless,11,0.207,za cl uy
+oranges,oranges-valencia-seedless,12,0.182,za cl uy
+oranges,oranges-early-varieties,1,0.13,us-tx mx us-fl
+oranges,oranges-early-varieties,2,0.154,us-tx mx us-fl
+oranges,oranges-early-varieties,3,0.099,us-tx mx us-fl
+oranges,oranges-early-varieties,4,0.116,us-tx mx us-fl
+oranges,oranges-early-varieties,5,0.047,us-tx mx us-fl
+oranges,oranges-early-varieties,6,0.006,us-tx mx us-fl
+oranges,oranges-early-varieties,7,0,us-tx mx us-fl
+oranges,oranges-early-varieties,8,0,us-tx mx us-fl
+oranges,oranges-early-varieties,9,0,us-tx mx us-fl
+oranges,oranges-early-varieties,10,0.016,us-tx mx us-fl
+oranges,oranges-early-varieties,11,0.135,us-tx mx us-fl
+oranges,oranges-early-varieties,12,0.143,us-tx mx us-fl
+oranges,oranges-late-navel,1,0.003,ma cl us-ca
+oranges,oranges-late-navel,2,0.032,ma cl us-ca
+oranges,oranges-late-navel,3,0.026,ma cl us-ca
+oranges,oranges-late-navel,4,0.011,ma cl us-ca
+oranges,oranges-late-navel,5,0.039,ma cl us-ca
+oranges,oranges-late-navel,6,0.144,ma cl us-ca
+oranges,oranges-late-navel,7,0.137,ma cl us-ca
+oranges,oranges-late-navel,8,0.116,ma cl us-ca
+oranges,oranges-late-navel,9,0.061,ma cl us-ca
+oranges,oranges-late-navel,10,0.151,ma cl us-ca
+oranges,oranges-late-navel,11,0.091,ma cl us-ca
+oranges,oranges-late-navel,12,0.002,ma cl us-ca
+oranges,blood-orange-sanguine,1,0.023,us-ca pe
+oranges,blood-orange-sanguine,2,0.059,us-ca pe
+oranges,blood-orange-sanguine,3,0.06,us-ca pe
+oranges,blood-orange-sanguine,4,0.066,us-ca pe
+oranges,blood-orange-sanguine,5,0.112,us-ca pe
+oranges,blood-orange-sanguine,6,0.094,us-ca pe
+oranges,blood-orange-sanguine,7,0.074,us-ca pe
+oranges,blood-orange-sanguine,8,0.067,us-ca pe
+oranges,blood-orange-sanguine,9,0.031,us-ca pe
+oranges,blood-orange-sanguine,10,0.032,us-ca pe
+oranges,blood-orange-sanguine,11,0.031,us-ca pe
+oranges,blood-orange-sanguine,12,0.028,us-ca pe
+oranges,oranges-late-valencia,1,0,ma
+oranges,oranges-late-valencia,2,0,ma
+oranges,oranges-late-valencia,3,0,ma
+oranges,oranges-late-valencia,4,0,ma
+oranges,oranges-late-valencia,5,0.017,ma
+oranges,oranges-late-valencia,6,0.041,ma
+oranges,oranges-late-valencia,7,0.198,ma
+oranges,oranges-late-valencia,8,0.175,ma
+oranges,oranges-late-valencia,9,0.138,ma
+oranges,oranges-late-valencia,10,0.09,ma
+oranges,oranges-late-valencia,11,0.015,ma
+oranges,oranges-late-valencia,12,0,ma
+oranges,blood-orange-tarocco,1,0.035,au us-ca za
+oranges,blood-orange-tarocco,2,0.03,au us-ca za
+oranges,blood-orange-tarocco,3,0.03,au us-ca za
+oranges,blood-orange-tarocco,4,0.031,au us-ca za
+oranges,blood-orange-tarocco,5,0.002,au us-ca za
+oranges,blood-orange-tarocco,6,0,au us-ca za
+oranges,blood-orange-tarocco,7,0,au us-ca za
+oranges,blood-orange-tarocco,8,0.011,au us-ca za
+oranges,blood-orange-tarocco,9,0.063,au us-ca za
+oranges,blood-orange-tarocco,10,0.059,au us-ca za
+oranges,blood-orange-tarocco,11,0.098,au us-ca za
+oranges,blood-orange-tarocco,12,0.076,au us-ca za
+oranges,oranges-pineapple,1,0.113,us-fl
+oranges,oranges-pineapple,2,0.178,us-fl
+oranges,oranges-pineapple,3,0.06,us-fl
+oranges,oranges-pineapple,4,0.006,us-fl
+oranges,oranges-pineapple,5,0,us-fl
+oranges,oranges-pineapple,6,0,us-fl
+oranges,oranges-pineapple,7,0,us-fl
+oranges,oranges-pineapple,8,0,us-fl
+oranges,oranges-pineapple,9,0,us-fl
+oranges,oranges-pineapple,10,0,us-fl
+oranges,oranges-pineapple,11,0,us-fl
+oranges,oranges-pineapple,12,0.033,us-fl
+oranges,oranges-mid-season,1,0.095,us-fl
+oranges,oranges-mid-season,2,0.123,us-fl
+oranges,oranges-mid-season,3,0.017,us-fl
+oranges,oranges-mid-season,4,0,us-fl
+oranges,oranges-mid-season,5,0.008,us-fl
+oranges,oranges-mid-season,6,0.024,us-fl
+oranges,oranges-mid-season,7,0,us-fl
+oranges,oranges-mid-season,8,0,us-fl
+oranges,oranges-mid-season,9,0,us-fl
+oranges,oranges-mid-season,10,0,us-fl
+oranges,oranges-mid-season,11,0,us-fl
+oranges,oranges-mid-season,12,0.011,us-fl
+oranges,oranges-salustiana,1,0.017,ma uy
+oranges,oranges-salustiana,2,0.045,ma uy
+oranges,oranges-salustiana,3,0.048,ma uy
+oranges,oranges-salustiana,4,0.037,ma uy
+oranges,oranges-salustiana,5,0.017,ma uy
+oranges,oranges-salustiana,6,0,ma uy
+oranges,oranges-salustiana,7,0,ma uy
+oranges,oranges-salustiana,8,0.002,ma uy
+oranges,oranges-salustiana,9,0.017,ma uy
+oranges,oranges-salustiana,10,0.053,ma uy
+oranges,oranges-salustiana,11,0.021,ma uy
+oranges,oranges-salustiana,12,0,ma uy
+oranges,oranges-unspecified,1,0.003,us-ca ma
+oranges,oranges-unspecified,2,0.013,us-ca ma
+oranges,oranges-unspecified,3,0.047,us-ca ma
+oranges,oranges-unspecified,4,0.028,us-ca ma
+oranges,oranges-unspecified,5,0.017,us-ca ma
+oranges,oranges-unspecified,6,0.032,us-ca ma
+oranges,oranges-unspecified,7,0.023,us-ca ma
+oranges,oranges-unspecified,8,0,us-ca ma
+oranges,oranges-unspecified,9,0.008,us-ca ma
+oranges,oranges-unspecified,10,0.026,us-ca ma
+oranges,oranges-unspecified,11,0,us-ca ma
+oranges,oranges-unspecified,12,0,us-ca ma
+oranges,oranges-midsweet,1,0.029,us-fl
+oranges,oranges-midsweet,2,0.04,us-fl
+oranges,oranges-midsweet,3,0.031,us-fl
+oranges,oranges-midsweet,4,0.031,us-fl
+oranges,oranges-midsweet,5,0.027,us-fl
+oranges,oranges-midsweet,6,0,us-fl
+oranges,oranges-midsweet,7,0,us-fl
+oranges,oranges-midsweet,8,0,us-fl
+oranges,oranges-midsweet,9,0,us-fl
+oranges,oranges-midsweet,10,0,us-fl
+oranges,oranges-midsweet,11,0,us-fl
+oranges,oranges-midsweet,12,0,us-fl
+oranges,oranges-various-varieties,1,0.034,us-ca us-ga
+oranges,oranges-various-varieties,2,0.014,us-ca us-ga
+oranges,oranges-various-varieties,3,0.031,us-ca us-ga
+oranges,oranges-various-varieties,4,0.025,us-ca us-ga
+oranges,oranges-various-varieties,5,0.011,us-ca us-ga
+oranges,oranges-various-varieties,6,0,us-ca us-ga
+oranges,oranges-various-varieties,7,0,us-ca us-ga
+oranges,oranges-various-varieties,8,0,us-ca us-ga
+oranges,oranges-various-varieties,9,0,us-ca us-ga
+oranges,oranges-various-varieties,10,0,us-ca us-ga
+oranges,oranges-various-varieties,11,0,us-ca us-ga
+oranges,oranges-various-varieties,12,0.005,us-ca us-ga
+oranges,blood-orange-sanguinelli,1,0.021,us-ca
+oranges,blood-orange-sanguinelli,2,0.03,us-ca
+oranges,blood-orange-sanguinelli,3,0.044,us-ca
+oranges,blood-orange-sanguinelli,4,0.018,us-ca
+oranges,blood-orange-sanguinelli,5,0,us-ca
+oranges,blood-orange-sanguinelli,6,0,us-ca
+oranges,blood-orange-sanguinelli,7,0,us-ca
+oranges,blood-orange-sanguinelli,8,0,us-ca
+oranges,blood-orange-sanguinelli,9,0,us-ca
+oranges,blood-orange-sanguinelli,10,0,us-ca
+oranges,blood-orange-sanguinelli,11,0,us-ca
+oranges,blood-orange-sanguinelli,12,0,us-ca
+oranges,oranges-late-season,1,0,cl
+oranges,oranges-late-season,2,0,cl
+oranges,oranges-late-season,3,0,cl
+oranges,oranges-late-season,4,0,cl
+oranges,oranges-late-season,5,0,cl
+oranges,oranges-late-season,6,0,cl
+oranges,oranges-late-season,7,0,cl
+oranges,oranges-late-season,8,0.016,cl
+oranges,oranges-late-season,9,0.031,cl
+oranges,oranges-late-season,10,0.013,cl
+oranges,oranges-late-season,11,0,cl
+oranges,oranges-late-season,12,0,cl
+oranges,oranges-navelinas,1,0,cl
+oranges,oranges-navelinas,2,0,cl
+oranges,oranges-navelinas,3,0,cl
+oranges,oranges-navelinas,4,0,cl
+oranges,oranges-navelinas,5,0,cl
+oranges,oranges-navelinas,6,0,cl
+oranges,oranges-navelinas,7,0,cl
+oranges,oranges-navelinas,8,0,cl
+oranges,oranges-navelinas,9,0.025,cl
+oranges,oranges-navelinas,10,0.031,cl
+oranges,oranges-navelinas,11,0,cl
+oranges,oranges-navelinas,12,0,cl
+oranges,oranges-jaffa,1,0,il
+oranges,oranges-jaffa,2,0,il
+oranges,oranges-jaffa,3,0,il
+oranges,oranges-jaffa,4,0.016,il
+oranges,oranges-jaffa,5,0.022,il
+oranges,oranges-jaffa,6,0,il
+oranges,oranges-jaffa,7,0,il
+oranges,oranges-jaffa,8,0,il
+oranges,oranges-jaffa,9,0,il
+oranges,oranges-jaffa,10,0,il
+oranges,oranges-jaffa,11,0,il
+oranges,oranges-jaffa,12,0,il
+oranges,oranges-delta-seedless,1,0,za
+oranges,oranges-delta-seedless,2,0,za
+oranges,oranges-delta-seedless,3,0,za
+oranges,oranges-delta-seedless,4,0,za
+oranges,oranges-delta-seedless,5,0,za
+oranges,oranges-delta-seedless,6,0,za
+oranges,oranges-delta-seedless,7,0,za
+oranges,oranges-delta-seedless,8,0,za
+oranges,oranges-delta-seedless,9,0,za
+oranges,oranges-delta-seedless,10,0.034,za
+oranges,oranges-delta-seedless,11,0,za
+oranges,oranges-delta-seedless,12,0,za
+avocados,hass,1,0.974,mx us-ca
+avocados,hass,2,0.975,mx us-ca
+avocados,hass,3,0.969,mx us-ca
+avocados,hass,4,0.975,mx us-ca
+avocados,hass,5,0.983,mx us-ca
+avocados,hass,6,0.968,mx us-ca
+avocados,hass,7,0.977,mx us-ca
+avocados,hass,8,0.981,mx us-ca
+avocados,hass,9,0.966,mx us-ca
+avocados,hass,10,0.957,mx us-ca
+avocados,hass,11,0.976,mx us-ca
+avocados,hass,12,0.974,mx us-ca
+avocados,other-greenskin-varieties,1,0.652,do us-fl
+avocados,other-greenskin-varieties,2,0.672,do us-fl
+avocados,other-greenskin-varieties,3,0.656,do us-fl
+avocados,other-greenskin-varieties,4,0.647,do us-fl
+avocados,other-greenskin-varieties,5,0.713,do us-fl
+avocados,other-greenskin-varieties,6,0.639,do us-fl
+avocados,other-greenskin-varieties,7,0.539,do us-fl
+avocados,other-greenskin-varieties,8,0.465,do us-fl
+avocados,other-greenskin-varieties,9,0.446,do us-fl
+avocados,other-greenskin-varieties,10,0.447,do us-fl
+avocados,other-greenskin-varieties,11,0.687,do us-fl
+avocados,other-greenskin-varieties,12,0.696,do us-fl
+avocados,various-greenskin-varieties,1,0,us-fl do
+avocados,various-greenskin-varieties,2,0,us-fl do
+avocados,various-greenskin-varieties,3,0,us-fl do
+avocados,various-greenskin-varieties,4,0,us-fl do
+avocados,various-greenskin-varieties,5,0,us-fl do
+avocados,various-greenskin-varieties,6,0,us-fl do
+avocados,various-greenskin-varieties,7,0.111,us-fl do
+avocados,various-greenskin-varieties,8,0.245,us-fl do
+avocados,various-greenskin-varieties,9,0.255,us-fl do
+avocados,various-greenskin-varieties,10,0.215,us-fl do
+avocados,various-greenskin-varieties,11,0,us-fl do
+avocados,various-greenskin-varieties,12,0,us-fl do
+avocados,unspecified,1,0.026,us-ca mx
+avocados,unspecified,2,0.027,us-ca mx
+avocados,unspecified,3,0.047,us-ca mx
+avocados,unspecified,4,0.027,us-ca mx
+avocados,unspecified,5,0.017,us-ca mx
+avocados,unspecified,6,0.032,us-ca mx
+avocados,unspecified,7,0.023,us-ca mx
+avocados,unspecified,8,0.019,us-ca mx
+avocados,unspecified,9,0.034,us-ca mx
+avocados,unspecified,10,0.043,us-ca mx
+avocados,unspecified,11,0.024,us-ca mx
+avocados,unspecified,12,0.026,us-ca mx
+avocados,bacon,1,0.029,us-ca
+avocados,bacon,2,0.03,us-ca
+avocados,bacon,3,0.03,us-ca
+avocados,bacon,4,0.018,us-ca
+avocados,bacon,5,0,us-ca
+avocados,bacon,6,0,us-ca
+avocados,bacon,7,0,us-ca
+avocados,bacon,8,0,us-ca
+avocados,bacon,9,0,us-ca
+avocados,bacon,10,0,us-ca
+avocados,bacon,11,0.003,us-ca
+avocados,bacon,12,0.031,us-ca
+avocados,reed,1,0,us-ca
+avocados,reed,2,0,us-ca
+avocados,reed,3,0,us-ca
+avocados,reed,4,0,us-ca
+avocados,reed,5,0,us-ca
+avocados,reed,6,0,us-ca
+avocados,reed,7,0.009,us-ca
+avocados,reed,8,0.026,us-ca
+avocados,reed,9,0.009,us-ca
+avocados,reed,10,0,us-ca
+avocados,reed,11,0,us-ca
+avocados,reed,12,0,us-ca
+mangoes,tommy-atkins,1,0.683,mx br ec
+mangoes,tommy-atkins,2,0.466,mx br ec
+mangoes,tommy-atkins,3,0.722,mx br ec
+mangoes,tommy-atkins,4,0.918,mx br ec
+mangoes,tommy-atkins,5,0.953,mx br ec
+mangoes,tommy-atkins,6,0.912,mx br ec
+mangoes,tommy-atkins,7,0.769,mx br ec
+mangoes,tommy-atkins,8,0.388,mx br ec
+mangoes,tommy-atkins,9,0.689,mx br ec
+mangoes,tommy-atkins,10,0.967,mx br ec
+mangoes,tommy-atkins,11,0.977,mx br ec
+mangoes,tommy-atkins,12,0.866,mx br ec
+mangoes,ataulfo,1,0.372,mx ec
+mangoes,ataulfo,2,0.56,mx ec
+mangoes,ataulfo,3,0.808,mx ec
+mangoes,ataulfo,4,0.862,mx ec
+mangoes,ataulfo,5,0.787,mx ec
+mangoes,ataulfo,6,0.836,mx ec
+mangoes,ataulfo,7,0.833,mx ec
+mangoes,ataulfo,8,0.564,mx ec
+mangoes,ataulfo,9,0.301,mx ec
+mangoes,ataulfo,10,0.458,mx ec
+mangoes,ataulfo,11,0.623,mx ec
+mangoes,ataulfo,12,0.522,mx ec
+mangoes,kent,1,0.879,mx pe br
+mangoes,kent,2,0.929,mx pe br
+mangoes,kent,3,0.834,mx pe br
+mangoes,kent,4,0.388,mx pe br
+mangoes,kent,5,0.164,mx pe br
+mangoes,kent,6,0.622,mx pe br
+mangoes,kent,7,0.875,mx pe br
+mangoes,kent,8,0.865,mx pe br
+mangoes,kent,9,0.254,mx pe br
+mangoes,kent,10,0.079,mx pe br
+mangoes,kent,11,0.26,mx pe br
+mangoes,kent,12,0.691,mx pe br
+mangoes,green-cooking-type,1,0.252,pr mx us-fl
+mangoes,green-cooking-type,2,0.25,pr mx us-fl
+mangoes,green-cooking-type,3,0.433,pr mx us-fl
+mangoes,green-cooking-type,4,0.456,pr mx us-fl
+mangoes,green-cooking-type,5,0.499,pr mx us-fl
+mangoes,green-cooking-type,6,0.572,pr mx us-fl
+mangoes,green-cooking-type,7,0.58,pr mx us-fl
+mangoes,green-cooking-type,8,0.484,pr mx us-fl
+mangoes,green-cooking-type,9,0.405,pr mx us-fl
+mangoes,green-cooking-type,10,0.439,pr mx us-fl
+mangoes,green-cooking-type,11,0.432,pr mx us-fl
+mangoes,green-cooking-type,12,0.293,pr mx us-fl
+mangoes,haden,1,0.068,mx
+mangoes,haden,2,0.113,mx
+mangoes,haden,3,0.425,mx
+mangoes,haden,4,0.534,mx
+mangoes,haden,5,0.572,mx
+mangoes,haden,6,0.493,mx
+mangoes,haden,7,0.332,mx
+mangoes,haden,8,0.299,mx
+mangoes,haden,9,0.096,mx
+mangoes,haden,10,0.014,mx
+mangoes,haden,11,0.008,mx
+mangoes,haden,12,0.062,mx
+mangoes,keitt,1,0.118,mx br
+mangoes,keitt,2,0.077,mx br
+mangoes,keitt,3,0.067,mx br
+mangoes,keitt,4,0.066,mx br
+mangoes,keitt,5,0.131,mx br
+mangoes,keitt,6,0.088,mx br
+mangoes,keitt,7,0.099,mx br
+mangoes,keitt,8,0.495,mx br
+mangoes,keitt,9,0.729,mx br
+mangoes,keitt,10,0.466,mx br
+mangoes,keitt,11,0.205,mx br
+mangoes,keitt,12,0.182,mx br
+mangoes,mingolo,1,0.016,do
+mangoes,mingolo,2,0.031,do
+mangoes,mingolo,3,0.044,do
+mangoes,mingolo,4,0.284,do
+mangoes,mingolo,5,0.307,do
+mangoes,mingolo,6,0.303,do
+mangoes,mingolo,7,0.272,do
+mangoes,mingolo,8,0.062,do
+mangoes,mingolo,9,0,do
+mangoes,mingolo,10,0,do
+mangoes,mingolo,11,0,do
+mangoes,mingolo,12,0.05,do
+mangoes,criollo,1,0.11,mx
+mangoes,criollo,2,0.137,mx
+mangoes,criollo,3,0.116,mx
+mangoes,criollo,4,0.13,mx
+mangoes,criollo,5,0.106,mx
+mangoes,criollo,6,0.057,mx
+mangoes,criollo,7,0.023,mx
+mangoes,criollo,8,0.012,mx
+mangoes,criollo,9,0.005,mx
+mangoes,criollo,10,0.018,mx
+mangoes,criollo,11,0.07,mx
+mangoes,criollo,12,0.045,mx
+mangoes,other-varieties,1,0.005,do mx
+mangoes,other-varieties,2,0.027,do mx
+mangoes,other-varieties,3,0.063,do mx
+mangoes,other-varieties,4,0.106,do mx
+mangoes,other-varieties,5,0.102,do mx
+mangoes,other-varieties,6,0.094,do mx
+mangoes,other-varieties,7,0.089,do mx
+mangoes,other-varieties,8,0.088,do mx
+mangoes,other-varieties,9,0.07,do mx
+mangoes,other-varieties,10,0.009,do mx
+mangoes,other-varieties,11,0,do mx
+mangoes,other-varieties,12,0.01,do mx
+mangoes,unspecified,1,0,mx do cr
+mangoes,unspecified,2,0.016,mx do cr
+mangoes,unspecified,3,0.054,mx do cr
+mangoes,unspecified,4,0.086,mx do cr
+mangoes,unspecified,5,0.083,mx do cr
+mangoes,unspecified,6,0.096,mx do cr
+mangoes,unspecified,7,0.089,mx do cr
+mangoes,unspecified,8,0.048,mx do cr
+mangoes,unspecified,9,0.016,mx do cr
+mangoes,unspecified,10,0.015,mx do cr
+mangoes,unspecified,11,0,mx do cr
+mangoes,unspecified,12,0,mx do cr
+mangoes,banilejos,1,0.017,do
+mangoes,banilejos,2,0.021,do
+mangoes,banilejos,3,0.06,do
+mangoes,banilejos,4,0.03,do
+mangoes,banilejos,5,0.038,do
+mangoes,banilejos,6,0.07,do
+mangoes,banilejos,7,0.134,do
+mangoes,banilejos,8,0.054,do
+mangoes,banilejos,9,0.01,do
+mangoes,banilejos,10,0,do
+mangoes,banilejos,11,0,do
+mangoes,banilejos,12,0.037,do
+mangoes,osteen,1,0.046,mx
+mangoes,osteen,2,0.031,mx
+mangoes,osteen,3,0.028,mx
+mangoes,osteen,4,0.031,mx
+mangoes,osteen,5,0.002,mx
+mangoes,osteen,6,0,mx
+mangoes,osteen,7,0,mx
+mangoes,osteen,8,0,mx
+mangoes,osteen,9,0.021,mx
+mangoes,osteen,10,0.033,mx
+mangoes,osteen,11,0.065,mx
+mangoes,osteen,12,0.056,mx
+mangoes,palmer,1,0.02,br
+mangoes,palmer,2,0,br
+mangoes,palmer,3,0,br
+mangoes,palmer,4,0.007,br
+mangoes,palmer,5,0,br
+mangoes,palmer,6,0,br
+mangoes,palmer,7,0,br
+mangoes,palmer,8,0.005,br
+mangoes,palmer,9,0.07,br
+mangoes,palmer,10,0.088,br
+mangoes,palmer,11,0.025,br
+mangoes,palmer,12,0.078,br
+mangoes,various-varieties,1,0.005,mx
+mangoes,various-varieties,2,0.031,mx
+mangoes,various-varieties,3,0.033,mx
+mangoes,various-varieties,4,0.076,mx
+mangoes,various-varieties,5,0.055,mx
+mangoes,various-varieties,6,0.028,mx
+mangoes,various-varieties,7,0,mx
+mangoes,various-varieties,8,0,mx
+mangoes,various-varieties,9,0,mx
+mangoes,various-varieties,10,0,mx
+mangoes,various-varieties,11,0,mx
+mangoes,various-varieties,12,0,mx
+mangoes,nam-doc-mai,1,0.005,mx vn
+mangoes,nam-doc-mai,2,0,mx vn
+mangoes,nam-doc-mai,3,0,mx vn
+mangoes,nam-doc-mai,4,0.007,mx vn
+mangoes,nam-doc-mai,5,0.008,mx vn
+mangoes,nam-doc-mai,6,0.031,mx vn
+mangoes,nam-doc-mai,7,0.047,mx vn
+mangoes,nam-doc-mai,8,0.054,mx vn
+mangoes,nam-doc-mai,9,0.006,mx vn
+mangoes,nam-doc-mai,10,0,mx vn
+mangoes,nam-doc-mai,11,0.002,mx vn
+mangoes,nam-doc-mai,12,0.003,mx vn
+mangoes,oro,1,0,mx
+mangoes,oro,2,0.048,mx
+mangoes,oro,3,0.033,mx
+mangoes,oro,4,0.048,mx
+mangoes,oro,5,0.011,mx
+mangoes,oro,6,0,mx
+mangoes,oro,7,0,mx
+mangoes,oro,8,0,mx
+mangoes,oro,9,0,mx
+mangoes,oro,10,0,mx
+mangoes,oro,11,0,mx
+mangoes,oro,12,0,mx
+mangoes,francis-francine,1,0,ec do
+mangoes,francis-francine,2,0,ec do
+mangoes,francis-francine,3,0.021,ec do
+mangoes,francis-francine,4,0,ec do
+mangoes,francis-francine,5,0,ec do
+mangoes,francis-francine,6,0.008,ec do
+mangoes,francis-francine,7,0,ec do
+mangoes,francis-francine,8,0.005,ec do
+mangoes,francis-francine,9,0,ec do
+mangoes,francis-francine,10,0.014,ec do
+mangoes,francis-francine,11,0.015,ec do
+mangoes,francis-francine,12,0.016,ec do
+mangoes,manililla,1,0,mx
+mangoes,manililla,2,0,mx
+mangoes,manililla,3,0,mx
+mangoes,manililla,4,0.014,mx
+mangoes,manililla,5,0.025,mx
+mangoes,manililla,6,0.023,mx
+mangoes,manililla,7,0,mx
+mangoes,manililla,8,0,mx
+mangoes,manililla,9,0,mx
+mangoes,manililla,10,0,mx
+mangoes,manililla,11,0,mx
+mangoes,manililla,12,0,mx
+mangoes,francis,1,0,do
+mangoes,francis,2,0,do
+mangoes,francis,3,0,do
+mangoes,francis,4,0.004,do
+mangoes,francis,5,0.024,do
+mangoes,francis,6,0,do
+mangoes,francis,7,0,do
+mangoes,francis,8,0,do
+mangoes,francis,9,0,do
+mangoes,francis,10,0,do
+mangoes,francis,11,0,do
+mangoes,francis,12,0,do
+mangoes,francine,1,0,ht
+mangoes,francine,2,0,ht
+mangoes,francine,3,0,ht
+mangoes,francine,4,0,ht
+mangoes,francine,5,0,ht
+mangoes,francine,6,0,ht
+mangoes,francine,7,0,ht
+mangoes,francine,8,0,ht
+mangoes,francine,9,0,ht
+mangoes,francine,10,0.021,ht
+mangoes,francine,11,0,ht
+mangoes,francine,12,0,ht

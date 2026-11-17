@@ -286,3 +286,37 @@ export function lumpSums(rows: readonly MovementRow[], monthCount: number): Set<
   }
   return lumps;
 }
+
+/** A terminal-market variety as a CSV-safe id: "PINK LADY/CRIPPS PINK" → "pink-lady-cripps-pink". */
+export const varietySlug = (name: string) =>
+  name
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+
+/** Terminal-market origins that name no single state or country. */
+export const UNNAMED_QUOTE_ORIGINS = new Set([
+  "",
+  "N/A",
+  "None",
+  "United States",
+  "N Carolina-S Carolina",
+  "Arizona-California",
+]);
+
+/**
+ * A terminal-market origin ("Washington", "Chile") as an origin id: a state name first ("California-South" folds
+ * into California), then a country. Null for an origin naming no single place; throws on a name it can't map.
+ */
+export function quoteOriginCode(
+  origin: string,
+  states: ReadonlyMap<string, string>,
+  countries: Readonly<Record<string, string>>,
+): string | null {
+  if (UNNAMED_QUOTE_ORIGINS.has(origin)) return null;
+  const state = states.get(origin) ?? states.get(origin.replace(/-(North|Central|South)$/, ""));
+  if (state) return `us-${state.toLowerCase()}`;
+  const code = countries[origin];
+  if (!code) throw new RangeError(`No origin code for ${origin}`);
+  return code;
+}

@@ -17,6 +17,7 @@ export const RULES: Rules = {
   typicalOriginShare: 0.7,
   decidingOriginShare: 0.25,
   supplyIndex: { thin: 0.8, strong: 1.2 },
+  varietyInStoreShare: 0.1,
   reliableYearRoundWindows: 20,
   snapshotMaxAgeMonths: 15,
   lastCallWindows: 2,

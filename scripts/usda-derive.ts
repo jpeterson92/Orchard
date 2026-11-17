@@ -1,5 +1,6 @@
 // usda:derive: writes data/usda/typical-origins.csv and data/usda/supply-index.csv for the launch items whose supply
-// USDA movement reports cover (docs/data/usda.md, Coverage by item). Reads the cached responses in .cache/usda/
+// USDA movement reports cover (docs/data/usda.md, Coverage by item), and data/usda/variety-calendar.csv from
+// terminal-market quotes for the items rated by variety. Reads the cached responses in .cache/usda/
 // (fetching any that are missing) and writes a review report to .cache/usda/derive-report.md.
 // Run on demand only; Jared reviews the diff. It never edits content/.
 // Usage: npm run usda:derive
@@ -7,18 +8,24 @@ import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { parse as parseYaml } from "yaml";
 import { rulesSchema } from "../src/shared/data/schema";
 import { CACHE, fetchDetails, pool } from "./usda-client";
-import { CANDIDATES, FROM, REPORTS, TO } from "./usda-commodities";
+import { CANDIDATES, FROM, MARKETS, REPORTS, TO } from "./usda-commodities";
 import {
   calendarMeans,
   dedupe,
+  isoDate,
   lumpSums,
   type MovementRow,
   monthRange,
   originCode,
   ownSeasonIndex,
   parseRow,
+  type Quote,
+  quoteOriginCode,
   splitAcrossMonths,
   typicalOrigins,
+  UNNAMED_QUOTE_ORIGINS,
+  varietyPresence,
+  varietySlug,
 } from "./usda-lib";
 
 // Launch item → probe candidates. Only items whose US and import supply USDA reports throughout the period; the
@@ -89,17 +96,23 @@ const COUNTRIES: Record<string, string> = {
   "Dominican Republic": "do",
   Ecuador: "ec",
   Guatemala: "gt",
+  Haiti: "ht",
   Honduras: "hn",
   India: "in",
   Italy: "it",
   Jamaica: "jm",
   Mexico: "mx",
+  Morocco: "ma",
+  Israel: "il",
+  Uruguay: "uy",
   Netherlands: "nl",
   "New Zealand": "nz",
   Nicaragua: "ni",
   Panama: "pa",
+  Pakistan: "pk",
   Peru: "pe",
   Philippines: "ph",
+  "Puerto Rico": "pr",
   "South Africa": "za",
   Spain: "es",
   Thailand: "th",
@@ -215,6 +228,54 @@ for (const [item, candidates] of Object.entries(ITEMS)) {
   console.error(`${item}: ${rows.length} rows, ${lumps.length} lumps dropped`);
 }
 
+// Variety calendar (P13): terminal-market price quotes for the items rated by variety. Presence, not volume.
+const VARIETY_ITEMS: Record<string, string[]> = {
+  apples: ["Apples"],
+  pears: ["Pears"],
+  mandarins: ["Tangerines", "Clementines", "Mandarins", "Satsumas", "Tangelos"],
+  oranges: ["Oranges", "Blood Orange"],
+  avocados: ["Avocados"],
+  mangoes: ["Mangoes"],
+};
+// Keep a variety quoted on at least this share of the item's market-days in some month; drop the long tail.
+const KEEP_SHARE = 0.02;
+const calendarCsv: string[] = [];
+for (const [item, names] of Object.entries(VARIETY_ITEMS)) {
+  const jobs = names.flatMap((c) => Object.keys(MARKETS).map((m) => ({ m: Number(m), c })));
+  const results = await pool(jobs, 6, async ({ m, c }) => ({
+    m,
+    c,
+    rows: await fetchDetails(m, c, FROM, TO),
+  }));
+  const quotes: Quote[] = results.flatMap(({ m, c, rows }) =>
+    rows.map((r) => {
+      const v = typeof r.variety === "string" && r.variety !== "N/A" ? r.variety : "unspecified";
+      return {
+        market: MARKETS[m] ?? String(m),
+        date: isoDate(String(r.report_begin_date)),
+        // Within an item made of several commodities, the commodity keeps "Tangerines / TANGO" apart.
+        variety: varietySlug(names.length > 1 ? `${c} ${v}` : v),
+        origin: String(r.origin ?? ""),
+      };
+    }),
+  );
+  const kept = [...varietyPresence(quotes)]
+    .filter(([, p]) => Math.max(...p.months) >= KEEP_SHARE)
+    .sort((a, b) => b[1].marketDays - a[1].marketDays || a[0].localeCompare(b[0]));
+  for (const [variety, p] of kept) {
+    // Origins on at least 10% of the variety's market-days, at most 3, as presence rather than share.
+    const origins = [...p.origins]
+      .filter(([o, n]) => !UNNAMED_QUOTE_ORIGINS.has(o) && n >= 0.1 * p.marketDays)
+      .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+      .slice(0, 3)
+      .map(([o]) => quoteOriginCode(o, states, COUNTRIES) as string);
+    p.months.forEach((share, i) => {
+      calendarCsv.push(`${item},${variety},${i + 1},${Number(share.toFixed(3))},${origins.join(" ")}`);
+    });
+  }
+  console.error(`${item}: ${quotes.length} quotes, ${kept.length} varieties kept`);
+}
+
 const header = [
   "# source: USDA AMS Market News movement reports (usda:derive)",
   `# from: ${FROM.slice(0, 7)}`,
@@ -229,6 +290,16 @@ writeFileSync(
 writeFileSync(
   "data/usda/supply-index.csv",
   [...header, "item,month,origin,value,reason", ...supplyCsv, ""].join("\n"),
+);
+writeFileSync(
+  "data/usda/variety-calendar.csv",
+  [
+    "# source: USDA AMS Market News terminal market price reports, 12 cities (usda:derive)",
+    ...header.slice(1),
+    "item,variety,month,share,origins",
+    ...calendarCsv,
+    "",
+  ].join("\n"),
 );
 writeFileSync(`${CACHE}/derive-report.md`, [...report, "", ...detail].join("\n"));
 console.log(report.join("\n"));

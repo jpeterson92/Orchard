@@ -115,7 +115,7 @@ The evidence basis for each added item is set when its record is drafted:
   - Hamlin oranges (Florida) are quoted Oct–Jan.
 - **Apples are on offer all year,** because of cold storage. Gala, Fuji, Granny Smith, Red and Golden Delicious and Honeycrisp are quoted on 83–100% of market-days every month. Presence says nothing about freshness for storage crops, so "freshest months" in the apple guide needs citations. Only a few apple varieties show a season: Cortland, Rome and Braeburn are scarce from Jun to Sep.
 - **Citrus origins are still visible here** after domestic movement reporting stopped: California leads the navel, clementine and tango quotes. This can cross-check the editorial origins for citrus, as presence rather than share.
-- Variety names need a mapping to guide varieties: `PINK LADY/CRIPPS PINK`, `W. MURCOTT AFOURER`, `TANGO`, plus some quotes with no variety. That mapping belongs to the variety content in M7.
+- **`npm run usda:derive` writes `data/usda/variety-calendar.csv`** for apples, pears, mandarins (with tangelos), oranges (with blood oranges), avocados and mangoes: 130 varieties as slugs of USDA's names (`pink-lady-cripps-pink`, `tangerines-w-murcott-afourer`). A rated variety maps to them with `quotedAs` in its item file. Many clementine and some tangerine quotes name no variety (`clementines-unspecified`).
 
 ## Quality notes in terminal reports
 

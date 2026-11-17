@@ -80,6 +80,7 @@ function base(): RawInputs {
       typicalOriginShare: 0.7,
       decidingOriginShare: 0.25,
       supplyIndex: { thin: 0.8, strong: 1.2 },
+      varietyInStoreShare: 0.1,
       reliableYearRoundWindows: 20,
       snapshotMaxAgeMonths: 15,
       lastCallWindows: 2,
@@ -113,6 +114,14 @@ function base(): RawInputs {
       { item: "test-fruit", month: "5", origin: "us-ca", value: "1.31", reason: "" },
       { item: "test-fruit", month: "6", origin: "us-ca", value: "", reason: "not_reported" },
     ]),
+    varietyCalendar: {
+      ...csv("data/usda/variety-calendar.csv", [
+        { item: "test-fruit", variety: "gala", month: "5", share: "0.42", origins: "us-ca mx" },
+        { item: "test-fruit", variety: "gala", month: "6", share: "0", origins: "" },
+      ]),
+      // Another report family from the same derive run: same period and date, its own source.
+      meta: { source: "Synthetic terminal markets", from: "2023-11", to: "2026-10", derived: "2026-11-17" },
+    },
   };
 }
 
@@ -128,7 +137,7 @@ const gala = (windows?: object[]) => ({
   traits: {},
   bestUses: ["Eating"],
   label: "Gala",
-  ...(windows ? { windows: structuredClone(windows) } : {}),
+  ...(windows ? { windows: structuredClone(windows), quotedAs: ["gala"] } : {}),
 });
 /** Rates the variety gala over SUMMER, backed by both sources. */
 const rateByVariety = (r: RawInputs) => {
@@ -151,6 +160,10 @@ describe("validate: a valid dataset", () => {
     });
     expect(dataset?.typicalOrigins[0]?.month).toBe(5);
     expect(dataset?.typicalOrigins.map((r) => r.major)).toEqual([true, false]);
+    expect(dataset?.varietyCalendar.map((r) => [r.share, r.origins])).toEqual([
+      [0.42, ["us-ca", "mx"]],
+      [0, []],
+    ]);
     expect(dataset?.evidence[0]?.claims.map((c) => c.origin)).toEqual(["us", "us", "mx", "mx"]);
   });
 
@@ -189,7 +202,7 @@ describe("validate: a valid dataset", () => {
   });
 
   it("works without any USDA snapshot", () => {
-    const raw = { ...base(), typicalOrigins: null, supplyIndex: null };
+    const raw = { ...base(), typicalOrigins: null, supplyIndex: null, varietyCalendar: null };
     expect(validate(raw, { production: false }).dataset?.snapshot).toBeNull();
   });
 });
@@ -441,6 +454,42 @@ const broken: [string, (r: RawInputs) => void, string][] = [
     "duplicate supply index test-fruit/us-ca/5",
   ],
   [
+    "variety share over 1",
+    (r) => (((r.varietyCalendar as Csv).rows[0] as Any).share = "1.2"),
+    "variety-calendar.csv line 2",
+  ],
+  [
+    "unknown variety calendar origin",
+    (r) => (((r.varietyCalendar as Csv).rows[0] as Any).origins = "us-ca qq"),
+    "variety calendar test-fruit/gala/5",
+  ],
+  [
+    "duplicate variety calendar month",
+    (r) => (((r.varietyCalendar as Csv).rows[1] as Any).month = "5"),
+    "duplicate variety calendar test-fruit/gala/5",
+  ],
+  [
+    "rated variety without quotedAs",
+    (r) => {
+      rateByVariety(r);
+      delete firstItem(r).varieties[0].quotedAs;
+    },
+    "variety gala: a rated variety needs quotedAs",
+  ],
+  [
+    "quotedAs not in the calendar",
+    (r) => {
+      rateByVariety(r);
+      firstItem(r).varieties[0].quotedAs = ["sour-one"];
+    },
+    "variety gala: quotedAs sour-one isn't in the variety calendar",
+  ],
+  [
+    "calendar from another derive run",
+    (r) => ((r.varietyCalendar as Csv).meta.derived = "2026-11-18"),
+    "different snapshots",
+  ],
+  [
     "mismatched snapshot headers",
     (r) => ((r.supplyIndex as Csv).meta.derived = "2026-11-18"),
     "different snapshots",
@@ -522,6 +571,12 @@ describe("validate: edge cases that are allowed", () => {
     firstItem(raw).origins[1].windows = structuredClone(year);
     claims(raw)[2].windows = structuredClone(year);
     claims(raw)[3].windows = structuredClone(year);
+    expect(validate(raw, { production: false }).errors).toEqual([]);
+  });
+
+  it("an unrated variety quoted under a calendar name", () => {
+    const raw = structuredClone(base());
+    firstItem(raw).varieties = [{ ...gala(), quotedAs: ["gala"] }];
     expect(validate(raw, { production: false }).errors).toEqual([]);
   });
 

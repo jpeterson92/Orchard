@@ -23,6 +23,8 @@ import {
   supplyIndexRowSchema,
   type TypicalOriginRow,
   typicalOriginRowSchema,
+  type VarietyCalendarRow,
+  varietyCalendarRowSchema,
 } from "../src/shared/data/schema";
 import { propose, type Target, traitsFor } from "../src/shared/evidence";
 import { windowLabel, windowRange } from "../src/shared/time";
@@ -44,6 +46,7 @@ export interface RawInputs {
   advisories: unknown;
   typicalOrigins: Csv | null;
   supplyIndex: Csv | null;
+  varietyCalendar: Csv | null;
 }
 
 export interface Result {
@@ -313,9 +316,32 @@ export function validate(raw: RawInputs, opts: { production: boolean }): Result 
   unique(supplyIndex, (r) => `${r.item}/${r.origin}/${r.month}`, "supply index");
   for (const r of supplyIndex) checkOrigin(r.origin, `supply index ${r.item}/${r.origin}/${r.month}`);
 
-  const [snapshot = null, other] = snapshots;
-  if (snapshot && other && JSON.stringify(snapshot) !== JSON.stringify(other)) {
-    errors.push("typical-origins.csv and supply-index.csv headers describe different snapshots");
+  const varietyCalendar: VarietyCalendarRow[] = csvRows(
+    raw.varietyCalendar,
+    varietyCalendarRowSchema,
+    (r) => ({
+      ...r,
+      share: Number(r.share),
+      origins: r.origins ? r.origins.split(" ") : [],
+    }),
+  );
+  unique(varietyCalendar, (r) => `${r.item}/${r.variety}/${r.month}`, "variety calendar");
+  for (const r of varietyCalendar)
+    for (const o of r.origins) checkOrigin(o, `variety calendar ${r.item}/${r.variety}/${r.month}`);
+  for (const item of items)
+    for (const v of item.varieties) {
+      const at = `item ${item.id} variety ${v.id}`;
+      if (v.windows && !v.quotedAs) errors.push(`${at}: a rated variety needs quotedAs (P13)`);
+      for (const q of v.quotedAs ?? [])
+        if (raw.varietyCalendar && !varietyCalendar.some((r) => r.item === item.id && r.variety === q))
+          errors.push(`${at}: quotedAs ${q} isn't in the variety calendar`);
+    }
+
+  // The derived CSVs come from one usda:derive run: same period and date, though their sources differ.
+  const [snapshot = null] = snapshots;
+  const period = (s: Snapshot) => `${s.from}..${s.to} derived ${s.derived}`;
+  if (snapshot && snapshots.some((s) => period(s) !== period(snapshot))) {
+    errors.push("the data/usda CSV headers describe different snapshots");
   }
 
   if (opts.production) {
@@ -342,6 +368,7 @@ export function validate(raw: RawInputs, opts: { production: boolean }): Result 
       snapshot,
       typicalOrigins,
       supplyIndex,
+      varietyCalendar,
     },
   };
 }

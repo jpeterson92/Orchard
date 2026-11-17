@@ -56,6 +56,8 @@ export const rulesSchema = z.strictObject({
   supplyIndex: z
     .strictObject({ thin: z.number().positive(), strong: z.number().positive() })
     .refine((s) => s.thin < s.strong, "thin must be below strong"),
+  /** P13: a variety is in stores in a month when quoted on at least this share of the item's market-days. */
+  varietyInStoreShare: z.number().gt(0).lte(1),
   reliableYearRoundWindows: z.int().min(1).max(24),
   snapshotMaxAgeMonths: z.int().positive(),
   lastCallWindows: z.int().positive(),
@@ -108,6 +110,8 @@ export const varietySchema = z.strictObject({
   storesWell: trait.optional(),
   /** Present on a rated variety: the item is then rated by variety (P13). As typically sold, whatever the origin. */
   windows: qualityWindows.optional(),
+  /** The variety calendar's names for it (slugs of USDA's terminal-market names). Required on a rated variety. */
+  quotedAs: z.array(id).min(1).optional(),
 });
 
 export const itemSchema = z
@@ -214,6 +218,17 @@ export const supplyIndexRowSchema = z
     "give either a value or a null reason, not both",
   );
 
+/** One USDA terminal-market variety in one month: presence in price quotes, not volume (P13). */
+export const varietyCalendarRowSchema = z.strictObject({
+  item: id,
+  variety: id,
+  month,
+  /** Share of the item's market-days quoting this variety. */
+  share: z.number().min(0).max(1),
+  /** Origins on at least 10% of the variety's market-days, most quoted first. */
+  origins: z.array(originId),
+});
+
 const yearMonth = z.string().regex(/^\d{4}-(0[1-9]|1[0-2])$/, "use YYYY-MM");
 
 /** Header of the derived USDA CSVs: what the snapshot covers. */
@@ -231,6 +246,7 @@ export type EvidenceClaim = z.infer<typeof evidenceClaimSchema>;
 export type EvidenceFile = z.infer<typeof evidenceFileSchema>;
 export type TypicalOriginRow = z.infer<typeof typicalOriginRowSchema>;
 export type SupplyIndexRow = z.infer<typeof supplyIndexRowSchema>;
+export type VarietyCalendarRow = z.infer<typeof varietyCalendarRowSchema>;
 export type Snapshot = z.infer<typeof snapshotSchema>;
 
 /** What data-build writes to `src/generated/data.json`. */
@@ -245,4 +261,5 @@ export interface Dataset {
   snapshot: Snapshot | null;
   typicalOrigins: TypicalOriginRow[];
   supplyIndex: SupplyIndexRow[];
+  varietyCalendar: VarietyCalendarRow[];
 }

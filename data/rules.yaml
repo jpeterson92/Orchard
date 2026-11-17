@@ -1,10 +1,11 @@
 # Verdict thresholds (product spec §7, engineering plan §4.3). Bump `version` whenever a value changes.
-version: 3
+version: 4
 typicalOriginShare: 0.70 # typical origins cover at least this share of reported volume
 decidingOriginShare: 0.25 # P9: only a typical origin with at least this share can take over from a poor top origin
 supplyIndex:
   thin: 0.8 # below: thin supply
   strong: 1.2 # at or above: strong supply
+varietyInStoreShare: 0.10 # P13: a variety is in stores in a month at this share of the item's terminal-market quotes
 reliableYearRoundWindows: 20 # Good or better in at least this many of 24 windows
 snapshotMaxAgeMonths: 15 # P10 freshness: an older supply snapshot weakens confidence
 lastCallWindows: 2 # Last call: the outlook drops within this many windows

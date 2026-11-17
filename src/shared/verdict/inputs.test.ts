@@ -26,7 +26,7 @@ const item = {
   storesWell: { value: false, sources: ["a"] },
   origins: [{ origin: "us-ca", windows: SUMMER }],
   varieties: [
-    { id: "rated", windows: SUMMER },
+    { id: "rated", windows: SUMMER, quotedAs: ["rated-usda", "rated-alt"] },
     { id: "unrated", windows: undefined },
   ],
 } as unknown as Item;
@@ -51,6 +51,16 @@ const data = {
     { item: "test-fruit", month: 5, rank: 1, origin: "us-ca", major: true },
   ],
   supplyIndex: [],
+  // In May the two names reach 0.1 only together; in June one alone; never in July; capped where they overlap.
+  varietyCalendar: [
+    { item: "test-fruit", variety: "rated-usda", month: 5, share: 0.06, origins: [] },
+    { item: "test-fruit", variety: "rated-alt", month: 5, share: 0.04, origins: [] },
+    { item: "test-fruit", variety: "rated-usda", month: 6, share: 0.1, origins: [] },
+    { item: "test-fruit", variety: "rated-usda", month: 7, share: 0.09, origins: [] },
+    { item: "test-fruit", variety: "rated-usda", month: 8, share: 0.8, origins: [] },
+    { item: "test-fruit", variety: "rated-alt", month: 8, share: 0.7, origins: [] },
+    { item: "other-fruit", variety: "rated-usda", month: 9, share: 0.5, origins: [] },
+  ],
 } as unknown as Dataset;
 
 describe("itemInputs", () => {
@@ -74,23 +84,18 @@ describe("itemInputs", () => {
     expect(at(inputs.varieties[0]?.evidence, "may-1")).toBe("low");
   });
 
-  it("counts no variety as in stores until the variety calendar exists, so the item is Limited evidence", () => {
-    expect(inputs.varieties[0]?.inStore.every((x) => !x)).toBe(true);
-    const r = evaluate(
-      inputs,
-      { date: { year: 2026, month: 5, day: 10 }, mode: "typical" },
-      {
-        rules: RULES,
-        snapshotTo: null,
-      },
-    );
-    expect(r.verdict).toBe("limited");
-    const byOrigin = evaluate(
-      { ...inputs, varieties: [] },
-      { date: { year: 2026, month: 5, day: 10 }, mode: "typical" },
-      { rules: RULES, snapshotTo: null },
-    );
-    expect(byOrigin.verdict).not.toBe("limited");
+  it("counts a variety in stores where its calendar names together reach the P13 share", () => {
+    const expected = [false, false, false, false, true, true, false, true, false, false, false, false];
+    expect(inputs.varieties[0]?.inStore).toEqual(expected);
+  });
+
+  it("an item rated by variety is Limited evidence when no rated variety is in stores", () => {
+    const may = { date: { year: 2026, month: 5, day: 10 }, mode: "typical" } as const;
+    const env = { rules: RULES, snapshotTo: null };
+    expect(evaluate(inputs, may, env).verdict).not.toBe("limited");
+    const noCalendar = itemInputs(item, { ...data, varietyCalendar: [] });
+    expect(noCalendar.varieties[0]?.inStore.some(Boolean)).toBe(false);
+    expect(evaluate(noCalendar, may, env).verdict).toBe("limited");
   });
 
   it("gives an item without an evidence file no confidence anywhere", () => {

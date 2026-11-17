@@ -29,6 +29,7 @@ const raw: RawInputs = {
   evidence: yamlFiles("content/evidence"),
   typicalOrigins: csv("data/usda/typical-origins.csv", ["item", "month", "rank", "origin", "major"]),
   supplyIndex: csv("data/usda/supply-index.csv", ["item", "month", "origin", "value", "reason"]),
+  varietyCalendar: csv("data/usda/variety-calendar.csv", ["item", "variety", "month", "share", "origins"]),
 };
 
 const { errors, warnings, dataset } = validate(raw, { production });

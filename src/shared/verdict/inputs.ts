@@ -6,9 +6,15 @@ import type { Env, ItemInputs, RatedSeries, RatedVariety, Rating } from "./index
 
 const MONTHS = 12;
 
-/** Which months each variety is typically in stores comes from the variety calendar (M2 slice 6). Until then no
- * variety counts as in stores, so items rated by variety show Limited evidence rather than an invented presence. */
-const NOT_YET_KNOWN: readonly boolean[] = Array(MONTHS).fill(false);
+/** P13: per month, whether the variety is typically in stores: its calendar names' combined share of the item's
+ * market-days (capped at 1; a day quoting two of its names counts twice) reaches rules.varietyInStoreShare. */
+function inStore(item: Item, quotedAs: readonly string[], data: Dataset): boolean[] {
+  const share: number[] = Array(MONTHS).fill(0);
+  for (const r of data.varietyCalendar)
+    if (r.item === item.id && quotedAs.includes(r.variety))
+      share[r.month - 1] = (share[r.month - 1] ?? 0) + r.share;
+  return share.map((s) => Math.min(1, s) >= data.rules.varietyInStoreShare);
+}
 
 function series(
   windows: Item["origins"][number]["windows"],
@@ -47,7 +53,13 @@ export function itemInputs(item: Item, data: Dataset): ItemInputs {
   }
   const varieties = item.varieties.flatMap((v): RatedVariety[] =>
     v.windows
-      ? [{ id: v.id, ...series(v.windows, claims, sources, { variety: v.id }, item), inStore: NOT_YET_KNOWN }]
+      ? [
+          {
+            id: v.id,
+            ...series(v.windows, claims, sources, { variety: v.id }, item),
+            inStore: inStore(item, v.quotedAs ?? [], data),
+          },
+        ]
       : [],
   );
   return {

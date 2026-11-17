@@ -10,10 +10,12 @@ import {
   originsCovering,
   ownSeasonIndex,
   parseRow,
+  quoteOriginCode,
   splitAcrossMonths,
   supplyIndex,
   typicalOrigins,
   varietyPresence,
+  varietySlug,
 } from "./usda-lib";
 
 const raw = (over: Record<string, unknown> = {}) => ({
@@ -220,5 +222,30 @@ describe("lumpSums", () => {
   test("keeps a short season's big but similar peak weeks", () => {
     const rows = [row("A", 40, 1), row("A", 30, 2), row("A", 25, 3), row("B", 1, 4)];
     expect(lumpSums(rows, 12).size).toBe(0);
+  });
+});
+
+describe("varietySlug", () => {
+  test("makes USDA names CSV-safe ids", () => {
+    expect(varietySlug("PINK LADY/CRIPPS PINK")).toBe("pink-lady-cripps-pink");
+    expect(varietySlug("Tangerines W. MURCOTT AFOURER")).toBe("tangerines-w-murcott-afourer");
+    expect(varietySlug("D'ANJOU")).toBe("d-anjou");
+  });
+});
+
+describe("quoteOriginCode", () => {
+  const states = new Map([
+    ["California", "CA"],
+    ["Georgia", "GA"],
+  ]);
+  test("prefers a state, folds sub-state regions, then maps countries", () => {
+    expect(quoteOriginCode("Georgia", states, { Georgia: "ge" })).toBe("us-ga");
+    expect(quoteOriginCode("California-South", states, {})).toBe("us-ca");
+    expect(quoteOriginCode("Peru", states, { Peru: "pe" })).toBe("pe");
+  });
+  test("origins naming no single place are null; unknown names throw", () => {
+    expect(quoteOriginCode("N/A", states, {})).toBeNull();
+    expect(quoteOriginCode("Arizona-California", states, {})).toBeNull();
+    expect(() => quoteOriginCode("Atlantis", states, {})).toThrow(RangeError);
   });
 });
