@@ -14,6 +14,7 @@ import {
   ratingForValue,
   sourceConfidence,
   type Target,
+  traitsFor,
 } from "./evidence";
 import { WINDOW_COUNT, windowFromLabel, windowLabel } from "./time";
 import type { Rating } from "./verdict";
@@ -49,7 +50,7 @@ function claim(source: string, windows: string, opts: Partial<Claim> = {}): Clai
   };
 }
 const US_WA: Target = { origin: "us-wa" };
-const SHIPS = { shipsWell: true };
+const SHIPS = { shipsWell: true, storesWell: false };
 const valuesAt = (values: (number | null)[], labels: string[]) =>
   labels.map((l) => values[windowFromLabel(l)]);
 
@@ -398,7 +399,8 @@ describe("combining curves: properties", () => {
 describe("availability curves (P14)", () => {
   const avail = (windows: string, opts: Partial<Claim> = {}) =>
     claim("a", windows, { directness: "availability", ...opts });
-  const NOT_SHIPPING = { shipsWell: false };
+  const NOT_SHIPPING = { shipsWell: false, storesWell: false };
+  const STORES = { shipsWell: true, storesWell: true };
 
   it.each([
     // In season prime, the half-month either side fair, the rest of the year poor.
@@ -431,10 +433,37 @@ describe("availability curves (P14)", () => {
     expect(valuesAt(v, ["nov-2", "dec-1", "mar-2", "apr-1", "jul-1"])).toEqual([0, 0.5, 0.5, 0, 0]);
   });
 
-  it("an import that doesn't ship well has no availability curve", () => {
+  it("an import that doesn't ship well reads poor all year, even in its own season", () => {
     const c = avail("dec-1..mar-2 prime", { origin: "mx" });
-    expect(claimValues(c, NOT_SHIPPING).every((x) => x === null)).toBe(true);
-    expect(propose([c], sources, { origin: "mx" }, NOT_SHIPPING).windows.every((w) => w === null)).toBe(true);
+    expect(new Set(claimValues(c, NOT_SHIPPING))).toEqual(new Set([0]));
+    expect(new Set(claimValues(c, { ...NOT_SHIPPING, storesWell: true }))).toEqual(new Set([0]));
+    expect(at(propose([c], sources, { origin: "mx" }, NOT_SHIPPING), "jan-1")?.rating).toBe("poor");
+  });
+
+  it("an item that stores well reads fair away from harvest, never prime", () => {
+    const v = claimValues(avail("aug-1..oct-2 prime"), STORES);
+    expect(valuesAt(v, ["jul-1", "jul-2", "aug-1", "oct-2", "nov-1", "mar-1"])).toEqual([
+      0.5, 0.5, 1, 1, 0.5, 0.5,
+    ]);
+    // An import that ships and stores well reads poor away from its own season, fair in it.
+    const mx = claimValues(avail("mar-1..may-2 prime", { origin: "nz" }), STORES);
+    expect(valuesAt(mx, ["feb-2", "mar-1", "may-2", "jun-1", "sep-1"])).toEqual([0, 0.5, 0.5, 0, 0]);
+  });
+
+  it("an import that tastes very good can still read prime from eating-quality evidence", () => {
+    const claims = [
+      claim("a", "dec-1..mar-2 prime", { origin: "cl" }),
+      claim("b", "dec-1..mar-2 prime", { origin: "cl" }),
+      claim("m", "dec-1..mar-2 prime", { origin: "cl", directness: "availability" }),
+    ];
+    expect(at(propose(claims, sources, { origin: "cl" }, SHIPS), "jan-1")?.rating).toBe("prime");
+  });
+
+  it("a variety's storesWell overrides its item's", () => {
+    const item = { ...SHIPS, varieties: [{ id: "v1", storesWell: true }, { id: "v2" }] };
+    expect(traitsFor(item, { variety: "v1" }).storesWell).toBe(true);
+    expect(traitsFor(item, { variety: "v2" }).storesWell).toBe(false);
+    expect(traitsFor(item, US_WA).storesWell).toBe(false);
   });
 
   it("a domestic chart doesn't depend on shipping", () => {
@@ -463,32 +492,34 @@ describe("availability curves (P14)", () => {
 
   const availArb = claimArb.map((c) => ({ ...c, directness: "availability" as const }));
 
-  it("a domestic availability curve covers every window, keeps listed windows, and its shoulders never exceed fair (property)", () => {
+  it("a domestic availability curve covers every window, keeps listed windows, and reads fair or poor elsewhere (fair throughout when it stores well) (property)", () => {
     fc.assert(
-      fc.property(availArb, fc.boolean(), (c, shipsWell) => {
+      fc.property(availArb, fc.boolean(), fc.boolean(), (c, shipsWell, storesWell) => {
         const domestic = { ...c, origin: "us" };
-        const v = claimValues(domestic, { shipsWell });
+        const v = claimValues(domestic, { shipsWell, storesWell });
         expect(v.every((x) => x !== null)).toBe(true);
         const listed = claimValues(
           { ...domestic, directness: "eating-quality", specificity: "month" },
-          { shipsWell },
+          { shipsWell, storesWell },
         );
         v.forEach((x, i) => {
           const l = listed[i];
           if (l !== null && l !== undefined) expect(x).toBe(l);
-          else expect(x).toBeLessThanOrEqual(0.5);
+          else expect(x).toBe(storesWell ? 0.5 : (x as number) > 0 ? 0.5 : 0);
         });
       }),
     );
   });
 
-  it("an import's curve is the domestic curve one level lower, or none when the item doesn't ship well (property)", () => {
+  it("an import's curve is the domestic curve one level lower, or poor throughout when the item doesn't ship well (property)", () => {
     fc.assert(
-      fc.property(availArb, (c) => {
-        const domestic = claimValues({ ...c, origin: "us" }, SHIPS);
-        const imported = claimValues({ ...c, origin: "mx" }, SHIPS);
+      fc.property(availArb, fc.boolean(), (c, storesWell) => {
+        const traits = { shipsWell: true, storesWell };
+        const domestic = claimValues({ ...c, origin: "us" }, traits);
+        const imported = claimValues({ ...c, origin: "mx" }, traits);
         expect(imported).toEqual(domestic.map((x) => Math.max(0, (x as number) - 0.5)));
-        expect(claimValues({ ...c, origin: "mx" }, { shipsWell: false }).every((x) => x === null)).toBe(true);
+        const notShipping = claimValues({ ...c, origin: "mx" }, { shipsWell: false, storesWell });
+        expect(notShipping.every((x) => x === 0)).toBe(true);
       }),
     );
   });

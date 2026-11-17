@@ -24,7 +24,7 @@ import {
   type TypicalOriginRow,
   typicalOriginRowSchema,
 } from "../src/shared/data/schema";
-import { propose, type Target } from "../src/shared/evidence";
+import { propose, type Target, traitsFor } from "../src/shared/evidence";
 import { windowLabel, windowRange } from "../src/shared/time";
 
 export interface Csv {
@@ -238,7 +238,7 @@ export function validate(raw: RawInputs, opts: { production: boolean }): Result 
       sourceIds.has(c.source),
     );
     for (const [name, windows, target] of ratedSeries(item)) {
-      const proposal = propose(claims, sourcesById, target, item).windows;
+      const proposal = propose(claims, sourcesById, target, traitsFor(item, target)).windows;
       for (const w of windows) {
         const at = `item ${item.id} ${name} ${w.from}..${w.to}`;
         const range = windowRange(w.from, w.to);

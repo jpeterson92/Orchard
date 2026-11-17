@@ -28,10 +28,21 @@ export type Claim = Pick<
   "source" | "origin" | "variety" | "windows" | "specificity" | "directness"
 >;
 
-/** What the combiner needs to know about the item itself. */
+/** What the combiner needs to know about the item (or the variety) itself (P14). */
 export interface ItemTraits {
-  /** Holds its quality through long transport, so an import in its own season can eat well (P14). */
+  /** Arrives from abroad eating well, without being picked underripe to survive the trip. */
   shipsWell: boolean;
+  /** Eats well for months out of commercial storage, so months away from harvest read Good, never Peak. */
+  storesWell: boolean;
+}
+
+/** A target's traits: a variety's own `storesWell` overrides its item's. */
+export function traitsFor(
+  item: ItemTraits & { varieties: readonly { id: string; storesWell?: boolean | undefined }[] },
+  target: Target,
+): ItemTraits {
+  const variety = "variety" in target ? item.varieties.find((v) => v.id === target.variety) : undefined;
+  return { shipsWell: item.shipsWell, storesWell: variety?.storesWell ?? item.storesWell };
 }
 
 /** A claim about a country other than the US. */
@@ -86,8 +97,9 @@ export function ratingForValue(value: number): Rating {
  *
  * An `availability` claim (a harvest chart, an in-season list) speaks for the whole year (P14): the windows it
  * lists keep their rating, the window either side of each listed range reads fair (never above the edge it
- * touches, never over a listed window), and every other window reads poor. An import's availability curve sits
- * one level lower, so its own season reads fair; for an item that doesn't ship well it has no curve.
+ * touches, never over a listed window), and every other window reads poor, or fair for an item that stores
+ * well. An import's availability curve sits one level lower, so its own season reads fair; for an item that
+ * doesn't ship well every window reads poor. Eating-quality claims, imports included, are read as written.
  *
  * Otherwise windows the claim doesn't rate have no value. A `season` claim gets a soft shoulder one window
  * beyond each end of each rated range, at half the edge value; shoulders never override a window the claim
@@ -121,7 +133,8 @@ function availabilityValues(
   item: ItemTraits,
 ): (number | null)[] {
   const imported = isImport(origin);
-  if (imported && !item.shipsWell) return Array(WINDOW_COUNT).fill(null);
+  if (imported && !item.shipsWell) return Array(WINDOW_COUNT).fill(P12.value.poor);
+  const offSeason = item.storesWell ? P12.value.fair : P12.value.poor;
   const shoulders: (number | null)[] = Array(WINDOW_COUNT).fill(null);
   for (const { range, value } of ranges) {
     if (range.length >= WINDOW_COUNT) continue;
@@ -135,7 +148,7 @@ function availabilityValues(
   }
   const step = P12.value.prime - P12.value.fair;
   return listed.map((v, i) => {
-    const value = v ?? shoulders[i] ?? P12.value.poor;
+    const value = v ?? Math.max(offSeason, shoulders[i] ?? offSeason);
     return imported ? Math.max(P12.value.poor, value - step) : value;
   });
 }

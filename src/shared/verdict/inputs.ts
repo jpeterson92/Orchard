@@ -1,6 +1,6 @@
 // Builds the engine's inputs from the validated dataset (engineering plan §4.1 → §4.2).
 import type { Dataset, Item } from "../data/schema";
-import { type Claim, type EvidenceSource, propose, type Target } from "../evidence";
+import { type Claim, type EvidenceSource, propose, type Target, traitsFor } from "../evidence";
 import { WINDOW_COUNT, windowRange } from "../time";
 import type { Env, ItemInputs, RatedSeries, RatedVariety, Rating } from "./index";
 
@@ -19,7 +19,9 @@ function series(
 ): RatedSeries {
   const ratings: (Rating | null)[] = Array(WINDOW_COUNT).fill(null);
   for (const w of windows) for (const i of windowRange(w.from, w.to)) ratings[i] = w.rating;
-  const evidence = propose(claims, sources, target, item).windows.map((p) => p?.confidence ?? null);
+  const evidence = propose(claims, sources, target, traitsFor(item, target)).windows.map(
+    (p) => p?.confidence ?? null,
+  );
   return { windows: ratings, evidence };
 }
 

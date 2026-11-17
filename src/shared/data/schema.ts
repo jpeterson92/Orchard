@@ -96,6 +96,8 @@ export const varietySchema = z.strictObject({
   label: words(CARD_WORDS),
   /** Citations for the traits and uses. */
   sources: z.array(id).default([]),
+  /** Overrides the item's `storesWell` (P14), e.g. a long-keeping apple. */
+  storesWell: z.boolean().optional(),
   /** Present on a rated variety: the item is then rated by variety (P13). As typically sold, whatever the origin. */
   windows: qualityWindows.optional(),
 });
@@ -111,8 +113,10 @@ export const itemSchema = z
     purchaseRank: z.int().positive(),
     /** Editorial class; data-build reports where the typical outlook disagrees. */
     alwaysGood: z.boolean(),
-    /** Editorial: holds its quality through long transport, so an import in its own season can eat well (P14). */
+    /** Editorial (P14): arrives from abroad eating well, without being picked underripe to survive the trip. */
     shipsWell: z.boolean(),
+    /** Editorial (P14): eats well for months out of commercial storage; a variety may override it. */
+    storesWell: z.boolean(),
     evidenceBasis: z.enum(["supply+assessment", "assessment-only"]),
     cardLine: words(CARD_WORDS),
     pick: z.array(text).min(3).max(5),
