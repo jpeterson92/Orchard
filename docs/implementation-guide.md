@@ -2,6 +2,8 @@
 
 Nov 16, 2026 · @Jared Peterson
 
+> **Status, Nov 16 2026: under revision. Do not implement from this document.** The pre-build review ([docs/reviews/2026-11-16-pre-build-review.md](reviews/2026-11-16-pre-build-review.md)) recommends replacing it with a much leaner plan. Until Jared decides, PROGRESS.md is the source of truth for what to build next.
+
 ## How to use this guide
 
 This guide turns the product and engineering specifications into 16 milestones (M0–M15), ordered by dependency, that a coding agent carries out starting from an empty repository. The two specifications still define *what* to build. This guide defines the order of work, the interfaces, how each step is verified, and what to do when something fails.

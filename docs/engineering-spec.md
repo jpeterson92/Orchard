@@ -2,6 +2,8 @@
 
 Nov 16, 2026 · @Jared Peterson
 
+> **Status, Nov 16 2026: under revision. Do not implement from this document.** The pre-build review ([docs/reviews/2026-11-16-pre-build-review.md](reviews/2026-11-16-pre-build-review.md)) recommends replacing it with a much leaner plan. Until Jared decides, PROGRESS.md is the source of truth for what to build next.
+
 ## 1. Summary
 
 The system is two independently deployed halves joined by one versioned contract. A **batch data backend** computes every verdict ahead of time and publishes immutable, versioned releases. An **edge frontend** serves the shopper from those releases and keeps a complete copy on the phone. No database is queried to show a verdict.

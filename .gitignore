@@ -1,0 +1,31 @@
+# Dependencies
+node_modules/
+.venv/
+__pycache__/
+*.pyc
+
+# Build and tool output
+dist/
+.out/
+.wrangler/
+coverage/
+playwright-report/
+test-results/
+
+# Secrets and local env
+.env
+.env.*
+!.env.example
+.dev.vars*
+
+# OS and editor
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+
+# Claude Code per-machine settings
+.claude/settings.local.json
