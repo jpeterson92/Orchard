@@ -73,7 +73,7 @@ function base(): RawInputs {
         origins: ["mx"],
         from: "2026-11-01",
         to: "2026-12-15",
-        verdict: "skip",
+        effect: "skip",
         note: "Test advisory note.",
         status: "draft",
         synthetic: true,
@@ -175,7 +175,7 @@ const broken: [string, (r: RawInputs) => void, string][] = [
   ],
   ["bad source url", (r) => ((r.sources as Any[])[0].url = "not a url"), "url"],
   ["sources not a list", (r) => (r.sources = { id: "s1" }), "expected a list"],
-  ["bad advisory verdict", (r) => (firstAdvisory(r).verdict = "limited"), "verdict"],
+  ["bad advisory effect", (r) => (firstAdvisory(r).effect = "peak"), "effect"],
   ["bad snapshot header", (r) => ((r.typicalOrigins as Csv).meta.to = "2026-13"), "YYYY-MM"],
   [
     "snapshot runs backwards",

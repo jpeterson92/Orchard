@@ -14,9 +14,9 @@ browser ── first visit ──> Cloudflare static assets (prerendered pages, 
         ── /api/* (later): feedback, requests, events ──> Worker (Hono) ──> D1
 ```
 
-- **The verdict engine runs on the phone.** It is a pure TypeScript module fed by the bundled inputs: quality windows, typical origins, supply index, advisories and rules. The inputs are tiny (about 2,100 ratings), so this costs microseconds. Running it on the phone gives exact-date advisories, label-based advice and planning dates for free, and the same code runs in tests and scripts. One implementation, used everywhere.
+- **The verdict engine runs on the phone.** It is a pure TypeScript module fed by the bundled inputs: quality windows, typical origins, supply index, advisories and rules. The inputs are tiny (a few thousand ratings), so this costs microseconds. Running it on the phone gives exact-date advisories, label-based advice and planning dates for free, and the same code runs in tests and scripts. One implementation, used everywhere.
 - **Verdicts are national, and the app has no location.** It never asks for, infers or stores where the shopper is; Alaska and Hawaii are covered by one sentence on the Methods page.
-- **No server render.** Today and every item page are **prerendered at build time** (verdicts are national, so one static page per route works), then hydrate; if the phone's window or an active advisory differs from the baked-in verdicts, the verdict region renders client-side before first paint. Rebuild at each half-month boundary: a scheduled GitHub Action once deploys run in CI; until then, the pre-paint check covers a stale build.
+- **No server render.** Today and every item page are **prerendered at build time** (verdicts are national, so one static page per route works), then hydrate; if the phone's window or an active advisory differs from the baked-in verdicts, the verdict region renders client-side before first paint. So a build stays correct across window boundaries, and no scheduled rebuild is needed.
 
 ## 2. Stack
 
@@ -38,8 +38,6 @@ Mature, widely used tools only. At scaffold time, take the newest release whose 
 | CI | GitHub Actions on `ubuntu-latest`, on each push to `main` | Typecheck, lint, unit tests, Playwright e2e against the build |
 | Hosting | Cloudflare Workers (static assets) on `workers.dev` until launch | Production domain added at M9 |
 
-Python stays out of production. If Jared wants exploratory USDA notebooks, they live in `notebooks/` with their own uv environment, and nothing imports them.
-
 ## 3. Repository layout
 
 ```
@@ -53,7 +51,7 @@ content/
 data/
   sources.yaml               every citation: id, tier, title, publisher, url, accessed date, optional basedOn
   source-registry.yaml       pages the evidence pipeline reads: source id, url, kind (multi-item chart or item page), parser
-  rules.yaml                 rules version + thresholds (0.70, 0.8, 1.2, 20/24, 15 months)
+  rules.yaml                 rules version + the thresholds in §4.3
   categories.yaml            browse categories in display order
   advisories.yaml            scoped, expiring exceptions
   usda/typical-origins.csv   derived from USDA (committed, with source + date header)
@@ -65,7 +63,7 @@ scripts/                     prerender.ts, data-build.ts, content-report.ts; usd
                              usda-probe.ts, usda-terminal-probe.ts, usda-terminal-screen.ts, usda-derive.ts;
                              evidence-fetch.ts, evidence-check.ts
 src/
-  shared/                    zod schemas, verdict engine, window math, place lookup. Imports nothing from app/ or worker/
+  shared/                    zod schemas, verdict engine, evidence curves, window math. Imports nothing from app/ or worker/
   app/                       React app: routes, components, styles, service worker registration
   worker/                    Cloudflare Worker: /api/*
   generated/                 data-build output (gitignored)
@@ -79,12 +77,12 @@ docs/                        product spec, engineering plan, design, data findin
 
 ### 4.1 Inputs (validated by `npm run data:build`)
 
-- **Item** (`content/items/*.yaml`): id, names, synonyms, misspellings, category, `purchaseRank`, `alwaysGood` (editorial), evidence basis (`supply+assessment` or `assessment-only`), card line, pick cues (3–5), avoid cues (1–2), store and ripen ranges with ripeness assumptions (storage temperature band, ethylene producer or sensitive, and storage life, cited to the UC Davis Postharvest Center fact sheets where they cover the item), prep, type notes. Also its origins, each with quality windows: half-month ranges rated `prime`, `fair` or `poor`. These are the editorial call; a window that departs from the evidence proposal, or whose proposal is Low confidence, carries a `reason`. Its citations come from the evidence file. Plus `status` (`draft` or `reviewed`), `reviewedOn`, `reviewer`, and `synthetic: true` on invented test data. Word limits come from product spec §8. Windows are written as half-month labels (`jun-1` is Jun 1–15, `jun-2` Jun 16–end) and may wrap past December; one origin's windows must not overlap. Origins are `us-<state>` or an ISO country code (`mx`).
+- **Item** (`content/items/*.yaml`): id, names, synonyms, misspellings, category, `purchaseRank`, `alwaysGood` (editorial), evidence basis (`supply+assessment` or `assessment-only`), card line, pick cues (3–5), avoid cues (1–2), store and ripen ranges with ripeness assumptions (storage temperature band, ethylene producer or sensitive, and storage life, cited to the UC Davis Postharvest Center fact sheets where they cover the item), prep, type notes. Also its rated origins, each with quality windows: half-month ranges rated `prime`, `fair` or `poor` (optional for items rated by variety, where they serve only label advice by origin). Where USDA doesn't report domestic supply, the item also lists its cited editorial `typicalOrigins` by month. These are the editorial call; a window that departs from the evidence proposal, or whose proposal is Low confidence, carries a `reason`. Its citations come from the evidence file. Plus `status` (`draft` or `reviewed`), `reviewedOn`, `reviewer`, and `synthetic: true` on invented test data. Word limits come from product spec §8. Windows are written as half-month labels (`jun-1` is Jun 1–15, `jun-2` Jun 16–end) and may wrap past December; one origin's windows must not overlap. Origins are `us-<state>` or an ISO country code (`mx`).
 - **Source:** `tier` is `authoritative` (extension, commodity board, USDA, UC Davis, trade reference) or `mainstream` (food publication, grocer guide). `basedOn` names the source it restates, so the two count once.
 - **Seasonal evidence** (`content/evidence/<item-id>.yaml`): one entry per source claim: source, origin (`us` when the source names none, meaning US-grown), optional variety, rated windows (`prime`, `fair`, `poor`), specificity (`half-month`, `month`, `season`), directness (`eating-quality`, `availability`, `secondhand`), and a one-line paraphrase. Drafted by Claude from web research, `status: draft` until Jared reviews it.
 - **Variety** (inside its item file): traits on the group's anchored 1–5 scales, best uses, label/PLU text, and, for items rated by variety, quality windows in the same form as an origin's (editorial, cited from evidence claims that name the variety). A variety's windows describe it as typically sold in US supermarkets, whatever the origin.
-- **Advisory:** items, optional origins (national scope), `from` ≤ `to` ≤ `from` + 90 days, imposed verdict, note, `reviewedOn`, `status`.
-- **Typical origins:** item × month → ranked origins covering at least 70% of reported volume (ranks only; never shown as shares). Where USDA doesn't report domestic supply (citrus, carrots, garlic, mushrooms, winter squash and others), the item file lists cited editorial origins instead.
+- **Advisory:** items, optional origins (national scope), `from` ≤ `to` ≤ `from` + 90 days, effect (`skip`, or `cap-good`), note, `reviewedOn`, `status`.
+- **Typical origins:** item × month → ranked origins covering at least 70% of reported volume (ranks only; never shown as shares). Where USDA doesn't report domestic supply (citrus, carrots, garlic, mushrooms, winter squash and others), the item file's editorial `typicalOrigins` take their place.
 - **Supply index:** item × month → value, or `null` with a reason (`no_data`, `no_baseline`, `not_reported`). Missing never becomes 0.
 - **Variety calendar:** item × variety × month → the share of USDA terminal market price quotes (11 cities, 3 years) naming that variety, and the origins quoted. Evidence of presence, not volume. It says which varieties are typically in stores each month (for "best now") and cross-checks variety quality windows and typical origins.
 - **PLU codes** (only once IFPS confirms reuse): PLU → item, variety, size, organic. Label-based advice accepts a sticker code as well as an origin.
@@ -94,14 +92,14 @@ docs/                        product spec, engineering plan, design, data findin
 ### 4.2 Engine (`src/shared/verdict/`)
 
 ```ts
-evaluate(item: ItemInputs, ctx: { date: PlainDate; mode: "today" | "typical"; labelOrigin?: OriginId }, rules: Rules): VerdictResult
-// VerdictResult: verdict, ruleFired, reasons[], confidence, weakProperties[], markers[], labelNote, byOrigin
+evaluate(item: ItemInputs, ctx: { date: PlainDate; mode: "today" | "typical"; labelOrigin?: OriginId; labelVariety?: VarietyId }, rules: Rules): VerdictResult
+// VerdictResult: verdict, ruleFired, reasons[], confidence, weakProperties[], markers[], labelNote, byOrigin, byVariety, varietyLine
 ```
 
-- **Rules 1–5 in product order, first match wins:** Limited evidence → Advisory → Skip → Peak (supply not thin) → Good.
+- **Rules 1–5 in product order, first match wins:** Limited evidence → Advisory → Skip → Peak (supply not thin) → Good. A `cap-good` advisory is the exception: rules 3–5 still run and Peak becomes Good.
 - `mode: "typical"` (Calendar and planning dates) ignores advisories and uses the typical supply index for that month. `mode: "today"` uses the same typical supply index plus the advisories active on `date`. Supply data is a yearly snapshot, so the two modes differ only by advisories.
 - **Markers:** Last call, Reliable year-round (Good or better in at least 20 of 24 windows), Advisory, and "Usually improves in…" (the next window rated Good or better).
-- **Varieties:** for an item rated by variety, `byVariety` runs the rules once per rated variety; the item verdict and the card's variety line follow P13.
+- **Varieties:** for an item rated by variety, `byVariety` runs the rules once per rated variety, with the variety's windows in place of the origins' and the item's supply index and advisories; the item verdict and the card's variety line follow P13.
 - `byOrigin` re-runs the rules once per rated origin, for "What does the label say?"
 - `windowIndex(date) = (month − 1) × 2 + (day > 15 ? 1 : 0)` lives in `src/shared/time.ts`, and nowhere else.
 - **Always good** is the item's editorial `alwaysGood` field. `data:build` lists, without failing, any item where the field disagrees with its typical outlook (Good in all 24 windows, no Peak, no Skip) for an editor to settle.
@@ -114,7 +112,7 @@ Each lives in `rules.yaml` or a single function, so changing it is cheap.
 - **P1 (rule 1):** Limited evidence unless *every* typical origin has a rating for the window.
 - **P9:** when typical origins' ratings differ, the verdict follows the top-ranked origin. The "Depends on the label" note appears only when the top two differ by more than one level.
 - **P10 (confidence):**
-  - *coverage* is weak when rule 1 fired;
+  - *coverage* is weak when rule 1 fired, or the deciding origin's (or variety's) seasonal evidence for the window is Low combined confidence (P12);
   - *relevance* is weak for assessment-only items;
   - *freshness* is weak when the yearly supply snapshot is more than 15 months old, or an active advisory wasn't reviewed this window;
   - *agreement* is weak when the top origin is prime but supply is thin, or poor but supply is strong, or when the label note applies.
@@ -127,7 +125,7 @@ Each lives in `rules.yaml` or a single function, so changing it is cheap.
   - US-grown claims (`us`) apply to every US origin of the item; a source's state-specific claim replaces its US-grown claim for that state. A source restating another (`basedOn`) counts once, keeping the higher weight;
   - *combined value* per window = weighted mean of the curves covering it; prime at ≥ 0.75, poor at ≤ 0.25, fair between. No covering curve: no proposal;
   - *combined confidence* per window, from total weight, weighted spread (standard deviation) and tier: High with at least 2 independent sources, total weight ≥ 3, spread ≤ 0.2 and an authoritative source among them; Low with fewer than 2 independent sources or spread > 0.35; Medium otherwise.
-- **P13 (items rated by variety):** a variety is in stores in a month when it has at least 10% of the item's terminal-market quotes that month (variety calendar, extended to mangoes and avocados). The item verdict is the best verdict among in-store rated varieties. The card's variety line names the varieties holding that verdict, ordered by confidence and then by their order in the item file: one or two by name, with the first one's art; three or more as a count, with the item's art.
+- **P13 (items rated by variety):** a variety is in stores in a month when it has at least 10% of the item's terminal-market quotes that month (variety calendar, extended to mangoes and avocados). The item verdict is the best verdict among in-store rated varieties. The card's variety line names the varieties holding that verdict, ordered by confidence and then by their order in the item file: one or two by name, with the first one's art; three or more as a count, with the item's art. With no rated variety in stores, the item is Limited evidence.
 
 ## 5. Milestones
 
@@ -136,14 +134,14 @@ Each milestone takes 1–3 sessions and ends with something Jared can review. Th
 | # | Milestone | Done when | Needs |
 | --- | --- | --- | --- |
 | M0 | **Scaffold and deploy.** Vite + React + TS app and Worker via the Cloudflare Vite plugin; Tailwind, React Compiler, Biome, Vitest, Playwright; CI; a placeholder page deployed | The `workers.dev` URL opens on Jared's phone; CI is green | Cloudflare account; Jared runs `wrangler login` once |
-| M1 | **USDA probe** (runs alongside M0–M3). Fetch movement data for 5 candidate items; write a one-page `docs/data/usda.md` | Clear answers: which reports and fields, units, history depth, and whether typical origins (≥ 70%) and a supply index are computable. Also whether regional arrival data exists (for regional verdicts in v1.1). **If not computable, Jared decides the evidence fallback** | USDA API key |
-| M2 | **Content schemas and the verdict engine.** Reference-data coverage across the launch candidates (which items USDA reports, typical origins, variety calendar from terminal markets); zod schemas, `data:build`, `rules.yaml`, `sources.yaml`, engine, Today grouping. 5 draft items (content batch 1) | Engine tests pass (§6). Jared reviews batch 1 through `npm run content:report`, a readable table of verdicts per window with citations | — |
-| M3 | **Today and item page, styled.** Tokens from the design system, verdict marks, cards that expand in place, item page in product order, date chip (display), draft badge in previews; build-time prerendering of Today and item pages; the art workflow (art track below) with the first batch of thumbnails | **Jared's first real review on his phone** | — |
+| M1 | **USDA probe** (runs alongside M0–M3). Fetch movement data for 5 candidate items; write a one-page `docs/data/usda.md` | Clear answers: which reports and fields, units, history depth, and whether typical origins (≥ 70%) and a supply index are computable. **If not computable, Jared decides the evidence fallback** | USDA API key |
+| M2 | **Content schemas and the verdict engine.** Reference-data coverage across the launch candidates (which items USDA reports, typical origins, variety calendar from terminal markets); zod schemas, `data:build`, `rules.yaml`, engine, Today grouping; evidence curves (P12) and the evidence pipeline; `usda:derive`. 5 draft items (content batch 1) | Engine and evidence tests pass (§6). Jared reviews batch 1 through `npm run content:report`: per item, each source's curve, the proposal with its confidence strip, the editorial ratings and the resulting verdicts | — |
+| M3 | **Today and item page, styled.** Tokens from the design system, verdict marks, cards that expand in place (with the variety line and variety art), item page in product order with the variety strips, date chip (display), draft badge in previews; build-time prerendering of Today and item pages; the art workflow (art track below) with the first batch of thumbnails | **Jared's first real review on his phone** | — |
 | M4 | **Offline and in-store mode.** Precache, readiness line, updates that activate on the next launch, in-store toggle (wake lock, 18 px type, high contrast, no motion, `persist()`) | E2E: after one visit, go offline and open an item never visited | — |
-| M5 | **Date, advisories and label advice.** Planning date with the typical-outlook banner; "Share for this date"; national advisories; label-based advice (origin, plus PLU code if licensed); recompute at midnight and on `visibilitychange` | Unit tests for window math; e2e for a pinned date | — |
+| M5 | **Date, advisories and label advice.** Planning date with the typical-outlook banner; "Share for this date"; national advisories; label-based advice (origin or variety, plus PLU code if licensed); recompute at midnight and on `visibilitychange` | Unit tests for window math; e2e for a pinned date | — |
 | M6 | **Browse, search, Calendar, Methods.** Categories; MiniSearch with synonyms and misspellings; no-match flow; Calendar as a month list on phone and a heatmap with a table equivalent on wider screens; Methods and privacy pages; headless component library adopted here or in M5, whichever first needs a complex control | Every item reachable in ≤ 3 taps or one search; "scallion" and "corriander" find the right items | — |
-| M7 | **Variety guides:** apples, mandarins & oranges, pears. Variety quality strips (rated with the content track); traits, finder, cards on phone, a sortable table on wider screens, variety pages | Jared reviews the 3 guides | Variety content |
-| M8 | **Feedback and measurement.** D1 tables; feedback, taste, request and event endpoints; rate limiting; `web-vitals` + `verdict-visible` beacon; privacy-safe logging | A test proves no ZIP or IP reaches logs or D1; a feedback row records app version, date, state, item and origin | — |
+| M7 | **Variety guides:** apples, mandarins & oranges, pears: traits, finder, cards on phone, a sortable table on wider screens, variety pages | Jared reviews the 3 guides | Variety content |
+| M8 | **Feedback and measurement.** D1 tables; feedback, taste, request and event endpoints; rate limiting; `web-vitals` + `verdict-visible` beacon; privacy-safe logging | A test proves no IP reaches logs or D1; a feedback row records app version, date, item, and the label origin or variety when the shopper set one | — |
 | M9 | **Launch readiness.** All launch content reviewed, illustrations, Turnstile, CSP and security headers, axe plus a quick VoiceOver/TalkBack pass, a performance check on a mid-range Android, offline check on a real iPhone, production domain | Jared decides launch, using the launch gates | Domain, devices, launch gates |
 
 **Content track.** Claude drafts in batches of about 10 items (5 in M2), all marked `draft`. Research is mostly programmatic, so AI effort goes to judgment, not gathering:
@@ -154,9 +152,7 @@ Each milestone takes 1–3 sessions and ends with something Jared can review. Th
   5. **`data:build`** combines the curves (P12). Then Claude (Opus) reads only a per-item digest (the proposal, its confidence strip, and the excerpts behind Low-confidence or conflicting windows), writes a `reason` for each of those, and drafts the copy. High-confidence windows seed the draft without deliberation.
   Claims are paraphrased; raw pages stay in the gitignored cache. Research runs only when a batch is being drafted or Jared asks for a refresh. Jared reviews in the preview app or the content report (per item and origin: each source's curve, the combined curve with its confidence strip, and the editorial rating; Low-confidence and departing windows first), and approves or edits. Approval means Claude sets `status: reviewed`, `reviewer`, and `reviewedOn`. Order: the 5 M2 items → the rest of the 89 launch items, seasonal items first, always-good items last → variety guides → the 24 summaries → Methods text.
 
-**Art track.** Jared generates all painted artwork with his ChatGPT subscription, the same tool that made the design language and the mockups in `docs/design/references/`. Claude never generates images. The workflow is built in M3, when the first item art is needed, and then runs in batches alongside the content track:
-
-Batches follow `purchaseRank` within two tiers: seasonal items first, then always-good items. An item rated by variety gets its varieties' art in the same batch as its own. So the most commonly bought seasonal produce is illustrated first.
+**Art track.** Jared generates all painted artwork with his ChatGPT subscription, the same tool that made the design language and the mockups in `docs/design/references/`. Claude never generates images. The workflow is built in M3, when the first item art is needed, and then runs in batches alongside the content track. Batches follow `purchaseRank` within two tiers, seasonal items first and then always-good items, so the most commonly bought seasonal produce is illustrated first. An item rated by variety gets its varieties' art in the same batch as its own.
 
 1. **Request.** Claude writes a batch file `art/requests/batch-N.md`. It holds one block per asset: the asset ID (`persimmon-fuyu-thumbnail-v1`, per the illustration guide), its class and display size, a ready-to-paste prompt assembled from illustration guide §2, the botanical checks, and the export settings (transparent background, size).
 2. **Generate.** Jared pastes each prompt into ChatGPT, keeping one conversation per batch so the style stays consistent. He saves each result as `art/masters/<asset-id>.png`.
@@ -170,7 +166,8 @@ Batches follow `purchaseRank` within two tiers: seasonal items first, then alway
 
 | Area | What runs | Depth |
 | --- | --- | --- |
-| Verdict engine, Today grouping, window math | Vitest: a table-driven case per rule and per precedence pair; fast-check invariants (advisory decides unless rule 1 fired; no Peak on thin supply; typical mode ignores advisories; `byOrigin` equals re-running the rules; value inputs never change a verdict, once they exist) | **Thorough.** This is where correctness lives |
+| Verdict engine, Today grouping, window math | Vitest: a table-driven case per rule and per precedence pair; fast-check invariants (advisory decides unless rule 1 fired; no Peak on thin supply; typical mode ignores advisories; `byOrigin` and `byVariety` equal re-running the rules; value inputs never change a verdict, once they exist) | **Thorough.** This is where correctness lives |
+| Evidence curves (P12) | Vitest table cases per rule; fast-check invariants (the combined value lies between the covering curves' minimum and maximum; an uncovered window has no proposal; adding a claim that agrees with the proposal never lowers its confidence; `basedOn` sources count once) | Thorough |
 | Content and data | `data:build` validation, plus one broken-input fixture per check | Thorough |
 | UI components | Typecheck, plus a test only where a component carries a product rule | Light |
 | End to end | Playwright smoke in Chromium: Today renders, open an item, offline after the first visit, axe finds no violations. WebKit added at M9 | A handful of tests |
@@ -181,7 +178,7 @@ Run the tests for what you touched while working. Run the full suite before push
 ## 7. Operations
 
 - **Deploy:** `npm run deploy` (build, then `wrangler deploy`) from a machine signed in with `wrangler login`. Move deploys into CI when it becomes convenient, using a scoped API token in a GitHub secret.
-- **Data refresh:** on demand, usually with the yearly content review. `npm run usda:refresh` rewrites the typical-origins and supply-index CSVs from the last 3 years; Jared reviews the diff before it is committed and deployed. Items without usable USDA data use cited editorial origins and a `null` supply index.
+- **Data refresh:** on demand, usually with the yearly content review. `npm run usda:derive` rewrites the typical-origins and supply-index CSVs from the last 3 years; Jared reviews the diff before it is committed and deployed. Items without usable USDA data use cited editorial origins and a `null` supply index. Seasonal evidence refreshes the same way: `evidence:fetch` and `evidence:check`, reviewed like content.
 - **Stale data:** each build records its supply snapshot's date range. When the snapshot is more than 15 months old (a missed yearly refresh), freshness lowers confidence and the item page says so; the app never pretends to be current.
 - **Privacy:** no accounts, cookies or location. The Worker never logs URLs, query strings, bodies or IPs; automatic invocation logs are turned off at M8. D1 stores the date, never anything about where the shopper is.
 - **Rollback:** redeploy the previous Worker version (`wrangler rollback`). Data rolls back with it.

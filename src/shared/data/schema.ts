@@ -136,7 +136,8 @@ export const advisorySchema = z
     origins: z.array(originId).min(1).optional(),
     from: isoDate,
     to: isoDate,
-    verdict: z.enum(["peak", "good", "skip"]),
+    /** Skip sets the verdict; cap-good lowers Peak to Good (product spec rule 2). */
+    effect: z.enum(["skip", "cap-good"]),
     note: words(SECTION_WORDS),
     ...review,
   })

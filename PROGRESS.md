@@ -19,10 +19,10 @@ After that: slice 4, seasonal evidence (source `tier` and `basedOn`, `content/ev
 ## Open questions for Jared (non-blocking)
 
 - Confirm or adjust the provisional methodology defaults P1, P9, P10, P11, P12 (quality curves: weights, rating cut-offs and confidence cut-offs), P13 (which varieties count as in stores, and how the card names them) and the Last call trigger (engineering plan §4.3). The 15-month freshness limit is confirmed.
+- Illustrations at launch: must all 89 items and ~30 rated varieties have art, or may some launch with a placeholder (the spec lists full coverage as a later release)? Needed by M3.
 - Launch gates: needed by M9.
 - In-app brand name: Orchard, or something else? Needed by M9.
 
 ## Environment notes
 
 - Node 26.13 LTS (Scoop). Wrangler is signed in (OAuth) to Jared's account. The GitHub CLI is signed in as jpeterson92.
-- Python 3.12 and uv 0.13 are available (optional notebooks only).
