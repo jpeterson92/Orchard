@@ -3,6 +3,8 @@
 
 Split from the design system in v1.2 (Nov 16, 2026). Section numbers are kept from the original document. [design-system.md](design-system.md) governs the interface and tokens; this guide governs painted produce artwork, header art and generated visual studies. Review every output against the checklist in [design-system.md §11](design-system.md#11-reference-collection-and-acceptance-criteria).
 
+The design language and the mockups in `references/` were made with ChatGPT. Production artwork is generated there too, by Jared, using prompts from §8. The request, process and approval workflow is in the [engineering plan's art track](../engineering-plan.md#5-milestones).
+
 ## 7. Self-contained graphical style and illustration system
 
 This section is sufficient to brief an artist or image model without access to any reference image. “Orchard Editorial” is a project label, not a style a model can be assumed to recognize. Include the actual visual description when requesting an image. References, when available, improve continuity but are optional inputs.

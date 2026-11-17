@@ -17,6 +17,7 @@ M0 is done and deployed at https://orchard.jpeterson92.workers.dev (prerendered 
 - 2026-11-16 · D3 · Claude drafts editorial data with checked citations; Jared approves; production refuses drafts · content is the critical path (review §1.2)
 - 2026-11-16 · D5 · Base UI is the component library, installed at the first control that needs it (filter chips or accordion in M3 at the earliest) · headless, accessible, works with Tailwind tokens; avoids a mid-milestone library comparison
 - 2026-11-16 · D6 · Prerender with React Router library mode plus `scripts/prerender.ts` (renderToString per route, about 40 lines), not framework mode · proven end to end in M0; framework mode with the Cloudflare plugin would have been an unverified combination
+- 2026-11-16 · D7 · Jared generates all artwork in ChatGPT from prompts Claude writes; Claude processes and checks the files, and Jared approves them (engineering plan §5, art track; workflow built in M3) · ChatGPT made the design language and the mockups, and Jared already has the subscription
 
 ## Open questions for Jared (non-blocking)
 
