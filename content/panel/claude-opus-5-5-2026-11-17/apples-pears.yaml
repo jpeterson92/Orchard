@@ -1,0 +1,160 @@
+category: apples-pears
+items:
+  - item: apples
+    traits:
+      {
+        shipsWell: [true, medium],
+        storesWell: [true, high],
+        peakWorthSeeking: [true, high],
+        alwaysGood: [false, high],
+      }
+    origins:
+      - origin: us-wa
+        windows:
+          - [aug-2, dec-2, prime, high]
+          - [jan-1, apr-2, fair, medium]
+          - [may-1, aug-1, poor, medium]
+        note: Controlled-atmosphere storage holds most varieties well into spring; by summer texture often softens.
+      - origin: us-ny
+        windows:
+          - [sep-1, nov-2, prime, high]
+          - [dec-1, mar-2, fair, medium]
+      - origin: us-mi
+        windows:
+          - [sep-1, nov-2, prime, high]
+          - [dec-1, mar-2, fair, medium]
+      - origin: nz
+        windows:
+          - [apr-2, aug-1, fair, medium]
+        note: Southern Hemisphere new crop often beats late-storage US fruit in summer.
+      - origin: cl
+        windows:
+          - [apr-1, jul-2, fair, medium]
+    varieties:
+      - variety: gala
+        windows:
+          - [aug-2, nov-2, prime, high]
+          - [dec-1, apr-2, fair, medium]
+          - [may-1, aug-1, fair, low]
+      - variety: honeycrisp
+        windows:
+          - [sep-1, dec-1, prime, high]
+          - [dec-2, mar-2, fair, medium]
+          - [apr-1, aug-2, poor, medium]
+        note: Loses its signature crunch in long storage; late-season fruit is often soft or bland.
+      - variety: fuji
+        windows:
+          - [oct-1, jan-2, prime, high]
+          - [feb-1, jun-2, fair, high]
+          - [jul-1, sep-2, fair, low]
+      - variety: granny-smith
+        windows:
+          - [oct-2, jan-2, prime, medium]
+          - [feb-1, oct-1, fair, high]
+      - variety: pink-lady
+        windows:
+          - [nov-1, mar-2, prime, medium]
+          - [apr-1, jul-2, fair, medium]
+          - [aug-1, oct-2, fair, low]
+      - variety: cosmic-crisp
+        windows:
+          - [dec-1, jun-2, prime, medium]
+          - [jul-1, nov-2, fair, medium]
+        note: Bred to keep crunch and juice for many months in storage.
+      - variety: red-delicious
+        windows:
+          - [sep-2, nov-2, fair, medium]
+          - [dec-1, sep-1, poor, medium]
+        note: Thick skin and mealy flesh are common, worse the longer it's stored.
+      - variety: golden-delicious
+        windows:
+          - [sep-2, nov-2, prime, medium]
+          - [dec-1, mar-2, fair, medium]
+          - [apr-1, sep-1, poor, low]
+      - variety: mcintosh
+        windows:
+          - [sep-1, nov-1, prime, high]
+          - [nov-2, feb-2, fair, medium]
+          - [mar-1, apr-2, poor, low]
+      - variety: sweetango
+        windows:
+          - [aug-2, oct-2, prime, medium]
+    note: Freshly harvested fall apples are clearly crisper; storage keeps most varieties decent into spring.
+
+  - item: pears
+    traits:
+      {
+        shipsWell: [true, medium],
+        storesWell: [true, high],
+        peakWorthSeeking: [true, medium],
+        alwaysGood: [false, high],
+      }
+    origins:
+      - origin: us-wa
+        windows:
+          - [aug-2, jan-2, prime, high]
+          - [feb-1, jun-2, fair, medium]
+      - origin: us-or
+        windows:
+          - [aug-2, jan-2, prime, high]
+          - [feb-1, may-2, fair, medium]
+      - origin: us-ca
+        windows:
+          - [jul-2, sep-1, prime, medium]
+        note: California Bartletts open the season in midsummer.
+      - origin: ar
+        windows:
+          - [mar-1, jul-1, fair, medium]
+      - origin: cl
+        windows:
+          - [mar-1, jun-2, fair, low]
+    varieties:
+      - variety: bartlett
+        windows:
+          - [jul-2, nov-2, prime, high]
+          - [dec-1, jan-2, fair, medium]
+          - [feb-1, jul-1, fair, low]
+      - variety: anjou
+        windows:
+          - [oct-2, feb-2, prime, high]
+          - [mar-1, jul-1, fair, medium]
+        note: Green and red Anjou store for months; ripen at room temperature until the neck yields.
+      - variety: bosc
+        windows:
+          - [sep-2, jan-2, prime, medium]
+          - [feb-1, apr-2, fair, medium]
+      - variety: comice
+        windows:
+          - [oct-2, jan-2, prime, high]
+          - [feb-1, feb-2, fair, medium]
+      - variety: starkrimson
+        windows:
+          - [aug-1, oct-2, prime, medium]
+          - [nov-1, dec-2, fair, low]
+      - variety: seckel
+        windows:
+          - [sep-1, dec-2, prime, medium]
+          - [jan-1, feb-2, fair, low]
+    note: Pacific Northwest pears from late summer through winter are best; imports and late storage are fine, not special.
+
+  - item: asian-pears
+    traits:
+      {
+        shipsWell: [true, medium],
+        storesWell: [true, medium],
+        peakWorthSeeking: [true, low],
+        alwaysGood: [false, medium],
+      }
+    origins:
+      - origin: us-ca
+        windows:
+          - [aug-1, oct-2, prime, medium]
+          - [nov-1, jan-2, fair, medium]
+      - origin: kr
+        windows:
+          - [nov-1, may-2, fair, medium]
+        note: Large Korean pears in gift-style packing are usually juicy and sound.
+      - origin: cn
+        windows:
+          - [jan-1, dec-2, fair, low]
+    note: Crispest and juiciest from California in late summer and fall; imports hold up acceptably.

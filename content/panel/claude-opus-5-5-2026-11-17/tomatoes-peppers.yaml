@@ -1,0 +1,137 @@
+category: tomatoes-peppers
+items:
+  - item: tomatoes
+    traits:
+      {
+        shipsWell: [false, high],
+        storesWell: [false, high],
+        peakWorthSeeking: [true, high],
+        alwaysGood: [false, high],
+      }
+    origins:
+      - origin: mx
+        windows:
+          - [jan-1, dec-2, fair, medium]
+        note: Much is greenhouse or shade-house vine-ripe fruit, the steadiest choice in winter.
+      - origin: us-fl
+        windows:
+          - [nov-1, may-2, poor, high]
+        note: Field rounds picked mature-green and ripened with ethylene; firm and flavorless.
+      - origin: ca
+        windows:
+          - [mar-1, nov-2, fair, medium]
+      - origin: us-ca
+        windows:
+          - [jul-1, oct-2, fair, medium]
+      - origin: us-tn
+        windows:
+          - [jun-2, aug-2, prime, medium]
+      - origin: us-nj
+        windows:
+          - [jul-2, sep-1, prime, medium]
+    note: Locally grown summer tomatoes are far better; in winter, cherry, grape and vine-ripe greenhouse beat field rounds.
+
+  - item: bell-peppers
+    traits:
+      {
+        shipsWell: [true, medium],
+        storesWell: [false, high],
+        peakWorthSeeking: [false, medium],
+        alwaysGood: [true, medium],
+      }
+    origins:
+      - origin: mx
+        windows:
+          - [nov-1, may-2, fair, high]
+      - origin: us-ca
+        windows:
+          - [may-1, dec-1, fair, high]
+      - origin: us-fl
+        windows:
+          - [nov-1, jun-1, fair, medium]
+      - origin: ca
+        windows:
+          - [mar-1, nov-1, fair, medium]
+    note: Field and greenhouse supply rotates year-round with steady quality; choose firm, glossy, heavy peppers.
+
+  - item: mini-sweet-peppers
+    traits:
+      {
+        shipsWell: [true, high],
+        storesWell: [false, high],
+        peakWorthSeeking: [false, high],
+        alwaysGood: [true, high],
+      }
+    origins:
+      - origin: mx
+        windows:
+          - [jan-1, dec-2, fair, high]
+    note: Greenhouse-grown year-round, very consistent.
+
+  - item: hot-peppers
+    traits:
+      {
+        shipsWell: [true, high],
+        storesWell: [false, high],
+        peakWorthSeeking: [false, high],
+        alwaysGood: [true, high],
+      }
+    origins:
+      - origin: mx
+        windows:
+          - [jan-1, dec-2, fair, high]
+    note: Year-round from Mexico; heat varies pepper to pepper more than month to month.
+
+  - item: cucumbers
+    traits:
+      {
+        shipsWell: [true, high],
+        storesWell: [false, high],
+        peakWorthSeeking: [false, high],
+        alwaysGood: [true, high],
+      }
+    origins:
+      - origin: mx
+        windows:
+          - [nov-1, may-2, fair, high]
+      - origin: ca
+        windows:
+          - [mar-1, nov-1, fair, high]
+      - origin: us-ga
+        windows:
+          - [may-2, oct-2, fair, medium]
+    note: Field and greenhouse cucumbers year-round; English and mini types are especially steady.
+
+  - item: eggplant
+    traits:
+      {
+        shipsWell: [true, medium],
+        storesWell: [false, high],
+        peakWorthSeeking: [false, medium],
+        alwaysGood: [true, medium],
+      }
+    origins:
+      - origin: mx
+        windows:
+          - [nov-1, may-2, fair, medium]
+      - origin: us-fl
+        windows:
+          - [nov-1, jun-1, fair, medium]
+      - origin: us-ga
+        windows:
+          - [jun-2, oct-2, fair, medium]
+    note: Steady year-round; summer eggplant is slightly sweeter, not worth waiting for.
+
+  - item: tomatillos
+    traits:
+      {
+        shipsWell: [true, high],
+        storesWell: [false, medium],
+        peakWorthSeeking: [false, high],
+        alwaysGood: [true, high],
+      }
+    origins:
+      - origin: mx
+        windows:
+          - [jan-1, dec-2, fair, high]
+    note: Year-round from Mexico with consistent quality.

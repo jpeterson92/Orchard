@@ -1,0 +1,187 @@
+category: leafy-greens
+items:
+  - item: romaine
+    traits:
+      {
+        shipsWell: [true, medium],
+        storesWell: [false, high],
+        peakWorthSeeking: [false, high],
+        alwaysGood: [true, high],
+      }
+    origins:
+      - origin: us-ca
+        windows:
+          - [apr-1, nov-1, fair, high]
+      - origin: us-az
+        windows:
+          - [nov-2, mar-2, fair, high]
+    note: Salinas in summer, Yuma in winter; steady apart from brief weather-driven dips at the handoffs.
+
+  - item: iceberg
+    traits:
+      {
+        shipsWell: [true, medium],
+        storesWell: [false, high],
+        peakWorthSeeking: [false, high],
+        alwaysGood: [true, high],
+      }
+    origins:
+      - origin: us-ca
+        windows:
+          - [apr-1, nov-1, fair, high]
+      - origin: us-az
+        windows:
+          - [nov-2, mar-2, fair, high]
+    note: Same two-region rotation as romaine, with steady quality.
+
+  - item: leaf-lettuce
+    traits:
+      {
+        shipsWell: [true, medium],
+        storesWell: [false, high],
+        peakWorthSeeking: [false, high],
+        alwaysGood: [true, high],
+      }
+    origins:
+      - origin: us-ca
+        windows:
+          - [apr-1, nov-1, fair, high]
+      - origin: us-az
+        windows:
+          - [nov-2, mar-2, fair, high]
+    note: Year-round from California and Arizona; pick by crisp, unwilted leaves.
+
+  - item: butter-lettuce
+    traits:
+      {
+        shipsWell: [true, medium],
+        storesWell: [false, high],
+        peakWorthSeeking: [false, high],
+        alwaysGood: [true, high],
+      }
+    origins:
+      - origin: us-ca
+        windows:
+          - [jan-1, dec-2, fair, medium]
+      - origin: us-az
+        windows:
+          - [nov-2, mar-2, fair, medium]
+    note: Mostly greenhouse-grown with roots attached, so it's consistent all year.
+
+  - item: spring-mix
+    traits:
+      {
+        shipsWell: [true, medium],
+        storesWell: [false, high],
+        peakWorthSeeking: [false, high],
+        alwaysGood: [true, high],
+      }
+    origins:
+      - origin: us-ca
+        windows:
+          - [apr-1, nov-1, fair, high]
+      - origin: us-az
+        windows:
+          - [nov-2, mar-2, fair, high]
+    note: Packed baby greens year-round; freshness date matters more than season.
+
+  - item: spinach
+    traits:
+      {
+        shipsWell: [true, medium],
+        storesWell: [false, high],
+        peakWorthSeeking: [false, high],
+        alwaysGood: [true, high],
+      }
+    origins:
+      - origin: us-ca
+        windows:
+          - [apr-1, nov-1, fair, high]
+      - origin: us-az
+        windows:
+          - [nov-2, mar-2, fair, high]
+    note: Bagged baby spinach is steady year-round; cool-season bunch spinach is a bit sweeter.
+
+  - item: kale
+    traits:
+      {
+        shipsWell: [true, medium],
+        storesWell: [false, high],
+        peakWorthSeeking: [false, medium],
+        alwaysGood: [true, medium],
+      }
+    origins:
+      - origin: us-ca
+        windows:
+          - [jan-1, dec-2, fair, high]
+      - origin: us-ga
+        windows:
+          - [nov-1, apr-2, fair, medium]
+    note: Available and decent all year; frost sweetens it a little, but supermarket kale varies little.
+
+  - item: arugula
+    traits:
+      {
+        shipsWell: [true, medium],
+        storesWell: [false, high],
+        peakWorthSeeking: [false, high],
+        alwaysGood: [true, high],
+      }
+    origins:
+      - origin: us-ca
+        windows:
+          - [apr-1, nov-1, fair, high]
+      - origin: us-az
+        windows:
+          - [nov-2, mar-2, fair, high]
+    note: Mostly packed baby arugula, steady all year.
+
+  - item: collard-greens
+    traits:
+      {
+        shipsWell: [true, medium],
+        storesWell: [false, high],
+        peakWorthSeeking: [true, low],
+        alwaysGood: [false, low],
+      }
+    origins:
+      - origin: us-ga
+        windows:
+          - [oct-2, apr-1, prime, medium]
+          - [apr-2, oct-1, fair, medium]
+      - origin: us-ca
+        windows:
+          - [jan-1, dec-2, fair, medium]
+    note: Cool-season collards after frost are sweeter and more tender; summer leaves are tougher.
+
+  - item: swiss-chard
+    traits:
+      {
+        shipsWell: [true, medium],
+        storesWell: [false, high],
+        peakWorthSeeking: [false, high],
+        alwaysGood: [true, medium],
+      }
+    origins:
+      - origin: us-ca
+        windows:
+          - [jan-1, dec-2, fair, high]
+    note: Grown year-round on the California coast with little seasonal change.
+
+  - item: mustard-greens
+    traits:
+      {
+        shipsWell: [true, medium],
+        storesWell: [false, high],
+        peakWorthSeeking: [true, low],
+        alwaysGood: [false, low],
+      }
+    origins:
+      - origin: us-ga
+        windows:
+          - [oct-2, apr-1, prime, medium]
+          - [apr-2, oct-1, fair, medium]
+      - origin: us-ca
+        windows:
+          - [jan-1, dec-2, fair, medium]
+    note: Milder and more tender in the cool months; summer greens are hotter and tougher.

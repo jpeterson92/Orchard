@@ -4,7 +4,7 @@ Updated: 2026-11-17 · Phase: build · Live: https://orchard.jpeterson92.workers
 
 ## Milestones
 
-M0 scaffold and deploy: done · M1 USDA probe: done · M2 schemas and engine: slices 1 (reference-data coverage), 2 (schemas and `data:build`), 3 (verdict engine and Today grouping) 4 (evidence schema, source tiers, the P12 combiner, `data:build` evidence checks, evidence confidence and rated varieties in the engine inputs) 5 (evidence pipeline: `data/source-registry.yaml`, `evidence:fetch` with excerpts, the `item-months` chart parser and a prose worklist, `evidence:check`) done, plus the methodology review: P14 availability reading, cited traits (`shipsWell`, `storesWell`, `peakWorthSeeking`), Peak needing no poor typical origin, High confidence needing a taste source, a per-origin supply index, shortest-Peak-first on Today, and the verdict strip and surprises in `content:report` · M3–M9: not started
+M0 scaffold and deploy: done · M1 USDA probe: done · M2 schemas and engine: slices 1 (reference-data coverage), 2 (schemas and `data:build`), 3 (verdict engine and Today grouping) 4 (evidence schema, source tiers, the P12 combiner, `data:build` evidence checks, evidence confidence and rated varieties in the engine inputs) 5 (evidence pipeline: `data/source-registry.yaml`, `evidence:fetch` with excerpts, the `item-months` chart parser and a prose worklist, `evidence:check`) done, plus the methodology review: P14 availability reading, cited traits (`shipsWell`, `storesWell`, `peakWorthSeeking`), Peak needing no poor typical origin, High confidence needing a taste source, a per-origin supply index, shortest-Peak-first on Today, and the verdict strip and surprises in `content:report` · model panel: prompt, `panel:check` and the first run (`claude-opus-5-5-2026-11-17`, all 89 items) done; P15, which feeds runs into the evidence, awaits Jared · M3–M9: not started
 
 ## Next concrete action
 
@@ -16,6 +16,7 @@ M2 slice 6, `usda-derive` writes `data/usda/typical-origins.csv` and `supply-ind
 
 ## Open questions for Jared (non-blocking)
 
+- **Model panel (P15, engineering plan §4.3):** confirm the panel weight (2, as asked: one authoritative source), that all models together count as one source, and that the panel may stand in for a second cited source only where it agrees with the first. Once confirmed, build P15 into `evidence.ts`, `data:build` and `content:report`, then add runs from other models.
 - Confirm or adjust the provisional methodology defaults P1, P9, P10, P11, P12 (quality curves: weights, rating cut-offs and confidence cut-offs), P13 (which varieties count as in stores, and how the card names them) and the Last call trigger (engineering plan §4.3). The 15-month freshness limit is confirmed.
 - Engine tie-break (proposed): for items rated by variety, Skip outranks Limited evidence when picking the best variety, and an outlook turning to Limited evidence doesn't trigger Last call. Say if either should differ.
 - M8 feedback flags: what share of "Disappointing" or "Looked poor" answers, over how many responses, should flag a window for review? Needed by M8.

@@ -1,0 +1,116 @@
+category: brassicas
+items:
+  - item: broccoli
+    traits:
+      {
+        shipsWell: [true, medium],
+        storesWell: [false, high],
+        peakWorthSeeking: [false, medium],
+        alwaysGood: [true, medium],
+      }
+    origins:
+      - origin: us-ca
+        windows:
+          - [jan-1, dec-2, fair, high]
+      - origin: mx
+        windows:
+          - [jan-1, dec-2, fair, medium]
+      - origin: us-az
+        windows:
+          - [dec-1, mar-1, fair, medium]
+    note: Grown year-round in mild coastal California and Mexico; tight, dark heads in any month.
+
+  - item: broccoli-rabe
+    traits:
+      {
+        shipsWell: [true, low],
+        storesWell: [false, high],
+        peakWorthSeeking: [false, low],
+        alwaysGood: [true, low],
+      }
+    origins:
+      - origin: us-ca
+        windows:
+          - [jan-1, dec-2, fair, medium]
+    note: Year-round from California; summer bunches can be more bitter, but not enough to wait for.
+
+  - item: cauliflower
+    traits:
+      {
+        shipsWell: [true, medium],
+        storesWell: [false, high],
+        peakWorthSeeking: [false, medium],
+        alwaysGood: [true, medium],
+      }
+    origins:
+      - origin: us-ca
+        windows:
+          - [jan-1, dec-2, fair, high]
+      - origin: us-az
+        windows:
+          - [dec-1, mar-1, fair, medium]
+      - origin: mx
+        windows:
+          - [jan-1, dec-2, fair, medium]
+    note: Steady year-round supply; pick creamy, tight heads without brown spots.
+
+  - item: cabbage
+    traits:
+      {
+        shipsWell: [true, high],
+        storesWell: [true, high],
+        peakWorthSeeking: [false, high],
+        alwaysGood: [true, high],
+      }
+    origins:
+      - origin: us
+        windows:
+          - [jan-1, dec-2, fair, high]
+    note: Grown or stored somewhere in the US every month; very consistent.
+
+  - item: brussels-sprouts
+    traits:
+      {
+        shipsWell: [true, medium],
+        storesWell: [false, high],
+        peakWorthSeeking: [true, medium],
+        alwaysGood: [false, medium],
+      }
+    origins:
+      - origin: mx
+        windows:
+          - [nov-1, mar-2, prime, low]
+          - [apr-1, oct-2, fair, low]
+      - origin: us-ca
+        windows:
+          - [jun-1, sep-2, fair, medium]
+          - [oct-1, dec-2, prime, medium]
+    note: Sweetest in fall and winter after cool nights; summer sprouts are looser and more bitter.
+
+  - item: bok-choy
+    traits:
+      {
+        shipsWell: [true, medium],
+        storesWell: [false, high],
+        peakWorthSeeking: [false, high],
+        alwaysGood: [true, high],
+      }
+    origins:
+      - origin: us-ca
+        windows:
+          - [jan-1, dec-2, fair, high]
+    note: Grown year-round in California with steady quality.
+
+  - item: napa-cabbage
+    traits:
+      {
+        shipsWell: [true, medium],
+        storesWell: [true, medium],
+        peakWorthSeeking: [false, high],
+        alwaysGood: [true, high],
+      }
+    origins:
+      - origin: us-ca
+        windows:
+          - [jan-1, dec-2, fair, high]
+    note: Year-round from California; dense, crisp heads in any month.

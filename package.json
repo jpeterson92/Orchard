@@ -25,7 +25,8 @@
     "data:build": "tsx scripts/data-build.ts",
     "content:report": "tsx scripts/content-report.ts",
     "evidence:fetch": "tsx scripts/evidence-fetch.ts",
-    "evidence:check": "tsx scripts/evidence-check.ts"
+    "evidence:check": "tsx scripts/evidence-check.ts",
+    "panel:check": "tsx scripts/panel-check.ts"
   },
   "dependencies": {
     "hono": "4.13.19",

@@ -1,0 +1,41 @@
+category: squash
+items:
+  - item: summer-squash
+    traits:
+      {
+        shipsWell: [true, medium],
+        storesWell: [false, high],
+        peakWorthSeeking: [false, medium],
+        alwaysGood: [true, medium],
+      }
+    origins:
+      - origin: mx
+        windows:
+          - [nov-1, apr-2, fair, high]
+      - origin: us-fl
+        windows:
+          - [oct-2, may-1, fair, medium]
+      - origin: us-ga
+        windows:
+          - [may-2, oct-1, fair, medium]
+    note: Supplied year-round; supermarket zucchini changes little by season, so pick small, glossy ones.
+
+  - item: winter-squash
+    traits:
+      {
+        shipsWell: [true, high],
+        storesWell: [true, high],
+        peakWorthSeeking: [true, medium],
+        alwaysGood: [false, medium],
+      }
+    origins:
+      - origin: us
+        windows:
+          - [aug-1, sep-1, fair, medium]
+          - [sep-2, jan-2, prime, high]
+          - [feb-1, mar-2, fair, medium]
+        note: Grown in many states; cured fall squash is sweetest, and delicata keeps the least time.
+      - origin: mx
+        windows:
+          - [jan-1, jul-2, fair, medium]
+    note: Fall through midwinter is the season; spring and summer butternut from Mexico is fine but blander.

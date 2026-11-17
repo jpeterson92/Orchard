@@ -1,0 +1,188 @@
+category: roots
+items:
+  - item: potatoes
+    traits:
+      {
+        shipsWell: [true, high],
+        storesWell: [true, high],
+        peakWorthSeeking: [false, high],
+        alwaysGood: [true, high],
+      }
+    origins:
+      - origin: us-id
+        windows:
+          - [jan-1, dec-2, fair, high]
+      - origin: us-wa
+        windows:
+          - [jan-1, dec-2, fair, high]
+      - origin: us-wi
+        windows:
+          - [jan-1, dec-2, fair, medium]
+    note: Fall harvest held in storage all year; late-storage potatoes may sprout, so check for firmness.
+
+  - item: sweet-potatoes
+    traits:
+      {
+        shipsWell: [true, high],
+        storesWell: [true, high],
+        peakWorthSeeking: [false, high],
+        alwaysGood: [true, high],
+      }
+    origins:
+      - origin: us-nc
+        windows:
+          - [jan-1, dec-2, fair, high]
+      - origin: us-ms
+        windows:
+          - [jan-1, dec-2, fair, medium]
+      - origin: us-ca
+        windows:
+          - [jan-1, dec-2, fair, medium]
+    note: Cured after the fall harvest and stored, so they eat sweetly year-round.
+
+  - item: carrots
+    traits:
+      {
+        shipsWell: [true, high],
+        storesWell: [true, high],
+        peakWorthSeeking: [false, high],
+        alwaysGood: [true, high],
+      }
+    origins:
+      - origin: us-ca
+        windows:
+          - [jan-1, dec-2, fair, high]
+      - origin: mx
+        windows:
+          - [jan-1, dec-2, fair, medium]
+      - origin: ca
+        windows:
+          - [sep-1, mar-2, fair, medium]
+    note: Grown year-round in California and stored well; steady quality.
+
+  - item: beets
+    traits:
+      {
+        shipsWell: [true, high],
+        storesWell: [true, high],
+        peakWorthSeeking: [false, medium],
+        alwaysGood: [true, medium],
+      }
+    origins:
+      - origin: us-ca
+        windows:
+          - [jan-1, dec-2, fair, high]
+    note: Stored roots and bunched beets are both steady year-round.
+
+  - item: radishes
+    traits:
+      {
+        shipsWell: [true, medium],
+        storesWell: [false, medium],
+        peakWorthSeeking: [false, medium],
+        alwaysGood: [true, medium],
+      }
+    origins:
+      - origin: us-ca
+        windows:
+          - [jan-1, dec-2, fair, high]
+      - origin: us-fl
+        windows:
+          - [nov-1, apr-2, fair, medium]
+    note: A quick crop grown year-round; heat makes summer radishes a bit hotter, not worse.
+
+  - item: turnips
+    traits:
+      {
+        shipsWell: [true, high],
+        storesWell: [true, high],
+        peakWorthSeeking: [false, low],
+        alwaysGood: [true, low],
+      }
+    origins:
+      - origin: us-ca
+        windows:
+          - [jan-1, dec-2, fair, medium]
+      - origin: ca
+        windows:
+          - [oct-1, mar-2, fair, low]
+    note: Cool-season turnips are sweeter, but stored supermarket turnips vary little.
+
+  - item: parsnips
+    traits:
+      {
+        shipsWell: [true, high],
+        storesWell: [true, high],
+        peakWorthSeeking: [false, low],
+        alwaysGood: [true, low],
+      }
+    origins:
+      - origin: ca
+        windows:
+          - [jan-1, dec-2, fair, medium]
+      - origin: us-mi
+        windows:
+          - [oct-1, apr-2, fair, low]
+    note: Frost sweetens them, and stored fall roots dominate; consistent enough to buy anytime.
+
+  - item: rutabagas
+    traits:
+      {
+        shipsWell: [true, high],
+        storesWell: [true, high],
+        peakWorthSeeking: [false, high],
+        alwaysGood: [true, high],
+      }
+    origins:
+      - origin: ca
+        windows:
+          - [jan-1, dec-2, fair, high]
+    note: Waxed Canadian storage roots, steady all year.
+
+  - item: ginger
+    traits:
+      {
+        shipsWell: [true, high],
+        storesWell: [true, high],
+        peakWorthSeeking: [false, high],
+        alwaysGood: [true, high],
+      }
+    origins:
+      - origin: cn
+        windows:
+          - [jan-1, dec-2, fair, high]
+      - origin: pe
+        windows:
+          - [jan-1, dec-2, fair, medium]
+      - origin: br
+        windows:
+          - [jan-1, dec-2, fair, medium]
+    note: Cured mature ginger stores and ships well year-round.
+
+  - item: jicama
+    traits:
+      {
+        shipsWell: [true, high],
+        storesWell: [true, medium],
+        peakWorthSeeking: [false, high],
+        alwaysGood: [true, high],
+      }
+    origins:
+      - origin: mx
+        windows:
+          - [jan-1, dec-2, fair, high]
+    note: Year-round from Mexico; choose heavy, smooth roots.
+
+  - item: yuca
+    traits:
+      {
+        shipsWell: [true, medium],
+        storesWell: [false, medium],
+        peakWorthSeeking: [false, high],
+        alwaysGood: [true, high],
+      }
+    origins:
+      - origin: cr
+        windows:
+          - [jan-1, dec-2, fair, high]
+    note: Waxed Costa Rican roots year-round; check for clean white flesh at the cut end.

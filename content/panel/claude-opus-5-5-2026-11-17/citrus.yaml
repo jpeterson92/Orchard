@@ -1,0 +1,167 @@
+category: citrus
+items:
+  - item: mandarins
+    traits:
+      {
+        shipsWell: [true, medium],
+        storesWell: [false, medium],
+        peakWorthSeeking: [true, high],
+        alwaysGood: [false, high],
+      }
+    origins:
+      - origin: us-ca
+        windows:
+          - [nov-1, apr-2, prime, high]
+          - [may-1, may-2, fair, medium]
+      - origin: pe
+        windows:
+          - [jun-1, sep-2, fair, medium]
+      - origin: cl
+        windows:
+          - [may-1, sep-2, fair, medium]
+      - origin: za
+        windows:
+          - [jun-1, oct-1, fair, medium]
+      - origin: ma
+        windows:
+          - [dec-1, apr-2, fair, medium]
+    varieties:
+      - variety: clementine
+        windows:
+          - [nov-1, jan-2, prime, high]
+          - [feb-1, feb-2, fair, medium]
+          - [may-1, aug-2, fair, low]
+        note: California clementines peak in early winter; Southern Hemisphere fruit fills summer, often less sweet.
+      - variety: w-murcott
+        windows:
+          - [jan-1, apr-2, prime, high]
+          - [may-1, may-2, fair, medium]
+          - [jun-1, oct-2, fair, medium]
+        note: Includes Tango and Afourer (Nadorcott); the bulk of late-winter Cuties and Halos.
+      - variety: satsuma
+        windows:
+          - [oct-2, dec-2, prime, medium]
+          - [jan-1, jan-2, fair, low]
+        note: Seedless and easy-peeling, but puffs and dries quickly after its short season.
+      - variety: minneola
+        windows:
+          - [dec-2, dec-2, fair, low]
+          - [jan-1, mar-2, prime, medium]
+          - [apr-1, apr-2, fair, low]
+      - variety: shiranui
+        windows:
+          - [jan-2, apr-2, prime, medium]
+        note: Sold as Sumo Citrus; a short, distinct winter season.
+    note: California's November-to-April run is clearly the sweetest; summer imports are serviceable but often tarter.
+
+  - item: oranges
+    traits:
+      {
+        shipsWell: [true, medium],
+        storesWell: [false, medium],
+        peakWorthSeeking: [true, high],
+        alwaysGood: [false, high],
+      }
+    origins:
+      - origin: us-ca
+        windows:
+          - [nov-1, nov-2, fair, medium]
+          - [dec-1, mar-2, prime, high]
+          - [apr-1, oct-2, fair, medium]
+      - origin: us-fl
+        windows:
+          - [nov-1, may-2, fair, medium]
+        note: Mostly juice fruit; table oranges are thin-skinned and juicy but harder to peel.
+      - origin: za
+        windows:
+          - [jul-1, oct-2, fair, medium]
+      - origin: au
+        windows:
+          - [jul-1, oct-1, fair, medium]
+      - origin: cl
+        windows:
+          - [jun-2, oct-1, fair, medium]
+    varieties:
+      - variety: navel
+        windows:
+          - [nov-1, nov-2, fair, medium]
+          - [dec-1, mar-2, prime, high]
+          - [apr-1, oct-2, fair, medium]
+      - variety: valencia
+        windows:
+          - [apr-1, apr-2, fair, medium]
+          - [may-1, aug-2, prime, medium]
+          - [sep-1, oct-2, fair, low]
+        note: Summer orange; a green tinge on the peel is regreening, not unripeness.
+      - variety: cara-cara
+        windows:
+          - [dec-1, mar-2, prime, high]
+          - [apr-1, apr-2, fair, medium]
+          - [jul-1, sep-2, fair, low]
+      - variety: blood
+        windows:
+          - [dec-2, dec-2, fair, low]
+          - [jan-1, mar-2, prime, high]
+          - [apr-1, apr-2, fair, medium]
+    note: Winter navels and Cara Caras are the sweetest; summer Valencias and imports are good but less exciting.
+
+  - item: lemons
+    traits:
+      {
+        shipsWell: [true, high],
+        storesWell: [true, medium],
+        peakWorthSeeking: [false, high],
+        alwaysGood: [true, high],
+      }
+    origins:
+      - origin: us-ca
+        windows:
+          - [jan-1, dec-2, fair, high]
+      - origin: mx
+        windows:
+          - [jul-1, oct-2, fair, medium]
+      - origin: ar
+        windows:
+          - [jun-1, sep-2, fair, medium]
+    note: Harvested and imported year-round with steady juice and acidity.
+
+  - item: limes
+    traits:
+      {
+        shipsWell: [true, high],
+        storesWell: [false, medium],
+        peakWorthSeeking: [false, high],
+        alwaysGood: [true, high],
+      }
+    origins:
+      - origin: mx
+        windows:
+          - [jan-1, dec-2, fair, high]
+    note: Mexican Persian limes year-round; winter fruit can be smaller and less juicy, not a season to wait for.
+
+  - item: grapefruit
+    traits:
+      {
+        shipsWell: [true, medium],
+        storesWell: [false, medium],
+        peakWorthSeeking: [true, medium],
+        alwaysGood: [false, medium],
+      }
+    origins:
+      - origin: us-tx
+        windows:
+          - [nov-1, nov-2, fair, medium]
+          - [dec-1, mar-2, prime, high]
+          - [apr-1, may-1, fair, medium]
+      - origin: us-fl
+        windows:
+          - [nov-1, nov-2, fair, medium]
+          - [dec-1, mar-2, prime, high]
+          - [apr-1, may-2, fair, medium]
+      - origin: us-ca
+        windows:
+          - [jan-1, jul-2, fair, medium]
+      - origin: za
+        windows:
+          - [jun-1, sep-2, fair, medium]
+    note: Texas and Florida red grapefruit are sweetest in midwinter; summer supply is thinner and tarter.

@@ -1,0 +1,18 @@
+category: mushrooms
+items:
+  - item: mushrooms
+    traits:
+      {
+        shipsWell: [true, medium],
+        storesWell: [false, high],
+        peakWorthSeeking: [false, high],
+        alwaysGood: [true, high],
+      }
+    origins:
+      - origin: us-pa
+        windows:
+          - [jan-1, dec-2, fair, high]
+      - origin: us-ca
+        windows:
+          - [jan-1, dec-2, fair, high]
+    note: Grown indoors year-round, so freshness, not season, decides quality.

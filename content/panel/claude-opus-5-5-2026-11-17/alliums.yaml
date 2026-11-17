@@ -1,0 +1,99 @@
+category: alliums
+items:
+  - item: onions
+    traits:
+      {
+        shipsWell: [true, high],
+        storesWell: [true, high],
+        peakWorthSeeking: [false, high],
+        alwaysGood: [true, high],
+      }
+    origins:
+      - origin: us-id
+        windows:
+          - [aug-2, may-1, fair, high]
+      - origin: us-wa
+        windows:
+          - [aug-2, may-1, fair, high]
+      - origin: mx
+        windows:
+          - [feb-1, apr-2, fair, medium]
+      - origin: us-tx
+        windows:
+          - [mar-1, jun-1, fair, medium]
+      - origin: us-ca
+        windows:
+          - [may-1, aug-2, fair, medium]
+      - origin: us-ga
+        windows:
+          - [apr-2, jun-2, fair, medium]
+        note: Vidalia sweet onions; a candidate variety rather than a reason to rate onions by season.
+    note: Storage onions cover most of the year and spring sweet onions the rest; steady quality.
+
+  - item: green-onions
+    traits:
+      {
+        shipsWell: [true, medium],
+        storesWell: [false, high],
+        peakWorthSeeking: [false, high],
+        alwaysGood: [true, high],
+      }
+    origins:
+      - origin: mx
+        windows:
+          - [jan-1, dec-2, fair, high]
+    note: Year-round from Mexico; look for crisp green tops.
+
+  - item: garlic
+    traits:
+      {
+        shipsWell: [true, high],
+        storesWell: [true, high],
+        peakWorthSeeking: [false, medium],
+        alwaysGood: [true, medium],
+      }
+    origins:
+      - origin: cn
+        windows:
+          - [jan-1, dec-2, fair, high]
+      - origin: us-ca
+        windows:
+          - [jan-1, dec-2, fair, high]
+      - origin: ar
+        windows:
+          - [jan-1, jun-2, fair, low]
+    note: Dried and stored year-round; late-storage heads may sprout, so pick firm, heavy bulbs.
+
+  - item: leeks
+    traits:
+      {
+        shipsWell: [true, medium],
+        storesWell: [false, medium],
+        peakWorthSeeking: [false, medium],
+        alwaysGood: [true, medium],
+      }
+    origins:
+      - origin: us-ca
+        windows:
+          - [jan-1, dec-2, fair, high]
+      - origin: mx
+        windows:
+          - [jan-1, dec-2, fair, low]
+    note: Available year-round with little seasonal difference in supermarkets.
+
+  - item: shallots
+    traits:
+      {
+        shipsWell: [true, high],
+        storesWell: [true, high],
+        peakWorthSeeking: [false, high],
+        alwaysGood: [true, high],
+      }
+    origins:
+      - origin: us-or
+        windows:
+          - [jan-1, dec-2, fair, medium]
+      - origin: fr
+        windows:
+          - [jan-1, dec-2, fair, low]
+    note: Dried and stored like onions, steady year-round.

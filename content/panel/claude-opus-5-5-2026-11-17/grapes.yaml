@@ -1,0 +1,27 @@
+category: grapes
+items:
+  - item: grapes
+    traits:
+      {
+        shipsWell: [true, medium],
+        storesWell: [false, medium],
+        peakWorthSeeking: [true, medium],
+        alwaysGood: [false, medium],
+      }
+    origins:
+      - origin: us-ca
+        windows:
+          - [jun-1, jul-1, fair, medium]
+          - [jul-2, oct-2, prime, high]
+          - [nov-1, dec-2, fair, medium]
+        note: Late-fall grapes come from storage and can loosen from the stem.
+      - origin: mx
+        windows:
+          - [may-2, jul-1, fair, medium]
+      - origin: cl
+        windows:
+          - [jan-1, apr-2, fair, medium]
+      - origin: pe
+        windows:
+          - [nov-2, feb-2, fair, medium]
+    note: California late summer and early fall is the sweet spot; imports fill winter and spring acceptably.

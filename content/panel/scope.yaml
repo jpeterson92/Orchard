@@ -1,0 +1,103 @@
+# The items the model panel judges: the 89-item launch list (docs/data/usda.md), with provisional ids until the
+# item files in content/items/ exist. Types in brackets are one item. ratedBy: variety items also rate varieties.
+- { item: apples, name: Apples, category: apples-pears, ratedBy: variety }
+- { item: pears, name: Pears, category: apples-pears, ratedBy: variety }
+- { item: asian-pears, name: Asian pears, category: apples-pears }
+- { item: mandarins, name: "Mandarins [clementines, satsumas, tangelos]", category: citrus, ratedBy: variety }
+- { item: oranges, name: "Oranges [navel, Valencia, blood, Cara Cara]", category: citrus, ratedBy: variety }
+- { item: lemons, name: Lemons, category: citrus }
+- { item: limes, name: Limes, category: citrus }
+- { item: grapefruit, name: Grapefruit, category: citrus }
+- { item: peaches, name: Peaches, category: stone-fruit }
+- { item: nectarines, name: Nectarines, category: stone-fruit }
+- { item: plums, name: Plums, category: stone-fruit }
+- { item: cherries, name: Cherries, category: stone-fruit }
+- { item: apricots, name: Apricots, category: stone-fruit }
+- { item: strawberries, name: Strawberries, category: berries }
+- { item: blueberries, name: Blueberries, category: berries }
+- { item: raspberries, name: Raspberries, category: berries }
+- { item: blackberries, name: Blackberries, category: berries }
+- { item: cranberries, name: Cranberries (fresh), category: berries }
+- { item: grapes, name: Grapes, category: grapes }
+- { item: watermelon, name: Watermelon, category: melons }
+- { item: cantaloupe, name: Cantaloupe, category: melons }
+- { item: honeydew, name: Honeydew, category: melons }
+- { item: bananas, name: Bananas, category: tropical }
+- { item: plantains, name: Plantains, category: tropical }
+- { item: avocados, name: Avocados, category: tropical, ratedBy: variety }
+- { item: mangoes, name: Mangoes, category: tropical, ratedBy: variety }
+- { item: pineapples, name: Pineapples, category: tropical }
+- { item: papaya, name: Papaya, category: tropical }
+- { item: kiwifruit, name: Kiwifruit, category: tropical }
+- { item: coconuts, name: Coconuts, category: tropical }
+- { item: dragon-fruit, name: Dragon fruit, category: tropical }
+- { item: persimmons, name: Persimmons, category: tropical }
+- { item: pomegranates, name: Pomegranates, category: tropical }
+- { item: dates, name: Dates, category: tropical }
+- { item: figs, name: Figs (fresh), category: tropical }
+- { item: romaine, name: Romaine, category: leafy-greens }
+- { item: iceberg, name: Iceberg lettuce, category: leafy-greens }
+- { item: leaf-lettuce, name: "Leaf lettuce [green, red]", category: leafy-greens }
+- { item: butter-lettuce, name: Butter lettuce, category: leafy-greens }
+- { item: spring-mix, name: Spring mix, category: leafy-greens }
+- { item: spinach, name: Spinach, category: leafy-greens }
+- { item: kale, name: Kale, category: leafy-greens }
+- { item: arugula, name: Arugula, category: leafy-greens }
+- { item: collard-greens, name: Collard greens, category: leafy-greens }
+- { item: swiss-chard, name: Swiss chard, category: leafy-greens }
+- { item: mustard-greens, name: Mustard greens, category: leafy-greens }
+- { item: broccoli, name: Broccoli, category: brassicas }
+- { item: broccoli-rabe, name: Broccoli rabe, category: brassicas }
+- { item: cauliflower, name: Cauliflower, category: brassicas }
+- { item: cabbage, name: Cabbage, category: brassicas }
+- { item: brussels-sprouts, name: Brussels sprouts, category: brassicas }
+- { item: bok-choy, name: Bok choy, category: brassicas }
+- { item: napa-cabbage, name: Napa cabbage, category: brassicas }
+- { item: potatoes, name: Potatoes, category: roots }
+- { item: sweet-potatoes, name: Sweet potatoes, category: roots }
+- { item: carrots, name: Carrots, category: roots }
+- { item: beets, name: Beets, category: roots }
+- { item: radishes, name: Radishes, category: roots }
+- { item: turnips, name: Turnips, category: roots }
+- { item: parsnips, name: Parsnips, category: roots }
+- { item: rutabagas, name: Rutabagas, category: roots }
+- { item: ginger, name: Ginger, category: roots }
+- { item: jicama, name: Jicama, category: roots }
+- { item: yuca, name: Yuca, category: roots }
+- { item: onions, name: Onions, category: alliums }
+- { item: green-onions, name: Green onions, category: alliums }
+- { item: garlic, name: Garlic, category: alliums }
+- { item: leeks, name: Leeks, category: alliums }
+- { item: shallots, name: Shallots, category: alliums }
+- { item: summer-squash, name: "Summer squash [zucchini, yellow squash]", category: squash }
+- {
+    item: winter-squash,
+    name: "Winter squash [butternut, acorn, spaghetti, kabocha, delicata, pie pumpkin]",
+    category: squash,
+  }
+- { item: tomatoes, name: "Tomatoes [round, plum, cherry, grape]", category: tomatoes-peppers }
+- { item: bell-peppers, name: Bell peppers, category: tomatoes-peppers }
+- { item: mini-sweet-peppers, name: Mini sweet peppers, category: tomatoes-peppers }
+- {
+    item: hot-peppers,
+    name: "Hot peppers [jalapeño, serrano, poblano, habanero, Anaheim]",
+    category: tomatoes-peppers,
+  }
+- { item: cucumbers, name: Cucumbers, category: tomatoes-peppers }
+- { item: eggplant, name: Eggplant, category: tomatoes-peppers }
+- { item: tomatillos, name: Tomatillos, category: tomatoes-peppers }
+- { item: sweet-corn, name: Sweet corn, category: beans-peas-corn }
+- { item: green-beans, name: "Green beans [incl. haricots verts]", category: beans-peas-corn }
+- { item: snap-snow-peas, name: Snap and snow peas, category: beans-peas-corn }
+- { item: asparagus, name: Asparagus, category: beans-peas-corn }
+- { item: okra, name: Okra, category: beans-peas-corn }
+- { item: artichokes, name: Artichokes, category: beans-peas-corn }
+- { item: celery, name: Celery, category: beans-peas-corn }
+- { item: fennel, name: Fennel, category: beans-peas-corn }
+- { item: rhubarb, name: Rhubarb, category: beans-peas-corn }
+- { item: mushrooms, name: Mushrooms, category: mushrooms }
+- {
+    item: herbs,
+    name: "Herbs [cilantro, parsley, basil, mint, dill, thyme, rosemary, chives]",
+    category: herbs,
+  }

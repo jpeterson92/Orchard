@@ -1,0 +1,130 @@
+category: berries
+items:
+  - item: strawberries
+    traits:
+      {
+        shipsWell: [true, low],
+        storesWell: [false, high],
+        peakWorthSeeking: [true, high],
+        alwaysGood: [false, high],
+      }
+    origins:
+      - origin: us-ca
+        windows:
+          - [feb-1, feb-2, fair, medium]
+          - [mar-1, jun-2, prime, high]
+          - [jul-1, nov-1, fair, medium]
+      - origin: us-fl
+        windows:
+          - [dec-1, jan-2, fair, medium]
+          - [feb-1, mar-2, prime, medium]
+      - origin: mx
+        windows:
+          - [nov-1, apr-2, fair, medium]
+    note: California spring berries are the sweetest; late-fall and early-winter fruit is often watery.
+
+  - item: blueberries
+    traits:
+      {
+        shipsWell: [true, medium],
+        storesWell: [false, high],
+        peakWorthSeeking: [true, medium],
+        alwaysGood: [false, medium],
+      }
+    origins:
+      - origin: pe
+        windows:
+          - [sep-1, jan-2, fair, medium]
+        note: Peru now supplies most fall blueberries; usually firm and decent.
+      - origin: cl
+        windows:
+          - [dec-1, mar-2, fair, medium]
+      - origin: mx
+        windows:
+          - [jan-1, apr-2, fair, medium]
+      - origin: us-mi
+        windows:
+          - [jul-1, sep-1, prime, high]
+      - origin: us-wa
+        windows:
+          - [jul-1, sep-1, prime, high]
+      - origin: us-or
+        windows:
+          - [jul-1, sep-1, prime, high]
+      - origin: us-ga
+        windows:
+          - [may-1, jul-1, prime, medium]
+      - origin: us-nj
+        windows:
+          - [jun-2, jul-2, prime, medium]
+      - origin: us-ca
+        windows:
+          - [apr-1, jun-2, prime, medium]
+      - origin: us-fl
+        windows:
+          - [mar-2, may-1, prime, medium]
+    note: Good all year now; US summer berries are sweetest and largest, but the gap is modest.
+
+  - item: raspberries
+    traits:
+      {
+        shipsWell: [true, low],
+        storesWell: [false, high],
+        peakWorthSeeking: [true, medium],
+        alwaysGood: [false, medium],
+      }
+    origins:
+      - origin: mx
+        windows:
+          - [oct-2, may-2, fair, medium]
+      - origin: us-ca
+        windows:
+          - [jun-1, oct-1, prime, medium]
+      - origin: us-wa
+        windows:
+          - [jul-1, aug-1, prime, medium]
+    note: Summer California berries taste best; Mexican winter berries are reliable but less fragrant.
+
+  - item: blackberries
+    traits:
+      {
+        shipsWell: [true, low],
+        storesWell: [false, high],
+        peakWorthSeeking: [true, medium],
+        alwaysGood: [false, medium],
+      }
+    origins:
+      - origin: mx
+        windows:
+          - [oct-2, jun-1, fair, medium]
+        note: Often on the tart side.
+      - origin: us-ga
+        windows:
+          - [jun-1, jul-1, prime, medium]
+      - origin: us-or
+        windows:
+          - [jul-1, aug-2, prime, medium]
+      - origin: us-ca
+        windows:
+          - [jun-1, sep-2, prime, low]
+    note: Summer domestic berries are sweeter; Mexico supplies the rest of the year, often tart.
+
+  - item: cranberries
+    traits:
+      {
+        shipsWell: [true, medium],
+        storesWell: [true, medium],
+        peakWorthSeeking: [false, high],
+        alwaysGood: [false, medium],
+      }
+    origins:
+      - origin: us-wi
+        windows:
+          - [sep-2, dec-2, prime, high]
+      - origin: us-ma
+        windows:
+          - [sep-2, dec-2, prime, high]
+      - origin: ca
+        windows:
+          - [oct-1, dec-2, prime, medium]
+    note: Fresh bags appear only from fall to the holidays; quality is steady while they're in stores.
