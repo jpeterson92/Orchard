@@ -47,3 +47,45 @@ claims:
     specificity: half-month
     directness: availability
     paraphrase: A Florida grower says the state's season runs from late November through April.
+  - source: cal-strawberry-commission-facts
+    origin: us-ca
+    windows:
+      - { from: mar-1, to: nov-2, rating: prime }
+    specificity: season
+    directness: availability
+    paraphrase: California harvests all year; weather permitting, the peak season runs from early spring through fall.
+  - source: calgiant-strawberry-month
+    origin: us-ca
+    windows:
+      - { from: may-1, to: jun-2, rating: prime }
+    specificity: month
+    directness: eating-quality
+    paraphrase: A California grower expects the state's peak in May and June, with berries of ideal size and flavor.
+  - source: producepay-mexican-strawberries
+    origin: mx
+    windows:
+      - { from: nov-1, to: jul-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Mexico's strawberry season runs November to July, with little production August to October.
+  - source: freshfruitportal-mexican-strawberries-2023
+    origin: mx
+    windows:
+      - { from: dec-1, to: feb-2, rating: prime }
+    specificity: season
+    directness: availability
+    paraphrase: Mexico is a winter strawberry supplier, filling US supermarkets while California is off-season.
+  - source: ufifas-gardening-strawberries
+    origin: us-fl
+    windows:
+      - { from: feb-1, to: mar-2, rating: prime }
+    specificity: month
+    directness: eating-quality
+    paraphrase: UF/IFAS calls February and March the peak months for eating Florida strawberries.
+  - source: ufifas-strawberry-season-2025
+    origin: us-fl
+    windows:
+      - { from: dec-1, to: mar-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Florida growers harvest strawberries from December until the end of March.

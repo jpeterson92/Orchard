@@ -140,3 +140,69 @@
   url: https://www.eatlikenoone.com/california-mandarins-season-begin-end.htm
   accessed: 2026-11-17
   tier: mainstream
+- id: cal-strawberry-commission-facts
+  title: Strawberry Facts
+  publisher: California Strawberry Commission
+  url: https://www.californiastrawberries.com/strawberry-facts/
+  accessed: 2026-11-17
+  tier: authoritative
+- id: calgiant-strawberry-outlook
+  title: California Giant Berry Farms Details Strawberry Outlook; Forecasts Strong California Strawberry Season
+  publisher: California Giant Berry Farms
+  url: https://www.calgiant.com/newsroom/california-giant-berry-farms-details-strawberry-outlook-forecasts-strong-california-strawberry-season/
+  accessed: 2026-11-17
+  tier: mainstream
+- id: calgiant-strawberry-month
+  title: California Giant Berry Farms Announces Abundant Strawberry Crop for National Strawberry Month
+  publisher: California Giant Berry Farms
+  url: https://www.calgiant.com/newsroom/california-giant-berry-farms-announces-abundant-strawberry-crop-for-national-strawberry-month-forecasts-high-spring-and-summer-yields/
+  accessed: 2026-11-17
+  tier: mainstream
+- id: producepay-mexican-strawberries
+  title: Mexican strawberry production and exports
+  publisher: ProducePay
+  url: https://producepay.com/blog/mexican-strawberry-production-and-exports/
+  accessed: 2026-11-17
+  tier: mainstream
+- id: tridge-michoacan-strawberries-2021
+  title: Mexican strawberries from Michoacán are almost out of season
+  publisher: Tridge
+  url: https://www.tridge.com/insights/mexican-strawberries-from-michoacan-are-almost-out-of-season-shifting-production-towards
+  accessed: 2026-11-17
+  tier: mainstream
+- id: freshfruitportal-mexican-strawberries-2023
+  title: Mexican strawberries well positioned in the U.S. market
+  publisher: Fresh Fruit Portal
+  url: https://www.freshfruitportal.com/news/2023/03/07/mexican-strawberries-well-positioned-in-the-u-s-market/
+  accessed: 2026-11-17
+  tier: mainstream
+- id: ufifas-gardening-strawberries
+  title: Strawberries
+  publisher: UF/IFAS Gardening Solutions
+  url: https://gardeningsolutions.ifas.ufl.edu/plants/edibles/fruits/strawberries
+  accessed: 2026-11-17
+  tier: authoritative
+- id: ufifas-strawberry-season-2025
+  title: Florida strawberry season bursts with sweetness
+  publisher: UF/IFAS News
+  url: https://blogs.ifas.ufl.edu/news/2025/12/03/florida-strawberry-season-bursts-with-sweetness/
+  accessed: 2026-11-17
+  tier: authoritative
+- id: ufifas-strawberry-expert-2022
+  title: "In the Heart of Florida's Strawberry Season, an Expert Explains Why They're So Wonderful"
+  publisher: UF/IFAS News
+  url: https://blogs.ifas.ufl.edu/news/?p=26289
+  accessed: 2026-11-17
+  tier: authoritative
+- id: ucdavis-postharvest-strawberry
+  title: "Strawberry: Produce Facts"
+  publisher: UC Davis Postharvest Research and Extension Center
+  url: https://postharvest.ucdavis.edu/produce-facts-sheets/strawberry
+  accessed: 2026-11-17
+  tier: authoritative
+- id: illinois-extension-small-fruit-handling
+  title: "Small Fruits: Handling and Care"
+  publisher: University of Illinois Extension
+  url: https://extension.illinois.edu/small-fruits/handling-care
+  accessed: 2026-11-17
+  tier: authoritative

@@ -1,0 +1,69 @@
+id: strawberries
+name: Strawberries
+synonyms: [strawberry]
+misspellings: [strawbery, strawberrys, strawberies]
+category: berries
+purchaseRank: 3
+alwaysGood: false
+shipsWell:
+  value: true
+  sources: [ucdavis-postharvest-strawberry, freshfruitportal-mexican-strawberries-2023]
+  note: Picked near full ripe and kept cold; most imports are Mexican berries trucked north in winter.
+peakWorthSeeking:
+  value: true
+  sources: [cal-strawberry-commission-facts, ufifas-gardening-strawberries]
+  note: Flavor depends on weather, ripeness at picking and variety, and sources name clear peak months.
+storesWell:
+  value: false
+  sources: [ucdavis-postharvest-strawberry, illinois-extension-small-fruit-handling]
+  note: Highly perishable; keeps days, not weeks, even cold.
+evidenceBasis: supply+assessment
+cardLine: Deep red right up to a fresh green cap.
+pick:
+  - Bright red all the way to the cap
+  - Glossy, plump and dry
+  - Fresh green caps, not wilted or brown
+avoid:
+  - White or green shoulders; they won't ripen after picking
+  - Any mold or juice in the pack
+store:
+  temperature: cold
+  ethylene: neither
+  life: { min: 2, max: 3, unit: days }
+  text: Refrigerate unwashed in the coldest part of the fridge, loosely covered or on a paper towel. Typically keeps 2–3 days; pull out any soft or moldy berries.
+  sources:
+    [illinois-extension-small-fruit-handling, cal-strawberry-commission-facts, ucdavis-postharvest-strawberry]
+ripen:
+  text: They won't ripen or sweeten after picking. For fuller flavor, let them sit at room temperature for up to an hour before eating.
+  sources: [ufifas-gardening-strawberries, cal-strawberry-commission-facts]
+prep: Rinse under cool water just before eating, then hull. Washing ahead speeds mold.
+origins:
+  - origin: us-ca
+    windows:
+      - { from: mar-1, to: nov-1, rating: prime }
+      - from: nov-2
+        to: feb-2
+        rating: fair
+        reason: Both sources say California harvests year-round; winter berries are off-peak, not out of season.
+  - origin: mx
+    windows:
+      - from: nov-1
+        to: nov-2
+        rating: fair
+        reason: ProducePay gives Mexico's season as November to July; "winter supplier" is its main US role, not its whole season.
+      - { from: dec-1, to: feb-2, rating: fair }
+      - from: mar-1
+        to: jul-2
+        rating: fair
+        reason: ProducePay gives Mexico's season as November to July; "winter supplier" is its main US role, not its whole season.
+      - { from: aug-1, to: oct-2, rating: poor }
+  - origin: us-fl
+    windows:
+      - from: dec-1
+        to: mar-2
+        rating: prime
+        reason: Sources end Florida's season in March or April; UF/IFAS names March a peak eating month.
+      - { from: apr-1, to: apr-1, rating: fair }
+      - { from: apr-2, to: nov-1, rating: poor }
+      - { from: nov-2, to: nov-2, rating: fair }
+status: draft

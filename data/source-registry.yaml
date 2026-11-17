@@ -136,3 +136,48 @@ pages:
     kind: item-page
     origin: us-ca
     items: [mandarins]
+  - source: cal-strawberry-commission-facts
+    url: https://www.californiastrawberries.com/strawberry-facts/
+    kind: item-page
+    origin: us-ca
+    items: [strawberries]
+  - source: calgiant-strawberry-outlook
+    url: https://www.calgiant.com/newsroom/california-giant-berry-farms-details-strawberry-outlook-forecasts-strong-california-strawberry-season/
+    kind: item-page
+    origin: us-ca
+    items: [strawberries]
+  - source: calgiant-strawberry-month
+    url: https://www.calgiant.com/newsroom/california-giant-berry-farms-announces-abundant-strawberry-crop-for-national-strawberry-month-forecasts-high-spring-and-summer-yields/
+    kind: item-page
+    origin: us-ca
+    items: [strawberries]
+  - source: producepay-mexican-strawberries
+    url: https://producepay.com/blog/mexican-strawberry-production-and-exports/
+    kind: item-page
+    origin: mx
+    items: [strawberries]
+  - source: tridge-michoacan-strawberries-2021
+    url: https://www.tridge.com/insights/mexican-strawberries-from-michoacan-are-almost-out-of-season-shifting-production-towards
+    kind: item-page
+    origin: mx
+    items: [strawberries]
+  - source: freshfruitportal-mexican-strawberries-2023
+    url: https://www.freshfruitportal.com/news/2023/03/07/mexican-strawberries-well-positioned-in-the-u-s-market/
+    kind: item-page
+    origin: mx
+    items: [strawberries]
+  - source: ufifas-gardening-strawberries
+    url: https://gardeningsolutions.ifas.ufl.edu/plants/edibles/fruits/strawberries
+    kind: item-page
+    origin: us-fl
+    items: [strawberries]
+  - source: ufifas-strawberry-season-2025
+    url: https://blogs.ifas.ufl.edu/news/2025/12/03/florida-strawberry-season-bursts-with-sweetness/
+    kind: item-page
+    origin: us-fl
+    items: [strawberries]
+  - source: ufifas-strawberry-expert-2022
+    url: https://blogs.ifas.ufl.edu/news/?p=26289
+    kind: item-page
+    origin: us-fl
+    items: [strawberries]
