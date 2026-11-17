@@ -5,6 +5,8 @@ import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 
 import { join } from "node:path";
 import { parse as parseYaml } from "yaml";
 import { WINDOW_COUNT, windowRange } from "../src/shared/time";
+import { looksAlwaysGood, typicalOutlook } from "../src/shared/verdict";
+import { engineEnv, itemInputs } from "../src/shared/verdict/inputs";
 import { type Csv, parseCsv, type RawInputs, validate } from "./data-validate";
 
 const production = process.argv.includes("--production");
@@ -56,3 +58,14 @@ console.log(
     : "Supply snapshot: none yet",
 );
 console.log(`Advisories: ${dataset.advisories.length}${production ? " · production build" : ""}`);
+
+// Always good is editorial; list, without failing, items whose typical outlook says otherwise (plan §4.2).
+const env = engineEnv(dataset);
+const year = new Date().getFullYear();
+for (const item of dataset.items) {
+  const outlook = typicalOutlook(itemInputs(item, dataset), env, year);
+  if (item.alwaysGood !== looksAlwaysGood(outlook))
+    console.log(
+      `  ${item.id}: alwaysGood is ${item.alwaysGood}, but the typical outlook is ${[...new Set(outlook)].join("/")}`,
+    );
+}

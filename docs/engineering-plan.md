@@ -92,7 +92,7 @@ docs/                        product spec, engineering plan, design, data findin
 ### 4.2 Engine (`src/shared/verdict/`)
 
 ```ts
-evaluate(item: ItemInputs, ctx: { date: PlainDate; mode: "today" | "typical"; labelOrigin?: OriginId; labelVariety?: VarietyId }, rules: Rules): VerdictResult
+evaluate(item: ItemInputs, ctx: { date: PlainDate; mode: "today" | "typical"; labelOrigin?: OriginId; labelVariety?: VarietyId }, env: { rules: Rules; snapshotTo: YearMonth | null }): VerdictResult
 // VerdictResult: verdict, ruleFired, reasons[], confidence, weakProperties[], markers[], labelNote, byOrigin, byVariety, varietyLine
 ```
 
@@ -100,10 +100,11 @@ evaluate(item: ItemInputs, ctx: { date: PlainDate; mode: "today" | "typical"; la
 - `mode: "typical"` (Calendar and planning dates) ignores advisories and uses the typical supply index for that month. `mode: "today"` uses the same typical supply index plus the advisories active on `date`. Supply data is a yearly snapshot, so the two modes differ only by advisories.
 - **Markers:** Last call, Reliable year-round (Good or better in at least 20 of 24 windows), Advisory, and "Usually improves in…" (the next window rated Good or better).
 - **Varieties:** for an item rated by variety, `byVariety` runs the rules once per rated variety, with the variety's windows in place of the origins' and the item's supply index and advisories; the item verdict and the card's variety line follow P13.
-- `byOrigin` re-runs the rules once per rated origin, for "What does the label say?"
+- `byOrigin` re-runs the rules once per rated origin, for "What does the label say?"; an advisory applies to a label origin it names. The label note is computed only for items rated by origin.
+- **Engine details:** a missing supply index is never thin or strong. The snapshot freshness check applies only to `supply+assessment` items. Verdicts rank Peak > Good > Skip > Limited evidence, so Limited evidence never wins "best variety", and an outlook turning to Limited evidence is not a Last call drop. `ItemInputs` arrive as per-window series, built from the dataset by `verdict/inputs.ts`.
 - `windowIndex(date) = (month − 1) × 2 + (day > 15 ? 1 : 0)` lives in `src/shared/time.ts`, and nowhere else.
 - **Always good** is the item's editorial `alwaysGood` field. `data:build` lists, without failing, any item where the field disagrees with its typical outlook (Good in all 24 windows, no Peak, no Skip) for an editor to settle.
-- **Today grouping** (up to 6 Peak, sorted by confidence then `purchaseRank`, never padded; each seasonal item exactly once; always-good items left out unless an advisory changes their verdict today) is one pure function in `src/shared/today.ts`.
+- **Today grouping** (up to 6 Peak, sorted by confidence then `purchaseRank`, never padded; each seasonal item exactly once; always-good items left out unless an advisory changes their verdict today) is one pure function in `src/shared/today.ts`. Good buys lists the overflow Peak items first, then Good, each by confidence then `purchaseRank`; Skip and Limited evidence go by `purchaseRank`.
 
 ### 4.3 Provisional methodology (awaiting Jared's confirmation; never blocking)
 
