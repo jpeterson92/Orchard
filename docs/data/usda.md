@@ -120,6 +120,10 @@ The evidence basis for each added item is set when its record is drafted:
 - **Citrus origins are still visible here** after domestic movement reporting stopped: California leads the navel, clementine and tango quotes. This can cross-check the editorial origins for citrus, as presence rather than share.
 - Variety names need a mapping to guide varieties: `PINK LADY/CRIPPS PINK`, `W. MURCOTT AFOURER`, `TANGO`, plus some quotes with no variety. That mapping belongs to the variety content in M7.
 
+## Quality notes in terminal reports
+
+Terminal market rows carry `appearance`, `quality` and `condition` fields, plus a free-text `reporter_comment`. They are exception flags, not a measure of taste: over 3 years, under 1% of apple, pear and mandarin quotes carry one ("Fair Quality", "Fair Condition", "Holdovers", "poorer quality and condition lower"). Apples show a faint rise in January–May, which fits storage decline, but the counts are too small to rate a window. The `storage` field is empty (`N/A`) on every apple quote, so it can't show which varieties sell from long storage. Quality windows therefore rest on cited sources; these flags may later help an editor spot advisory candidates.
+
 ## Regional data (v1.1)
 
 No movement data by destination. Terminal market reports for 11 cities (Atlanta, Asheville, Baltimore, Boston, Chicago, Columbia, Detroit, Los Angeles, Miami, New York, Philadelphia) give daily prices by commodity, variety, origin and grade, plus market tone. They show which origins are on offer in a city, but not their share. They could support regional notes or value markers later, but not regional verdicts based on volume.
