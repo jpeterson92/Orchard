@@ -201,6 +201,8 @@ export const supplyIndexRowSchema = z
   .strictObject({
     item: id,
     month,
+    /** The origin's own supply: its volume that month against its average over the months it ships (P11). */
+    origin: originId,
     value: z.number().positive().nullable(),
     reason: supplyNullReason.nullable(),
   })

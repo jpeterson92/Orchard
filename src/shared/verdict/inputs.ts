@@ -34,10 +34,12 @@ export function itemInputs(item: Item, data: Dataset): ItemInputs {
       .sort((a, b) => a.rank - b.rank)
       .map((r) => r.origin),
   );
-  const supply = Array.from(
-    { length: MONTHS },
-    (_, m) => data.supplyIndex.find((r) => r.item === item.id && r.month === m + 1)?.value ?? null,
-  );
+  const supply: Record<string, (number | null)[]> = {};
+  for (const r of data.supplyIndex) {
+    if (r.item !== item.id) continue;
+    supply[r.origin] ??= Array(MONTHS).fill(null);
+    (supply[r.origin] as (number | null)[])[r.month - 1] = r.value;
+  }
   const varieties = item.varieties.flatMap((v): RatedVariety[] =>
     v.windows
       ? [{ id: v.id, ...series(v.windows, claims, sources, { variety: v.id }, item), inStore: NOT_YET_KNOWN }]

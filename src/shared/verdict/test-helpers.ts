@@ -53,7 +53,7 @@ export function item(overrides: Partial<ItemInputs> = {}): ItemInputs {
     origins: { "us-ca": rated("prime") },
     varieties: [],
     typicalOrigins: allMonths(["us-ca"]),
-    supply: allMonths(1),
+    supply: { "us-ca": allMonths(1) },
     advisories: [],
     ...overrides,
   };

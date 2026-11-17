@@ -110,8 +110,8 @@ function base(): RawInputs {
       { item: "test-fruit", month: "5", rank: "2", origin: "mx" },
     ]),
     supplyIndex: csv("data/usda/supply-index.csv", [
-      { item: "test-fruit", month: "5", value: "1.31", reason: "" },
-      { item: "test-fruit", month: "6", value: "", reason: "not_reported" },
+      { item: "test-fruit", month: "5", origin: "us-ca", value: "1.31", reason: "" },
+      { item: "test-fruit", month: "6", origin: "us-ca", value: "", reason: "not_reported" },
     ]),
   };
 }
@@ -145,6 +145,7 @@ describe("validate: a valid dataset", () => {
     expect(dataset?.supplyIndex[1]).toEqual({
       item: "test-fruit",
       month: 6,
+      origin: "us-ca",
       value: null,
       reason: "not_reported",
     });
@@ -435,7 +436,7 @@ const broken: [string, (r: RawInputs) => void, string][] = [
   [
     "duplicate supply month",
     (r) => (((r.supplyIndex as Csv).rows[1] as Any).month = "5"),
-    "duplicate supply index test-fruit/5",
+    "duplicate supply index test-fruit/us-ca/5",
   ],
   [
     "mismatched snapshot headers",
@@ -524,7 +525,13 @@ describe("validate: edge cases that are allowed", () => {
 
   it("USDA rows for items without a content file only warn", () => {
     const raw = structuredClone(base());
-    (raw.supplyIndex as Csv).rows.push({ item: "kumquats", month: "1", value: "0.9", reason: "" });
+    (raw.supplyIndex as Csv).rows.push({
+      item: "kumquats",
+      month: "1",
+      origin: "us-ca",
+      value: "0.9",
+      reason: "",
+    });
     const { errors, warnings } = validate(raw, { production: false });
     expect(errors).toEqual([]);
     expect(warnings).toEqual(["data/usda/supply-index.csv: no item file yet for kumquats"]);

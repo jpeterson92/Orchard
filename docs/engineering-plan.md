@@ -84,7 +84,7 @@ docs/                        product spec, engineering plan, design, data findin
 - **Variety** (inside its item file): traits on the group's anchored 1–5 scales, best uses, label/PLU text, and, for items rated by variety, quality windows in the same form as an origin's (editorial, cited from evidence claims that name the variety). A variety with windows is a rated variety, and any item with one is rated by variety. A variety's windows describe it as typically sold in US supermarkets, whatever the origin.
 - **Advisory:** items, optional origins (national scope), `from` ≤ `to` ≤ `from` + 90 days, effect (`skip`, or `cap-good`), note, `reviewedOn`, `status`.
 - **Typical origins:** item × month → ranked origins covering at least 70% of reported volume (ranks only; never shown as shares). Where USDA doesn't report domestic supply (citrus, carrots, garlic, mushrooms, winter squash and others), the item file's editorial `typicalOrigins` take their place.
-- **Supply index:** item × month → value, or `null` with a reason (`no_data`, `no_baseline`, `not_reported`). Missing never becomes 0.
+- **Supply index:** item × origin × month → value, or `null` with a reason (`no_data`, `no_baseline`, `not_reported`). Missing never becomes 0.
 - **Variety calendar:** item × variety × month → the share of USDA terminal market price quotes (11 cities, 3 years) naming that variety, and the origins quoted. Evidence of presence, not volume. It says which varieties are typically in stores each month (for "best now") and cross-checks variety quality windows and typical origins.
 - **PLU codes** (only once IFPS confirms reuse): PLU → item, variety, size, organic. Label-based advice accepts a sticker code as well as an origin.
 
@@ -121,7 +121,7 @@ Each lives in `rules.yaml` or a single function, so changing it is cheap.
   - *freshness* is weak when the yearly supply snapshot is more than 15 months old, or an active advisory wasn't reviewed this window;
   - *agreement* is weak when the top origin is prime but supply is thin, or poor but supply is strong, or when the label note applies.
   - High = no weak property, Medium = one, Low = two or more.
-- **P11:** the typical supply index for a month is that month's 3-year average ÷ the 36-month average.
+- **P11:** an origin's typical supply index for a month is its 3-year average volume that month ÷ its average over the months it reports volume. The engine reads the deciding origin's index (for a variety, the top typical origin's); an origin or month without one is never thin or strong.
 - **Last call:** the verdict is Peak or Good and the typical outlook drops to a lower verdict within the next 2 windows.
 - **P12 (combining seasonal evidence as quality curves),** in `src/shared/evidence.ts`, per item × origin, and per variety for claims that name one:
   - *source curve:* each claim's rated windows become values over the 24 windows (prime 1, fair 0.5, poor 0); windows the claim doesn't rate have no value, never 0, except for availability claims (P14). A `season`-level claim gets a soft shoulder: one window beyond each end at half the edge value, never over a window the claim rates, the higher one where two meet. `half-month` and `month` claims keep sharp edges;

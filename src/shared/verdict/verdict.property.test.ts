@@ -54,7 +54,7 @@ const itemArb: fc.Arbitrary<ItemInputs> = fc
     rated: fc.subarray([...ORIGINS], { minLength: 1 }),
     seriesList: fc.array(series, { minLength: 4, maxLength: 4 }),
     typical: months(fc.shuffledSubarray([...ORIGINS], { maxLength: 3 })),
-    supply: months(supplyValue),
+    supply: fc.tuple(...ORIGINS.map(() => months(supplyValue))),
     advisories: fc.uniqueArray(advisoryArb, { selector: (a) => a.id, maxLength: 3 }),
     varieties: fc.array(fc.record({ s: series, inStore: months(fc.boolean()) }), { maxLength: 3 }),
     evidenceBasis: fc.constantFrom("supply+assessment" as const, "assessment-only" as const),
@@ -69,7 +69,7 @@ const itemArb: fc.Arbitrary<ItemInputs> = fc
     origins: Object.fromEntries(r.rated.map((o, i) => [o, r.seriesList[i] ?? { windows: [] }])),
     varieties: r.varieties.map((v, i) => ({ id: `v${i}`, ...v.s, inStore: v.inStore })),
     typicalOrigins: r.typical,
-    supply: r.supply,
+    supply: Object.fromEntries(ORIGINS.map((o, i) => [o, r.supply[i] ?? []])),
     advisories: r.advisories,
   }));
 
@@ -128,11 +128,13 @@ describe("verdict engine invariants", () => {
       RUNS,
     ));
 
-  it("no Peak on thin supply", () =>
+  it("no Peak on the deciding origin's thin supply", () =>
     fc.assert(
       fc.property(itemArb, ctxArb, (item, ctx) => {
         const r = evaluate(item, ctx, ENV);
-        const supply = item.supply[ctx.date.month - 1] ?? null;
+        const month = ctx.date.month - 1;
+        const decider = ctx.labelOrigin ?? item.typicalOrigins[month]?.[0];
+        const supply = (decider === undefined ? null : item.supply[decider]?.[month]) ?? null;
         if (supply !== null && supply < ENV.rules.supplyIndex.thin) expect(r.verdict).not.toBe("peak");
       }),
       RUNS,

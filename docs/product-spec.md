@@ -282,7 +282,7 @@ An advisory changes only the windows it covers and never rewrites the typical ou
 | --- | --- |
 | **Quality window** | For each item × major origin (and each variety, for items rated by variety), every half-month window rated *prime* (typically eats best), *fair* (acceptable), or *poor* (typically disappointing, e.g. out of long storage). Each rating is an editorial call that starts from the combined seasonal evidence (section 8) and rests on at least 2 sources. |
 | **Typical supermarket origins** | The origins that together account for ≥ 70% of an item's reported shipments and imports in that month, averaged over 3 years. Used only to *rank* origins, never as precise shares. USDA notes that truck shipments for all commodities and origins are not available, and that the reported figures should not be read as complete movements ([source](https://www.ams.usda.gov/node/21104)). |
-| **Supply index** | A typical value per month: the month's average reported volume over 3 years ÷ the item's average monthly reported volume over the same 3 years, from the same report series, taken from a yearly snapshot. Strong ≥ 1.2; normal 0.8–1.2; thin < 0.8. |
+| **Supply index** | A typical value per origin and month: the origin's average reported volume that month over 3 years ÷ its average over the months it ships, from the same report series, taken from a yearly snapshot. It measures where an origin is in its own season (thin at the first and last picks), so an import's normal season is never thin just because US supply is low. The verdict uses the deciding origin's index. Strong ≥ 1.2; normal 0.8–1.2; thin < 0.8. |
 | **Advisory** | An editor-entered exception: items, origins, start date, expiry date, its effect (Skip, or at most Good), and a note. |
 | **Reliable year-round** | A marker, set when the item's typical outlook is Good or better in ≥ 20 of 24 windows. Such an item can still have Peak windows and Skip windows. |
 | **Value marker** (v1.1) | "Good value" when the promotion index is ≥ 1.2 or the advertised price is ≤ 0.95× its yearly average; "Pricier than usual" when the price is ≥ 1.15×. Display only. |
@@ -292,7 +292,7 @@ An advisory changes only the windows it covers and never rewrites the typical ou
 1. **Limited evidence:** the reviewed quality assessment doesn't cover the origins that typically supply supermarkets in this window. Missing information never defaults to Good or Skip.
 2. **Advisory:** an active advisory covers the top typical origin → Skip, or at most Good, as the advisory sets. A Skip advisory overrides everything below; a cap lets rules 3–5 run and lowers Peak to Good.
 3. **Skip:** the typical origins are rated *poor* this window.
-4. **Peak:** the top typical origin is rated *prime* this window and no other typical origin is rated *poor* (what a shopper picks up should reliably eat well), the supply index isn't thin, and the item is one whose Peak is worth seeking: buying it in its best season makes a difference a shopper can taste. Peak means "try to buy it now". An item that tastes much the same in and out of its best harvest weeks (lettuce, for one) is Good in those weeks, and may be Always good.
+4. **Peak:** the top typical origin is rated *prime* this window and no other typical origin is rated *poor* (what a shopper picks up should reliably eat well), that origin's supply index isn't thin, and the item is one whose Peak is worth seeking: buying it in its best season makes a difference a shopper can taste. Peak means "try to buy it now". An item that tastes much the same in and out of its best harvest weeks (lettuce, for one) is Good in those weeks, and may be Always good.
 5. **Good:** everything else, meaning the top origin is *prime* but supply is thin, another typical origin is *poor*, or the item's Peak isn't worth seeking, or it is rated *fair*.
 
 When the top two origins differ by more than one rating level, the verdict follows the larger origin and the item gets a "Depends on the label" note.
@@ -343,7 +343,7 @@ An item launches only once its evidence passes review. Editors write content onc
 | Category | Name, group, icon | Written | 16 | 16 |
 | Advisory | Items, origins, start, expiry, effect (Skip, or at most Good), note | Written | As needed | As needed |
 | Verdict | Item × window (national), with the advisories active on the date applied: verdict, markers, confidence, reason codes | Computed | \~2,140 (89 × 24) | Grows with items |
-| Supply profile | Item × month: typical origins (ranked), supply index | Derived from USDA on demand, then reviewed | \~1,070 (89 × 12) | Grows with items |
+| Supply profile | Item × month: typical origins (ranked); item × origin × month: supply index | Derived from USDA on demand, then reviewed | \~1,070 (89 × 12) | Grows with items |
 | Value signal (v1.1) | Item × week, national | Computed | \~4,600 a year | Grows with items |
 | Window summary | The one-line Today summary, national | Drafted, then edited | 24 | 24 |
 | Feedback | Item, window, outcome (looked good / looked poor / not in stock / too pricey), optional taste answer | Collected | — | — |

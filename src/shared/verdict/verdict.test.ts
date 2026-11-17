@@ -139,7 +139,7 @@ const cases: Case[] = [
   },
   {
     name: "3: poor with strong supply weakens agreement",
-    item: item({ origins: { "us-ca": rated("poor") }, supply: allMonths(1.2) }),
+    item: item({ origins: { "us-ca": rated("poor") }, supply: { "us-ca": allMonths(1.2) } }),
     verdict: "skip",
     rule: 3,
     weak: ["agreement"],
@@ -148,15 +148,20 @@ const cases: Case[] = [
   { name: "4: prime, normal supply", item: item(), verdict: "peak", rule: 4, weak: [] },
   {
     name: "4: prime, supply exactly at the thin line",
-    item: item({ supply: allMonths(0.8) }),
+    item: item({ supply: { "us-ca": allMonths(0.8) } }),
     verdict: "peak",
     rule: 4,
   },
-  { name: "4: prime, no supply index", item: item({ supply: allMonths(null) }), verdict: "peak", rule: 4 },
+  {
+    name: "4: prime, no supply index",
+    item: item({ supply: { "us-ca": allMonths(null) } }),
+    verdict: "peak",
+    rule: 4,
+  },
   // Rule 5: Good
   {
     name: "5: prime but thin supply",
-    item: item({ supply: allMonths(0.79) }),
+    item: item({ supply: { "us-ca": allMonths(0.79) } }),
     verdict: "good",
     rule: 5,
     weak: ["agreement"],
@@ -207,7 +212,7 @@ const cases: Case[] = [
   },
   {
     name: "2 cap over 4, with thin supply: rule 5 still decides",
-    item: item({ supply: allMonths(0.5), advisories: [advisory({ effect: "cap-good" })] }),
+    item: item({ supply: { "us-ca": allMonths(0.5) }, advisories: [advisory({ effect: "cap-good" })] }),
     verdict: "good",
     rule: 5,
   },
@@ -262,7 +267,7 @@ const cases: Case[] = [
   },
   {
     name: "5: thin supply and Peak not worth seeking",
-    item: item({ peakWorthSeeking: false, supply: allMonths(0.5) }),
+    item: item({ peakWorthSeeking: false, supply: { "us-ca": allMonths(0.5) } }),
     verdict: "good",
     rule: 5,
   },
@@ -285,6 +290,48 @@ const cases: Case[] = [
     verdict: "good",
     rule: 5,
     weak: ["agreement"],
+  },
+  // The deciding origin's own supply (P11)
+  {
+    name: "4: thin supply at another origin doesn't hold the top origin's Peak",
+    item: item({
+      origins: two,
+      typicalOrigins: allMonths(["us-ca", "mx"]),
+      supply: { "us-ca": allMonths(1), mx: allMonths(0.5) },
+    }),
+    verdict: "peak",
+    rule: 4,
+  },
+  {
+    name: "5: thin supply at the origin that tops November",
+    item: item({
+      origins: two,
+      typicalOrigins: inNov(["us-ca", "mx"], ["mx", "us-ca"]),
+      supply: { "us-ca": allMonths(1), mx: allMonths(0.5) },
+    }),
+    verdict: "good",
+    rule: 5,
+  },
+  {
+    name: "4: an import in a normal month of its own season, with no US supply that month",
+    item: item({
+      origins: { cl: rated("prime") },
+      typicalOrigins: allMonths(["cl"]),
+      supply: { cl: allMonths(1.1) },
+    }),
+    verdict: "peak",
+    rule: 4,
+  },
+  {
+    name: "5: a label origin uses its own thin supply",
+    item: item({
+      origins: two,
+      typicalOrigins: allMonths(["us-ca", "mx"]),
+      supply: { "us-ca": allMonths(1), mx: allMonths(0.5) },
+    }),
+    ctx: { labelOrigin: "mx" },
+    verdict: "good",
+    rule: 5,
   },
   // Rule 4 needs no typical origin rated poor
   {
@@ -419,7 +466,7 @@ describe("confidence (P10)", () => {
       ["freshness"],
     ]));
   it("Low with two weak properties", () =>
-    expect(conf(item({ evidenceBasis: "assessment-only", supply: allMonths(0.5) }))).toEqual([
+    expect(conf(item({ evidenceBasis: "assessment-only", supply: { "us-ca": allMonths(0.5) } }))).toEqual([
       "low",
       ["relevance", "agreement"],
     ]));

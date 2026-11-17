@@ -50,8 +50,9 @@ export interface ItemInputs {
   varieties: readonly RatedVariety[];
   /** Indexed by month 0–11: typical origins, top-ranked first. */
   typicalOrigins: readonly (readonly OriginId[])[];
-  /** Indexed by month 0–11: typical supply index, or null where there is none. */
-  supply: readonly (number | null)[];
+  /** Per origin, indexed by month 0–11: that origin's typical supply index against its own season (P11). A
+   * missing origin or month has none. */
+  supply: Readonly<Record<OriginId, readonly (number | null)[]>>;
   /** This item's advisories. */
   advisories: readonly EngineAdvisory[];
 }
@@ -173,7 +174,22 @@ function evaluateCore(
   }
 
   const advisory = rating === null ? undefined : activeAdvisory(item, advisoryOrigin, ctx);
-  return decide(item, { rating, decider, missing, advisory, labelNote, poorOrigin, basis, window }, ctx, env);
+  return decide(
+    item,
+    {
+      rating,
+      decider,
+      missing,
+      advisory,
+      labelNote,
+      poorOrigin,
+      supplyOrigin: advisoryOrigin,
+      basis,
+      window,
+    },
+    ctx,
+    env,
+  );
 }
 
 function activeAdvisory(item: ItemInputs, origin: OriginId | undefined, ctx: EvalContext) {
@@ -196,6 +212,8 @@ interface Decision {
   labelNote: boolean;
   /** Typical basis only: a typical origin other than the top one rated poor this window. */
   poorOrigin?: OriginId | undefined;
+  /** Whose supply index applies: the deciding origin (the top typical one for a variety). */
+  supplyOrigin: OriginId | undefined;
   basis: Basis;
   window: number;
 }
@@ -206,7 +224,8 @@ function decide(
   ctx: EvalContext,
   env: Env,
 ): CoreResult & { labelNote: boolean } {
-  const supply = item.supply[monthOf(d.window)] ?? null;
+  const supply =
+    (d.supplyOrigin === undefined ? null : item.supply[d.supplyOrigin]?.[monthOf(d.window)]) ?? null;
   const thin = supply !== null && supply < env.rules.supplyIndex.thin;
   const strong = supply !== null && supply >= env.rules.supplyIndex.strong;
   const reasons: Reason[] = [];
@@ -302,6 +321,7 @@ function bestVariety(item: ItemInputs, window: number, ctx: EvalContext, env: En
       missing: [{ code: "no-variety-in-stores" }],
       advisory: undefined,
       labelNote: false,
+      supplyOrigin: undefined,
       basis: { kind: "typical" },
       window,
     };

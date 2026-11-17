@@ -310,7 +310,8 @@ export function validate(raw: RawInputs, opts: { production: boolean }): Result 
     value: r.value === "" ? null : Number(r.value),
     reason: r.reason === "" ? null : r.reason,
   }));
-  unique(supplyIndex, (r) => `${r.item}/${r.month}`, "supply index");
+  unique(supplyIndex, (r) => `${r.item}/${r.origin}/${r.month}`, "supply index");
+  for (const r of supplyIndex) checkOrigin(r.origin, `supply index ${r.item}/${r.origin}/${r.month}`);
 
   const [snapshot = null, other] = snapshots;
   if (snapshot && other && JSON.stringify(snapshot) !== JSON.stringify(other)) {

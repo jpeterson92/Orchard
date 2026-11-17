@@ -28,7 +28,7 @@ const raw: RawInputs = {
   items: yamlFiles("content/items"),
   evidence: yamlFiles("content/evidence"),
   typicalOrigins: csv("data/usda/typical-origins.csv", ["item", "month", "rank", "origin"]),
-  supplyIndex: csv("data/usda/supply-index.csv", ["item", "month", "value", "reason"]),
+  supplyIndex: csv("data/usda/supply-index.csv", ["item", "month", "origin", "value", "reason"]),
 };
 
 const { errors, warnings, dataset } = validate(raw, { production });
