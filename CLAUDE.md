@@ -24,7 +24,7 @@ When documents conflict: Jared's decisions (in `PROGRESS.md`) > product spec for
 
 ## Working efficiently
 
-- **One increment at a time, sized to finish.** It ends in something Jared can review (a preview URL, a screenshot at 375 px, or a draft content batch) and a commit.
+- **One increment at a time, sized to finish.** It ends in a commit and a short plain-language summary for Jared of what was done; add a screenshot, link or artifact only when it helps. `/next` (`.claude/skills/next/`) runs one increment.
 - **Read narrowly, act early.** For an engineering detail, pick the conventional option, note it in one line, and move on. Don't reopen decisions recorded in `PROGRESS.md`.
 - **Ask Jared only** about product behavior, editorial content, money, accounts or credentials. Batch the questions; don't stop for routine confirmation.
 - **Timebox tooling trouble.** After two failed attempts at the same setup or config problem, take the simpler alternative or record a blocker in `PROGRESS.md` and move on. Don't dig through library internals.
