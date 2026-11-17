@@ -4,6 +4,8 @@ Nov 16, 2026 · Claude (implementer), for Jared (product owner and editorial rev
 
 **Scope.** The product spec, engineering spec, implementation guide and Orchard Editorial design system, with its nine reference images, all read in full. The question: is this ready to build, with Claude implementing, Jared reviewing, and development kept efficient?
 
+**Outcome (Nov 16, 2026).** Jared adopted D1–D3 as recommended. The engineering spec and implementation guide are now archived and replaced by `docs/engineering-plan.md`, and the §2 fixes have been applied. D4 and the verdict-rule confirmations (§2 #11) remain open.
+
 ## Bottom line
 
 | Document | Ready? | What it needs |

@@ -2,7 +2,7 @@
 
 Nov 16, 2026 · @Jared Peterson
 
-> **Status, Nov 16 2026: under revision. Do not implement from this document.** The pre-build review ([docs/reviews/2026-11-16-pre-build-review.md](reviews/2026-11-16-pre-build-review.md)) recommends replacing it with a much leaner plan. Until Jared decides, PROGRESS.md is the source of truth for what to build next.
+> **Archived Nov 16, 2026. Not instructions.** Superseded by [docs/engineering-plan.md](../engineering-plan.md) after decisions D1–D3 ([pre-build review](../reviews/2026-11-16-pre-build-review.md)). Kept for reference detail only: failure states, readiness copy, CSP directives, D1 fields, event names.
 
 ## How to use this guide
 

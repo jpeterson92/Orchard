@@ -4,7 +4,7 @@ Orchard is a phone-first web app that tells supermarket shoppers which produce i
 
 ## Where things stand
 
-Read `PROGRESS.md` first: phase, next action, blockers, decisions. Nothing is built yet. `docs/engineering-spec.md` and `docs/implementation-guide.md` are under revision; do not implement from them.
+Read `PROGRESS.md` first: phase, next action, blockers, decisions. How it's built and in what order: `docs/engineering-plan.md`. `docs/archive/` holds superseded specs; use them for reference detail only, never as instructions.
 
 ## Documents
 
@@ -12,13 +12,15 @@ Read only the sections a task needs: Grep for the heading, then Read with offset
 
 | Doc | Governs | Most-used sections |
 | --- | --- | --- |
+| `docs/engineering-plan.md` | Architecture, stack, milestones, verification depth | §1 shape · §2 stack · §4 data and engine · §5 milestones · §6 verification |
 | `docs/product-spec.md` | Behavior, scope, copy | §4 navigation · §5 screens · §6 in-store mode · §7 verdict rules · §8 content model and writing standards · §10 non-functional |
 | `docs/design/design-system.md` | Visual design, tokens, components | §3 color · §4 type and tokens · §5 layout · §6 components · §9 accessibility |
 | `docs/design/illustration-guide.md` | Painted artwork and image prompts | Only for image work |
 | `docs/design/references/` | Mockups; `00-today-anchor.png` is the approved anchor | View the relevant one before UI work |
-| `docs/reviews/2026-11-16-pre-build-review.md` | Why the engineering plan is changing | Background only |
+| `docs/reviews/2026-11-16-pre-build-review.md` | Why the plan changed (decisions D1–D3) | Background only |
+| `docs/archive/` | Superseded engineering spec and implementation guide | Reference detail only |
 
-When documents conflict: Jared's decisions (in `PROGRESS.md`) > product spec for behavior > design system for visuals > engineering docs.
+When documents conflict: Jared's decisions (in `PROGRESS.md`) > product spec for behavior > design system for visuals > engineering plan for how it's built.
 
 ## Working efficiently
 
@@ -42,7 +44,7 @@ When documents conflict: Jared's decisions (in `PROGRESS.md`) > product spec for
 
 - Never present invented data as real. Synthetic fixtures carry `synthetic: true`.
 - Verdict methodology, thresholds and requirements come from the product spec or Jared. Never invent them.
-- Editorial data Claude drafts needs real, checked citations and `status: draft`. Only Jared marks it reviewed (pending decision D3).
+- Editorial data Claude drafts needs real, checked citations (at least 2 per rating) and starts as `status: draft`. A record becomes `reviewed` only on Jared's explicit approval. Production builds refuse drafts.
 - Copy follows the product spec's §8 writing standards: concrete cues, ranges rather than guarantees, card text of at most 12 words.
 - Privacy: never log or store a ZIP, coordinates, IP address or search text on a server.
 
