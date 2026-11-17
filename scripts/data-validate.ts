@@ -27,7 +27,7 @@ import {
   varietyCalendarRowSchema,
 } from "../src/shared/data/schema";
 import { propose, type Target, traitsFor } from "../src/shared/evidence";
-import { windowLabel, windowRange } from "../src/shared/time";
+import { monthRange, windowLabel, windowRange } from "../src/shared/time";
 
 export interface Csv {
   file: string;
@@ -192,6 +192,17 @@ export function validate(raw: RawInputs, opts: { production: boolean }): Result 
     for (const v of item.varieties)
       if (v.storesWell) checkSources(v.storesWell.sources, `${at} variety ${v.id} storesWell`);
     for (const o of item.origins) checkOrigin(o.origin, at);
+    const typicalMonths = new Set<number>();
+    for (const t of item.typicalOrigins) {
+      const where = `${at} typical origins ${t.from}..${t.to}`;
+      checkSources(t.sources, where);
+      unique(t.origins, (o) => `${item.id}/${t.from}..${t.to}/${o.origin}`, "typical origin");
+      for (const o of t.origins) checkOrigin(o.origin, where);
+      for (const m of monthRange(t.from, t.to)) {
+        if (typicalMonths.has(m)) errors.push(`${where}: months overlap`);
+        typicalMonths.add(m);
+      }
+    }
     for (const [name, windows] of ratedSeries(item)) {
       const rated = new Set<number>();
       for (const w of windows) {
@@ -307,6 +318,9 @@ export function validate(raw: RawInputs, opts: { production: boolean }): Result 
     if (rs.sort((a, b) => a - b).some((r, i) => r !== i + 1))
       errors.push(`typical origin ${key}: ranks must run 1..n`);
   }
+  for (const item of items)
+    if (item.typicalOrigins.length > 0 && typicalOrigins.some((r) => r.item === item.id))
+      errors.push(`item ${item.id}: editorial typical origins and USDA ones (typical-origins.csv); keep one`);
 
   const supplyIndex: SupplyIndexRow[] = csvRows(raw.supplyIndex, supplyIndexRowSchema, (r) => ({
     ...r,

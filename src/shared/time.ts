@@ -26,6 +26,22 @@ export function windowLabel(index: number): string {
   return `${MONTHS[Math.floor(index / 2)]}-${(index % 2) + 1}`;
 }
 
+/** Editorial month labels: "jan" … "dec". */
+export const MONTH_LABEL = /^(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)$/;
+
+function monthFromLabel(label: string): number {
+  const m = MONTHS.indexOf(label as (typeof MONTHS)[number]);
+  if (m < 0) throw new RangeError(`month label ${label}`);
+  return m;
+}
+
+/** Months 1–12 from `from` to `to` inclusive; wraps past December (e.g. nov to feb). */
+export function monthRange(from: string, to: string): number[] {
+  const start = monthFromLabel(from);
+  const length = ((monthFromLabel(to) - start + 12) % 12) + 1;
+  return Array.from({ length }, (_, i) => ((start + i) % 12) + 1);
+}
+
 /** Window indexes from `from` to `to` inclusive; wraps past December (e.g. nov-2 to feb-1). */
 export function windowRange(from: string, to: string): number[] {
   const start = windowFromLabel(from);

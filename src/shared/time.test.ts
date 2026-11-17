@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { windowFromLabel, windowIndex, windowLabel, windowRange } from "./time";
+import { monthRange, windowFromLabel, windowIndex, windowLabel, windowRange } from "./time";
 
 describe("windowIndex", () => {
   it.each([
@@ -63,6 +63,19 @@ describe("windowFromLabel and windowRange", () => {
 
   it("windowLabel rejects an index outside 0–23", () => {
     for (const bad of [-1, 24, 1.5]) expect(() => windowLabel(bad)).toThrow(RangeError);
+  });
+});
+
+describe("monthRange", () => {
+  it("covers months 1–12 inclusively and wraps past December", () => {
+    expect(monthRange("jun", "aug")).toEqual([6, 7, 8]);
+    expect(monthRange("nov", "feb")).toEqual([11, 12, 1, 2]);
+    expect(monthRange("mar", "mar")).toEqual([3]);
+    expect(monthRange("jan", "dec")).toHaveLength(12);
+  });
+
+  it("rejects a label that isn't a month", () => {
+    expect(() => monthRange("june", "jul")).toThrow(RangeError);
   });
 });
 

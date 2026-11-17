@@ -1,7 +1,7 @@
 // Schemas for every editorial and reference input (engineering plan §4.1). `scripts/data-build.ts` validates
 // the files against these; the app only imports the inferred types.
 import { z } from "zod";
-import { WINDOW_LABEL } from "../time";
+import { MONTH_LABEL, WINDOW_LABEL } from "../time";
 
 export const wordCount = (text: string): number => text.trim().split(/\s+/).filter(Boolean).length;
 
@@ -97,6 +97,16 @@ const trait = z.strictObject({
   note: words(SECTION_WORDS).optional(),
 });
 
+/** Editorial typical origins for a run of months, where USDA doesn't report domestic supply (engineering plan §4.1). */
+export const editorialTypicalOriginsSchema = z.strictObject({
+  from: z.string().regex(MONTH_LABEL, 'use a month label such as "jun"'),
+  /** May wrap past December. */
+  to: z.string().regex(MONTH_LABEL, 'use a month label such as "jun"'),
+  /** Ranked, top first. `major`: at least rules.decidingOriginShare of the month's supply (P9). */
+  origins: z.array(z.strictObject({ origin: originId, major: z.boolean() })).min(1),
+  sources: sourceIds(1),
+});
+
 export const varietySchema = z.strictObject({
   id,
   name: text,
@@ -147,7 +157,13 @@ export const itemSchema = z
     /** Optional for items rated by variety, where origin windows serve only label advice. */
     origins: z.array(itemOriginSchema).default([]),
     varieties: z.array(varietySchema).default([]),
+    /** Only on assessment-only items, which USDA can't rank; data-build refuses them beside USDA rows. */
+    typicalOrigins: z.array(editorialTypicalOriginsSchema).default([]),
     ...review,
+  })
+  .refine((i) => i.typicalOrigins.length === 0 || i.evidenceBasis === "assessment-only", {
+    message: "editorial typical origins are for assessment-only items",
+    path: ["typicalOrigins"],
   })
   .refine((i) => i.origins.length > 0 || i.varieties.some((v) => v.windows), {
     message: "rate at least one origin or variety",

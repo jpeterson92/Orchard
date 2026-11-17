@@ -29,6 +29,7 @@ const item = {
     { id: "rated", windows: SUMMER, quotedAs: ["rated-usda", "rated-alt"] },
     { id: "unrated", windows: undefined },
   ],
+  typicalOrigins: [],
 } as unknown as Item;
 
 const source = (id: string) => ({ id, tier: "authoritative" as const });
@@ -79,6 +80,31 @@ describe("itemInputs", () => {
     expect(inputs.minorOrigins[5]).toEqual(["mx"]);
     expect([inputs.typicalOrigins[6], inputs.minorOrigins[6]]).toEqual([[], []]);
   });
+  it("takes an item's editorial typical origins in place of USDA's, wrapping past December", () => {
+    const editorial = {
+      ...item,
+      typicalOrigins: [
+        {
+          from: "nov",
+          to: "feb",
+          origins: [
+            { origin: "us-ca", major: true },
+            { origin: "mx", major: false },
+          ],
+          sources: ["a"],
+        },
+        { from: "jun", to: "jun", origins: [{ origin: "cl", major: true }], sources: ["a"] },
+      ],
+    } as Item;
+    const own = itemInputs(editorial, data);
+    for (const m of [10, 11, 0, 1]) {
+      expect(own.typicalOrigins[m]).toEqual(["us-ca", "mx"]);
+      expect(own.minorOrigins[m]).toEqual(["mx"]);
+    }
+    expect(own.typicalOrigins[5]).toEqual(["cl"]);
+    expect([own.typicalOrigins[2], own.typicalOrigins[4]]).toEqual([[], []]);
+  });
+
   it("builds rated varieties only, each with its own evidence", () => {
     expect(inputs.varieties.map((v) => v.id)).toEqual(["rated"]);
     expect(at(inputs.varieties[0]?.evidence, "may-1")).toBe("low");

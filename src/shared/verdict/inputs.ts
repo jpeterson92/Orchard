@@ -1,7 +1,7 @@
 // Builds the engine's inputs from the validated dataset (engineering plan §4.1 → §4.2).
-import type { Dataset, Item } from "../data/schema";
+import type { Dataset, Item, TypicalOriginRow } from "../data/schema";
 import { type Claim, type EvidenceSource, propose, type Target, traitsFor } from "../evidence";
-import { WINDOW_COUNT, windowRange } from "../time";
+import { monthRange, WINDOW_COUNT, windowRange } from "../time";
 import type { Env, ItemInputs, RatedSeries, RatedVariety, Rating } from "./index";
 
 const MONTHS = 12;
@@ -31,19 +31,28 @@ function series(
   return { windows: ratings, evidence };
 }
 
+/** The item's typical origins: its editorial ones where it has them (USDA can't rank it), else `usda:derive`'s. */
+export function typicalOriginRows(item: Item, data: Dataset): TypicalOriginRow[] {
+  if (item.typicalOrigins.length === 0) return data.typicalOrigins.filter((r) => r.item === item.id);
+  return item.typicalOrigins.flatMap((t) =>
+    monthRange(t.from, t.to).flatMap((month) =>
+      t.origins.map((o, i) => ({ item: item.id, month, rank: i + 1, origin: o.origin, major: o.major })),
+    ),
+  );
+}
+
 export function itemInputs(item: Item, data: Dataset): ItemInputs {
   const claims = data.evidence.find((e) => e.item === item.id)?.claims ?? [];
   const sources = new Map(data.sources.map((s) => [s.id, s]));
+  const rows = typicalOriginRows(item, data);
   const typicalOrigins = Array.from({ length: MONTHS }, (_, m) =>
-    data.typicalOrigins
-      .filter((r) => r.item === item.id && r.month === m + 1)
+    rows
+      .filter((r) => r.month === m + 1)
       .sort((a, b) => a.rank - b.rank)
       .map((r) => r.origin),
   );
   const minorOrigins = typicalOrigins.map((origins, m) =>
-    origins.filter((o) =>
-      data.typicalOrigins.some((r) => r.item === item.id && r.month === m + 1 && r.origin === o && !r.major),
-    ),
+    origins.filter((o) => rows.some((r) => r.month === m + 1 && r.origin === o && !r.major)),
   );
   const supply: Record<string, (number | null)[]> = {};
   for (const r of data.supplyIndex) {

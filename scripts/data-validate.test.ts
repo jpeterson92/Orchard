@@ -139,6 +139,30 @@ const gala = (windows?: object[]) => ({
   label: "Gala",
   ...(windows ? { windows: structuredClone(windows), quotedAs: ["gala"] } : {}),
 });
+/** Makes the item assessment-only with editorial typical origins, and drops its USDA rows. */
+const editorialOrigins = (r: RawInputs) => {
+  Object.assign(firstItem(r), {
+    evidenceBasis: "assessment-only",
+    typicalOrigins: [
+      {
+        from: "apr",
+        to: "aug",
+        origins: [{ origin: "us-ca", major: true }],
+        sources: ["s1"],
+      },
+      {
+        from: "dec",
+        to: "mar",
+        origins: [
+          { origin: "mx", major: true },
+          { origin: "us-ca", major: false },
+        ],
+        sources: ["s1", "s2"],
+      },
+    ],
+  });
+  (r.typicalOrigins as Csv).rows = [];
+};
 /** Rates the variety gala over SUMMER, backed by both sources. */
 const rateByVariety = (r: RawInputs) => {
   firstItem(r).varieties = [gala(SUMMER)];
@@ -199,6 +223,14 @@ describe("validate: a valid dataset", () => {
     claims(raw)[1].windows[1].rating = "poor";
     firstItem(raw).origins[0].windows[1].reason = "Sources split; fair is the cautious call.";
     expect(validate(raw, { production: false }).errors).toEqual([]);
+  });
+
+  it("accepts editorial typical origins on an assessment-only item", () => {
+    const raw = structuredClone(base());
+    editorialOrigins(raw);
+    const { errors, dataset } = validate(raw, { production: false });
+    expect(errors).toEqual([]);
+    expect(dataset?.items[0]?.typicalOrigins[1]?.origins.map((o) => o.origin)).toEqual(["mx", "us-ca"]);
   });
 
   it("works without any USDA snapshot", () => {
@@ -539,6 +571,88 @@ const broken: [string, (r: RawInputs) => void, string][] = [
     "two evidence files for one item",
     (r) => r.evidence.push({ file: "content/evidence/test-fruit.yml", data: evidence("test-fruit") }),
     "duplicate evidence file for test-fruit",
+  ],
+  // Editorial typical origins
+  [
+    "editorial typical origins on a supply+assessment item",
+    (r) => {
+      editorialOrigins(r);
+      firstItem(r).evidenceBasis = "supply+assessment";
+    },
+    "editorial typical origins are for assessment-only items",
+  ],
+  [
+    "editorial typical origins beside USDA rows",
+    (r) => {
+      const usda = structuredClone((r.typicalOrigins as Csv).rows);
+      editorialOrigins(r);
+      (r.typicalOrigins as Csv).rows = usda;
+    },
+    "item test-fruit: editorial typical origins and USDA ones (typical-origins.csv); keep one",
+  ],
+  [
+    "editorial typical origins overlapping across the year end",
+    (r) => {
+      editorialOrigins(r);
+      firstItem(r).typicalOrigins[0].from = "mar";
+    },
+    "item test-fruit typical origins dec..mar: months overlap",
+  ],
+  [
+    "bad editorial month label",
+    (r) => {
+      editorialOrigins(r);
+      firstItem(r).typicalOrigins[0].to = "august";
+    },
+    "month label",
+  ],
+  [
+    "editorial typical origins without a citation",
+    (r) => {
+      editorialOrigins(r);
+      firstItem(r).typicalOrigins[0].sources = [];
+    },
+    "cite at least 1 source",
+  ],
+  [
+    "editorial typical origins with no origin",
+    (r) => {
+      editorialOrigins(r);
+      firstItem(r).typicalOrigins[0].origins = [];
+    },
+    "typicalOrigins.0.origins",
+  ],
+  [
+    "editorial typical origin unknown",
+    (r) => {
+      editorialOrigins(r);
+      firstItem(r).typicalOrigins[1].origins[1].origin = "qq";
+    },
+    "typical origins dec..mar: unknown origin qq",
+  ],
+  [
+    "editorial typical origins unknown source",
+    (r) => {
+      editorialOrigins(r);
+      firstItem(r).typicalOrigins[1].sources = ["s9"];
+    },
+    "typical origins dec..mar: unknown source s9",
+  ],
+  [
+    "duplicate editorial typical origin",
+    (r) => {
+      editorialOrigins(r);
+      firstItem(r).typicalOrigins[1].origins[1].origin = "mx";
+    },
+    "duplicate typical origin test-fruit/dec..mar/mx",
+  ],
+  [
+    "editorial typical origin without major",
+    (r) => {
+      editorialOrigins(r);
+      delete firstItem(r).typicalOrigins[0].origins[0].major;
+    },
+    "major",
   ],
   // Advisory dates
   ["inverted advisory", (r) => (firstAdvisory(r).to = "2026-10-01"), "ends (2026-10-01) before it starts"],
