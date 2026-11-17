@@ -489,7 +489,11 @@ describe("availability curves (P14)", () => {
   });
 
   it("a variety's storesWell overrides its item's", () => {
-    const item = { ...SHIPS, varieties: [{ id: "v1", storesWell: true }, { id: "v2" }] };
+    const item = {
+      shipsWell: { value: true },
+      storesWell: { value: false },
+      varieties: [{ id: "v1", storesWell: { value: true } }, { id: "v2" }],
+    };
     expect(traitsFor(item, { variety: "v1" }).storesWell).toBe(true);
     expect(traitsFor(item, { variety: "v2" }).storesWell).toBe(false);
     expect(traitsFor(item, US_WA).storesWell).toBe(false);

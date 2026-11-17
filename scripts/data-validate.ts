@@ -184,6 +184,10 @@ export function validate(raw: RawInputs, opts: { production: boolean }): Result 
     checkSources(item.store.sources, `${at} store`);
     if (item.ripen) checkSources(item.ripen.sources, `${at} ripen`);
     for (const v of item.varieties) checkSources(v.sources, `${at} variety ${v.id}`);
+    for (const t of ["shipsWell", "storesWell", "peakWorthSeeking"] as const)
+      checkSources(item[t].sources, `${at} ${t}`);
+    for (const v of item.varieties)
+      if (v.storesWell) checkSources(v.storesWell.sources, `${at} variety ${v.id} storesWell`);
     for (const o of item.origins) checkOrigin(o.origin, at);
     for (const [name, windows] of ratedSeries(item)) {
       const rated = new Set<number>();

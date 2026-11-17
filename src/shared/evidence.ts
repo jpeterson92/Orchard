@@ -36,13 +36,19 @@ export interface ItemTraits {
   storesWell: boolean;
 }
 
-/** A target's traits: a variety's own `storesWell` overrides its item's. */
+type Trait = { value: boolean };
+
+/** A target's traits from the item file: a variety's own `storesWell` overrides its item's. */
 export function traitsFor(
-  item: ItemTraits & { varieties: readonly { id: string; storesWell?: boolean | undefined }[] },
+  item: {
+    shipsWell: Trait;
+    storesWell: Trait;
+    varieties: readonly { id: string; storesWell?: Trait | undefined }[];
+  },
   target: Target,
 ): ItemTraits {
   const variety = "variety" in target ? item.varieties.find((v) => v.id === target.variety) : undefined;
-  return { shipsWell: item.shipsWell, storesWell: variety?.storesWell ?? item.storesWell };
+  return { shipsWell: item.shipsWell.value, storesWell: (variety?.storesWell ?? item.storesWell).value };
 }
 
 /** A claim about a country other than the US. */

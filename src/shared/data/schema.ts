@@ -87,6 +87,13 @@ const storageLife = z
   })
   .refine((r) => r.min <= r.max, "min must not exceed max");
 
+/** An editorial yes/no that shapes the rating (P14, rule 4), with the evidence behind it. */
+const trait = z.strictObject({
+  value: z.boolean(),
+  sources: sourceIds(1),
+  note: words(SECTION_WORDS).optional(),
+});
+
 export const varietySchema = z.strictObject({
   id,
   name: text,
@@ -97,7 +104,7 @@ export const varietySchema = z.strictObject({
   /** Citations for the traits and uses. */
   sources: z.array(id).default([]),
   /** Overrides the item's `storesWell` (P14), e.g. a long-keeping apple. */
-  storesWell: z.boolean().optional(),
+  storesWell: trait.optional(),
   /** Present on a rated variety: the item is then rated by variety (P13). As typically sold, whatever the origin. */
   windows: qualityWindows.optional(),
 });
@@ -113,12 +120,12 @@ export const itemSchema = z
     purchaseRank: z.int().positive(),
     /** Editorial class; data-build reports where the typical outlook disagrees. */
     alwaysGood: z.boolean(),
-    /** Editorial (P14): arrives from abroad eating well, without being picked underripe to survive the trip. */
-    shipsWell: z.boolean(),
-    /** Editorial: buying in its best season makes a difference a shopper can taste; only then can it be Peak. */
-    peakWorthSeeking: z.boolean(),
-    /** Editorial (P14): eats well for months out of commercial storage; a variety may override it. */
-    storesWell: z.boolean(),
+    /** P14: arrives from abroad eating well, without being picked underripe to survive the trip. */
+    shipsWell: trait,
+    /** Rule 4: buying in its best season makes a difference a shopper can taste; only then can it be Peak. */
+    peakWorthSeeking: trait,
+    /** P14: eats well for months out of commercial storage; a variety may override it. */
+    storesWell: trait,
     evidenceBasis: z.enum(["supply+assessment", "assessment-only"]),
     cardLine: words(CARD_WORDS),
     pick: z.array(text).min(3).max(5),
