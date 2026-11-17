@@ -26,8 +26,10 @@ const data = JSON.parse(readFileSync("src/generated/data.json", "utf8")) as Data
 const env = engineEnv(data);
 const year = new Date().getFullYear();
 const sources = new Map(data.sources.map((s) => [s.id, s]));
-const LABEL = 30;
-const row = (label: string, strip: string) => `    ${label.padEnd(LABEL)} ${strip}`;
+const LABEL = 34;
+const column = (label: string) =>
+  label.length > LABEL ? `${label.slice(0, LABEL - 1)}…` : label.padEnd(LABEL);
+const row = (label: string, strip: string) => `    ${column(label)} ${strip}`;
 
 const first: string[] = [];
 const detail: string[] = [];
@@ -111,7 +113,7 @@ for (const item of data.items) {
     detail.push(row("  proposal", ratingStrip(proposal.windows.map((w) => w?.rating ?? null))));
     detail.push(row("  confidence", confidenceStrip(proposal.windows)));
     for (const c of proposal.curves)
-      detail.push(row(`    ${c.source} ×${c.weight.toFixed(1)}`, ratingStrip(c.values)));
+      detail.push(row(`    ×${c.weight.toFixed(1)} ${c.source}`, ratingStrip(c.values)));
   }
 }
 
