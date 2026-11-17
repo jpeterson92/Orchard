@@ -1,6 +1,8 @@
-# Seasonal Produce Guide Website — Product Specification
+# Orchard — Product Specification
 
 Nov 16, 2026 · @Jared Peterson
+
+> **Decisions applied Nov 16, 2026** (recorded in `PROGRESS.md`). **D2:** verdicts are national in v1; the shopper's state adds regional advisories and context, and local-harvest context, harvest zones and precise location are deferred. **D3:** Claude drafts editorial data with checked citations, Jared approves it, and production builds refuse drafts. Visual details are governed by `docs/design/design-system.md`.
 
 ## 1. Summary
 
@@ -12,7 +14,7 @@ Three ideas set it apart:
 - **Glance, then depth.** Five seconds gets the day's six best picks. Two taps get how to choose a ripe one. A variety guide settles Honeycrisp vs Cosmic Crisp.
 - **Honest verdicts.** Every verdict says why, what evidence it rests on, and how complete that evidence is. When the evidence is thin, the site says "Limited evidence" instead of guessing.
 
-**Precision reality check.** "Exact day and location" should be promised as "this window, near you," not literally. The most detailed consumer seasonality guide advertises data accurate to half-month increments, by state ([source](https://apps.apple.com/us/app/-/id1235820625)). USDA's retail price data is weekly, by 8 regions ([source](https://www.ams.usda.gov/mnreports/fvwretail.pdf)). The header can read "Near San Francisco, CA · Mon Nov 16" while the verdicts come from the current half-month window and the user's state. Today is a current assessment; a future date shows a typical seasonal outlook instead, and is labeled that way.
+**Precision reality check.** "Exact day and location" should be promised as "this window, near you," not literally. The most detailed consumer seasonality guide advertises data accurate to half-month increments, by state ([source](https://apps.apple.com/us/app/-/id1235820625)). USDA's retail price data is weekly, by 8 regions ([source](https://www.ams.usda.gov/mnreports/fvwretail.pdf)). The header can read "Near San Francisco, CA · Mon Nov 16" while the verdicts come from the current half-month window. In v1 the verdicts themselves are national, because supermarkets source nationally; the user's state adds regional advisories and context. Today is a current assessment; a future date shows a typical seasonal outlook instead, and is labeled that way.
 
 One more limit shapes the price feature: USDA retail reporting focuses on advertised specials, not everyday prices ([source](https://www.ams.usda.gov/content/dive-specialty-crops-market-news-national-retail-report)). The price signal therefore means "how hard stores in your region are promoting this," a rough guide to value, not a shelf price. It feeds a separate value note (v1.1) and never changes the verdict.
 
@@ -95,8 +97,6 @@ The original brief named Costco, Trader Joe's and Whole Foods. For a US-wide aud
 
 There are three destinations: Today, Browse and Calendar. Search is a global control on every screen, not a destination of its own. Everything follows one location-and-date setting.
 
-&#91;embedded content: site map · 3 destinations plus global search\]
-
 Today, Calendar and search all lead to the same item page. Browse reaches it through a category, and variety pages sit one level below.
 
 **Navigation rules**
@@ -142,7 +142,7 @@ Today leads with up to six strong recommendations, and every item appears on it 
 ### Today (home)
 
 1. **Location-and-date chip:** "Near San Francisco, CA · Mon Nov 16". Tap to change.
-2. **One-line summary** of what's typically happening this time of year, plus any active advisory. It is edited by hand for each region and month.
+2. **One-line summary** of what's typically happening this time of year, plus any active advisory. It is edited by hand for each of the 24 half-month windows, nationally.
 3. **Search field**, visible without scrolling.
 4. **Best right now:** up to 6 Peak items, highest confidence first, then the most commonly bought. If fewer than 6 items are Peak, it shows fewer; it is never padded with Good items.
 5. **Good buys:** every other Peak and Good item, with filter chips (All · Fruit · Vegetables · Herbs & mushrooms).
@@ -160,7 +160,7 @@ An item that is both Peak and Last call appears once, under Best right now, carr
 
 - **Verdict block:** the badge, 1–3 reasons, the confidence level, and one line on what it rests on ("Reviewed seasonal assessment + current national supply"). Two dates appear, worded so they can't be mistaken for an in-store check: "Supply data through Nov 13" and "Guidance reviewed Oct 2026".
 - **Context notes**, separate and only shown when relevant:
-  - "Local harvest: in season near you"
+  - "Local harvest: in season near you" (deferred with local-harvest context; not in v1)
   - "Typical supermarket supply: favorable this month"
   - "Depends on the label: origin matters for this item"
 - **What does the label say?** (optional): pick the origin or variety shown on the label or sticker, and the verdict and tips update for it. Today's verdict never needs this input.
@@ -208,7 +208,7 @@ An item that is both Peak and Last call appears once, under Best right now, carr
 ### Location and date
 
 - **Default:** approximate location from the network connection, with no permission prompt, shown as "Near {city}, {state}".
-- **Change:** type a ZIP, or tap "Use my precise location". The browser asks permission only after that tap.
+- **Change:** type a ZIP. "Use my precise location" is deferred to a later release; when it comes, the browser asks permission only after the tap, and coordinates never leave the phone.
 - Changing location keeps the current page, filters and scroll position.
 - **Date:** today by default. "Plan for another date" shows that date's **typical seasonal outlook**, under a banner that says so ("Typical outlook for Dec 20 · Back to today"). It is never presented as a current assessment.
 - **No onboarding screens.** The first visit shows one dismissible hint on changing location.
@@ -243,13 +243,11 @@ A single toggle on Today, remembered on the device. Turning it on:
 - **Enlarges type** to at least 18 px for body text and raises contrast, for reading at arm's length under bright store lighting.
 - **Removes anything that interrupts:** no pop-ups, prompts or animation, and no layout that shifts after load.
 
-Without the toggle, the phone view behaves the same except that the screen sleeps normally. Today and every viewed item page are still cached (section 10).
+Without the toggle, the phone view behaves the same except that the screen sleeps normally. Every covered item is still available offline (section 10).
 
 ## 7. Verdict logic
 
 The verdict answers one question: is this item, as supermarkets here typically stock it right now, likely to eat well? Availability and value are shown beside the verdict, but they never decide it.
-
-&#91;embedded content: how a verdict is made · 4 ordered rules, value kept separate\]
 
 The rules run in a fixed order and the first match wins, so no two rules can produce conflicting verdicts. Promotions and prices are never inputs to the verdict.
 
@@ -280,7 +278,7 @@ An advisory changes only the windows it covers and never rewrites the typical ou
 | **Quality window** | For each item × major origin, every half-month window rated *prime* (typically eats best), *fair* (acceptable), or *poor* (typically disappointing, e.g. out of long storage). Comes from a reviewed seasonal assessment that cites at least 2 sources (extension services, commodity boards, trade references). |
 | **Typical supermarket origins** | The origins that together account for ≥ 70% of an item's reported shipments and imports in that month, averaged over 3 years. Used only to *rank* origins, never as precise shares. USDA notes that truck shipments for all commodities and origins are not available, and that the reported figures should not be read as complete movements ([source](https://www.ams.usda.gov/node/21104)). |
 | **Supply index** | Reported volume this month ÷ the item's average monthly reported volume over the prior 3 years, from the same report series. Strong ≥ 1.2; normal 0.8–1.2; thin < 0.8. |
-| **Local harvest** | Off, early, peak or late in the user's harvest zone. Shown as context. It affects a verdict only through label-based advice (below). |
+| **Local harvest** | Off, early, peak or late in the user's harvest zone. Shown as context. It affects a verdict only through label-based advice (below). Deferred: not in v1. |
 | **Advisory** | An editor-entered exception: items, origins, regions, start date, expiry date, the verdict it imposes, and a note. |
 | **Reliable year-round** | A marker, set when the item's typical outlook is Good or better in ≥ 20 of 24 windows. Such an item can still have Peak windows and Skip windows. |
 | **Value marker** (v1.1) | "Good value" when the promotion index is ≥ 1.2 or the advertised price is ≤ 0.95× its yearly average; "Pricier than usual" when the price is ≥ 1.15×. Display only. |
@@ -314,11 +312,11 @@ Confidence describes how complete and current the evidence is. It is not a proba
 
 **High:** all four hold. **Medium:** exactly one is weak, e.g. stale supply data or mixed origins. **Low:** two or more are weak. A verdict built on strong national evidence isn't marked down just because no local data exists.
 
-### Place: two layers
+### Place
 
-A ZIP code maps to two different geographies, because harvest and pricing are reported at different scales.
+**In v1, place is a state.** A typed ZIP, or the request's approximate location, resolves to one of the 50 states or DC. The state selects regional advisories, the "Locally checked" label and the Alaska and Hawaii banner, and maps to a price region for the value marker (v1.1). Verdicts themselves are national.
 
-- **Harvest zone** (53 zones): the 50 states plus DC, with California and Florida each split north/south. The leading seasonal guide uses the same splits ([source](https://apps.apple.com/us/app/-/id1235820625)). It drives local-harvest context.
+- **Harvest zone** (53 zones; deferred with local-harvest context): the 50 states plus DC, with California and Florida each split north/south. The leading seasonal guide uses the same splits ([source](https://apps.apple.com/us/app/-/id1235820625)). It drives local-harvest context.
 - **Price region** (8 regions): the regions USDA's weekly retail report uses ([source](https://www.ams.usda.gov/mnreports/fvwretail.pdf)). It drives only the value marker.
 
 | USDA price region | States |
@@ -354,19 +352,20 @@ An item launches only once its evidence passes review. Editors write content onc
 | Entity | Key attributes | Written or computed | At launch | Target |
 | --- | --- | --- | --- | --- |
 | Item | Names and synonyms, how to pick, store and ripen (ranges + ripeness assumptions), prep, illustration | Written | \~35 | \~100 |
-| Evidence record | Evidence basis, sources (≥ 2), reviewer, review date | Written + reviewed | 1 per item | 1 per item |
+| Evidence record | Evidence basis, sources (≥ 2), status (draft or reviewed), reviewer, review date | Drafted, then reviewed | 1 per item | 1 per item |
 | Quality window | Item × major origin × 24 windows: prime / fair / poor, with citations | Written + reviewed | \~100 origin profiles (\~3 per item) | Grows with items |
 | Variety | Group-specific traits on anchored 1–5 scales, best uses, label/PLU text, freshest months where evidence exists | Written | \~40 (3 guides) | Driven by what shoppers meet |
 | Type note | Short distinction where type changes the advice | Written | \~10 items | As needed |
 | Category | Name, group, icon | Written | Only those with covered items | 16 |
 | Advisory | Items, origins, regions, start, expiry, imposed verdict, note | Written | As needed | As needed |
-| Harvest zone | States, harvest calendar per item | Data, reviewed yearly | 53 | 53 |
+| State | Name, price region, "locally checked" flag | Data | 51 | 51 |
+| Harvest zone (deferred) | States, harvest calendar per item | Data, reviewed yearly | — | 53 |
 | Price region | States, weekly promotion data | Data, weekly (v1.1) | 8 | 8 |
-| Verdict | Item × zone × window: verdict, markers, confidence, reason codes | Computed | \~44,500 (35 × 53 × 24) | \~127,000 |
+| Verdict | Item × window (national), with advisories for the shopper's state and date applied: verdict, markers, confidence, reason codes | Computed | 840 (35 × 24) | \~2,400 |
 | Supply profile | Item × month: typical origins (ranked), supply index | Computed | \~420 (35 × 12) | \~1,200 |
 | Value signal (v1.1) | Item × region × week | Computed | \~14,600 a year | \~42,000 a year |
-| Region-month summary | The one-line Today summary | Drafted, then edited | 96 (8 × 12) | 96 |
-| Feedback | Item, zone, window, outcome (looked good / looked poor / not in stock / too pricey), optional taste answer | Collected | — | — |
+| Window summary | The one-line Today summary, national | Drafted, then edited | 24 | 24 |
+| Feedback | Item, state, window, outcome (looked good / looked poor / not in stock / too pricey), optional taste answer | Collected | — | — |
 
 **Evidence screen before an item is admitted.** There are two acceptable evidence bases, and the item page states which one applies:
 
@@ -374,6 +373,8 @@ An item launches only once its evidence passes review. Editors write content onc
 - **Reviewed seasonal assessment only:** for items where the USDA data is too thin or patchy to use. These verdicts carry at most Medium confidence.
 
 An item that meets neither bar waits. It doesn't launch with a precise-looking but weak verdict.
+
+**Drafting and review.** Claude researches and drafts items, quality windows, varieties and summaries. Every rating cites at least 2 real, checked sources, and every record starts as `draft`. Jared reviews and approves; only approved records are `reviewed`. Production builds refuse drafts, and previews label draft content visibly.
 
 **Picking the \~35 launch items:** the most commonly bought produce that passes the evidence screen, spread across the categories so each group has representatives.
 
@@ -395,6 +396,8 @@ An item that meets neither bar waits. It doesn't launch with a precise-looking b
 
 Calm, editorial and produce-forward: a quiet canvas where the food supplies the color, and verdicts read clearly from arm's length.
 
+Visual details are governed by the design system (`docs/design/design-system.md`). Where this section and the design system differ, the design system wins.
+
 **Principles**
 
 1. **Glanceable in the aisle, rich at the desk.** Each screen leads with its verdict and keeps the depth one tap down.
@@ -409,8 +412,8 @@ Calm, editorial and produce-forward: a quiet canvas where the food supplies the 
 | --- | --- |
 | Canvas | Warm off-white in light mode, deep warm gray in dark mode, following the device setting. In-store mode forces high-contrast light. |
 | Type | A humanist sans for interface and body text; an editorial serif for page titles and variety names. Body at least 16 px (18 px in in-store mode). Fixed-width digits for days and prices. |
-| Color | Neutral interface. Each item gets an accent drawn from its own color (persimmon orange, kale green), used only in its illustration and page header. Verdicts have their own reserved palette. |
-| Verdict marks | Peak: filled star + "Peak" · Good: check + "Good" · Skip: clock + "Skip for now" · Limited evidence: open circle + "Limited evidence", in a neutral tone so it never reads as a warning about the produce. The palette is checked under color-blindness simulation; red vs green is never the only difference. |
+| Color | Neutral interface; the produce illustrations supply the color. Verdicts have their own reserved palette. |
+| Verdict marks | Peak: filled star + "Peak" · Good: check + "Good" · Skip: clock + "Skip for now" · Limited evidence: information symbol + "Limited evidence", in a neutral tone so it never reads as a warning about the produce. The palette is checked under color-blindness simulation; red vs green is never the only difference. |
 | Markers | Small text tags under the verdict: "Last call", "Reliable year-round", "Good value" (v1.1), and an outlined "Advisory" tag that opens its scope and expiry. |
 | Imagery | One consistent illustration style, one drawing per item (\~35 at launch). Illustrations are decorative, not identification aids. For varieties, the label or PLU sticker is authoritative. |
 | Layout | 8 px spacing grid; generous card padding; at most 2 levels of nesting on phone. |
@@ -430,7 +433,7 @@ The site has to feel instant on a phone with one bar of signal, be private by de
 | Area | Requirement |
 | --- | --- |
 | Speed | Pass Google's "good" Core Web Vitals on mobile at the 75th percentile: largest content painted ≤ 2.5 s, response to input ≤ 200 ms, layout shift ≤ 0.1 ([source](https://web.dev/articles/vitals)). Today must show its first verdicts within that 2.5 s on a mid-range phone over 4G. |
-| Offline | After the first visit, Today and every viewed item page work with no signal. In-store mode prepares all covered items and shows its readiness status (section 6). |
+| Offline | After the first visit, every covered item works with no signal. In-store mode shows the offline copy's readiness status (section 6). |
 | Freshness | Supply data refreshed monthly; the value signal weekly (v1.1). Quality windows, harvest calendars and written content reviewed at least once a year. Advisories always carry an expiry. |
 | Honesty | Every verdict states its evidence basis and confidence. "Data through" and "reviewed" dates are kept distinct and never imply someone checked the produce. Future dates are always labeled as the typical outlook. Missing evidence shows as Limited evidence, never as a default verdict. |
 | Privacy | No account needed. Precise location is never sent to or stored on a server; the ZIP is saved on the device. Location permission is requested only after an explicit tap. Analytics are aggregate, with no ad trackers and no selling of data. |
@@ -461,7 +464,7 @@ The closest existing product already does "what's in season near me." The openin
 
 The first release is deliberately small: about 35 items, 3 variety guides, nationwide guidance, and local validation in 3 metros. Coverage grows only by passing explicit gates.
 
-&#91;embedded content: roadmap · 4 phases, 3 gates, order only (not to scale)\]
+Order: foundations → Gate 1 → first release → Gate 2 → v1.1 → Gate 3 → v2 (broader coverage).
 
 **Scope**
 
@@ -474,6 +477,7 @@ The first release is deliberately small: about 35 items, 3 variety guides, natio
 | Honest location and seasonal context; typical-outlook calendar | Deep guides beyond the first 3 |
 | A verified offline shopping experience | Full illustration coverage |
 | 3 excellent variety guides (apples, mandarins & oranges, pears) | Named-chain notes |
+|  | Local-harvest context, harvest zones and precise location |
 
 **Nationwide availability vs local validation.** The site works everywhere in the continental US from day one, but it is explicit about where its calls have been checked. Users in the 3 launch metros (San Francisco Bay Area, Chicago, Atlanta) see a "Locally checked" note. Everyone else sees "National guidance · not yet locally checked". Boston, Dallas and Seattle follow, one at a time, each after its own audit cycle.
 
@@ -507,7 +511,7 @@ The biggest risk is a confident verdict that doesn't match the bin in front of t
 
 | Decision | Recommendation |
 | --- | --- |
-| Product name and brand | Open |
+| Product name and brand | Project name: Orchard. In-app brand: open |
 | Launch metros for local validation | San Francisco Bay Area, Chicago and Atlanta: three distinct climates and supply positions |
 | The \~35 launch items | The most commonly bought produce that passes the evidence screen, with every category group represented |
 | Who audits | Two reviewers independent of the rules' author; recruit before Gate 1 |
@@ -516,8 +520,8 @@ The biggest risk is a confident verdict that doesn't match the bin in front of t
 | Business model | None in v1. If one is ever added, nothing paid can influence a verdict |
 | Spanish at launch? | v2, with text Spanish-ready from day one |
 | Accounts? | None in v1; settings stay on the device |
-
-Next: visual mockups of Today and the apple guide on phone. The engineering spec also needs a matching revision (verdict states, quality windows, advisories, smaller launch scope).
+| Verdict geography (decided Nov 16, D2) | National verdicts; the state adds regional advisories and context; local harvest deferred |
+| Editorial authoring (decided Nov 16, D3) | Claude drafts with checked citations; Jared approves; production refuses drafts |
 
 ## Sources
 
