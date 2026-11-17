@@ -49,6 +49,7 @@ export function item(overrides: Partial<ItemInputs> = {}): ItemInputs {
     id: "test-item",
     evidenceBasis: "supply+assessment",
     alwaysGood: false,
+    peakWorthSeeking: true,
     origins: { "us-ca": rated("prime") },
     varieties: [],
     typicalOrigins: allMonths(["us-ca"]),

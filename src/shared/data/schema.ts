@@ -115,6 +115,8 @@ export const itemSchema = z
     alwaysGood: z.boolean(),
     /** Editorial (P14): arrives from abroad eating well, without being picked underripe to survive the trip. */
     shipsWell: z.boolean(),
+    /** Editorial: buying in its best season makes a difference a shopper can taste; only then can it be Peak. */
+    peakWorthSeeking: z.boolean(),
     /** Editorial (P14): eats well for months out of commercial storage; a variety may override it. */
     storesWell: z.boolean(),
     evidenceBasis: z.enum(["supply+assessment", "assessment-only"]),

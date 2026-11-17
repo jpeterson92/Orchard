@@ -59,11 +59,13 @@ const itemArb: fc.Arbitrary<ItemInputs> = fc
     varieties: fc.array(fc.record({ s: series, inStore: months(fc.boolean()) }), { maxLength: 3 }),
     evidenceBasis: fc.constantFrom("supply+assessment" as const, "assessment-only" as const),
     alwaysGood: fc.boolean(),
+    peakWorthSeeking: fc.boolean(),
   })
   .map((r) => ({
     id: "prop-item",
     evidenceBasis: r.evidenceBasis,
     alwaysGood: r.alwaysGood,
+    peakWorthSeeking: r.peakWorthSeeking,
     origins: Object.fromEntries(r.rated.map((o, i) => [o, r.seriesList[i] ?? { windows: [] }])),
     varieties: r.varieties.map((v, i) => ({ id: `v${i}`, ...v.s, inStore: v.inStore })),
     typicalOrigins: r.typical,
@@ -132,6 +134,27 @@ describe("verdict engine invariants", () => {
         const r = evaluate(item, ctx, ENV);
         const supply = item.supply[ctx.date.month - 1] ?? null;
         if (supply !== null && supply < ENV.rules.supplyIndex.thin) expect(r.verdict).not.toBe("peak");
+      }),
+      RUNS,
+    ));
+
+  it("no Peak unless the item's Peak is worth seeking", () =>
+    fc.assert(
+      fc.property(itemArb, ctxArb, (item, ctx) => {
+        const r = evaluate({ ...item, peakWorthSeeking: false }, ctx, ENV);
+        expect(r.verdict).not.toBe("peak");
+        for (const v of Object.values(r.byOrigin)) expect(v.verdict).not.toBe("peak");
+        for (const v of Object.values(r.byVariety)) expect(v.verdict).not.toBe("peak");
+      }),
+      RUNS,
+    ));
+
+  it("an item whose Peak isn't worth seeking differs only by Peak becoming Good", () =>
+    fc.assert(
+      fc.property(itemArb, ctxArb, (item, ctx) => {
+        const seek = evaluate({ ...item, peakWorthSeeking: true }, ctx, ENV);
+        const not = evaluate({ ...item, peakWorthSeeking: false }, ctx, ENV);
+        expect(not.verdict).toBe(seek.verdict === "peak" ? "good" : seek.verdict);
       }),
       RUNS,
     ));

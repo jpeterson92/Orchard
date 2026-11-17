@@ -47,6 +47,7 @@ export function itemInputs(item: Item, data: Dataset): ItemInputs {
     id: item.id,
     evidenceBasis: item.evidenceBasis,
     alwaysGood: item.alwaysGood,
+    peakWorthSeeking: item.peakWorthSeeking,
     origins: Object.fromEntries(
       item.origins.map((o) => [o.origin, series(o.windows, claims, sources, { origin: o.origin }, item)]),
     ),

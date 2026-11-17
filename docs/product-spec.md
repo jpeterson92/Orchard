@@ -292,8 +292,8 @@ An advisory changes only the windows it covers and never rewrites the typical ou
 1. **Limited evidence:** the reviewed quality assessment doesn't cover the origins that typically supply supermarkets in this window. Missing information never defaults to Good or Skip.
 2. **Advisory:** an active advisory covers the top typical origin → Skip, or at most Good, as the advisory sets. A Skip advisory overrides everything below; a cap lets rules 3–5 run and lowers Peak to Good.
 3. **Skip:** the typical origins are rated *poor* this window.
-4. **Peak:** the typical origins are rated *prime* this window, and the supply index isn't thin.
-5. **Good:** everything else, meaning the origins are *prime* but supply is thin, or they are rated *fair*.
+4. **Peak:** the typical origins are rated *prime* this window, the supply index isn't thin, and the item is one whose Peak is worth seeking: buying it in its best season makes a difference a shopper can taste. Peak means "try to buy it now". An item that tastes much the same in and out of its best harvest weeks (lettuce, for one) is Good in those weeks, and may be Always good.
+5. **Good:** everything else, meaning the origins are *prime* but supply is thin or the item's Peak isn't worth seeking, or they are rated *fair*.
 
 When the top two origins differ by more than one rating level, the verdict follows the larger origin and the item gets a "Depends on the label" note.
 

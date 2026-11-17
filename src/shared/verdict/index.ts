@@ -43,6 +43,8 @@ export interface ItemInputs {
   id: string;
   evidenceBasis: "supply+assessment" | "assessment-only";
   alwaysGood: boolean;
+  /** Editorial: buying in its best season makes a difference a shopper can taste. Only then can it be Peak. */
+  peakWorthSeeking: boolean;
   origins: Readonly<Record<OriginId, RatedSeries>>;
   /** Rated varieties in file order; empty unless the item is rated by variety. */
   varieties: readonly RatedVariety[];
@@ -74,7 +76,9 @@ export type Reason =
   | { code: "variety-unrated"; variety: VarietyId }
   | { code: "advisory"; advisory: string; effect: EngineAdvisory["effect"] }
   | { code: "rated"; rating: Rating; origin?: OriginId; variety?: VarietyId }
-  | { code: "supply-thin" };
+  | { code: "supply-thin" }
+  /** Rated prime, but the item tastes much the same in and out of its best season: Good, not Peak. */
+  | { code: "peak-not-worth-seeking" };
 
 export interface CoreResult {
   verdict: Verdict;
@@ -220,11 +224,13 @@ function decide(
     reasons.push({ code: "rated", rating: d.rating, ...by });
     if (d.advisory) reasons.push({ code: "advisory", advisory: d.advisory.id, effect: d.advisory.effect });
     if (d.rating === "prime" && thin) reasons.push({ code: "supply-thin" });
+    if (d.rating === "prime" && !item.peakWorthSeeking) reasons.push({ code: "peak-not-worth-seeking" });
 
     if (d.advisory?.effect === "skip") [verdict, ruleFired] = ["skip", 2];
     else if (d.rating === "poor") [verdict, ruleFired] = ["skip", 3];
-    else if (d.rating === "prime" && !thin)
-      [verdict, ruleFired] = d.advisory?.effect === "cap-good" ? ["good", 2] : ["peak", 4];
+    else if (d.rating === "prime" && !thin && d.advisory?.effect === "cap-good")
+      [verdict, ruleFired] = ["good", 2];
+    else if (d.rating === "prime" && !thin && item.peakWorthSeeking) [verdict, ruleFired] = ["peak", 4];
     else [verdict, ruleFired] = ["good", 5];
   }
 

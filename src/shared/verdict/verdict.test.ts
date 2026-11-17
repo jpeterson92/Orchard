@@ -229,6 +229,43 @@ const cases: Case[] = [
     verdict: "peak",
     rule: 4,
   },
+  // Rule 4 needs a Peak worth seeking
+  {
+    name: "4: prime, normal supply, Peak not worth seeking: rule 5 Good",
+    item: item({ peakWorthSeeking: false }),
+    verdict: "good",
+    rule: 5,
+  },
+  {
+    name: "2 over 4: cap-good on an item whose Peak isn't worth seeking",
+    item: item({ peakWorthSeeking: false, advisories: [advisory({ effect: "cap-good" })] }),
+    verdict: "good",
+    rule: 2,
+  },
+  {
+    name: "2 skip on an item whose Peak isn't worth seeking",
+    item: item({ peakWorthSeeking: false, advisories: [advisory()] }),
+    verdict: "skip",
+    rule: 2,
+  },
+  {
+    name: "3: poor stays Skip when Peak isn't worth seeking",
+    item: item({ peakWorthSeeking: false, origins: { "us-ca": rated("poor") } }),
+    verdict: "skip",
+    rule: 3,
+  },
+  {
+    name: "1: Limited evidence stays when Peak isn't worth seeking",
+    item: item({ peakWorthSeeking: false, typicalOrigins: inNov(["us-ca"], []) }),
+    verdict: "limited",
+    rule: 1,
+  },
+  {
+    name: "5: thin supply and Peak not worth seeking",
+    item: item({ peakWorthSeeking: false, supply: allMonths(0.5) }),
+    verdict: "good",
+    rule: 5,
+  },
   // P9: the top-ranked origin decides
   {
     name: "P9: fair top origin, prime second",
@@ -572,4 +609,21 @@ describe("typical outlook and the Always good evidence", () => {
     expect(
       typicalOutlook(item({ advisories: [advisory({ from: "2026-01-01", to: "2026-03-31" })] }), ENV, 2026),
     ).toEqual(Array(24).fill("peak")));
+});
+
+describe("Peak worth seeking", () => {
+  it("explains a prime window held at Good", () => {
+    const r = evaluate(item({ peakWorthSeeking: false }), today, ENV);
+    expect(r.reasons).toContainEqual({ code: "peak-not-worth-seeking" });
+    expect(evaluate(item(), today, ENV).reasons).not.toContainEqual({ code: "peak-not-worth-seeking" });
+  });
+
+  it("a variety-rated item whose Peak isn't worth seeking is Good at best", () => {
+    const r = evaluate(
+      item({ peakWorthSeeking: false, origins: {}, varieties: [variety("v1", rated("prime"))] }),
+      today,
+      ENV,
+    );
+    expect(r.verdict).toBe("good");
+  });
 });

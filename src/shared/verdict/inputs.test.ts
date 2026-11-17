@@ -22,6 +22,7 @@ const item = {
   evidenceBasis: "supply+assessment",
   alwaysGood: false,
   shipsWell: true,
+  peakWorthSeeking: true,
   storesWell: false,
   origins: [{ origin: "us-ca", windows: SUMMER }],
   varieties: [
