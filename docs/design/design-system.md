@@ -227,6 +227,7 @@ Collapsed content:
 - One short factual reason.
 - Secondary origin caption when supported by data.
 - For items rated by variety, a quieter variety line under the name ("Ataulfo", or "6 varieties at their best"); the image is that variety's, or the item's when the line gives a count.
+- Without approved art, a mostly transparent placeholder of the same size holds the image slot.
 
 Do not repeat the same origin information in several adjacent labels. Examples in design references do not authorize invented source claims.
 

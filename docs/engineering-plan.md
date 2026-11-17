@@ -158,7 +158,7 @@ Each milestone takes 1–3 sessions and ends with something Jared can review. Th
 2. **Generate.** Jared pastes each prompt into ChatGPT, keeping one conversation per batch so the style stays consistent. He saves each result as `art/masters/<asset-id>.png`.
 3. **Process.** `npm run art:process` checks each master: real alpha channel, dimensions, and no white-rectangle background. It writes optimized derivatives to `public/art/` and a contact sheet of every asset over ivory and warm charcoal.
 4. **Review.** Jared approves or rejects each asset from the contact sheet. Approvals are recorded in `art/manifest.json` (asset ID, item, role, alt-text context, revision, status). A rejected asset gets a targeted revision prompt (§2 F) in the next batch.
-5. Production builds refuse unapproved art, as they refuse draft content.
+5. Production builds refuse unapproved art, as they refuse draft content. An item or variety without approved art shows a mostly transparent placeholder of the same size, so layouts don't shift while the art catches up.
 
 **After v1 (v1.1+):** value markers; named-chain notes; Spanish; location-aware context (regional advisories, local harvest) only if usage shows a need.
 
