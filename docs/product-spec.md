@@ -137,7 +137,7 @@ Today leads with up to six strong recommendations, and every seasonal item appea
 | Kind | Values | Meaning |
 | --- | --- | --- |
 | **Verdict** (exactly one per item) | Peak · Good · Skip · Limited evidence | Expected eating quality of typical supermarket supply here and now (rules in section 7) |
-| **Markers** (zero or more, shown on the card) | Last call · Reliable year-round · Varies by variety · Advisory · Good value (v1.1) | Extra facts that never move the item to a different section |
+| **Markers** (zero or more, shown on the card) | Last call · Reliable year-round · Advisory · Good value (v1.1) | Extra facts that never move the item to a different section |
 | **Always good** (an item class) | An editorial call, written in the item file. The usual evidence is a typical outlook of Good in all 24 windows, never Peak and never Skip; the data build flags any item where the two disagree, and an editor decides | Shown as "Always good" wherever they appear. They join Today only while an advisory changes their verdict |
 
 ### Today (home)
@@ -154,10 +154,10 @@ An item that is both Peak and Last call appears once, under Best right now, carr
 
 **Items rated by variety.** Some items' varieties peak at different times: some apples are only worth buying near harvest, while Cosmic Crisp keeps well all year. These items are rated per variety as well as per origin:
 
-- Each variety gets its own verdict for the window.
-- The item's verdict is the best verdict among the rated varieties typically in stores in that window, so a shopper who picks the named variety gets what the badge says.
-- When those varieties' verdicts differ, the card carries **Varies by variety** and names the best one or two: "Varies by variety · best now: Cosmic Crisp, Fuji".
-- At launch: apples, pears, mandarins and oranges (the items with variety guides). Other items are rated by variety only where evidence shows their varieties differ in season.
+- Each variety gets its own verdict for the window. The item's verdict is the best verdict among the rated varieties typically in stores then, so a shopper who picks the named variety gets what the badge says.
+- **The card says which variety the verdict means**, in a smaller secondary line under the item name ("Mangoes" over "Ataulfo"), and shows that variety's illustration.
+- When two varieties share the best verdict, the line names both and the card shows the first one's illustration. When more do (apples in October), the line gives the count ("6 varieties at their best"), the card shows the item's own illustration, and the item page lists them.
+- **At launch:** apples, pears, mandarins, oranges, mangoes and avocados. Their varieties differ in season and are named on signs and labels. The rated varieties are those that make up most of each item's supermarket supply, chosen with the content. Later candidates, once evidence supports them: tomatoes (heirloom), onions (sweet onions), lemons (Meyer) and winter squash (delicata).
 
 ### Card behavior (the same everywhere)
 
@@ -337,7 +337,7 @@ An item launches only once its evidence passes review. Editors write content onc
 | Item | Names and synonyms, how to pick, store and ripen (ranges + ripeness assumptions), prep, illustration | Written | 89 | New items as they become common |
 | Evidence record | Evidence basis, sources (≥ 2), status (draft or reviewed), reviewer, review date | Drafted, then reviewed | 1 per item | 1 per item |
 | Quality window | Item × major origin × 24 windows: prime / fair / poor, with citations | Written + reviewed | \~220 origin profiles (\~3 per seasonal item; always-good items need one year-round rating per origin) | Grows with items |
-| Variety | Group-specific traits on anchored 1–5 scales, best uses, label/PLU text, quality windows where evidence exists | Written | \~40 (3 guides) | Driven by what shoppers meet |
+| Variety | Group-specific traits on anchored 1–5 scales, best uses, label/PLU text, quality windows where evidence exists | Written | \~45 (the 3 guides, plus mango and avocado varieties) | Driven by what shoppers meet |
 | Type note | Short distinction where type changes the advice | Written | \~10 items | As needed |
 | Category | Name, group, icon | Written | Only those with covered items | 16 |
 | Advisory | Items, origins, start, expiry, imposed verdict, note | Written | As needed | As needed |
@@ -376,7 +376,7 @@ An item that meets neither bar waits. It doesn't launch with a precise-looking b
 
 **Rights and sourcing**
 
-- All copy and illustrations are original or licensed. Illustrations are decorative: one per item (89 at launch), not one per variety.
+- All copy and illustrations are original or licensed. Illustrations are decorative: one per item (89 at launch), plus one per rated variety of the items rated by variety (about 30).
 - Other guides' charts and data are not copied. Foodwise, for one, asks to be contacted before its charts are reproduced ([source](https://foodwise.org/wp-content/uploads/2025/07/Foodwise-Fruit-Seasonality-Chart.pdf)). Quality windows are built from public sources, paraphrased and cited claim by claim; no source's chart or wording is copied.
 - USDA Market News data is public and has a free API with a key ([source](https://mymarketnews.ams.usda.gov/node/8569)).
 
@@ -403,7 +403,7 @@ Visual details are governed by the design system (`docs/design/design-system.md`
 | Color | Neutral interface; the produce illustrations supply the color. Verdicts have their own reserved palette. |
 | Verdict marks | Peak: filled star + "Peak" · Good: check + "Good" · Skip: clock + "Skip for now" · Limited evidence: information symbol + "Limited evidence", in a neutral tone so it never reads as a warning about the produce. The palette is checked under color-blindness simulation; red vs green is never the only difference. |
 | Markers | Small text tags under the verdict: "Last call", "Reliable year-round", "Good value" (v1.1), and an outlined "Advisory" tag that opens its scope and expiry. |
-| Imagery | One consistent illustration style, one drawing per item (89 at launch). Illustrations are decorative, not identification aids. For varieties, the label or PLU sticker is authoritative. |
+| Imagery | One consistent illustration style: one drawing per item (89 at launch), plus one per rated variety (about 30). Illustrations are decorative, not identification aids. For varieties, the label or PLU sticker is authoritative. |
 | Layout | 8 px spacing grid; generous card padding; at most 2 levels of nesting on phone. |
 | Motion | 150–250 ms, only for expand and collapse. Honors the device's reduced-motion setting. None in in-store mode. |
 | Charts | The typical-outlook strip and heatmap use the verdict palette with a single ink-colored "today" marker, and each has a text equivalent. |

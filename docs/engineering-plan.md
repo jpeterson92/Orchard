@@ -100,8 +100,8 @@ evaluate(item: ItemInputs, ctx: { date: PlainDate; mode: "today" | "typical"; la
 
 - **Rules 1–5 in product order, first match wins:** Limited evidence → Advisory → Skip → Peak (supply not thin) → Good.
 - `mode: "typical"` (Calendar and planning dates) ignores advisories and uses the typical supply index for that month. `mode: "today"` uses the same typical supply index plus the advisories active on `date`. Supply data is a yearly snapshot, so the two modes differ only by advisories.
-- **Markers:** Last call, Reliable year-round (Good or better in at least 20 of 24 windows), Varies by variety, Advisory, and "Usually improves in…" (the next window rated Good or better).
-- **Varieties:** for an item rated by variety, `byVariety` runs the rules once per rated variety; the item verdict and the Varies by variety marker follow P13.
+- **Markers:** Last call, Reliable year-round (Good or better in at least 20 of 24 windows), Advisory, and "Usually improves in…" (the next window rated Good or better).
+- **Varieties:** for an item rated by variety, `byVariety` runs the rules once per rated variety; the item verdict and the card's variety line follow P13.
 - `byOrigin` re-runs the rules once per rated origin, for "What does the label say?"
 - `windowIndex(date) = (month − 1) × 2 + (day > 15 ? 1 : 0)` lives in `src/shared/time.ts`, and nowhere else.
 - **Always good** is the item's editorial `alwaysGood` field. `data:build` lists, without failing, any item where the field disagrees with its typical outlook (Good in all 24 windows, no Peak, no Skip) for an editor to settle.
@@ -127,7 +127,7 @@ Each lives in `rules.yaml` or a single function, so changing it is cheap.
   - US-grown claims (`us`) apply to every US origin of the item; a source's state-specific claim replaces its US-grown claim for that state. A source restating another (`basedOn`) counts once, keeping the higher weight;
   - *combined value* per window = weighted mean of the curves covering it; prime at ≥ 0.75, poor at ≤ 0.25, fair between. No covering curve: no proposal;
   - *combined confidence* per window, from total weight, weighted spread (standard deviation) and tier: High with at least 2 independent sources, total weight ≥ 3, spread ≤ 0.2 and an authoritative source among them; Low with fewer than 2 independent sources or spread > 0.35; Medium otherwise.
-- **P13 (items rated by variety):** a variety is in stores in a month when it has at least 10% of the item's terminal-market quotes that month (variety calendar). The item verdict is the best verdict among in-store rated varieties. Varies by variety appears when those varieties' verdicts are not all the same, naming the varieties that hold the best verdict, at most 2, ordered by confidence and then by their order in the item file.
+- **P13 (items rated by variety):** a variety is in stores in a month when it has at least 10% of the item's terminal-market quotes that month (variety calendar, extended to mangoes and avocados). The item verdict is the best verdict among in-store rated varieties. The card's variety line names the varieties holding that verdict, ordered by confidence and then by their order in the item file: one or two by name, with the first one's art; three or more as a count, with the item's art.
 
 ## 5. Milestones
 
@@ -156,7 +156,7 @@ Each milestone takes 1–3 sessions and ends with something Jared can review. Th
 
 **Art track.** Jared generates all painted artwork with his ChatGPT subscription, the same tool that made the design language and the mockups in `docs/design/references/`. Claude never generates images. The workflow is built in M3, when the first item art is needed, and then runs in batches alongside the content track:
 
-Batches follow `purchaseRank` within two tiers: seasonal items first, then always-good items. So the most commonly bought seasonal produce is illustrated first.
+Batches follow `purchaseRank` within two tiers: seasonal items first, then always-good items. An item rated by variety gets its varieties' art in the same batch as its own. So the most commonly bought seasonal produce is illustrated first.
 
 1. **Request.** Claude writes a batch file `art/requests/batch-N.md`. It holds one block per asset: the asset ID (`persimmon-fuyu-thumbnail-v1`, per the illustration guide), its class and display size, a ready-to-paste prompt assembled from illustration guide §2, the botanical checks, and the export settings (transparent background, size).
 2. **Generate.** Jared pastes each prompt into ChatGPT, keeping one conversation per batch so the style stays consistent. He saves each result as `art/masters/<asset-id>.png`.
