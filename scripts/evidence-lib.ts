@@ -179,12 +179,27 @@ export const termRegex = (terms: string[]) => new RegExp(`\\b(${terms.map(escape
 
 export const EXCERPT_CHARS = 400;
 
-/** Lines naming the item together with a month or a season, each cut to EXCERPT_CHARS. */
+const cut = (s: string) => (s.length > EXCERPT_CHARS ? `${s.slice(0, EXCERPT_CHARS - 1)}…` : s);
+const timed = (s: string) => monthsNamed(s).size > 0 || SEASON_WORD.test(s);
+
+/**
+ * Lines naming the item together with a month or a season. A line over EXCERPT_CHARS keeps only its sentences
+ * naming a month or season, joined by " … ", so a date late in a paragraph isn't cut off; each is cut to
+ * EXCERPT_CHARS.
+ */
 export function excerpts(lines: string[], terms: string[]): string[] {
   const term = termRegex(terms);
   return lines
-    .filter((l) => term.test(l) && (monthsNamed(l).size > 0 || SEASON_WORD.test(l)))
-    .map((l) => (l.length > EXCERPT_CHARS ? `${l.slice(0, EXCERPT_CHARS - 1)}…` : l));
+    .filter((l) => term.test(l) && timed(l))
+    .map((l) =>
+      l.length <= EXCERPT_CHARS
+        ? l
+        : l
+            .split(/(?<=[.!?])\s+/)
+            .filter(timed)
+            .map(cut)
+            .join(" … "),
+    );
 }
 
 // ---------- month ranges ----------

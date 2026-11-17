@@ -183,9 +183,18 @@ describe("excerpts", () => {
     ]);
   });
 
-  it("cuts long lines", () => {
+  it("cuts long sentences", () => {
     const [line] = excerpts([`Apples in June ${"x".repeat(500)}`], ["apples"]);
     expect(line?.length).toBe(400);
+  });
+
+  it("keeps a long paragraph's dated sentences, however late they come", () => {
+    const filler = "Growers here have farmed for generations. ".repeat(12);
+    const [line] = excerpts(
+      [`Bosc pears are popular. ${filler}They are in season from late September through April.`],
+      ["pears"],
+    );
+    expect(line).toBe("They are in season from late September through April.");
   });
 });
 
