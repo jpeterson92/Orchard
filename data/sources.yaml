@@ -32,3 +32,111 @@
   url: https://www.nwpb.org/2018/11/26/like-that-year-round-crisp-apple-thank-a-scientist-or-warehouse-possibly-in-wenatchee/
   accessed: 2026-11-17
   tier: mainstream
+- id: usapears-bosc
+  title: Bosc Pears
+  publisher: USA Pears (Pear Bureau Northwest)
+  url: https://www.usapears.org/bosc/
+  accessed: 2026-11-17
+  tier: authoritative
+- id: usapears-starkrimson
+  title: Starkrimson Pears
+  publisher: USA Pears (Pear Bureau Northwest)
+  url: https://www.usapears.org/starkrimson/
+  accessed: 2026-11-17
+  tier: authoritative
+- id: usapears-2023-crop
+  title: Northwest Fresh Pear Industry Announces 2023 Crop Estimate and Promotions
+  publisher: USA Pears (Pear Bureau Northwest)
+  url: https://www.usapears.org/northwest-fresh-pear-industry-announces-2023-crop-estimate-and-promotions/
+  accessed: 2026-11-17
+  tier: authoritative
+- id: stemilt-honeycrisp
+  title: Honeycrisp
+  publisher: Stemilt Growers
+  url: https://www.stemilt.com/product/honeycrisp/
+  accessed: 2026-11-17
+  tier: mainstream
+- id: stemilt-fuji
+  title: Fuji
+  publisher: Stemilt Growers
+  url: https://www.stemilt.com/product/fuji/
+  accessed: 2026-11-17
+  tier: mainstream
+- id: stemilt-granny-smith
+  title: Granny Smith
+  publisher: Stemilt Growers
+  url: https://www.stemilt.com/product/granny-smith/
+  accessed: 2026-11-17
+  tier: mainstream
+- id: stemilt-gala
+  title: Gala
+  publisher: Stemilt Growers
+  url: https://www.stemilt.com/product/gala/
+  accessed: 2026-11-17
+  tier: mainstream
+- id: stemilt-pink-lady
+  title: All About Pink Lady Apples
+  publisher: Stemilt Growers
+  url: https://www.stemilt.com/all-about-pink-lady-apples/
+  accessed: 2026-11-17
+  tier: mainstream
+- id: usda-ers-strawberries
+  title: "Charts of Note: strawberries"
+  publisher: USDA Economic Research Service
+  url: https://www.ers.usda.gov/data-products/charts-of-note/101156
+  accessed: 2026-11-17
+  tier: authoritative
+- id: markon-strawberries-2023-12
+  title: Strawberry update, December 5, 2023
+  publisher: Markon Cooperative
+  url: https://www.markon.com/update-strawberries-61/
+  accessed: 2026-11-17
+  tier: authoritative
+- id: markon-broccoli-2025-03
+  title: "Broccoli: seasonal harvesting transition, March 20, 2025"
+  publisher: Markon Cooperative
+  url: https://www.markon.com/update-broccoli-seasonal-harvesting-transition/
+  accessed: 2026-11-17
+  tier: authoritative
+- id: wishfarms-florida-strawberries
+  title: Florida Strawberry Season
+  publisher: Wish Farms
+  url: https://wishfarms.com/florida-strawberry-season-2/
+  accessed: 2026-11-17
+  tier: mainstream
+- id: sunkist-foodservice-mandarins
+  title: Mandarins
+  publisher: Sunkist Growers (foodservice)
+  url: https://foodservice.sunkist.com/citrus-info/mandarins
+  accessed: 2026-11-17
+  tier: authoritative
+- id: produce-business-california-mandarins
+  title: "By Any Name: California Mandarins Grow in Popularity"
+  publisher: Produce Business
+  url: https://producebusiness.com/by-any-name-california-mandarins-grow-in-popularity/
+  accessed: 2026-11-17
+  tier: mainstream
+- id: freshplaza-organic-mandarins-2024
+  title: California sees greater supply of organic mandarins this season
+  publisher: FreshPlaza
+  url: https://www.freshplaza.com/north-america/article/9686375/california-sees-greater-supply-of-organic-mandarins-this-season/
+  accessed: 2026-11-17
+  tier: mainstream
+- id: freshplaza-mandarins-2025
+  title: "Global market overview: mandarins"
+  publisher: FreshPlaza
+  url: https://www.freshplaza.com/north-america/article/9709108/global-market-overview-mandarins/
+  accessed: 2026-11-17
+  tier: mainstream
+- id: freshplaza-argentina-pears-2026
+  title: Argentina started the pear season with lower output but better quality
+  publisher: FreshPlaza
+  url: https://www.freshplaza.com/article/9814898/argentina-started-the-pear-season-with-lower-output-but-better-quality
+  accessed: 2026-11-17
+  tier: mainstream
+- id: eatlikenoone-california-mandarins
+  title: "California Mandarins Season: Begin and End"
+  publisher: Eat Like No One Else
+  url: https://www.eatlikenoone.com/california-mandarins-season-begin-end.htm
+  accessed: 2026-11-17
+  tier: mainstream

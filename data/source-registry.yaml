@@ -46,3 +46,93 @@ pages:
     kind: item-page
     origin: us-wa
     items: [apples]
+  - source: usapears-bosc
+    url: https://www.usapears.org/bosc/
+    kind: item-page
+    origin: us-wa
+    items: [pears]
+  - source: usapears-starkrimson
+    url: https://www.usapears.org/starkrimson/
+    kind: item-page
+    origin: us-wa
+    items: [pears]
+  - source: usapears-2023-crop
+    url: https://www.usapears.org/northwest-fresh-pear-industry-announces-2023-crop-estimate-and-promotions/
+    kind: item-page
+    origin: us-wa
+    items: [pears]
+  - source: stemilt-honeycrisp
+    url: https://www.stemilt.com/product/honeycrisp/
+    kind: item-page
+    origin: us-wa
+    items: [apples]
+  - source: stemilt-fuji
+    url: https://www.stemilt.com/product/fuji/
+    kind: item-page
+    origin: us-wa
+    items: [apples]
+  - source: stemilt-granny-smith
+    url: https://www.stemilt.com/product/granny-smith/
+    kind: item-page
+    origin: us-wa
+    items: [apples]
+  - source: stemilt-gala
+    url: https://www.stemilt.com/product/gala/
+    kind: item-page
+    origin: us-wa
+    items: [apples]
+  - source: stemilt-pink-lady
+    url: https://www.stemilt.com/all-about-pink-lady-apples/
+    kind: item-page
+    origin: us-wa
+    items: [apples]
+  - source: usda-ers-strawberries
+    url: https://www.ers.usda.gov/data-products/charts-of-note/101156
+    kind: item-page
+    origin: us-ca
+    items: [strawberries]
+  - source: markon-strawberries-2023-12
+    url: https://www.markon.com/update-strawberries-61/
+    kind: item-page
+    origin: mx
+    items: [strawberries]
+  - source: markon-broccoli-2025-03
+    url: https://www.markon.com/update-broccoli-seasonal-harvesting-transition/
+    kind: item-page
+    origin: us-az
+    items: [broccoli]
+  - source: wishfarms-florida-strawberries
+    url: https://wishfarms.com/florida-strawberry-season-2/
+    kind: item-page
+    origin: us-fl
+    items: [strawberries]
+  - source: sunkist-foodservice-mandarins
+    url: https://foodservice.sunkist.com/citrus-info/mandarins
+    kind: item-page
+    origin: us-ca
+    items: [mandarins]
+  - source: produce-business-california-mandarins
+    url: https://producebusiness.com/by-any-name-california-mandarins-grow-in-popularity/
+    kind: item-page
+    origin: us-ca
+    items: [mandarins]
+  - source: freshplaza-organic-mandarins-2024
+    url: https://www.freshplaza.com/north-america/article/9686375/california-sees-greater-supply-of-organic-mandarins-this-season/
+    kind: item-page
+    origin: us-ca
+    items: [mandarins]
+  - source: freshplaza-mandarins-2025
+    url: https://www.freshplaza.com/north-america/article/9709108/global-market-overview-mandarins/
+    kind: item-page
+    origin: ma
+    items: [mandarins]
+  - source: freshplaza-argentina-pears-2026
+    url: https://www.freshplaza.com/article/9814898/argentina-started-the-pear-season-with-lower-output-but-better-quality
+    kind: item-page
+    origin: ar
+    items: [pears]
+  - source: eatlikenoone-california-mandarins
+    url: https://www.eatlikenoone.com/california-mandarins-season-begin-end.htm
+    kind: item-page
+    origin: us-ca
+    items: [mandarins]
