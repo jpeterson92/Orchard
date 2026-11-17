@@ -21,6 +21,11 @@ export function windowFromLabel(label: string): number {
   return MONTHS.indexOf(m[1] as (typeof MONTHS)[number]) * 2 + (m[2] === "2" ? 1 : 0);
 }
 
+export function windowLabel(index: number): string {
+  if (!Number.isInteger(index) || index < 0 || index >= WINDOW_COUNT) throw new RangeError(`window ${index}`);
+  return `${MONTHS[Math.floor(index / 2)]}-${(index % 2) + 1}`;
+}
+
 /** Window indexes from `from` to `to` inclusive; wraps past December (e.g. nov-2 to feb-1). */
 export function windowRange(from: string, to: string): number[] {
   const start = windowFromLabel(from);

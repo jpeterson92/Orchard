@@ -15,11 +15,10 @@ import {
   sourceConfidence,
   type Target,
 } from "./evidence";
-import { WINDOW_COUNT, windowFromLabel } from "./time";
+import { WINDOW_COUNT, windowFromLabel, windowLabel } from "./time";
 import type { Rating } from "./verdict";
 
-const MONTHS = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"];
-const label = (i: number) => `${MONTHS[Math.floor(i / 2)]}-${(i % 2) + 1}`;
+const label = windowLabel;
 const at = (p: Proposal, l: string) => p.windows[windowFromLabel(l)];
 
 const SOURCES: EvidenceSource[] = [

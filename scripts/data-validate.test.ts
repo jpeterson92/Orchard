@@ -11,24 +11,28 @@ const source = (id: string) => ({
   tier: "authoritative",
 });
 
+const SUMMER = [
+  { from: "apr-1", to: "jun-2", rating: "prime" },
+  { from: "jul-1", to: "aug-2", rating: "fair" },
+];
+const WINTER = [{ from: "dec-1", to: "mar-2", rating: "fair" }];
+const claim = (source: string, windows: object[], extra: object = {}) => ({
+  source,
+  windows: structuredClone(windows),
+  specificity: "month",
+  directness: "eating-quality",
+  paraphrase: "Best from April through June, fair through August.",
+  ...extra,
+});
+
+// Two independent sources agree with every rated window of the item below.
 const evidence = (itemId: string) => ({
   item: itemId,
   claims: [
-    {
-      source: "s1",
-      windows: [{ from: "apr-1", to: "jun-2", rating: "prime" }],
-      specificity: "month",
-      directness: "eating-quality",
-      paraphrase: "Best from April through June.",
-    },
-    {
-      source: "s2",
-      origin: "mx",
-      windows: [{ from: "dec-1", to: "mar-2", rating: "fair" }],
-      specificity: "season",
-      directness: "availability",
-      paraphrase: "Mexican fruit fills the winter months.",
-    },
+    claim("s1", SUMMER),
+    claim("s2", SUMMER),
+    claim("s1", WINTER, { origin: "mx" }),
+    claim("s2", WINTER, { origin: "mx", specificity: "season", directness: "availability" }),
   ],
   status: "draft",
   synthetic: true,
@@ -53,14 +57,8 @@ const item = (id: string, rank: number) => ({
   },
   prep: "Rinse just before eating.",
   origins: [
-    {
-      origin: "us-ca",
-      windows: [
-        { from: "apr-1", to: "jun-2", rating: "prime", sources: ["s1", "s2"] },
-        { from: "jul-1", to: "aug-2", rating: "fair", sources: ["s1", "s2"] },
-      ],
-    },
-    { origin: "mx", windows: [{ from: "dec-1", to: "mar-2", rating: "fair", sources: ["s1", "s2"] }] },
+    { origin: "us-ca", windows: structuredClone(SUMMER) },
+    { origin: "mx", windows: structuredClone(WINTER) },
   ],
   status: "draft",
   synthetic: true,
@@ -119,7 +117,21 @@ function base(): RawInputs {
 type Any = any;
 const firstItem = (r: RawInputs): Any => (r.items[0] as { data: Any }).data;
 const firstAdvisory = (r: RawInputs): Any => (r.advisories as Any[])[0];
-const firstClaim = (r: RawInputs): Any => (r.evidence[0] as { data: Any }).data.claims[0];
+const claims = (r: RawInputs): Any[] => (r.evidence[0] as { data: Any }).data.claims;
+const firstClaim = (r: RawInputs): Any => claims(r)[0];
+const gala = (windows?: object[]) => ({
+  id: "gala",
+  name: "Gala",
+  traits: {},
+  bestUses: ["Eating"],
+  label: "Gala",
+  ...(windows ? { windows: structuredClone(windows) } : {}),
+});
+/** Rates the variety gala over SUMMER, backed by both sources. */
+const rateByVariety = (r: RawInputs) => {
+  firstItem(r).varieties = [gala(SUMMER)];
+  claims(r).push(claim("s1", SUMMER, { variety: "gala" }), claim("s2", SUMMER, { variety: "gala" }));
+};
 
 describe("validate: a valid dataset", () => {
   it("passes and normalizes defaults", () => {
@@ -134,16 +146,40 @@ describe("validate: a valid dataset", () => {
       reason: "not_reported",
     });
     expect(dataset?.typicalOrigins[0]?.month).toBe(5);
-    expect(dataset?.evidence[0]?.claims.map((c) => c.origin)).toEqual(["us", "mx"]);
+    expect(dataset?.evidence[0]?.claims.map((c) => c.origin)).toEqual(["us", "us", "mx", "mx"]);
   });
 
-  it("accepts a restating source and a claim naming a known variety", () => {
+  it("accepts a restating source and claims naming an unrated variety", () => {
     const raw = structuredClone(base());
-    (raw.sources as Any[])[1].basedOn = "s1";
-    firstItem(raw).varieties = [
-      { id: "gala", name: "Gala", traits: {}, bestUses: ["Eating"], label: "Gala" },
-    ];
-    firstClaim(raw).variety = "gala";
+    (raw.sources as Any[]).push({ ...source("s3"), tier: "mainstream", basedOn: "s1" });
+    firstItem(raw).varieties = [gala()];
+    claims(raw).push(claim("s3", SUMMER, { variety: "gala" }));
+    expect(validate(raw, { production: false }).errors).toEqual([]);
+  });
+
+  it("accepts an item rated only by variety", () => {
+    const raw = structuredClone(base());
+    rateByVariety(raw);
+    firstItem(raw).origins = [];
+    const { errors, dataset } = validate(raw, { production: false });
+    expect(errors).toEqual([]);
+    expect(dataset?.items[0]?.varieties[0]?.windows).toHaveLength(2);
+  });
+
+  it("accepts a rating that departs from the evidence when it gives a reason", () => {
+    const raw = structuredClone(base());
+    Object.assign(firstItem(raw).origins[0].windows[1], {
+      rating: "poor",
+      reason: "Late-summer fruit in test stores is usually soft.",
+    });
+    expect(validate(raw, { production: false }).errors).toEqual([]);
+  });
+
+  it("accepts Low-confidence evidence when the rating gives a reason", () => {
+    const raw = structuredClone(base());
+    claims(raw)[0].windows[1].rating = "prime";
+    claims(raw)[1].windows[1].rating = "poor";
+    firstItem(raw).origins[0].windows[1].reason = "Sources split; fair is the cautious call.";
     expect(validate(raw, { production: false }).errors).toEqual([]);
   });
 
@@ -178,10 +214,16 @@ const broken: [string, (r: RawInputs) => void, string][] = [
   ["too few pick cues", (r) => (firstItem(r).pick = ["a", "b"]), "pick"],
   ["bad window label", (r) => (firstItem(r).origins[0].windows[0].from = "april-1"), "half-month label"],
   [
-    "rating with one source",
-    (r) => (firstItem(r).origins[0].windows[0].sources = ["s1"]),
-    "at least 2 sources",
+    "window still citing its own sources",
+    (r) => (firstItem(r).origins[0].windows[0].sources = ["s1", "s2"]),
+    'Unrecognized key: "sources"',
   ],
+  [
+    "reason over 60 words",
+    (r) => (firstItem(r).origins[0].windows[0].reason = Array(61).fill("w").join(" ")),
+    "at most 60 words",
+  ],
+  ["no rated origin or variety", (r) => (firstItem(r).origins = []), "rate at least one origin or variety"],
   ["bad rating value", (r) => (firstItem(r).origins[0].windows[0].rating = "great"), "rating"],
   [
     "inverted storage range",
@@ -189,22 +231,7 @@ const broken: [string, (r: RawInputs) => void, string][] = [
     "min must not exceed max",
   ],
   ["reviewed without reviewer", (r) => (firstItem(r).status = "reviewed"), "needs reviewedOn and reviewer"],
-  [
-    "variety freshest months without 2 sources",
-    (r) =>
-      (firstItem(r).varieties = [
-        {
-          id: "v",
-          name: "V",
-          traits: {},
-          bestUses: ["Eating"],
-          label: "V",
-          freshestMonths: [9],
-          sources: ["s1"],
-        },
-      ]),
-    "freshestMonths needs",
-  ],
+  ["variety with empty windows", (r) => (firstItem(r).varieties = [gala([])]), "varieties.0.windows"],
   [
     "bad rules threshold",
     (r) => ((r.rules as Any).supplyIndex = { thin: 1.3, strong: 1.2 }),
@@ -233,7 +260,11 @@ const broken: [string, (r: RawInputs) => void, string][] = [
   ],
   ["month out of range", (r) => (((r.typicalOrigins as Csv).rows[0] as Any).month = "13"), "line 2"],
   // Unknown IDs
-  ["unknown source", (r) => (firstItem(r).origins[0].windows[0].sources = ["s1", "s9"]), "unknown source s9"],
+  [
+    "unknown variety source",
+    (r) => (firstItem(r).varieties = [{ ...gala(), sources: ["s9"] }]),
+    "variety gala: unknown source s9",
+  ],
   ["unknown store source", (r) => (firstItem(r).store.sources = ["s9"]), "store: unknown source s9"],
   ["unknown category", (r) => (firstItem(r).category = "nuts"), "unknown category nuts"],
   [
@@ -299,9 +330,76 @@ const broken: [string, (r: RawInputs) => void, string][] = [
         from: "mar-2",
         to: "apr-1",
         rating: "poor",
-        sources: ["s1", "s2"],
       }),
     "windows overlap",
+  ],
+  [
+    "overlapping variety windows",
+    (r) => {
+      rateByVariety(r);
+      firstItem(r).varieties[0].windows[1].from = "jun-2";
+    },
+    "variety gala: windows overlap",
+  ],
+  // Every rated window rests on the evidence
+  [
+    "an item without an evidence file",
+    (r) => (r.evidence = []),
+    "item test-fruit us-ca apr-1..jun-2: needs claims from 2 independent sources, has 0 at apr-1",
+  ],
+  [
+    "a rated window no claim covers",
+    (r) => firstItem(r).origins[0].windows.push({ from: "sep-1", to: "sep-2", rating: "poor" }),
+    "us-ca sep-1..sep-2: needs claims from 2 independent sources, has 0 at sep-1",
+  ],
+  [
+    "claims from one source only",
+    (r) => (claims(r)[1].source = "s1"),
+    "us-ca apr-1..jun-2: needs claims from 2 independent sources, has 1",
+  ],
+  [
+    "a restatement isn't independent",
+    (r) => ((r.sources as Any[])[1].basedOn = "s1"),
+    "needs claims from 2 independent sources, has 1",
+  ],
+  [
+    "partial coverage names the first thin window",
+    (r) => (claims(r)[1].windows[1].to = "aug-1"),
+    "us-ca jul-1..aug-2: needs claims from 2 independent sources, has 1 at aug-2",
+  ],
+  [
+    "a state's claims don't cover another country",
+    (r) => (claims(r)[3].origin = "us-ca"),
+    "mx dec-1..mar-2: needs claims from 2 independent sources, has 1",
+  ],
+  [
+    "a rating that departs without a reason",
+    (r) => (firstItem(r).origins[0].windows[1].rating = "poor"),
+    "us-ca jul-1..aug-2: rated poor, but the evidence proposes fair at jul-1; add a reason",
+  ],
+  [
+    "Low-confidence evidence without a reason",
+    (r) => {
+      claims(r)[0].windows[1].rating = "prime";
+      claims(r)[1].windows[1].rating = "poor";
+    },
+    "us-ca jul-1..aug-2: the evidence is Low confidence at jul-1; add a reason",
+  ],
+  [
+    "a rated variety without enough evidence",
+    (r) => {
+      rateByVariety(r);
+      claims(r).pop();
+    },
+    "variety gala apr-1..jun-2: needs claims from 2 independent sources, has 1",
+  ],
+  [
+    "a variety rating that departs without a reason",
+    (r) => {
+      rateByVariety(r);
+      firstItem(r).varieties[0].windows[0].rating = "fair";
+    },
+    "variety gala apr-1..jun-2: rated fair, but the evidence proposes prime",
   ],
   [
     "duplicate advisory",
@@ -403,10 +501,13 @@ describe("validate: edge cases that are allowed", () => {
 
   it("windows that wrap past December without overlapping", () => {
     const raw = structuredClone(base());
-    firstItem(raw).origins[1].windows = [
-      { from: "nov-2", to: "jan-2", rating: "prime", sources: ["s1", "s2"] },
-      { from: "feb-1", to: "nov-1", rating: "fair", sources: ["s1", "s2"] },
+    const year = [
+      { from: "nov-2", to: "jan-2", rating: "prime" },
+      { from: "feb-1", to: "nov-1", rating: "fair" },
     ];
+    firstItem(raw).origins[1].windows = structuredClone(year);
+    claims(raw)[2].windows = structuredClone(year);
+    claims(raw)[3].windows = structuredClone(year);
     expect(validate(raw, { production: false }).errors).toEqual([]);
   });
 

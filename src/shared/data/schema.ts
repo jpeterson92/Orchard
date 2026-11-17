@@ -64,16 +64,19 @@ const windowLabel = z.string().regex(WINDOW_LABEL, 'use a half-month label such 
 
 const rating = z.enum(["prime", "fair", "poor"]);
 
+/** An editorial rating. Its citations are the evidence file's claims covering it (data-build checks them). */
 export const qualityWindowSchema = z.strictObject({
   from: windowLabel,
   to: windowLabel,
   rating,
-  sources: sourceIds(2),
+  /** Required where the rating departs from the evidence proposal, or the proposal is Low confidence. */
+  reason: words(SECTION_WORDS).optional(),
 });
+const qualityWindows = z.array(qualityWindowSchema).min(1);
 
 export const itemOriginSchema = z.strictObject({
   origin: originId,
-  windows: z.array(qualityWindowSchema).min(1),
+  windows: qualityWindows,
 });
 
 const storageLife = z
@@ -84,21 +87,18 @@ const storageLife = z
   })
   .refine((r) => r.min <= r.max, "min must not exceed max");
 
-export const varietySchema = z
-  .strictObject({
-    id,
-    name: text,
-    /** The group's anchored 1–5 scales, e.g. sweetness or crispness. */
-    traits: z.record(id, z.int().min(1).max(5)),
-    bestUses: z.array(words(CARD_WORDS)).min(1),
-    label: words(CARD_WORDS),
-    freshestMonths: z.array(z.int().min(1).max(12)).min(1).optional(),
-    sources: z.array(id).default([]),
-  })
-  .refine((v) => v.freshestMonths === undefined || v.sources.length >= 2, {
-    message: "freshestMonths needs at least 2 sources",
-    path: ["freshestMonths"],
-  });
+export const varietySchema = z.strictObject({
+  id,
+  name: text,
+  /** The group's anchored 1–5 scales, e.g. sweetness or crispness. */
+  traits: z.record(id, z.int().min(1).max(5)),
+  bestUses: z.array(words(CARD_WORDS)).min(1),
+  label: words(CARD_WORDS),
+  /** Citations for the traits and uses. */
+  sources: z.array(id).default([]),
+  /** Present on a rated variety: the item is then rated by variety (P13). As typically sold, whatever the origin. */
+  windows: qualityWindows.optional(),
+});
 
 export const itemSchema = z
   .strictObject({
@@ -124,9 +124,14 @@ export const itemSchema = z
     }),
     ripen: z.strictObject({ text: words(SECTION_WORDS), sources: sourceIds(1) }).optional(),
     prep: words(SECTION_WORDS),
-    origins: z.array(itemOriginSchema).min(1),
+    /** Optional for items rated by variety, where origin windows serve only label advice. */
+    origins: z.array(itemOriginSchema).default([]),
     varieties: z.array(varietySchema).default([]),
     ...review,
+  })
+  .refine((i) => i.origins.length > 0 || i.varieties.some((v) => v.windows), {
+    message: "rate at least one origin or variety",
+    path: ["origins"],
   })
   .refine((i) => wordCount([...i.pick, ...i.avoid].join(" ")) <= SECTION_WORDS, {
     message: `pick and avoid cues together are at most ${SECTION_WORDS} words`,

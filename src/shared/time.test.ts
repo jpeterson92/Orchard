@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { windowFromLabel, windowIndex, windowRange } from "./time";
+import { windowFromLabel, windowIndex, windowLabel, windowRange } from "./time";
 
 describe("windowIndex", () => {
   it.each([
@@ -58,6 +58,11 @@ describe("windowFromLabel and windowRange", () => {
       "dec",
     ].flatMap((m) => [`${m}-1`, `${m}-2`]);
     expect(labels.map(windowFromLabel)).toEqual(Array.from({ length: 24 }, (_, i) => i));
+    expect(labels.map((_, i) => windowLabel(i))).toEqual(labels);
+  });
+
+  it("windowLabel rejects an index outside 0–23", () => {
+    for (const bad of [-1, 24, 1.5]) expect(() => windowLabel(bad)).toThrow(RangeError);
   });
 });
 

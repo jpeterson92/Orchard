@@ -24,7 +24,8 @@ import {
   type TypicalOriginRow,
   typicalOriginRowSchema,
 } from "../src/shared/data/schema";
-import { windowRange } from "../src/shared/time";
+import { propose, type Target } from "../src/shared/evidence";
+import { windowLabel, windowRange } from "../src/shared/time";
 
 export interface Csv {
   file: string;
@@ -74,6 +75,18 @@ export function parseCsv(file: string, text: string, columns: readonly string[])
     return Object.fromEntries(columns.map((c, i) => [c, (cells[i] as string).trim()]));
   });
   return { file, meta, rows };
+}
+
+type Windows = Item["origins"][number]["windows"];
+
+/** An item's rated series: each origin, then each rated variety, with its name in messages and its P12 target. */
+function ratedSeries(item: Item): [string, Windows, Target][] {
+  return [
+    ...item.origins.map((o): [string, Windows, Target] => [o.origin, o.windows, { origin: o.origin }]),
+    ...item.varieties.flatMap((v): [string, Windows, Target][] =>
+      v.windows ? [[`variety ${v.id}`, v.windows, { variety: v.id }]] : [],
+    ),
+  ];
 }
 
 const countryNames = new Intl.DisplayNames(["en"], { type: "region", fallback: "none" });
@@ -171,13 +184,12 @@ export function validate(raw: RawInputs, opts: { production: boolean }): Result 
     checkSources(item.store.sources, `${at} store`);
     if (item.ripen) checkSources(item.ripen.sources, `${at} ripen`);
     for (const v of item.varieties) checkSources(v.sources, `${at} variety ${v.id}`);
-    for (const o of item.origins) {
-      checkOrigin(o.origin, at);
+    for (const o of item.origins) checkOrigin(o.origin, at);
+    for (const [name, windows] of ratedSeries(item)) {
       const rated = new Set<number>();
-      for (const w of o.windows) {
-        checkSources(w.sources, `${at} ${o.origin} ${w.from}..${w.to}`);
+      for (const w of windows) {
         for (const n of windowRange(w.from, w.to)) {
-          if (rated.has(n)) errors.push(`${at} ${o.origin}: windows overlap at ${w.from}..${w.to}`);
+          if (rated.has(n)) errors.push(`${at} ${name}: windows overlap at ${w.from}..${w.to}`);
           rated.add(n);
         }
       }
@@ -214,6 +226,37 @@ export function validate(raw: RawInputs, opts: { production: boolean }): Result 
         for (const i of windowRange(w.from, w.to)) {
           if (rated.has(i)) errors.push(`${where}: windows overlap at ${w.from}..${w.to}`);
           rated.add(i);
+        }
+      }
+    }
+  }
+
+  // Every rated window rests on the evidence (P12): 2 independent sources, and a reason where the call departs
+  // from the proposal or the proposal is Low confidence.
+  for (const item of items) {
+    const claims = (evidence.find((e) => e.item === item.id)?.claims ?? []).filter((c) =>
+      sourceIds.has(c.source),
+    );
+    for (const [name, windows, target] of ratedSeries(item)) {
+      const proposal = propose(claims, sourcesById, target).windows;
+      for (const w of windows) {
+        const at = `item ${item.id} ${name} ${w.from}..${w.to}`;
+        const range = windowRange(w.from, w.to);
+        const thin = range.find((i) => (proposal[i]?.sources.length ?? 0) < 2);
+        if (thin !== undefined) {
+          const n = proposal[thin]?.sources.length ?? 0;
+          errors.push(`${at}: needs claims from 2 independent sources, has ${n} at ${windowLabel(thin)}`);
+          continue;
+        }
+        if (w.reason !== undefined) continue;
+        const departs = range.find((i) => proposal[i]?.rating !== w.rating);
+        const low = range.find((i) => proposal[i]?.confidence === "low");
+        if (departs !== undefined) {
+          errors.push(
+            `${at}: rated ${w.rating}, but the evidence proposes ${proposal[departs]?.rating} at ${windowLabel(departs)}; add a reason`,
+          );
+        } else if (low !== undefined) {
+          errors.push(`${at}: the evidence is Low confidence at ${windowLabel(low)}; add a reason`);
         }
       }
     }
