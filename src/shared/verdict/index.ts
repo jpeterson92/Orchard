@@ -78,7 +78,9 @@ export type Reason =
   | { code: "rated"; rating: Rating; origin?: OriginId; variety?: VarietyId }
   | { code: "supply-thin" }
   /** Rated prime, but the item tastes much the same in and out of its best season: Good, not Peak. */
-  | { code: "peak-not-worth-seeking" };
+  | { code: "peak-not-worth-seeking" }
+  /** Rated prime, but another typical origin this window is poor: Good, since what you buy may disappoint. */
+  | { code: "typical-origin-poor"; origin: OriginId };
 
 export interface CoreResult {
   verdict: Verdict;
@@ -139,6 +141,7 @@ function evaluateCore(
   let decider: RatedSeries | undefined;
   let advisoryOrigin: OriginId | undefined;
   let labelNote = false;
+  let poorOrigin: OriginId | undefined;
 
   if (basis.kind === "typical") {
     if (typical.length === 0) missing.push({ code: "no-typical-origins" });
@@ -155,6 +158,7 @@ function evaluateCore(
         rating !== null &&
         next !== null &&
         Math.abs(LEVEL[rating] - LEVEL[next]) > env.rules.labelNoteLevelGap;
+      poorOrigin = typical.slice(1).find((o) => item.origins[o]?.windows[window] === "poor");
     }
   } else if (basis.kind === "origin") {
     decider = item.origins[basis.origin];
@@ -169,7 +173,7 @@ function evaluateCore(
   }
 
   const advisory = rating === null ? undefined : activeAdvisory(item, advisoryOrigin, ctx);
-  return decide(item, { rating, decider, missing, advisory, labelNote, basis, window }, ctx, env);
+  return decide(item, { rating, decider, missing, advisory, labelNote, poorOrigin, basis, window }, ctx, env);
 }
 
 function activeAdvisory(item: ItemInputs, origin: OriginId | undefined, ctx: EvalContext) {
@@ -190,6 +194,8 @@ interface Decision {
   missing: Reason[];
   advisory: EngineAdvisory | undefined;
   labelNote: boolean;
+  /** Typical basis only: a typical origin other than the top one rated poor this window. */
+  poorOrigin?: OriginId | undefined;
   basis: Basis;
   window: number;
 }
@@ -225,12 +231,15 @@ function decide(
     if (d.advisory) reasons.push({ code: "advisory", advisory: d.advisory.id, effect: d.advisory.effect });
     if (d.rating === "prime" && thin) reasons.push({ code: "supply-thin" });
     if (d.rating === "prime" && !item.peakWorthSeeking) reasons.push({ code: "peak-not-worth-seeking" });
+    if (d.rating === "prime" && d.poorOrigin)
+      reasons.push({ code: "typical-origin-poor", origin: d.poorOrigin });
 
     if (d.advisory?.effect === "skip") [verdict, ruleFired] = ["skip", 2];
     else if (d.rating === "poor") [verdict, ruleFired] = ["skip", 3];
     else if (d.rating === "prime" && !thin && d.advisory?.effect === "cap-good")
       [verdict, ruleFired] = ["good", 2];
-    else if (d.rating === "prime" && !thin && item.peakWorthSeeking) [verdict, ruleFired] = ["peak", 4];
+    else if (d.rating === "prime" && !thin && item.peakWorthSeeking && !d.poorOrigin)
+      [verdict, ruleFired] = ["peak", 4];
     else [verdict, ruleFired] = ["good", 5];
   }
 

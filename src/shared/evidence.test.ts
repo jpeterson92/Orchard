@@ -127,17 +127,31 @@ describe("weights and labels", () => {
     expect(ratingForValue(value)).toBe(rating);
   });
 
-  // [independent sources, total weight, spread, an authoritative source, confidence]
+  // [independent sources, total weight, spread, an authoritative source, a taste source, confidence]
   it.each([
-    [2, 3, 0.2, true, "high"],
-    [2, 3, 0.2, false, "medium"],
-    [2, 2.9, 0, true, "medium"],
-    [2, 3, 0.21, true, "medium"],
-    [3, 5, 0.35, true, "medium"],
-    [3, 5, 0.36, true, "low"],
-    [1, 4, 0, true, "low"],
-  ] as const)("%d sources, weight %d, spread %d, authoritative %s: %s", (n, w, s, auth, expected) => {
-    expect(combinedConfidence(n, w, s, auth)).toBe(expected);
+    [2, 3, 0.2, true, true, "high"],
+    [2, 3, 0.2, false, true, "medium"],
+    [2, 3, 0.2, true, false, "medium"],
+    [2, 2.9, 0, true, true, "medium"],
+    [2, 3, 0.21, true, true, "medium"],
+    [3, 5, 0.35, true, true, "medium"],
+    [3, 5, 0.36, true, true, "low"],
+    [1, 4, 0, true, true, "low"],
+  ] as const)(
+    "%d sources, weight %d, spread %d, authoritative %s, taste %s: %s",
+    (n, w, s, auth, taste, expected) => {
+      expect(combinedConfidence(n, w, s, auth, taste)).toBe(expected);
+    },
+  );
+
+  it("availability charts alone never reach High, however many agree", () => {
+    const avail = { directness: "availability" as const, origin: "us-wa" };
+    const claims = ["a", "b", "rm"].map((s) => claim(s, "jun-1..aug-2 prime", avail));
+    const p = propose(claims, sources, US_WA, SHIPS);
+    expect(at(p, "jul-1")?.weight).toBeCloseTo(3.6);
+    expect(at(p, "jul-1")?.confidence).toBe("medium");
+    const withTaste = propose([...claims, claim("n", "jul-1 prime")], sources, US_WA, SHIPS);
+    expect(at(withTaste, "jul-1")?.confidence).toBe("high");
   });
 });
 
@@ -398,7 +412,7 @@ describe("combining curves: properties", () => {
 
 describe("availability curves (P14)", () => {
   const avail = (windows: string, opts: Partial<Claim> = {}) =>
-    claim("a", windows, { directness: "availability", ...opts });
+    claim("a", windows, { directness: "availability", origin: "us-wa", ...opts });
   const NOT_SHIPPING = { shipsWell: false, storesWell: false };
   const STORES = { shipsWell: true, storesWell: true };
 
@@ -422,6 +436,21 @@ describe("availability curves (P14)", () => {
     const v = claimValues(avail(windows), SHIPS);
     expect(valuesAt(v, labels)).toEqual(values);
     expect(v.every((x) => x !== null)).toBe(true);
+  });
+
+  it("a US-grown claim naming no state keeps only its season and shoulders", () => {
+    const v = claimValues(avail("apr-1..jun-2 prime", { origin: "us" }), STORES);
+    expect(valuesAt(v, ["feb-1", "mar-2", "apr-1", "jun-2", "jul-1", "dec-1"])).toEqual([
+      null,
+      0.5,
+      1,
+      1,
+      0.5,
+      null,
+    ]);
+    // So a national chart can't make Florida's winter season poor.
+    const p = propose([avail("apr-1..jun-2 prime", { origin: "us" })], sources, { origin: "us-fl" }, SHIPS);
+    expect(at(p, "jan-1")).toBeNull();
   });
 
   it("a year-round listing has no shoulders", () => {
@@ -482,7 +511,7 @@ describe("availability curves (P14)", () => {
   it("two agreeing charts propose poor off season, from 2 sources", () => {
     const claims = [
       avail("jun-1..aug-2 prime"),
-      claim("b", "jun-1..aug-2 prime", { directness: "availability" }),
+      claim("b", "jun-1..aug-2 prime", { directness: "availability", origin: "us-wa" }),
     ];
     const p = propose(claims, sources, US_WA, SHIPS);
     expect(at(p, "jan-1")).toMatchObject({ rating: "poor", sources: ["a", "b"] });
@@ -495,7 +524,7 @@ describe("availability curves (P14)", () => {
   it("a domestic availability curve covers every window, keeps listed windows, and reads fair or poor elsewhere (fair throughout when it stores well) (property)", () => {
     fc.assert(
       fc.property(availArb, fc.boolean(), fc.boolean(), (c, shipsWell, storesWell) => {
-        const domestic = { ...c, origin: "us" };
+        const domestic = { ...c, origin: "us-wa" };
         const v = claimValues(domestic, { shipsWell, storesWell });
         expect(v.every((x) => x !== null)).toBe(true);
         const listed = claimValues(
@@ -515,7 +544,7 @@ describe("availability curves (P14)", () => {
     fc.assert(
       fc.property(availArb, fc.boolean(), (c, storesWell) => {
         const traits = { shipsWell: true, storesWell };
-        const domestic = claimValues({ ...c, origin: "us" }, traits);
+        const domestic = claimValues({ ...c, origin: "us-wa" }, traits);
         const imported = claimValues({ ...c, origin: "mx" }, traits);
         expect(imported).toEqual(domestic.map((x) => Math.max(0, (x as number) - 0.5)));
         const notShipping = claimValues({ ...c, origin: "mx" }, { shipsWell: false, storesWell });

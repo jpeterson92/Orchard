@@ -11,6 +11,8 @@ export interface TodayEntry {
   confidence: Confidence;
   /** The typical-outlook verdict for the same date: an always-good item joins Today only when they differ. */
   typicalVerdict: Verdict;
+  /** Peak windows in the item's typical outlook over the year: a shorter Peak is more worth buying now. */
+  peakWindows: number;
 }
 
 export interface TodayGroups {
@@ -21,8 +23,8 @@ export interface TodayGroups {
 }
 
 /**
- * Best right now: up to 6 Peak items by confidence, then purchase rank, never padded.
- * Good buys: every other Peak and Good item, Peak first. Skip and Limited evidence by purchase rank.
+ * Best right now: up to 6 Peak items, the shortest Peak in the year first, then by confidence and purchase rank;
+ * never padded. Good buys: every other Peak item in that order, then Good items by confidence and purchase rank. Skip and Limited evidence by purchase rank.
  */
 export function groupToday(entries: readonly TodayEntry[]): TodayGroups {
   const shown = entries
@@ -30,6 +32,7 @@ export function groupToday(entries: readonly TodayEntry[]): TodayGroups {
     .sort(
       (a, b) =>
         verdictRank(b.verdict) - verdictRank(a.verdict) ||
+        (a.verdict === "peak" ? a.peakWindows - b.peakWindows : 0) ||
         confidenceRank(b.confidence) - confidenceRank(a.confidence) ||
         a.purchaseRank - b.purchaseRank ||
         a.id.localeCompare(b.id),

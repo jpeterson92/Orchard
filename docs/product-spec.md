@@ -153,7 +153,7 @@ Today leads with up to six strong recommendations, and every seasonal item appea
 1. **Date chip:** "Mon Nov 16". Tap to plan for another date.
 2. **One-line summary** of what's typically happening this time of year, plus any active advisory. It is edited by hand for each of the 24 half-month windows, nationally.
 3. **Search field**, visible without scrolling.
-4. **Best right now:** up to 6 Peak items, highest confidence first, then the most commonly bought. If fewer than 6 items are Peak, it shows fewer; it is never padded with Good items.
+4. **Best right now:** up to 6 Peak items, the shortest Peak of the year first (a 4-week strawberry peak before a 4-month one, because it won't last), then highest confidence, then the most commonly bought. If fewer than 6 items are Peak, it shows fewer; it is never padded with Good items.
 5. **Good buys:** every other Peak and Good item except always-good items, with filter chips (All · Fruit · Vegetables · Herbs & mushrooms).
 6. **Skip for now** (collapsed): each item says when it usually improves ("Usually improves in early December").
 7. **Limited evidence** (collapsed): items the site can't call today, each with the reason ("Supply this month is mostly from origins we haven't assessed").
@@ -292,8 +292,8 @@ An advisory changes only the windows it covers and never rewrites the typical ou
 1. **Limited evidence:** the reviewed quality assessment doesn't cover the origins that typically supply supermarkets in this window. Missing information never defaults to Good or Skip.
 2. **Advisory:** an active advisory covers the top typical origin → Skip, or at most Good, as the advisory sets. A Skip advisory overrides everything below; a cap lets rules 3–5 run and lowers Peak to Good.
 3. **Skip:** the typical origins are rated *poor* this window.
-4. **Peak:** the typical origins are rated *prime* this window, the supply index isn't thin, and the item is one whose Peak is worth seeking: buying it in its best season makes a difference a shopper can taste. Peak means "try to buy it now". An item that tastes much the same in and out of its best harvest weeks (lettuce, for one) is Good in those weeks, and may be Always good.
-5. **Good:** everything else, meaning the origins are *prime* but supply is thin or the item's Peak isn't worth seeking, or they are rated *fair*.
+4. **Peak:** the top typical origin is rated *prime* this window and no other typical origin is rated *poor* (what a shopper picks up should reliably eat well), the supply index isn't thin, and the item is one whose Peak is worth seeking: buying it in its best season makes a difference a shopper can taste. Peak means "try to buy it now". An item that tastes much the same in and out of its best harvest weeks (lettuce, for one) is Good in those weeks, and may be Always good.
+5. **Good:** everything else, meaning the top origin is *prime* but supply is thin, another typical origin is *poor*, or the item's Peak isn't worth seeking, or it is rated *fair*.
 
 When the top two origins differ by more than one rating level, the verdict follows the larger origin and the item gets a "Depends on the label" note.
 
@@ -311,7 +311,7 @@ Confidence describes how complete and current the evidence is. It is not a proba
 
 | Property | Question |
 | --- | --- |
-| Coverage | Does the reviewed assessment cover the origins (or varieties) that typically supply supermarkets now, on seasonal evidence of at least Medium combined confidence? |
+| Coverage | Does the reviewed assessment cover the origins (or varieties) that typically supply supermarkets now, on seasonal evidence of at least Medium combined confidence? High combined confidence needs at least one source about eating quality; harvest charts alone reach Medium at most. |
 | Relevance | Does the evidence describe supermarket supply, rather than only local farms? |
 | Freshness | Is the evidence current (yearly supply snapshot under 15 months old; advisories reviewed this window)? |
 | Agreement | Do the quality assessment and the typical supply pattern point the same way? |
@@ -359,7 +359,7 @@ An item that meets neither bar waits. It doesn't launch with a precise-looking b
 
 - **Sources come in two tiers.** *Authoritative:* university extension services, commodity boards, USDA, UC Davis postharvest references and trade references. *Mainstream:* major food publications and grocer guides. Both count toward the 2-source minimum; authoritative sources carry more weight.
 - **Each source gets its own quality curve:** for the origin it describes (and the variety, when it names one), how good the item typically is in each half-month window, from poor through fair to prime. A vague claim ("spring") gets soft edges; a precise one gets sharp edges. Where a source says nothing, it has no curve, never a poor one. The ratings follow taste and how reliably good the item at the store will be, with no preference for US-grown. A source that only says when an item is in season (a harvest chart) speaks for the whole year: in season reads prime, the couple of weeks either side fair, and the rest of the year poor, or fair for items (and varieties) that eat well for months out of storage, such as long-keeping apples; stored produce never reads prime from a harvest chart alone. For an import, a harvest chart reads one level lower, so an import in its own season reads fair (Good) when the item ships well, and poor when it doesn't, including produce picked underripe to survive the trip. An import that sources say tastes very good can still read prime. Each source's view also carries a confidence label from its tier and from how direct the claim is (eating quality, or only availability). Claims are paraphrased, never copied.
-- **Claims that name no origin describe US-grown supply.** Common advice ("blueberries peak in summer") is usually about the US harvest, so imports are judged on their own evidence.
+- **Claims that name no origin describe US-grown supply.** Common advice ("blueberries peak in summer") is usually about the US harvest, so imports are judged on their own evidence. Such a claim can't say when each state is out of season, so a national harvest chart never marks a state's other months poor (Florida's winter strawberries stay judged by Florida evidence).
 - **The curves combine into a proposal:** their confidence-weighted average for each origin across the year, read as prime, fair or poor, with a combined confidence of High, Medium or Low per window that reflects how much evidence covers it and how far the sources disagree. Windows no source covers have no proposal. The proposal is the base case for the editorial call, not the call itself; the item review shows each source's curve beside it.
 - **Low confidence gets an explicit review.** Every window whose combined confidence is Low, or whose editorial rating departs from the proposal, carries a written reason, and Jared reviews those windows one by one.
 

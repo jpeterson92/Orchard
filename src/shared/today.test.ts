@@ -9,6 +9,7 @@ const entry = (id: string, over: Partial<TodayEntry> = {}): TodayEntry => ({
   verdict: "peak",
   confidence: "high",
   typicalVerdict: "peak",
+  peakWindows: 6,
   ...over,
 });
 
@@ -27,6 +28,17 @@ describe("groupToday", () => {
     const g = groupToday(entries);
     expect(g.best).toEqual(["c", "f", "g", "b", "e", "a"]);
     expect(g.good).toEqual(["d", "h"]);
+  });
+
+  it("puts the shortest Peak first, then confidence", () => {
+    const g = groupToday([
+      entry("long", { peakWindows: 16, purchaseRank: 1 }),
+      entry("short", { peakWindows: 3, confidence: "medium", purchaseRank: 9 }),
+      entry("mid", { peakWindows: 6 }),
+      entry("good", { verdict: "good", peakWindows: 1 }),
+    ]);
+    expect(g.best).toEqual(["short", "mid", "long"]);
+    expect(g.good).toEqual(["good"]);
   });
 
   it("is never padded with Good items", () => {
@@ -61,6 +73,7 @@ const entries = fc.uniqueArray(
     verdict,
     confidence: fc.constantFrom("high" as const, "medium" as const, "low" as const),
     typicalVerdict: verdict,
+    peakWindows: fc.integer({ min: 0, max: 24 }),
   }),
   { selector: (e) => e.id, maxLength: 30 },
 );

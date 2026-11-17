@@ -277,14 +277,52 @@ const cases: Case[] = [
     rule: 5,
   },
   {
-    name: "P9: November's ranking applies in November",
+    name: "P9: November's ranking applies in November (prime top, poor second: Good)",
     item: item({
       origins: { "us-ca": rated("poor"), mx: rated("prime") },
       typicalOrigins: inNov(["us-ca", "mx"], ["mx", "us-ca"]),
     }),
+    verdict: "good",
+    rule: 5,
+    weak: ["agreement"],
+  },
+  // Rule 4 needs no typical origin rated poor
+  {
+    name: "4 held at 5: prime top origin, poor third",
+    item: item({
+      origins: { "us-ca": rated("prime"), mx: rated("fair"), cl: rated("poor") },
+      typicalOrigins: allMonths(["us-ca", "mx", "cl"]),
+    }),
+    verdict: "good",
+    rule: 5,
+  },
+  {
+    name: "4: prime top origin, fair others",
+    item: item({
+      origins: { "us-ca": rated("prime"), mx: rated("fair"), cl: rated("fair") },
+      typicalOrigins: allMonths(["us-ca", "mx", "cl"]),
+    }),
     verdict: "peak",
     rule: 4,
-    weak: ["agreement"],
+  },
+  {
+    name: "4 for a label origin: the shopper's origin alone decides",
+    item: item({
+      origins: { "us-ca": rated("prime"), mx: rated("poor") },
+      typicalOrigins: allMonths(["us-ca", "mx"]),
+    }),
+    ctx: { labelOrigin: "us-ca" },
+    verdict: "peak",
+    rule: 4,
+  },
+  {
+    name: "3 over the poor-origin hold: poor top origin is Skip",
+    item: item({
+      origins: { "us-ca": rated("poor"), mx: rated("poor") },
+      typicalOrigins: allMonths(["us-ca", "mx"]),
+    }),
+    verdict: "skip",
+    rule: 3,
   },
 ];
 

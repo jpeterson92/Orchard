@@ -159,6 +159,18 @@ describe("verdict engine invariants", () => {
       RUNS,
     ));
 
+  it("no default Peak while any typical origin is rated poor", () =>
+    fc.assert(
+      fc.property(itemArb, ctxArb, (item, ctx) => {
+        if (item.varieties.length > 0) return;
+        const r = evaluate(item, { date: ctx.date, mode: ctx.mode }, ENV);
+        const w = windowIndex(ctx.date.month, ctx.date.day);
+        const typical = item.typicalOrigins[ctx.date.month - 1] ?? [];
+        if (typical.some((o) => item.origins[o]?.windows[w] === "poor")) expect(r.verdict).not.toBe("peak");
+      }),
+      RUNS,
+    ));
+
   it("typical mode ignores advisories", () =>
     fc.assert(
       fc.property(itemArb, ctxArb, (item, ctx) => {
