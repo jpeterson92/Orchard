@@ -1,0 +1,24 @@
+item: broccoli
+status: draft
+claims:
+  - source: msstate-fruits-vegetables-in-season
+    origin: us-ms
+    windows:
+      - from: apr-1
+        to: may-2
+        rating: prime
+      - from: oct-1
+        to: nov-2
+        rating: prime
+    specificity: month
+    directness: availability
+    paraphrase: Mississippi harvest chart lists broccoli in season Apr to May, Oct to Nov.
+  - source: psu-harvest-calendar
+    origin: us-pa
+    windows:
+      - from: jun-2
+        to: nov-2
+        rating: prime
+    specificity: half-month
+    directness: availability
+    paraphrase: Pennsylvania harvest chart lists broccoli in season late Jun to Nov.

@@ -1,0 +1,37 @@
+item: pears
+status: draft
+claims:
+  - source: msstate-fruits-vegetables-in-season
+    origin: us-ms
+    windows:
+      - from: aug-1
+        to: nov-2
+        rating: prime
+    specificity: month
+    directness: availability
+    paraphrase: Mississippi harvest chart lists pears in season Aug to Nov.
+  - source: psu-harvest-calendar
+    origin: us-pa
+    windows:
+      - from: aug-1
+        to: oct-2
+        rating: prime
+    specificity: half-month
+    directness: availability
+    paraphrase: Pennsylvania harvest chart lists pears in season Aug to Oct.
+  - source: usapears-bosc
+    origin: us-wa
+    variety: bosc
+    windows:
+      - { from: sep-2, to: apr-2, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: Washington and Oregon Bosc is in season from late September through April.
+  - source: usapears-starkrimson
+    origin: us-wa
+    variety: starkrimson
+    windows:
+      - { from: aug-1, to: nov-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Northwest Starkrimson, a summer pear, is in season August through November.

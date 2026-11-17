@@ -1,0 +1,49 @@
+item: strawberries
+status: draft
+claims:
+  - source: msstate-fruits-vegetables-in-season
+    origin: us-ms
+    windows:
+      - from: mar-1
+        to: may-2
+        rating: prime
+    specificity: month
+    directness: availability
+    paraphrase: Mississippi harvest chart lists strawberries in season Mar to May.
+  - source: psu-harvest-calendar
+    origin: us-pa
+    windows:
+      - from: jun-1
+        to: jul-1
+        rating: prime
+    specificity: half-month
+    directness: availability
+    paraphrase: Pennsylvania harvest chart lists strawberries in season Jun to mid-Jul.
+  - source: florida-strawberry-growers
+    origin: us-fl
+    windows:
+      - { from: dec-1, to: feb-2, rating: prime }
+    specificity: season
+    directness: availability
+    paraphrase: Florida growers call the state the winter strawberry capital of the nation.
+  - source: usda-ers-strawberries
+    origin: us-ca
+    windows:
+      - { from: mar-1, to: oct-2, rating: prime }
+    specificity: season
+    directness: availability
+    paraphrase: California harvests year-round, heaviest from early spring into fall, now stronger July to October.
+  - source: usda-ers-strawberries
+    origin: us-fl
+    windows:
+      - { from: dec-1, to: mar-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Florida's strawberry season typically runs December through March, with small volumes from November.
+  - source: wishfarms-florida-strawberries
+    origin: us-fl
+    windows:
+      - { from: nov-2, to: apr-2, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: A Florida grower says the state's season runs from late November through April.
