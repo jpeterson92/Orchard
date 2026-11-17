@@ -10,7 +10,7 @@ M0 scaffold and deploy: done · M1 USDA probe: done · M2 schemas and engine: sl
 
 M2 slice 3: the verdict engine in `src/shared/verdict/` (rules 1–5, markers, P10 confidence, `byOrigin`, Today grouping in `src/shared/today.ts`), with a table-driven case per rule and precedence pair plus property tests. Then `data:build` lists items whose `alwaysGood` field disagrees with the typical outlook.
 
-After that: slice 4, `usda-derive` writes `data/usda/typical-origins.csv` and `supply-index.csv` for the 89 items (reusing `scripts/usda-lib.ts`; run on demand, Jared reviews the diff). Then content batch 1 (apples, pears, strawberries, broccoli, mandarins).
+After that: slice 4, seasonal evidence (source `tier` and `basedOn`, `content/evidence/` schema, the P12 combiner in `src/shared/evidence.ts` with table-driven and property tests, and `data:build` checks: 2 independent sources per rated window, a `reason` on departing or Low-confidence windows; item windows drop their own `sources`). Slice 5, `usda-derive` writes `data/usda/typical-origins.csv` and `supply-index.csv` for the 89 items (reusing `scripts/usda-lib.ts`; run on demand, Jared reviews the diff). Then content batch 1 (apples, pears, strawberries, broccoli, mandarins), researched by web-search subagents into evidence files.
 
 ## Blocking (needs Jared)
 
@@ -18,7 +18,7 @@ After that: slice 4, `usda-derive` writes `data/usda/typical-origins.csv` and `s
 
 ## Open questions for Jared (non-blocking)
 
-- Confirm or adjust the provisional methodology defaults P1, P9, P10, P11 and the Last call trigger (engineering plan §4.3). The 15-month freshness limit is confirmed.
+- Confirm or adjust the provisional methodology defaults P1, P9, P10, P11, P12 (how source claims combine: weights and confidence cut-offs) and the Last call trigger (engineering plan §4.3). The 15-month freshness limit is confirmed.
 - Launch gates: needed by M9.
 - In-app brand name: Orchard, or something else? Needed by M9.
 

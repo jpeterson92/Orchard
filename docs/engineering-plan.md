@@ -47,10 +47,11 @@ CLAUDE.md  PROGRESS.md  README.md
 package.json  tsconfig.json  vite.config.ts  wrangler.jsonc  biome.json  playwright.config.ts
 content/
   items/<item-id>.yaml       one file per item: editorial copy, origins + quality windows, varieties, type notes
+  evidence/<item-id>.yaml    each source's claims about the item: origin, windows, rating, claim confidence
   summaries.yaml             24 national half-month Today summaries
   methods.md                 Methods page text
 data/
-  sources.yaml               every citation: id, title, publisher, url, accessed date
+  sources.yaml               every citation: id, tier, title, publisher, url, accessed date, optional basedOn
   rules.yaml                 rules version + thresholds (0.70, 0.8, 1.2, 20/24, 15 months)
   categories.yaml            browse categories in display order
   advisories.yaml            scoped, expiring exceptions
@@ -76,7 +77,9 @@ docs/                        product spec, engineering plan, design, data findin
 
 ### 4.1 Inputs (validated by `npm run data:build`)
 
-- **Item** (`content/items/*.yaml`): id, names, synonyms, misspellings, category, `purchaseRank`, `alwaysGood` (editorial), evidence basis (`supply+assessment` or `assessment-only`), card line, pick cues (3–5), avoid cues (1–2), store and ripen ranges with ripeness assumptions (storage temperature band, ethylene producer or sensitive, and storage life, cited to the UC Davis Postharvest Center fact sheets where they cover the item), prep, type notes. Also its origins, each with quality windows: half-month ranges rated `prime`, `fair` or `poor`, with at least 2 source IDs per range. Plus `status` (`draft` or `reviewed`), `reviewedOn`, `reviewer`, and `synthetic: true` on invented test data. Word limits come from product spec §8. Windows are written as half-month labels (`jun-1` is Jun 1–15, `jun-2` Jun 16–end) and may wrap past December; one origin's windows must not overlap. Origins are `us-<state>` or an ISO country code (`mx`).
+- **Item** (`content/items/*.yaml`): id, names, synonyms, misspellings, category, `purchaseRank`, `alwaysGood` (editorial), evidence basis (`supply+assessment` or `assessment-only`), card line, pick cues (3–5), avoid cues (1–2), store and ripen ranges with ripeness assumptions (storage temperature band, ethylene producer or sensitive, and storage life, cited to the UC Davis Postharvest Center fact sheets where they cover the item), prep, type notes. Also its origins, each with quality windows: half-month ranges rated `prime`, `fair` or `poor`. These are the editorial call; a window that departs from the evidence proposal, or whose proposal is Low confidence, carries a `reason`. Its citations come from the evidence file. Plus `status` (`draft` or `reviewed`), `reviewedOn`, `reviewer`, and `synthetic: true` on invented test data. Word limits come from product spec §8. Windows are written as half-month labels (`jun-1` is Jun 1–15, `jun-2` Jun 16–end) and may wrap past December; one origin's windows must not overlap. Origins are `us-<state>` or an ISO country code (`mx`).
+- **Source:** `tier` is `authoritative` (extension, commodity board, USDA, UC Davis, trade reference) or `mainstream` (food publication, grocer guide). `basedOn` names the source it restates, so the two count once.
+- **Seasonal evidence** (`content/evidence/<item-id>.yaml`): one entry per source claim: source, origin (`us` when the source names none, meaning US-grown), windows, rating (`prime`, `fair`, `poor`), claim confidence (`high`, `medium`, `low`; rubric in §4.3), and a one-line paraphrase. Drafted by Claude from web research, `status: draft` until Jared reviews it.
 - **Variety** (inside its item file, for the 3 guides): traits on the group's anchored 1–5 scales, best uses, label/PLU text, freshest months only where evidence exists.
 - **Advisory:** items, optional origins (national scope), `from` ≤ `to` ≤ `from` + 90 days, imposed verdict, note, `reviewedOn`, `status`.
 - **Typical origins:** item × month → ranked origins covering at least 70% of reported volume (ranks only; never shown as shares). Where USDA doesn't report domestic supply (citrus, carrots, garlic, mushrooms, winter squash and others), the item file lists cited editorial origins instead.
@@ -84,7 +87,7 @@ docs/                        product spec, engineering plan, design, data findin
 - **Variety calendar:** item × variety × month → the share of USDA terminal market price quotes (11 cities, 3 years) naming that variety, and the origins quoted. Evidence of presence, not volume. It backs a variety's "freshest months" and cross-checks typical origins.
 - **PLU codes** (only once IFPS confirms reuse): PLU → item, variety, size, organic. Label-based advice accepts a sticker code as well as an origin.
 
-`data:build` fails on any schema error, unknown ID, duplicate key, a range with fewer than 2 sources, an inverted or over-long advisory, or a NaN. With `--production` (run first by `npm run deploy`) it also fails on any `draft` or `synthetic` record. Schemas live in `src/shared/data/schema.ts`, the checks in `scripts/data-validate.ts`. It writes compact JSON to `src/generated/` and prints a coverage report: items, origins rated, and windows without a rating.
+`data:build` fails on any schema error, unknown ID, duplicate key, a rated window covered by claims from fewer than 2 independent sources, a departing or Low-confidence window without a `reason`, an inverted or over-long advisory, or a NaN. With `--production` (run first by `npm run deploy`) it also fails on any `draft` or `synthetic` record. Schemas live in `src/shared/data/schema.ts`, the checks in `scripts/data-validate.ts`. It writes compact JSON to `src/generated/` and prints a coverage report: items, origins rated, windows without a rating, and every Low-confidence or departing window for review.
 
 ### 4.2 Engine (`src/shared/verdict/`)
 
@@ -115,6 +118,12 @@ Each lives in `rules.yaml` or a single function, so changing it is cheap.
   - High = no weak property, Medium = one, Low = two or more.
 - **P11:** the typical supply index for a month is that month's 3-year average ÷ the 36-month average.
 - **Last call:** the verdict is Peak or Good and the typical outlook drops to a lower verdict within the next 2 windows.
+- **P12 (combining seasonal evidence),** in `src/shared/evidence.ts`, per item × origin × window:
+  - *claim confidence* (set by Claude, checked by Jared): `high` when the claim is at month or half-month detail, names or clearly implies the origin, and is about eating quality; `medium` when one of those is missing (e.g. "in season" means availability, not quality); `low` for season-level claims ("summer") or secondhand ones;
+  - *weight* = tier (authoritative 2, mainstream 1) × claim confidence (high 1, medium 0.6, low 0.3); a source restating another (`basedOn`) counts once;
+  - US-grown claims (`us`) apply to every US origin of the item, and a state-specific claim takes precedence for its state;
+  - *proposal* = the rating with the most weight; a tie goes to the lower rating;
+  - *combined confidence:* High when total weight ≥ 3, the proposal holds ≥ 75% of it, and an authoritative source supports it; Low when fewer than 2 independent sources cover the window or the proposal holds < 50%; Medium otherwise.
 
 ## 5. Milestones
 
@@ -133,7 +142,7 @@ Each milestone takes 1–3 sessions and ends with something Jared can review. Th
 | M8 | **Feedback and measurement.** D1 tables; feedback, taste, request and event endpoints; rate limiting; `web-vitals` + `verdict-visible` beacon; privacy-safe logging | A test proves no ZIP or IP reaches logs or D1; a feedback row records app version, date, state, item and origin | — |
 | M9 | **Launch readiness.** All launch content reviewed, illustrations, Turnstile, CSP and security headers, axe plus a quick VoiceOver/TalkBack pass, a performance check on a mid-range Android, offline check on a real iPhone, production domain | Jared decides launch, using the launch gates | Domain, devices, launch gates |
 
-**Content track.** Claude drafts in batches of about 10 items (5 in M2), each rating with at least 2 real, checked citations, all marked `draft`. Jared reviews in the preview app or the content report, and approves or edits. Approval means Claude sets `status: reviewed`, `reviewer`, and `reviewedOn`. Order: the 5 M2 items → the rest of the 89 launch items, seasonal items first, always-good items last → variety guides → the 24 summaries → Methods text.
+**Content track.** Claude drafts in batches of about 10 items (5 in M2), all marked `draft`. For each item, a research subagent searches the web for what authoritative and mainstream sources say about its seasons, and writes the evidence file: one claim per source, paraphrased, each source checked and added to `sources.yaml`. The P12 proposal then seeds the item's quality windows, and Claude writes a `reason` wherever the draft departs from it or its confidence is Low. Research runs only when a batch is being drafted or Jared asks for a refresh. Jared reviews in the preview app or the content report (per item: each source's claims as a timeline beside the proposal and the editorial rating, Low-confidence and departing windows first), and approves or edits. Approval means Claude sets `status: reviewed`, `reviewer`, and `reviewedOn`. Order: the 5 M2 items → the rest of the 89 launch items, seasonal items first, always-good items last → variety guides → the 24 summaries → Methods text.
 
 **Art track.** Jared generates all painted artwork with his ChatGPT subscription, the same tool that made the design language and the mockups in `docs/design/references/`. Claude never generates images. The workflow is built in M3, when the first item art is needed, and then runs in batches alongside the content track:
 

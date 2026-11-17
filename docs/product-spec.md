@@ -272,7 +272,7 @@ An advisory changes only the windows it covers and never rewrites the typical ou
 
 | Term | Definition |
 | --- | --- |
-| **Quality window** | For each item × major origin, every half-month window rated *prime* (typically eats best), *fair* (acceptable), or *poor* (typically disappointing, e.g. out of long storage). Comes from a reviewed seasonal assessment that cites at least 2 sources (extension services, commodity boards, trade references). |
+| **Quality window** | For each item × major origin, every half-month window rated *prime* (typically eats best), *fair* (acceptable), or *poor* (typically disappointing, e.g. out of long storage). Each rating is an editorial call that starts from the combined seasonal evidence (section 8) and rests on at least 2 sources. |
 | **Typical supermarket origins** | The origins that together account for ≥ 70% of an item's reported shipments and imports in that month, averaged over 3 years. Used only to *rank* origins, never as precise shares. USDA notes that truck shipments for all commodities and origins are not available, and that the reported figures should not be read as complete movements ([source](https://www.ams.usda.gov/node/21104)). |
 | **Supply index** | A typical value per month: the month's average reported volume over 3 years ÷ the item's average monthly reported volume over the same 3 years, from the same report series, taken from a yearly snapshot. Strong ≥ 1.2; normal 0.8–1.2; thin < 0.8. |
 | **Local harvest** | Off, early, peak or late in the user's harvest zone. Shown as context. It affects a verdict only through label-based advice (below). Deferred: not in v1. |
@@ -346,6 +346,14 @@ An item launches only once its evidence passes review. Editors write content onc
 
 An item that meets neither bar waits. It doesn't launch with a precise-looking but weak verdict.
 
+**Seasonal evidence.** Each item's ratings start from what a wide range of sources say about when it eats best in US supermarkets:
+
+- **Sources come in two tiers.** *Authoritative:* university extension services, commodity boards, USDA, UC Davis postharvest references and trade references. *Mainstream:* major food publications and grocer guides. Both count toward the 2-source minimum; authoritative sources carry more weight.
+- **Each source gets its own view.** For every source, the item's evidence records which origin it describes, the windows it calls best, acceptable or poor, and a confidence label for that claim (how specific, how direct, and whether it is about eating quality or only availability). Claims are paraphrased, never copied.
+- **Claims that name no origin describe US-grown supply.** Common advice ("blueberries peak in summer") is usually about the US harvest, so imports are judged on their own evidence.
+- **The views combine into a proposal:** a rating for each origin and window across the year, with a combined confidence of High, Medium or Low. The proposal is the base case for the editorial call, not the call itself.
+- **Low confidence gets an explicit review.** Every window whose combined confidence is Low, or whose editorial rating departs from the proposal, carries a written reason, and Jared reviews those windows one by one.
+
 **Drafting and review.** Claude researches and drafts items, quality windows, varieties and summaries. Every rating cites at least 2 real, checked sources, and every record starts as `draft`. Jared reviews and approves; only approved records are `reviewed`. Production builds refuse drafts, and previews label draft content visibly.
 
 **Launch scope: all common supermarket produce, 89 items.** Close relatives are one item with types (summer squash, winter squash, hot peppers), and fresh herbs are a single always-good item with the common herbs as types. The list is curated: which items appear, their types, categories and classes are editorial decisions, and every new item also needs an illustration. Data informs those decisions without making them. The usual test is that most of USDA's 11 city terminal markets quote the item and mainstream US supermarkets stock it, year-round or in season. Specialty items sold mainly through ethnic or specialty grocers come later. The list and its evidence are in `docs/data/usda.md`. Always-good items need lighter content: one year-round rating per major origin, plus pick and store advice.
@@ -361,7 +369,7 @@ An item that meets neither bar waits. It doesn't launch with a precise-looking b
 **Rights and sourcing**
 
 - All copy and illustrations are original or licensed. Illustrations are decorative: one per item (89 at launch), not one per variety.
-- Other guides' charts and data are not copied. Foodwise, for one, asks to be contacted before its charts are reproduced ([source](https://foodwise.org/wp-content/uploads/2025/07/Foodwise-Fruit-Seasonality-Chart.pdf)). Quality windows and harvest calendars are built from primary public sources and cited row by row.
+- Other guides' charts and data are not copied. Foodwise, for one, asks to be contacted before its charts are reproduced ([source](https://foodwise.org/wp-content/uploads/2025/07/Foodwise-Fruit-Seasonality-Chart.pdf)). Quality windows are built from public sources, paraphrased and cited claim by claim; no source's chart or wording is copied.
 - USDA Market News data is public and has a free API with a key ([source](https://mymarketnews.ams.usda.gov/node/8569)).
 
 ## 9. Design direction
@@ -469,7 +477,7 @@ The biggest risk is a confident verdict that doesn't match the bin in front of t
 
 | Risk | Effect | Mitigation |
 | --- | --- | --- |
-| Seasonal quality ratings are partly judgment | Peak calls that don't eat well | ≥ 2 sources per rating, independent review, evidence basis shown, monthly blind audits against controls |
+| Seasonal quality ratings are partly judgment | Peak calls that don't eat well | ≥ 2 sources per rating, authoritative sources weighted above mainstream ones, Low-confidence windows reviewed one by one, independent review, evidence basis shown, monthly blind audits against controls |
 | USDA shipment data is incomplete ([source](https://www.ams.usda.gov/node/21104)) | Misread origin mix | Data used only to rank typical origins and to compute a within-series supply index, never shown as precise shares; items with patchy data use the assessment-only basis |
 | The bin's origin differs from the typical origin | Advice wrong for this bin | "Depends on the label" note and the optional "What does the label say?" control |
 | Promotion data is ads, not shelf prices | Shoppers read it as their store's price | Value marker only, labeled "national ad activity"; never part of the verdict |
