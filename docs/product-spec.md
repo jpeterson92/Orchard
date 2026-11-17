@@ -126,7 +126,7 @@ A category appears only when it holds at least one covered item.
 - **Short type notes** go on any item page where the type changes how to pick or ripen it. Examples: Hass vs green-skin avocados, starchy vs waxy potatoes, and on-the-vine vs Roma vs cherry vs heirloom tomatoes.
 - **Further guides** are chosen by the names shoppers actually meet, measured by search queries and the variety names on retailer labels and in USDA data. Some items earn a deep guide; others need only a few sharp comparisons.
 
-**Item page order (phone):** verdict and why → how to pick (with type notes) → store and ripen → "What does the label say?" (optional) → typical seasonal outlook → varieties → value note (v1.1) → prep → feedback. The in-store needs come first.
+**Item page order (phone):** verdict and why → varieties now (items rated by variety) → how to pick (with type notes) → store and ripen → "What does the label say?" (optional) → typical seasonal outlook → variety guide → value note (v1.1) → prep → feedback. The in-store needs come first.
 
 ## 5. Core screens and behavior
 
@@ -137,7 +137,7 @@ Today leads with up to six strong recommendations, and every seasonal item appea
 | Kind | Values | Meaning |
 | --- | --- | --- |
 | **Verdict** (exactly one per item) | Peak · Good · Skip · Limited evidence | Expected eating quality of typical supermarket supply here and now (rules in section 7) |
-| **Markers** (zero or more, shown on the card) | Last call · Reliable year-round · Advisory · Good value (v1.1) | Extra facts that never move the item to a different section |
+| **Markers** (zero or more, shown on the card) | Last call · Reliable year-round · Varies by variety · Advisory · Good value (v1.1) | Extra facts that never move the item to a different section |
 | **Always good** (an item class) | An editorial call, written in the item file. The usual evidence is a typical outlook of Good in all 24 windows, never Peak and never Skip; the data build flags any item where the two disagree, and an editor decides | Shown as "Always good" wherever they appear. They join Today only while an advisory changes their verdict |
 
 ### Today (home)
@@ -151,6 +151,13 @@ Today leads with up to six strong recommendations, and every seasonal item appea
 7. **Limited evidence** (collapsed): items the site can't call today, each with the reason ("Supply this month is mostly from origins we haven't assessed").
 
 An item that is both Peak and Last call appears once, under Best right now, carrying a Last call marker.
+
+**Items rated by variety.** Some items' varieties peak at different times: some apples are only worth buying near harvest, while Cosmic Crisp keeps well all year. These items are rated per variety as well as per origin:
+
+- Each variety gets its own verdict for the window.
+- The item's verdict is the best verdict among the rated varieties typically in stores in that window, so a shopper who picks the named variety gets what the badge says.
+- When those varieties' verdicts differ, the card carries **Varies by variety** and names the best one or two: "Varies by variety · best now: Cosmic Crisp, Fuji".
+- At launch: apples, pears, mandarins and oranges (the items with variety guides). Other items are rated by variety only where evidence shows their varieties differ in season.
 
 ### Card behavior (the same everywhere)
 
@@ -168,7 +175,8 @@ An item that is both Peak and Last call appears once, under Best right now, carr
 - **Store and ripen:** typical ranges, never guarantees, each with its ripeness assumption. For example: "Firm Hass: 3–5 days on the counter to ripen. Ripe: 2–3 days in the fridge."
 - **Typical seasonal outlook:** 24 half-month cells, with today marked. A band underneath shows the typical main supply origins by month.
 - **Advisory** (when active): states exactly what it covers and when it ends, e.g. "Affects: avocados from Mexico · through Dec 5." Supply from other origins is unaffected.
-- **Varieties** (where a guide exists): a variety is marked "best right now" only when there is variety-specific seasonal evidence for it. Otherwise varieties are listed without a seasonal ranking.
+- **Varieties now** (items rated by variety): each variety's verdict for today and its quality across the year as a 24-window strip, best right now first, each with its confidence. A variety without variety-specific evidence is listed without a rating, never ranked.
+- **Variety guide** (where one exists): a link to the item's guide.
 - **Value note** (v1.1): e.g. "Advertised more than usual in Southwest stores this week." It never changes the verdict.
 - **Prep and use:** 2–4 lines.
 - **Feedback:** "At your store today:" Looked good · Looked poor · Not in stock · Too pricey, all one tap and optional. A "Bought it" toggle triggers a taste question on the next visit.
@@ -190,7 +198,7 @@ An item that is both Peak and Last call appears once, under Best right now, carr
 
 - **Finder:** filter by use and by the group's traits. Results update instantly.
 - **Phone:** variety cards. **Tablet and desktop:** a sortable comparison table.
-- **Variety page:** traits, best uses, freshest months (only where evidence exists), what the label or price-lookup (PLU) sticker typically says, and "can't find it? try…". The label is the authority on identity. Pictures are decorative, and pages don't claim shoppers can tell similar varieties apart by sight.
+- **Variety page:** traits, best uses, its quality across the year (only where evidence exists), what the label or price-lookup (PLU) sticker typically says, and "can't find it? try…". The label is the authority on identity. Pictures are decorative, and pages don't claim shoppers can tell similar varieties apart by sight.
 
 ### Calendar
 
@@ -272,7 +280,7 @@ An advisory changes only the windows it covers and never rewrites the typical ou
 
 | Term | Definition |
 | --- | --- |
-| **Quality window** | For each item × major origin, every half-month window rated *prime* (typically eats best), *fair* (acceptable), or *poor* (typically disappointing, e.g. out of long storage). Each rating is an editorial call that starts from the combined seasonal evidence (section 8) and rests on at least 2 sources. |
+| **Quality window** | For each item × major origin (and each variety, for items rated by variety), every half-month window rated *prime* (typically eats best), *fair* (acceptable), or *poor* (typically disappointing, e.g. out of long storage). Each rating is an editorial call that starts from the combined seasonal evidence (section 8) and rests on at least 2 sources. |
 | **Typical supermarket origins** | The origins that together account for ≥ 70% of an item's reported shipments and imports in that month, averaged over 3 years. Used only to *rank* origins, never as precise shares. USDA notes that truck shipments for all commodities and origins are not available, and that the reported figures should not be read as complete movements ([source](https://www.ams.usda.gov/node/21104)). |
 | **Supply index** | A typical value per month: the month's average reported volume over 3 years ÷ the item's average monthly reported volume over the same 3 years, from the same report series, taken from a yearly snapshot. Strong ≥ 1.2; normal 0.8–1.2; thin < 0.8. |
 | **Local harvest** | Off, early, peak or late in the user's harvest zone. Shown as context. It affects a verdict only through label-based advice (below). Deferred: not in v1. |
@@ -329,7 +337,7 @@ An item launches only once its evidence passes review. Editors write content onc
 | Item | Names and synonyms, how to pick, store and ripen (ranges + ripeness assumptions), prep, illustration | Written | 89 | New items as they become common |
 | Evidence record | Evidence basis, sources (≥ 2), status (draft or reviewed), reviewer, review date | Drafted, then reviewed | 1 per item | 1 per item |
 | Quality window | Item × major origin × 24 windows: prime / fair / poor, with citations | Written + reviewed | \~220 origin profiles (\~3 per seasonal item; always-good items need one year-round rating per origin) | Grows with items |
-| Variety | Group-specific traits on anchored 1–5 scales, best uses, label/PLU text, freshest months where evidence exists | Written | \~40 (3 guides) | Driven by what shoppers meet |
+| Variety | Group-specific traits on anchored 1–5 scales, best uses, label/PLU text, quality windows where evidence exists | Written | \~40 (3 guides) | Driven by what shoppers meet |
 | Type note | Short distinction where type changes the advice | Written | \~10 items | As needed |
 | Category | Name, group, icon | Written | Only those with covered items | 16 |
 | Advisory | Items, origins, start, expiry, imposed verdict, note | Written | As needed | As needed |
@@ -349,7 +357,7 @@ An item that meets neither bar waits. It doesn't launch with a precise-looking b
 **Seasonal evidence.** Each item's ratings start from what a wide range of sources say about when it eats best in US supermarkets:
 
 - **Sources come in two tiers.** *Authoritative:* university extension services, commodity boards, USDA, UC Davis postharvest references and trade references. *Mainstream:* major food publications and grocer guides. Both count toward the 2-source minimum; authoritative sources carry more weight.
-- **Each source gets its own quality curve:** for the origin it describes, how good the item typically is in each half-month window, from poor through fair to prime. A vague claim ("spring") gets soft edges; a precise one gets sharp edges. Where a source says nothing, it has no curve, never a poor one. Each source's view also carries a confidence label from its tier and from how direct the claim is (eating quality, or only availability). Claims are paraphrased, never copied.
+- **Each source gets its own quality curve:** for the origin it describes (and the variety, when it names one), how good the item typically is in each half-month window, from poor through fair to prime. A vague claim ("spring") gets soft edges; a precise one gets sharp edges. Where a source says nothing, it has no curve, never a poor one. Each source's view also carries a confidence label from its tier and from how direct the claim is (eating quality, or only availability). Claims are paraphrased, never copied.
 - **Claims that name no origin describe US-grown supply.** Common advice ("blueberries peak in summer") is usually about the US harvest, so imports are judged on their own evidence.
 - **The curves combine into a proposal:** their confidence-weighted average for each origin across the year, read as prime, fair or poor, with a combined confidence of High, Medium or Low per window that reflects how much evidence covers it and how far the sources disagree. Windows no source covers have no proposal. The proposal is the base case for the editorial call, not the call itself; the item review shows each source's curve beside it.
 - **Low confidence gets an explicit review.** Every window whose combined confidence is Low, or whose editorial rating departs from the proposal, carries a written reason, and Jared reviews those windows one by one.
