@@ -1,14 +1,14 @@
 # PROGRESS
 
-Updated: 2026-11-16 · Phase: build · Current milestone: M0 (scaffold and deploy)
+Updated: 2026-11-16 · Phase: build · Current milestone: M1 (USDA probe)
 
 ## Next concrete action
 
-M0 is done except the first deploy, which waits on Jared registering a workers.dev subdomain (below). Then run `npm run deploy` and open the URL on a phone. Next: M1 (USDA probe; key in `.env.pipeline`) and M2 (content schemas and verdict engine).
+M0 is done and deployed at https://orchard.jpeterson92.workers.dev (prerendered `/`, `/api/health`, SPA fallback all checked live). Next: M1 (USDA probe; key in `.env.pipeline`), then M2 (content schemas and verdict engine).
 
 ## Blocking (needs Jared)
 
-- **workers.dev subdomain.** `orchard` is taken. Register one in the Cloudflare dashboard (Workers & Pages, then the onboarding prompt). The app URL becomes `orchard.<subdomain>.workers.dev`.
+- None.
 
 ## Decisions
 

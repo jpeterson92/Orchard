@@ -64,7 +64,10 @@ When documents conflict: Jared's decisions (in `PROGRESS.md`) > product spec for
 ## Git and GitHub
 
 - Work on `main` in small commits. Each message says what changed and how it was checked. Never mix refactors, upgrades or formatting with feature work.
-- Push to `origin` (a private GitHub repository) at the end of each session.
+- Testing happens locally: `npm run check` before every push, plus `npm run e2e` when UI, routing, the build or the Worker changed. CI repeats the same checks on GitHub as a backstop.
+- Push to `origin` (a private GitHub repository) at the end of each session and at each reviewable milestone. **Never wait on, poll or watch GitHub Actions after a push.**
+- Before each deploy, check the latest CI run once (`gh run list --limit 1`). If it failed, read the log (`gh run view <id> --log-failed`), fix it, then deploy. Live URL: https://orchard.jpeterson92.workers.dev
+- After a deploy, check the live URL once (single requests with a timeout), never in a retry loop. If it isn't up, report it and move on.
 - No secrets in git. `.env` and `.dev.vars` are ignored; `.env.example` lists variable names only.
 
 ## End of every session
