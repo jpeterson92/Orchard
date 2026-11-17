@@ -38,21 +38,22 @@ async function get(url: string): Promise<{ rows: RawRow[]; truncated: boolean }>
 }
 
 /**
- * Detail rows of one report for one commodity between two ISO dates (inclusive), cached per range.
- * A response cut off at the API's row cap is split in half and fetched again.
+ * Detail rows of one report for one commodity (or every commodity, with null) between two ISO dates
+ * (inclusive), cached per range. A response cut off at the API's row cap is split in half and fetched again.
  */
 export async function fetchDetails(
   report: number,
-  commodity: string,
+  commodity: string | null,
   from: string,
   to: string,
   section = "Report%20Details",
 ): Promise<RawRow[]> {
-  const file = `${CACHE}/${report}-${commodity.replace(/\W+/g, "_")}-${from}-${to}.json`;
+  const file = `${CACHE}/${report}-${commodity === null ? "ALL" : commodity.replace(/\W+/g, "_")}-${from}-${to}.json`;
   if (existsSync(file)) return JSON.parse(readFileSync(file, "utf8"));
   // The API reads a comma as a list of values, so a name like "Lettuce, Romaine" must be quoted.
-  const name = commodity.includes(",") ? `"${commodity}"` : commodity;
-  const q = `commodity=${encodeURIComponent(name)};report_begin_date=${usdaDate(from)}:${usdaDate(to)}`;
+  const name = commodity?.includes(",") ? `"${commodity}"` : commodity;
+  const filter = name === null ? "" : `commodity=${encodeURIComponent(name)};`;
+  const q = `${filter}report_begin_date=${usdaDate(from)}:${usdaDate(to)}`;
   const { rows, truncated } = await get(`${API}/${report}/${section}?q=${q}`);
   if (truncated) {
     const mid = Math.floor((day(from) + day(to)) / 2);

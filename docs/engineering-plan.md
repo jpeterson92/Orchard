@@ -99,7 +99,8 @@ evaluate(item: ItemInputs, ctx: { date: PlainDate; state: StateId | null; mode: 
 - **Markers:** Last call, Reliable year-round (Good or better in at least 20 of 24 windows), Advisory, and "Usually improves in…" (the next window rated Good or better).
 - `byOrigin` re-runs the rules once per rated origin, for "What does the label say?"
 - `windowIndex(date) = (month − 1) × 2 + (day > 15 ? 1 : 0)` lives in `src/shared/time.ts`, and nowhere else.
-- **Today grouping** (up to 6 Peak, sorted by confidence then `purchaseRank`, never padded; each item exactly once) is one pure function in `src/shared/today.ts`.
+- **Always good** (D10) is derived, not written: an item whose typical outlook is Good in all 24 windows, with no Peak and no Skip.
+- **Today grouping** (up to 6 Peak, sorted by confidence then `purchaseRank`, never padded; each seasonal item exactly once; always-good items left out unless an advisory changes their verdict today) is one pure function in `src/shared/today.ts`.
 
 ### 4.3 Provisional methodology (awaiting Jared's confirmation; never blocking)
 
@@ -133,7 +134,7 @@ Each milestone takes 1–3 sessions and ends with something Jared can review. Th
 | M8 | **Feedback and measurement.** D1 tables; feedback, taste, request and event endpoints; rate limiting; `web-vitals` + `verdict-visible` beacon; privacy-safe logging | A test proves no ZIP or IP reaches logs or D1; a feedback row records app version, date, state, item and origin | — |
 | M9 | **Launch readiness.** All launch content reviewed, illustrations, Turnstile, CSP and security headers, axe plus a quick VoiceOver/TalkBack pass, a performance check on a mid-range Android, offline check on a real iPhone, production domain | Jared decides launch, using the D4 gates | Domain, devices, D4 |
 
-**Content track.** Claude drafts in batches of about 5 items, each rating with at least 2 real, checked citations, all marked `draft`. Jared reviews in the preview app or the content report, and approves or edits. Approval means Claude sets `status: reviewed`, `reviewer`, and `reviewedOn`. Order: the 5 M2 items → the rest of the ~35 launch items → variety guides → the 24 summaries → Methods text.
+**Content track.** Claude drafts in batches of about 10 items (5 in M2), each rating with at least 2 real, checked citations, all marked `draft`. Jared reviews in the preview app or the content report, and approves or edits. Approval means Claude sets `status: reviewed`, `reviewer`, and `reviewedOn`. Order: the 5 M2 items → the rest of the ~100 launch items (D10), seasonal items first, always-good items last → variety guides → the 24 summaries → Methods text.
 
 **Art track (D7).** Jared generates all painted artwork with his ChatGPT subscription, the same tool that made the design language and the mockups in `docs/design/references/`. Claude never generates images. The workflow is built in M3, when the first item art is needed, and then runs in batches alongside the content track:
 

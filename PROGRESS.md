@@ -4,7 +4,7 @@ Updated: 2026-11-17 · Phase: build · Current milestone: M2 (content schemas an
 
 ## Next concrete action
 
-M2 slice 1 is done: USDA coverage for 57 launch candidates and a terminal-market variety calendar (`docs/data/usda-probe.md`). Next: M2 slice 2, the zod schemas and `data:build` (item, sources, rules, advisories, typical origins, supply index), with one broken-input fixture per check. Then the engine with its tests, then content batch 1 (apples, pears, strawberries, broccoli, mandarins).
+M2 slice 1 is done: USDA coverage for 57 launch candidates and a terminal-market variety calendar (`docs/data/usda-probe.md`). Next: M2 slice 2, the zod schemas and `data:build` (item, sources, rules, advisories, typical origins, supply index), with one broken-input fixture per check. Then the engine with its tests, then content batch 1 (apples, pears, strawberries, broccoli, mandarins). The schemas must carry the always-good class (derived) and item categories for ~100 items.
 
 ## Blocking (needs Jared)
 
@@ -19,11 +19,13 @@ M2 slice 1 is done: USDA coverage for 57 launch candidates and a terminal-market
 - 2026-11-16 · D6 · Prerender with React Router library mode plus `scripts/prerender.ts` (renderToString per route, about 40 lines), not framework mode · proven end to end in M0; framework mode with the Cloudflare plugin would have been an unverified combination
 - 2026-11-16 · D7 · Jared generates all artwork in ChatGPT from prompts Claude writes; Claude processes and checks the files, and Jared approves them (engineering plan §5, art track; workflow built in M3) · ChatGPT made the design language and the mockups, and Jared already has the subscription
 - 2026-11-17 · D8 · USDA movement data is reference data: typical origins and the supply index come from a 3-year snapshot rebuilt once a year and reviewed with the content. No monthly refresh; Today uses the typical index, and advisories cover unusual seasons. Items without usable USDA data (domestic citrus) get cited editorial origins and a null index · the probe showed the data is stable year to year, and a live feed risks silent verdict changes when USDA reporting changes
-- 2026-11-17 · D9 · Three more reference sources, rebuilt yearly like D8: a variety calendar from USDA terminal market reports (same API), UC Davis Postharvest fact sheets as the citation base for structured storage fields, and the IFPS PLU code list for label advice (only once IFPS confirms reuse) · each fills a gap the movement data leaves, at no recurring cost
+$1- 2026-11-17 · D10 · Launch scope is all common supermarket produce (about 100 items) instead of ~35; always-good items stay off Today but appear everywhere else · Jared's call; always-good items need lighter content, which offsets part of the extra volume
 
 ## Open questions for Jared (non-blocking)
 
-- **Launch list (~35 items):** confirm or edit the proposed list. Proposed: apples, pears, mandarins, oranges, lemons, limes, peaches, nectarines, cherries, strawberries, blueberries, raspberries, grapes, watermelon, cantaloupe, bananas, avocados, mangoes, romaine, spinach, broccoli, cauliflower, Brussels sprouts, potatoes, sweet potatoes, carrots, onions, zucchini, tomatoes, bell peppers, cucumbers, sweet corn, green beans, asparagus, mushrooms, cilantro (36). Swap candidates: persimmons and pomegranates (both in the mockups; editorial origins), plums, blackberries, kale, pineapples, iceberg, celery. Needed before content batch 2.
+- **Launch list (D10):** confirm the proposed 98 items and decide the borderline group (both in `docs/data/usda-probe.md`, Launch scope screen). Needed before content batch 2.
+- **Always good (D10), provisional definition:** typical outlook Good in all 24 windows, never Peak or Skip; such items stay off Today unless an advisory changes their verdict, and show "Always good" elsewhere. Confirm, or say if some items should be always good by editorial call instead.
+- **Illustrations for ~100 items** (D7): all at launch, or seasonal items first?
 - Confirm or adjust the provisional methodology defaults P1, P9, P10, P11 and the Last call trigger (engineering plan §4.3).
 - D4, launch gates: needed by M9.
 - In-app brand name: Orchard, or something else? Needed by M9.

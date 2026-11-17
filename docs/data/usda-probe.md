@@ -71,6 +71,41 @@ Notes:
 - Thin months (supply index < 0.8) are mostly where expected: the winter import months for stone fruit and cherries, and summer for broccoli, cabbage and Brussels sprouts.
 - The fourth group is my reading of where US supply actually comes from. Each needs citations in the item's content before it's used.
 
+## Launch scope screen (D10)
+
+`npm run usda:terminal-screen` samples one week per season (Oct 2025, Jan, Apr and Jul 2026) from the fruit, vegetable, and onion-and-potato price reports of all 11 city terminal markets. It found 289 commodities; about 150 are quoted in 8 or more cities. Wholesale markets also supply ethnic grocers and restaurants, so the proposed list also asks whether mainstream supermarkets stock the item. That second test is a judgment call for Jared to confirm.
+
+Reported volume (`npm run usda:probe`) can't serve as the filter. Cranberries, pumpkins, winter squash, Asian pears, dates, figs, shallots and most herbs have large US production that movement reports never include, so their reported volume understates them badly.
+
+**Proposed launch list (98 items).** Types in brackets are one item, not separate items.
+
+| Category | Items |
+| --- | --- |
+| Apples & pears | apples, pears, Asian pears |
+| Citrus | mandarins [clementines, satsumas, tangelos], oranges [navel, Valencia, blood, Cara Cara], lemons, limes, grapefruit |
+| Stone fruit | peaches, nectarines, plums, cherries, apricots |
+| Berries | strawberries, blueberries, raspberries, blackberries, cranberries |
+| Grapes | grapes |
+| Melons | watermelon, cantaloupe, honeydew |
+| Tropical & subtropical | bananas, plantains, avocados, mangoes, pineapples, papaya, kiwifruit, coconuts, dragon fruit, persimmons, pomegranates, dates, figs |
+| Leafy greens & lettuces | romaine, iceberg, leaf lettuce [green, red], butter lettuce, spring mix, spinach, kale, arugula, collard greens, Swiss chard, mustard greens |
+| Brassicas | broccoli, cauliflower, cabbage, Brussels sprouts, bok choy, napa cabbage |
+| Roots & tubers | potatoes, sweet potatoes, carrots, beets, radishes, turnips, parsnips, rutabagas, ginger, jicama, yuca |
+| Alliums | onions, green onions, garlic, leeks, shallots |
+| Squash | zucchini, yellow squash, butternut, acorn, spaghetti squash, pumpkins |
+| Tomatoes, peppers & eggplant | tomatoes [round, plum, cherry, grape], bell peppers, mini sweet peppers, hot peppers [jalapeño, serrano, poblano, habanero, Anaheim], cucumbers, eggplant, tomatillos |
+| Beans, peas & corn (plus stalks) | sweet corn, green beans [incl. haricots verts], snap and snow peas, asparagus, okra, artichokes, celery, fennel |
+| Mushrooms | mushrooms |
+| Herbs | cilantro, parsley, basil, mint, dill, thyme, rosemary, chives |
+
+**Borderline (Jared decides):** kabocha and delicata squash, chayote, nopales, daikon, celery root, chicories (endive, escarole, radicchio), watercress, broccoli rabe, guava, lychee, star fruit, cactus pears, rhubarb, kumquats, quince, oregano, sage, tarragon, lemongrass.
+
+**Left out as specialty:** aloe leaves, sugarcane, tamarind, rambutan, jackfruit, cherimoya, mamey sapote, taro, malanga, calabaza, culantro, turmeric, horseradish, bean sprouts, and the Asian and Caribbean specialty greens and squashes.
+
+The evidence basis for each added item is set when its record is drafted:
+- **USDA-backed** where imports dominate and are reported, as with plantains, coconuts, ginger, jicama, yuca, tomatillos and hot peppers.
+- **Cited editorial origins** where US production is unreported, as with cranberries, pumpkins, winter squash, dates, figs and herbs.
+
 ## Variety calendar from terminal markets (D9)
 
 `npm run usda:terminal-probe` reads 3 years of fruit price reports from 12 city terminal markets (11 current, plus San Francisco until May 2025), giving 478k apple quotes, 115k pear quotes and 175k citrus quotes. For each variety it gives the share of market-days quoting the item that quoted that variety, by month, plus its main origins. The output is `.cache/usda/variety-calendar.md`.

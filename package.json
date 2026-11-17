@@ -19,7 +19,8 @@
     "cf-typegen": "wrangler types src/worker/worker-configuration.d.ts",
     "postinstall": "npm run cf-typegen",
     "usda:probe": "tsx scripts/usda-probe.ts",
-    "usda:terminal-probe": "tsx scripts/usda-terminal-probe.ts"
+    "usda:terminal-probe": "tsx scripts/usda-terminal-probe.ts",
+    "usda:terminal-screen": "tsx scripts/usda-terminal-screen.ts"
   },
   "dependencies": {
     "hono": "4.13.19",
