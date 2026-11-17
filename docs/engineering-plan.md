@@ -26,7 +26,7 @@ Mature, widely used tools only (D1). At scaffold time, take the newest release w
 
 | Concern | Choice | Notes |
 | --- | --- | --- |
-| Runtime | Node 24 LTS, npm | One package, no workspace. Scripts run with `tsx` |
+| Runtime | Node 26 LTS (installed via Scoop), npm | One package, no workspace. Scripts run with `tsx` |
 | Language | TypeScript 5.x (`tsc --noEmit`) | Not the TS 7 native compiler until the ecosystem catches up |
 | App | React 19, Vite, React Router (library mode, `createBrowserRouter`) | SPA. Search is an overlay, not a route |
 | Styling | Tailwind CSS 4 | Design-system tokens as CSS variables in `@theme`; no component library. Native `<dialog>`; hand-written disclosure buttons |

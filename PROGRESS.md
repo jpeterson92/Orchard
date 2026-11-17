@@ -4,7 +4,7 @@ Updated: 2026-11-16 · Phase: build · Current milestone: M0 (scaffold and deplo
 
 ## Next concrete action
 
-M0 (engineering plan §5): install Node 24 LTS, scaffold the Vite + React + TypeScript app and Worker with the Cloudflare Vite plugin, and add Tailwind, Biome, Vitest, Playwright and the CI workflow. Deploy a placeholder page once Cloudflare is available. M1 (USDA probe) is unblocked: the key is in `.env` (gitignored) and returned the report list (1,051 reports) on 2026-11-16.
+M0 (engineering plan §5): scaffold the Vite + React + TypeScript app and Worker with the Cloudflare Vite plugin, and add Tailwind, Biome, Vitest, Playwright and the CI workflow. Deploy a placeholder page once Cloudflare is available. M1 (USDA probe) is unblocked: the key is in `.env` (gitignored) and returned the report list (1,051 reports) on 2026-11-16.
 
 ## Blocking (needs Jared)
 
@@ -28,5 +28,6 @@ M0 (engineering plan §5): install Node 24 LTS, scaffold the Vite + React + Type
 
 ## Environment notes
 
-- Node v20.10 is installed and past end of life; install Node 24 LTS in M0. Wrangler comes in as a dev dependency.
+- Node 26.13 LTS is installed via Scoop, but an old Node 20 in `C:\Program Files
+odejs` shadows it on PATH until Jared uninstalls it. Wrangler needs Node ≥ 22.12 and comes in as a dev dependency.
 - Python 3.12 and uv 0.13 are available (optional notebooks only). The GitHub CLI is signed in as jpeterson92.
