@@ -7,6 +7,7 @@ import {
   parseRow,
   splitAcrossMonths,
   supplyIndex,
+  varietyPresence,
 } from "./usda-lib";
 
 const raw = (over: Record<string, unknown> = {}) => ({
@@ -91,4 +92,25 @@ describe("supplyIndex", () => {
 
 test("monthRange spans years inclusively", () => {
   expect(monthRange("2023-11", "2024-02")).toEqual(["2023-11", "2023-12", "2024-01", "2024-02"]);
+});
+
+test("varietyPresence counts each variety once per market-day and shares it by month", () => {
+  const q = (market: string, date: string, variety: string, origin = "Washington") => ({
+    market,
+    date,
+    variety,
+    origin,
+  });
+  const p = varietyPresence([
+    q("NY", "2025-01-02", "Fuji"),
+    q("NY", "2025-01-02", "Fuji", "New York"), // second origin, same market-day
+    q("NY", "2025-01-02", "Gala"),
+    q("BOS", "2025-01-02", "Gala"),
+    q("NY", "2025-02-03", "Fuji"),
+  ]);
+  expect(p.get("Fuji")?.months[0]).toBeCloseTo(0.5); // 1 of 2 January market-days
+  expect(p.get("Gala")?.months[0]).toBe(1);
+  expect(p.get("Fuji")?.months[1]).toBe(1);
+  expect(p.get("Fuji")?.marketDays).toBe(2);
+  expect(p.get("Fuji")?.origins.get("New York")).toBe(1);
 });

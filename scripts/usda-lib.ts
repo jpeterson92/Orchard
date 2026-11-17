@@ -143,3 +143,54 @@ export function monthRange(first: string, last: string): string[] {
   }
   return out;
 }
+
+export interface Quote {
+  market: string;
+  /** ISO date of the price report. */
+  date: string;
+  variety: string;
+  origin: string;
+}
+
+export interface VarietyPresence {
+  /** Per calendar month (index 0 = Jan): share of market-days quoting the item that quote this variety. */
+  months: number[];
+  /** Market-days on which the variety was quoted, by origin. */
+  origins: Map<string, number>;
+  marketDays: number;
+}
+
+/**
+ * Terminal-market evidence of when a variety is on offer. A market-day is one city's report on one date; each
+ * variety counts at most once per market-day, however many sizes, grades or origins were quoted.
+ */
+export function varietyPresence(quotes: Quote[]): Map<string, VarietyPresence> {
+  const dayKey = (q: Quote) => `${q.market}|${q.date}`;
+  const itemDays: number[] = new Array(12).fill(0);
+  const seenDay = new Set<string>();
+  const seenVariety = new Set<string>();
+  const seenOrigin = new Set<string>();
+  const out = new Map<string, VarietyPresence>();
+  for (const q of quotes) {
+    const month = Number(q.date.slice(5, 7)) - 1;
+    if (!seenDay.has(dayKey(q))) {
+      seenDay.add(dayKey(q));
+      itemDays[month] = (itemDays[month] ?? 0) + 1;
+    }
+    const v = out.get(q.variety) ?? { months: new Array(12).fill(0), origins: new Map(), marketDays: 0 };
+    out.set(q.variety, v);
+    const vk = `${dayKey(q)}|${q.variety}`;
+    if (!seenVariety.has(vk)) {
+      seenVariety.add(vk);
+      v.months[month] = (v.months[month] ?? 0) + 1;
+      v.marketDays++;
+    }
+    const ok = `${vk}|${q.origin}`;
+    if (!seenOrigin.has(ok)) {
+      seenOrigin.add(ok);
+      v.origins.set(q.origin, (v.origins.get(q.origin) ?? 0) + 1);
+    }
+  }
+  for (const v of out.values()) v.months = v.months.map((n, i) => (itemDays[i] ? n / (itemDays[i] ?? 1) : 0));
+  return out;
+}

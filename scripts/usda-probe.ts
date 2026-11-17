@@ -1,6 +1,9 @@
-// M1 USDA probe: can typical origins (≥ 70%) and a supply index be computed from Market News movement data?
-// Usage: npm run usda:probe   (needs USDA_MARS_API_KEY in .env.pipeline; raw responses cached in .cache/usda/)
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+// USDA movement probe: for each launch candidate, can typical origins (≥ 70%) and the P11 supply index be
+// computed, and is domestic supply reported throughout the period?
+// Usage: npm run usda:probe [-- item ...]
+// Writes .cache/usda/coverage.md (one row per item) and .cache/usda/probe-tables.md (month tables).
+import { writeFileSync } from "node:fs";
+import { CACHE, fetchDetails, pool } from "./usda-client";
 import {
   dedupe,
   type MovementRow,
@@ -11,9 +14,9 @@ import {
   supplyIndex,
 } from "./usda-lib";
 
-const FIRST = "2023-11";
-const LAST = "2026-10"; // 36 full months
-const MONTHS = monthRange(FIRST, LAST);
+const FROM = "2023-11-01";
+const TO = "2026-10-31"; // 36 full months
+const MONTHS = monthRange(FROM.slice(0, 7), TO.slice(0, 7));
 
 // Every truck/air/boat movement report plus national rail, including offices discontinued in Dec 2024
 // (their history falls inside the 36 months). WA_FV170 (3283) carries all imports; office reports carry
@@ -23,71 +26,100 @@ const REPORTS = [
   3170, 3181, 3282, 3283, 3332, 3520,
 ];
 
-const ITEMS: Record<string, string[]> = {
+// Launch candidates (a superset of the ~35 launch items, which Jared picks) → USDA commodity names.
+const CANDIDATES: Record<string, string[]> = {
   apples: ["Apples"],
   pears: ["Pears"],
-  mandarins: ["Tangerines", "Clementines", "Royal Mandarin", "Mandarins", "Satsumas"],
+  mandarins: [
+    "Tangerines",
+    "Clementines",
+    "Royal Mandarin",
+    "Mandarins",
+    "Satsuma",
+    "Satsumas",
+    "Tangerines/Mandarins ",
+  ],
+  oranges: ["Oranges"],
+  lemons: ["Lemons"],
+  limes: ["Limes"],
+  grapefruit: ["Grapefruit"],
+  peaches: ["Peaches"],
+  nectarines: ["Nectarines"],
+  plums: ["Plums"],
+  cherries: ["Cherries"],
+  apricots: ["Apricots"],
   strawberries: ["Strawberries"],
+  blueberries: ["Blueberries"],
+  raspberries: ["Raspberries"],
+  blackberries: ["Blackberries"],
+  grapes: ["Grapes"],
+  watermelon: ["Watermelons"],
+  cantaloupe: ["Cantaloupes"],
+  honeydew: ["Honeydews"],
+  bananas: ["Bananas"],
+  avocados: ["Avocados"],
+  mangoes: ["Mangoes"],
+  pineapples: ["Pineapples"],
+  kiwifruit: ["Kiwifruit"],
+  papaya: ["Papaya"],
+  persimmons: ["Persimmons"],
+  pomegranates: ["Pomegranates"],
+  "romaine-lettuce": ["Lettuce, Romaine"],
+  "iceberg-lettuce": ["Lettuce, Iceberg"],
+  spinach: ["Spinach"],
+  kale: ["Greens, Kale ", "Kale"],
   broccoli: ["Broccoli"],
+  cauliflower: ["Cauliflower"],
+  cabbage: ["Cabbage"],
+  "brussels-sprouts": ["Brussels Sprouts"],
+  potatoes: ["Potatoes"],
+  "sweet-potatoes": ["Sweet Potatoes"],
+  carrots: ["Carrots"],
+  onions: ["Onions, Dry"],
+  "green-onions": ["Onions, Green", "Onions Green"],
+  garlic: ["Garlic"],
+  zucchini: ["Squash, Zucchini"],
+  "butternut-squash": ["Squash, Butternut"],
+  tomatoes: ["Tomatoes", "Tomatoes, Plum Type", "Tomatoes, Grape Type", "Tomatoes, Cherry"],
+  "bell-peppers": ["Peppers, Bell Type"],
+  cucumbers: ["Cucumbers"],
+  eggplant: ["Eggplant"],
+  "sweet-corn": ["Corn, Sweet"],
+  "green-beans": ["Beans", "Beans, Green", "Beans, Round Green Type", "Beans, Flat Green Type"],
+  asparagus: ["Asparagus"],
+  "snap-peas": ["Peas, Sugar Snap", "Peas, Snow"],
+  celery: ["Celery"],
+  mushrooms: ["Mushrooms"],
+  cilantro: ["Cilantro"],
+  parsley: ["Parsley"],
+  basil: ["Basil"],
 };
-
-const CACHE = ".cache/usda";
-const API = "https://marsapi.ams.usda.gov/services/v1.2/reports";
-
-process.loadEnvFile(".env.pipeline");
-const key = process.env.USDA_MARS_API_KEY;
-if (!key) throw new Error("USDA_MARS_API_KEY missing from .env.pipeline");
-const auth = `Basic ${Buffer.from(`${key}:`).toString("base64")}`;
-
-const usdaDate = (iso: string) => `${iso.slice(5, 7)}/${iso.slice(8, 10)}/${iso.slice(0, 4)}`;
-
-async function fetchRows(report: number, commodity: string): Promise<Record<string, unknown>[]> {
-  const file = `${CACHE}/${report}-${commodity.replace(/\W+/g, "_")}-${FIRST}-${LAST}.json`;
-  if (existsSync(file)) return JSON.parse(readFileSync(file, "utf8"));
-  const range = `${usdaDate(`${FIRST}-01`)}:${usdaDate(`${LAST}-31`)}`;
-  const url = `${API}/${report}/Report%20Details?q=commodity=${encodeURIComponent(commodity)};report_begin_date=${range}`;
-  const res = await fetch(url, { headers: { Authorization: auth }, signal: AbortSignal.timeout(120_000) });
-  if (!res.ok) throw new Error(`${report} ${commodity}: HTTP ${res.status}`);
-  const body = (await res.json()) as {
-    results?: Record<string, unknown>[];
-    stats?: { totalRows: number; returnedRows: number };
-  };
-  if (body.stats && body.stats.returnedRows < body.stats.totalRows)
-    throw new Error(`${report} ${commodity}: truncated`);
-  const rows = body.results ?? [];
-  writeFileSync(file, JSON.stringify(rows));
-  return rows;
-}
-
-async function pool<T, R>(items: T[], size: number, fn: (t: T) => Promise<R>): Promise<R[]> {
-  const out: R[] = new Array(items.length);
-  let next = 0;
-  await Promise.all(
-    Array.from({ length: size }, async () => {
-      while (next < items.length) {
-        const i = next++;
-        out[i] = await fn(items[i] as T);
-      }
-    }),
-  );
-  return out;
-}
 
 const fmt = (lb: number) => (lb >= 1e6 ? `${(lb / 1e6).toFixed(1)}M` : `${Math.round(lb / 1e3)}k`);
 const MONTH_NAMES = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+const seasonOf = (isoDate: string) => {
+  const y = Number(isoDate.slice(0, 4)) + (Number(isoDate.slice(5, 7)) >= 11 ? 1 : 0);
+  return `${y - 1}–${String(y).slice(2)}`;
+};
+const SEASONS = [...new Set(MONTHS.map((m) => seasonOf(`${m}-01`)))];
 
-mkdirSync(CACHE, { recursive: true });
-const lines: string[] = [`Period ${FIRST} to ${LAST} (${MONTHS.length} months). Exports excluded.`, ""];
+const only = process.argv.slice(2);
+const items = Object.entries(CANDIDATES).filter(([id]) => only.length === 0 || only.includes(id));
+const detail: string[] = [`Period ${FROM} to ${TO}. Exports excluded.`, ""];
+const coverage: string[] = [
+  `Period ${FROM} to ${TO} (${MONTHS.length} months). Exports excluded. Seasons run Nov–Oct.`,
+  "",
+  "| Item | Supply/season | Domestic | Domestic by season | Origins to 70% | Top origin same all 3 years | Thin months (index < 0.8) | Lump rows | Flags |",
+  "| --- | --- | --- | --- | --- | --- | --- | --- | --- |",
+];
 
-for (const [item, names] of Object.entries(ITEMS)) {
+for (const [item, names] of items) {
   const jobs = names.flatMap((c) => REPORTS.map((r) => ({ r, c })));
-  const raw = (await pool(jobs, 6, ({ r, c }) => fetchRows(r, c))).flat();
-  const parsed = raw.map(parseRow);
-  const skipped = parsed.filter((p) => p === null).length;
-  const { rows, duplicates } = dedupe(parsed.filter((p): p is MovementRow => p !== null));
+  const raw = (await pool(jobs, 6, ({ r, c }) => fetchDetails(r, c, FROM, TO))).flat();
+  const parsed = raw.map(parseRow).filter((p): p is MovementRow => p !== null);
+  const { rows } = dedupe(parsed);
   const supply = rows.filter((r) => r.flow !== "export");
 
-  // volume by "YYYY-MM" → origin
   const byMonth = new Map<string, Map<string, number>>();
   for (const r of supply) {
     for (const [m, lb] of splitAcrossMonths(r.begin, r.end, r.lb)) {
@@ -103,49 +135,66 @@ for (const [item, names] of Object.entries(ITEMS)) {
   );
   const index = supplyIndex(monthly, MONTHS);
   const total = [...monthly.values()].reduce((a, b) => a + b, 0);
-  const domestic = supply.filter((r) => r.flow === "domestic").reduce((a, r) => a + r.lb, 0);
-  const found = [...new Set(supply.map((r) => r.commodity))].join(", ");
+  const avgMonth = total / MONTHS.length;
+  const inRange = supply.filter((r) => r.begin >= FROM && r.end <= TO);
+  const domestic = inRange.filter((r) => r.flow === "domestic").reduce((a, r) => a + r.lb, 0);
+  const domBySeason = SEASONS.map((s) =>
+    inRange.filter((r) => r.flow === "domestic" && seasonOf(r.begin) === s).reduce((a, r) => a + r.lb, 0),
+  );
+  // A single row bigger than half an average month is a lump-sum entry, not a day's shipments.
+  const lumps = supply.filter((r) => avgMonth > 0 && r.lb > avgMonth / 2).length;
 
-  lines.push(`### ${item}`, "");
-  lines.push(
-    `Commodities found: ${found || "none"}. Rows: ${rows.length} (skipped without volume: ${skipped}; exact repeats dropped: ${duplicates}). Supply over 3 years: ${fmt(total)} lb, ${Math.round((100 * domestic) / (total || 1))}% domestic.`,
-    "",
-  );
-  // Season years (Nov–Oct) by flow, to expose reporting gaps such as the Dec 2024 office closures.
-  const seasons = new Map<string, Record<string, number>>();
-  for (const r of supply) {
-    const y = Number(r.begin.slice(0, 4)) + (Number(r.begin.slice(5, 7)) >= 11 ? 1 : 0);
-    const s = seasons.get(`${y - 1}–${String(y).slice(2)}`) ?? {};
-    s[r.flow] = (s[r.flow] ?? 0) + r.lb;
-    seasons.set(`${y - 1}–${String(y).slice(2)}`, s);
-  }
-  lines.push(
-    `By season (Nov–Oct): ${[...seasons]
-      .sort()
-      .map(([y, s]) => `${y} domestic ${fmt(s.domestic ?? 0)}, imports ${fmt(s.import ?? 0)}`)
-      .join("; ")}.`,
-    "",
-  );
-  lines.push(
-    "| Month | Avg lb/month | Supply index | Origins to 70% | Top origins (share) | Top origin each year |",
-  );
-  lines.push("| --- | --- | --- | --- | --- | --- |");
-  for (let cal = 1; cal <= 12; cal++) {
-    const ms = MONTHS.filter((m) => Number(m.slice(5)) === cal);
+  const perCal = MONTH_NAMES.map((_, i) => {
+    const ms = MONTHS.filter((m) => Number(m.slice(5)) === i + 1);
     const pooled = new Map<string, number>();
     for (const m of ms) for (const [o, lb] of byMonth.get(m) ?? []) pooled.set(o, (pooled.get(o) ?? 0) + lb);
     const sum = [...pooled.values()].reduce((a, b) => a + b, 0);
-    const cover = originsCovering(pooled);
-    const tops = cover.map((o) => `${o} ${Math.round((100 * (pooled.get(o) ?? 0)) / sum)}%`).join(", ");
-    const perYear = ms.map((m) => originsCovering(byMonth.get(m) ?? new Map(), 0)[0] ?? "–").join(" / ");
-    const idx = index[cal - 1];
-    lines.push(
-      `| ${MONTH_NAMES[cal - 1]} | ${fmt(sum / ms.length)} | ${idx === null || idx === undefined ? "null" : idx.toFixed(2)} | ${cover.length} | ${tops} | ${perYear} |`,
+    const tops = ms.map((m) => originsCovering(byMonth.get(m) ?? new Map(), 0)[0]);
+    return {
+      ms,
+      pooled,
+      sum,
+      cover: originsCovering(pooled),
+      stable: tops[0] !== undefined && tops.every((t) => t === tops[0]),
+    };
+  });
+  const active = perCal.filter((c) => c.sum > 0);
+  const counts = active.map((c) => c.cover.length);
+  const thin = MONTH_NAMES.filter((_, i) => (index[i] ?? 1) < 0.8);
+
+  const flags: string[] = [];
+  if (total === 0) flags.push("no data");
+  const maxDom = Math.max(...domBySeason);
+  if (maxDom > 0.05 * (total / SEASONS.length) && domBySeason.some((d) => d < 0.25 * maxDom))
+    flags.push("domestic reporting gap");
+  if (total > 0 && domestic === 0) flags.push("no domestic reported");
+  if (lumps > 0) flags.push("lump-sum rows");
+
+  coverage.push(
+    `| ${item} | ${fmt(total / SEASONS.length)} | ${total ? Math.round((100 * domestic) / total) : 0}% | ${domBySeason.map(fmt).join(" / ")} | ${counts.length ? `${Math.min(...counts)}–${Math.max(...counts)}` : "–"} | ${active.filter((c) => c.stable).length}/${active.length} | ${thin.join(" ") || "none"} | ${lumps} | ${flags.join("; ")} |`,
+  );
+
+  detail.push(
+    `### ${item}`,
+    "",
+    `Commodities found: ${[...new Set(supply.map((r) => r.commodity))].join(", ") || "none"}.`,
+    "",
+  );
+  detail.push(
+    "| Month | Avg lb/month | Supply index | Top origins to 70% (share) |",
+    "| --- | --- | --- | --- |",
+  );
+  perCal.forEach((c, i) => {
+    const tops = c.cover.map((o) => `${o} ${Math.round((100 * (c.pooled.get(o) ?? 0)) / c.sum)}%`).join(", ");
+    const idx = index[i];
+    detail.push(
+      `| ${MONTH_NAMES[i]} | ${fmt(c.sum / c.ms.length)} | ${idx == null ? "null" : idx.toFixed(2)} | ${tops} |`,
     );
-  }
-  lines.push("");
+  });
+  detail.push("");
   console.error(`${item}: ${rows.length} rows`);
 }
 
-writeFileSync(`${CACHE}/probe-tables.md`, lines.join("\n"));
-console.log(lines.join("\n"));
+writeFileSync(`${CACHE}/coverage.md`, coverage.join("\n"));
+writeFileSync(`${CACHE}/probe-tables.md`, detail.join("\n"));
+console.log(coverage.join("\n"));

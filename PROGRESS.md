@@ -4,7 +4,7 @@ Updated: 2026-11-17 · Phase: build · Current milestone: M2 (content schemas an
 
 ## Next concrete action
 
-M1 is done (`docs/data/usda-probe.md`). Next: M2. Slice 1: extend the probe to the full ~35-item launch candidate list, to see which items lack domestic shipment data (citrus is the likely group). Then the zod schemas and `data:build`, then the engine with its tests.
+M2 slice 1 is done: USDA coverage for 57 launch candidates and a terminal-market variety calendar (`docs/data/usda-probe.md`). Next: M2 slice 2, the zod schemas and `data:build` (item, sources, rules, advisories, typical origins, supply index), with one broken-input fixture per check. Then the engine with its tests, then content batch 1 (apples, pears, strawberries, broccoli, mandarins).
 
 ## Blocking (needs Jared)
 
@@ -23,12 +23,14 @@ M1 is done (`docs/data/usda-probe.md`). Next: M2. Slice 1: extend the probe to t
 
 ## Open questions for Jared (non-blocking)
 
+- **Launch list (~35 items):** confirm or edit the proposed list. Proposed: apples, pears, mandarins, oranges, lemons, limes, peaches, nectarines, cherries, strawberries, blueberries, raspberries, grapes, watermelon, cantaloupe, bananas, avocados, mangoes, romaine, spinach, broccoli, cauliflower, Brussels sprouts, potatoes, sweet potatoes, carrots, onions, zucchini, tomatoes, bell peppers, cucumbers, sweet corn, green beans, asparagus, mushrooms, cilantro (36). Swap candidates: persimmons and pomegranates (both in the mockups; editorial origins), plums, blackberries, kale, pineapples, iceberg, celery. Needed before content batch 2.
 - Confirm or adjust the provisional methodology defaults P1, P9, P10, P11 and the Last call trigger (engineering plan §4.3).
 - D4, launch gates: needed by M9.
 - In-app brand name: Orchard, or something else? Needed by M9.
 
 ## Done
 
+- 2026-11-17 M2 slice 1, reference-data coverage: 57 candidates probed. 44 are USDA-backed (domestic plus imports, or imports that dominate); 11 need editorial origins (California and Florida tree crops stopped reporting in 2025; carrots, garlic, mushrooms and butternut were never reported); apricots and basil have too little data. The API needs quoted names when they contain a comma. Terminal-market variety calendar gives clear seasons for pears and citrus and still shows California citrus origins; apples are on offer all year (cold storage), so apple "freshest months" need citations. Checks: 12 unit tests in `usda-lib.test.ts`.
 - 2026-11-17 M1 USDA probe: Market News movement data (national imports report plus 16 office reports for domestic shipments) gives typical origins and the P11 supply index for apples, pears, strawberries and broccoli over 36 months. Mandarins fail on domestic data. No regional arrival volumes exist. `scripts/usda-lib.ts` is reusable for M2 (11 unit tests). Live site at https://orchard.jpeterson92.workers.dev.
 - 2026-11-16 M0 scaffold: Vite 8, React 19.3 with React Compiler, React Router 8, Tailwind 4.3 tokens, Hono Worker, Biome, Vitest 4, Playwright with axe, CI on GitHub Actions. Checks: typecheck, lint, 7 unit tests and 3 e2e smoke tests passing (prerendered HTML, hydration with no errors or axe violations, `/api/health`). Initial JS is 99 KB gzip (budget 120 KB).
 - 2026-11-16 Pre-build review; repository and docs reorganized; design system split (v1.3 adds Skip and Limited evidence tokens); lean engineering plan written; old engineering spec and implementation guide archived; D2 and D3 applied to the product spec.

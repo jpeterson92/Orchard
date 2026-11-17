@@ -18,7 +18,8 @@
     "check": "npm run typecheck && npm run lint && npm run test",
     "cf-typegen": "wrangler types src/worker/worker-configuration.d.ts",
     "postinstall": "npm run cf-typegen",
-    "usda:probe": "tsx scripts/usda-probe.ts"
+    "usda:probe": "tsx scripts/usda-probe.ts",
+    "usda:terminal-probe": "tsx scripts/usda-terminal-probe.ts"
   },
   "dependencies": {
     "hono": "4.13.19",

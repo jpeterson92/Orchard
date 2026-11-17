@@ -51,8 +51,39 @@ The top origin matches in all 3 years for most item-months. Where it flips (pear
 - **Before deriving, it needs checks for:**
   - lump-sum outliers: one row larger than a typical month;
   - a season with no domestic data for an item that had it before.
-- **Data is fresh:** reports publish the next business day, so a supply index for "today" is feasible.
-- **Not yet known:** which other launch items lack domestic reporting. Citrus is the likely group (oranges, grapefruit, lemons). Running the probe over the full launch list is a quick first step in M2.
+- **Commodity names containing a comma** (`Lettuce, Romaine`) must be quoted in API queries, or the API reads them as two values. `scripts/usda-client.ts` does this.
+
+## Launch candidates (57 items, run 2026-11-17)
+
+`npm run usda:probe` now covers 57 candidates across every browse category, a superset of the ~35 launch items. It writes the full table to `.cache/usda/coverage.md`. Each item falls into one of four groups:
+
+| Group | Items | Evidence basis |
+| --- | --- | --- |
+| **USDA works, domestic and imports** | apples, pears, peaches, nectarines, plums, cherries, strawberries, blueberries, raspberries, blackberries, grapes, watermelon, cantaloupe, honeydew, avocados, romaine, iceberg, spinach, kale, broccoli, cauliflower, cabbage, Brussels sprouts, potatoes, sweet potatoes, onions, tomatoes, bell peppers, cucumbers, eggplant, sweet corn, green beans, asparagus, celery, zucchini, cilantro, parsley | Supply + assessment |
+| **USDA works, imports dominate** (little or no US production reported, which matches where supermarket supply comes from) | bananas, limes, mangoes, pineapples, papaya, green onions, snap peas | Supply + assessment |
+| **Domestic reporting stopped in early 2025** (California and Florida tree crops) | mandarins, oranges, lemons, grapefruit, kiwifruit, persimmons, pomegranates | Editorial origins, null index (D8) |
+| **Large US production never reported** | carrots (California), garlic (California), mushrooms (Pennsylvania), butternut squash | Editorial origins, null index (D8) |
+| **Too little data** | apricots (~7M lb a season), basil | Assessment only, or leave out |
+
+Notes:
+- Stone fruit, grapes and berries from California are unaffected by the 2025 gap; they're reported through Fresno.
+- Ten items have a few lump-sum rows, each bigger than half an average month. The derive step must cap or drop these before computing the index.
+- Thin months (supply index < 0.8) are mostly where expected: the winter import months for stone fruit and cherries, and summer for broccoli, cabbage and Brussels sprouts.
+- The fourth group is my reading of where US supply actually comes from. Each needs citations in the item's content before it's used.
+
+## Variety calendar from terminal markets (D9)
+
+`npm run usda:terminal-probe` reads 3 years of fruit price reports from 12 city terminal markets (11 current, plus San Francisco until May 2025), giving 478k apple quotes, 115k pear quotes and 175k citrus quotes. For each variety it gives the share of market-days quoting the item that quoted that variety, by month, plus its main origins. The output is `.cache/usda/variety-calendar.md`.
+
+- **Pears and citrus give clear seasonal shapes.** For example:
+  - Comice is quoted on about 35% of market-days from Nov to Feb, and on 3–4% in Jul–Aug.
+  - Starkrimson is quoted Aug–Jan.
+  - Nadorcott mandarins (Morocco) are quoted Feb–May.
+  - W. Murcott mandarins (Peru) are quoted Jul–Oct.
+  - Hamlin oranges (Florida) are quoted Oct–Jan.
+- **Apples are on offer all year,** because of cold storage. Gala, Fuji, Granny Smith, Red and Golden Delicious and Honeycrisp are quoted on 83–100% of market-days every month. Presence says nothing about freshness for storage crops, so "freshest months" in the apple guide needs citations. Only a few apple varieties show a season: Cortland, Rome and Braeburn are scarce from Jun to Sep.
+- **Citrus origins are still visible here** after domestic movement reporting stopped: California leads the navel, clementine and tango quotes. This can cross-check the editorial origins for citrus (D8), as presence rather than share.
+- Variety names need a mapping to guide varieties: `PINK LADY/CRIPPS PINK`, `W. MURCOTT AFOURER`, `TANGO`, plus some quotes with no variety. That mapping belongs to the variety content in M7.
 
 ## Regional data (v1.1)
 
