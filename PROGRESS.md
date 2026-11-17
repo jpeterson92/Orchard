@@ -28,6 +28,5 @@ M0 (engineering plan §5): scaffold the Vite + React + TypeScript app and Worker
 
 ## Environment notes
 
-- Node 26.13 LTS is installed via Scoop, but an old Node 20 in `C:\Program Files
-odejs` shadows it on PATH until Jared uninstalls it. Wrangler needs Node ≥ 22.12 and comes in as a dev dependency.
+- Node 26.13 LTS is installed via Scoop, but an old Node 20 in `C:/Program Files/nodejs` shadows it on PATH until Jared uninstalls it. Wrangler needs Node ≥ 22.12 and comes in as a dev dependency.
 - Python 3.12 and uv 0.13 are available (optional notebooks only). The GitHub CLI is signed in as jpeterson92.
