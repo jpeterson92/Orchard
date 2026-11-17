@@ -15,6 +15,7 @@ import type {
 export const RULES: Rules = {
   version: 1,
   typicalOriginShare: 0.7,
+  decidingOriginShare: 0.25,
   supplyIndex: { thin: 0.8, strong: 1.2 },
   reliableYearRoundWindows: 20,
   snapshotMaxAgeMonths: 15,
@@ -52,6 +53,7 @@ export function item(overrides: Partial<ItemInputs> = {}): ItemInputs {
     origins: { "us-ca": rated("prime") },
     varieties: [],
     typicalOrigins: allMonths(["us-ca"]),
+    minorOrigins: allMonths([]),
     supply: { "us-ca": allMonths(1) },
     advisories: [],
     ...overrides,

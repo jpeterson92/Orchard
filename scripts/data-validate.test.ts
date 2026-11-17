@@ -78,6 +78,7 @@ function base(): RawInputs {
     rules: {
       version: 1,
       typicalOriginShare: 0.7,
+      decidingOriginShare: 0.25,
       supplyIndex: { thin: 0.8, strong: 1.2 },
       reliableYearRoundWindows: 20,
       snapshotMaxAgeMonths: 15,
@@ -105,8 +106,8 @@ function base(): RawInputs {
       },
     ],
     typicalOrigins: csv("data/usda/typical-origins.csv", [
-      { item: "test-fruit", month: "5", rank: "1", origin: "us-ca" },
-      { item: "test-fruit", month: "5", rank: "2", origin: "mx" },
+      { item: "test-fruit", month: "5", rank: "1", origin: "us-ca", major: "true" },
+      { item: "test-fruit", month: "5", rank: "2", origin: "mx", major: "false" },
     ]),
     supplyIndex: csv("data/usda/supply-index.csv", [
       { item: "test-fruit", month: "5", origin: "us-ca", value: "1.31", reason: "" },
@@ -149,6 +150,7 @@ describe("validate: a valid dataset", () => {
       reason: "not_reported",
     });
     expect(dataset?.typicalOrigins[0]?.month).toBe(5);
+    expect(dataset?.typicalOrigins.map((r) => r.major)).toEqual([true, false]);
     expect(dataset?.evidence[0]?.claims.map((c) => c.origin)).toEqual(["us", "us", "mx", "mx"]);
   });
 
@@ -261,6 +263,7 @@ const broken: [string, (r: RawInputs) => void, string][] = [
     (r) => (((r.supplyIndex as Csv).rows[1] as Any).reason = ""),
     "either a value or a null reason",
   ],
+  ["major not a boolean", (r) => (((r.typicalOrigins as Csv).rows[0] as Any).major = "yes"), "line 2"],
   ["month out of range", (r) => (((r.typicalOrigins as Csv).rows[0] as Any).month = "13"), "line 2"],
   // Unknown IDs
   [

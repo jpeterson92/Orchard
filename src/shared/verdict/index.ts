@@ -50,6 +50,9 @@ export interface ItemInputs {
   varieties: readonly RatedVariety[];
   /** Indexed by month 0–11: typical origins, top-ranked first. */
   typicalOrigins: readonly (readonly OriginId[])[];
+  /** Indexed by month 0–11: typical origins under rules.decidingOriginShare of the month's volume, which never take
+   * over from the top origin (P9). */
+  minorOrigins: readonly (readonly OriginId[])[];
   /** Per origin, indexed by month 0–11: that origin's typical supply index against its own season (P11). A
    * missing origin or month has none. */
   supply: Readonly<Record<OriginId, readonly (number | null)[]>>;
@@ -153,11 +156,12 @@ function evaluateCore(
     if (missing.length === 0) {
       const ratingOf = (o: OriginId) => item.origins[o]?.windows[window] ?? null;
       const [top, second] = typical as [OriginId, ...OriginId[]];
-      // P9: the verdict follows the top origin, unless it's poor and the second origin is rated better on
-      // evidence that isn't Low, so one weak call never lifts a Skip.
+      // P9: the verdict follows the top origin, unless it's poor and the second origin, a major one, is rated
+      // better on evidence that isn't Low, so one weak call or a small origin never lifts a Skip.
       const lead =
         ratingOf(top) === "poor" &&
         second !== undefined &&
+        !item.minorOrigins[month]?.includes(second) &&
         ratingOf(second) !== "poor" &&
         item.origins[second]?.evidence?.[window] !== "low"
           ? second

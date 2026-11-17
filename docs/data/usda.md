@@ -47,10 +47,7 @@ The top origin matches in all 3 years for most item-months. Where it flips (pear
 
 ## What this means for the build
 
-- **`usda-derive` (M2) can reuse `scripts/usda-lib.ts`:** parsing, `asw_Flag` dates, dedupe, splitting volumes across months, origins to 70%, and the supply index (tests in `usda-lib.test.ts`).
-- **Before deriving, it needs checks for:**
-  - lump-sum outliers: one row larger than a typical month;
-  - a season with no domestic data for an item that had it before.
+- **`npm run usda:derive`** writes `data/usda/typical-origins.csv` and `supply-index.csv` for 49 launch items (the first two groups below, as launch items, plus plantains, coconuts, ginger, jicama, yuca, tomatillos and hot peppers), with per-item month tables and dropped rows in `.cache/usda/derive-report.md`. It drops 4 lump sums (peaches, watermelon, avocados, sweet potatoes, all California). An item joins its list only when its evidence basis is set to USDA-backed at drafting; items with a domestic reporting gap stay off it.
 - **Commodity names containing a comma** (`Lettuce, Romaine`) must be quoted in API queries, or the API reads them as two values. `scripts/usda-client.ts` does this.
 
 ## Coverage by item

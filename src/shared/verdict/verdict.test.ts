@@ -395,7 +395,12 @@ describe("rules 1–5", () => {
 
 describe("origins that disagree (P9)", () => {
   type R = "prime" | "fair" | "poor";
-  const run = (ratings: R[], ctx: Partial<EvalContext> = {}, secondEvidence?: Confidence) => {
+  const run = (
+    ratings: R[],
+    ctx: Partial<EvalContext> = {},
+    secondEvidence?: Confidence,
+    minorOrigins: string[][] = allMonths([]),
+  ) => {
     const ids = ["us-ca", "mx", "cl"].slice(0, ratings.length);
     const origins = Object.fromEntries(
       ids.map((o, i) => [
@@ -407,6 +412,7 @@ describe("origins that disagree (P9)", () => {
       item({
         origins,
         typicalOrigins: allMonths(ids),
+        minorOrigins,
         supply: Object.fromEntries(ids.map((o) => [o, allMonths(1)])),
       }),
       { ...today, ...ctx },
@@ -447,6 +453,15 @@ describe("origins that disagree (P9)", () => {
   it("a second origin on Low evidence never lifts a poor top origin", () => {
     const r = run(["poor", "fair"], {}, "low");
     expect([r.verdict, r.ruleFired, r.labelNote]).toEqual(["skip", 3, true]);
+  });
+  it("a minor second origin never lifts a poor top origin", () => {
+    const r = run(["poor", "prime"], {}, undefined, allMonths(["mx"]));
+    expect([r.verdict, r.ruleFired, r.labelNote]).toEqual(["skip", 3, true]);
+  });
+  it("a second origin minor only in another month still takes over", () => {
+    const minor = allMonths<string[]>([]);
+    minor[9] = ["mx"]; // October; today is November
+    expect(run(["poor", "prime"], {}, undefined, minor).verdict).toBe("good");
   });
   it("Medium evidence on the second origin is enough", () =>
     expect(run(["poor", "fair"], {}, "medium").verdict).toBe("good"));

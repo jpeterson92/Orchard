@@ -20,6 +20,7 @@
     "postinstall": "npm run cf-typegen",
     "usda:probe": "tsx scripts/usda-probe.ts",
     "usda:terminal-probe": "tsx scripts/usda-terminal-probe.ts",
+    "usda:derive": "tsx scripts/usda-derive.ts",
     "usda:terminal-screen": "tsx scripts/usda-terminal-screen.ts",
     "check:changed": "tsc -b && biome check . && vitest run --passWithNoTests --changed",
     "data:build": "tsx scripts/data-build.ts",

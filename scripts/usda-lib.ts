@@ -194,3 +194,95 @@ export function varietyPresence(quotes: Quote[]): Map<string, VarietyPresence> {
   for (const v of out.values()) v.months = v.months.map((n, i) => (itemDays[i] ? n / (itemDays[i] ?? 1) : 0));
   return out;
 }
+
+/** Per calendar month (index 0 = Jan): the mean of that month's volume over the period's years. */
+export function calendarMeans(monthly: ReadonlyMap<string, number>, months: readonly string[]): number[] {
+  return Array.from({ length: 12 }, (_, i) => {
+    const ms = months.filter((m) => Number(m.slice(5)) === i + 1);
+    return ms.length === 0 ? 0 : ms.reduce((a, m) => a + (monthly.get(m) ?? 0), 0) / ms.length;
+  });
+}
+
+/**
+ * P11, per origin against its own season: each calendar month's mean volume ÷ the origin's mean over the calendar
+ * months in which it ships. A month without volume has no index (null), never 0.
+ */
+export function ownSeasonIndex(means: readonly number[]): (number | null)[] {
+  const shipping = means.filter((v) => v > 0);
+  if (shipping.length === 0) return means.map(() => null);
+  const baseline = shipping.reduce((a, b) => a + b, 0) / shipping.length;
+  return means.map((v) => (v > 0 ? v / baseline : null));
+}
+
+export interface TypicalOrigin {
+  origin: string;
+  /** Has at least `majorShare` of the month's volume (P9: only such an origin can take over from the top one). */
+  major: boolean;
+}
+
+/**
+ * Typical origins of one pooled month: the ranked prefix reaching `threshold` of the volume. Origins that `nameable`
+ * rejects (multi-state regions) still count toward the total but are never named, so they're passed over.
+ */
+export function typicalOrigins(
+  volumes: ReadonlyMap<string, number>,
+  threshold: number,
+  majorShare: number,
+  nameable: (origin: string) => boolean = () => true,
+): TypicalOrigin[] {
+  const total = [...volumes.values()].reduce((a, b) => a + b, 0);
+  if (total <= 0) return [];
+  const ranked = [...volumes]
+    .filter(([o]) => nameable(o))
+    .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+  const out: TypicalOrigin[] = [];
+  let sum = 0;
+  for (const [origin, lb] of ranked) {
+    if (sum >= threshold * total || lb <= 0) break;
+    out.push({ origin, major: lb >= majorShare * total });
+    sum += lb;
+  }
+  return out;
+}
+
+/** Domestic multi-state regions in movement reports, which name no single state. */
+export const US_REGIONS = new Set(["Appalachia", "N Carolina-S Carolina", "New England", "United States"]);
+
+/**
+ * "US: Washington" → "us-wa"; "US: California-Central" → "us-ca" (sub-state regions fold into their state);
+ * an import country → its ISO code. Null for a multi-state region. Throws on a name it can't map.
+ */
+export function originCode(
+  origin: string,
+  states: ReadonlyMap<string, string>,
+  countries: Readonly<Record<string, string>>,
+): string | null {
+  if (origin.startsWith("US: ")) {
+    const name = origin.slice(4);
+    if (US_REGIONS.has(name)) return null;
+    const state = states.get(name) ?? states.get(name.replace(/-.*$/, ""));
+    if (!state) throw new RangeError(`Unknown US origin: ${origin}`);
+    return `us-${state.toLowerCase()}`;
+  }
+  const code = countries[origin];
+  if (!code) throw new RangeError(`No country code for ${origin}`);
+  return code;
+}
+
+/**
+ * Lump-sum entries: rows bigger than half the item's average month that also dwarf (over 2×) every other row from
+ * the same origin. A short, intensely seasonal crop's real peak weeks are big too, but close to each other.
+ */
+export function lumpSums(rows: readonly MovementRow[], monthCount: number): Set<MovementRow> {
+  const avgMonth = rows.reduce((a, r) => a + r.lb, 0) / monthCount;
+  const byOrigin = new Map<string, number[]>();
+  for (const r of rows) byOrigin.set(r.origin, [...(byOrigin.get(r.origin) ?? []), r.lb]);
+  const lumps = new Set<MovementRow>();
+  for (const r of rows) {
+    if (!(r.lb > avgMonth / 2)) continue;
+    const others = [...(byOrigin.get(r.origin) ?? [])].sort((a, b) => b - a);
+    others.splice(others.indexOf(r.lb), 1);
+    if (r.lb > 2 * (others[0] ?? 0)) lumps.add(r);
+  }
+  return lumps;
+}

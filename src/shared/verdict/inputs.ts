@@ -34,6 +34,11 @@ export function itemInputs(item: Item, data: Dataset): ItemInputs {
       .sort((a, b) => a.rank - b.rank)
       .map((r) => r.origin),
   );
+  const minorOrigins = typicalOrigins.map((origins, m) =>
+    origins.filter((o) =>
+      data.typicalOrigins.some((r) => r.item === item.id && r.month === m + 1 && r.origin === o && !r.major),
+    ),
+  );
   const supply: Record<string, (number | null)[]> = {};
   for (const r of data.supplyIndex) {
     if (r.item !== item.id) continue;
@@ -55,6 +60,7 @@ export function itemInputs(item: Item, data: Dataset): ItemInputs {
     ),
     varieties,
     typicalOrigins,
+    minorOrigins,
     supply,
     advisories: data.advisories
       .filter((a) => a.items.includes(item.id))

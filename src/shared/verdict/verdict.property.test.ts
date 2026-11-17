@@ -54,6 +54,7 @@ const itemArb: fc.Arbitrary<ItemInputs> = fc
     rated: fc.subarray([...ORIGINS], { minLength: 1 }),
     seriesList: fc.array(series, { minLength: 4, maxLength: 4 }),
     typical: months(fc.shuffledSubarray([...ORIGINS], { maxLength: 3 })),
+    minorMask: months(fc.array(fc.boolean(), { minLength: 3, maxLength: 3 })),
     supply: fc.tuple(...ORIGINS.map(() => months(supplyValue))),
     advisories: fc.uniqueArray(advisoryArb, { selector: (a) => a.id, maxLength: 3 }),
     varieties: fc.array(fc.record({ s: series, inStore: months(fc.boolean()) }), { maxLength: 3 }),
@@ -69,6 +70,7 @@ const itemArb: fc.Arbitrary<ItemInputs> = fc
     origins: Object.fromEntries(r.rated.map((o, i) => [o, r.seriesList[i] ?? { windows: [] }])),
     varieties: r.varieties.map((v, i) => ({ id: `v${i}`, ...v.s, inStore: v.inStore })),
     typicalOrigins: r.typical,
+    minorOrigins: r.typical.map((os, m) => os.filter((_, i) => r.minorMask[m]?.[i])),
     supply: Object.fromEntries(ORIGINS.map((o, i) => [o, r.supply[i] ?? []])),
     advisories: r.advisories,
   }));
@@ -192,7 +194,7 @@ describe("verdict engine invariants", () => {
       RUNS,
     ));
 
-  it("P9: rated Skip (rule 3) only when the top two typical origins can't both be relied on above poor", () =>
+  it("P9: rated Skip (rule 3) only when the second typical origin can't be relied on above poor or is minor", () =>
     fc.assert(
       fc.property(itemArb, ctxArb, (item, ctx) => {
         if (item.varieties.length > 0) return;
@@ -201,7 +203,8 @@ describe("verdict engine invariants", () => {
         const w = windowIndex(ctx.date.month, ctx.date.day);
         const [top, second] = item.typicalOrigins[ctx.date.month - 1] ?? [];
         expect(item.origins[top as string]?.windows[w]).toBe("poor");
-        if (second !== undefined && item.origins[second]?.windows[w] !== "poor")
+        const minor = item.minorOrigins[ctx.date.month - 1]?.includes(second as string);
+        if (second !== undefined && !minor && item.origins[second]?.windows[w] !== "poor")
           expect(item.origins[second]?.evidence?.[w]).toBe("low");
       }),
       RUNS,

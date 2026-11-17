@@ -45,7 +45,11 @@ const data = {
   ],
   advisories: [],
   snapshot: null,
-  typicalOrigins: [{ item: "test-fruit", month: 5, rank: 1, origin: "us-ca" }],
+  typicalOrigins: [
+    { item: "test-fruit", month: 6, rank: 2, origin: "mx", major: false },
+    { item: "test-fruit", month: 6, rank: 1, origin: "us-ca", major: true },
+    { item: "test-fruit", month: 5, rank: 1, origin: "us-ca", major: true },
+  ],
   supplyIndex: [],
 } as unknown as Dataset;
 
@@ -60,6 +64,11 @@ describe("itemInputs", () => {
     expect(at(ca?.evidence, "jul-1")).toBeNull();
   });
 
+  it("ranks typical origins per month and marks the minor ones", () => {
+    expect(inputs.typicalOrigins[5]).toEqual(["us-ca", "mx"]);
+    expect(inputs.minorOrigins[5]).toEqual(["mx"]);
+    expect([inputs.typicalOrigins[6], inputs.minorOrigins[6]]).toEqual([[], []]);
+  });
   it("builds rated varieties only, each with its own evidence", () => {
     expect(inputs.varieties.map((v) => v.id)).toEqual(["rated"]);
     expect(at(inputs.varieties[0]?.evidence, "may-1")).toBe("low");
