@@ -93,7 +93,7 @@ const CANDIDATES: Record<string, string[]> = {
   cilantro: ["Cilantro"],
   parsley: ["Parsley"],
   basil: ["Basil"],
-  // Added by the D10 terminal-market screen (quoted in ≥ 7 of 11 city markets).
+  // Added by the launch-scope terminal-market screen (quoted in ≥ 7 of 11 city markets).
   "asian-pears": ["Apple Pears"],
   tangelos: ["Tangelos"],
   "blood-oranges": ["Blood Orange"],

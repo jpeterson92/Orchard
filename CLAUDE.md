@@ -4,7 +4,7 @@ Orchard is a phone-first web app that tells supermarket shoppers which produce i
 
 ## Where things stand
 
-Read `PROGRESS.md` first: phase, next action, blockers, decisions. How it's built and in what order: `docs/engineering-plan.md`. `docs/archive/` holds superseded specs; use them for reference detail only, never as instructions.
+Read `PROGRESS.md` first: milestones, next action, blockers, open questions. How it's built and in what order: `docs/engineering-plan.md`.
 
 ## Documents
 
@@ -14,22 +14,23 @@ Read only the sections a task needs: Grep for the heading, then Read with offset
 | --- | --- | --- |
 | `docs/engineering-plan.md` | Architecture, stack, milestones, verification depth | §1 shape · §2 stack · §4 data and engine · §5 milestones · §6 verification |
 | `docs/product-spec.md` | Behavior, scope, copy | §4 navigation · §5 screens · §6 in-store mode · §7 verdict rules · §8 content model and writing standards · §10 non-functional |
-| `docs/design/design-system.md` | Visual design, tokens, components | §3 color · §4 type and tokens · §5 layout · §6 components · §9 accessibility |
+| `docs/design/design-system.md` | Visual design, tokens, components | §3 color · §4 type and tokens · §5 layout · §6 components · §7 accessibility · §9 acceptance criteria |
 | `docs/design/illustration-guide.md` | Painted artwork and image prompts | Only for image work |
 | `docs/design/references/` | Mockups; `00-today-anchor.png` is the approved anchor | View the relevant one before UI work |
-| `docs/reviews/2026-11-16-pre-build-review.md` | Why the plan changed (decisions D1–D3) | Background only |
-| `docs/archive/` | Superseded engineering spec and implementation guide | Reference detail only |
+| `docs/data/usda.md` | What USDA reference data covers, the 89-item launch scope | Coverage by item · Launch scope screen |
 
-When documents conflict: Jared's decisions (in `PROGRESS.md`) > product spec for behavior > design system for visuals > engineering plan for how it's built.
+When documents conflict: Jared's latest instruction > product spec for behavior > design system for visuals > engineering plan for how it's built. Fix the conflict in the losing doc in the same commit.
+
+**Docs state the current truth only.** When Jared decides something, rewrite the governing doc so it simply says the new thing: no decision logs, D-numbers, "changed from", version notes or superseded text. Git history is the changelog. Delete detail that no longer applies.
 
 ## Working efficiently
 
 - **One increment at a time, sized to finish.** It ends in a commit and a short plain-language summary for Jared of what was done; add a screenshot, link or artifact only when it helps. `/next` (`.claude/skills/next/`) runs one increment.
-- **Read narrowly, act early.** For an engineering detail, pick the conventional option, note it in one line, and move on. Don't reopen decisions recorded in `PROGRESS.md`.
+- **Read narrowly, act early.** For an engineering detail, pick the conventional option, write it into the governing doc in one line, and move on. Don't reopen what the docs already settle.
 - **Ask Jared only** about product behavior, editorial content, money, accounts or credentials. Batch the questions into the end-of-increment summary and keep building whatever doesn't depend on the answers; don't stop for routine confirmation.
 - **Run slow jobs in the background** (data fetches, long probes, builds over a minute) and keep working meanwhile. Cache raw responses so reruns are free, and never poll or sleep waiting on them.
 - **Timebox tooling trouble.** After two failed attempts at the same setup or config problem, take the simpler alternative or record a blocker in `PROGRESS.md` and move on. Don't dig through library internals.
-- **Prefer mature, widely used libraries** over the newest release. Pin exact versions. A new direct dependency gets one line under Decisions in `PROGRESS.md`.
+- **Prefer mature, widely used libraries** over the newest release. Pin exact versions. A new direct dependency gets a row or line in the engineering plan's stack table (§2).
 - **No speculative work:** no config options, abstractions, extension points or fallbacks without a current need. No new docs beyond `PROGRESS.md` unless asked.
 - Use subagents only for wide searches or research that would otherwise flood the context.
 
@@ -61,6 +62,7 @@ When documents conflict: Jared's decisions (in `PROGRESS.md`) > product spec for
   - `npm run deploy`: build, then `wrangler deploy` (wrangler is signed in on this machine)
   - `npm run format`: Biome autofix (Markdown is excluded, so docs keep their formatting)
   - `npm run cf-typegen`: regenerate Worker types after changing `wrangler.jsonc`
+  - `npm run usda:probe`, `usda:terminal-probe`, `usda:terminal-screen`: USDA reference-data probes (cached in `.cache/usda/`, run in the background)
 - Secrets: `.env.pipeline` holds pipeline-only keys (the USDA key), read by `scripts/` only. Don't use `.env`: the Cloudflare plugin loads it into the Worker.
 
 ## Git and GitHub

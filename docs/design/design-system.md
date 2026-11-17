@@ -1,16 +1,14 @@
 # Orchard Editorial Design System
 ## Seasonal Produce Guide reference for coding and graphics agents
 
-**Version:** 1.3  
-**Established:** November 16, 2026  
 **Owner:** Jared Peterson  
 **Status:** Approved visual direction; implementation values and unpictured states are an initial baseline requiring browser verification.
 
-This document gives a future AI coding or graphics agent enough context to extend the Seasonal Produce Guide consistently. It codifies the design selected in the conversation, establishes usable implementation defaults, and provides reference-free art direction plus a reference-study index. It does not implement the app or create additional reference images.
+This document defines Orchard's visual design for code: direction, tokens, layout, components, accessibility and acceptance criteria. Painted artwork and image prompts are in [illustration-guide.md](illustration-guide.md).
 
 The visual direction is **Orchard Editorial**: a practical produce companion with the warmth of an illustrated food journal—botanical watercolor, light ivory paper, plum typography, and an open, lightly ruled layout.
 
-“Produce Guide” is the working interface name. A final product name and brand mark have not been selected.
+Orchard is the project name. The in-app brand name and mark are still open.
 
 ## 1. Approved direction and source of truth
 
@@ -23,12 +21,12 @@ The visual direction is **Orchard Editorial**: a practical produce companion wit
 | A3 Botanical Richness | Naturalistic watercolor, observed botanical detail, restrained foliage |
 | Original A verdict treatment | Small star or check with verdict text; no filled verdict backgrounds |
 
-The user explicitly preferred subtle verdicts after initially considering A4. **Do not carry forward A4’s colored verdict pills.** This preference applies even when the rest of A4 is useful as an interaction reference.
+Verdicts are subtle. **Never use A4’s colored verdict pills**, even where the rest of A4 is useful as an interaction reference.
 
 The approved synthesis is **Good things today: Orchard produce guide.png**:
 [Open the approved visual reference](references/00-today-anchor.png).
 
-That reference is an art-direction study. Its illustrative produce recommendations, dates, origin claims, and artwork are not a production dataset. Its exterior presentation title and rounded presentation frame are not app components.
+That reference is an art-direction study. Its illustrative produce recommendations, dates, origin claims, and artwork are not a production dataset. Its exterior presentation title and rounded presentation frame are not app components. Its “Peak now” heading reads “Best right now” in the product.
 
 ### Authority and interpretation
 
@@ -282,11 +280,7 @@ Distinguish “No matching items,” “Not covered,” “Not saved offline,”
 
 Forms and feedback controls follow the same type, outline, spacing, and focus rules. Avoid inventing a new visual language for dialogs or error states.
 
-## 7–8. Illustration system and prompt pack
-
-Moved to [illustration-guide.md](illustration-guide.md) in v1.2, with section numbers unchanged. Read it only for artwork or generated reference images; UI work does not need it.
-
-## 9. Accessibility and interaction
+## 7. Accessibility and interaction
 
 The product target is WCAG 2.2 AA, with its chosen minimum 44 × 44 CSS px touch targets. These are project requirements, not a claim of completed certification.
 
@@ -301,7 +295,7 @@ The product target is WCAG 2.2 AA, with its chosen minimum 44 × 44 CSS px touch
 
 Device-size screenshots do not prove actual touch use, screen-reader behavior, installed-app operation, or wake-lock behavior.
 
-## 10. Coding-agent working agreement
+## 8. Coding-agent working agreement
 
 Build real UI from components and data. Generated full-screen images are references, never the implemented interface.
 
@@ -319,9 +313,9 @@ Suggested instruction for the repository’s canonical AGENTS.md:
 
 > For UI or graphics work, read the Orchard Editorial design reference first. Reuse established tokens, components, and approved artwork. Preserve open rows, watercolor identity, and subtle icon-and-text verdicts. Verify the affected layouts and states, and record material design changes in the shared reference.
 
-As of v1.2, the repository's CLAUDE.md carries this instruction; there is no separate AGENTS.md.
+The repository's CLAUDE.md carries this instruction; there is no separate AGENTS.md.
 
-## 11. Reference collection and acceptance criteria
+## 9. Reference collection and acceptance criteria
 
 The original mobile Today synthesis remains the approved visual anchor. Eight complementary reference studies have since been generated. They are drafts for extension and review, not blanket approval of every visible control, placement, letterform, or botanical detail. The text in this guide remains usable without any of these images.
 
@@ -354,21 +348,3 @@ Future briefs should identify the task, screen size, exact content, specific dec
 - **Continuity:** Does the result extend the system rather than establish an unrelated second style?
 
 Review ordinary and awkward examples: long names, no image, limited evidence, multi-line reasons, expanded advice, offline data, no search match, and an error. Keep demonstration labels outside the product interface. Correct material failures before marking an output approved; a numerical score cannot compensate for wrong anatomy, unreadable text, or the wrong verdict treatment.
-
-## 12. Resume here
-
-A future agent should read this document and check for later explicit user decisions. Images are optional: illustration-guide.md (sections 7 and 8) provides a standalone description and prompt pack. When available, the approved Today synthesis and reviewed studies can improve continuity. Do not assume that described components, tokens, a component gallery, or a production asset collection have already been implemented.
-
-For a new graphics request, choose the appropriate complete prompt in illustration-guide.md section 8, fill subject and composition details, and apply the section 11 review criteria. For code, reuse the documented tokens and interaction rules and verify the actual browser result. Keep painting, layout, typography, and content separable so one can be refined without recreating everything.
-
-The immediate task completed by version 1.1 is strengthening this single reference document; it does not generate another image or approve previous draft studies. Continue with the user’s next specific request.
-
-### Change record
-
-| Version | Change |
-| --- | --- |
-| 1.0 | Codifies the approved synthesis, subtle verdict preference, implementation baselines, asset guidance, and reference-development workflow |
-| 1.1 | Adds reference-free art direction, painting and composition recipes, portable image prompts, reconstruction review criteria, and an index of eight generated draft studies |
-| 1.2 | Moves sections 7–8 (illustration system, prompt pack) to illustration-guide.md; reference images are now stored in references/ and linked locally |
-| 1.3 | Adds Skip and Limited evidence icon tokens; treats Reliable year-round as a marker rather than a verdict treatment; notes that the anchor’s “Peak now” heading is superseded by “Best right now” |
-

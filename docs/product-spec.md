@@ -2,7 +2,7 @@
 
 Nov 16, 2026 · @Jared Peterson
 
-> **Decisions applied Nov 16, 2026** (recorded in `PROGRESS.md`). **D2:** verdicts are national in v1; the shopper's state adds regional advisories and context, and local-harvest context, harvest zones and precise location are deferred. **D3:** Claude drafts editorial data with checked citations, Jared approves it, and production builds refuse drafts. Visual details are governed by `docs/design/design-system.md`.
+Visual details are governed by `docs/design/design-system.md`; how it's built, by `docs/engineering-plan.md`.
 
 ## 1. Summary
 
@@ -138,7 +138,7 @@ Today leads with up to six strong recommendations, and every seasonal item appea
 | --- | --- | --- |
 | **Verdict** (exactly one per item) | Peak · Good · Skip · Limited evidence | Expected eating quality of typical supermarket supply here and now (rules in section 7) |
 | **Markers** (zero or more, shown on the card) | Last call · Reliable year-round · Advisory · Good value (v1.1) | Extra facts that never move the item to a different section |
-| **Always good** (an item class, D10) | Items whose typical outlook is Good in all 24 windows, never Peak and never Skip. Computed for now; an editorial override may come after release | Shown as "Always good" wherever they appear. They join Today only while an advisory changes their verdict |
+| **Always good** (an item class) | Items whose typical outlook is Good in all 24 windows, never Peak and never Skip. Computed for now; an editorial override may come after release | Shown as "Always good" wherever they appear. They join Today only while an advisory changes their verdict |
 
 ### Today (home)
 
@@ -159,7 +159,7 @@ An item that is both Peak and Last call appears once, under Best right now, carr
 
 ### Item page
 
-- **Verdict block:** the badge, 1–3 reasons, the confidence level, and one line on what it rests on ("Reviewed seasonal assessment + current national supply"). Two dates appear, worded so they can't be mistaken for an in-store check: "Supply data through Nov 13" and "Guidance reviewed Oct 2026".
+- **Verdict block:** the badge, 1–3 reasons, the confidence level, and one line on what it rests on ("Reviewed seasonal assessment + typical national supply"). Two dates appear, worded so they can't be mistaken for an in-store check: "Supply data through Nov 13" and "Guidance reviewed Oct 2026".
 - **Context notes**, separate and only shown when relevant:
   - "Local harvest: in season near you" (deferred with local-harvest context; not in v1)
   - "Typical supermarket supply: favorable this month"
@@ -239,7 +239,7 @@ A single toggle on Today, remembered on the device. Turning it on:
 - **Keeps the screen awake** while the page is open, so it stays readable on the cart. The Screen Wake Lock API has worked in Chrome, Safari and Firefox since May 2024 ([source](https://web.dev/blog/screen-wake-lock-supported-in-all-browsers)). The lock is released when the user leaves the tab.
 - **Prepares the offline copy and shows its status** under the toggle, so the shopper knows when it is safe to lose signal:
   - "Preparing for offline… 40 of 89 items"
-  - "Ready offline · 89 items · supply data through Nov 13"
+  - "Ready offline · 89 items · supply data through Oct 2026"
   - "Offline copy is from Nov 13; reconnect to refresh" (when it goes stale)
 - **Enlarges type** to at least 18 px for body text and raises contrast, for reading at arm's length under bright store lighting.
 - **Removes anything that interrupts:** no pop-ups, prompts or animation, and no layout that shifts after load.
@@ -278,7 +278,7 @@ An advisory changes only the windows it covers and never rewrites the typical ou
 | --- | --- |
 | **Quality window** | For each item × major origin, every half-month window rated *prime* (typically eats best), *fair* (acceptable), or *poor* (typically disappointing, e.g. out of long storage). Comes from a reviewed seasonal assessment that cites at least 2 sources (extension services, commodity boards, trade references). |
 | **Typical supermarket origins** | The origins that together account for ≥ 70% of an item's reported shipments and imports in that month, averaged over 3 years. Used only to *rank* origins, never as precise shares. USDA notes that truck shipments for all commodities and origins are not available, and that the reported figures should not be read as complete movements ([source](https://www.ams.usda.gov/node/21104)). |
-| **Supply index** | A typical value per month: the month's average reported volume over 3 years ÷ the item's average monthly reported volume over the same 3 years, from the same report series, taken from a yearly snapshot (D8). Strong ≥ 1.2; normal 0.8–1.2; thin < 0.8. |
+| **Supply index** | A typical value per month: the month's average reported volume over 3 years ÷ the item's average monthly reported volume over the same 3 years, from the same report series, taken from a yearly snapshot. Strong ≥ 1.2; normal 0.8–1.2; thin < 0.8. |
 | **Local harvest** | Off, early, peak or late in the user's harvest zone. Shown as context. It affects a verdict only through label-based advice (below). Deferred: not in v1. |
 | **Advisory** | An editor-entered exception: items, origins, regions, start date, expiry date, the verdict it imposes, and a note. |
 | **Reliable year-round** | A marker, set when the item's typical outlook is Good or better in ≥ 20 of 24 windows. Such an item can still have Peak windows and Skip windows. |
@@ -308,7 +308,7 @@ Confidence describes how complete and current the evidence is. It is not a proba
 | --- | --- |
 | Coverage | Does the reviewed assessment cover the origins that typically supply supermarkets now? |
 | Relevance | Does the evidence describe supermarket supply, rather than only local farms? |
-| Freshness | Is current-conditions data recent (supply data ≤ 45 days old; advisories reviewed this window)? |
+| Freshness | Is the evidence current (yearly supply snapshot under 15 months old; advisories reviewed this window)? |
 | Agreement | Do the quality assessment and the typical supply pattern point the same way? |
 
 **High:** all four hold. **Medium:** exactly one is weak, e.g. stale supply data or mixed origins. **Low:** two or more are weak. A verdict built on strong national evidence isn't marked down just because no local data exists.
@@ -352,7 +352,7 @@ An item launches only once its evidence passes review. Editors write content onc
 
 | Entity | Key attributes | Written or computed | At launch | Target |
 | --- | --- | --- | --- | --- |
-| Item | Names and synonyms, how to pick, store and ripen (ranges + ripeness assumptions), prep, illustration | Written | 89 (D10) | New items as they become common |
+| Item | Names and synonyms, how to pick, store and ripen (ranges + ripeness assumptions), prep, illustration | Written | 89 | New items as they become common |
 | Evidence record | Evidence basis, sources (≥ 2), status (draft or reviewed), reviewer, review date | Drafted, then reviewed | 1 per item | 1 per item |
 | Quality window | Item × major origin × 24 windows: prime / fair / poor, with citations | Written + reviewed | \~220 origin profiles (\~3 per seasonal item; always-good items need one year-round rating per origin) | Grows with items |
 | Variety | Group-specific traits on anchored 1–5 scales, best uses, label/PLU text, freshest months where evidence exists | Written | \~40 (3 guides) | Driven by what shoppers meet |
@@ -377,7 +377,7 @@ An item that meets neither bar waits. It doesn't launch with a precise-looking b
 
 **Drafting and review.** Claude researches and drafts items, quality windows, varieties and summaries. Every rating cites at least 2 real, checked sources, and every record starts as `draft`. Jared reviews and approves; only approved records are `reviewed`. Production builds refuse drafts, and previews label draft content visibly.
 
-**Launch scope (D10): all common supermarket produce, 89 items.** Close relatives are one item with types (summer squash, winter squash, hot peppers), and fresh herbs are a single always-good item with the common herbs as types. An item is common when most of USDA's 11 city terminal markets quote it and mainstream US supermarkets stock it, year-round or in season. Specialty items sold mainly through ethnic or specialty grocers come later. The list and its evidence are in `docs/data/usda-probe.md`. Always-good items need lighter content: one year-round rating per major origin, plus pick and store advice.
+**Launch scope: all common supermarket produce, 89 items.** Close relatives are one item with types (summer squash, winter squash, hot peppers), and fresh herbs are a single always-good item with the common herbs as types. An item is common when most of USDA's 11 city terminal markets quote it and mainstream US supermarkets stock it, year-round or in season. Specialty items sold mainly through ethnic or specialty grocers come later. The list and its evidence are in `docs/data/usda.md`. Always-good items need lighter content: one year-round rating per major origin, plus pick and store advice.
 
 **Writing standards**
 
@@ -385,7 +385,7 @@ An item that meets neither bar waits. It doesn't launch with a precise-looking b
 - Storage and ripening as typical ranges with their assumptions, never as guarantees.
 - Card text at most 12 words; item-page sections at most 60 words each.
 - Plain US units (°F, lb, days); Spanish-ready strings from day one.
-- Dates say exactly what happened: "Guidance reviewed Oct 2026" for editorial review, and "Supply data through Nov 13" for data. Neither is ever worded to suggest someone has just checked the produce.
+- Dates say exactly what happened: "Guidance reviewed Oct 2026" for editorial review, and "Supply data through Oct 2026" for data. Neither is ever worded to suggest someone has just checked the produce.
 
 **Rights and sourcing**
 
@@ -435,7 +435,7 @@ The site has to feel instant on a phone with one bar of signal, be private by de
 | --- | --- |
 | Speed | Pass Google's "good" Core Web Vitals on mobile at the 75th percentile: largest content painted ≤ 2.5 s, response to input ≤ 200 ms, layout shift ≤ 0.1 ([source](https://web.dev/articles/vitals)). Today must show its first verdicts within that 2.5 s on a mid-range phone over 4G. |
 | Offline | After the first visit, every covered item works with no signal. In-store mode shows the offline copy's readiness status (section 6). |
-| Freshness | Supply data is reference data, rebuilt from the last 3 years of USDA reports once a year and reviewed with the content (D8); unusual seasons are handled by advisories. The value signal is weekly (v1.1). Quality windows, harvest calendars and written content reviewed at least once a year. Advisories always carry an expiry. |
+| Freshness | Supply data is reference data, rebuilt from the last 3 years of USDA reports once a year and reviewed with the content; unusual seasons are handled by advisories. The value signal is weekly (v1.1). Quality windows, harvest calendars and written content reviewed at least once a year. Advisories always carry an expiry. |
 | Honesty | Every verdict states its evidence basis and confidence. "Data through" and "reviewed" dates are kept distinct and never imply someone checked the produce. Future dates are always labeled as the typical outlook. Missing evidence shows as Limited evidence, never as a default verdict. |
 | Privacy | No account needed. Precise location is never sent to or stored on a server; the ZIP is saved on the device. Location permission is requested only after an explicit tap. Analytics are aggregate, with no ad trackers and no selling of data. |
 | Accessibility | WCAG 2.2 AA throughout (details in section 9). |
@@ -463,7 +463,7 @@ The closest existing product already does "what's in season near me." The openin
 
 ## 12. Release plan
 
-The first release covers all common supermarket produce (89 items, D10), with 3 variety guides, nationwide guidance, and local validation in 3 metros. Coverage grows only by passing explicit gates.
+The first release covers all common supermarket produce (89 items), with 3 variety guides, nationwide guidance, and local validation in 3 metros. Coverage grows only by passing explicit gates.
 
 Order: foundations → Gate 1 → first release → Gate 2 → v1.1 → Gate 3 → v2 (broader coverage).
 
@@ -506,7 +506,7 @@ The biggest risk is a confident verdict that doesn't match the bin in front of t
 | Weather shifts a season | Verdicts run early or late | Scoped advisories that expire; the typical outlook is never edited for one year's weather |
 | Verdicts read as guarantees | Lost trust after one bad purchase | "Likely" wording, storage as ranges, Methods page, confidence explained |
 | Network-based location is wrong | Context for the wrong place | The inferred city is always shown and one tap from fixed |
-| Content volume | Slow launch or uneven quality | 89 items (D10), but always-good items need only a year-round rating and short copy; seasonal items are drafted first, in batches of about 10; 3 guides; new items beyond common produce only through gates |
+| Content volume | Slow launch or uneven quality | 89 items, but always-good items need only a year-round rating and short copy; seasonal items are drafted first, in batches of about 10; 3 guides; new items beyond common produce only through gates |
 
 **Decisions needed**
 
@@ -514,15 +514,12 @@ The biggest risk is a confident verdict that doesn't match the bin in front of t
 | --- | --- |
 | Product name and brand | Project name: Orchard. In-app brand: open |
 | Launch metros for local validation | San Francisco Bay Area, Chicago and Atlanta: three distinct climates and supply positions |
-| Launch scope | Decided (D10): all common supermarket produce, 89 items |
 | Who audits | Two reviewers independent of the rules' author; recruit before Gate 1 |
 | Named store chains at launch? | No. Store-format tips first; named chains later |
 | Value markers at launch? | No. v1.1, after a month of clean weekly data, and never part of the verdict |
 | Business model | None in v1. If one is ever added, nothing paid can influence a verdict |
 | Spanish at launch? | v2, with text Spanish-ready from day one |
 | Accounts? | None in v1; settings stay on the device |
-| Verdict geography (decided Nov 16, D2) | National verdicts; the state adds regional advisories and context; local harvest deferred |
-| Editorial authoring (decided Nov 16, D3) | Claude drafts with checked citations; Jared approves; production refuses drafts |
 
 ## Sources
 

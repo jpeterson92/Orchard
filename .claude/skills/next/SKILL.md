@@ -1,6 +1,6 @@
 ---
 name: next
-description: Do the next development increment of Orchard from PROGRESS.md, sized to finish in one run, then commit, push and summarize it in plain language.
+description: Do the next development increment of Orchard from PROGRESS.md, sized to finish in one run, then commit locally and summarize it in plain language.
 disable-model-invocation: true
 ---
 
@@ -10,7 +10,7 @@ Follow CLAUDE.md throughout. This command adds only the steps below.
 
 ## 1. Find the work
 
-- Read `PROGRESS.md`: the next concrete action, blockers and decisions.
+- Read `PROGRESS.md`: the next concrete action, blockers and open questions.
 - Read only the sections of `docs/engineering-plan.md` (and the product spec or design system, if it's UI or content work) that this action needs. Grep for the heading, then read with offset and limit.
 - If the next action is blocked on Jared, don't start it. Take the next unblocked action instead and say why. If nothing is unblocked, stop and ask the blocking questions, batched.
 

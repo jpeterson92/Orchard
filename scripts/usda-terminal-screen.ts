@@ -1,4 +1,4 @@
-// Launch-scope screen (D10): which produce commodities do US city terminal markets quote, in how many cities and
+// Launch-scope screen: which produce commodities do US city terminal markets quote, in how many cities and
 // seasons? One sample week per season from each city's fruit, vegetable, and onion-and-potato price reports.
 // Usage: npm run usda:terminal-screen   Writes .cache/usda/terminal-screen.md.
 import { writeFileSync } from "node:fs";

@@ -1,4 +1,4 @@
-// D9 probe: a variety calendar from USDA terminal market price reports. For each variety, the share of
+// A variety calendar from USDA terminal market price reports. For each variety, the share of
 // city market-days quoting the item that quoted that variety, by month, over 3 years; plus its main origins.
 // Usage: npm run usda:terminal-probe [-- item ...]   Writes .cache/usda/variety-calendar.md.
 import { writeFileSync } from "node:fs";

@@ -1,0 +1,6 @@
+# Keep generated or bulky files out of project search (ripgrep and Claude's Grep).
+package-lock.json
+*.png
+*.jpg
+*.webp
+src/worker/worker-configuration.d.ts

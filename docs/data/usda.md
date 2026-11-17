@@ -1,11 +1,11 @@
-# USDA probe (M1)
+# USDA data findings
 
-Run 2026-11-17 with `npm run usda:probe` (`scripts/usda-probe.ts`). Period: Nov 2023 to Oct 2026, 36 months. Items: apples, pears, mandarins, strawberries, broccoli. Raw responses are cached in `.cache/usda/`.
+What USDA Market News data can and can't support, from 3 years of reports (Nov 2023 to Oct 2026). Rerun with `npm run usda:probe`, `usda:terminal-probe` and `usda:terminal-screen`; raw responses are cached in `.cache/usda/`.
 
 ## Verdict
 
 - **Apples, pears, strawberries and broccoli:** typical origins (≥ 70%) and the P11 supply index can both be computed. Results are stable year to year.
-- **Mandarins:** fail on domestic data. USDA stopped reporting California and Florida citrus shipments in early 2025, and before that the California data arrived in irregular lump sums. Imports are fine. Decided under D8: such items use cited editorial origins and a null supply index (below).
+- **Mandarins:** fail on domestic data. USDA stopped reporting California and Florida citrus shipments in early 2025, and before that the California data arrived in irregular lump sums. Imports are fine. Such items use cited editorial origins and a null supply index.
 - **Regional verdicts (v1.1):** no regional arrival volumes exist. Only city price reports with the origins on offer.
 
 ## Source
@@ -53,16 +53,16 @@ The top origin matches in all 3 years for most item-months. Where it flips (pear
   - a season with no domestic data for an item that had it before.
 - **Commodity names containing a comma** (`Lettuce, Romaine`) must be quoted in API queries, or the API reads them as two values. `scripts/usda-client.ts` does this.
 
-## Launch candidates (57 items, run 2026-11-17)
+## Coverage by item
 
-`npm run usda:probe` now covers 57 candidates across every browse category, a superset of the ~35 launch items. It writes the full table to `.cache/usda/coverage.md`. Each item falls into one of four groups:
+`npm run usda:probe` covers 57 core candidates plus the items added by the launch scope screen. It writes the full table to `.cache/usda/coverage.md`. Each item falls into one of four groups:
 
 | Group | Items | Evidence basis |
 | --- | --- | --- |
 | **USDA works, domestic and imports** | apples, pears, peaches, nectarines, plums, cherries, strawberries, blueberries, raspberries, blackberries, grapes, watermelon, cantaloupe, honeydew, avocados, romaine, iceberg, spinach, kale, broccoli, cauliflower, cabbage, Brussels sprouts, potatoes, sweet potatoes, onions, tomatoes, bell peppers, cucumbers, eggplant, sweet corn, green beans, asparagus, celery, zucchini, cilantro, parsley | Supply + assessment |
 | **USDA works, imports dominate** (little or no US production reported, which matches where supermarket supply comes from) | bananas, limes, mangoes, pineapples, papaya, green onions, snap peas | Supply + assessment |
-| **Domestic reporting stopped in early 2025** (California and Florida tree crops) | mandarins, oranges, lemons, grapefruit, kiwifruit, persimmons, pomegranates | Editorial origins, null index (D8) |
-| **Large US production never reported** | carrots (California), garlic (California), mushrooms (Pennsylvania), butternut squash | Editorial origins, null index (D8) |
+| **Domestic reporting stopped in early 2025** (California and Florida tree crops) | mandarins, oranges, lemons, grapefruit, kiwifruit, persimmons, pomegranates | Editorial origins, null index |
+| **Large US production never reported** | carrots (California), garlic (California), mushrooms (Pennsylvania), butternut squash | Editorial origins, null index |
 | **Too little data** | apricots (~7M lb a season), basil | Assessment only, or leave out |
 
 Notes:
@@ -71,13 +71,13 @@ Notes:
 - Thin months (supply index < 0.8) are mostly where expected: the winter import months for stone fruit and cherries, and summer for broccoli, cabbage and Brussels sprouts.
 - The fourth group is my reading of where US supply actually comes from. Each needs citations in the item's content before it's used.
 
-## Launch scope screen (D10)
+## Launch scope screen
 
-`npm run usda:terminal-screen` samples one week per season (Oct 2025, Jan, Apr and Jul 2026) from the fruit, vegetable, and onion-and-potato price reports of all 11 city terminal markets. It found 289 commodities; about 150 are quoted in 8 or more cities. Wholesale markets also supply ethnic grocers and restaurants, so the proposed list also asks whether mainstream supermarkets stock the item. That second test is a judgment call for Jared to confirm.
+`npm run usda:terminal-screen` samples one week per season (Oct 2025, Jan, Apr and Jul 2026) from the fruit, vegetable, and onion-and-potato price reports of all 11 city terminal markets. It found 289 commodities; about 150 are quoted in 8 or more cities. Wholesale markets also supply ethnic grocers and restaurants, so the proposed list also asks whether mainstream supermarkets stock the item.
 
 Reported volume (`npm run usda:probe`) can't serve as the filter. Cranberries, pumpkins, winter squash, Asian pears, dates, figs, shallots and most herbs have large US production that movement reports never include, so their reported volume understates them badly.
 
-**Launch list (89 items; Jared approved 2026-11-17).** Types in brackets are one item, not separate items.
+**Launch list (89 items).** Types in brackets are one item, not separate items.
 
 | Category | Items |
 | --- | --- |
@@ -98,7 +98,7 @@ Reported volume (`npm run usda:probe`) can't serve as the filter. Cranberries, p
 | Mushrooms | mushrooms |
 | Herbs | herbs [cilantro, parsley, basil, mint, dill, thyme, rosemary, chives]: one item, expected to be always good |
 
-**Not at launch** (borderline; Jared kept squash types, broccoli rabe and rhubarb): chayote, nopales, daikon, celery root, chicories (endive, escarole, radicchio), watercress, guava, lychee, star fruit, cactus pears, kumquats, quince, and individual herbs beyond the herbs item.
+**Not at launch:** chayote, nopales, daikon, celery root, chicories (endive, escarole, radicchio), watercress, guava, lychee, star fruit, cactus pears, kumquats, quince, and individual herbs beyond the herbs item.
 
 **Left out as specialty:** aloe leaves, sugarcane, tamarind, rambutan, jackfruit, cherimoya, mamey sapote, taro, malanga, calabaza, culantro, turmeric, horseradish, bean sprouts, and the Asian and Caribbean specialty greens and squashes.
 
@@ -106,7 +106,7 @@ The evidence basis for each added item is set when its record is drafted:
 - **USDA-backed** where imports dominate and are reported, as with plantains, coconuts, ginger, jicama, yuca, tomatillos and hot peppers.
 - **Cited editorial origins** where US production is unreported, as with cranberries, pumpkins, winter squash, dates, figs and herbs.
 
-## Variety calendar from terminal markets (D9)
+## Variety calendar from terminal markets
 
 `npm run usda:terminal-probe` reads 3 years of fruit price reports from 12 city terminal markets (11 current, plus San Francisco until May 2025), giving 478k apple quotes, 115k pear quotes and 175k citrus quotes. For each variety it gives the share of market-days quoting the item that quoted that variety, by month, plus its main origins. The output is `.cache/usda/variety-calendar.md`.
 
@@ -117,15 +117,9 @@ The evidence basis for each added item is set when its record is drafted:
   - W. Murcott mandarins (Peru) are quoted Jul–Oct.
   - Hamlin oranges (Florida) are quoted Oct–Jan.
 - **Apples are on offer all year,** because of cold storage. Gala, Fuji, Granny Smith, Red and Golden Delicious and Honeycrisp are quoted on 83–100% of market-days every month. Presence says nothing about freshness for storage crops, so "freshest months" in the apple guide needs citations. Only a few apple varieties show a season: Cortland, Rome and Braeburn are scarce from Jun to Sep.
-- **Citrus origins are still visible here** after domestic movement reporting stopped: California leads the navel, clementine and tango quotes. This can cross-check the editorial origins for citrus (D8), as presence rather than share.
+- **Citrus origins are still visible here** after domestic movement reporting stopped: California leads the navel, clementine and tango quotes. This can cross-check the editorial origins for citrus, as presence rather than share.
 - Variety names need a mapping to guide varieties: `PINK LADY/CRIPPS PINK`, `W. MURCOTT AFOURER`, `TANGO`, plus some quotes with no variety. That mapping belongs to the variety content in M7.
 
 ## Regional data (v1.1)
 
 No movement data by destination. Terminal market reports for 11 cities (Atlanta, Asheville, Baltimore, Boston, Chicago, Columbia, Detroit, Los Angeles, Miami, New York, Philadelphia) give daily prices by commodity, variety, origin and grade, plus market tone. They show which origins are on offer in a city, but not their share. They could support regional notes or value markers later, but not regional verdicts based on volume.
-
-## Items without domestic shipment data (decided: option 1, as part of D8)
-
-1. **Recommended: editorial origins, null index.** Typical origins come from cited editorial records (state citrus statistics, industry calendars), drafted by Claude and reviewed by Jared as in D3. The supply index is `null` with reason `not_reported`, so confidence drops and the Peak-on-thin-supply guard can't fire.
-2. **Imports only.** Compute both from imports alone. Simple, but wrong for winter citrus, when California dominates.
-3. **Leave such items out of launch**, or show them as Limited evidence until data exists.

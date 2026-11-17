@@ -1,11 +1,11 @@
 # Orchard Editorial Illustration Guide
 ## Painted artwork and generated reference images
 
-Split from the design system in v1.2 (Nov 16, 2026). Section numbers are kept from the original document. [design-system.md](design-system.md) governs the interface and tokens; this guide governs painted produce artwork, header art and generated visual studies. Review every output against the checklist in [design-system.md §11](design-system.md#11-reference-collection-and-acceptance-criteria).
+[design-system.md](design-system.md) governs the interface and tokens; this guide governs painted produce artwork, header art and generated visual studies. Review every output against the checklist in [design-system.md §9](design-system.md#9-reference-collection-and-acceptance-criteria).
 
-The design language and the mockups in `references/` were made with ChatGPT. Production artwork is generated there too, by Jared, using prompts from §8. The request, process and approval workflow is in the [engineering plan's art track](../engineering-plan.md#5-milestones).
+The design language and the mockups in `references/` were made with ChatGPT. Production artwork is generated there too, by Jared, using prompts from §2. The request, process and approval workflow is in the [engineering plan's art track](../engineering-plan.md#5-milestones).
 
-## 7. Self-contained graphical style and illustration system
+## 1. Self-contained graphical style and illustration system
 
 This section is sufficient to brief an artist or image model without access to any reference image. “Orchard Editorial” is a project label, not a style a model can be assumed to recognize. Include the actual visual description when requesting an image. References, when available, improve continuity but are optional inputs.
 
@@ -96,7 +96,7 @@ A production variety set must reflect real differences. Do not label several cop
 
 Use stable descriptive identifiers such as `persimmon-fuyu-thumbnail-v1`. Keep botanical identity separate from the UI label and verdict.
 
-A future manifest can contain asset ID, item/variety association, intended role, file path, alt-text context, revision, approval status, and reference provenance when applicable. Such a production collection has not been implemented by this document.
+The asset manifest (ID, item, role, alt-text context, revision, approval status) is defined in the engineering plan's art track.
 
 If a nearby name already identifies a decorative thumbnail, appropriate empty alt text avoids repetition. When an illustration communicates a useful identifying distinction, describe that distinction. Component context determines the final alternative text.
 
@@ -112,7 +112,7 @@ On desktop, a restrained vertical rule can separate a shopping list from a detai
 
 Exterior labels used on reference boards, presentation frames, sample annotations, and illustrative data do not belong in the actual app. Exact token values and functional placement in this guide govern implementation; raster mockups cannot guarantee exact hex values, fonts, or dimensions.
 
-## 8. Reference-free prompt pack
+## 2. Reference-free prompt pack
 
 These prompts are portable textual briefs. They do not require attached images. Fill the bracketed fields before sending; do not render the brackets or instruction labels as artwork. An available reference is an optional supplement, not a replacement for the style description.
 
@@ -150,6 +150,6 @@ For any new request, provide the asset role, subject, verified identifying trait
 
 If no images are available, use a complete prompt above rather than only “match Orchard Editorial.” For a short brief, preserve these five anchors: luminous layered botanical watercolor; accurate naturally colored subject; pale ivory/plum editorial UI; open lightly ruled structure; subtle unfilled verdicts.
 
-Textual art direction supports a similar family of graphics, not pixel-identical reproduction across models. A useful later reconstruction test is to give an agent only this document and ask for one new produce thumbnail and one small interface study. Review those against the checklist in design-system.md section 11 before treating new output as an approved reference. This revision does not claim that such an independent test has been run.
+Textual art direction supports a similar family of graphics, not pixel-identical reproduction across models. To test the guide, give an agent only this document, ask for one new produce thumbnail and one small interface study, and review both against design-system.md §9 before treating them as references.
 
 Do not add prices, health claims, provenance, freshness dates, confidence claims, or functional controls just to make a picture seem complete. Use identified illustrative content where production data is unavailable. Exact charts and numerical mappings must come from real data and appropriate rendering tools, not an image model’s invented values.
