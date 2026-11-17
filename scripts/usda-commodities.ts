@@ -1,4 +1,4 @@
-// The USDA movement reports, period and commodity names shared by usda:probe and usda:derive.
+// The USDA reports, period and commodity names shared by the usda:* probes and usda:derive.
 
 export const FROM = "2023-11-01";
 export const TO = "2026-10-31"; // 36 full months
@@ -10,6 +10,22 @@ export const REPORTS = [
   2717, 2718, 2762, 2768, 2774, 2780, 2793, 2799, 2899, 2925, 3031, 3105, 3114, 3119, 3123, 3125, 3127, 3165,
   3170, 3181, 3282, 3283, 3332, 3520,
 ];
+
+// Terminal market fruit price reports for US cities, including San Francisco (closed May 2025) for history.
+export const MARKETS: Record<number, string> = {
+  2277: "Atlanta",
+  2281: "Baltimore",
+  2285: "Boston",
+  2290: "Chicago",
+  2294: "Columbia",
+  2302: "Detroit",
+  2306: "Los Angeles",
+  2310: "Miami",
+  2314: "New York",
+  2318: "Philadelphia",
+  2322: "San Francisco",
+  3913: "Asheville",
+};
 
 // Launch candidates (a superset of the ~35 launch items, which Jared picks) → USDA commodity names.
 export const CANDIDATES: Record<string, string[]> = {

@@ -3,26 +3,8 @@
 // Usage: npm run usda:terminal-probe [-- item ...]   Writes .cache/usda/variety-calendar.md.
 import { writeFileSync } from "node:fs";
 import { CACHE, fetchDetails, pool } from "./usda-client";
+import { FROM, MARKETS, TO } from "./usda-commodities";
 import { isoDate, type Quote, varietyPresence } from "./usda-lib";
-
-const FROM = "2023-11-01";
-const TO = "2026-10-31";
-
-// Terminal market fruit price reports for US cities, including San Francisco (closed May 2025) for history.
-const MARKETS: Record<number, string> = {
-  2277: "Atlanta",
-  2281: "Baltimore",
-  2285: "Boston",
-  2290: "Chicago",
-  2294: "Columbia",
-  2302: "Detroit",
-  2306: "Los Angeles",
-  2310: "Miami",
-  2314: "New York",
-  2318: "Philadelphia",
-  2322: "San Francisco",
-  3913: "Asheville",
-};
 
 // The three M7 variety guides.
 const ITEMS: Record<string, string[]> = {
