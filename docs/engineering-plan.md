@@ -87,7 +87,9 @@ docs/                        product spec, engineering plan, design, data findin
 - **Variety calendar:** item × variety × month → the share of USDA terminal market price quotes (11 cities, 3 years) naming that variety, and the origins quoted. Evidence of presence, not volume. It says which varieties are typically in stores each month (for "best now") and cross-checks variety quality windows and typical origins.
 - **PLU codes** (only once IFPS confirms reuse): PLU → item, variety, size, organic. Label-based advice accepts a sticker code as well as an origin.
 
-`data:build` fails on any schema error, unknown ID, duplicate key, a rated window covered by claims from fewer than 2 independent sources, a departing or Low-confidence window without a `reason`, an inverted or over-long advisory, or a NaN. With `--production` (run first by `npm run deploy`) it also fails on any `draft` or `synthetic` record. Schemas live in `src/shared/data/schema.ts`, the checks in `scripts/data-validate.ts`. It writes compact JSON to `src/generated/` and prints a coverage report: items, origins rated, windows without a rating, and every Low-confidence or departing window for review.
+`data:build` fails on any schema error, unknown ID, duplicate key, a rated window covered by claims from fewer than 2 independent sources, a departing or Low-confidence window without a `reason`, an inverted or over-long advisory, or a NaN. With `--production` (run first by `npm run deploy`) it also fails on any `draft` or `synthetic` record. Schemas live in `src/shared/data/schema.ts`, the checks in `scripts/data-validate.ts`. It writes compact JSON to `src/generated/` and prints counts.
+
+Editorial review is a separate step, run only when content is being reviewed or updated, never during app work: `npm run content:report` reads the built dataset and lists what an editor should settle (windows without a rating, `alwaysGood` disagreeing with the typical outlook, and every Low-confidence or departing window). It never changes content.
 
 ### 4.2 Engine (`src/shared/verdict/`)
 
@@ -103,7 +105,7 @@ evaluate(item: ItemInputs, ctx: { date: PlainDate; mode: "today" | "typical"; la
 - `byOrigin` re-runs the rules once per rated origin, for "What does the label say?"; an advisory applies to a label origin it names. The label note is computed only for items rated by origin.
 - **Engine details:** a missing supply index is never thin or strong. The snapshot freshness check applies only to `supply+assessment` items. Verdicts rank Peak > Good > Skip > Limited evidence, so Limited evidence never wins "best variety", and an outlook turning to Limited evidence is not a Last call drop. `ItemInputs` arrive as per-window series, built from the dataset by `verdict/inputs.ts`.
 - `windowIndex(date) = (month − 1) × 2 + (day > 15 ? 1 : 0)` lives in `src/shared/time.ts`, and nowhere else.
-- **Always good** is the item's editorial `alwaysGood` field. `data:build` lists, without failing, any item where the field disagrees with its typical outlook (Good in all 24 windows, no Peak, no Skip) for an editor to settle.
+- **Always good** is the item's editorial `alwaysGood` field. `content:report` lists any item where the field disagrees with its typical outlook (Good in all 24 windows, no Peak, no Skip) for an editor to settle.
 - **Today grouping** (up to 6 Peak, sorted by confidence then `purchaseRank`, never padded; each seasonal item exactly once; always-good items left out unless an advisory changes their verdict today) is one pure function in `src/shared/today.ts`. Good buys lists the overflow Peak items first, then Good, each by confidence then `purchaseRank`; Skip and Limited evidence go by `purchaseRank`.
 
 ### 4.3 Provisional methodology (awaiting Jared's confirmation; never blocking)

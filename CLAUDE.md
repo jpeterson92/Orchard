@@ -64,7 +64,8 @@ When documents conflict: Jared's latest instruction > product spec for behavior 
   - `npm run deploy`: build, then `wrangler deploy` (wrangler is signed in on this machine)
   - `npm run format`: Biome autofix (Markdown is excluded, so docs keep their formatting)
   - `npm run cf-typegen`: regenerate Worker types after changing `wrangler.jsonc`
-  - `npm run data:build`: validate `content/` and `data/`, write `src/generated/data.json`, print coverage (`-- --production` refuses drafts)
+  - `npm run data:build`: validate `content/` and `data/`, write `src/generated/data.json`, print counts (`-- --production` refuses drafts)
+  - `npm run content:report`: editorial review listings (unrated windows, `alwaysGood` vs outlook). Run only for content review, never during app work
   - `npm run usda:probe`, `usda:terminal-probe`, `usda:terminal-screen`: USDA reference-data probes (cached in `.cache/usda/`, run in the background)
 - Secrets: `.env.pipeline` holds pipeline-only keys (the USDA key), read by `scripts/` only. Don't use `.env`: the Cloudflare plugin loads it into the Worker.
 

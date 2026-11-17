@@ -1,12 +1,10 @@
 // npm run data:build [-- --production]
-// Validates content/ and data/ (engineering plan §4.1), writes src/generated/data.json, prints a coverage report.
+// Validates content/ and data/ (engineering plan §4.1), writes src/generated/data.json, prints counts.
+// Editorial review listings live in `npm run content:report`, run only when reviewing content.
 // Reads committed files only: it never fetches from the network and never edits content.
 import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { parse as parseYaml } from "yaml";
-import { WINDOW_COUNT, windowRange } from "../src/shared/time";
-import { looksAlwaysGood, typicalOutlook } from "../src/shared/verdict";
-import { engineEnv, itemInputs } from "../src/shared/verdict/inputs";
 import { type Csv, parseCsv, type RawInputs, validate } from "./data-validate";
 
 const production = process.argv.includes("--production");
@@ -46,11 +44,6 @@ console.log(
   `Items: ${dataset.items.length} (${reviewed} reviewed, ${dataset.items.length - reviewed} draft)`,
 );
 console.log(`Origins rated: ${dataset.items.reduce((n, i) => n + i.origins.length, 0)}`);
-for (const item of dataset.items) {
-  const rated = new Set(item.origins.flatMap((o) => o.windows.flatMap((w) => windowRange(w.from, w.to))));
-  if (rated.size < WINDOW_COUNT)
-    console.log(`  ${item.id}: ${WINDOW_COUNT - rated.size} windows without a rating`);
-}
 const snap = dataset.snapshot;
 console.log(
   snap
@@ -58,14 +51,3 @@ console.log(
     : "Supply snapshot: none yet",
 );
 console.log(`Advisories: ${dataset.advisories.length}${production ? " · production build" : ""}`);
-
-// Always good is editorial; list, without failing, items whose typical outlook says otherwise (plan §4.2).
-const env = engineEnv(dataset);
-const year = new Date().getFullYear();
-for (const item of dataset.items) {
-  const outlook = typicalOutlook(itemInputs(item, dataset), env, year);
-  if (item.alwaysGood !== looksAlwaysGood(outlook))
-    console.log(
-      `  ${item.id}: alwaysGood is ${item.alwaysGood}, but the typical outlook is ${[...new Set(outlook)].join("/")}`,
-    );
-}

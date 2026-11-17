@@ -22,7 +22,8 @@
     "usda:terminal-probe": "tsx scripts/usda-terminal-probe.ts",
     "usda:terminal-screen": "tsx scripts/usda-terminal-screen.ts",
     "check:changed": "tsc -b && biome check . && vitest run --passWithNoTests --changed",
-    "data:build": "tsx scripts/data-build.ts"
+    "data:build": "tsx scripts/data-build.ts",
+    "content:report": "tsx scripts/content-report.ts"
   },
   "dependencies": {
     "hono": "4.13.19",
