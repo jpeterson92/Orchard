@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+/* Tokens from docs/design/design-system.md §3–4 (v1.3). Change values there first, then here. */
+@theme {
+  --color-canvas: #fbf6ea;
+  --color-surface: #f3ebd9;
+  --color-ink: #42192d;
+  --color-ink-secondary: #6f625a;
+  --color-olive: #4f572d;
+  --color-accent: #b94c1d;
+  --color-rule: #cec3ad;
+  --color-peak-icon: #a56b12;
+  --color-good-icon: #3b6c47;
+  --color-skip-icon: #8b5e3c;
+  --color-limited-icon: #6f625a;
+
+  --font-editorial: Georgia, "Times New Roman", serif;
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+body {
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+}

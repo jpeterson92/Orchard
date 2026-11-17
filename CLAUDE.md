@@ -51,7 +51,15 @@ When documents conflict: Jared's decisions (in `PROGRESS.md`) > product spec for
 ## Environment
 
 - The dev machine is Windows 11. Scripts must be cross-platform: Node or package.json scripts, never bash-only.
-- Commands: none yet. Add each one here once it exists.
+- Node 26 LTS (Scoop). Commands:
+  - `npm run dev`: app and Worker locally, with hot reload
+  - `npm run check`: typecheck, lint, unit tests (run before every push)
+  - `npm run e2e`: build, then Playwright smoke tests against the build running in workerd
+  - `npm run build`: client build plus the prerendered HTML (`scripts/prerender.ts`)
+  - `npm run deploy`: build, then `wrangler deploy` (wrangler is signed in on this machine)
+  - `npm run format`: Biome autofix (Markdown is excluded, so docs keep their formatting)
+  - `npm run cf-typegen`: regenerate Worker types after changing `wrangler.jsonc`
+- Secrets: `.env.pipeline` holds pipeline-only keys (the USDA key), read by `scripts/` only. Don't use `.env`: the Cloudflare plugin loads it into the Worker.
 
 ## Git and GitHub
 
