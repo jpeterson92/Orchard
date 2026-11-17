@@ -18,7 +18,7 @@ browser ── first visit ──> Worker: serves static assets; injects approxi
 
 - **The verdict engine runs on the phone.** It is a pure TypeScript module fed by the bundled inputs: quality windows, typical origins, supply index, advisories and rules. The inputs are tiny (about 2,400 ratings), so this costs microseconds. Running it on the phone gives exact-date advisories, the shopper's state, label-based advice and planning dates for free, and the same code runs in tests and scripts. One implementation, used everywhere.
 - **Verdicts are national (D2).** The state adds regional advisories, the "Locally checked" label, the Alaska and Hawaii banner, and later the price region for value markers.
-- **No server render.** First-visit location comes from the Worker writing `request.cf` state into `index.html` before it reaches the browser, so the first frame already knows the place, with no flash of the wrong verdict. Returning visits use the place saved on the phone. Add prerendering only if a measured first-visit LCP misses the target.
+- **No server render.** First-visit location comes from the Worker writing `request.cf` state into `index.html` before it reaches the browser, so the first frame already knows the place, with no flash of the wrong verdict. Returning visits use the place saved on the phone. Today and every item page are **prerendered at build time** (verdicts are national, so one static page per route works), then hydrate; if the phone's window or an advisory for its state differs from the baked-in verdicts, the verdict region renders client-side before first paint. Rebuild at each half-month boundary: a scheduled GitHub Action once deploys run in CI; until then, the pre-paint check covers a stale build.
 
 ## 2. Stack
 
@@ -28,8 +28,8 @@ Mature, widely used tools only (D1). At scaffold time, take the newest release w
 | --- | --- | --- |
 | Runtime | Node 26 LTS (installed via Scoop), npm | One package, no workspace. Scripts run with `tsx` |
 | Language | TypeScript 5.x (`tsc --noEmit`) | Not the TS 7 native compiler until the ecosystem catches up |
-| App | React 19, Vite, React Router (library mode, `createBrowserRouter`) | SPA. Search is an overlay, not a route |
-| Styling | Tailwind CSS 4 | Design-system tokens as CSS variables in `@theme`; no component library. Native `<dialog>`; hand-written disclosure buttons |
+| App | React 19, Vite, React Router | SPA with build-time prerendering (M3): React Router framework mode with `ssr: false` and `prerender` if it works with the Cloudflare Vite plugin (checked in M0); otherwise library mode plus a small post-build `react-dom/server` script. React Compiler on from M0. Search is an overlay, not a route |
+| Styling | Tailwind CSS 4 | Design-system tokens as CSS variables in `@theme`; native `<dialog>` and hand-written disclosure buttons for simple cases. Adopt Base UI (headless and accessible; also the archived spec's choice) at the first complex control (popover, select, tabs, sortable table); never hand-build those |
 | Offline | `vite-plugin-pwa` (Workbox) | Precache everything; activate updates on next launch |
 | Worker | `@cloudflare/vite-plugin`, Wrangler, Hono (for `/api` routes) | Static assets with SPA fallback |
 | Write store | D1, plain SQL migrations through Wrangler | Introduced in M8. No ORM unless queries grow |
@@ -118,13 +118,13 @@ Each milestone takes 1–3 sessions and ends with something Jared can review. Th
 
 | # | Milestone | Done when | Needs |
 | --- | --- | --- | --- |
-| M0 | **Scaffold and deploy.** Vite + React + TS app and Worker via the Cloudflare Vite plugin; Tailwind, Biome, Vitest, Playwright; CI; a placeholder page deployed | The `workers.dev` URL opens on Jared's phone; CI is green | Cloudflare account; Jared runs `wrangler login` once |
+| M0 | **Scaffold and deploy.** Vite + React + TS app and Worker via the Cloudflare Vite plugin; Tailwind, React Compiler, Biome, Vitest, Playwright; CI; a placeholder page deployed; settle the prerender mechanism (§2) | The `workers.dev` URL opens on Jared's phone; CI is green | Cloudflare account; Jared runs `wrangler login` once |
 | M1 | **USDA probe** (runs alongside M0–M3). Fetch movement data for 5 candidate items; write a one-page `docs/data/usda-probe.md` | Clear answers: which reports and fields, units, history depth, and whether typical origins (≥ 70%) and a supply index are computable. Also whether regional arrival data exists (for regional verdicts in v1.1). **If not computable, Jared decides the evidence fallback** | USDA API key |
 | M2 | **Content schemas and the verdict engine.** zod schemas, `data:build`, `rules.yaml`, `sources.yaml`, engine, Today grouping. 5 draft items (content batch 1) | Engine tests pass (§6). Jared reviews batch 1 through `npm run content:report`, a readable table of verdicts per window with citations | — |
-| M3 | **Today and item page, styled.** Tokens from the design system, verdict marks, cards that expand in place, item page in product order, location and date chip (display), draft badge in previews | **Jared's first real review on his phone** | — |
+| M3 | **Today and item page, styled.** Tokens from the design system, verdict marks, cards that expand in place, item page in product order, location and date chip (display), draft badge in previews; build-time prerendering of Today and item pages | **Jared's first real review on his phone** | — |
 | M4 | **Offline and in-store mode.** Precache, readiness line, updates that activate on the next launch, in-store toggle (wake lock, 18 px type, high contrast, no motion, `persist()`) | E2E: after one visit, go offline and open an item never visited | — |
 | M5 | **Place, date and advisories.** Worker HTML injection; ZIP entry → state on the phone; saved place; advisories by state and region; Alaska and Hawaii banner; "Locally checked"; planning date with the typical-outlook banner; "Share for this date"; label-based advice; recompute at midnight and on `visibilitychange` | Unit tests for place and window math; e2e for a pinned date and a changed ZIP | — |
-| M6 | **Browse, search, Calendar, Methods.** Categories; MiniSearch with synonyms and misspellings; no-match flow; Calendar as a month list on phone and a heatmap with a table equivalent on wider screens; Methods and privacy pages | Every item reachable in ≤ 3 taps or one search; "scallion" and "corriander" find the right items | — |
+| M6 | **Browse, search, Calendar, Methods.** Categories; MiniSearch with synonyms and misspellings; no-match flow; Calendar as a month list on phone and a heatmap with a table equivalent on wider screens; Methods and privacy pages; headless component library adopted here or in M5, whichever first needs a complex control | Every item reachable in ≤ 3 taps or one search; "scallion" and "corriander" find the right items | — |
 | M7 | **Variety guides:** apples, mandarins & oranges, pears. Traits, finder, cards on phone, a sortable table on wider screens, variety pages | Jared reviews the 3 guides | Variety content |
 | M8 | **Feedback and measurement.** D1 tables; feedback, taste, request and event endpoints; rate limiting; `web-vitals` + `verdict-visible` beacon; privacy-safe logging | A test proves no ZIP or IP reaches logs or D1; a feedback row records app version, date, state, item and origin | — |
 | M9 | **Launch readiness.** All launch content reviewed, illustrations, Turnstile, CSP and security headers, axe plus a quick VoiceOver/TalkBack pass, a performance check on a mid-range Android, offline check on a real iPhone, production domain | Jared decides launch, using the D4 gates | Domain, devices, D4 |
@@ -159,7 +159,7 @@ These were in the archived specs. Don't add them without a new decision from Jar
 
 - separate data releases, R2 buckets, manifests, a publisher Worker, IndexedDB release slots;
 - TypeSpec and generated contracts, a Python pipeline, Dagster, Cloudflare Workflows and Containers;
-- a mixed-version test matrix, gradual deployments, a boot guard, nonce-based CSP for server rendering;
+- a mixed-version test matrix, gradual deployments, a full boot guard (the small pre-paint check in §1 is the only one), nonce-based CSP for server rendering;
 - 53 harvest zones, harvest calendars, the location grid, the California/Florida split, 96 region-month summaries;
 - Windows CI runners, cross-OS byte-for-byte builds, screenshot baselines, Lighthouse CI, Trusted Types, Renovate.
 
