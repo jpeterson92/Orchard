@@ -111,6 +111,8 @@ export const itemSchema = z
     purchaseRank: z.int().positive(),
     /** Editorial class; data-build reports where the typical outlook disagrees. */
     alwaysGood: z.boolean(),
+    /** Editorial: holds its quality through long transport, so an import in its own season can eat well (P14). */
+    shipsWell: z.boolean(),
     evidenceBasis: z.enum(["supply+assessment", "assessment-only"]),
     cardLine: words(CARD_WORDS),
     pick: z.array(text).min(3).max(5),

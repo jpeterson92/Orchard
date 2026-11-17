@@ -340,7 +340,7 @@ export function describeWindows(windows: { from: string; to: string }[]): string
 
 /**
  * A chart row as a draft claim. An availability chart says when an item is in season, not how good it is:
- * listed windows rate prime and unlisted windows carry no value (provisional P14).
+ * listed windows rate prime, and the combiner reads the rest of the year from them (P14, `claimValues`).
  */
 export function rowClaim(row: ParsedRow, page: RegistryPage, placeName: string): EvidenceClaim | null {
   if (row.ranges === null) return null;

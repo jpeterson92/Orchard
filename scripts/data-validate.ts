@@ -238,7 +238,7 @@ export function validate(raw: RawInputs, opts: { production: boolean }): Result 
       sourceIds.has(c.source),
     );
     for (const [name, windows, target] of ratedSeries(item)) {
-      const proposal = propose(claims, sourcesById, target).windows;
+      const proposal = propose(claims, sourcesById, target, item).windows;
       for (const w of windows) {
         const at = `item ${item.id} ${name} ${w.from}..${w.to}`;
         const range = windowRange(w.from, w.to);

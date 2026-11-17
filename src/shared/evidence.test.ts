@@ -49,18 +49,19 @@ function claim(source: string, windows: string, opts: Partial<Claim> = {}): Clai
   };
 }
 const US_WA: Target = { origin: "us-wa" };
+const SHIPS = { shipsWell: true };
 const valuesAt = (values: (number | null)[], labels: string[]) =>
   labels.map((l) => values[windowFromLabel(l)]);
 
 describe("claim curves", () => {
   it("map prime, fair and poor to 1, 0.5 and 0, and leave unrated windows empty", () => {
-    const v = claimValues(claim("a", "may-1 prime, may-2 fair, jun-1 poor"));
+    const v = claimValues(claim("a", "may-1 prime, may-2 fair, jun-1 poor"), SHIPS);
     expect(valuesAt(v, ["apr-2", "may-1", "may-2", "jun-1", "jun-2"])).toEqual([null, 1, 0.5, 0, null]);
     expect(v.filter((x) => x !== null)).toHaveLength(3);
   });
 
   it.each([["half-month" as const], ["month" as const]])("keep sharp edges for a %s claim", (specificity) => {
-    const v = claimValues(claim("a", "may-1..jun-2 prime", { specificity }));
+    const v = claimValues(claim("a", "may-1..jun-2 prime", { specificity }), SHIPS);
     expect(valuesAt(v, ["apr-2", "may-1", "jun-2", "jul-1"])).toEqual([null, 1, 1, null]);
   });
 
@@ -84,7 +85,7 @@ describe("claim curves", () => {
     ["a full year has no shoulder", "jan-1..dec-2 fair", { "jan-1": 0.5, "dec-2": 0.5 }],
   ];
   it.each(shoulders)("season claim: %s", (_name, windows, expected) => {
-    const v = claimValues(claim("a", windows, { specificity: "season" }));
+    const v = claimValues(claim("a", windows, { specificity: "season" }), SHIPS);
     expect(Object.fromEntries(Object.keys(expected).map((l) => [l, v[windowFromLabel(l)]]))).toEqual(
       expected,
     );
@@ -173,19 +174,22 @@ describe("which claims speak for a target", () => {
 
 describe("combining curves", () => {
   it("proposes nothing where no curve covers a window", () => {
-    const p = propose([claim("a", "jun-1 prime"), claim("b", "jun-1 prime")], sources, US_WA);
+    const p = propose([claim("a", "jun-1 prime"), claim("b", "jun-1 prime")], sources, US_WA, SHIPS);
     expect(p.windows.filter((w) => w !== null)).toHaveLength(1);
-    expect(propose([], sources, US_WA).windows.every((w) => w === null)).toBe(true);
+    expect(propose([], sources, US_WA, SHIPS).windows.every((w) => w === null)).toBe(true);
   });
 
   it("two agreeing authoritative sources: prime, high confidence", () => {
     expect(
-      at(propose([claim("a", "jun-1 prime"), claim("b", "jun-1 prime")], sources, US_WA), "jun-1"),
+      at(propose([claim("a", "jun-1 prime"), claim("b", "jun-1 prime")], sources, US_WA, SHIPS), "jun-1"),
     ).toEqual({ value: 1, rating: "prime", confidence: "high", weight: 4, spread: 0, sources: ["a", "b"] });
   });
 
   it("takes the weighted mean, and spread lowers confidence", () => {
-    const w = at(propose([claim("a", "jun-1 prime"), claim("m", "jun-1 fair")], sources, US_WA), "jun-1");
+    const w = at(
+      propose([claim("a", "jun-1 prime"), claim("m", "jun-1 fair")], sources, US_WA, SHIPS),
+      "jun-1",
+    );
     expect(w?.value).toBeCloseTo(2.5 / 3, 12);
     expect(w?.spread).toBeCloseTo(Math.sqrt(1 / 18), 12);
     expect(w).toMatchObject({ rating: "prime", confidence: "medium", weight: 3 });
@@ -193,54 +197,70 @@ describe("combining curves", () => {
 
   it("strong disagreement is fair at low confidence", () => {
     expect(
-      at(propose([claim("a", "jun-1 prime"), claim("b", "jun-1 poor")], sources, US_WA), "jun-1"),
+      at(propose([claim("a", "jun-1 prime"), claim("b", "jun-1 poor")], sources, US_WA, SHIPS), "jun-1"),
     ).toMatchObject({ value: 0.5, rating: "fair", spread: 0.5, confidence: "low" });
   });
 
   it("one source alone is low confidence", () => {
-    expect(at(propose([claim("a", "jun-1 prime")], sources, US_WA), "jun-1")?.confidence).toBe("low");
+    expect(at(propose([claim("a", "jun-1 prime")], sources, US_WA, SHIPS), "jun-1")?.confidence).toBe("low");
   });
 
   it("too little weight stays medium", () => {
     const avail = { directness: "availability" as const };
     const claims = [claim("a", "jun-1 prime", avail), claim("b", "jun-1 prime", avail)];
-    expect(at(propose(claims, sources, US_WA), "jun-1")).toMatchObject({ weight: 2.4, confidence: "medium" });
+    expect(at(propose(claims, sources, US_WA, SHIPS), "jun-1")).toMatchObject({
+      weight: 2.4,
+      confidence: "medium",
+    });
   });
 
   it("no authoritative source stays medium", () => {
     const claims = ["m", "n", "o"].map((s) => claim(s, "jun-1 prime"));
-    expect(at(propose(claims, sources, US_WA), "jun-1")).toMatchObject({ weight: 3, confidence: "medium" });
+    expect(at(propose(claims, sources, US_WA, SHIPS), "jun-1")).toMatchObject({
+      weight: 3,
+      confidence: "medium",
+    });
   });
 
   it("a restating source counts once, keeping the higher weight", () => {
-    const w = at(propose([claim("a", "jun-1 prime"), claim("ra", "jun-1 poor")], sources, US_WA), "jun-1");
+    const w = at(
+      propose([claim("a", "jun-1 prime"), claim("ra", "jun-1 poor")], sources, US_WA, SHIPS),
+      "jun-1",
+    );
     expect(w).toMatchObject({ value: 1, weight: 2, sources: ["a"], confidence: "low" });
   });
 
   it("the restatement wins when it weighs more, named by its root", () => {
-    const w = at(propose([claim("m", "jun-1 fair"), claim("rm", "jun-1 prime")], sources, US_WA), "jun-1");
+    const w = at(
+      propose([claim("m", "jun-1 fair"), claim("rm", "jun-1 prime")], sources, US_WA, SHIPS),
+      "jun-1",
+    );
     expect(w).toMatchObject({ value: 1, weight: 2, sources: ["m"] });
   });
 
   it("restatement chains trace back to the first source", () => {
     const claims = [claim("a", "jun-1 prime"), claim("rra", "jun-1 prime"), claim("b", "jun-1 prime")];
-    expect(at(propose(claims, sources, US_WA), "jun-1")?.sources).toEqual(["a", "b"]);
+    expect(at(propose(claims, sources, US_WA, SHIPS), "jun-1")?.sources).toEqual(["a", "b"]);
   });
 
   it("a source's equal-weight claims average; a heavier one replaces a lighter one", () => {
-    const tied = propose([claim("a", "jun-1 prime"), claim("a", "jun-1 fair")], sources, US_WA);
+    const tied = propose([claim("a", "jun-1 prime"), claim("a", "jun-1 fair")], sources, US_WA, SHIPS);
     expect(at(tied, "jun-1")).toMatchObject({ value: 0.75, weight: 2, sources: ["a"] });
     const heavier = propose(
       [claim("a", "jun-1 poor", { directness: "availability" }), claim("a", "jun-1 prime")],
       sources,
       US_WA,
+      SHIPS,
     );
     expect(at(heavier, "jun-1")).toMatchObject({ value: 1, weight: 2 });
   });
 
   it("season shoulders combine like any other value", () => {
     const claims = [claim("a", "may-1..jun-2 prime", { specificity: "season" }), claim("b", "jul-1 prime")];
-    expect(at(propose(claims, sources, US_WA), "jul-1")).toMatchObject({ value: 0.75, rating: "prime" });
+    expect(at(propose(claims, sources, US_WA, SHIPS), "jul-1")).toMatchObject({
+      value: 0.75,
+      rating: "prime",
+    });
   });
 
   it("lists the applicable curves with their weights", () => {
@@ -248,12 +268,13 @@ describe("combining curves", () => {
       [claim("a", "jun-1 prime"), claim("m", "jun-1 fair", { origin: "mx" })],
       sources,
       US_WA,
+      SHIPS,
     );
     expect(p.curves.map(({ source, weight }) => ({ source, weight }))).toEqual([{ source: "a", weight: 2 }]);
   });
 
   it("refuses an unknown source", () => {
-    expect(() => propose([claim("zz", "jun-1 prime")], sources, US_WA)).toThrow("unknown source zz");
+    expect(() => propose([claim("zz", "jun-1 prime")], sources, US_WA, SHIPS)).toThrow("unknown source zz");
   });
 });
 
@@ -306,7 +327,7 @@ describe("combining curves: properties", () => {
   it("values, ratings and confidence stay consistent", () => {
     fc.assert(
       fc.property(claimsArb, targetArb, (claims, target) => {
-        const p = propose(claims, sources, target);
+        const p = propose(claims, sources, target, SHIPS);
         for (const [i, w] of p.windows.entries()) {
           const covered = p.curves.some((c) => c.values[i] !== null);
           expect(w !== null).toBe(covered);
@@ -330,7 +351,9 @@ describe("combining curves: properties", () => {
         const shuffled = [...claims].sort(
           (x, y) => ((claims.indexOf(x) * 7919 + seed) % 97) - ((claims.indexOf(y) * 7919 + seed) % 97),
         );
-        expect(same(propose(claims, sources, target), propose(shuffled, sources, target))).toBe(true);
+        expect(same(propose(claims, sources, target, SHIPS), propose(shuffled, sources, target, SHIPS))).toBe(
+          true,
+        );
       }),
     );
   });
@@ -346,9 +369,9 @@ describe("combining curves: properties", () => {
         const restater: EvidenceSource = { id: "echo", tier: "mainstream", basedOn: original.source };
         const withEcho = new Map([...sources, ["echo", restater]]);
         const echo = { ...original, source: "echo", directness: "secondhand" as const };
-        expect(same(propose(claims, sources, target), propose([...claims, echo], withEcho, target))).toBe(
-          true,
-        );
+        expect(
+          same(propose(claims, sources, target, SHIPS), propose([...claims, echo], withEcho, target, SHIPS)),
+        ).toBe(true);
       }),
     );
   });
@@ -361,12 +384,111 @@ describe("combining curves: properties", () => {
         const raised = claims.map((c, i) =>
           i === k ? { ...c, windows: c.windows.map((w) => ({ ...w, rating: "prime" as const })) } : c,
         );
-        const before = propose(claims, sources, target).windows;
-        const after = propose(raised, sources, target).windows;
+        const before = propose(claims, sources, target, SHIPS).windows;
+        const after = propose(raised, sources, target, SHIPS).windows;
         for (const [i, w] of before.entries()) {
           if (w === null) continue;
           expect(after[i]?.value).toBeGreaterThanOrEqual(w.value - 1e-9);
         }
+      }),
+    );
+  });
+});
+
+describe("availability curves (P14)", () => {
+  const avail = (windows: string, opts: Partial<Claim> = {}) =>
+    claim("a", windows, { directness: "availability", ...opts });
+  const NOT_SHIPPING = { shipsWell: false };
+
+  it.each([
+    // In season prime, the half-month either side fair, the rest of the year poor.
+    [
+      "jun-1..aug-2 prime",
+      ["may-1", "may-2", "jun-1", "aug-2", "sep-1", "sep-2", "jan-1"],
+      [0, 0.5, 1, 1, 0.5, 0, 0],
+    ],
+    // Wraps past December.
+    ["dec-1..feb-2 prime", ["nov-1", "nov-2", "dec-1", "feb-2", "mar-1", "mar-2"], [0, 0.5, 1, 1, 0.5, 0]],
+    // Shoulders meeting in a one-window gap read fair.
+    ["apr-1..may-2 prime, jun-2..jul-2 prime", ["may-2", "jun-1", "jun-2", "aug-1"], [1, 0.5, 1, 0.5]],
+    // A shoulder never reads above the edge it touches.
+    ["jun-1 fair", ["may-2", "jun-1", "jun-2", "jul-1"], [0.5, 0.5, 0.5, 0]],
+    ["jun-1 poor", ["may-2", "jun-1", "jun-2"], [0, 0, 0]],
+    // A shoulder never overrides a listed window.
+    ["jun-1 prime, jun-2 poor", ["may-2", "jun-1", "jun-2", "jul-1"], [0.5, 1, 0, 0]],
+  ])("a domestic chart listing %s", (windows, labels, values) => {
+    const v = claimValues(avail(windows), SHIPS);
+    expect(valuesAt(v, labels)).toEqual(values);
+    expect(v.every((x) => x !== null)).toBe(true);
+  });
+
+  it("a year-round listing has no shoulders", () => {
+    expect(new Set(claimValues(avail("jan-1..dec-2 prime"), SHIPS))).toEqual(new Set([1]));
+  });
+
+  it("an import that ships well sits one level lower: its own season reads fair", () => {
+    const v = claimValues(avail("dec-1..mar-2 prime", { origin: "mx" }), SHIPS);
+    expect(valuesAt(v, ["nov-2", "dec-1", "mar-2", "apr-1", "jul-1"])).toEqual([0, 0.5, 0.5, 0, 0]);
+  });
+
+  it("an import that doesn't ship well has no availability curve", () => {
+    const c = avail("dec-1..mar-2 prime", { origin: "mx" });
+    expect(claimValues(c, NOT_SHIPPING).every((x) => x === null)).toBe(true);
+    expect(propose([c], sources, { origin: "mx" }, NOT_SHIPPING).windows.every((w) => w === null)).toBe(true);
+  });
+
+  it("a domestic chart doesn't depend on shipping", () => {
+    expect(claimValues(avail("jun-1..aug-2 prime"), NOT_SHIPPING)).toEqual(
+      claimValues(avail("jun-1..aug-2 prime"), SHIPS),
+    );
+  });
+
+  it("eating-quality and secondhand claims ignore P14, imports included", () => {
+    for (const directness of ["eating-quality", "secondhand"] as const) {
+      const v = claimValues(claim("a", "dec-1 prime", { origin: "mx", directness }), NOT_SHIPPING);
+      expect(valuesAt(v, ["nov-2", "dec-1", "dec-2"])).toEqual([null, 1, null]);
+    }
+  });
+
+  it("two agreeing charts propose poor off season, from 2 sources", () => {
+    const claims = [
+      avail("jun-1..aug-2 prime"),
+      claim("b", "jun-1..aug-2 prime", { directness: "availability" }),
+    ];
+    const p = propose(claims, sources, US_WA, SHIPS);
+    expect(at(p, "jan-1")).toMatchObject({ rating: "poor", sources: ["a", "b"] });
+    expect(at(p, "sep-1")).toMatchObject({ rating: "fair" });
+    expect(at(p, "jul-1")).toMatchObject({ rating: "prime" });
+  });
+
+  const availArb = claimArb.map((c) => ({ ...c, directness: "availability" as const }));
+
+  it("a domestic availability curve covers every window, keeps listed windows, and its shoulders never exceed fair (property)", () => {
+    fc.assert(
+      fc.property(availArb, fc.boolean(), (c, shipsWell) => {
+        const domestic = { ...c, origin: "us" };
+        const v = claimValues(domestic, { shipsWell });
+        expect(v.every((x) => x !== null)).toBe(true);
+        const listed = claimValues(
+          { ...domestic, directness: "eating-quality", specificity: "month" },
+          { shipsWell },
+        );
+        v.forEach((x, i) => {
+          const l = listed[i];
+          if (l !== null && l !== undefined) expect(x).toBe(l);
+          else expect(x).toBeLessThanOrEqual(0.5);
+        });
+      }),
+    );
+  });
+
+  it("an import's curve is the domestic curve one level lower, or none when the item doesn't ship well (property)", () => {
+    fc.assert(
+      fc.property(availArb, (c) => {
+        const domestic = claimValues({ ...c, origin: "us" }, SHIPS);
+        const imported = claimValues({ ...c, origin: "mx" }, SHIPS);
+        expect(imported).toEqual(domestic.map((x) => Math.max(0, (x as number) - 0.5)));
+        expect(claimValues({ ...c, origin: "mx" }, { shipsWell: false }).every((x) => x === null)).toBe(true);
       }),
     );
   });

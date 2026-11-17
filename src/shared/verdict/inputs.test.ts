@@ -21,6 +21,7 @@ const item = {
   id: "test-fruit",
   evidenceBasis: "supply+assessment",
   alwaysGood: false,
+  shipsWell: true,
   origins: [{ origin: "us-ca", windows: SUMMER }],
   varieties: [
     { id: "rated", windows: SUMMER },

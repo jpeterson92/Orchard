@@ -15,10 +15,11 @@ function series(
   claims: readonly Claim[],
   sources: ReadonlyMap<string, EvidenceSource>,
   target: Target,
+  item: Item,
 ): RatedSeries {
   const ratings: (Rating | null)[] = Array(WINDOW_COUNT).fill(null);
   for (const w of windows) for (const i of windowRange(w.from, w.to)) ratings[i] = w.rating;
-  const evidence = propose(claims, sources, target).windows.map((p) => p?.confidence ?? null);
+  const evidence = propose(claims, sources, target, item).windows.map((p) => p?.confidence ?? null);
   return { windows: ratings, evidence };
 }
 
@@ -37,7 +38,7 @@ export function itemInputs(item: Item, data: Dataset): ItemInputs {
   );
   const varieties = item.varieties.flatMap((v): RatedVariety[] =>
     v.windows
-      ? [{ id: v.id, ...series(v.windows, claims, sources, { variety: v.id }), inStore: NOT_YET_KNOWN }]
+      ? [{ id: v.id, ...series(v.windows, claims, sources, { variety: v.id }, item), inStore: NOT_YET_KNOWN }]
       : [],
   );
   return {
@@ -45,7 +46,7 @@ export function itemInputs(item: Item, data: Dataset): ItemInputs {
     evidenceBasis: item.evidenceBasis,
     alwaysGood: item.alwaysGood,
     origins: Object.fromEntries(
-      item.origins.map((o) => [o.origin, series(o.windows, claims, sources, { origin: o.origin })]),
+      item.origins.map((o) => [o.origin, series(o.windows, claims, sources, { origin: o.origin }, item)]),
     ),
     varieties,
     typicalOrigins,

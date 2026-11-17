@@ -15,6 +15,8 @@ export const P12 = {
   /** Combined value cut-offs: prime at or above, poor at or below, fair between. */
   rating: { prime: 0.75, poor: 0.25 },
   combined: { minSources: 2, highWeight: 3, highSpread: 0.2, lowSpread: 0.35 },
+  /** P14: windows either side of an availability claim's listed range that read fair. */
+  availabilityShoulder: 1,
 } as const;
 
 /** Weights are sums of products like 0.6 × 2; compare with a little tolerance. */
@@ -25,6 +27,15 @@ export type Claim = Pick<
   EvidenceClaim,
   "source" | "origin" | "variety" | "windows" | "specificity" | "directness"
 >;
+
+/** What the combiner needs to know about the item itself. */
+export interface ItemTraits {
+  /** Holds its quality through long transport, so an import in its own season can eat well (P14). */
+  shipsWell: boolean;
+}
+
+/** A claim about a country other than the US. */
+export const isImport = (origin: string): boolean => origin !== "us" && !origin.startsWith("us-");
 
 /** Whose curve: one origin of the item (`us-wa`, `mx`), or one variety. */
 export type Target = { origin: string } | { variety: string };
@@ -71,14 +82,25 @@ export function ratingForValue(value: number): Rating {
 }
 
 /**
- * A claim's values by window. A `season` claim gets a soft shoulder one window beyond each end of each rated
- * range, at half the edge value; shoulders never override a window the claim rates, and where two meet the
- * higher one stands. `half-month` and `month` claims keep sharp edges.
+ * A claim's values by window.
+ *
+ * An `availability` claim (a harvest chart, an in-season list) speaks for the whole year (P14): the windows it
+ * lists keep their rating, the window either side of each listed range reads fair (never above the edge it
+ * touches, never over a listed window), and every other window reads poor. An import's availability curve sits
+ * one level lower, so its own season reads fair; for an item that doesn't ship well it has no curve.
+ *
+ * Otherwise windows the claim doesn't rate have no value. A `season` claim gets a soft shoulder one window
+ * beyond each end of each rated range, at half the edge value; shoulders never override a window the claim
+ * rates, and where two meet the higher one stands. `half-month` and `month` claims keep sharp edges.
  */
-export function claimValues(claim: Pick<Claim, "windows" | "specificity">): (number | null)[] {
+export function claimValues(
+  claim: Pick<Claim, "windows" | "specificity" | "directness" | "origin">,
+  item: ItemTraits,
+): (number | null)[] {
   const values: (number | null)[] = Array(WINDOW_COUNT).fill(null);
   const ranges = claim.windows.map((w) => ({ range: windowRange(w.from, w.to), value: P12.value[w.rating] }));
   for (const { range, value } of ranges) for (const i of range) values[i] = value;
+  if (claim.directness === "availability") return availabilityValues(values, ranges, claim.origin, item);
   if (claim.specificity !== "season") return values;
   const shoulders: (number | null)[] = Array(WINDOW_COUNT).fill(null);
   for (const { range, value } of ranges) {
@@ -90,6 +112,32 @@ export function claimValues(claim: Pick<Claim, "windows" | "specificity">): (num
     }
   }
   return values.map((v, i) => v ?? shoulders[i] ?? null);
+}
+
+function availabilityValues(
+  listed: (number | null)[],
+  ranges: { range: number[]; value: number }[],
+  origin: string,
+  item: ItemTraits,
+): (number | null)[] {
+  const imported = isImport(origin);
+  if (imported && !item.shipsWell) return Array(WINDOW_COUNT).fill(null);
+  const shoulders: (number | null)[] = Array(WINDOW_COUNT).fill(null);
+  for (const { range, value } of ranges) {
+    if (range.length >= WINDOW_COUNT) continue;
+    const first = range[0] as number;
+    const last = range[range.length - 1] as number;
+    for (let k = 1; k <= P12.availabilityShoulder; k++) {
+      for (const i of [(first - k + WINDOW_COUNT) % WINDOW_COUNT, (last + k) % WINDOW_COUNT]) {
+        if (listed[i] === null) shoulders[i] = Math.max(shoulders[i] ?? 0, Math.min(P12.value.fair, value));
+      }
+    }
+  }
+  const step = P12.value.prime - P12.value.fair;
+  return listed.map((v, i) => {
+    const value = v ?? shoulders[i] ?? P12.value.poor;
+    return imported ? Math.max(P12.value.poor, value - step) : value;
+  });
 }
 
 /** The source a restatement traces back to; sources sharing a root count once. */
@@ -126,6 +174,7 @@ export function propose(
   claims: readonly Claim[],
   sources: ReadonlyMap<string, EvidenceSource>,
   target: Target,
+  item: ItemTraits,
 ): Proposal {
   const curves: (ClaimCurve & { root: string; authoritative: boolean })[] = claimsFor(claims, target, (s) =>
     rootOf(s, sources),
@@ -135,7 +184,7 @@ export function propose(
     return {
       source: c.source,
       weight: claimWeight(source.tier, c.directness),
-      values: claimValues(c),
+      values: claimValues(c, item),
       root: rootOf(c.source, sources),
       authoritative: source.tier === "authoritative",
     };

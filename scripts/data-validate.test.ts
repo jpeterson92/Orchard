@@ -44,6 +44,7 @@ const item = (id: string, rank: number) => ({
   category: "berries",
   purchaseRank: rank,
   alwaysGood: false,
+  shipsWell: true,
   evidenceBasis: "supply+assessment",
   cardLine: "Deep color, firm and dry.",
   pick: ["Deep, even color", "Firm, plump fruit", "Dry, not leaking"],
