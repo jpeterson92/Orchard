@@ -1,6 +1,6 @@
 # Orchard model panel: prompt
 
-Prompt version: 1
+Prompt version: 2
 
 Give this file to any AI model. If it can read and write files, point it at the Orchard project folder and say "Follow content/panel/PROMPT.md". If it's a chat, paste this file and `content/panel/scope.yaml`, then save each category it returns as a file yourself. Afterwards run `npm run panel:check`.
 
@@ -30,6 +30,8 @@ Judge by taste and how reliably good the item at the store will be. Don't prefer
 - **Windows** are half-months: `jan-1` is Jan 1–15, `jan-2` is Jan 16–end, through `dec-2`. A range runs from its first window to its last, and may wrap past December (`nov-1` to `feb-2`).
 - **prime:** typically eats at its best for this item. **fair:** acceptable, what you'd expect. **poor:** typically disappointing (end of long storage, picked too green, mealy, bland, woody).
 - Rate against the item itself. Prime bananas and prime peaches are each the best that item gets.
+- **Keep prime for a stretch that is clearly better than the rest of the year,** usually 1 to 4 months. A prime rating can put "buy it now" on a shopper's screen, so it has to mean something. If an item or variety eats about the same for most of the year (long storage, steady year-round imports), rate that stretch fair, and give prime only to weeks that are noticeably better, such as fresh harvest. Stored produce is prime only near its harvest. A variety that keeps well all year with no better stretch is fair throughout.
+- **Rate poor wherever a shopper would typically be disappointed,** even if the item is widely sold then. Don't soften a poor to fair because the item is common.
 - One origin's (or variety's) windows must not overlap.
 - **Confidence** for each range: `high` (well established, you'd be surprised to be wrong), `medium` (likely, details may be off by a few weeks), `low` (an informed guess). Use `low` freely. A confident wrong answer is worse than an honest guess.
 
@@ -53,7 +55,7 @@ run: claude-opus-5-5-2026-11-17
 model: claude-opus-5-5        # the exact model id, as the provider names it
 provider: Anthropic
 date: 2026-11-17
-promptVersion: 1              # the version at the top of this file
+promptVersion: 2              # the version at the top of this file
 webAccess: false
 knowledgeCutoff: 2026-06      # your training cutoff, YYYY-MM, if you know it
 note: Recall only, no files read beyond the prompt and scope.

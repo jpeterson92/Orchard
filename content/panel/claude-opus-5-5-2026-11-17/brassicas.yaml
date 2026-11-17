@@ -79,8 +79,7 @@ items:
     origins:
       - origin: mx
         windows:
-          - [nov-1, mar-2, prime, low]
-          - [apr-1, oct-2, fair, low]
+          - [jan-1, dec-2, fair, low]
       - origin: us-ca
         windows:
           - [jun-1, sep-2, fair, medium]

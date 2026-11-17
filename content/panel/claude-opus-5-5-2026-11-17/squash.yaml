@@ -32,8 +32,8 @@ items:
       - origin: us
         windows:
           - [aug-1, sep-1, fair, medium]
-          - [sep-2, jan-2, prime, high]
-          - [feb-1, mar-2, fair, medium]
+          - [sep-2, nov-2, prime, high]
+          - [dec-1, mar-2, fair, medium]
         note: Grown in many states; cured fall squash is sweetest, and delicata keeps the least time.
       - origin: mx
         windows:

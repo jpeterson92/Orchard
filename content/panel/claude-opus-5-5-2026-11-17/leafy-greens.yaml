@@ -147,8 +147,8 @@ items:
     origins:
       - origin: us-ga
         windows:
-          - [oct-2, apr-1, prime, medium]
-          - [apr-2, oct-1, fair, medium]
+          - [dec-1, feb-2, prime, medium]
+          - [mar-1, nov-2, fair, medium]
       - origin: us-ca
         windows:
           - [jan-1, dec-2, fair, medium]
@@ -179,8 +179,8 @@ items:
     origins:
       - origin: us-ga
         windows:
-          - [oct-2, apr-1, prime, medium]
-          - [apr-2, oct-1, fair, medium]
+          - [dec-1, feb-2, prime, medium]
+          - [mar-1, nov-2, fair, medium]
       - origin: us-ca
         windows:
           - [jan-1, dec-2, fair, medium]

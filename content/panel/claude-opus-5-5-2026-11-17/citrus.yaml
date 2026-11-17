@@ -11,8 +11,8 @@ items:
     origins:
       - origin: us-ca
         windows:
-          - [nov-1, apr-2, prime, high]
-          - [may-1, may-2, fair, medium]
+          - [nov-1, mar-2, prime, high]
+          - [apr-1, may-2, fair, medium]
       - origin: pe
         windows:
           - [jun-1, sep-2, fair, medium]
@@ -89,10 +89,8 @@ items:
           - [apr-1, oct-2, fair, medium]
       - variety: valencia
         windows:
-          - [apr-1, apr-2, fair, medium]
-          - [may-1, aug-2, prime, medium]
-          - [sep-1, oct-2, fair, low]
-        note: Summer orange; a green tinge on the peel is regreening, not unripeness.
+          - [apr-1, oct-2, fair, medium]
+        note: A good summer juicing orange, but not clearly better than the rest of the orange year.
       - variety: cara-cara
         windows:
           - [dec-1, mar-2, prime, high]

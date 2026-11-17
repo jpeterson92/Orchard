@@ -48,20 +48,20 @@ items:
       {
         shipsWell: [true, high],
         storesWell: [false, medium],
-        peakWorthSeeking: [true, medium],
+        peakWorthSeeking: [false, medium],
         alwaysGood: [false, medium],
       }
     origins:
       - origin: mx
         windows:
-          - [nov-1, may-2, prime, high]
-          - [jun-1, oct-2, fair, medium]
+          - [jan-1, apr-2, prime, medium]
+          - [may-1, dec-2, fair, medium]
         note: Main-crop Michoacán fruit is richest; early-season fruit in late summer can be watery.
       - origin: us-ca
         windows:
-          - [mar-1, mar-2, fair, medium]
-          - [apr-1, aug-2, prime, high]
-          - [sep-1, sep-2, fair, medium]
+          - [mar-1, apr-2, fair, medium]
+          - [may-1, aug-1, prime, high]
+          - [aug-2, sep-2, fair, medium]
       - origin: pe
         windows:
           - [may-1, sep-1, fair, medium]
@@ -71,14 +71,13 @@ items:
     varieties:
       - variety: hass
         windows:
-          - [nov-1, aug-2, prime, medium]
-          - [sep-1, oct-2, fair, medium]
-        note: Oil content, and so richness, dips with the early-season fruit of late summer and fall.
+          - [jan-1, dec-2, fair, medium]
+        note: Good most of the year; ripeness at purchase matters more than the month.
       - variety: green-skin
         windows:
           - [jul-1, dec-2, fair, medium]
         note: Florida types such as Choquette; larger, milder and more watery than Hass.
-    note: Hass is good most of the year; early-season fruit around September and October is less buttery.
+    note: Hass is steady most of the year; early-season fruit in fall can be watery. Variety rating adds little.
 
   - item: mangoes
     traits:
@@ -91,8 +90,9 @@ items:
     origins:
       - origin: mx
         windows:
-          - [mar-1, aug-2, prime, medium]
-          - [sep-1, sep-2, fair, medium]
+          - [mar-1, mar-2, fair, medium]
+          - [apr-1, jul-2, prime, medium]
+          - [aug-1, sep-2, fair, medium]
       - origin: pe
         windows:
           - [jan-1, mar-2, fair, medium]

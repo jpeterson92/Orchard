@@ -48,7 +48,7 @@ When documents conflict: Jared's latest instruction > product spec for behavior 
 - The produce list, types, categories and classes are curated. Data scripts (`usda:*` and any future source) run on demand only, inform Claude's and Jared's judgment, and never change content themselves; propose list changes to Jared with the evidence.
 - Never present invented data as real. Synthetic fixtures carry `synthetic: true`.
 - Verdict methodology, thresholds and requirements come from the product spec or Jared. Never invent them.
-- Editorial data Claude drafts needs real, checked citations (at least 2 per rating) and starts as `status: draft`. A record becomes `reviewed` only on Jared's explicit approval. Production builds refuse drafts.
+- Editorial data Claude drafts needs real, checked citations: at least 2 per rating, or 1 plus a matching model panel rating (`content/panel/`, P15) and starts as `status: draft`. A record becomes `reviewed` only on Jared's explicit approval. Production builds refuse drafts.
 - Copy follows the product spec's §8 writing standards: concrete cues, ranges rather than guarantees, card text of at most 12 words.
 - Privacy: never log or store a ZIP, coordinates, IP address or search text on a server.
 

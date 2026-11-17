@@ -79,7 +79,8 @@ items:
           - [oct-2, may-2, fair, medium]
       - origin: us-ca
         windows:
-          - [jun-1, oct-1, prime, medium]
+          - [jun-1, sep-1, prime, medium]
+          - [sep-2, oct-1, fair, medium]
       - origin: us-wa
         windows:
           - [jul-1, aug-1, prime, medium]
