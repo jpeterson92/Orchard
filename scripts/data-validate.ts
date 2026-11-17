@@ -7,6 +7,8 @@ import {
   type Category,
   categorySchema,
   type Dataset,
+  type EvidenceFile,
+  evidenceFileSchema,
   type Item,
   itemSchema,
   type Rules,
@@ -37,6 +39,7 @@ export interface RawInputs {
   categories: unknown;
   states: Csv;
   items: { file: string; data: unknown }[];
+  evidence: { file: string; data: unknown }[];
   advisories: unknown;
   typicalOrigins: Csv | null;
   supplyIndex: Csv | null;
@@ -110,15 +113,22 @@ export function validate(raw: RawInputs, opts: { production: boolean }): Result 
   const categories: Category[] = list(categorySchema, raw.categories, "data/categories.yaml");
   const states: State[] = list(stateSchema, raw.states.rows, raw.states.file);
   const advisories: Advisory[] = list(advisorySchema, raw.advisories, "data/advisories.yaml");
-  const items: Item[] = raw.items.flatMap(({ file, data }) => {
-    const item = parse(itemSchema, data, file);
-    if (item === null) return [];
-    const base = file
+  const baseName = (file: string) =>
+    file
       .split(/[\\/]/)
       .pop()
       ?.replace(/\.ya?ml$/, "");
-    if (base !== item.id) errors.push(`${file}: file name must match id "${item.id}"`);
+  const items: Item[] = raw.items.flatMap(({ file, data }) => {
+    const item = parse(itemSchema, data, file);
+    if (item === null) return [];
+    if (baseName(file) !== item.id) errors.push(`${file}: file name must match id "${item.id}"`);
     return [item];
+  });
+  const evidence: EvidenceFile[] = raw.evidence.flatMap(({ file, data }) => {
+    const ev = parse(evidenceFileSchema, data, file);
+    if (ev === null) return [];
+    if (baseName(file) !== ev.item) errors.push(`${file}: file name must match item "${ev.item}"`);
+    return [ev];
   });
 
   unique(sources, (s) => s.id, "source");
@@ -127,6 +137,7 @@ export function validate(raw: RawInputs, opts: { production: boolean }): Result 
   unique(items, (i) => i.id, "item");
   unique(items, (i) => String(i.purchaseRank), "purchaseRank");
   unique(advisories, (a) => a.id, "advisory");
+  unique(evidence, (e) => e.item, "evidence file for");
 
   const sourceIds = new Set(sources.map((s) => s.id));
   const categoryIds = new Set(categories.map((c) => c.id));
@@ -168,6 +179,41 @@ export function validate(raw: RawInputs, opts: { production: boolean }): Result 
         for (const n of windowRange(w.from, w.to)) {
           if (rated.has(n)) errors.push(`${at} ${o.origin}: windows overlap at ${w.from}..${w.to}`);
           rated.add(n);
+        }
+      }
+    }
+  }
+
+  const sourcesById = new Map(sources.map((s) => [s.id, s]));
+  for (const s of sources) {
+    if (s.basedOn === undefined) continue;
+    if (!sourceIds.has(s.basedOn)) errors.push(`source ${s.id}: basedOn unknown source ${s.basedOn}`);
+    const seen = new Set([s.id]);
+    for (let at = sourcesById.get(s.basedOn); at !== undefined; at = sourcesById.get(at.basedOn ?? "")) {
+      if (seen.has(at.id)) {
+        errors.push(`source ${s.id}: basedOn loops back to ${at.id}`);
+        break;
+      }
+      seen.add(at.id);
+    }
+  }
+
+  const itemsById = new Map(items.map((i) => [i.id, i]));
+  for (const ev of evidence) {
+    const item = itemsById.get(ev.item);
+    if (item === undefined) errors.push(`evidence ${ev.item}: unknown item ${ev.item}`);
+    for (const [n, c] of ev.claims.entries()) {
+      const where = `evidence ${ev.item} claim ${n + 1}`;
+      checkSources([c.source], where);
+      if (c.origin !== "us") checkOrigin(c.origin, where);
+      if (c.variety !== undefined && item && !item.varieties.some((v) => v.id === c.variety)) {
+        errors.push(`${where}: unknown variety ${c.variety}`);
+      }
+      const rated = new Set<number>();
+      for (const w of c.windows) {
+        for (const i of windowRange(w.from, w.to)) {
+          if (rated.has(i)) errors.push(`${where}: windows overlap at ${w.from}..${w.to}`);
+          rated.add(i);
         }
       }
     }
@@ -225,7 +271,8 @@ export function validate(raw: RawInputs, opts: { production: boolean }): Result 
   }
 
   if (opts.production) {
-    for (const r of [...items, ...advisories]) {
+    const records = [...items, ...advisories, ...evidence.map((e) => ({ ...e, id: `evidence ${e.item}` }))];
+    for (const r of records) {
       if (r.status === "draft") errors.push(`${r.id}: draft records can't ship (production build)`);
       if (r.synthetic) errors.push(`${r.id}: synthetic records can't ship (production build)`);
     }
@@ -243,6 +290,7 @@ export function validate(raw: RawInputs, opts: { production: boolean }): Result 
       states,
       items: byId(items),
       advisories: byId(advisories),
+      evidence: [...evidence].sort((a, b) => a.item.localeCompare(b.item)),
       snapshot,
       typicalOrigins,
       supplyIndex,

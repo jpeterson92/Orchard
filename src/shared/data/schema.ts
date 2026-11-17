@@ -37,6 +37,10 @@ export const sourceSchema = z.strictObject({
   publisher: text,
   url: z.url(),
   accessed: isoDate,
+  /** authoritative: extension, commodity board, USDA, UC Davis, trade reference; mainstream: food publication, grocer guide. */
+  tier: z.enum(["authoritative", "mainstream"]),
+  /** The source this one restates, so the two count once (P12). */
+  basedOn: id.optional(),
 });
 
 export const categorySchema = z.strictObject({ id, name: text });
@@ -58,10 +62,12 @@ export const rulesSchema = z.strictObject({
 
 const windowLabel = z.string().regex(WINDOW_LABEL, 'use a half-month label such as "jun-1"');
 
+const rating = z.enum(["prime", "fair", "poor"]);
+
 export const qualityWindowSchema = z.strictObject({
   from: windowLabel,
   to: windowLabel,
-  rating: z.enum(["prime", "fair", "poor"]),
+  rating,
   sources: sourceIds(2),
 });
 
@@ -143,6 +149,23 @@ export const advisorySchema = z
   })
   .refine(reviewComplete, reviewMessage);
 
+/** One source claim about when an item (or one variety) is at its best (engineering plan §4.1). */
+export const evidenceClaimSchema = z.strictObject({
+  source: id,
+  /** `us` when the source names no state: US-grown, applying to every US origin of the item. */
+  origin: originId.default("us"),
+  variety: id.optional(),
+  windows: z.array(z.strictObject({ from: windowLabel, to: windowLabel, rating })).min(1),
+  specificity: z.enum(["half-month", "month", "season"]),
+  directness: z.enum(["eating-quality", "availability", "secondhand"]),
+  paraphrase: text.refine((s) => !/[\r\n]/.test(s), "keep the paraphrase to one line"),
+});
+
+/** `content/evidence/<item-id>.yaml`. */
+export const evidenceFileSchema = z
+  .strictObject({ item: id, claims: z.array(evidenceClaimSchema).min(1), ...review })
+  .refine(reviewComplete, reviewMessage);
+
 const month = z.coerce.number().pipe(z.int().min(1).max(12));
 
 export const typicalOriginRowSchema = z.strictObject({
@@ -179,6 +202,8 @@ export type State = z.infer<typeof stateSchema>;
 export type Rules = z.infer<typeof rulesSchema>;
 export type Item = z.infer<typeof itemSchema>;
 export type Advisory = z.infer<typeof advisorySchema>;
+export type EvidenceClaim = z.infer<typeof evidenceClaimSchema>;
+export type EvidenceFile = z.infer<typeof evidenceFileSchema>;
 export type TypicalOriginRow = z.infer<typeof typicalOriginRowSchema>;
 export type SupplyIndexRow = z.infer<typeof supplyIndexRowSchema>;
 export type Snapshot = z.infer<typeof snapshotSchema>;
@@ -191,6 +216,7 @@ export interface Dataset {
   states: State[];
   items: Item[];
   advisories: Advisory[];
+  evidence: EvidenceFile[];
   snapshot: Snapshot | null;
   typicalOrigins: TypicalOriginRow[];
   supplyIndex: SupplyIndexRow[];

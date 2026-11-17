@@ -8,6 +8,30 @@ const source = (id: string) => ({
   publisher: "Test publisher",
   url: `https://example.com/${id}`,
   accessed: "2026-11-01",
+  tier: "authoritative",
+});
+
+const evidence = (itemId: string) => ({
+  item: itemId,
+  claims: [
+    {
+      source: "s1",
+      windows: [{ from: "apr-1", to: "jun-2", rating: "prime" }],
+      specificity: "month",
+      directness: "eating-quality",
+      paraphrase: "Best from April through June.",
+    },
+    {
+      source: "s2",
+      origin: "mx",
+      windows: [{ from: "dec-1", to: "mar-2", rating: "fair" }],
+      specificity: "season",
+      directness: "availability",
+      paraphrase: "Mexican fruit fills the winter months.",
+    },
+  ],
+  status: "draft",
+  synthetic: true,
 });
 
 const item = (id: string, rank: number) => ({
@@ -66,6 +90,7 @@ function base(): RawInputs {
       { state: "WA", name: "Washington" },
     ]),
     items: [{ file: "content/items/test-fruit.yaml", data: item("test-fruit", 1) }],
+    evidence: [{ file: "content/evidence/test-fruit.yaml", data: evidence("test-fruit") }],
     advisories: [
       {
         id: "test-advisory",
@@ -94,6 +119,7 @@ function base(): RawInputs {
 type Any = any;
 const firstItem = (r: RawInputs): Any => (r.items[0] as { data: Any }).data;
 const firstAdvisory = (r: RawInputs): Any => (r.advisories as Any[])[0];
+const firstClaim = (r: RawInputs): Any => (r.evidence[0] as { data: Any }).data.claims[0];
 
 describe("validate: a valid dataset", () => {
   it("passes and normalizes defaults", () => {
@@ -108,6 +134,17 @@ describe("validate: a valid dataset", () => {
       reason: "not_reported",
     });
     expect(dataset?.typicalOrigins[0]?.month).toBe(5);
+    expect(dataset?.evidence[0]?.claims.map((c) => c.origin)).toEqual(["us", "mx"]);
+  });
+
+  it("accepts a restating source and a claim naming a known variety", () => {
+    const raw = structuredClone(base());
+    (raw.sources as Any[])[1].basedOn = "s1";
+    firstItem(raw).varieties = [
+      { id: "gala", name: "Gala", traits: {}, bestUses: ["Eating"], label: "Gala" },
+    ];
+    firstClaim(raw).variety = "gala";
+    expect(validate(raw, { production: false }).errors).toEqual([]);
   });
 
   it("works without any USDA snapshot", () => {
@@ -296,6 +333,52 @@ const broken: [string, (r: RawInputs) => void, string][] = [
     (r) => ((r.supplyIndex as Csv).meta.derived = "2026-11-18"),
     "different snapshots",
   ],
+  // Sources and seasonal evidence
+  ["missing source tier", (r) => delete (r.sources as Any[])[0].tier, "tier"],
+  ["bad source tier", (r) => ((r.sources as Any[])[0].tier = "blog"), "tier"],
+  ["basedOn unknown source", (r) => ((r.sources as Any[])[1].basedOn = "s9"), "basedOn unknown source s9"],
+  [
+    "basedOn loop",
+    (r) => {
+      (r.sources as Any[])[0].basedOn = "s2";
+      (r.sources as Any[])[1].basedOn = "s1";
+    },
+    "basedOn loops back",
+  ],
+  ["basedOn itself", (r) => ((r.sources as Any[])[0].basedOn = "s1"), "source s1: basedOn loops back to s1"],
+  ["claim without paraphrase", (r) => delete firstClaim(r).paraphrase, "paraphrase"],
+  ["multi-line paraphrase", (r) => (firstClaim(r).paraphrase = "Best in\nApril."), "one line"],
+  ["bad directness", (r) => (firstClaim(r).directness = "vibes"), "directness"],
+  ["bad specificity", (r) => (firstClaim(r).specificity = "week"), "specificity"],
+  ["claim window label", (r) => (firstClaim(r).windows[0].to = "june-2"), "half-month label"],
+  ["claim without windows", (r) => (firstClaim(r).windows = []), "windows"],
+  ["claim unknown source", (r) => (firstClaim(r).source = "s9"), "claim 1: unknown source s9"],
+  [
+    "claim unknown origin",
+    (r) => (firstClaim(r).origin = "us-zz"),
+    "claim 1: unknown US state in origin us-zz",
+  ],
+  ["claim unknown variety", (r) => (firstClaim(r).variety = "gala"), "claim 1: unknown variety gala"],
+  [
+    "claim windows overlap",
+    (r) => firstClaim(r).windows.push({ from: "jun-2", to: "jul-1", rating: "fair" }),
+    "claim 1: windows overlap",
+  ],
+  [
+    "evidence for unknown item",
+    (r) => r.evidence.push({ file: "content/evidence/kumquats.yaml", data: evidence("kumquats") }),
+    "evidence kumquats: unknown item kumquats",
+  ],
+  [
+    "evidence file name differs",
+    (r) => ((r.evidence[0] as Any).file = "content/evidence/pears.yaml"),
+    'file name must match item "test-fruit"',
+  ],
+  [
+    "two evidence files for one item",
+    (r) => r.evidence.push({ file: "content/evidence/test-fruit.yml", data: evidence("test-fruit") }),
+    "duplicate evidence file for test-fruit",
+  ],
   // Advisory dates
   ["inverted advisory", (r) => (firstAdvisory(r).to = "2026-10-01"), "ends (2026-10-01) before it starts"],
   ["over-long advisory", (r) => (firstAdvisory(r).to = "2027-02-01"), "over 90"],
@@ -343,11 +426,13 @@ describe("validate: production builds", () => {
     expect(errors).toContain("test-fruit: draft records can't ship (production build)");
     expect(errors).toContain("test-fruit: synthetic records can't ship (production build)");
     expect(errors).toContain("test-advisory: draft records can't ship (production build)");
+    expect(errors).toContain("evidence test-fruit: draft records can't ship (production build)");
+    expect(errors).toContain("evidence test-fruit: synthetic records can't ship (production build)");
   });
 
   it("accept reviewed real records", () => {
     const raw = structuredClone(base());
-    for (const r of [firstItem(raw), firstAdvisory(raw)]) {
+    for (const r of [firstItem(raw), firstAdvisory(raw), (raw.evidence[0] as { data: Any }).data]) {
       Object.assign(r, { status: "reviewed", reviewer: "Jared", reviewedOn: "2026-11-17" });
       delete r.synthetic;
     }

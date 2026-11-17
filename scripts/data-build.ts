@@ -13,17 +13,20 @@ const yaml = (file: string): unknown => parseYaml(read(file));
 const csv = (file: string, columns: readonly string[]): Csv | null =>
   existsSync(file) ? parseCsv(file, read(file), columns) : null;
 
-const ITEMS = "content/items";
+const yamlFiles = (dir: string) =>
+  readdirSync(dir)
+    .filter((f) => /\.ya?ml$/.test(f))
+    .sort()
+    .map((f) => ({ file: `${dir}/${f}`, data: yaml(join(dir, f)) }));
+
 const raw: RawInputs = {
   rules: yaml("data/rules.yaml"),
   sources: yaml("data/sources.yaml") ?? [],
   categories: yaml("data/categories.yaml"),
   states: parseCsv("data/us-states.csv", read("data/us-states.csv"), ["state", "name"]),
   advisories: yaml("data/advisories.yaml") ?? [],
-  items: readdirSync(ITEMS)
-    .filter((f) => /\.ya?ml$/.test(f))
-    .sort()
-    .map((f) => ({ file: `${ITEMS}/${f}`, data: yaml(join(ITEMS, f)) })),
+  items: yamlFiles("content/items"),
+  evidence: yamlFiles("content/evidence"),
   typicalOrigins: csv("data/usda/typical-origins.csv", ["item", "month", "rank", "origin"]),
   supplyIndex: csv("data/usda/supply-index.csv", ["item", "month", "value", "reason"]),
 };
@@ -43,6 +46,8 @@ const reviewed = dataset.items.filter((i) => i.status === "reviewed").length;
 console.log(
   `Items: ${dataset.items.length} (${reviewed} reviewed, ${dataset.items.length - reviewed} draft)`,
 );
+const claims = dataset.evidence.reduce((n, e) => n + e.claims.length, 0);
+console.log(`Evidence files: ${dataset.evidence.length} (${claims} claims)`);
 console.log(`Origins rated: ${dataset.items.reduce((n, i) => n + i.origins.length, 0)}`);
 const snap = dataset.snapshot;
 console.log(
