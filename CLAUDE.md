@@ -26,7 +26,8 @@ When documents conflict: Jared's decisions (in `PROGRESS.md`) > product spec for
 
 - **One increment at a time, sized to finish.** It ends in a commit and a short plain-language summary for Jared of what was done; add a screenshot, link or artifact only when it helps. `/next` (`.claude/skills/next/`) runs one increment.
 - **Read narrowly, act early.** For an engineering detail, pick the conventional option, note it in one line, and move on. Don't reopen decisions recorded in `PROGRESS.md`.
-- **Ask Jared only** about product behavior, editorial content, money, accounts or credentials. Batch the questions; don't stop for routine confirmation.
+- **Ask Jared only** about product behavior, editorial content, money, accounts or credentials. Batch the questions into the end-of-increment summary and keep building whatever doesn't depend on the answers; don't stop for routine confirmation.
+- **Run slow jobs in the background** (data fetches, long probes, builds over a minute) and keep working meanwhile. Cache raw responses so reruns are free, and never poll or sleep waiting on them.
 - **Timebox tooling trouble.** After two failed attempts at the same setup or config problem, take the simpler alternative or record a blocker in `PROGRESS.md` and move on. Don't dig through library internals.
 - **Prefer mature, widely used libraries** over the newest release. Pin exact versions. A new direct dependency gets one line under Decisions in `PROGRESS.md`.
 - **No speculative work:** no config options, abstractions, extension points or fallbacks without a current need. No new docs beyond `PROGRESS.md` unless asked.

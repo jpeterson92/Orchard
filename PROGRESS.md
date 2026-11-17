@@ -19,13 +19,10 @@ M2 slice 1 is done: USDA coverage for 57 launch candidates and a terminal-market
 - 2026-11-16 · D6 · Prerender with React Router library mode plus `scripts/prerender.ts` (renderToString per route, about 40 lines), not framework mode · proven end to end in M0; framework mode with the Cloudflare plugin would have been an unverified combination
 - 2026-11-16 · D7 · Jared generates all artwork in ChatGPT from prompts Claude writes; Claude processes and checks the files, and Jared approves them (engineering plan §5, art track; workflow built in M3) · ChatGPT made the design language and the mockups, and Jared already has the subscription
 - 2026-11-17 · D8 · USDA movement data is reference data: typical origins and the supply index come from a 3-year snapshot rebuilt once a year and reviewed with the content. No monthly refresh; Today uses the typical index, and advisories cover unusual seasons. Items without usable USDA data (domestic citrus) get cited editorial origins and a null index · the probe showed the data is stable year to year, and a live feed risks silent verdict changes when USDA reporting changes
-$1- 2026-11-17 · D10 · Launch scope is all common supermarket produce (about 100 items) instead of ~35; always-good items stay off Today but appear everywhere else · Jared's call; always-good items need lighter content, which offsets part of the extra volume
+$1- 2026-11-17 · D10 · Launch scope is all common supermarket produce: 89 items (list in `docs/data/usda-probe.md`). Summer and winter squash are one item each with types; herbs are one always-good item with the common herbs as types; broccoli rabe and rhubarb added. Always good = typical outlook Good in all 24 windows, never Peak or Skip (computed for now; editorial override possible after release); such items stay off Today unless an advisory applies. Illustrations go seasonal items first, then always-good, each by `purchaseRank` · Jared's call; always-good items need lighter content
 
 ## Open questions for Jared (non-blocking)
 
-- **Launch list (D10):** confirm the proposed 98 items and decide the borderline group (both in `docs/data/usda-probe.md`, Launch scope screen). Needed before content batch 2.
-- **Always good (D10), provisional definition:** typical outlook Good in all 24 windows, never Peak or Skip; such items stay off Today unless an advisory changes their verdict, and show "Always good" elsewhere. Confirm, or say if some items should be always good by editorial call instead.
-- **Illustrations for ~100 items** (D7): all at launch, or seasonal items first?
 - Confirm or adjust the provisional methodology defaults P1, P9, P10, P11 and the Last call trigger (engineering plan §4.3).
 - D4, launch gates: needed by M9.
 - In-app brand name: Orchard, or something else? Needed by M9.

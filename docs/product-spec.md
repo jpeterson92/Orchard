@@ -138,7 +138,7 @@ Today leads with up to six strong recommendations, and every seasonal item appea
 | --- | --- | --- |
 | **Verdict** (exactly one per item) | Peak · Good · Skip · Limited evidence | Expected eating quality of typical supermarket supply here and now (rules in section 7) |
 | **Markers** (zero or more, shown on the card) | Last call · Reliable year-round · Advisory · Good value (v1.1) | Extra facts that never move the item to a different section |
-| **Always good** (an item class, D10) | Items whose typical outlook is Good in all 24 windows, never Peak and never Skip | Shown as "Always good" wherever they appear. They join Today only while an advisory changes their verdict |
+| **Always good** (an item class, D10) | Items whose typical outlook is Good in all 24 windows, never Peak and never Skip. Computed for now; an editorial override may come after release | Shown as "Always good" wherever they appear. They join Today only while an advisory changes their verdict |
 
 ### Today (home)
 
@@ -238,8 +238,8 @@ A single toggle on Today, remembered on the device. Turning it on:
 
 - **Keeps the screen awake** while the page is open, so it stays readable on the cart. The Screen Wake Lock API has worked in Chrome, Safari and Firefox since May 2024 ([source](https://web.dev/blog/screen-wake-lock-supported-in-all-browsers)). The lock is released when the user leaves the tab.
 - **Prepares the offline copy and shows its status** under the toggle, so the shopper knows when it is safe to lose signal:
-  - "Preparing for offline… 40 of 100 items"
-  - "Ready offline · 100 items · supply data through Nov 13"
+  - "Preparing for offline… 40 of 89 items"
+  - "Ready offline · 89 items · supply data through Nov 13"
   - "Offline copy is from Nov 13; reconnect to refresh" (when it goes stale)
 - **Enlarges type** to at least 18 px for body text and raises contrast, for reading at arm's length under bright store lighting.
 - **Removes anything that interrupts:** no pop-ups, prompts or animation, and no layout that shifts after load.
@@ -352,9 +352,9 @@ An item launches only once its evidence passes review. Editors write content onc
 
 | Entity | Key attributes | Written or computed | At launch | Target |
 | --- | --- | --- | --- | --- |
-| Item | Names and synonyms, how to pick, store and ripen (ranges + ripeness assumptions), prep, illustration | Written | \~100 (D10) | New items as they become common |
+| Item | Names and synonyms, how to pick, store and ripen (ranges + ripeness assumptions), prep, illustration | Written | 89 (D10) | New items as they become common |
 | Evidence record | Evidence basis, sources (≥ 2), status (draft or reviewed), reviewer, review date | Drafted, then reviewed | 1 per item | 1 per item |
-| Quality window | Item × major origin × 24 windows: prime / fair / poor, with citations | Written + reviewed | \~250 origin profiles (\~3 per seasonal item; always-good items need one year-round rating per origin) | Grows with items |
+| Quality window | Item × major origin × 24 windows: prime / fair / poor, with citations | Written + reviewed | \~220 origin profiles (\~3 per seasonal item; always-good items need one year-round rating per origin) | Grows with items |
 | Variety | Group-specific traits on anchored 1–5 scales, best uses, label/PLU text, freshest months where evidence exists | Written | \~40 (3 guides) | Driven by what shoppers meet |
 | Type note | Short distinction where type changes the advice | Written | \~10 items | As needed |
 | Category | Name, group, icon | Written | Only those with covered items | 16 |
@@ -362,8 +362,8 @@ An item launches only once its evidence passes review. Editors write content onc
 | State | Name, price region, "locally checked" flag | Data | 51 | 51 |
 | Harvest zone (deferred) | States, harvest calendar per item | Data, reviewed yearly | — | 53 |
 | Price region | States, weekly promotion data | Data, weekly (v1.1) | 8 | 8 |
-| Verdict | Item × window (national), with advisories for the shopper's state and date applied: verdict, markers, confidence, reason codes | Computed | \~2,400 (100 × 24) | Grows with items |
-| Supply profile | Item × month: typical origins (ranked), supply index | Computed | \~1,200 (100 × 12) | Grows with items |
+| Verdict | Item × window (national), with advisories for the shopper's state and date applied: verdict, markers, confidence, reason codes | Computed | \~2,140 (89 × 24) | Grows with items |
+| Supply profile | Item × month: typical origins (ranked), supply index | Computed | \~1,070 (89 × 12) | Grows with items |
 | Value signal (v1.1) | Item × region × week | Computed | \~14,600 a year | \~42,000 a year |
 | Window summary | The one-line Today summary, national | Drafted, then edited | 24 | 24 |
 | Feedback | Item, state, window, outcome (looked good / looked poor / not in stock / too pricey), optional taste answer | Collected | — | — |
@@ -377,7 +377,7 @@ An item that meets neither bar waits. It doesn't launch with a precise-looking b
 
 **Drafting and review.** Claude researches and drafts items, quality windows, varieties and summaries. Every rating cites at least 2 real, checked sources, and every record starts as `draft`. Jared reviews and approves; only approved records are `reviewed`. Production builds refuse drafts, and previews label draft content visibly.
 
-**Launch scope (D10): all common supermarket produce, about 100 items.** An item is common when most of USDA's 11 city terminal markets quote it and mainstream US supermarkets stock it, year-round or in season. Specialty items sold mainly through ethnic or specialty grocers come later. The list and its evidence are in `docs/data/usda-probe.md`. Always-good items need lighter content: one year-round rating per major origin, plus pick and store advice.
+**Launch scope (D10): all common supermarket produce, 89 items.** Close relatives are one item with types (summer squash, winter squash, hot peppers), and fresh herbs are a single always-good item with the common herbs as types. An item is common when most of USDA's 11 city terminal markets quote it and mainstream US supermarkets stock it, year-round or in season. Specialty items sold mainly through ethnic or specialty grocers come later. The list and its evidence are in `docs/data/usda-probe.md`. Always-good items need lighter content: one year-round rating per major origin, plus pick and store advice.
 
 **Writing standards**
 
@@ -389,7 +389,7 @@ An item that meets neither bar waits. It doesn't launch with a precise-looking b
 
 **Rights and sourcing**
 
-- All copy and illustrations are original or licensed. Illustrations are decorative: one per item (\~100 at launch), not one per variety.
+- All copy and illustrations are original or licensed. Illustrations are decorative: one per item (89 at launch), not one per variety.
 - Other guides' charts and data are not copied. Foodwise, for one, asks to be contacted before its charts are reproduced ([source](https://foodwise.org/wp-content/uploads/2025/07/Foodwise-Fruit-Seasonality-Chart.pdf)). Quality windows and harvest calendars are built from primary public sources and cited row by row.
 - USDA Market News data is public and has a free API with a key ([source](https://mymarketnews.ams.usda.gov/node/8569)).
 
@@ -416,7 +416,7 @@ Visual details are governed by the design system (`docs/design/design-system.md`
 | Color | Neutral interface; the produce illustrations supply the color. Verdicts have their own reserved palette. |
 | Verdict marks | Peak: filled star + "Peak" · Good: check + "Good" · Skip: clock + "Skip for now" · Limited evidence: information symbol + "Limited evidence", in a neutral tone so it never reads as a warning about the produce. The palette is checked under color-blindness simulation; red vs green is never the only difference. |
 | Markers | Small text tags under the verdict: "Last call", "Reliable year-round", "Good value" (v1.1), and an outlined "Advisory" tag that opens its scope and expiry. |
-| Imagery | One consistent illustration style, one drawing per item (\~100 at launch). Illustrations are decorative, not identification aids. For varieties, the label or PLU sticker is authoritative. |
+| Imagery | One consistent illustration style, one drawing per item (89 at launch). Illustrations are decorative, not identification aids. For varieties, the label or PLU sticker is authoritative. |
 | Layout | 8 px spacing grid; generous card padding; at most 2 levels of nesting on phone. |
 | Motion | 150–250 ms, only for expand and collapse. Honors the device's reduced-motion setting. None in in-store mode. |
 | Charts | The typical-outlook strip and heatmap use the verdict palette with a single ink-colored "today" marker, and each has a text equivalent. |
@@ -463,7 +463,7 @@ The closest existing product already does "what's in season near me." The openin
 
 ## 12. Release plan
 
-The first release covers all common supermarket produce (about 100 items, D10), with 3 variety guides, nationwide guidance, and local validation in 3 metros. Coverage grows only by passing explicit gates.
+The first release covers all common supermarket produce (89 items, D10), with 3 variety guides, nationwide guidance, and local validation in 3 metros. Coverage grows only by passing explicit gates.
 
 Order: foundations → Gate 1 → first release → Gate 2 → v1.1 → Gate 3 → v2 (broader coverage).
 
@@ -506,7 +506,7 @@ The biggest risk is a confident verdict that doesn't match the bin in front of t
 | Weather shifts a season | Verdicts run early or late | Scoped advisories that expire; the typical outlook is never edited for one year's weather |
 | Verdicts read as guarantees | Lost trust after one bad purchase | "Likely" wording, storage as ranges, Methods page, confidence explained |
 | Network-based location is wrong | Context for the wrong place | The inferred city is always shown and one tap from fixed |
-| Content volume | Slow launch or uneven quality | About 100 items (D10), but always-good items need only a year-round rating and short copy; seasonal items are drafted first, in batches of about 10; 3 guides; new items beyond common produce only through gates |
+| Content volume | Slow launch or uneven quality | 89 items (D10), but always-good items need only a year-round rating and short copy; seasonal items are drafted first, in batches of about 10; 3 guides; new items beyond common produce only through gates |
 
 **Decisions needed**
 
@@ -514,7 +514,7 @@ The biggest risk is a confident verdict that doesn't match the bin in front of t
 | --- | --- |
 | Product name and brand | Project name: Orchard. In-app brand: open |
 | Launch metros for local validation | San Francisco Bay Area, Chicago and Atlanta: three distinct climates and supply positions |
-| Launch scope | Decided (D10): all common supermarket produce, about 100 items |
+| Launch scope | Decided (D10): all common supermarket produce, 89 items |
 | Who audits | Two reviewers independent of the rules' author; recruit before Gate 1 |
 | Named store chains at launch? | No. Store-format tips first; named chains later |
 | Value markers at launch? | No. v1.1, after a month of clean weekly data, and never part of the verdict |

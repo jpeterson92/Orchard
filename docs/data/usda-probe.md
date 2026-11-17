@@ -77,7 +77,7 @@ Notes:
 
 Reported volume (`npm run usda:probe`) can't serve as the filter. Cranberries, pumpkins, winter squash, Asian pears, dates, figs, shallots and most herbs have large US production that movement reports never include, so their reported volume understates them badly.
 
-**Proposed launch list (98 items).** Types in brackets are one item, not separate items.
+**Launch list (89 items; Jared approved 2026-11-17).** Types in brackets are one item, not separate items.
 
 | Category | Items |
 | --- | --- |
@@ -89,16 +89,16 @@ Reported volume (`npm run usda:probe`) can't serve as the filter. Cranberries, p
 | Melons | watermelon, cantaloupe, honeydew |
 | Tropical & subtropical | bananas, plantains, avocados, mangoes, pineapples, papaya, kiwifruit, coconuts, dragon fruit, persimmons, pomegranates, dates, figs |
 | Leafy greens & lettuces | romaine, iceberg, leaf lettuce [green, red], butter lettuce, spring mix, spinach, kale, arugula, collard greens, Swiss chard, mustard greens |
-| Brassicas | broccoli, cauliflower, cabbage, Brussels sprouts, bok choy, napa cabbage |
+| Brassicas | broccoli, broccoli rabe, cauliflower, cabbage, Brussels sprouts, bok choy, napa cabbage |
 | Roots & tubers | potatoes, sweet potatoes, carrots, beets, radishes, turnips, parsnips, rutabagas, ginger, jicama, yuca |
 | Alliums | onions, green onions, garlic, leeks, shallots |
-| Squash | zucchini, yellow squash, butternut, acorn, spaghetti squash, pumpkins |
+| Squash | summer squash [zucchini, yellow squash], winter squash [butternut, acorn, spaghetti, kabocha, delicata, pie pumpkin] |
 | Tomatoes, peppers & eggplant | tomatoes [round, plum, cherry, grape], bell peppers, mini sweet peppers, hot peppers [jalapeño, serrano, poblano, habanero, Anaheim], cucumbers, eggplant, tomatillos |
-| Beans, peas & corn (plus stalks) | sweet corn, green beans [incl. haricots verts], snap and snow peas, asparagus, okra, artichokes, celery, fennel |
+| Beans, peas & corn (plus stalks) | sweet corn, green beans [incl. haricots verts], snap and snow peas, asparagus, okra, artichokes, celery, fennel, rhubarb |
 | Mushrooms | mushrooms |
-| Herbs | cilantro, parsley, basil, mint, dill, thyme, rosemary, chives |
+| Herbs | herbs [cilantro, parsley, basil, mint, dill, thyme, rosemary, chives]: one item, expected to be always good |
 
-**Borderline (Jared decides):** kabocha and delicata squash, chayote, nopales, daikon, celery root, chicories (endive, escarole, radicchio), watercress, broccoli rabe, guava, lychee, star fruit, cactus pears, rhubarb, kumquats, quince, oregano, sage, tarragon, lemongrass.
+**Not at launch** (borderline; Jared kept squash types, broccoli rabe and rhubarb): chayote, nopales, daikon, celery root, chicories (endive, escarole, radicchio), watercress, guava, lychee, star fruit, cactus pears, kumquats, quince, and individual herbs beyond the herbs item.
 
 **Left out as specialty:** aloe leaves, sugarcane, tamarind, rambutan, jackfruit, cherimoya, mamey sapote, taro, malanga, calabaza, culantro, turmeric, horseradish, bean sprouts, and the Asian and Caribbean specialty greens and squashes.
 
