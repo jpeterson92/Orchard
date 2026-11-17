@@ -52,6 +52,7 @@ content/
   methods.md                 Methods page text
 data/
   sources.yaml               every citation: id, tier, title, publisher, url, accessed date, optional basedOn
+  source-registry.yaml       pages the evidence pipeline reads: source id, url, kind (multi-item chart or item page), parser
   rules.yaml                 rules version + thresholds (0.70, 0.8, 1.2, 20/24, 15 months)
   categories.yaml            browse categories in display order
   advisories.yaml            scoped, expiring exceptions
@@ -61,7 +62,8 @@ data/
   plu.csv                    IFPS PLU codes → item and variety (only once IFPS confirms reuse)
   us-states.csv              state code and name, for `us-<state>` origins
 scripts/                     prerender.ts, data-build.ts, content-report.ts; usda-client.ts and usda-lib.ts (shared),
-                             usda-probe.ts, usda-terminal-probe.ts, usda-terminal-screen.ts, usda-derive.ts
+                             usda-probe.ts, usda-terminal-probe.ts, usda-terminal-screen.ts, usda-derive.ts;
+                             evidence-fetch.ts, evidence-check.ts
 src/
   shared/                    zod schemas, verdict engine, window math, place lookup. Imports nothing from app/ or worker/
   app/                       React app: routes, components, styles, service worker registration
@@ -71,7 +73,7 @@ tests/e2e/                   Playwright smoke tests
 docs/                        product spec, engineering plan, design, data findings
 ```
 
-**One file per item** is deliberately also the unit of editorial review. The item list, types, categories and classes are curated by hand. Scripts that pull from external sources (`usda:*`) run only on demand, when Claude or Jared want evidence for an update: never in CI, on a schedule or in a build, and they never write to `content/`. Their output is evidence for an editorial decision, not the decision. `.cache/` holds raw USDA responses and is gitignored; derived CSVs are committed so builds never need the network.
+**One file per item** is deliberately also the unit of editorial review. The item list, types, categories and classes are curated by hand. Scripts that pull from external sources (`usda:*`, `evidence:*`) run only on demand, when Claude or Jared want evidence for an update: never in CI, on a schedule or in a build, and they never write to `content/`. Their output is evidence for an editorial decision, not the decision. `.cache/` holds raw USDA responses and fetched source pages and is gitignored; derived CSVs are committed so builds never need the network.
 
 ## 4. Data and the verdict engine
 
@@ -144,7 +146,13 @@ Each milestone takes 1–3 sessions and ends with something Jared can review. Th
 | M8 | **Feedback and measurement.** D1 tables; feedback, taste, request and event endpoints; rate limiting; `web-vitals` + `verdict-visible` beacon; privacy-safe logging | A test proves no ZIP or IP reaches logs or D1; a feedback row records app version, date, state, item and origin | — |
 | M9 | **Launch readiness.** All launch content reviewed, illustrations, Turnstile, CSP and security headers, axe plus a quick VoiceOver/TalkBack pass, a performance check on a mid-range Android, offline check on a real iPhone, production domain | Jared decides launch, using the launch gates | Domain, devices, launch gates |
 
-**Content track.** Claude drafts in batches of about 10 items (5 in M2), all marked `draft`. For each item, a research subagent searches the web for what authoritative and mainstream sources say about its seasons, and writes the evidence file: one claim per source, paraphrased, each source checked and added to `sources.yaml`, with specificity and directness set by the rubric above. The P12 proposal then seeds the item's quality windows, and Claude writes a `reason` wherever the draft departs from it or its confidence is Low. Research runs only when a batch is being drafted or Jared asks for a refresh. Jared reviews in the preview app or the content report (per item and origin: each source's curve, the combined curve with its confidence strip, and the editorial rating; Low-confidence and departing windows first), and approves or edits. Approval means Claude sets `status: reviewed`, `reviewer`, and `reviewedOn`. Order: the 5 M2 items → the rest of the 89 launch items, seasonal items first, always-good items last → variety guides → the 24 summaries → Methods text.
+**Content track.** Claude drafts in batches of about 10 items (5 in M2), all marked `draft`. Research is mostly programmatic, so AI effort goes to judgment, not gathering:
+  1. **Source registry** (`data/source-registry.yaml`, curated): built once by category, then extended as items need. Multi-item sources come first (USDA SNAP-Ed seasonal produce guide, UC Davis postharvest fact sheets, state extension seasonality charts, food publications' seasonal guides), then one commodity board per item where one exists. No search API unless the registry proves too thin.
+  2. **`npm run evidence:fetch`** downloads each registered page once (robots.txt respected, cached in `.cache/evidence/`), strips it to text, and writes per-item excerpts: only the passages naming the item with a season or month. Structured pages (month grids, season tables) get a small parser per source and become claims directly, with no AI.
+  3. **Prose excerpts** go to a Haiku subagent with a compact worklist (excerpts only, a few hundred words per item), which returns draft claims in the evidence-file format.
+  4. **`npm run evidence:check`** rejects any claim whose months or season don't appear in its excerpt, or whose URL no longer resolves, and records the accessed date.
+  5. **`data:build`** combines the curves (P12). Then Claude (Opus) reads only a per-item digest (the proposal, its confidence strip, and the excerpts behind Low-confidence or conflicting windows), writes a `reason` for each of those, and drafts the copy. High-confidence windows seed the draft without deliberation.
+  Claims are paraphrased; raw pages stay in the gitignored cache. Research runs only when a batch is being drafted or Jared asks for a refresh. Jared reviews in the preview app or the content report (per item and origin: each source's curve, the combined curve with its confidence strip, and the editorial rating; Low-confidence and departing windows first), and approves or edits. Approval means Claude sets `status: reviewed`, `reviewer`, and `reviewedOn`. Order: the 5 M2 items → the rest of the 89 launch items, seasonal items first, always-good items last → variety guides → the 24 summaries → Methods text.
 
 **Art track.** Jared generates all painted artwork with his ChatGPT subscription, the same tool that made the design language and the mockups in `docs/design/references/`. Claude never generates images. The workflow is built in M3, when the first item art is needed, and then runs in batches alongside the content track:
 
