@@ -11,8 +11,10 @@ items:
     origins:
       - origin: us-ca
         windows:
-          - [nov-1, mar-2, prime, high]
-          - [apr-1, may-2, fair, medium]
+          - [oct-2, nov-1, fair, medium]
+          - [nov-2, mar-1, prime, high]
+          - [mar-2, may-2, fair, medium]
+        note: The first satsumas and clementines in late October are often tart.
       - origin: pe
         windows:
           - [jun-1, sep-2, fair, medium]
@@ -21,7 +23,7 @@ items:
           - [may-1, sep-2, fair, medium]
       - origin: za
         windows:
-          - [jun-1, oct-1, fair, medium]
+          - [jun-1, oct-2, fair, medium]
       - origin: ma
         windows:
           - [dec-1, apr-2, fair, medium]
@@ -148,12 +150,12 @@ items:
     origins:
       - origin: us-tx
         windows:
-          - [nov-1, nov-2, fair, medium]
+          - [oct-2, nov-2, fair, medium]
           - [dec-1, mar-2, prime, high]
           - [apr-1, may-1, fair, medium]
       - origin: us-fl
         windows:
-          - [nov-1, nov-2, fair, medium]
+          - [oct-1, nov-2, fair, medium]
           - [dec-1, mar-2, prime, high]
           - [apr-1, may-2, fair, medium]
       - origin: us-ca

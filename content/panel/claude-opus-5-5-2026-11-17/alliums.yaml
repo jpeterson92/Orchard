@@ -27,7 +27,7 @@ items:
       - origin: us-ga
         windows:
           - [apr-2, jun-2, fair, medium]
-        note: Vidalia sweet onions; a candidate variety rather than a reason to rate onions by season.
+        note: "Vidalia sweet onions: mild and juicy, but they keep only a few weeks."
     note: Storage onions cover most of the year and spring sweet onions the rest; steady quality.
 
   - item: green-onions

@@ -11,10 +11,11 @@ items:
     origins:
       - origin: us-wa
         windows:
-          - [aug-2, nov-2, prime, high]
-          - [dec-1, apr-2, fair, medium]
-          - [may-1, aug-1, poor, medium]
-        note: Controlled-atmosphere storage holds most varieties well into spring; by summer texture often softens.
+          - [aug-2, aug-2, fair, low]
+          - [sep-1, nov-2, prime, high]
+          - [dec-1, may-2, fair, medium]
+          - [jun-1, aug-1, poor, low]
+        note: Late August is mostly last year's stored fruit; new-crop Galas arrive first.
       - origin: us-ny
         windows:
           - [sep-1, nov-2, prime, high]
@@ -39,8 +40,8 @@ items:
       - variety: honeycrisp
         windows:
           - [sep-1, dec-1, prime, high]
-          - [dec-2, mar-2, fair, medium]
-          - [apr-1, aug-2, poor, medium]
+          - [dec-2, apr-2, fair, medium]
+          - [may-1, aug-2, poor, medium]
         note: Loses its signature crunch in long storage; late-season fruit is often soft or bland.
       - variety: fuji
         windows:
@@ -49,8 +50,8 @@ items:
           - [jul-1, sep-2, fair, low]
       - variety: granny-smith
         windows:
-          - [oct-2, dec-2, prime, medium]
-          - [jan-1, oct-1, fair, high]
+          - [jan-1, dec-2, fair, high]
+        note: Keeps its tartness and crunch in storage, so no stretch is clearly better.
       - variety: pink-lady
         windows:
           - [nov-1, jan-2, prime, medium]
@@ -99,7 +100,7 @@ items:
           - [dec-2, may-2, fair, medium]
       - origin: us-ca
         windows:
-          - [jul-2, sep-1, prime, medium]
+          - [jul-1, aug-2, prime, medium]
         note: California Bartletts open the season in midsummer.
       - origin: ar
         windows:

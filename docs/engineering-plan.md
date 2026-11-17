@@ -116,7 +116,7 @@ evaluate(item: ItemInputs, ctx: { date: PlainDate; mode: "today" | "typical"; la
 Each lives in `rules.yaml` or a single function, so changing it is cheap.
 
 - **P1 (rule 1):** Limited evidence unless *every* typical origin has a rating for the window.
-- **P9:** the deciding origin is the top typical origin, unless it is rated poor and the second is rated better with evidence that isn't Low confidence; then the second decides (never Peak, since a typical origin is poor). Advisories and the supply index follow the deciding origin. The label note and the `check-label` marker appear when the typical origins' ratings include poor and something better; label advice never shows them. A second origin's share isn't checked yet: `typical-origins.csv` holds ranks only.
+- **P9:** the deciding origin is the top typical origin, unless it is rated poor and the second is rated better with evidence that isn't Low confidence; then the second decides (never Peak, since a typical origin is poor). Advisories and the supply index follow the deciding origin. The label note and the `check-label` marker appear when the typical origins' ratings include poor and something better; label advice never shows them. The second origin can take over only when it has at least 25% of the month's reported volume (rules.yaml `decidingOriginShare`); `typical-origins.csv` marks such origins with `major`, used internally and never shown as a share.
 - **P10 (confidence):**
   - *coverage* is weak when rule 1 fired, or the deciding origin's (or variety's) seasonal evidence for the window is Low combined confidence (P12);
   - *relevance* is weak for assessment-only items;

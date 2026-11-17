@@ -190,7 +190,7 @@ items:
     traits:
       {
         shipsWell: [true, high],
-        storesWell: [true, medium],
+        storesWell: [false, medium],
         peakWorthSeeking: [false, high],
         alwaysGood: [true, high],
       }
@@ -246,7 +246,7 @@ items:
     traits:
       {
         shipsWell: [true, medium],
-        storesWell: [true, medium],
+        storesWell: [false, medium],
         peakWorthSeeking: [true, low],
         alwaysGood: [false, high],
       }
@@ -282,7 +282,7 @@ items:
       - origin: mx
         windows:
           - [jan-1, dec-2, fair, medium]
-    note: Cured and cold-stored after the fall harvest, so they're steady year-round.
+    note: Harvested in fall and kept cold, so they're steady year-round.
 
   - item: figs
     traits:

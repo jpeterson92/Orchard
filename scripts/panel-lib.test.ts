@@ -148,6 +148,42 @@ describe("checkRun", () => {
     expect(errorsOf([item])).toEqual([]);
   });
 
+  it.each([
+    [
+      "a long prime stretch",
+      { ...peaches, origins: [{ origin: "us-ca", windows: [["apr-1", "aug-2", "prime", "high"]] }] },
+      "us-ca is prime in 10 windows",
+    ],
+    [
+      "peakWorthSeeking with no prime",
+      { ...peaches, origins: [{ origin: "us-ca", windows: [["jun-1", "aug-2", "fair", "high"]] }] },
+      "peakWorthSeeking, but no window is prime",
+    ],
+    [
+      "all fair without alwaysGood",
+      {
+        ...peaches,
+        traits: { ...traits, peakWorthSeeking: no },
+        origins: [{ origin: "us-ca", windows: [["jun-1", "aug-2", "fair", "high"]] }],
+      },
+      "every window fair, but not alwaysGood",
+    ],
+  ])("warns about %s", (_, item, message) => {
+    const r = checkRun([file([item])], scope, states);
+    expect(r.errors).toEqual([]);
+    expect(r.warnings.join("\n")).toContain(message);
+  });
+
+  it("warns about nothing for an 8-window prime stretch", () => {
+    const item = {
+      ...peaches,
+      origins: [{ origin: "us-ca", windows: [["may-1", "aug-2", "prime", "high"]] }],
+    };
+    expect(checkRun([file([item])], scope, states).warnings.filter((w) => !w.startsWith("missing"))).toEqual(
+      [],
+    );
+  });
+
   it("warns when alwaysGood disagrees with the windows or with peakWorthSeeking", () => {
     const item = { ...peaches, traits: { ...traits, alwaysGood: [true, "medium"] } };
     const w = checkRun([file([item])], scope, states).warnings;

@@ -12,6 +12,8 @@ const label = z.string().regex(WINDOW_LABEL, 'use a half-month label such as "ju
 const windowTuple = z.tuple([label, label, z.enum(["prime", "fair", "poor"]), confidence]);
 const trait = z.tuple([z.boolean(), confidence]);
 export const NOTE_WORDS = 25;
+/** Prompt v2: prime marks a stretch clearly better than the rest of the year, usually 1 to 4 months. */
+export const PRIME_WINDOWS = 8;
 const note = z
   .string()
   .trim()
@@ -126,6 +128,20 @@ export function checkRun(
         warnings.push(`${at}: alwaysGood, but some window isn't fair`);
       if (item.traits.alwaysGood[0] && item.traits.peakWorthSeeking[0])
         warnings.push(`${at}: alwaysGood and peakWorthSeeking both true`);
+      const ratings = targets.flatMap((t) => t.windows.map((w) => w[2]));
+      if (item.traits.peakWorthSeeking[0] && !ratings.includes("prime"))
+        warnings.push(`${at}: peakWorthSeeking, but no window is prime`);
+      if (!item.traits.alwaysGood[0] && ratings.every((r) => r === "fair"))
+        warnings.push(`${at}: every window fair, but not alwaysGood`);
+      for (const t of targets) {
+        const prime = t.windows
+          .filter((w) => w[2] === "prime")
+          .reduce((n, w) => n + windowRange(w[0], w[1]).length, 0);
+        if (prime > PRIME_WINDOWS)
+          warnings.push(
+            `${at}: ${t.name} is prime in ${prime} windows (prompt: usually at most ${PRIME_WINDOWS})`,
+          );
+      }
     }
   }
   for (const s of scope) if (!seen.has(s.item)) warnings.push(`missing: ${s.item}`);

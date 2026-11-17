@@ -11,7 +11,7 @@ items:
     origins:
       - origin: us-fl
         windows:
-          - [nov-1, mar-2, fair, medium]
+          - [oct-1, mar-2, fair, medium]
           - [apr-1, jun-1, prime, medium]
       - origin: us-ga
         windows:

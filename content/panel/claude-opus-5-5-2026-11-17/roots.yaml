@@ -163,7 +163,7 @@ items:
     traits:
       {
         shipsWell: [true, high],
-        storesWell: [true, medium],
+        storesWell: [false, medium],
         peakWorthSeeking: [false, high],
         alwaysGood: [true, high],
       }

@@ -22,16 +22,17 @@ items:
       - origin: us-ca
         windows:
           - [jul-1, sep-1, prime, medium]
+          - [sep-2, sep-2, fair, medium]
       - origin: us-in
         windows:
           - [jul-2, sep-1, prime, medium]
       - origin: mx
         windows:
-          - [nov-1, apr-2, fair, low]
+          - [oct-1, apr-2, fair, low]
       - origin: gt
         windows:
           - [dec-1, apr-2, fair, low]
-    note: Summer melons are sweet and crisp; winter imports are often pale and bland.
+    note: Summer melons are sweet and crisp; winter imports are less reliably sweet.
 
   - item: cantaloupe
     traits:

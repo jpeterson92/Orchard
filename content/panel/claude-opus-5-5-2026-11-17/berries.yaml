@@ -17,7 +17,8 @@ items:
       - origin: us-fl
         windows:
           - [dec-1, jan-2, fair, medium]
-          - [feb-1, mar-2, prime, medium]
+          - [feb-1, mar-1, prime, low]
+          - [mar-2, mar-2, fair, low]
       - origin: mx
         windows:
           - [nov-1, apr-2, fair, medium]
@@ -81,9 +82,6 @@ items:
         windows:
           - [jun-1, sep-1, prime, medium]
           - [sep-2, oct-1, fair, medium]
-      - origin: us-wa
-        windows:
-          - [jul-1, aug-1, prime, medium]
     note: Summer California berries taste best; Mexican winter berries are reliable but less fragrant.
 
   - item: blackberries
@@ -97,14 +95,14 @@ items:
     origins:
       - origin: mx
         windows:
-          - [oct-2, jun-1, fair, medium]
+          - [oct-1, jun-1, fair, medium]
         note: Often on the tart side.
       - origin: us-ga
         windows:
           - [jun-1, jul-1, prime, medium]
       - origin: us-or
         windows:
-          - [jul-1, aug-2, prime, medium]
+          - [jul-1, aug-2, prime, low]
       - origin: us-ca
         windows:
           - [jun-1, sep-2, prime, low]
@@ -114,7 +112,7 @@ items:
     traits:
       {
         shipsWell: [true, medium],
-        storesWell: [true, medium],
+        storesWell: [false, medium],
         peakWorthSeeking: [false, high],
         alwaysGood: [false, medium],
       }

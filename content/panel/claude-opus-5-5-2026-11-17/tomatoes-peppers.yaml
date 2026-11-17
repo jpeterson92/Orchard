@@ -15,14 +15,14 @@ items:
         note: Much is greenhouse or shade-house vine-ripe fruit, the steadiest choice in winter.
       - origin: us-fl
         windows:
-          - [nov-1, may-2, poor, high]
-        note: Field rounds picked mature-green and ripened with ethylene; firm and flavorless.
+          - [oct-2, jun-1, poor, medium]
+        note: Field rounds picked mature-green and ripened with ethylene; firm and usually bland.
       - origin: ca
         windows:
           - [mar-1, nov-2, fair, medium]
       - origin: us-ca
         windows:
-          - [jul-1, oct-2, fair, medium]
+          - [jul-1, oct-2, fair, low]
       - origin: us-tn
         windows:
           - [jun-2, aug-2, prime, medium]

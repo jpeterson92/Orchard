@@ -21,6 +21,7 @@ items:
       - origin: cl
         windows:
           - [jan-1, apr-2, fair, medium]
+          - [may-1, may-1, fair, low]
       - origin: pe
         windows:
           - [nov-2, feb-2, fair, medium]
