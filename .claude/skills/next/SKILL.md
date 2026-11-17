@@ -31,17 +31,16 @@ If the milestone is bigger than that, split it into slices, do the first, and wr
 
 ## 4. Check it, in proportion
 
-- Always: `npm run check`.
-- Also `npm run e2e` when screens, routing, the build or the Worker changed.
-- Verdict engine and data validation: full table-driven and property tests, as CLAUDE.md requires.
+- Before each commit: `npm run check:changed` (only the tests downstream of the change). Docs-only commits need none.
+- Verdict engine and data validation: write full table-driven and property tests, as CLAUDE.md requires; `check:changed` runs them whenever the engine changes.
+- The full `npm run check` and `npm run e2e` run only when syncing to GitHub or deploying, which happens only when Jared asks.
 - Fix failures properly. If one still isn't understood after a real look, stop and report it with the output.
 
-## 5. Commit and push
+## 5. Commit
 
 - Commit in small commits on `main`. Each message says what changed and how it was checked.
 - Update `PROGRESS.md`: what changed, the next concrete action, blockers. Keep it under about 60 lines.
-- Push. Don't wait on CI.
-- Deploy only if the slice changes what users see and the last CI run passed (`gh run list --limit 1`). Check the live URL once.
+- Don't push or deploy unless Jared asked for it this run. Say how many commits are unsynced.
 
 ## 6. Summarize for Jared
 

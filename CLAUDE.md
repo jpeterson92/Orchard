@@ -35,7 +35,7 @@ When documents conflict: Jared's decisions (in `PROGRESS.md`) > product spec for
 ## Verification, in proportion
 
 - **Verdict engine and data validation: test thoroughly.** A table-driven case per rule and per precedence pair, plus property tests for the invariants. This is where correctness matters most.
-- **Everything else:** typecheck, lint, and the tests for the module touched. Run the full suite before pushing, not after every edit.
+- **Everything else:** `npm run check:changed` before each commit (typecheck and lint of the whole project, which take seconds, plus only the tests downstream of uncommitted changes). Docs-only commits need no checks. The full suite runs only before a GitHub sync or a deploy.
 - **UI:** check phone width (375 px) and one wide width, and show Jared a screenshot. No pixel-baseline suites until the design settles.
 - **Never weaken** a test, type or validation to get green. If a failure still isn't understood after a real look, stop and report it with the output.
 - Don't re-verify what a passing check already shows, and don't re-read a file to confirm an edit landed.
@@ -53,7 +53,8 @@ When documents conflict: Jared's decisions (in `PROGRESS.md`) > product spec for
 - The dev machine is Windows 11. Scripts must be cross-platform: Node or package.json scripts, never bash-only.
 - Node 26 LTS (Scoop). Commands:
   - `npm run dev`: app and Worker locally, with hot reload
-  - `npm run check`: typecheck, lint, unit tests (run before every push)
+  - `npm run check:changed`: typecheck, lint, and the unit tests affected by uncommitted changes (before each commit; `-- HEAD~3` widens it to recent commits)
+  - `npm run check`: typecheck, lint, all unit tests (before a GitHub sync or a deploy)
   - `npm run e2e`: build, then Playwright smoke tests against the build running in workerd
   - `npm run build`: client build plus the prerendered HTML (`scripts/prerender.ts`)
   - `npm run deploy`: build, then `wrangler deploy` (wrangler is signed in on this machine)
@@ -64,9 +65,9 @@ When documents conflict: Jared's decisions (in `PROGRESS.md`) > product spec for
 ## Git and GitHub
 
 - Work on `main` in small commits. Each message says what changed and how it was checked. Never mix refactors, upgrades or formatting with feature work.
-- Testing happens locally: `npm run check` before every push, plus `npm run e2e` when UI, routing, the build or the Worker changed. CI repeats the same checks on GitHub as a backstop.
-- Push to `origin` (a private GitHub repository) at the end of each session and at each reviewable milestone. **Never wait on, poll or watch GitHub Actions after a push.**
-- Before each deploy, check the latest CI run once (`gh run list --limit 1`). If it failed, read the log (`gh run view <id> --log-failed`), fix it, then deploy. Live URL: https://orchard.jpeterson92.workers.dev
+- Commit locally after each increment. **Sync to GitHub (push `origin`, a private repository) only when Jared asks**, and before a deploy. Say in the summary how many commits are unsynced.
+- Before a sync: `npm run check` and `npm run e2e`, fixing any failures first. CI repeats the same checks on GitHub as a backstop. **Never wait on, poll or watch GitHub Actions after a push.**
+- Deploy only when Jared asks. Before deploying, check the previous CI run once (`gh run list --limit 1`); if it failed, read the log (`gh run view <id> --log-failed`) and fix it. Then sync and deploy. Live URL: https://orchard.jpeterson92.workers.dev
 - After a deploy, check the live URL once (single requests with a timeout), never in a retry loop. If it isn't up, report it and move on.
 - No secrets in git. `.env` and `.dev.vars` are ignored; `.env.example` lists variable names only.
 
