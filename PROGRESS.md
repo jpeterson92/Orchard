@@ -4,11 +4,13 @@ Updated: 2026-11-17 · Phase: build · Live: https://orchard.jpeterson92.workers
 
 ## Milestones
 
-M0 scaffold and deploy: done · M1 USDA probe: done · M2 schemas and engine: slice 1 (reference-data coverage, `docs/data/usda.md`) done · M3–M9: not started
+M0 scaffold and deploy: done · M1 USDA probe: done · M2 schemas and engine: slices 1 (reference-data coverage) and 2 (schemas and `data:build`) done · M3–M9: not started
 
 ## Next concrete action
 
-M2 slice 2: zod schemas and `data:build` for items, sources, rules, advisories, typical origins and the supply index, with one broken-input fixture per check. Schemas carry item categories and types for the 89 launch items; `alwaysGood` is an editorial field, and the build lists items where it disagrees with the typical outlook. Then the engine with its tests, then content batch 1 (apples, pears, strawberries, broccoli, mandarins).
+M2 slice 3: the verdict engine in `src/shared/verdict/` (rules 1–5, markers, P10 confidence, `byOrigin`, Today grouping in `src/shared/today.ts`), with a table-driven case per rule and precedence pair plus property tests. Then `data:build` lists items whose `alwaysGood` field disagrees with the typical outlook.
+
+After that: slice 4, `usda-derive` writes `data/usda/typical-origins.csv` and `supply-index.csv` for the 89 items (reusing `scripts/usda-lib.ts`; run on demand, Jared reviews the diff). Then content batch 1 (apples, pears, strawberries, broccoli, mandarins).
 
 ## Blocking (needs Jared)
 
@@ -16,7 +18,7 @@ M2 slice 2: zod schemas and `data:build` for items, sources, rules, advisories, 
 
 ## Open questions for Jared (non-blocking)
 
-- Confirm or adjust the provisional methodology defaults P1, P9, P10, P11 and the Last call trigger (engineering plan §4.3), including P10's freshness limit of 15 months for the yearly supply snapshot.
+- Confirm or adjust the provisional methodology defaults P1, P9, P10, P11 and the Last call trigger (engineering plan §4.3). The 15-month freshness limit is confirmed.
 - Launch gates: needed by M9.
 - In-app brand name: Orchard, or something else? Needed by M9.
 

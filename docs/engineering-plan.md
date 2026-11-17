@@ -31,7 +31,7 @@ Mature, widely used tools only. At scaffold time, take the newest release whose 
 | Offline | `vite-plugin-pwa` (Workbox) | Precache everything; activate updates on next launch |
 | Worker | `@cloudflare/vite-plugin`, Wrangler, Hono (for `/api` routes) | Static assets with SPA fallback |
 | Write store | D1, plain SQL migrations through Wrangler | Introduced in M8. No ORM unless queries grow |
-| Validation and types | zod | One schema per content and data file; types come from `z.infer`. No code generation |
+| Validation and types | zod 4.6.7, yaml 2.9.1 | One schema per content and data file; types come from `z.infer`. Content and data files are YAML, parsed by `yaml` in `data:build` only. No code generation |
 | Search | MiniSearch | Prefix and fuzzy matching over names, synonyms and misspellings |
 | Lint and format | Biome | One tool, one config |
 | Tests | Vitest, fast-check (property tests), Testing Library, Playwright + `@axe-core/playwright` | See §6 |
@@ -52,12 +52,13 @@ content/
 data/
   sources.yaml               every citation: id, title, publisher, url, accessed date
   rules.yaml                 rules version + thresholds (0.70, 0.8, 1.2, 20/24, 15 months)
+  categories.yaml            browse categories in display order
   advisories.yaml            scoped, expiring exceptions
   usda/typical-origins.csv   derived from USDA (committed, with source + date header)
   usda/supply-index.csv      derived from USDA (committed)
   usda/variety-calendar.csv  derived from USDA terminal market reports (committed)
   plu.csv                    IFPS PLU codes → item and variety (only once IFPS confirms reuse)
-  geo/states.csv             state, name, price region, locally checked
+  geo/states.csv             state, name (price region and locally checked come with M5)
   geo/zip3-state.csv         ZIP prefix → state (used on the phone; no API call)
 scripts/                     prerender.ts, data-build.ts, content-report.ts; usda-client.ts and usda-lib.ts (shared),
                              usda-probe.ts, usda-terminal-probe.ts, usda-terminal-screen.ts, usda-derive.ts
@@ -76,7 +77,7 @@ docs/                        product spec, engineering plan, design, data findin
 
 ### 4.1 Inputs (validated by `npm run data:build`)
 
-- **Item** (`content/items/*.yaml`): id, names, synonyms, misspellings, category, `purchaseRank`, `alwaysGood` (editorial), evidence basis (`supply+assessment` or `assessment-only`), card line, pick cues (3–5), avoid cues (1–2), store and ripen ranges with ripeness assumptions (storage temperature band, ethylene producer or sensitive, and storage life, cited to the UC Davis Postharvest Center fact sheets where they cover the item), prep, type notes. Also its origins, each with quality windows: half-month ranges rated `prime`, `fair` or `poor`, with at least 2 source IDs per range. Plus `status` (`draft` or `reviewed`), `reviewedOn` and `reviewer`. Word limits come from product spec §8.
+- **Item** (`content/items/*.yaml`): id, names, synonyms, misspellings, category, `purchaseRank`, `alwaysGood` (editorial), evidence basis (`supply+assessment` or `assessment-only`), card line, pick cues (3–5), avoid cues (1–2), store and ripen ranges with ripeness assumptions (storage temperature band, ethylene producer or sensitive, and storage life, cited to the UC Davis Postharvest Center fact sheets where they cover the item), prep, type notes. Also its origins, each with quality windows: half-month ranges rated `prime`, `fair` or `poor`, with at least 2 source IDs per range. Plus `status` (`draft` or `reviewed`), `reviewedOn`, `reviewer`, and `synthetic: true` on invented test data. Word limits come from product spec §8. Windows are written as half-month labels (`jun-1` is Jun 1–15, `jun-2` Jun 16–end) and may wrap past December; one origin's windows must not overlap. Origins are `us-<state>` or an ISO country code (`mx`).
 - **Variety** (inside its item file, for the 3 guides): traits on the group's anchored 1–5 scales, best uses, label/PLU text, freshest months only where evidence exists.
 - **Advisory:** items, optional origins, scope (states or price regions), `from` ≤ `to` ≤ `from` + 90 days, imposed verdict, note, `reviewedOn`, `status`.
 - **Typical origins:** item × month → ranked origins covering at least 70% of reported volume (ranks only; never shown as shares). Where USDA doesn't report domestic supply (citrus, carrots, garlic, mushrooms, winter squash and others), the item file lists cited editorial origins instead.
@@ -84,7 +85,7 @@ docs/                        product spec, engineering plan, design, data findin
 - **Variety calendar:** item × variety × month → the share of USDA terminal market price quotes (11 cities, 3 years) naming that variety, and the origins quoted. Evidence of presence, not volume. It backs a variety's "freshest months" and cross-checks typical origins.
 - **PLU codes** (only once IFPS confirms reuse): PLU → item, variety, size, organic. Label-based advice accepts a sticker code as well as an origin.
 
-`data:build` fails on any schema error, unknown ID, duplicate key, a range with fewer than 2 sources, an inverted or over-long advisory, or a NaN. With `--production` it also fails on any `draft` record. It writes compact JSON to `src/generated/` and prints a coverage report: items, origins rated, and windows without a rating.
+`data:build` fails on any schema error, unknown ID, duplicate key, a range with fewer than 2 sources, an inverted or over-long advisory, or a NaN. With `--production` (run first by `npm run deploy`) it also fails on any `draft` or `synthetic` record. Schemas live in `src/shared/data/schema.ts`, the checks in `scripts/data-validate.ts`. It writes compact JSON to `src/generated/` and prints a coverage report: items, origins rated, and windows without a rating.
 
 ### 4.2 Engine (`src/shared/verdict/`)
 

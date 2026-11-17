@@ -1,0 +1,17 @@
+# Browse categories, in display order (docs/data/usda.md launch list).
+- { id: apples-pears, name: Apples & pears }
+- { id: citrus, name: Citrus }
+- { id: stone-fruit, name: Stone fruit }
+- { id: berries, name: Berries }
+- { id: grapes, name: Grapes }
+- { id: melons, name: Melons }
+- { id: tropical, name: Tropical & subtropical }
+- { id: leafy-greens, name: Leafy greens & lettuces }
+- { id: brassicas, name: Brassicas }
+- { id: roots, name: Roots & tubers }
+- { id: alliums, name: Alliums }
+- { id: squash, name: Squash }
+- { id: tomatoes-peppers, name: "Tomatoes, peppers & eggplant" }
+- { id: beans-peas-corn, name: "Beans, peas, corn & stalks" }
+- { id: mushrooms, name: Mushrooms }
+- { id: herbs, name: Herbs }

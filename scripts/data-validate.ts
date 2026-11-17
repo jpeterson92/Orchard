@@ -1,0 +1,252 @@
+// Pure validation behind `npm run data:build` (engineering plan §4.1): schema checks, then cross-file checks.
+// Takes already-parsed inputs so tests can feed broken fixtures without touching the disk.
+import type { z } from "zod";
+import {
+  type Advisory,
+  advisorySchema,
+  type Category,
+  categorySchema,
+  type Dataset,
+  type Item,
+  itemSchema,
+  type Rules,
+  rulesSchema,
+  type Snapshot,
+  type Source,
+  type State,
+  type SupplyIndexRow,
+  snapshotSchema,
+  sourceSchema,
+  stateSchema,
+  supplyIndexRowSchema,
+  type TypicalOriginRow,
+  typicalOriginRowSchema,
+} from "../src/shared/data/schema";
+import { windowRange } from "../src/shared/time";
+
+export interface Csv {
+  file: string;
+  /** `# key: value` lines before the header. */
+  meta: Record<string, string>;
+  rows: Record<string, string>[];
+}
+
+export interface RawInputs {
+  rules: unknown;
+  sources: unknown;
+  categories: unknown;
+  states: Csv;
+  items: { file: string; data: unknown }[];
+  advisories: unknown;
+  typicalOrigins: Csv | null;
+  supplyIndex: Csv | null;
+}
+
+export interface Result {
+  errors: string[];
+  warnings: string[];
+  dataset: Dataset | null;
+}
+
+/** Advisories are short-lived exceptions (product spec §7). */
+export const MAX_ADVISORY_DAYS = 90;
+
+export function parseCsv(file: string, text: string, columns: readonly string[]): Csv {
+  const meta: Record<string, string> = {};
+  const lines = text.split(/\r?\n/).filter((l) => l.trim() !== "");
+  while (lines[0]?.startsWith("#")) {
+    const line = (lines.shift() as string).slice(1);
+    const at = line.indexOf(":");
+    if (at > 0) meta[line.slice(0, at).trim()] = line.slice(at + 1).trim();
+  }
+  const header = lines.shift()?.split(",") ?? [];
+  if (header.join(",") !== columns.join(",")) {
+    throw new Error(`${file}: header must be "${columns.join(",")}", found "${header.join(",")}"`);
+  }
+  const rows = lines.map((line, n) => {
+    const cells = line.split(",");
+    if (cells.length !== columns.length) {
+      throw new Error(`${file}: line ${n + 2} has ${cells.length} cells, expected ${columns.length}`);
+    }
+    return Object.fromEntries(columns.map((c, i) => [c, (cells[i] as string).trim()]));
+  });
+  return { file, meta, rows };
+}
+
+const countryNames = new Intl.DisplayNames(["en"], { type: "region", fallback: "none" });
+const NOT_COUNTRIES = new Set(["ZZ", "EU", "EZ", "UN", "US"]);
+
+export function validate(raw: RawInputs, opts: { production: boolean }): Result {
+  const errors: string[] = [];
+  const warnings: string[] = [];
+
+  function parse<S extends z.ZodType>(schema: S, value: unknown, where: string): z.output<S> | null {
+    const r = schema.safeParse(value);
+    if (r.success) return r.data;
+    for (const issue of r.error.issues) {
+      const path = issue.path.length > 0 ? `${issue.path.join(".")}: ` : "";
+      errors.push(`${where}: ${path}${issue.message}`);
+    }
+    return null;
+  }
+  function list<S extends z.ZodType>(schema: S, value: unknown, file: string): z.output<S>[] {
+    if (!Array.isArray(value)) {
+      errors.push(`${file}: expected a list`);
+      return [];
+    }
+    return value.flatMap((v, i) => parse(schema, v, `${file}[${i}]`) ?? []);
+  }
+  function unique<T>(things: T[], key: (t: T) => string, what: string): void {
+    const seen = new Set<string>();
+    for (const t of things) {
+      const k = key(t);
+      if (seen.has(k)) errors.push(`duplicate ${what} ${k}`);
+      seen.add(k);
+    }
+  }
+
+  const rules: Rules | null = parse(rulesSchema, raw.rules, "data/rules.yaml");
+  const sources: Source[] = list(sourceSchema, raw.sources, "data/sources.yaml");
+  const categories: Category[] = list(categorySchema, raw.categories, "data/categories.yaml");
+  const states: State[] = list(stateSchema, raw.states.rows, raw.states.file);
+  const advisories: Advisory[] = list(advisorySchema, raw.advisories, "data/advisories.yaml");
+  const items: Item[] = raw.items.flatMap(({ file, data }) => {
+    const item = parse(itemSchema, data, file);
+    if (item === null) return [];
+    const base = file
+      .split(/[\\/]/)
+      .pop()
+      ?.replace(/\.ya?ml$/, "");
+    if (base !== item.id) errors.push(`${file}: file name must match id "${item.id}"`);
+    return [item];
+  });
+
+  unique(sources, (s) => s.id, "source");
+  unique(categories, (c) => c.id, "category");
+  unique(states, (s) => s.state, "state");
+  unique(items, (i) => i.id, "item");
+  unique(items, (i) => String(i.purchaseRank), "purchaseRank");
+  unique(advisories, (a) => a.id, "advisory");
+
+  const sourceIds = new Set(sources.map((s) => s.id));
+  const categoryIds = new Set(categories.map((c) => c.id));
+  const stateCodes = new Set(states.map((s) => s.state));
+  const itemIds = new Set(items.map((i) => i.id));
+
+  const originProblem = (origin: string): string | null => {
+    if (origin.startsWith("us-")) {
+      return stateCodes.has(origin.slice(3).toUpperCase()) ? null : `unknown US state in origin ${origin}`;
+    }
+    const code = origin.toUpperCase();
+    if (NOT_COUNTRIES.has(code) || countryNames.of(code) === undefined) {
+      return `unknown origin ${origin} (use "us-<state>" for US origins)`;
+    }
+    return null;
+  };
+  const checkOrigin = (origin: string, where: string) => {
+    const problem = originProblem(origin);
+    if (problem !== null) errors.push(`${where}: ${problem}`);
+  };
+  const checkSources = (ids: string[], where: string) => {
+    for (const s of ids) if (!sourceIds.has(s)) errors.push(`${where}: unknown source ${s}`);
+  };
+
+  for (const item of items) {
+    const at = `item ${item.id}`;
+    if (!categoryIds.has(item.category)) errors.push(`${at}: unknown category ${item.category}`);
+    unique(item.origins, (o) => `${item.id}/${o.origin}`, "origin");
+    unique(item.types, (t) => `${item.id}/${t.id}`, "type");
+    unique(item.varieties, (v) => `${item.id}/${v.id}`, "variety");
+    checkSources(item.store.sources, `${at} store`);
+    if (item.ripen) checkSources(item.ripen.sources, `${at} ripen`);
+    for (const v of item.varieties) checkSources(v.sources, `${at} variety ${v.id}`);
+    for (const o of item.origins) {
+      checkOrigin(o.origin, at);
+      const rated = new Set<number>();
+      for (const w of o.windows) {
+        checkSources(w.sources, `${at} ${o.origin} ${w.from}..${w.to}`);
+        for (const n of windowRange(w.from, w.to)) {
+          if (rated.has(n)) errors.push(`${at} ${o.origin}: windows overlap at ${w.from}..${w.to}`);
+          rated.add(n);
+        }
+      }
+    }
+  }
+
+  for (const a of advisories) {
+    const at = `advisory ${a.id}`;
+    for (const i of a.items) if (!itemIds.has(i)) errors.push(`${at}: unknown item ${i}`);
+    for (const o of a.origins ?? []) checkOrigin(o, at);
+    for (const s of a.states ?? []) if (!stateCodes.has(s)) errors.push(`${at}: unknown state ${s}`);
+    const days = (Date.parse(a.to) - Date.parse(a.from)) / 86_400_000;
+    if (days < 0) errors.push(`${at}: ends (${a.to}) before it starts (${a.from})`);
+    else if (days > MAX_ADVISORY_DAYS) errors.push(`${at}: lasts ${days} days, over ${MAX_ADVISORY_DAYS}`);
+  }
+
+  const snapshots: Snapshot[] = [];
+  function csvRows<S extends z.ZodType<{ item: string }>>(
+    csv: Csv | null,
+    schema: S,
+    convert: (r: Record<string, string>) => unknown,
+  ) {
+    if (csv === null) return [];
+    const snapshot = parse(snapshotSchema, csv.meta, `${csv.file} header`);
+    if (snapshot) snapshots.push(snapshot);
+    const rows = csv.rows.flatMap((r, n) => parse(schema, convert(r), `${csv.file} line ${n + 2}`) ?? []);
+    const unknown = new Set(rows.map((r) => r.item).filter((i) => !itemIds.has(i)));
+    if (unknown.size > 0)
+      warnings.push(`${csv.file}: no item file yet for ${[...unknown].sort().join(", ")}`);
+    return rows as z.output<S>[];
+  }
+
+  const typicalOrigins: TypicalOriginRow[] = csvRows(raw.typicalOrigins, typicalOriginRowSchema, (r) => r);
+  unique(typicalOrigins, (r) => `${r.item}/${r.month}/rank ${r.rank}`, "typical origin");
+  unique(typicalOrigins, (r) => `${r.item}/${r.month}/${r.origin}`, "typical origin");
+  const ranks = new Map<string, number[]>();
+  for (const r of typicalOrigins) {
+    checkOrigin(r.origin, `typical origin ${r.item}/${r.month}`);
+    const key = `${r.item}/${r.month}`;
+    ranks.set(key, [...(ranks.get(key) ?? []), r.rank]);
+  }
+  for (const [key, rs] of ranks) {
+    if (rs.sort((a, b) => a - b).some((r, i) => r !== i + 1))
+      errors.push(`typical origin ${key}: ranks must run 1..n`);
+  }
+
+  const supplyIndex: SupplyIndexRow[] = csvRows(raw.supplyIndex, supplyIndexRowSchema, (r) => ({
+    ...r,
+    value: r.value === "" ? null : Number(r.value),
+    reason: r.reason === "" ? null : r.reason,
+  }));
+  unique(supplyIndex, (r) => `${r.item}/${r.month}`, "supply index");
+
+  const [snapshot = null, other] = snapshots;
+  if (snapshot && other && JSON.stringify(snapshot) !== JSON.stringify(other)) {
+    errors.push("typical-origins.csv and supply-index.csv headers describe different snapshots");
+  }
+
+  if (opts.production) {
+    for (const r of [...items, ...advisories]) {
+      if (r.status === "draft") errors.push(`${r.id}: draft records can't ship (production build)`);
+      if (r.synthetic) errors.push(`${r.id}: synthetic records can't ship (production build)`);
+    }
+  }
+
+  if (errors.length > 0 || rules === null) return { errors, warnings, dataset: null };
+  const byId = <T extends { id: string }>(xs: T[]) => [...xs].sort((a, b) => a.id.localeCompare(b.id));
+  return {
+    errors,
+    warnings,
+    dataset: {
+      rules,
+      sources: byId(sources),
+      categories,
+      states,
+      items: byId(items),
+      advisories: byId(advisories),
+      snapshot,
+      typicalOrigins,
+      supplyIndex,
+    },
+  };
+}
