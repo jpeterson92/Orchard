@@ -77,7 +77,7 @@ Notes:
 
 Reported volume (`npm run usda:probe`) can't serve as the filter. Cranberries, pumpkins, winter squash, Asian pears, dates, figs, shallots and most herbs have large US production that movement reports never include, so their reported volume understates them badly.
 
-**Launch list (89 items).** Types in brackets are one item, not separate items.
+**Launch list (89 items).** The screens above informed it; the list itself is curated, and changes to it are editorial decisions. Types in brackets are one item, not separate items.
 
 | Category | Items |
 | --- | --- |

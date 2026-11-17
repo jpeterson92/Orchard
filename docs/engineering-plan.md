@@ -70,13 +70,13 @@ tests/e2e/                   Playwright smoke tests
 docs/                        product spec, engineering plan, design, data findings
 ```
 
-**One file per item** is deliberately also the unit of editorial review. `.cache/` holds raw USDA responses and is gitignored; derived CSVs are committed so builds never need the network.
+**One file per item** is deliberately also the unit of editorial review. The item list, types, categories and classes are curated by hand. Scripts that pull from external sources (`usda:*`) run only on demand, when Claude or Jared want evidence for an update: never in CI, on a schedule or in a build, and they never write to `content/`. Their output is evidence for an editorial decision, not the decision. `.cache/` holds raw USDA responses and is gitignored; derived CSVs are committed so builds never need the network.
 
 ## 4. Data and the verdict engine
 
 ### 4.1 Inputs (validated by `npm run data:build`)
 
-- **Item** (`content/items/*.yaml`): id, names, synonyms, misspellings, category, `purchaseRank`, evidence basis (`supply+assessment` or `assessment-only`), card line, pick cues (3–5), avoid cues (1–2), store and ripen ranges with ripeness assumptions (storage temperature band, ethylene producer or sensitive, and storage life, cited to the UC Davis Postharvest Center fact sheets where they cover the item), prep, type notes. Also its origins, each with quality windows: half-month ranges rated `prime`, `fair` or `poor`, with at least 2 source IDs per range. Plus `status` (`draft` or `reviewed`), `reviewedOn` and `reviewer`. Word limits come from product spec §8.
+- **Item** (`content/items/*.yaml`): id, names, synonyms, misspellings, category, `purchaseRank`, `alwaysGood` (editorial), evidence basis (`supply+assessment` or `assessment-only`), card line, pick cues (3–5), avoid cues (1–2), store and ripen ranges with ripeness assumptions (storage temperature band, ethylene producer or sensitive, and storage life, cited to the UC Davis Postharvest Center fact sheets where they cover the item), prep, type notes. Also its origins, each with quality windows: half-month ranges rated `prime`, `fair` or `poor`, with at least 2 source IDs per range. Plus `status` (`draft` or `reviewed`), `reviewedOn` and `reviewer`. Word limits come from product spec §8.
 - **Variety** (inside its item file, for the 3 guides): traits on the group's anchored 1–5 scales, best uses, label/PLU text, freshest months only where evidence exists.
 - **Advisory:** items, optional origins, scope (states or price regions), `from` ≤ `to` ≤ `from` + 90 days, imposed verdict, note, `reviewedOn`, `status`.
 - **Typical origins:** item × month → ranked origins covering at least 70% of reported volume (ranks only; never shown as shares). Where USDA doesn't report domestic supply (citrus, carrots, garlic, mushrooms, winter squash and others), the item file lists cited editorial origins instead.
@@ -98,7 +98,7 @@ evaluate(item: ItemInputs, ctx: { date: PlainDate; state: StateId | null; mode: 
 - **Markers:** Last call, Reliable year-round (Good or better in at least 20 of 24 windows), Advisory, and "Usually improves in…" (the next window rated Good or better).
 - `byOrigin` re-runs the rules once per rated origin, for "What does the label say?"
 - `windowIndex(date) = (month − 1) × 2 + (day > 15 ? 1 : 0)` lives in `src/shared/time.ts`, and nowhere else.
-- **Always good** is derived, not written: an item whose typical outlook is Good in all 24 windows, with no Peak and no Skip.
+- **Always good** is the item's editorial `alwaysGood` field. `data:build` lists, without failing, any item where the field disagrees with its typical outlook (Good in all 24 windows, no Peak, no Skip) for an editor to settle.
 - **Today grouping** (up to 6 Peak, sorted by confidence then `purchaseRank`, never padded; each seasonal item exactly once; always-good items left out unless an advisory changes their verdict today) is one pure function in `src/shared/today.ts`.
 
 ### 4.3 Provisional methodology (awaiting Jared's confirmation; never blocking)
@@ -162,7 +162,7 @@ Run the tests for what you touched while working. Run the full suite before push
 ## 7. Operations
 
 - **Deploy:** `npm run deploy` (build, then `wrangler deploy`) from a machine signed in with `wrangler login`. Move deploys into CI when it becomes convenient, using a scoped API token in a GitHub secret.
-- **Data refresh:** once a year, with the yearly content review. `npm run usda:refresh` rebuilds typical origins and the supply index from the last 3 years; Jared reviews the diff; then commit and deploy. Items without usable USDA data use cited editorial origins and a `null` supply index.
+- **Data refresh:** on demand, usually with the yearly content review. `npm run usda:refresh` rewrites the typical-origins and supply-index CSVs from the last 3 years; Jared reviews the diff before it is committed and deployed. Items without usable USDA data use cited editorial origins and a `null` supply index.
 - **Stale data:** each build records its supply snapshot's date range. When the snapshot is more than 15 months old (a missed yearly refresh), freshness lowers confidence and the item page says so; the app never pretends to be current.
 - **Privacy:** no accounts or cookies. The place lives in `localStorage` on the phone. The Worker never logs URLs, query strings, bodies, IPs or ZIPs; automatic invocation logs are turned off at M8. D1 stores state and date, never finer.
 - **Rollback:** redeploy the previous Worker version (`wrangler rollback`). Data rolls back with it.

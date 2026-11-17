@@ -138,7 +138,7 @@ Today leads with up to six strong recommendations, and every seasonal item appea
 | --- | --- | --- |
 | **Verdict** (exactly one per item) | Peak · Good · Skip · Limited evidence | Expected eating quality of typical supermarket supply here and now (rules in section 7) |
 | **Markers** (zero or more, shown on the card) | Last call · Reliable year-round · Advisory · Good value (v1.1) | Extra facts that never move the item to a different section |
-| **Always good** (an item class) | Items whose typical outlook is Good in all 24 windows, never Peak and never Skip. Computed for now; an editorial override may come after release | Shown as "Always good" wherever they appear. They join Today only while an advisory changes their verdict |
+| **Always good** (an item class) | An editorial call, written in the item file. The usual evidence is a typical outlook of Good in all 24 windows, never Peak and never Skip; the data build flags any item where the two disagree, and an editor decides | Shown as "Always good" wherever they appear. They join Today only while an advisory changes their verdict |
 
 ### Today (home)
 
@@ -363,7 +363,7 @@ An item launches only once its evidence passes review. Editors write content onc
 | Harvest zone (deferred) | States, harvest calendar per item | Data, reviewed yearly | — | 53 |
 | Price region | States, weekly promotion data | Data, weekly (v1.1) | 8 | 8 |
 | Verdict | Item × window (national), with advisories for the shopper's state and date applied: verdict, markers, confidence, reason codes | Computed | \~2,140 (89 × 24) | Grows with items |
-| Supply profile | Item × month: typical origins (ranked), supply index | Computed | \~1,070 (89 × 12) | Grows with items |
+| Supply profile | Item × month: typical origins (ranked), supply index | Derived from USDA on demand, then reviewed | \~1,070 (89 × 12) | Grows with items |
 | Value signal (v1.1) | Item × region × week | Computed | \~14,600 a year | \~42,000 a year |
 | Window summary | The one-line Today summary, national | Drafted, then edited | 24 | 24 |
 | Feedback | Item, state, window, outcome (looked good / looked poor / not in stock / too pricey), optional taste answer | Collected | — | — |
@@ -377,7 +377,7 @@ An item that meets neither bar waits. It doesn't launch with a precise-looking b
 
 **Drafting and review.** Claude researches and drafts items, quality windows, varieties and summaries. Every rating cites at least 2 real, checked sources, and every record starts as `draft`. Jared reviews and approves; only approved records are `reviewed`. Production builds refuse drafts, and previews label draft content visibly.
 
-**Launch scope: all common supermarket produce, 89 items.** Close relatives are one item with types (summer squash, winter squash, hot peppers), and fresh herbs are a single always-good item with the common herbs as types. An item is common when most of USDA's 11 city terminal markets quote it and mainstream US supermarkets stock it, year-round or in season. Specialty items sold mainly through ethnic or specialty grocers come later. The list and its evidence are in `docs/data/usda.md`. Always-good items need lighter content: one year-round rating per major origin, plus pick and store advice.
+**Launch scope: all common supermarket produce, 89 items.** Close relatives are one item with types (summer squash, winter squash, hot peppers), and fresh herbs are a single always-good item with the common herbs as types. The list is curated: which items appear, their types, categories and classes are editorial decisions, and every new item also needs an illustration. Data informs those decisions without making them. The usual test is that most of USDA's 11 city terminal markets quote the item and mainstream US supermarkets stock it, year-round or in season. Specialty items sold mainly through ethnic or specialty grocers come later. The list and its evidence are in `docs/data/usda.md`. Always-good items need lighter content: one year-round rating per major origin, plus pick and store advice.
 
 **Writing standards**
 
@@ -435,7 +435,7 @@ The site has to feel instant on a phone with one bar of signal, be private by de
 | --- | --- |
 | Speed | Pass Google's "good" Core Web Vitals on mobile at the 75th percentile: largest content painted ≤ 2.5 s, response to input ≤ 200 ms, layout shift ≤ 0.1 ([source](https://web.dev/articles/vitals)). Today must show its first verdicts within that 2.5 s on a mid-range phone over 4G. |
 | Offline | After the first visit, every covered item works with no signal. In-store mode shows the offline copy's readiness status (section 6). |
-| Freshness | Supply data is reference data, rebuilt from the last 3 years of USDA reports once a year and reviewed with the content; unusual seasons are handled by advisories. The value signal is weekly (v1.1). Quality windows, harvest calendars and written content reviewed at least once a year. Advisories always carry an expiry. |
+| Freshness | Supply data is reference data, refreshed from the last 3 years of USDA reports on demand (about once a year) and reviewed like content; unusual seasons are handled by advisories. The value signal is weekly (v1.1). Quality windows, harvest calendars and written content reviewed at least once a year. Advisories always carry an expiry. |
 | Honesty | Every verdict states its evidence basis and confidence. "Data through" and "reviewed" dates are kept distinct and never imply someone checked the produce. Future dates are always labeled as the typical outlook. Missing evidence shows as Limited evidence, never as a default verdict. |
 | Privacy | No account needed. Precise location is never sent to or stored on a server; the ZIP is saved on the device. Location permission is requested only after an explicit tap. Analytics are aggregate, with no ad trackers and no selling of data. |
 | Accessibility | WCAG 2.2 AA throughout (details in section 9). |

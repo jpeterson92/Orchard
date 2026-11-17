@@ -8,7 +8,7 @@ M0 scaffold and deploy: done · M1 USDA probe: done · M2 schemas and engine: sl
 
 ## Next concrete action
 
-M2 slice 2: zod schemas and `data:build` for items, sources, rules, advisories, typical origins and the supply index, with one broken-input fixture per check. Schemas carry item categories and types for the 89 launch items; always good is derived, not stored. Then the engine with its tests, then content batch 1 (apples, pears, strawberries, broccoli, mandarins).
+M2 slice 2: zod schemas and `data:build` for items, sources, rules, advisories, typical origins and the supply index, with one broken-input fixture per check. Schemas carry item categories and types for the 89 launch items; `alwaysGood` is an editorial field, and the build lists items where it disagrees with the typical outlook. Then the engine with its tests, then content batch 1 (apples, pears, strawberries, broccoli, mandarins).
 
 ## Blocking (needs Jared)
 
