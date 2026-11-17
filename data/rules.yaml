@@ -1,5 +1,5 @@
 # Verdict thresholds (product spec §7, engineering plan §4.3). Bump `version` whenever a value changes.
-version: 1
+version: 2
 typicalOriginShare: 0.70 # typical origins cover at least this share of reported volume
 supplyIndex:
   thin: 0.8 # below: thin supply
@@ -7,4 +7,3 @@ supplyIndex:
 reliableYearRoundWindows: 20 # Good or better in at least this many of 24 windows
 snapshotMaxAgeMonths: 15 # P10 freshness: an older supply snapshot weakens confidence
 lastCallWindows: 2 # Last call: the outlook drops within this many windows
-labelNoteLevelGap: 1 # P9: "Depends on the label" when the top two origins differ by more than this

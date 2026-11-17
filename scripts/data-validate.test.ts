@@ -82,7 +82,6 @@ function base(): RawInputs {
       reliableYearRoundWindows: 20,
       snapshotMaxAgeMonths: 15,
       lastCallWindows: 2,
-      labelNoteLevelGap: 1,
     },
     sources: [source("s1"), source("s2")],
     categories: [{ id: "berries", name: "Berries" }],

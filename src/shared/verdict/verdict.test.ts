@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { windowFromLabel } from "../time";
 import {
+  type Confidence,
   type CoreResult,
   type Env,
   type EvalContext,
@@ -8,6 +9,7 @@ import {
   type ItemInputs,
   looksAlwaysGood,
   typicalOutlook,
+  type VerdictResult,
 } from "./index";
 import { advisory, allMonths, ENV, item, NOV_17, rated, variety } from "./test-helpers";
 
@@ -217,9 +219,19 @@ const cases: Case[] = [
     rule: 5,
   },
   {
-    name: "3 over 4/5: poor top origin, prime second",
+    name: "P9: poor top origin gives way to a prime second, Good not Peak",
     item: item({
       origins: { "us-ca": rated("poor"), mx: rated("prime") },
+      typicalOrigins: allMonths(["us-ca", "mx"]),
+      supply: { "us-ca": allMonths(1), mx: allMonths(1) },
+    }),
+    verdict: "good",
+    rule: 5,
+  },
+  {
+    name: "3 over 5: poor top origin, prime second on Low evidence",
+    item: item({
+      origins: { "us-ca": rated("poor"), mx: rated("prime", {}, { "nov-2": "low" }) },
       typicalOrigins: allMonths(["us-ca", "mx"]),
     }),
     verdict: "skip",
@@ -381,34 +393,89 @@ describe("rules 1–5", () => {
   });
 });
 
-describe("label note (P9)", () => {
-  const withSecond = (second: "prime" | "fair" | "poor") =>
-    evaluate(
+describe("origins that disagree (P9)", () => {
+  type R = "prime" | "fair" | "poor";
+  const run = (ratings: R[], ctx: Partial<EvalContext> = {}, secondEvidence?: Confidence) => {
+    const ids = ["us-ca", "mx", "cl"].slice(0, ratings.length);
+    const origins = Object.fromEntries(
+      ids.map((o, i) => [
+        o,
+        rated(ratings[i] as R, {}, i === 1 && secondEvidence ? { "nov-2": secondEvidence } : undefined),
+      ]),
+    );
+    return evaluate(
       item({
-        origins: { "us-ca": rated("prime"), mx: rated(second) },
+        origins,
+        typicalOrigins: allMonths(ids),
+        supply: Object.fromEntries(ids.map((o) => [o, allMonths(1)])),
+      }),
+      { ...today, ...ctx },
+      ENV,
+    );
+  };
+  const rated_ = (r: VerdictResult) => r.reasons.find((x) => x.code === "rated");
+  const poor_ = (r: VerdictResult) =>
+    r.reasons.find(
+      (x): x is Extract<typeof x, { code: "typical-origin-poor" }> => x.code === "typical-origin-poor",
+    );
+
+  it.each([
+    // [ratings by rank, verdict, label note, deciding origin, poor origin named]
+    [["prime", "prime"], "peak", false, "us-ca", undefined],
+    [["prime", "fair"], "peak", false, "us-ca", undefined],
+    [["prime", "poor"], "good", true, "us-ca", "mx"],
+    [["fair", "prime"], "good", false, "us-ca", undefined],
+    [["fair", "fair"], "good", false, "us-ca", undefined],
+    [["fair", "poor"], "good", true, "us-ca", "mx"],
+    [["poor", "prime"], "good", true, "mx", "us-ca"],
+    [["poor", "fair"], "good", true, "mx", "us-ca"],
+    [["poor", "poor"], "skip", false, "us-ca", undefined],
+    [["poor"], "skip", false, "us-ca", undefined],
+    [["prime", "fair", "poor"], "good", true, "us-ca", "cl"],
+    [["poor", "poor", "fair"], "skip", true, "us-ca", undefined],
+    [["poor", "fair", "poor"], "good", true, "mx", "us-ca"],
+  ] as const)("%j → %s, note %s, decided by %s", (ratings, verdict, note, decider, poor) => {
+    const r = run([...ratings]);
+    expect(r.verdict).toBe(verdict);
+    expect(r.labelNote).toBe(note);
+    expect(r.markers.some((m) => m.kind === "check-label")).toBe(note);
+    expect(rated_(r)).toMatchObject({ origin: decider });
+    expect(poor_(r)?.origin).toBe(poor);
+    if (note) expect(r.weakProperties).toContain("agreement");
+  });
+
+  it("a second origin on Low evidence never lifts a poor top origin", () => {
+    const r = run(["poor", "fair"], {}, "low");
+    expect([r.verdict, r.ruleFired, r.labelNote]).toEqual(["skip", 3, true]);
+  });
+  it("Medium evidence on the second origin is enough", () =>
+    expect(run(["poor", "fair"], {}, "medium").verdict).toBe("good"));
+  it("label advice for the poor origin is Skip, with no note", () => {
+    const r = run(["fair", "poor"], { labelOrigin: "mx" });
+    expect([r.verdict, r.labelNote]).toEqual(["skip", false]);
+  });
+  it("an advisory follows the deciding origin", () => {
+    const base = {
+      origins: { "us-ca": rated("poor"), mx: rated("fair") },
+      typicalOrigins: allMonths(["us-ca", "mx"]),
+      supply: { "us-ca": allMonths(1), mx: allMonths(1) },
+    };
+    const onTop = evaluate(item({ ...base, advisories: [advisory({ origins: ["us-ca"] })] }), today, ENV);
+    expect(onTop.verdict).toBe("good");
+    const onLead = evaluate(item({ ...base, advisories: [advisory({ origins: ["mx"] })] }), today, ENV);
+    expect([onLead.verdict, onLead.ruleFired]).toEqual(["skip", 2]);
+  });
+  it("supply comes from the deciding origin", () => {
+    const r = evaluate(
+      item({
+        origins: { "us-ca": rated("poor"), mx: rated("fair") },
         typicalOrigins: allMonths(["us-ca", "mx"]),
+        supply: { "us-ca": allMonths(2), mx: allMonths(1) },
       }),
       today,
       ENV,
     );
-  it("appears when the top two differ by two levels, and weakens agreement", () => {
-    const r = withSecond("poor");
-    expect(r.labelNote).toBe(true);
-    expect(r.weakProperties).toContain("agreement");
-  });
-  it("is absent for a one-level difference", () => expect(withSecond("fair").labelNote).toBe(false));
-  it("is absent for a single typical origin", () =>
-    expect(evaluate(item(), today, ENV).labelNote).toBe(false));
-  it("is absent for label advice", () => {
-    const r = evaluate(
-      item({
-        origins: { "us-ca": rated("prime"), mx: rated("poor") },
-        typicalOrigins: allMonths(["us-ca", "mx"]),
-      }),
-      { ...today, labelOrigin: "us-ca" },
-      ENV,
-    );
-    expect(r.labelNote).toBe(false);
+    expect(r.weakProperties).toEqual(["agreement"]);
   });
 });
 

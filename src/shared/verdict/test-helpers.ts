@@ -19,7 +19,6 @@ export const RULES: Rules = {
   reliableYearRoundWindows: 20,
   snapshotMaxAgeMonths: 15,
   lastCallWindows: 2,
-  labelNoteLevelGap: 1,
 };
 export const ENV: Env = { rules: RULES, snapshotTo: "2026-06" };
 

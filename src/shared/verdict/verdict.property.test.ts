@@ -173,6 +173,40 @@ describe("verdict engine invariants", () => {
       RUNS,
     ));
 
+  it("P9: the label note shows exactly when typical origins mix poor with better, and never on label advice", () =>
+    fc.assert(
+      fc.property(itemArb, ctxArb, (item, ctx) => {
+        if (item.varieties.length > 0) return;
+        const r = evaluate(item, { date: ctx.date, mode: ctx.mode }, ENV);
+        if (r.verdict === "limited") return;
+        const w = windowIndex(ctx.date.month, ctx.date.day);
+        const ratings = (item.typicalOrigins[ctx.date.month - 1] ?? []).map(
+          (o) => item.origins[o]?.windows[w],
+        );
+        expect(r.labelNote).toBe(ratings.includes("poor") && ratings.some((x) => x !== "poor"));
+        for (const o of Object.keys(item.origins))
+          expect(evaluate(item, { date: ctx.date, mode: ctx.mode, labelOrigin: o }, ENV).labelNote).toBe(
+            false,
+          );
+      }),
+      RUNS,
+    ));
+
+  it("P9: rated Skip (rule 3) only when the top two typical origins can't both be relied on above poor", () =>
+    fc.assert(
+      fc.property(itemArb, ctxArb, (item, ctx) => {
+        if (item.varieties.length > 0) return;
+        const r = evaluate(item, { date: ctx.date, mode: ctx.mode }, ENV);
+        if (r.ruleFired !== 3) return;
+        const w = windowIndex(ctx.date.month, ctx.date.day);
+        const [top, second] = item.typicalOrigins[ctx.date.month - 1] ?? [];
+        expect(item.origins[top as string]?.windows[w]).toBe("poor");
+        if (second !== undefined && item.origins[second]?.windows[w] !== "poor")
+          expect(item.origins[second]?.evidence?.[w]).toBe("low");
+      }),
+      RUNS,
+    ));
+
   it("typical mode ignores advisories", () =>
     fc.assert(
       fc.property(itemArb, ctxArb, (item, ctx) => {

@@ -101,9 +101,9 @@ evaluate(item: ItemInputs, ctx: { date: PlainDate; mode: "today" | "typical"; la
 // VerdictResult: verdict, ruleFired, reasons[], confidence, weakProperties[], markers[], labelNote, byOrigin, byVariety, varietyLine
 ```
 
-- **Rules 1–5 in product order, first match wins:** Limited evidence → Advisory → Skip → Peak (supply not thin, no other typical origin rated poor, and the item's editorial `peakWorthSeeking`) → Good. A `cap-good` advisory is the exception: rules 3–5 still run and Peak becomes Good.
+- **Rules 1–5 in product order, first match wins:** Limited evidence → Advisory → Skip (the deciding origin poor, P9) → Peak (supply not thin, no other typical origin rated poor, and the item's editorial `peakWorthSeeking`) → Good. A `cap-good` advisory is the exception: rules 3–5 still run and Peak becomes Good.
 - `mode: "typical"` (Calendar and planning dates) ignores advisories and uses the typical supply index for that month. `mode: "today"` uses the same typical supply index plus the advisories active on `date`. Supply data is a yearly snapshot, so the two modes differ only by advisories.
-- **Markers:** Last call, Reliable year-round (Good or better in at least 20 of 24 windows), Advisory, and "Usually improves in…" (the next window rated Good or better).
+- **Markers:** Last call, Reliable year-round (Good or better in at least 20 of 24 windows), Advisory, Check the label (P9), and "Usually improves in…" (the next window rated Good or better).
 - **Varieties:** for an item rated by variety, `byVariety` runs the rules once per rated variety, with the variety's windows in place of the origins' and the item's supply index and advisories; the item verdict and the card's variety line follow P13.
 - `byOrigin` re-runs the rules once per rated origin, for "What does the label say?"; an advisory applies to a label origin it names. The label note is computed only for items rated by origin.
 - **Engine details:** a missing supply index is never thin or strong. The snapshot freshness check applies only to `supply+assessment` items. Verdicts rank Peak > Good > Skip > Limited evidence, so Limited evidence never wins "best variety", and an outlook turning to Limited evidence is not a Last call drop. `ItemInputs` arrive as per-window series, built from the dataset by `verdict/inputs.ts`.
@@ -116,7 +116,7 @@ evaluate(item: ItemInputs, ctx: { date: PlainDate; mode: "today" | "typical"; la
 Each lives in `rules.yaml` or a single function, so changing it is cheap.
 
 - **P1 (rule 1):** Limited evidence unless *every* typical origin has a rating for the window.
-- **P9:** when typical origins' ratings differ, the verdict follows the top-ranked origin. The "Depends on the label" note appears only when the top two differ by more than one level.
+- **P9:** the deciding origin is the top typical origin, unless it is rated poor and the second is rated better with evidence that isn't Low confidence; then the second decides (never Peak, since a typical origin is poor). Advisories and the supply index follow the deciding origin. The label note and the `check-label` marker appear when the typical origins' ratings include poor and something better; label advice never shows them. A second origin's share isn't checked yet: `typical-origins.csv` holds ranks only.
 - **P10 (confidence):**
   - *coverage* is weak when rule 1 fired, or the deciding origin's (or variety's) seasonal evidence for the window is Low combined confidence (P12);
   - *relevance* is weak for assessment-only items;

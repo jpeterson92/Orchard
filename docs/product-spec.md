@@ -138,7 +138,7 @@ Today leads with up to six strong recommendations, and every seasonal item appea
 | Kind | Values | Meaning |
 | --- | --- | --- |
 | **Verdict** (exactly one per item) | Peak · Good · Skip · Limited evidence | Expected eating quality of typical US supermarket supply right now (rules in section 7) |
-| **Markers** (zero or more, shown on the card) | Last call · Reliable year-round · Advisory · Good value (v1.1) | Extra facts that never move the item to a different section |
+| **Markers** (zero or more, shown on the card) | Last call · Reliable year-round · Advisory · Check the label · Good value (v1.1) | Extra facts that never move the item to a different section |
 | **Always good** (an item class) | An editorial call, written in the item file. The usual evidence is a typical outlook of Good in all 24 windows, never Peak and never Skip; the data build flags any item where the two disagree, and an editor decides | Shown as "Always good" wherever they appear, in place of the Reliable year-round marker. They join Today only while an advisory changes their verdict |
 
 **Items rated by variety.** Some items' varieties peak at different times: some apples are only worth buying near harvest, while Cosmic Crisp keeps well all year. These items are rated per variety as well as per origin:
@@ -170,7 +170,7 @@ An item that is both Peak and Last call appears once, under Best right now, carr
 - **Verdict block:** the badge, 1–3 reasons, the confidence level, and one line on what it rests on ("Reviewed seasonal assessment + typical national supply"). Two dates appear, worded so they can't be mistaken for an in-store check: "Supply data through Oct 2026" and "Guidance reviewed Oct 2026".
 - **Context notes**, separate and only shown when relevant:
   - "Typical supermarket supply: favorable this month"
-  - "Depends on the label: origin matters for this item"
+  - "Depends on the label", naming the origin that is usually poor now ("Florida field tomatoes often disappoint now"), with the "What does the label say?" control just below
 - **What does the label say?** (optional): pick the origin or variety shown on the label or sticker, and the verdict and tips update for it. Today's verdict never needs this input.
 - **How to pick:** 3–5 cues (look, feel, smell, weight), 1–2 "avoid" cues, and a type note where the type changes the advice.
 - **Store and ripen:** typical ranges, never guarantees, each with its ripeness assumption. For example: "Firm Hass: 3–5 days on the counter to ripen. Ripe: 2–3 days in the fridge."
@@ -290,12 +290,14 @@ An advisory changes only the windows it covers and never rewrites the typical ou
 ### Verdict rules, in order (first match wins)
 
 1. **Limited evidence:** the reviewed quality assessment doesn't cover the origins that typically supply supermarkets in this window. Missing information never defaults to Good or Skip.
-2. **Advisory:** an active advisory covers the top typical origin → Skip, or at most Good, as the advisory sets. A Skip advisory overrides everything below; a cap lets rules 3–5 run and lowers Peak to Good.
-3. **Skip:** the typical origins are rated *poor* this window.
+2. **Advisory:** an active advisory covers the deciding origin (below) → Skip, or at most Good, as the advisory sets. A Skip advisory overrides everything below; a cap lets rules 3–5 run and lowers Peak to Good.
+3. **Skip:** the deciding origin is rated *poor* this window.
 4. **Peak:** the top typical origin is rated *prime* this window and no other typical origin is rated *poor* (what a shopper picks up should reliably eat well), that origin's supply index isn't thin, and the item is one whose Peak is worth seeking: buying it in its best season makes a difference a shopper can taste. Peak means "try to buy it now". An item that tastes much the same in and out of its best harvest weeks (lettuce, for one) is Good in those weeks, and may be Always good.
 5. **Good:** everything else, meaning the top origin is *prime* but supply is thin, another typical origin is *poor*, or the item's Peak isn't worth seeking, or it is rated *fair*.
 
-When the top two origins differ by more than one rating level, the verdict follows the larger origin and the item gets a "Depends on the label" note.
+**The deciding origin** is the top typical origin, unless it is rated poor and the second typical origin is rated better on evidence that isn't Low confidence. Then the second origin decides, so the headline shows that a good buy is commonly on the shelf (winter tomatoes: Good, from Mexico, while Florida field tomatoes are poor), and the item is never Peak. A Low-confidence rating never lifts a Skip. Only the top two origins can decide, so a minor origin never sets the headline.
+
+**Check the label.** Whenever the typical origins this window include one rated poor and one rated better, the card shows a small "Check the label" marker, the item page's "Depends on the label" note names the poor origin, and confidence loses a level on agreement. On a card, Advisory and Check the label come before the other markers, since they help a shopper avoid a bad buy.
 
 **Items rated by variety** run rules 1–5 once per rated variety typically in stores, with the variety's quality windows in place of the origins'. Supply and advisories are the item's (an advisory on the top typical origin applies to every variety). The item takes the best result.
 

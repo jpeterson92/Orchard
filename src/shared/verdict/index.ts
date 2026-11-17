@@ -80,7 +80,7 @@ export type Reason =
   | { code: "supply-thin" }
   /** Rated prime, but the item tastes much the same in and out of its best season: Good, not Peak. */
   | { code: "peak-not-worth-seeking" }
-  /** Rated prime, but another typical origin this window is poor: Good, since what you buy may disappoint. */
+  /** Another typical origin this window is poor: never Peak, and the label note names it (P9). */
   | { code: "typical-origin-poor"; origin: OriginId };
 
 export interface CoreResult {
@@ -97,11 +97,13 @@ export type Marker =
   | { kind: "last-call"; fadesBy: number }
   | { kind: "reliable-year-round" }
   | { kind: "advisory"; advisory: string }
+  /** The label note applies: typical origins mix poor with better, so the shopper should check the label (P9). */
+  | { kind: "check-label" }
   | { kind: "improves"; window: number };
 
 export interface VerdictResult extends CoreResult {
   markers: Marker[];
-  /** "Depends on the label": the top two typical origins differ by more than `labelNoteLevelGap`. */
+  /** "Depends on the label": the typical origins this window include a poor one and a better one (P9). */
   labelNote: boolean;
   byOrigin: Record<OriginId, CoreResult>;
   byVariety: Record<VarietyId, CoreResult & { inStore: boolean }>;
@@ -114,7 +116,6 @@ type Basis =
   | { kind: "origin"; origin: OriginId }
   | { kind: "variety"; variety: VarietyId };
 
-const LEVEL: Record<Rating, number> = { poor: 0, fair: 1, prime: 2 };
 /** Best first: Peak, Good, Skip, then Limited evidence (an unknown never outranks a call). */
 const VERDICT_RANK: Record<Verdict, number> = { peak: 3, good: 2, skip: 1, limited: 0 };
 const CONFIDENCE_RANK: Record<Confidence, number> = { high: 2, medium: 1, low: 0 };
@@ -150,16 +151,23 @@ function evaluateCore(
       if ((item.origins[origin]?.windows[window] ?? null) === null)
         missing.push({ code: "origin-unrated", origin });
     if (missing.length === 0) {
+      const ratingOf = (o: OriginId) => item.origins[o]?.windows[window] ?? null;
       const [top, second] = typical as [OriginId, ...OriginId[]];
-      decider = item.origins[top];
-      rating = decider?.windows[window] ?? null;
-      advisoryOrigin = top;
-      const next = second === undefined ? null : (item.origins[second]?.windows[window] ?? null);
-      labelNote =
-        rating !== null &&
-        next !== null &&
-        Math.abs(LEVEL[rating] - LEVEL[next]) > env.rules.labelNoteLevelGap;
-      poorOrigin = typical.slice(1).find((o) => item.origins[o]?.windows[window] === "poor");
+      // P9: the verdict follows the top origin, unless it's poor and the second origin is rated better on
+      // evidence that isn't Low, so one weak call never lifts a Skip.
+      const lead =
+        ratingOf(top) === "poor" &&
+        second !== undefined &&
+        ratingOf(second) !== "poor" &&
+        item.origins[second]?.evidence?.[window] !== "low"
+          ? second
+          : top;
+      decider = item.origins[lead];
+      rating = ratingOf(lead);
+      advisoryOrigin = lead;
+      const ratings = typical.map(ratingOf);
+      labelNote = ratings.includes("poor") && ratings.some((r) => r !== "poor");
+      poorOrigin = typical.find((o) => o !== lead && ratingOf(o) === "poor");
     }
   } else if (basis.kind === "origin") {
     decider = item.origins[basis.origin];
@@ -210,9 +218,9 @@ interface Decision {
   missing: Reason[];
   advisory: EngineAdvisory | undefined;
   labelNote: boolean;
-  /** Typical basis only: a typical origin other than the top one rated poor this window. */
+  /** Typical basis only: a typical origin other than the deciding one rated poor this window. */
   poorOrigin?: OriginId | undefined;
-  /** Whose supply index applies: the deciding origin (the top typical one for a variety). */
+  /** The deciding origin, for its supply index and advisories (the top typical one for a variety). */
   supplyOrigin: OriginId | undefined;
   basis: Basis;
   window: number;
@@ -241,16 +249,13 @@ function decide(
       d.basis.kind === "variety"
         ? { variety: d.basis.variety }
         : {
-            origin:
-              d.basis.kind === "origin"
-                ? d.basis.origin
-                : (item.typicalOrigins[monthOf(d.window)]?.[0] ?? ""),
+            origin: d.basis.kind === "origin" ? d.basis.origin : (d.supplyOrigin ?? ""),
           };
     reasons.push({ code: "rated", rating: d.rating, ...by });
     if (d.advisory) reasons.push({ code: "advisory", advisory: d.advisory.id, effect: d.advisory.effect });
     if (d.rating === "prime" && thin) reasons.push({ code: "supply-thin" });
     if (d.rating === "prime" && !item.peakWorthSeeking) reasons.push({ code: "peak-not-worth-seeking" });
-    if (d.rating === "prime" && d.poorOrigin)
+    if (d.rating !== "poor" && d.poorOrigin)
       reasons.push({ code: "typical-origin-poor", origin: d.poorOrigin });
 
     if (d.advisory?.effect === "skip") [verdict, ruleFired] = ["skip", 2];
@@ -371,6 +376,7 @@ export function evaluate(item: ItemInputs, ctx: EvalContext, env: Env): VerdictR
     if (goodOrBetter >= env.rules.reliableYearRoundWindows) markers.push({ kind: "reliable-year-round" });
   }
   if (core.advisory !== null) markers.push({ kind: "advisory", advisory: core.advisory });
+  if (labelNote) markers.push({ kind: "check-label" });
   if (core.verdict === "skip") {
     for (let k = 1; k < WINDOW_COUNT; k++) {
       if (VERDICT_RANK[outlook(window + k)] >= VERDICT_RANK.good) {

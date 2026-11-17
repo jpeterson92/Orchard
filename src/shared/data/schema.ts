@@ -57,7 +57,6 @@ export const rulesSchema = z.strictObject({
   reliableYearRoundWindows: z.int().min(1).max(24),
   snapshotMaxAgeMonths: z.int().positive(),
   lastCallWindows: z.int().positive(),
-  labelNoteLevelGap: z.int().min(1),
 });
 
 const windowLabel = z.string().regex(WINDOW_LABEL, 'use a half-month label such as "jun-1"');
