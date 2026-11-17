@@ -5,7 +5,7 @@ Run 2026-11-17 with `npm run usda:probe` (`scripts/usda-probe.ts`). Period: Nov 
 ## Verdict
 
 - **Apples, pears, strawberries and broccoli:** typical origins (≥ 70%) and the P11 supply index can both be computed. Results are stable year to year.
-- **Mandarins:** fail on domestic data. USDA stopped reporting California and Florida citrus shipments in early 2025, and before that the California data arrived in irregular lump sums. Imports are fine. **Jared needs to decide the fallback for items without domestic data (below).**
+- **Mandarins:** fail on domestic data. USDA stopped reporting California and Florida citrus shipments in early 2025, and before that the California data arrived in irregular lump sums. Imports are fine. Decided under D8: such items use cited editorial origins and a null supply index (below).
 - **Regional verdicts (v1.1):** no regional arrival volumes exist. Only city price reports with the origins on offer.
 
 ## Source
@@ -58,7 +58,7 @@ The top origin matches in all 3 years for most item-months. Where it flips (pear
 
 No movement data by destination. Terminal market reports for 11 cities (Atlanta, Asheville, Baltimore, Boston, Chicago, Columbia, Detroit, Los Angeles, Miami, New York, Philadelphia) give daily prices by commodity, variety, origin and grade, plus market tone. They show which origins are on offer in a city, but not their share. They could support regional notes or value markers later, but not regional verdicts based on volume.
 
-## Decision for Jared: items without domestic shipment data
+## Items without domestic shipment data (decided: option 1, as part of D8)
 
 1. **Recommended: editorial origins, null index.** Typical origins come from cited editorial records (state citrus statistics, industry calendars), drafted by Claude and reviewed by Jared as in D3. The supply index is `null` with reason `not_reported`, so confidence drops and the Peak-on-thin-supply guard can't fire.
 2. **Imports only.** Compute both from imports alone. Simple, but wrong for winter citrus, when California dominates.

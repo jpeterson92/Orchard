@@ -8,7 +8,7 @@ M1 is done (`docs/data/usda-probe.md`). Next: M2. Slice 1: extend the probe to t
 
 ## Blocking (needs Jared)
 
-- **Fallback for items without domestic shipment data** (blocks citrus content only; options and recommendation in `docs/data/usda-probe.md`, last section). USDA stopped reporting California and Florida citrus shipments in early 2025.
+- None.
 
 ## Decisions
 
@@ -18,6 +18,7 @@ M1 is done (`docs/data/usda-probe.md`). Next: M2. Slice 1: extend the probe to t
 - 2026-11-16 · D5 · Base UI is the component library, installed at the first control that needs it (filter chips or accordion in M3 at the earliest) · headless, accessible, works with Tailwind tokens; avoids a mid-milestone library comparison
 - 2026-11-16 · D6 · Prerender with React Router library mode plus `scripts/prerender.ts` (renderToString per route, about 40 lines), not framework mode · proven end to end in M0; framework mode with the Cloudflare plugin would have been an unverified combination
 - 2026-11-16 · D7 · Jared generates all artwork in ChatGPT from prompts Claude writes; Claude processes and checks the files, and Jared approves them (engineering plan §5, art track; workflow built in M3) · ChatGPT made the design language and the mockups, and Jared already has the subscription
+- 2026-11-17 · D8 · USDA movement data is reference data: typical origins and the supply index come from a 3-year snapshot rebuilt once a year and reviewed with the content. No monthly refresh; Today uses the typical index, and advisories cover unusual seasons. Items without usable USDA data (domestic citrus) get cited editorial origins and a null index · the probe showed the data is stable year to year, and a live feed risks silent verdict changes when USDA reporting changes
 
 ## Open questions for Jared (non-blocking)
 

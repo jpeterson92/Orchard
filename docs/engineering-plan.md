@@ -91,7 +91,7 @@ evaluate(item: ItemInputs, ctx: { date: PlainDate; state: StateId | null; mode: 
 ```
 
 - **Rules 1–5 in product order, first match wins:** Limited evidence → Advisory → Skip → Peak (supply not thin) → Good.
-- `mode: "typical"` (Calendar and planning dates) ignores advisories and uses the typical supply index for that month. `mode: "today"` uses the current supply index and the advisories active on `date` for `state`.
+- `mode: "typical"` (Calendar and planning dates) ignores advisories and uses the typical supply index for that month. `mode: "today"` uses the same typical supply index plus the advisories active on `date` for `state`. Under D8 supply data is a yearly snapshot, so the two modes differ only by advisories.
 - **Markers:** Last call, Reliable year-round (Good or better in at least 20 of 24 windows), Advisory, and "Usually improves in…" (the next window rated Good or better).
 - `byOrigin` re-runs the rules once per rated origin, for "What does the label say?"
 - `windowIndex(date) = (month − 1) × 2 + (day > 15 ? 1 : 0)` lives in `src/shared/time.ts`, and nowhere else.
@@ -139,7 +139,7 @@ Each milestone takes 1–3 sessions and ends with something Jared can review. Th
 4. **Review.** Jared approves or rejects each asset from the contact sheet. Approvals are recorded in `art/manifest.json` (asset ID, item, role, alt-text context, revision, status). A rejected asset gets a targeted revision prompt (§8 F) in the next batch.
 5. Production builds refuse unapproved art, as they refuse draft content.
 
-**After v1 (v1.1+):** value markers; a scheduled weekly data refresh; regional verdicts if M1 finds regional data; local-harvest context with harvest zones; precise location; named-chain notes; Spanish.
+**After v1 (v1.1+):** value markers; regional verdicts if M1 finds regional data; local-harvest context with harvest zones; precise location; named-chain notes; Spanish.
 
 ## 6. Verification
 
@@ -156,7 +156,7 @@ Run the tests for what you touched while working. Run the full suite before push
 ## 7. Operations
 
 - **Deploy:** `npm run deploy` (build, then `wrangler deploy`) from a machine signed in with `wrangler login`. Move deploys into CI when it becomes convenient, using a scoped API token in a GitHub secret.
-- **Data refresh:** monthly `npm run usda:refresh` (fetch, derive, review the diff) → commit → deploy. Automate after launch if it proves worth it.
+- **Data refresh (D8):** once a year, with the yearly content review. `npm run usda:refresh` rebuilds typical origins and the supply index from the last 3 years; Jared reviews the diff; then commit and deploy. Items without usable USDA data use cited editorial origins and a `null` supply index.
 - **Stale data:** each build records its supply-data date. When it is more than 45 days old, freshness lowers confidence and the item page says so; the app never pretends to be current.
 - **Privacy:** no accounts or cookies. The place lives in `localStorage` on the phone. The Worker never logs URLs, query strings, bodies, IPs or ZIPs; automatic invocation logs are turned off at M8. D1 stores state and date, never finer.
 - **Rollback:** redeploy the previous Worker version (`wrangler rollback`). Data rolls back with it.

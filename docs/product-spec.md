@@ -215,7 +215,7 @@ An item that is both Peak and Last call appears once, under Best right now, carr
 
 ### Methods page
 
-Defines each verdict, marker and confidence level. Explains the two kinds of evidence (current supply data vs reviewed seasonal assessment). Lists every source with its update schedule, and publishes audit results. Every reason chip links here.
+Defines each verdict, marker and confidence level. Explains the two kinds of evidence (typical supply data from a yearly USDA snapshot vs reviewed seasonal assessment). Lists every source with its update schedule, and publishes audit results. Every reason chip links here.
 
 ## 6. Views by device
 
@@ -277,7 +277,7 @@ An advisory changes only the windows it covers and never rewrites the typical ou
 | --- | --- |
 | **Quality window** | For each item × major origin, every half-month window rated *prime* (typically eats best), *fair* (acceptable), or *poor* (typically disappointing, e.g. out of long storage). Comes from a reviewed seasonal assessment that cites at least 2 sources (extension services, commodity boards, trade references). |
 | **Typical supermarket origins** | The origins that together account for ≥ 70% of an item's reported shipments and imports in that month, averaged over 3 years. Used only to *rank* origins, never as precise shares. USDA notes that truck shipments for all commodities and origins are not available, and that the reported figures should not be read as complete movements ([source](https://www.ams.usda.gov/node/21104)). |
-| **Supply index** | Reported volume this month ÷ the item's average monthly reported volume over the prior 3 years, from the same report series. Strong ≥ 1.2; normal 0.8–1.2; thin < 0.8. |
+| **Supply index** | A typical value per month: the month's average reported volume over 3 years ÷ the item's average monthly reported volume over the same 3 years, from the same report series, taken from a yearly snapshot (D8). Strong ≥ 1.2; normal 0.8–1.2; thin < 0.8. |
 | **Local harvest** | Off, early, peak or late in the user's harvest zone. Shown as context. It affects a verdict only through label-based advice (below). Deferred: not in v1. |
 | **Advisory** | An editor-entered exception: items, origins, regions, start date, expiry date, the verdict it imposes, and a note. |
 | **Reliable year-round** | A marker, set when the item's typical outlook is Good or better in ≥ 20 of 24 windows. Such an item can still have Peak windows and Skip windows. |
@@ -308,7 +308,7 @@ Confidence describes how complete and current the evidence is. It is not a proba
 | Coverage | Does the reviewed assessment cover the origins that typically supply supermarkets now? |
 | Relevance | Does the evidence describe supermarket supply, rather than only local farms? |
 | Freshness | Is current-conditions data recent (supply data ≤ 45 days old; advisories reviewed this window)? |
-| Agreement | Do the quality assessment and the current supply pattern point the same way? |
+| Agreement | Do the quality assessment and the typical supply pattern point the same way? |
 
 **High:** all four hold. **Medium:** exactly one is weak, e.g. stale supply data or mixed origins. **Low:** two or more are weak. A verdict built on strong national evidence isn't marked down just because no local data exists.
 
@@ -434,7 +434,7 @@ The site has to feel instant on a phone with one bar of signal, be private by de
 | --- | --- |
 | Speed | Pass Google's "good" Core Web Vitals on mobile at the 75th percentile: largest content painted ≤ 2.5 s, response to input ≤ 200 ms, layout shift ≤ 0.1 ([source](https://web.dev/articles/vitals)). Today must show its first verdicts within that 2.5 s on a mid-range phone over 4G. |
 | Offline | After the first visit, every covered item works with no signal. In-store mode shows the offline copy's readiness status (section 6). |
-| Freshness | Supply data refreshed monthly; the value signal weekly (v1.1). Quality windows, harvest calendars and written content reviewed at least once a year. Advisories always carry an expiry. |
+| Freshness | Supply data is reference data, rebuilt from the last 3 years of USDA reports once a year and reviewed with the content (D8); unusual seasons are handled by advisories. The value signal is weekly (v1.1). Quality windows, harvest calendars and written content reviewed at least once a year. Advisories always carry an expiry. |
 | Honesty | Every verdict states its evidence basis and confidence. "Data through" and "reviewed" dates are kept distinct and never imply someone checked the produce. Future dates are always labeled as the typical outlook. Missing evidence shows as Limited evidence, never as a default verdict. |
 | Privacy | No account needed. Precise location is never sent to or stored on a server; the ZIP is saved on the device. Location permission is requested only after an explicit tap. Analytics are aggregate, with no ad trackers and no selling of data. |
 | Accessibility | WCAG 2.2 AA throughout (details in section 9). |
