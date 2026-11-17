@@ -257,6 +257,7 @@ export type Category = z.infer<typeof categorySchema>;
 export type State = z.infer<typeof stateSchema>;
 export type Rules = z.infer<typeof rulesSchema>;
 export type Item = z.infer<typeof itemSchema>;
+export type QualityWindow = z.infer<typeof qualityWindowSchema>;
 export type Advisory = z.infer<typeof advisorySchema>;
 export type EvidenceClaim = z.infer<typeof evidenceClaimSchema>;
 export type EvidenceFile = z.infer<typeof evidenceFileSchema>;
