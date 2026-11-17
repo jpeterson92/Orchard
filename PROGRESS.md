@@ -1,14 +1,14 @@
 # PROGRESS
 
-Updated: 2026-11-16 · Phase: build · Current milestone: M1 (USDA probe)
+Updated: 2026-11-17 · Phase: build · Current milestone: M2 (content schemas and verdict engine)
 
 ## Next concrete action
 
-M0 is done and deployed at https://orchard.jpeterson92.workers.dev (prerendered `/`, `/api/health`, SPA fallback all checked live). Next: M1 (USDA probe; key in `.env.pipeline`), then M2 (content schemas and verdict engine).
+M1 is done (`docs/data/usda-probe.md`). Next: M2. Slice 1: extend the probe to the full ~35-item launch candidate list, to see which items lack domestic shipment data (citrus is the likely group). Then the zod schemas and `data:build`, then the engine with its tests.
 
 ## Blocking (needs Jared)
 
-- None.
+- **Fallback for items without domestic shipment data** (blocks citrus content only; options and recommendation in `docs/data/usda-probe.md`, last section). USDA stopped reporting California and Florida citrus shipments in early 2025.
 
 ## Decisions
 
@@ -27,6 +27,7 @@ M0 is done and deployed at https://orchard.jpeterson92.workers.dev (prerendered 
 
 ## Done
 
+- 2026-11-17 M1 USDA probe: Market News movement data (national imports report plus 16 office reports for domestic shipments) gives typical origins and the P11 supply index for apples, pears, strawberries and broccoli over 36 months. Mandarins fail on domestic data. No regional arrival volumes exist. `scripts/usda-lib.ts` is reusable for M2 (11 unit tests). Live site at https://orchard.jpeterson92.workers.dev.
 - 2026-11-16 M0 scaffold: Vite 8, React 19.3 with React Compiler, React Router 8, Tailwind 4.3 tokens, Hono Worker, Biome, Vitest 4, Playwright with axe, CI on GitHub Actions. Checks: typecheck, lint, 7 unit tests and 3 e2e smoke tests passing (prerendered HTML, hydration with no errors or axe violations, `/api/health`). Initial JS is 99 KB gzip (budget 120 KB).
 - 2026-11-16 Pre-build review; repository and docs reorganized; design system split (v1.3 adds Skip and Limited evidence tokens); lean engineering plan written; old engineering spec and implementation guide archived; D2 and D3 applied to the product spec.
 
