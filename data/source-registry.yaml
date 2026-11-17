@@ -1,0 +1,48 @@
+# Pages the evidence pipeline reads (engineering plan, content track). Curated: multi-item charts first,
+# then item pages. Every `source` is an id in data/sources.yaml.
+# - items: the batch being researched, with the words that name each item on a page
+# - pages: source, url, kind (chart | item-page), origin (default us), parser (item-months), items (item pages)
+
+items:
+  apples: [apple, apples]
+  pears: [pear, pears]
+  strawberries: [strawberry, strawberries]
+  broccoli: [broccoli]
+  mandarins:
+    - mandarin
+    - mandarins
+    - tangerine
+    - tangerines
+    - clementine
+    - clementines
+    - satsuma
+    - satsumas
+    - tangelo
+    - tangelos
+
+pages:
+  - source: msstate-fruits-vegetables-in-season
+    url: https://extension.msstate.edu/publications/buy-fresh-fruits-and-vegetables-season
+    kind: chart
+    origin: us-ms
+    parser: item-months
+  - source: psu-harvest-calendar
+    url: https://extension.psu.edu/harvest-calendar
+    kind: chart
+    origin: us-pa
+    parser: item-months
+  - source: florida-strawberry-growers
+    url: https://floridastrawberry.org/
+    kind: item-page
+    origin: us-fl
+    items: [strawberries]
+  - source: produce-business-california-citrus
+    url: https://producebusiness.com/california-citrus-more-popular-than-ever/
+    kind: item-page
+    origin: us-ca
+    items: [mandarins]
+  - source: nwpb-year-round-apples
+    url: https://www.nwpb.org/2018/11/26/like-that-year-round-crisp-apple-thank-a-scientist-or-warehouse-possibly-in-wenatchee/
+    kind: item-page
+    origin: us-wa
+    items: [apples]

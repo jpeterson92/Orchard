@@ -50,7 +50,8 @@ content/
   methods.md                 Methods page text
 data/
   sources.yaml               every citation: id, tier, title, publisher, url, accessed date, optional basedOn
-  source-registry.yaml       pages the evidence pipeline reads: source id, url, kind (multi-item chart or item page), parser
+  source-registry.yaml       what the evidence pipeline reads: the batch's items with the words naming them, and pages
+                             (source id, url, kind: chart or item page, origin, parser)
   rules.yaml                 rules version + the thresholds in §4.3
   categories.yaml            browse categories in display order
   advisories.yaml            scoped, expiring exceptions
@@ -61,7 +62,7 @@ data/
   us-states.csv              state code and name, for `us-<state>` origins
 scripts/                     prerender.ts, data-build.ts, content-report.ts; usda-client.ts and usda-lib.ts (shared),
                              usda-probe.ts, usda-terminal-probe.ts, usda-terminal-screen.ts, usda-derive.ts;
-                             evidence-fetch.ts, evidence-check.ts
+                             evidence-lib.ts (shared), evidence-fetch.ts, evidence-check.ts
 src/
   shared/                    zod schemas, verdict engine, evidence curves, window math. Imports nothing from app/ or worker/
   app/                       React app: routes, components, styles, service worker registration
@@ -129,6 +130,7 @@ Each lives in `rules.yaml` or a single function, so changing it is cheap.
   - *combined value* per window = weighted mean of the curves covering it; prime at ≥ 0.75, poor at ≤ 0.25, fair between. No covering curve: no proposal;
   - *combined confidence* per window, from total weight, weighted spread (standard deviation) and tier: High with at least 2 independent sources, total weight ≥ 3, spread ≤ 0.2 and an authoritative source among them; Low with fewer than 2 independent sources or spread > 0.35; Medium otherwise.
 - **P13 (items rated by variety):** a variety is in stores in a month when it has at least 10% of the item's terminal-market quotes that month (variety calendar, extended to mangoes and avocados). The item verdict is the best verdict among in-store rated varieties. The card's variety line names the varieties holding that verdict, ordered by confidence and then by their order in the item file: one or two by name, with the first one's art; three or more as a count, with the item's art. With no rated variety in stores, the item is Limited evidence.
+- **P14 (availability charts):** a harvest or availability chart says when an item is in season, not how good it is. Its listed windows rate `prime` (directness `availability` already discounts the weight) and unlisted windows carry no value.
 
 ## 5. Milestones
 
@@ -148,10 +150,10 @@ Each milestone takes 1–3 sessions and ends with something Jared can review. Th
 | M9 | **Launch readiness.** All launch content reviewed, illustrations, Turnstile, CSP and security headers, axe plus a quick VoiceOver/TalkBack pass, a performance check on a mid-range Android, offline check on a real iPhone, production domain | Jared decides launch, using the launch gates | Domain, devices, launch gates |
 
 **Content track.** Claude drafts in batches of about 10 items (5 in M2), all marked `draft`. Research is mostly programmatic, so AI effort goes to judgment, not gathering:
-  1. **Source registry** (`data/source-registry.yaml`, curated): built once by category, then extended as items need. Multi-item sources come first (USDA SNAP-Ed seasonal produce guide, UC Davis postharvest fact sheets, state extension seasonality charts, food publications' seasonal guides), then one commodity board per item where one exists. No search API unless the registry proves too thin.
-  2. **`npm run evidence:fetch`** downloads each registered page once (robots.txt respected, cached in `.cache/evidence/`), strips it to text, and writes per-item excerpts: only the passages naming the item with a season or month. Structured pages (month grids, season tables) get a small parser per source and become claims directly, with no AI.
-  3. **Prose excerpts** go to a Haiku subagent with a compact worklist (excerpts only, a few hundred words per item), which returns draft claims in the evidence-file format.
-  4. **`npm run evidence:check`** rejects any claim whose months or season don't appear in its excerpt, or whose URL no longer resolves, and records the accessed date.
+  1. **Source registry** (`data/source-registry.yaml`, curated): built once by category, then extended as items need. Multi-item sources come first (state extension and agriculture department harvest charts, UC Davis postharvest fact sheets, food publications' seasonal guides), then one commodity board per item where one exists. No search API unless the registry proves too thin.
+  2. **`npm run evidence:fetch`** downloads each registered page once (robots.txt respected, cached in `.cache/evidence/`), strips it to text, and writes per-item excerpts (`.cache/evidence/excerpts/`): only the passages naming the item with a season or month. Charts get a parser and become draft claims directly, with no AI (`.cache/evidence/parsed/`, copied into `content/evidence/` when a batch is drafted); `item-months` reads item-to-months rows ("Apples | June–October", "Strawberry: December through April"). Prose excerpts go to `.cache/evidence/worklist.md`. A page whose robots.txt disallows the pipeline is skipped and dropped from the registry.
+  3. **Prose excerpts** (the worklist) go to a Haiku subagent with a compact worklist (excerpts only, a few hundred words per item), which returns draft claims in the evidence-file format.
+  4. **`npm run evidence:check`** (`-- <dir>` to check parser drafts) rejects any claim whose source isn't a registered page, or whose ranges' first and last months (or, for a `season` claim, their seasons) aren't named in its excerpt, or whose URL no longer resolves, and records the accessed date in `sources.yaml`.
   5. **`data:build`** combines the curves (P12). Then Claude (Opus) reads only a per-item digest (the proposal, its confidence strip, and the excerpts behind Low-confidence or conflicting windows), writes a `reason` for each of those, and drafts the copy. High-confidence windows seed the draft without deliberation.
   Claims are paraphrased; raw pages stay in the gitignored cache. Research runs only when a batch is being drafted or Jared asks for a refresh. Jared reviews in the preview app or the content report (per item and origin: each source's curve, the combined curve with its confidence strip, and the editorial rating; Low-confidence and departing windows first), and approves or edits. Approval means Claude sets `status: reviewed`, `reviewer`, and `reviewedOn`. Order: the 5 M2 items → the rest of the 89 launch items, seasonal items first, always-good items last → variety guides → the 24 summaries → Methods text.
 

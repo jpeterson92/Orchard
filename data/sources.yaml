@@ -1,3 +1,34 @@
 # Every citation, referenced by id from content/ and data/.
-# - id, title, publisher, url, accessed (YYYY-MM-DD)
-[]
+# - id, title, publisher, url, accessed (YYYY-MM-DD), tier (authoritative | mainstream), optional basedOn
+# evidence:check records `accessed` for the sources it resolves.
+
+- id: msstate-fruits-vegetables-in-season
+  title: Buy Fresh Fruits and Vegetables in Season!
+  publisher: Mississippi State University Extension Service
+  url: https://extension.msstate.edu/publications/buy-fresh-fruits-and-vegetables-season
+  accessed: 2026-11-17
+  tier: authoritative
+- id: psu-harvest-calendar
+  title: Harvest Calendar
+  publisher: Penn State Extension
+  url: https://extension.psu.edu/harvest-calendar
+  accessed: 2026-11-17
+  tier: authoritative
+- id: florida-strawberry-growers
+  title: Florida Strawberry
+  publisher: Florida Strawberry Growers Association
+  url: https://floridastrawberry.org/
+  accessed: 2026-11-17
+  tier: authoritative
+- id: produce-business-california-citrus
+  title: "California Citrus: More Popular Than Ever"
+  publisher: Produce Business
+  url: https://producebusiness.com/california-citrus-more-popular-than-ever/
+  accessed: 2026-11-17
+  tier: mainstream
+- id: nwpb-year-round-apples
+  title: Like That Year-Round Crisp Apple? Thank A Scientist Or Warehouse, Possibly In Wenatchee
+  publisher: Northwest Public Broadcasting
+  url: https://www.nwpb.org/2018/11/26/like-that-year-round-crisp-apple-thank-a-scientist-or-warehouse-possibly-in-wenatchee/
+  accessed: 2026-11-17
+  tier: mainstream
