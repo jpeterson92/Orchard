@@ -9,14 +9,14 @@ Orchard is a static, offline-capable web app plus one small Cloudflare Worker. *
 ```
 content/ + data/  ──(npm run data:build: validate, derive)──>  src/generated/*.json
                                                                      │ bundled
-browser ── first visit ──> Worker: serves static assets; injects approximate state into index.html
+browser ── first visit ──> Cloudflare static assets (prerendered pages, app, data)
         <── service worker precaches app + all data ──  every covered item works offline
         ── /api/* (later): feedback, requests, events ──> Worker (Hono) ──> D1
 ```
 
-- **The verdict engine runs on the phone.** It is a pure TypeScript module fed by the bundled inputs: quality windows, typical origins, supply index, advisories and rules. The inputs are tiny (about 2,100 ratings), so this costs microseconds. Running it on the phone gives exact-date advisories, the shopper's state, label-based advice and planning dates for free, and the same code runs in tests and scripts. One implementation, used everywhere.
-- **Verdicts are national.** The state adds regional advisories, the "Locally checked" label, the Alaska and Hawaii banner, and later the price region for value markers.
-- **No server render.** First-visit location comes from the Worker writing `request.cf` state into `index.html` before it reaches the browser, so the first frame already knows the place, with no flash of the wrong verdict. Returning visits use the place saved on the phone. Today and every item page are **prerendered at build time** (verdicts are national, so one static page per route works), then hydrate; if the phone's window or an advisory for its state differs from the baked-in verdicts, the verdict region renders client-side before first paint. Rebuild at each half-month boundary: a scheduled GitHub Action once deploys run in CI; until then, the pre-paint check covers a stale build.
+- **The verdict engine runs on the phone.** It is a pure TypeScript module fed by the bundled inputs: quality windows, typical origins, supply index, advisories and rules. The inputs are tiny (about 2,100 ratings), so this costs microseconds. Running it on the phone gives exact-date advisories, label-based advice and planning dates for free, and the same code runs in tests and scripts. One implementation, used everywhere.
+- **Verdicts are national, and the app has no location.** It never asks for, infers or stores where the shopper is; Alaska and Hawaii are covered by one sentence on the Methods page.
+- **No server render.** Today and every item page are **prerendered at build time** (verdicts are national, so one static page per route works), then hydrate; if the phone's window or an active advisory differs from the baked-in verdicts, the verdict region renders client-side before first paint. Rebuild at each half-month boundary: a scheduled GitHub Action once deploys run in CI; until then, the pre-paint check covers a stale build.
 
 ## 2. Stack
 
@@ -58,14 +58,13 @@ data/
   usda/supply-index.csv      derived from USDA (committed)
   usda/variety-calendar.csv  derived from USDA terminal market reports (committed)
   plu.csv                    IFPS PLU codes → item and variety (only once IFPS confirms reuse)
-  geo/states.csv             state, name (price region and locally checked come with M5)
-  geo/zip3-state.csv         ZIP prefix → state (used on the phone; no API call)
+  us-states.csv              state code and name, for `us-<state>` origins
 scripts/                     prerender.ts, data-build.ts, content-report.ts; usda-client.ts and usda-lib.ts (shared),
                              usda-probe.ts, usda-terminal-probe.ts, usda-terminal-screen.ts, usda-derive.ts
 src/
   shared/                    zod schemas, verdict engine, window math, place lookup. Imports nothing from app/ or worker/
   app/                       React app: routes, components, styles, service worker registration
-  worker/                    Cloudflare Worker: HTML location injection, /api/*
+  worker/                    Cloudflare Worker: /api/*
   generated/                 data-build output (gitignored)
 tests/e2e/                   Playwright smoke tests
 docs/                        product spec, engineering plan, design, data findings
@@ -79,7 +78,7 @@ docs/                        product spec, engineering plan, design, data findin
 
 - **Item** (`content/items/*.yaml`): id, names, synonyms, misspellings, category, `purchaseRank`, `alwaysGood` (editorial), evidence basis (`supply+assessment` or `assessment-only`), card line, pick cues (3–5), avoid cues (1–2), store and ripen ranges with ripeness assumptions (storage temperature band, ethylene producer or sensitive, and storage life, cited to the UC Davis Postharvest Center fact sheets where they cover the item), prep, type notes. Also its origins, each with quality windows: half-month ranges rated `prime`, `fair` or `poor`, with at least 2 source IDs per range. Plus `status` (`draft` or `reviewed`), `reviewedOn`, `reviewer`, and `synthetic: true` on invented test data. Word limits come from product spec §8. Windows are written as half-month labels (`jun-1` is Jun 1–15, `jun-2` Jun 16–end) and may wrap past December; one origin's windows must not overlap. Origins are `us-<state>` or an ISO country code (`mx`).
 - **Variety** (inside its item file, for the 3 guides): traits on the group's anchored 1–5 scales, best uses, label/PLU text, freshest months only where evidence exists.
-- **Advisory:** items, optional origins, scope (states or price regions), `from` ≤ `to` ≤ `from` + 90 days, imposed verdict, note, `reviewedOn`, `status`.
+- **Advisory:** items, optional origins (national scope), `from` ≤ `to` ≤ `from` + 90 days, imposed verdict, note, `reviewedOn`, `status`.
 - **Typical origins:** item × month → ranked origins covering at least 70% of reported volume (ranks only; never shown as shares). Where USDA doesn't report domestic supply (citrus, carrots, garlic, mushrooms, winter squash and others), the item file lists cited editorial origins instead.
 - **Supply index:** item × month → value, or `null` with a reason (`no_data`, `no_baseline`, `not_reported`). Missing never becomes 0.
 - **Variety calendar:** item × variety × month → the share of USDA terminal market price quotes (11 cities, 3 years) naming that variety, and the origins quoted. Evidence of presence, not volume. It backs a variety's "freshest months" and cross-checks typical origins.
@@ -90,12 +89,12 @@ docs/                        product spec, engineering plan, design, data findin
 ### 4.2 Engine (`src/shared/verdict/`)
 
 ```ts
-evaluate(item: ItemInputs, ctx: { date: PlainDate; state: StateId | null; mode: "today" | "typical"; labelOrigin?: OriginId }, rules: Rules): VerdictResult
+evaluate(item: ItemInputs, ctx: { date: PlainDate; mode: "today" | "typical"; labelOrigin?: OriginId }, rules: Rules): VerdictResult
 // VerdictResult: verdict, ruleFired, reasons[], confidence, weakProperties[], markers[], labelNote, byOrigin
 ```
 
 - **Rules 1–5 in product order, first match wins:** Limited evidence → Advisory → Skip → Peak (supply not thin) → Good.
-- `mode: "typical"` (Calendar and planning dates) ignores advisories and uses the typical supply index for that month. `mode: "today"` uses the same typical supply index plus the advisories active on `date` for `state`. Supply data is a yearly snapshot, so the two modes differ only by advisories.
+- `mode: "typical"` (Calendar and planning dates) ignores advisories and uses the typical supply index for that month. `mode: "today"` uses the same typical supply index plus the advisories active on `date`. Supply data is a yearly snapshot, so the two modes differ only by advisories.
 - **Markers:** Last call, Reliable year-round (Good or better in at least 20 of 24 windows), Advisory, and "Usually improves in…" (the next window rated Good or better).
 - `byOrigin` re-runs the rules once per rated origin, for "What does the label say?"
 - `windowIndex(date) = (month − 1) × 2 + (day > 15 ? 1 : 0)` lives in `src/shared/time.ts`, and nowhere else.
@@ -126,9 +125,9 @@ Each milestone takes 1–3 sessions and ends with something Jared can review. Th
 | M0 | **Scaffold and deploy.** Vite + React + TS app and Worker via the Cloudflare Vite plugin; Tailwind, React Compiler, Biome, Vitest, Playwright; CI; a placeholder page deployed | The `workers.dev` URL opens on Jared's phone; CI is green | Cloudflare account; Jared runs `wrangler login` once |
 | M1 | **USDA probe** (runs alongside M0–M3). Fetch movement data for 5 candidate items; write a one-page `docs/data/usda.md` | Clear answers: which reports and fields, units, history depth, and whether typical origins (≥ 70%) and a supply index are computable. Also whether regional arrival data exists (for regional verdicts in v1.1). **If not computable, Jared decides the evidence fallback** | USDA API key |
 | M2 | **Content schemas and the verdict engine.** Reference-data coverage across the launch candidates (which items USDA reports, typical origins, variety calendar from terminal markets); zod schemas, `data:build`, `rules.yaml`, `sources.yaml`, engine, Today grouping. 5 draft items (content batch 1) | Engine tests pass (§6). Jared reviews batch 1 through `npm run content:report`, a readable table of verdicts per window with citations | — |
-| M3 | **Today and item page, styled.** Tokens from the design system, verdict marks, cards that expand in place, item page in product order, location and date chip (display), draft badge in previews; build-time prerendering of Today and item pages; the art workflow (art track below) with the first batch of thumbnails | **Jared's first real review on his phone** | — |
+| M3 | **Today and item page, styled.** Tokens from the design system, verdict marks, cards that expand in place, item page in product order, date chip (display), draft badge in previews; build-time prerendering of Today and item pages; the art workflow (art track below) with the first batch of thumbnails | **Jared's first real review on his phone** | — |
 | M4 | **Offline and in-store mode.** Precache, readiness line, updates that activate on the next launch, in-store toggle (wake lock, 18 px type, high contrast, no motion, `persist()`) | E2E: after one visit, go offline and open an item never visited | — |
-| M5 | **Place, date and advisories.** Worker HTML injection; ZIP entry → state on the phone; saved place; advisories by state and region; Alaska and Hawaii banner; "Locally checked"; planning date with the typical-outlook banner; "Share for this date"; label-based advice (origin, plus PLU code if licensed); recompute at midnight and on `visibilitychange` | Unit tests for place and window math; e2e for a pinned date and a changed ZIP | — |
+| M5 | **Date, advisories and label advice.** Planning date with the typical-outlook banner; "Share for this date"; national advisories; label-based advice (origin, plus PLU code if licensed); recompute at midnight and on `visibilitychange` | Unit tests for window math; e2e for a pinned date | — |
 | M6 | **Browse, search, Calendar, Methods.** Categories; MiniSearch with synonyms and misspellings; no-match flow; Calendar as a month list on phone and a heatmap with a table equivalent on wider screens; Methods and privacy pages; headless component library adopted here or in M5, whichever first needs a complex control | Every item reachable in ≤ 3 taps or one search; "scallion" and "corriander" find the right items | — |
 | M7 | **Variety guides:** apples, mandarins & oranges, pears. Freshest months from the variety calendar plus citations; traits, finder, cards on phone, a sortable table on wider screens, variety pages | Jared reviews the 3 guides | Variety content |
 | M8 | **Feedback and measurement.** D1 tables; feedback, taste, request and event endpoints; rate limiting; `web-vitals` + `verdict-visible` beacon; privacy-safe logging | A test proves no ZIP or IP reaches logs or D1; a feedback row records app version, date, state, item and origin | — |
@@ -146,7 +145,7 @@ Batches follow `purchaseRank` within two tiers: seasonal items first, then alway
 4. **Review.** Jared approves or rejects each asset from the contact sheet. Approvals are recorded in `art/manifest.json` (asset ID, item, role, alt-text context, revision, status). A rejected asset gets a targeted revision prompt (§2 F) in the next batch.
 5. Production builds refuse unapproved art, as they refuse draft content.
 
-**After v1 (v1.1+):** value markers; regional notes from terminal-market prices; local-harvest context with harvest zones; precise location; named-chain notes; Spanish.
+**After v1 (v1.1+):** value markers; named-chain notes; Spanish; location-aware context (regional advisories, local harvest) only if usage shows a need.
 
 ## 6. Verification
 
@@ -165,7 +164,7 @@ Run the tests for what you touched while working. Run the full suite before push
 - **Deploy:** `npm run deploy` (build, then `wrangler deploy`) from a machine signed in with `wrangler login`. Move deploys into CI when it becomes convenient, using a scoped API token in a GitHub secret.
 - **Data refresh:** on demand, usually with the yearly content review. `npm run usda:refresh` rewrites the typical-origins and supply-index CSVs from the last 3 years; Jared reviews the diff before it is committed and deployed. Items without usable USDA data use cited editorial origins and a `null` supply index.
 - **Stale data:** each build records its supply snapshot's date range. When the snapshot is more than 15 months old (a missed yearly refresh), freshness lowers confidence and the item page says so; the app never pretends to be current.
-- **Privacy:** no accounts or cookies. The place lives in `localStorage` on the phone. The Worker never logs URLs, query strings, bodies, IPs or ZIPs; automatic invocation logs are turned off at M8. D1 stores state and date, never finer.
+- **Privacy:** no accounts, cookies or location. The Worker never logs URLs, query strings, bodies or IPs; automatic invocation logs are turned off at M8. D1 stores the date, never anything about where the shopper is.
 - **Rollback:** redeploy the previous Worker version (`wrangler rollback`). Data rolls back with it.
 
 ## 8. Deliberately not built
@@ -175,5 +174,5 @@ Don't add these unless Jared asks:
 - separate data releases, R2 buckets, manifests, a publisher Worker, IndexedDB release slots;
 - TypeSpec and generated contracts, a Python pipeline, Dagster, Cloudflare Workflows and Containers;
 - a mixed-version test matrix, gradual deployments, a full boot guard (the small pre-paint check in §1 is the only one), nonce-based CSP for server rendering;
-- 53 harvest zones, harvest calendars, the location grid, the California/Florida split, 96 region-month summaries;
+- any location feature: state or ZIP lookup, regional advisories, harvest zones, local-harvest calendars, region-month summaries;
 - Windows CI runners, cross-OS byte-for-byte builds, screenshot baselines, Lighthouse CI, Trusted Types, Renovate.

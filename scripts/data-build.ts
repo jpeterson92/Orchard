@@ -18,7 +18,7 @@ const raw: RawInputs = {
   rules: yaml("data/rules.yaml"),
   sources: yaml("data/sources.yaml") ?? [],
   categories: yaml("data/categories.yaml"),
-  states: parseCsv("data/geo/states.csv", read("data/geo/states.csv"), ["state", "name"]),
+  states: parseCsv("data/us-states.csv", read("data/us-states.csv"), ["state", "name"]),
   advisories: yaml("data/advisories.yaml") ?? [],
   items: readdirSync(ITEMS)
     .filter((f) => /\.ya?ml$/.test(f))

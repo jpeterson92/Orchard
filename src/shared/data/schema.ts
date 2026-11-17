@@ -132,10 +132,8 @@ export const advisorySchema = z
   .strictObject({
     id,
     items: z.array(id).min(1),
-    /** Absent: every origin of the items. */
+    /** Absent: every origin of the items. Advisories are national. */
     origins: z.array(originId).min(1).optional(),
-    /** Absent: national. */
-    states: z.array(stateCode).min(1).optional(),
     from: isoDate,
     to: isoDate,
     verdict: z.enum(["peak", "good", "skip"]),

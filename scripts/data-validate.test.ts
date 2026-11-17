@@ -61,7 +61,7 @@ function base(): RawInputs {
     },
     sources: [source("s1"), source("s2")],
     categories: [{ id: "berries", name: "Berries" }],
-    states: csv("data/geo/states.csv", [
+    states: csv("data/us-states.csv", [
       { state: "CA", name: "California" },
       { state: "WA", name: "Washington" },
     ]),
@@ -71,7 +71,6 @@ function base(): RawInputs {
         id: "test-advisory",
         items: ["test-fruit"],
         origins: ["mx"],
-        states: ["CA"],
         from: "2026-11-01",
         to: "2026-12-15",
         verdict: "skip",
@@ -208,7 +207,6 @@ const broken: [string, (r: RawInputs) => void, string][] = [
   ["unknown country origin", (r) => (firstItem(r).origins[1].origin = "qq"), "unknown origin qq"],
   ["plain us origin", (r) => (firstItem(r).origins[1].origin = "us"), "unknown origin us"],
   ["advisory for unknown item", (r) => (firstAdvisory(r).items = ["kumquats"]), "unknown item kumquats"],
-  ["advisory in unknown state", (r) => (firstAdvisory(r).states = ["ZZ"]), "unknown state ZZ"],
   [
     "advisory with unknown origin",
     (r) => (firstAdvisory(r).origins = ["us-xx"]),

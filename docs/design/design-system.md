@@ -26,7 +26,7 @@ Verdicts are subtle. **Never use A4’s colored verdict pills**, even where the 
 The approved synthesis is **Good things today: Orchard produce guide.png**:
 [Open the approved visual reference](references/00-today-anchor.png).
 
-That reference is an art-direction study. Its illustrative produce recommendations, dates, origin claims, and artwork are not a production dataset. Its exterior presentation title and rounded presentation frame are not app components. Its “Peak now” heading reads “Best right now” in the product.
+That reference is an art-direction study. Its illustrative produce recommendations, dates, origin claims, and artwork are not a production dataset. Its exterior presentation title and rounded presentation frame are not app components. Its “Peak now” heading reads “Best right now” in the product. Its location chip ("Near San Francisco") is a date-only chip in the product: the app has no location.
 
 ### Authority and interpretation
 
@@ -186,9 +186,9 @@ Keep semantic values centralized. Avoid a token for every incidental measurement
 
 ### Mobile Today
 
-Order: compact brand and location/date → title and short seasonal summary → category filters → produce sections → freshness information. Search and primary navigation remain within thumb reach.
+Order: compact brand and date → title and short seasonal summary → category filters → produce sections → freshness information. Search and primary navigation remain within thumb reach.
 
-Keep decorative header art secondary. It may occupy a small upper-right area but never sit behind text. Aim for a compact header rather than an oversized introduction. Reflow the location onto its own line when necessary.
+Keep decorative header art secondary. It may occupy a small upper-right area but never sit behind text. Aim for a compact header rather than an oversized introduction. Reflow the date onto its own line when necessary.
 
 Items appear in open horizontal rows. Use thin rules between groups or rows when helpful. Align text consistently; do not draw a vertical line between every picture and name.
 
@@ -208,11 +208,11 @@ Use at least 18 px body text, stronger functional contrast, no paper texture, an
 
 ## 6. Component rules and states
 
-### Brand and location/date
+### Brand and date
 
 The leaf mark is a provisional visual motif. Reuse a consistent asset rather than generating a different mark for every screen. The working brand is Produce Guide.
 
-Location/date is a recognizable interactive control. A rounded outline or restrained wash is acceptable. Show planning mode explicitly with a return-to-today action. Keep full values accessible when visible text must abbreviate.
+The date is a recognizable interactive control. A rounded outline or restrained wash is acceptable. Show planning mode explicitly with a return-to-today action. Keep full values accessible when visible text must abbreviate.
 
 ### Category filters
 
@@ -260,7 +260,7 @@ Cover empty input, results, no result, unavailable offline coverage, and errors.
 
 ### Navigation and icons
 
-Use one consistent set of simple line icons for Today, Browse, Calendar, search, location, disclosure, and utilities. Implement icons as reusable vector assets or code components, not individually generated raster illustrations.
+Use one consistent set of simple line icons for Today, Browse, Calendar, search, date, disclosure, and utilities. Implement icons as reusable vector assets or code components, not individually generated raster illustrations.
 
 Selected navigation uses a restrained orange icon/text treatment and optional short underline. Keep icons accompanied by labels where the approved UI shows them.
 

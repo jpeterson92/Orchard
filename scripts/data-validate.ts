@@ -177,7 +177,6 @@ export function validate(raw: RawInputs, opts: { production: boolean }): Result 
     const at = `advisory ${a.id}`;
     for (const i of a.items) if (!itemIds.has(i)) errors.push(`${at}: unknown item ${i}`);
     for (const o of a.origins ?? []) checkOrigin(o, at);
-    for (const s of a.states ?? []) if (!stateCodes.has(s)) errors.push(`${at}: unknown state ${s}`);
     const days = (Date.parse(a.to) - Date.parse(a.from)) / 86_400_000;
     if (days < 0) errors.push(`${at}: ends (${a.to}) before it starts (${a.from})`);
     else if (days > MAX_ADVISORY_DAYS) errors.push(`${at}: lasts ${days} days, over ${MAX_ADVISORY_DAYS}`);
