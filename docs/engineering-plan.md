@@ -60,7 +60,7 @@ data/
   usda/variety-calendar.csv  derived from USDA terminal market reports (committed)
   plu.csv                    IFPS PLU codes → item and variety (only once IFPS confirms reuse)
   us-states.csv              state code and name, for `us-<state>` origins
-scripts/                     prerender.ts, data-build.ts, content-report.ts; usda-client.ts and usda-lib.ts (shared),
+scripts/                     prerender.ts, data-build.ts, content-report.ts, review.ts; usda-client.ts and usda-lib.ts (shared),
                              usda-probe.ts, usda-terminal-probe.ts, usda-terminal-screen.ts, usda-derive.ts;
                              evidence-lib.ts (shared), evidence-fetch.ts, evidence-check.ts
 src/
@@ -90,7 +90,7 @@ docs/                        product spec, engineering plan, design, data findin
 
 `data:build` fails on any schema error, unknown ID, duplicate key, a rated window covered by claims from fewer than 2 independent sources, a departing or Low-confidence window without a `reason`, an inverted or over-long advisory, or a NaN. With `--production` (run first by `npm run deploy`) it also fails on any `draft` or `synthetic` record. Schemas live in `src/shared/data/schema.ts`, the checks in `scripts/data-validate.ts`. It writes compact JSON to `src/generated/` and prints counts.
 
-Editorial review is a separate step, run only when content is being reviewed or updated, never during app work: `npm run content:report` reads the built dataset and lists what an editor should settle (windows without a rating, `alwaysGood` disagreeing with the typical outlook, and every Low-confidence or departing window). It never changes content.
+Editorial review is a separate step, run only when content is being reviewed or updated, never during app work: `npm run content:report` reads the built dataset and lists what an editor should settle: per item, the typical year as a 24-window verdict strip, and its surprises (Peak where the deciding origin's or variety's evidence isn't prime, Skip where it is prime, Peak in more than 16 windows, a Peak worth seeking that never comes); windows without a rating; `alwaysGood` disagreeing with the typical outlook; and every Low-confidence or departing window. The editor checks the strips against their own sense of the produce before approving a batch. Helpers in `scripts/review.ts`. It never changes content.
 
 ### 4.2 Engine (`src/shared/verdict/`)
 
