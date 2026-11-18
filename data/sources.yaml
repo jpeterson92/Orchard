@@ -362,3 +362,134 @@
   url: https://www.ams.usda.gov/market-news/fruits-vegetables
   accessed: 2026-11-17
   tier: authoritative
+- id: umn-honeycrisp
+  title: "Honeycrisp"
+  publisher: "University of Minnesota Fruit Breeding"
+  url: https://mnhardy.umn.edu/honeycrisp
+  accessed: 2026-11-17
+  tier: authoritative
+- id: eatlikenoone-apples-at-their-peak
+  title: "When are apples at their peak?"
+  publisher: "Eat Like No One Else"
+  url: https://www.eatlikenoone.com/when-are-apples-at-their-peak.htm
+  accessed: 2026-11-17
+  tier: mainstream
+- id: eatlikenoone-apples-in-season
+  title: "When are apples in season?"
+  publisher: "Eat Like No One Else"
+  url: https://www.eatlikenoone.com/when-are-apples-in-season.htm
+  accessed: 2026-11-17
+  tier: mainstream
+  basedOn: eatlikenoone-apples-at-their-peak
+- id: eatlikenoone-honeycrisp-fall
+  title: "8 things you need to know before buying Honeycrisp apples this fall"
+  publisher: "Eat Like No One Else"
+  url: https://www.eatlikenoone.com/8-things-you-need-to-know-before-buying-honeycrisp-apples-this-fall.htm
+  accessed: 2026-11-17
+  tier: mainstream
+  basedOn: eatlikenoone-apples-at-their-peak
+- id: freshfruitportal-chile-apples-2025
+  title: "Chilean apples arrive in U.S. retail stores"
+  publisher: "Fresh Fruit Portal"
+  url: https://www.freshfruitportal.com/archive/2025/05/15/chilean-apples-arrive-in-u-s-retail-stores/
+  accessed: 2026-11-17
+  tier: mainstream
+- id: producebusiness-apples-year-round
+  title: "Shoppers demand apples year-round"
+  publisher: "Produce Business"
+  url: https://producebusiness.com/shoppers-demand-apples-year-round/
+  accessed: 2026-11-17
+  tier: mainstream
+- id: producebusiness-apples-winter
+  title: "Maintaining strong apple sales in winter"
+  publisher: "Produce Business"
+  url: https://producebusiness.com/maintaining-strong-apples-sales-in-winter/
+  accessed: 2026-11-17
+  tier: mainstream
+- id: producebusiness-state-of-apples
+  title: "State of apples is strong"
+  publisher: "Produce Business"
+  url: https://producebusiness.com/state-of-apples-is-strong/
+  accessed: 2026-11-17
+  tier: mainstream
+- id: umd-apple-cultivars
+  title: "Important apple cultivars for the Mid-Atlantic region"
+  publisher: "University of Maryland Extension"
+  url: https://extension.umd.edu/resource/important-apple-cultivars-mid-atlantic-region-eb-2023-0684
+  accessed: 2026-11-17
+  tier: authoritative
+- id: rutgers-apple-varieties
+  title: "Fact Sheet FS1303"
+  publisher: "Rutgers NJAES"
+  url: https://njaes.rutgers.edu/fs1303
+  accessed: 2026-11-17
+  tier: authoritative
+- id: oppy-southern-apples-2025
+  title: "Oppy southern hemisphere apples, July 2025"
+  publisher: "Oppy"
+  url: https://oppy.com/?p=8839
+  accessed: 2026-11-17
+  tier: mainstream
+- id: freshplaza-southern-organic-apples
+  title: "It's prime time for Southern Hemisphere fresh organic apples"
+  publisher: "FreshPlaza"
+  url: https://www.freshplaza.com/north-america/article/9728930/it-s-prime-time-for-southern-hemisphere-fresh-organic-apples/
+  accessed: 2026-11-17
+  tier: mainstream
+- id: stemilt-cosmic-crisp
+  title: Cosmic Crisp
+  publisher: Stemilt Growers
+  url: https://www.stemilt.com/product/cosmic-crisp/
+  accessed: 2026-11-17
+  tier: mainstream
+- id: stemilt-what-are-cosmic-crisp
+  title: What are Cosmic Crisp apples?
+  publisher: Stemilt Growers
+  url: https://www.stemilt.com/what-are-cosmic-crisp-apples/
+  accessed: 2026-11-17
+  tier: mainstream
+  basedOn: stemilt-cosmic-crisp
+- id: wsu-cosmic-crisp-2021
+  title: "'Gorgeous' 2021 crop of WSU's Cosmic Crisp apples will hit stores early"
+  publisher: Washington State University CAHNRS
+  url: https://news.cahnrs.wsu.edu/?p=42143
+  accessed: 2026-11-17
+  tier: authoritative
+- id: usapple-rinse-refrigerate
+  title: Rinse & Refrigerate
+  publisher: U.S. Apple Association
+  url: https://usapple.org/news-resources/rinse-refrigerate
+  accessed: 2026-11-17
+  tier: authoritative
+- id: msu-michigan-fresh-apples
+  title: "Michigan Fresh: Using, Storing, and Preserving Apples"
+  publisher: Michigan State University Extension
+  url: https://www.canr.msu.edu/resources/michigan_fresh_apples
+  accessed: 2026-11-17
+  tier: authoritative
+- id: illinois-extension-apple-season
+  title: Make way for apple season
+  publisher: University of Illinois Extension
+  url: https://extension.illinois.edu/blogs/simply-nutritious-quick-and-delicious/2021-09-10-make-way-apple-season
+  accessed: 2026-11-17
+  tier: authoritative
+- id: whatappletoeat-summer
+  title: What apples to buy in the summer?
+  publisher: What Apple to Eat Today (Eat Like No One Else newsletter)
+  url: https://whatappletoeattoday.substack.com/p/what-apples-to-buy-in-the-summer
+  accessed: 2026-11-17
+  tier: mainstream
+  basedOn: eatlikenoone-apples-at-their-peak
+- id: whatappletoeat-december
+  title: What apples to look for in December
+  publisher: What Apple to Eat Today (Eat Like No One Else newsletter)
+  url: https://whatappletoeattoday.substack.com/p/what-apples-to-look-for-in-december
+  accessed: 2026-11-17
+  tier: mainstream
+  basedOn: eatlikenoone-apples-at-their-peak
+- id: perishablenews-early-pink-lady
+  title: Early Pink Lady set to bring changes to growers and retail marketplace
+  publisher: Perishable News
+  url: https://perishablenews.com/?p=97599
+  accessed: 2026-11-17
+  tier: mainstream

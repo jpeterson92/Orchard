@@ -4,7 +4,22 @@
 # - pages: source, url, kind (chart | item-page), origin (default us), parser (item-months), items (item pages)
 
 items:
-  apples: [apple, apples]
+  apples:
+    [
+      apple,
+      apples,
+      honeycrisp,
+      gala,
+      galas,
+      fuji,
+      fujis,
+      granny smith,
+      pink lady,
+      cripps pink,
+      cosmic crisp,
+      red delicious,
+      golden delicious,
+    ]
   pears: [pear, pears]
   strawberries: [strawberry, strawberries]
   broccoli: [broccoli]
@@ -317,3 +332,93 @@ pages:
     kind: item-page
     origin: us-ca
     items: [mandarins]
+  - source: umn-honeycrisp
+    url: https://mnhardy.umn.edu/honeycrisp
+    kind: item-page
+    origin: us-mn
+    items: [apples]
+  - source: eatlikenoone-apples-at-their-peak
+    url: https://www.eatlikenoone.com/when-are-apples-at-their-peak.htm
+    kind: item-page
+    origin: us
+    items: [apples]
+  - source: eatlikenoone-apples-in-season
+    url: https://www.eatlikenoone.com/when-are-apples-in-season.htm
+    kind: item-page
+    origin: us
+    items: [apples]
+  - source: eatlikenoone-honeycrisp-fall
+    url: https://www.eatlikenoone.com/8-things-you-need-to-know-before-buying-honeycrisp-apples-this-fall.htm
+    kind: item-page
+    origin: us
+    items: [apples]
+  - source: freshfruitportal-chile-apples-2025
+    url: https://www.freshfruitportal.com/archive/2025/05/15/chilean-apples-arrive-in-u-s-retail-stores/
+    kind: item-page
+    origin: cl
+    items: [apples]
+  - source: producebusiness-apples-year-round
+    url: https://producebusiness.com/shoppers-demand-apples-year-round/
+    kind: item-page
+    origin: us
+    items: [apples]
+  - source: producebusiness-apples-winter
+    url: https://producebusiness.com/maintaining-strong-apples-sales-in-winter/
+    kind: item-page
+    origin: us
+    items: [apples]
+  - source: producebusiness-state-of-apples
+    url: https://producebusiness.com/state-of-apples-is-strong/
+    kind: item-page
+    origin: us
+    items: [apples]
+  - source: umd-apple-cultivars
+    url: https://extension.umd.edu/resource/important-apple-cultivars-mid-atlantic-region-eb-2023-0684
+    kind: item-page
+    origin: us-md
+    items: [apples]
+  - source: rutgers-apple-varieties
+    url: https://njaes.rutgers.edu/fs1303
+    kind: item-page
+    origin: us-nj
+    items: [apples]
+  - source: oppy-southern-apples-2025
+    url: https://oppy.com/?p=8839
+    kind: item-page
+    origin: nz
+    items: [apples]
+  - source: freshplaza-southern-organic-apples
+    url: https://www.freshplaza.com/north-america/article/9728930/it-s-prime-time-for-southern-hemisphere-fresh-organic-apples/
+    kind: item-page
+    origin: cl
+    items: [apples]
+  - source: stemilt-cosmic-crisp
+    url: https://www.stemilt.com/product/cosmic-crisp/
+    kind: item-page
+    origin: us-wa
+    items: [apples]
+  - source: stemilt-what-are-cosmic-crisp
+    url: https://www.stemilt.com/what-are-cosmic-crisp-apples/
+    kind: item-page
+    origin: us-wa
+    items: [apples]
+  - source: wsu-cosmic-crisp-2021
+    url: https://news.cahnrs.wsu.edu/?p=42143
+    kind: item-page
+    origin: us-wa
+    items: [apples]
+  - source: whatappletoeat-summer
+    url: https://whatappletoeattoday.substack.com/p/what-apples-to-buy-in-the-summer
+    kind: item-page
+    origin: us
+    items: [apples]
+  - source: whatappletoeat-december
+    url: https://whatappletoeattoday.substack.com/p/what-apples-to-look-for-in-december
+    kind: item-page
+    origin: us
+    items: [apples]
+  - source: perishablenews-early-pink-lady
+    url: https://perishablenews.com/?p=97599
+    kind: item-page
+    origin: us-wa
+    items: [apples]

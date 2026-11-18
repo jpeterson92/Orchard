@@ -1,0 +1,217 @@
+item: apples
+status: draft
+claims:
+  - source: msstate-fruits-vegetables-in-season
+    origin: us-ms
+    windows:
+      - { from: jun-1, to: oct-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Mississippi harvest chart lists apples in season June to October.
+  - source: psu-harvest-calendar
+    origin: us-pa
+    windows:
+      - { from: jul-2, to: oct-2, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: Pennsylvania harvest chart lists apples in season late July to October.
+  - source: nwpb-year-round-apples
+    origin: us
+    windows:
+      - { from: aug-1, to: nov-1, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: US apple harvest runs early August to mid-November, by variety and state.
+  # Honeycrisp
+  - source: stemilt-honeycrisp
+    origin: us-wa
+    variety: honeycrisp
+    windows:
+      - { from: aug-1, to: sep-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Washington Honeycrisp is harvested in August and September and sold year-round from storage.
+  - source: umn-honeycrisp
+    origin: us-mn
+    variety: honeycrisp
+    windows:
+      - { from: sep-2, to: oct-1, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: In Minnesota, where it was bred, Honeycrisp is harvested from mid-September to early October.
+  - source: eatlikenoone-apples-at-their-peak
+    origin: us
+    variety: honeycrisp
+    windows:
+      - { from: sep-1, to: oct-2, rating: prime }
+      - { from: nov-1, to: may-2, rating: fair }
+    specificity: season
+    directness: eating-quality
+    paraphrase: Honeycrisp peaks from its September harvest into fall; storage fruit sold into May stays crisp but has less flavor.
+  - source: eatlikenoone-apples-at-their-peak
+    origin: nz
+    variety: honeycrisp
+    windows:
+      - { from: jun-1, to: aug-2, rating: poor }
+    specificity: season
+    directness: eating-quality
+    paraphrase: Summer New Zealand Honeycrisp is scarce, costly and short on flavor; the writer advises against it.
+  - source: eatlikenoone-honeycrisp-fall
+    origin: us
+    variety: honeycrisp
+    windows:
+      - { from: sep-1, to: nov-2, rating: prime }
+      - { from: dec-1, to: may-2, rating: poor }
+    specificity: season
+    directness: eating-quality
+    paraphrase: Buy Honeycrisp in the fall; many readers were let down by winter and spring Honeycrisp.
+  - source: freshfruitportal-chile-apples-2025
+    origin: cl
+    variety: honeycrisp
+    windows:
+      - { from: mar-1, to: aug-2, rating: prime }
+    specificity: season
+    directness: availability
+    paraphrase: South American Honeycrisp is shipped to US stores for spring and summer.
+  # Gala
+  - source: stemilt-gala
+    origin: us-wa
+    variety: gala
+    windows:
+      - { from: aug-1, to: aug-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Washington Gala is harvested in August and sold year-round from storage.
+  - source: rutgers-apple-varieties
+    origin: us-nj
+    variety: gala
+    windows:
+      - { from: sep-1, to: sep-1, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: New Jersey's variety table has Buckeye Gala ripening in early September.
+  - source: eatlikenoone-apples-at-their-peak
+    origin: us
+    variety: gala
+    windows:
+      - { from: sep-1, to: sep-2, rating: prime }
+    specificity: month
+    directness: eating-quality
+    paraphrase: Gala is at its peak in September.
+  - source: eatlikenoone-apples-at-their-peak
+    origin: us
+    variety: gala
+    windows:
+      - { from: oct-1, to: mar-2, rating: poor }
+    specificity: season
+    directness: eating-quality
+    paraphrase: After September, stored Gala turns soft and less crisp; the writer buys it then only for sauce.
+  # Fuji
+  - source: stemilt-fuji
+    origin: us-wa
+    variety: fuji
+    windows:
+      - { from: sep-1, to: sep-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Washington Fuji is harvested in September and stores well enough to sell year-round.
+  - source: eatlikenoone-apples-at-their-peak
+    origin: us
+    variety: fuji
+    windows:
+      - { from: oct-1, to: oct-2, rating: prime }
+      - { from: nov-1, to: sep-2, rating: fair }
+    specificity: season
+    directness: eating-quality
+    paraphrase: Fuji's main crop ripens in October and eats best around Halloween; its quality barely drops through the year.
+  # Granny Smith
+  - source: stemilt-granny-smith
+    origin: us-wa
+    variety: granny-smith
+    windows:
+      - { from: sep-1, to: sep-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Washington Granny Smith is harvested in September and sold year-round.
+  - source: eatlikenoone-apples-in-season
+    origin: us
+    variety: granny-smith
+    windows:
+      - { from: oct-1, to: oct-2, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: Granny Smith is among the last apples picked, ripening by mid to late October.
+  - source: eatlikenoone-apples-at-their-peak
+    origin: us
+    variety: granny-smith
+    windows:
+      - { from: nov-1, to: sep-2, rating: fair }
+    specificity: season
+    directness: eating-quality
+    paraphrase: US Granny Smith keeps well thanks to its late harvest and high acid; its quality holds steady all year.
+  # Pink Lady (Cripps Pink)
+  - source: stemilt-pink-lady
+    origin: us-wa
+    variety: pink-lady
+    windows:
+      - { from: oct-1, to: oct-1, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: Washington Pink Lady is the last harvested, by mid-October, and sold October to July.
+  - source: rutgers-apple-varieties
+    origin: us-nj
+    variety: pink-lady
+    windows:
+      - { from: nov-1, to: nov-1, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: New Jersey's variety table has Cripps Pink ripening in early November.
+  - source: perishablenews-early-pink-lady
+    origin: us-wa
+    variety: pink-lady
+    windows:
+      - { from: oct-2, to: nov-1, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: Washington's standard Cripps Pink is the last apple picked, in late October and early November; an earlier strain picks in early October.
+  - source: whatappletoeat-summer
+    origin: us
+    variety: pink-lady
+    windows:
+      - { from: jul-1, to: aug-2, rating: fair }
+    specificity: season
+    directness: eating-quality
+    paraphrase: Before September's harvest, stored Pink Lady is still a solid, crisp choice.
+  # Cosmic Crisp
+  - source: stemilt-cosmic-crisp
+    origin: us-wa
+    variety: cosmic-crisp
+    windows:
+      - { from: sep-2, to: oct-2, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: Cosmic Crisp is harvested in late September and October and keeps its crunch and flavor for year-round sale.
+  - source: wsu-cosmic-crisp-2021
+    origin: us-wa
+    variety: cosmic-crisp
+    windows:
+      - { from: nov-1, to: nov-2, rating: prime }
+    specificity: half-month
+    directness: eating-quality
+    paraphrase: Growers hold the new crop for a set November release so it reaches stores at peak sweetness and crispness.
+  - source: whatappletoeat-december
+    origin: us
+    variety: cosmic-crisp
+    windows:
+      - { from: dec-1, to: dec-2, rating: prime }
+    specificity: month
+    directness: eating-quality
+    paraphrase: Cosmic Crisp is on the writer's December list of apples picked for flavor and reliable crispness.
+  - source: whatappletoeat-summer
+    origin: us
+    variety: cosmic-crisp
+    windows:
+      - { from: jul-1, to: aug-2, rating: fair }
+    specificity: season
+    directness: eating-quality
+    paraphrase: Before September's harvest, stored Cosmic Crisp is still a solid, crisp choice.

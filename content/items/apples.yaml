@@ -1,0 +1,121 @@
+id: apples
+name: Apples
+synonyms: [apple, honeycrisp, gala, fuji, granny smith, pink lady, cripps pink, cosmic crisp]
+misspellings: [aple, apels, appels, honeycrips, honey crisp]
+category: apples-pears
+purchaseRank: 2
+alwaysGood: false
+shipsWell:
+  value: true
+  sources: [producebusiness-apples-year-round, oppy-southern-apples-2025]
+  note: Picked mature and shipped cold; Chile and New Zealand fill US shelves each spring and summer.
+peakWorthSeeking:
+  value: true
+  sources: [eatlikenoone-apples-at-their-peak, producebusiness-apples-winter]
+  note: Fall's new crop is clearly better for some varieties, such as Honeycrisp and Gala.
+storesWell:
+  value: true
+  sources: [producebusiness-apples-winter, nwpb-year-round-apples]
+  note: Controlled-atmosphere storage keeps most main varieties crisp for months.
+evidenceBasis: supply+assessment
+cardLine: Firm and heavy, no soft spots or wrinkled skin.
+pick:
+  - Firm all over when gently squeezed
+  - Heavy for its size
+  - Smooth, tight skin with no wrinkles
+  - No soft, bruised or sunken spots
+avoid:
+  - Soft or wrinkled fruit; it's often mealy inside
+  - Bruises or broken skin
+store:
+  temperature: cold
+  ethylene: producer
+  life: { min: 3, max: 6, unit: weeks }
+  text: Keeps a week or so on the counter, or 3–6 weeks in a perforated bag in the fridge drawer. Keep apart from greens and other produce, and remove any that rot.
+  sources: [msu-michigan-fresh-apples, illinois-extension-apple-season, usapple-rinse-refrigerate]
+prep: Rinse just before eating, not before storing. Cut apples brown quickly; a squeeze of lemon juice slows it.
+varieties:
+  - id: honeycrisp
+    name: Honeycrisp
+    traits: {}
+    bestUses: [Snacking, salads]
+    label: Honeycrisp
+    storesWell:
+      value: false
+      sources: [eatlikenoone-honeycrisp-fall, producebusiness-apples-winter]
+      note: Stays crisp in storage, but flavor fades and late-season fruit is uneven.
+    windows:
+      - { from: jan-1, to: feb-2, rating: poor }
+      - from: mar-1
+        to: may-2
+        rating: fair
+        reason: Chilean imports arrive for spring; Washington storage fruit stays crisp but loses flavor.
+      - { from: jun-1, to: jul-1, rating: poor }
+      - from: jul-2
+        to: aug-2
+        rating: fair
+        reason: Washington's harvest starts in August, while stores still sell storage and import fruit.
+      - from: sep-1
+        to: oct-2
+        rating: prime
+        reason: Four sources put new-crop Honeycrisp at its best in September and October; early September and late October read fair only at the edges of Minnesota's and the summer imports' charts.
+      - from: nov-1
+        to: nov-2
+        rating: fair
+        reason: Local fall supply ends by Thanksgiving; Washington storage fruit is crisp but less flavorful.
+      - { from: dec-1, to: dec-2, rating: poor }
+    quotedAs: [honeycrisp]
+  - id: gala
+    name: Gala
+    traits: {}
+    bestUses: [Snacking, lunch boxes]
+    label: Gala or Royal Gala
+    windows:
+      - { from: jan-1, to: jul-1, rating: fair }
+      - from: aug-2
+        to: sep-2
+        rating: prime
+        reason: Washington harvests Gala in August and one source rates September best; late August reads fair only against New Jersey's storage reading, and late September only at the edge of the writer's own storage claim.
+      - { from: oct-1, to: dec-2, rating: fair }
+    quotedAs: [gala, royal-gala]
+  - id: fuji
+    name: Fuji
+    traits: {}
+    bestUses: [Snacking, salads]
+    label: Fuji
+    windows:
+      - { from: jan-1, to: sep-2, rating: fair }
+      - { from: oct-1, to: oct-2, rating: prime }
+      - { from: nov-1, to: dec-2, rating: fair }
+    quotedAs: [fuji]
+  - id: granny-smith
+    name: Granny Smith
+    traits: {}
+    bestUses: [Baking, pies, salads]
+    label: Granny Smith
+    windows:
+      - { from: jan-1, to: dec-2, rating: fair }
+    quotedAs: [granny-smith]
+  - id: pink-lady
+    name: Pink Lady
+    traits: {}
+    bestUses: [Snacking, baking]
+    label: Pink Lady or Cripps Pink
+    windows:
+      - { from: jan-1, to: sep-2, rating: fair }
+      - from: oct-1
+        to: nov-1
+        rating: prime
+        reason: Two Washington sources put the harvest in October and early November; late October reads fair only against New Jersey's off-season reading.
+      - { from: nov-2, to: dec-2, rating: fair }
+    quotedAs: [pink-lady-cripps-pink]
+  - id: cosmic-crisp
+    name: Cosmic Crisp
+    traits: {}
+    bestUses: [Snacking, salads, baking]
+    label: Cosmic Crisp
+    windows:
+      - { from: jun-2, to: sep-1, rating: fair }
+      - { from: nov-1, to: dec-2, rating: prime }
+    quotedAs: [cosmic-crisp]
+status: draft
