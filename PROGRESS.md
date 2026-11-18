@@ -8,7 +8,7 @@ M0 scaffold and deploy: done · M1 USDA probe: done · M2 schemas and engine: sl
 
 ## Next concrete action
 
-**Pears content** (below), while Jared decides whether M8 measurement stays. M7 (variety guides) waits for variety content. "scallion" and "corriander" are proven in unit tests with stand-in items; green onions and cilantro need item files (content) before they show in the app. PLU on the label check waits for a licence. Today still has no seasonal summary line (the 24 summaries are content). The item page still lacks the variety guide link (M7), per-page titles, and "Typical supermarket supply: favorable" notes. M3 closes with Jared's phone review, which needs a preview deploy when Jared asks for one.
+**M8 slice 1:** the measurement beacon: `web-vitals` and `verdict-visible` (time to first verdict) sent to a Worker endpoint, with the event store chosen then; no IPs, no search text, nothing logged; a test proves no IP reaches logs or storage. Slice 2: the diagnostic events (item and variety page opens, card expansions, searches with no result, 14-day return visits). Rewrite the Privacy page's "no analytics" line as each lands. Pears content (below) continues alongside. M7 (variety guides) waits for variety content. "scallion" and "corriander" are proven in unit tests with stand-in items; green onions and cilantro need item files (content) before they show in the app. PLU on the label check waits for a licence. Today still has no seasonal summary line (the 24 summaries are content). The item page still lacks the variety guide link (M7), per-page titles, and "Typical supermarket supply: favorable" notes. M3 closes with Jared's phone review, which needs a preview deploy when Jared asks for one.
 
 Art: when Jared's batch 1 masters land in `art/masters/`, run `npm run art:process`, show Jared the contact sheet, and record approvals in `art/manifest.json` (rejects get a §2 F revision prompt in batch 2).
 
@@ -20,8 +20,7 @@ None.
 
 ## For Jared (non-blocking)
 
-- **M8 measurement:** with feedback gone, M8 is page-speed and usage beacons (time to first verdict, page opens, card expansions, searches with no result; no IPs, no search text). Keep it for v1, or drop it too? The Privacy page currently says "no analytics".
-- **Methods and Privacy text** (`content/methods.md`, `content/privacy.md`) are drafts written from the product spec; production deploys refuse them until you approve. The Privacy page states what is true today (no analytics, no stored IPs).
+- **Methods and Privacy text** (`content/methods.md`, `content/privacy.md`) are drafts written from the product spec; production deploys refuse them until you approve. The Privacy page states what is true today; it gains a measurement line when M8 lands.
 
 - **Art batch 1:** paste the 13 prompts in `art/requests/batch-1.md` into one ChatGPT conversation (square, transparent background) and save each as `art/masters/<asset id>.png`.
 - **Preview deploy** for the M3 phone review, whenever you want it.
