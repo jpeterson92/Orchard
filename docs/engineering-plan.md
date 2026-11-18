@@ -186,7 +186,7 @@ Each milestone takes 1–3 sessions and ends with something Jared can review. Th
 | Evidence curves (P12) | Vitest table cases per rule; fast-check invariants (the combined value lies between the covering curves' minimum and maximum; an uncovered window has no proposal; adding a claim that agrees with the proposal never lowers its confidence; `basedOn` sources count once) | Thorough |
 | Content and data | `data:build` validation, plus one broken-input fixture per check | Thorough |
 | UI components | Typecheck, plus a test only where a component carries a product rule | Light |
-| End to end | Playwright smoke in Chromium: Today renders, open an item, offline after the first visit, axe finds no violations. WebKit added at M9 | A handful of tests |
+| End to end | Playwright smoke in Chromium: Today renders, open an item, offline after the first visit, security headers on static and API responses, and every screen (Today with a card open, an item page with a variety picked, Browse, a category, Calendar, Methods, Privacy, search) passes axe in light and dark mode with no console or CSP errors. WebKit added at M9 | A handful of tests |
 | Visual | Screenshots at 375 px and one wide width, shown to Jared | No baseline suites |
 
 Run the tests for what you touched while working. Run the full suite before pushing. CI runs everything on each push.
@@ -197,6 +197,7 @@ Run the tests for what you touched while working. Run the full suite before push
 - **Data refresh:** on demand, usually with the yearly content review. `npm run usda:derive` rewrites the typical-origins and supply-index CSVs from the last 3 years; Jared reviews the diff before it is committed and deployed. Items without usable USDA data use cited editorial origins and a `null` supply index. Seasonal evidence refreshes the same way: `evidence:fetch` and `evidence:check`, reviewed like content.
 - **Stale data:** each build records its supply snapshot's date range. When the snapshot is more than 15 months old (a missed yearly refresh), freshness lowers confidence and the item page says so; the app never pretends to be current.
 - **Privacy:** no accounts, cookies or location. The Worker never logs URLs, query strings, bodies or IPs, and observability and invocation logs are off in `wrangler.jsonc`. Nothing the Worker stores holds a time of day, an IP, an item, search text or anything about where the shopper is.
+- **Security headers:** `public/_headers` gives every static response a CSP that allows only this origin (no inline scripts or styles, so markup never uses style attributes), plus nosniff, no-referrer, a Permissions-Policy denying camera, microphone and location, same-origin COOP, frame denial and HSTS. The Worker sets its own on `/api` (CSP `default-src 'none'`, `no-store`).
 - **Rollback:** redeploy the previous Worker version (`wrangler rollback`). Data rolls back with it.
 
 ## 8. Deliberately not built

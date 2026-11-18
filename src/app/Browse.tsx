@@ -72,9 +72,11 @@ export function BrowseCategory() {
     <div className={page}>
       <Masthead date={date} />
       <PreviewNotice data={data} />
-      <Link to="/browse" className={`${backLink} mt-1`}>
-        <span aria-hidden>←</span> Browse
-      </Link>
+      <nav aria-label="Back">
+        <Link to="/browse" className={`${backLink} mt-1`}>
+          <span aria-hidden>←</span> Browse
+        </Link>
+      </nav>
       <main>
         {rows && name ? (
           <>

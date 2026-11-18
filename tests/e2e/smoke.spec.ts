@@ -75,7 +75,10 @@ test("Calendar: a month at a time on phone, kept on return; a heatmap table on w
   await expect(month).not.toHaveText(shown ?? "");
   const next = await month.textContent();
   await page.getByRole("link", { name: /^Strawberries/ }).click();
-  await page.getByRole("link", { name: "Calendar", exact: true }).first().click();
+  await expect(page.getByRole("heading", { level: 1, name: "Strawberries" })).toBeVisible();
+  await page.getByRole("navigation", { name: "Back" }).getByRole("link", { name: "Calendar" }).click();
+  // The month locator is strict, so wait for the Calendar first: the item page has several h2s.
+  await expect(page.getByRole("heading", { level: 1, name: "Typical seasonal outlook" })).toBeVisible();
   await expect(month).toHaveText(next ?? "");
   expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
 
@@ -160,3 +163,60 @@ test("a page load sends one beacon with its metrics and time to first verdict, a
   for (const e of body.m) expect(Object.keys(e).sort()).toEqual(["metric", "value"]);
   expect((await request.response())?.status()).toBe(204);
 });
+
+test("static responses carry the CSP and security headers", async ({ request }) => {
+  const html = await (await request.get("/")).text();
+  const asset = html.match(/src="(\/assets\/[^"]+\.js)"/)?.[1] ?? "";
+  // A prerendered page, the SPA fallback for a page the build didn't write, a hashed asset and the service worker.
+  for (const url of ["/", "/items/apples", "/items/not-an-item", asset, "/sw.js"]) {
+    const headers = (await request.get(url)).headers();
+    expect(headers["content-security-policy"], url).toMatch(
+      /^default-src 'self'; script-src 'self'; style-src 'self';/,
+    );
+    expect(headers["content-security-policy"], url).toContain("frame-ancestors 'none'");
+    expect(headers["x-content-type-options"], url).toBe("nosniff");
+    expect(headers["referrer-policy"], url).toBe("no-referrer");
+  }
+  expect((await request.get("/api/health")).headers()["content-security-policy"]).toBe(
+    "default-src 'none'; frame-ancestors 'none'",
+  );
+});
+
+for (const colorScheme of ["light", "dark"] as const) {
+  test(`every screen passes axe in ${colorScheme} mode, with no CSP or console errors`, async ({ page }) => {
+    const errors: string[] = [];
+    page.on("console", (msg) => msg.type() === "error" && errors.push(msg.text()));
+    page.on("pageerror", (err) => errors.push(err.message));
+    await page.emulateMedia({ colorScheme });
+    const check = async (where: string) => {
+      const { violations } = await new AxeBuilder({ page }).analyze();
+      expect(
+        violations.map((v) => `${where}: ${v.id} ${v.nodes.map((n) => n.target.join(" ")).join(", ")}`),
+      ).toEqual([]);
+    };
+
+    await page.goto("/");
+    await expect(page.getByRole("status").filter({ hasText: /offline/i })).toBeVisible();
+    await page.locator("button[aria-expanded]").first().click();
+    await check("Today, a card open");
+    for (const [url, heading] of [
+      ["/items/apples", "Apples"],
+      ["/browse", "Browse"],
+      ["/browse/citrus", "Citrus"],
+      ["/calendar", "Typical seasonal outlook"],
+      ["/methods", /^How Orchard rates produce/],
+      ["/privacy", /Privacy/],
+    ] as const) {
+      await page.goto(url);
+      await expect(page.getByRole("heading", { level: 1, name: heading })).toBeVisible();
+      await check(url);
+    }
+    await page.goto("/items/apples");
+    await page.locator("#label select").selectOption("v:honeycrisp");
+    await check("/items/apples, a variety picked");
+    await page.getByRole("button", { name: "Search produce" }).last().click();
+    await page.getByRole("dialog", { name: "Search produce" }).getByRole("searchbox").fill("pear");
+    await check("search");
+    expect(errors).toEqual([]);
+  });
+}

@@ -4,7 +4,7 @@
 import { readdirSync, readFileSync } from "node:fs";
 import { DatabaseSync, type SQLInputValue } from "node:sqlite";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { app, type Bindings } from "./index";
+import { API_HEADERS, app, type Bindings } from "./index";
 
 const IP = "203.0.113.77";
 const IPV6 = "2001:db8::7";
@@ -182,5 +182,27 @@ describe("POST /api/measure", () => {
     const res = await post(env, load);
     expect(res.status).toBe(500);
     expect(logged).toEqual([]);
+  });
+});
+
+describe("API security headers", () => {
+  const fails: Bindings = {
+    DB: {
+      prepare: () => ({ bind: () => ({}) }),
+      batch: async () => {
+        throw new Error("D1 down");
+      },
+    },
+  };
+  it.each([
+    ["a success", () => app.request("/api/health")],
+    ["an accepted beacon", () => post(bindings().env, load)],
+    ["a refused beacon", () => post(bindings().env, "not json")],
+    ["an oversized beacon", () => post(bindings().env, "x".repeat(1100))],
+    ["a storage failure", () => post(fails, load)],
+    ["an unknown route", () => app.request("/api/nope")],
+  ])("are on %s", async (_, send) => {
+    const res = await send();
+    for (const [name, value] of Object.entries(API_HEADERS)) expect(res.headers.get(name)).toBe(value);
   });
 });

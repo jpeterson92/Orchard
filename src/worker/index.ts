@@ -22,6 +22,22 @@ const ADD = `INSERT INTO events (day, event, n) VALUES (?, ?, ?)
 
 export const app = new Hono<{ Bindings: Bindings }>();
 
+// The API only answers with JSON or nothing, so its CSP allows nothing. Static responses get theirs from
+// public/_headers.
+export const API_HEADERS = {
+  "Content-Security-Policy": "default-src 'none'; frame-ancestors 'none'",
+  "X-Content-Type-Options": "nosniff",
+  "Referrer-Policy": "no-referrer",
+  "Cross-Origin-Resource-Policy": "same-origin",
+  "Strict-Transport-Security": "max-age=31536000",
+  "Cache-Control": "no-store",
+} as const;
+
+app.use(async (c, next) => {
+  await next();
+  for (const [name, value] of Object.entries(API_HEADERS)) c.res.headers.set(name, value);
+});
+
 // Hono's default handler logs the error; ours answers without logging anything.
 app.onError((_, c) => c.json({ error: "server" }, 500));
 

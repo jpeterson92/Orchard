@@ -55,7 +55,9 @@ export function Today() {
                     aria-pressed={filter === f.id}
                     onClick={() => setFilter(f.id)}
                     className={`min-h-11 rounded-full border px-4 text-sm font-medium whitespace-nowrap focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent ${
-                      filter === f.id ? "border-accent bg-accent text-white" : "border-olive text-ink"
+                      filter === f.id
+                        ? "border-accent bg-accent text-white dark:text-canvas"
+                        : "border-olive text-ink"
                     }`}
                   >
                     {f.label}
@@ -174,12 +176,12 @@ function Row({ card }: { card: Card }) {
           ▾
         </span>
       </button>
-      {/* Expands in place over 200 ms (none with reduced motion); inert while closed. */}
+      {/* Expands in place over 200 ms (none with reduced motion); inert while closed. Classes rather than a style
+          attribute, so the CSP needs no inline styles. */}
       <div
         id={panel}
         inert={!open}
-        style={{ gridTemplateRows: open ? "1fr" : "0fr" }}
-        className="grid transition-[grid-template-rows] duration-200 ease-out motion-reduce:transition-none"
+        className={`grid transition-[grid-template-rows] duration-200 ease-out motion-reduce:transition-none ${open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}
       >
         <div className="overflow-hidden">
           <div className="mt-3 ml-22 space-y-1 border-l-2 border-olive/70 pl-3">

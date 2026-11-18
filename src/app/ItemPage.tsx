@@ -36,9 +36,11 @@ export function ItemPage() {
     <div className="mx-auto max-w-2xl px-4 pb-12 sm:px-6 md:max-w-5xl">
       <Masthead date={date} shareTitle={view ? `${view.name} · Orchard` : undefined} />
       <PreviewNotice data={data} />
-      <Link to={back.to} className={`${linkClass} mt-1`}>
-        <span aria-hidden>←</span> {back.label}
-      </Link>
+      <nav aria-label="Back">
+        <Link to={back.to} className={`${linkClass} mt-1`}>
+          <span aria-hidden>←</span> {back.label}
+        </Link>
+      </nav>
       {view ? (
         <div className="lg:grid lg:grid-cols-[minmax(0,40rem)_1fr] lg:gap-12">
           <Item view={view} mode={date.mode} />
