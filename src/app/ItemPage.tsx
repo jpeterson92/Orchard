@@ -12,6 +12,7 @@ import { type Mode, useAppDate } from "./date";
 import { StatusLabels, VerdictMark } from "./icons";
 import { type ItemView, itemView, type LabelOption, labelResult, type VarietyRow } from "./item-view";
 import { Masthead, PreviewNotice } from "./Masthead";
+import { useVerdictVisible } from "./measure";
 import { MonthAxis, SeasonStrip, StripLegend } from "./SeasonStrip";
 import { atDate, plainDate } from "./today-view";
 
@@ -26,6 +27,7 @@ export function ItemPage() {
   const { id = "" } = useParams();
   const date = useAppDate(data);
   const view = itemView(data, id, plainDate(date.iso), date.mode);
+  useVerdictVisible(data.builtOn, date.today, view !== null);
   // Back to the Browse list it was opened from; Today otherwise (a shared link, search, Today itself).
   const back = (useLocation().state as { back?: BackTo } | null)?.back ?? { to: "/", label: "Today" };
 

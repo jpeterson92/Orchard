@@ -132,3 +132,26 @@ test("search from the pinned field: a misspelled variety opens its item at that 
   await dialog.getByRole("searchbox").fill("rhubarb");
   await expect(dialog.getByText("We don't cover this yet", { exact: true }).first()).toBeVisible();
 });
+
+test("a page load sends one beacon with its metrics and time to first verdict, and the Worker counts it", async ({
+  page,
+}) => {
+  await page.goto("/");
+  // The readiness line appears once the app has hydrated and measurement has started.
+  await expect(page.getByRole("status").filter({ hasText: /offline/i })).toBeVisible();
+  // A first key press settles LCP (web-vitals finalizes it in an idle callback after trusted input); then leaving
+  // the app hides the page, which sends the beacon. A synthetic hide alone isn't trusted, so it can't settle LCP.
+  await page.keyboard.press("Shift");
+  await page.evaluate("new Promise((done) => requestIdleCallback(done, { timeout: 2000 }))");
+  const beacon = page.waitForRequest("**/api/measure");
+  await page.evaluate(`
+    Object.defineProperty(document, "visibilityState", { value: "hidden", configurable: true });
+    document.dispatchEvent(new Event("visibilitychange", { bubbles: true }));
+  `);
+  const request = await beacon;
+  const body = JSON.parse(request.postData() ?? "{}") as { m: { metric: string; value: number }[] };
+  expect(Object.keys(body)).toEqual(["m"]);
+  expect(body.m.map((e) => e.metric)).toEqual(expect.arrayContaining(["lcp", "cls", "verdict"]));
+  for (const e of body.m) expect(Object.keys(e).sort()).toEqual(["metric", "value"]);
+  expect((await request.response())?.status()).toBe(204);
+});

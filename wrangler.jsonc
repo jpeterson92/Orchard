@@ -11,6 +11,9 @@
     "html_handling": "drop-trailing-slash",
     "run_worker_first": ["/api/*"]
   },
+  // Measurement counts (M8, migrations/). Wrangler creates the database on Jared's account at the first deploy that
+  // needs it; `npm run db:migrate` then applies the migrations there.
+  "d1_databases": [{ "binding": "DB", "database_name": "orchard", "migrations_dir": "migrations" }],
   // Privacy (engineering plan §7): no invocation logs, no Workers Logs, no traces.
   "observability": { "enabled": false, "logs": { "enabled": false, "invocation_logs": false } }
 }

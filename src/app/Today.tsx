@@ -8,6 +8,7 @@ import { Art } from "./Art";
 import { useAppDate } from "./date";
 import { StatusLabels, VerdictMark } from "./icons";
 import { Masthead, PreviewNotice } from "./Masthead";
+import { useVerdictVisible } from "./measure";
 import { readinessText, useReadiness } from "./offline";
 import { type Card, plainDate, todayView } from "./today-view";
 
@@ -22,6 +23,7 @@ const FILTERS: { id: FilterGroup | "all"; label: string }[] = [
 
 export function Today() {
   const date = useAppDate(data);
+  useVerdictVisible(data.builtOn, date.today);
   const [filter, setFilter] = useState<FilterGroup | "all">("all");
   const view = todayView(data, plainDate(date.iso), date.mode);
   const good = view.good.filter((c) => filter === "all" || c.group === filter);

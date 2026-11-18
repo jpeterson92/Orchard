@@ -11,7 +11,7 @@ content/ + data/  ──(npm run data:build: validate, derive)──>  src/gener
                                                                      │ bundled
 browser ── first visit ──> Cloudflare static assets (prerendered pages, app, data)
         <── service worker precaches app + all data ──  every covered item works offline
-        ── /api/* (later): measurement beacons ──> Worker (Hono)
+        ── /api/measure: one beacon per page load ──> Worker (Hono) ──> D1 (daily counts)
 ```
 
 - **The verdict engine runs on the phone.** It is a pure TypeScript module fed by the bundled inputs: quality windows, typical origins, supply index and rules. The inputs are tiny (a few thousand ratings), so this costs microseconds. Running it on the phone gives label-based advice and planning dates for free, and the same code runs in tests and scripts. One implementation, used everywhere.
@@ -30,6 +30,7 @@ Mature, widely used tools only. At scaffold time, take the newest release whose 
 | Styling | Tailwind CSS 4 | Design-system tokens as CSS variables in `@theme`; native `<dialog>` and hand-written disclosure buttons for simple cases. Adopt Base UI (headless and accessible) at the first complex control (popover, select, tabs, sortable table); never hand-build those |
 | Offline | `workbox-build` 7.4.1 (`generateSW`, dev only) | `scripts/sw-build.ts` runs after the prerender so the precache holds every page; precache everything; updates activate on the next launch. Pages are served at clean URLs (`html_handling: drop-trailing-slash`) |
 | Worker | `@cloudflare/vite-plugin`, Wrangler, Hono (for `/api` routes) | Static assets with SPA fallback |
+| Measurement | web-vitals 6.2.3; D1 with plain SQL migrations in `migrations/` (`npm run db:migrate`, `db:migrate:local`) | The phone sends each page load's final LCP, INP, CLS and time to first verdict once, in one `sendBeacon` when the page is first hidden (production builds only). The Worker adds one to a count per UTC day, metric and value bucket (100 ms steps, CLS 0.01); `npm run measure:report` reads the 28-day p75 against the targets. Worker tests run the real migrations in `node:sqlite` |
 | Validation and types | zod 4.6.7, yaml 2.9.1 | One schema per content and data file; types come from `z.infer`. Content and data files are YAML, parsed by `yaml` in `data:build` only. No code generation |
 | Search | MiniSearch 7.2.0 | Prefix and fuzzy matching over item names, synonyms, misspellings and variety names, built on the phone at first query. The overlay is a native `<dialog>` of result links (no combobox) |
 | Page text | marked 18.1.3 (dev only) | `data:build` renders `content/methods.md` and `content/privacy.md` to HTML for the bundle. Front matter gives `status: draft` or `reviewed` (production refuses drafts); `{{name}}` fills a rule value from `rules.yaml` |
@@ -74,7 +75,8 @@ scripts/                     prerender.ts, data-build.ts, content-report.ts, rev
 src/
   shared/                    zod schemas, verdict engine, evidence curves, window math. Imports nothing from app/ or worker/
   app/                       React app: routes, components, styles, service worker registration
-  worker/                    Cloudflare Worker: /api/* (health check; measurement beacons in M8)
+  worker/                    Cloudflare Worker: /api/health, /api/measure
+migrations/                  D1 schema, plain SQL
   generated/                 data-build output (gitignored)
 tests/e2e/                   Playwright smoke tests
 docs/                        product spec, engineering plan, design, data findings
@@ -155,7 +157,7 @@ Each milestone takes 1–3 sessions and ends with something Jared can review. Th
 | M5 | **Date and label advice.** Planning date with the typical-outlook banner; "Share for this date"; label-based advice (origin or variety, plus PLU code if licensed); recompute at midnight and on `visibilitychange` | Unit tests for window math; e2e for a pinned date | — |
 | M6 | **Browse, search, Calendar, Methods.** Categories; MiniSearch with synonyms and misspellings; no-match flow; Calendar as a month list on phone and a heatmap with a table equivalent on wider screens; Methods and privacy pages; headless component library adopted here or in M5, whichever first needs a complex control | Every item reachable in ≤ 3 taps or one search; "scallion" and "corriander" find the right items | — |
 | M7 | **Variety guides:** apples, mandarins & oranges, pears: traits, finder, cards on phone, a sortable table on wider screens, variety pages | Jared reviews the 3 guides | Variety content |
-| M8 | **Measurement.** `web-vitals` + `verdict-visible` beacon and the diagnostic events (product spec §2); privacy-safe logging; the event store is chosen when this is built | A test proves no IP reaches logs or storage; time to first verdict is measurable at the 75th percentile | — |
+| M8 | **Measurement.** `web-vitals` + `verdict-visible` beacon and the diagnostic events (product spec §2); privacy-safe logging; daily counts in D1 | A test proves no IP reaches logs or storage; time to first verdict is measurable at the 75th percentile | — |
 | M9 | **Launch readiness.** All launch content reviewed, illustrations, CSP and security headers, axe plus a quick VoiceOver/TalkBack pass, a performance check on a mid-range Android, offline check on a real iPhone, production domain | Jared decides launch once Gate 1 (product spec §12) is met | Domain, devices, the independent reviewer |
 
 **Content track.** Claude drafts in batches of about 10 items (5 in M2), all marked `draft`. Research is mostly programmatic, so AI effort goes to judgment, not gathering:
