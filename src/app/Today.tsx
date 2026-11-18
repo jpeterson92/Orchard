@@ -8,6 +8,7 @@ import { Art } from "./Art";
 import { useToday } from "./date";
 import { StatusLabels, VerdictMark } from "./icons";
 import { Masthead, PreviewNotice } from "./Masthead";
+import { readinessText, useReadiness } from "./offline";
 import { type Card, plainDate, todayView } from "./today-view";
 
 const data = appJson as unknown as AppData;
@@ -31,6 +32,7 @@ export function Today() {
       <PreviewNotice data={data} />
       <main>
         <h1 className="sr-only">Today</h1>
+        <OfflineStatus iso={iso} />
 
         {view.best.length > 0 && (
           <Section title="Best right now">
@@ -71,6 +73,16 @@ export function Today() {
         {view.limited.length > 0 && <Collapsed title="Limited evidence" cards={view.limited} />}
       </main>
     </div>
+  );
+}
+
+/** Where the offline copy stands. It downloads by itself after the first visit; this line only reports it. */
+function OfflineStatus({ iso }: { iso: string }) {
+  const text = readinessText(useReadiness(data, iso), data);
+  return (
+    <p role="status" className="mt-2 min-h-5 text-sm text-ink-secondary">
+      {text}
+    </p>
   );
 }
 

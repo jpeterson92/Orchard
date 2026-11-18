@@ -97,7 +97,7 @@ Calculated solid-color contrast against the canvas is approximately 13.82:1 for 
 
 Use a very light warm canvas. Paper grain is optional and should be almost imperceptible behind reading text. One reusable texture can provide material character; separate baked paper backgrounds in every fruit image cannot.
 
-Disable texture in in-store mode. Do not add artificial stains, torn edges, dark vignettes, or noisy patches.
+Keep any texture faint enough to read through under bright store lighting. Do not add artificial stains, torn edges, dark vignettes, or noisy patches.
 
 ### Initial dark-mode values
 
@@ -117,7 +117,7 @@ Dark mode is part of the product requirements. A proposed mode study exists, but
 | Skip icon | #D8AE8E |
 | Limited evidence icon | #C1B5A5 |
 
-Recheck foregrounds on filled controls in dark mode. Do not blindly reuse white text on a light accent. Inspect transparent artwork for pale halos. In-store mode uses the high-contrast light treatment.
+Recheck foregrounds on filled controls in dark mode. Do not blindly reuse white text on a light accent. Inspect transparent artwork for pale halos.
 
 ## 4. Typography and spacing
 
@@ -202,9 +202,9 @@ Use the product’s proposed breakpoints as the initial baseline: phone below 60
 
 Keep reading text to a comfortable measure, approximately 60–70 characters where applicable. From 768 px, Today's rows run in two columns inside a 1024 px page. The item page stays one reading column (at most 40 rem) in product order; from 1024 px its artwork moves to a column of its own on the right and stays in view. Below the verdict, the confidence level is visible and "About this verdict" opens what it rests on: why confidence isn't higher, the evidence basis and the two dates. Desktop calendar and comparison layouts may be wider. A two-pane desktop study is available; exact responsive arrangements still require implementation and review.
 
-### In-store mode
+### In the store
 
-Use at least 18 px body text, stronger functional contrast, no paper texture, and no unnecessary motion. Retain the serif/watercolor identity without making decorative artwork larger. Keep planning content secondary as the product specifies. Reflect offline readiness and data age clearly without a dominant decorative banner.
+The phone view is the in-store view; there is no separate mode. Today reflects offline readiness and data age in one quiet secondary line under the masthead, never a banner.
 
 ## 6. Component rules and states
 
@@ -296,7 +296,7 @@ The product target is WCAG 2.2 AA, with its chosen minimum 44 × 44 CSS px touch
 - Respect reduced motion; ordinary expansion can use roughly 150–200 ms when permitted.
 - Keep essential information available without animation, color perception, hover, or a perfect network connection.
 
-Device-size screenshots do not prove actual touch use, screen-reader behavior, installed-app operation, or wake-lock behavior.
+Device-size screenshots do not prove actual touch use, screen-reader behavior, or installed-app operation.
 
 ## 8. Coding-agent working agreement
 

@@ -236,19 +236,15 @@ v1 uses one information hierarchy on every device. Layouts adapt to the screen w
 
 **Candidates for later, each added only if testing or usage shows demand:** a two-pane tablet layout, a desktop planning workspace, a large-type kitchen view for storage and ripening, and a printable one-page sheet for a month.
 
-### In-store mode (phone)
+### In the store (phone)
 
-A single toggle on Today, remembered on the device. Turning it on:
+There is no mode to switch on. The first visit shows Today at once; once the page has loaded, the offline copy of every covered item downloads in the background, with nothing for the shopper to do (section 10). A quiet line under Today's masthead says where it stands, so the shopper knows it's safe to lose signal:
 
-- **Keeps the screen awake** while the page is open, so it stays readable on the cart. The Screen Wake Lock API has worked in Chrome, Safari and Firefox since May 2024 ([source](https://web.dev/blog/screen-wake-lock-supported-in-all-browsers)). The lock is released when the user leaves the tab.
-- **Prepares the offline copy and shows its status** under the toggle, so the shopper knows when it is safe to lose signal:
-  - "Preparing for offline… 12 of 30 items"
-  - "Ready offline · 30 items · supply data through Oct 2026"
-  - "Offline copy is from Nov 13; reconnect to refresh" (when it goes stale)
-- **Enlarges type** to at least 18 px for body text and raises contrast, for reading at arm's length under bright store lighting.
-- **Removes anything that interrupts:** no pop-ups, prompts or animation, and no layout that shifts after load.
+- "Preparing for offline… 12 of 30 items"
+- "Ready offline · 30 items · supply data through Oct 2026"
+- "Offline copy is from Nov 13; reconnect to refresh" (when the phone is offline and the copy is more than 7 days old)
 
-Without the toggle, the phone view behaves the same except that the screen sleeps normally. Every covered item is still available offline (section 10).
+The phone view is the in-store view: no pop-ups, prompts or animation beyond expand and collapse, and no layout that shifts after load. The screen sleeps normally.
 
 ## 7. Verdict logic
 
@@ -406,14 +402,14 @@ Visual details are governed by the design system (`docs/design/design-system.md`
 
 | Element | Direction |
 | --- | --- |
-| Canvas | Warm off-white in light mode, deep warm gray in dark mode, following the device setting. In-store mode forces high-contrast light. |
-| Type | A humanist sans for interface and body text; an editorial serif for page titles and variety names. Body at least 16 px (18 px in in-store mode). Fixed-width digits for days and prices. |
+| Canvas | Warm off-white in light mode, deep warm gray in dark mode, following the device setting. |
+| Type | A humanist sans for interface and body text; an editorial serif for page titles and variety names. Body at least 16 px. Fixed-width digits for days and prices. |
 | Color | Neutral interface; the produce illustrations supply the color. Verdicts have their own reserved palette. |
 | Verdict marks | Peak: filled star + "Peak" · Good: check + "Good" · Skip: clock + "Skip for now" · Limited evidence: information symbol + "Limited evidence", in a neutral tone so it never reads as a warning about the produce. The palette is checked under color-blindness simulation; red vs green is never the only difference. |
 | Markers | Small text tags under the verdict: "Last call", "Reliable year-round", "Good value" (v1.1), and an outlined "Advisory" tag that opens its scope and expiry. |
 | Imagery | One consistent illustration style: one drawing per item (all 30 at first release), plus one per rated variety (about 30; until its own is approved, a variety uses its item's). Illustrations are decorative, not identification aids. For varieties, the label or PLU sticker is authoritative. |
 | Layout | 8 px spacing grid; generous card padding; at most 2 levels of nesting on phone. |
-| Motion | 150–250 ms, only for expand and collapse. Honors the device's reduced-motion setting. None in in-store mode. |
+| Motion | 150–250 ms, only for expand and collapse. Honors the device's reduced-motion setting. |
 | Charts | The typical-outlook strip and heatmap use the verdict palette with a single ink-colored "today" marker, and each has a text equivalent. |
 
 **Accessibility**
@@ -429,13 +425,13 @@ The site has to feel instant on a phone with one bar of signal, be private by de
 | Area | Requirement |
 | --- | --- |
 | Speed | Pass Google's "good" Core Web Vitals on mobile at the 75th percentile: largest content painted ≤ 2.5 s, response to input ≤ 200 ms, layout shift ≤ 0.1 ([source](https://web.dev/articles/vitals)). Today must show its first verdicts within that 2.5 s on a mid-range phone over 4G. |
-| Offline | After the first visit, every covered item works with no signal. In-store mode shows the offline copy's readiness status (section 6). |
+| Offline | After the first visit, every covered item works with no signal; the copy downloads by itself in the background. Today shows its readiness status (section 6). |
 | Freshness | Supply data is reference data, refreshed from the last 3 years of USDA reports on demand (about once a year) and reviewed like content; unusual seasons are handled by advisories. The value signal is weekly (v1.1). Quality windows, seasonal evidence and written content reviewed at least once a year. Advisories always carry an expiry. |
 | Honesty | Every verdict states its evidence basis and confidence. "Data through" and "reviewed" dates are kept distinct and never imply someone checked the produce. Future dates are always labeled as the typical outlook. Missing evidence shows as Limited evidence, never as a default verdict. |
 | Privacy | No account needed. The app never asks for, infers or stores the shopper's location. Analytics are aggregate, with no ad trackers and no selling of data. |
 | Accessibility | WCAG 2.2 AA throughout (details in section 9). |
 | Trust | Every verdict traces to its inputs on the Methods page. Audit results are published. Any advisory or editorial override carries a visible note. |
-| Reach | The last 2 versions of Safari on iOS, Chrome on Android, and desktop Chrome, Safari, Firefox and Edge. Can be added to the home screen. In-store mode must be tested in home-screen mode on iOS, not just in Safari. |
+| Reach | The last 2 versions of Safari on iOS, Chrome on Android, and desktop Chrome, Safari, Firefox and Edge. Can be added to the home screen. Offline use must be tested in home-screen mode on iOS, not just in Safari. |
 | Sharing | Every view has a stable link. Links follow today unless they were explicitly shared for a fixed date. |
 
 ## 11. Competitive landscape
@@ -453,7 +449,7 @@ The closest existing product already does "what's in season near me." The openin
 
 1. **Supermarket-first verdicts on eating quality:** based on where supermarket supply actually comes from, with advice that adapts to the origin on the label.
 2. **Variety depth where it changes the decision:** verdicts per variety where varieties peak at different times, 3 full guides at launch, and type notes wherever the type changes how to pick or ripen.
-3. **In-store mode:** screen stays awake, shows when it's ready offline, readable at arm's length.
+3. **Works in the store with no setup:** saves itself for offline after the first visit and shows when it's ready.
 4. **Honest evidence:** reasons, evidence basis and data dates on every verdict, published audits, and "Limited evidence" instead of a guess.
 
 ## 12. Release plan
@@ -524,6 +520,5 @@ The biggest risk is a confident verdict that doesn't match the bin in front of t
 - [Seasonal Food Guide, App Store listing](https://apps.apple.com/us/app/-/id1235820625)
 - FoodPrint, [Seasonal Food Guide](https://foodprint.org/?p=2116)
 - Foodwise, [Fruit & Nuts Seasonality Chart](https://foodwise.org/wp-content/uploads/2025/07/Foodwise-Fruit-Seasonality-Chart.pdf)
-- web.dev, [The Screen Wake Lock API is now supported in all browsers](https://web.dev/blog/screen-wake-lock-supported-in-all-browsers)
 - web.dev, [Web Vitals](https://web.dev/articles/vitals)
 - W3C, [What's New in WCAG 2.2](https://www.w3.org/WAI/standards-guidelines/wcag/new-in-22/)

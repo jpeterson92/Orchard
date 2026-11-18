@@ -27,6 +27,10 @@ test("after one visit, an item never visited opens offline", async ({ page, cont
   await page.goto("/");
   // The service worker activates once its precache (every page, the app and its data) is complete.
   await page.evaluate("navigator.serviceWorker.ready.then(() => true)");
+  // With nothing to switch on, Today says when the copy is complete.
+  await expect(page.getByRole("status")).toHaveText(
+    /^Ready offline · \d+ items · supply data through \w{3} \d{4}$/,
+  );
   await context.setOffline(true);
   await page.goto("/items/strawberries");
   await expect(page.getByRole("heading", { level: 1, name: "Strawberries" })).toBeVisible();
