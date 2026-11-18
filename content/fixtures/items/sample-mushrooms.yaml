@@ -1,0 +1,37 @@
+# Synthetic fixture: Limited evidence: the top typical origin is unrated.
+id: sample-mushrooms
+name: Sample mushrooms
+category: mushrooms
+purchaseRank: 907
+alwaysGood: false
+shipsWell: { value: true, sources: [sample-source-a] }
+peakWorthSeeking: { value: false, sources: [sample-source-a] }
+storesWell: { value: false, sources: [sample-source-a] }
+evidenceBasis: assessment-only
+cardLine: Dry, firm caps with no dark, wet spots.
+pick:
+  - Sample cue one
+  - Sample cue two
+  - Sample cue three
+avoid:
+  - Sample cue to avoid
+store:
+  temperature: cold
+  ethylene: neither
+  life: { min: 4, max: 7, unit: days }
+  text: Sample storage advice for layout checks.
+  sources: [sample-source-a]
+prep: Sample prep advice for layout checks.
+origins:
+  - origin: us-ca
+    windows:
+      - { from: jan-1, to: dec-2, rating: prime }
+typicalOrigins:
+  - from: jan
+    to: dec
+    origins:
+      - { origin: us-pa, major: true }
+      - { origin: us-ca, major: false }
+    sources: [sample-source-a]
+status: draft
+synthetic: true

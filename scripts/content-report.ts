@@ -23,6 +23,7 @@ import {
 } from "./review";
 
 const data = JSON.parse(readFileSync("src/generated/data.json", "utf8")) as Dataset;
+data.items = data.items.filter((i) => !i.synthetic); // fixtures aren't content to review
 const env = engineEnv(data);
 const year = new Date().getFullYear();
 const sources = new Map(data.sources.map((s) => [s.id, s]));

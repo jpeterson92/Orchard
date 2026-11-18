@@ -1,0 +1,20 @@
+item: sample-tubers
+status: draft
+synthetic: true
+claims:
+  - source: sample-source-a
+    origin: us-id
+    windows:
+      - { from: jan-1, to: nov-2, rating: poor }
+      - { from: dec-1, to: dec-2, rating: fair }
+    specificity: half-month
+    directness: eating-quality
+    paraphrase: Synthetic claim matching the fixture's ratings.
+  - source: sample-source-b
+    origin: us-id
+    windows:
+      - { from: jan-1, to: nov-2, rating: poor }
+      - { from: dec-1, to: dec-2, rating: fair }
+    specificity: half-month
+    directness: eating-quality
+    paraphrase: Synthetic claim matching the fixture's ratings.

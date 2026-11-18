@@ -1,0 +1,38 @@
+# Synthetic fixture: Skip except June, so it usually shows when it improves.
+id: sample-roots
+name: Sample roots
+category: roots
+purchaseRank: 905
+alwaysGood: false
+shipsWell: { value: true, sources: [sample-source-a] }
+peakWorthSeeking: { value: false, sources: [sample-source-a] }
+storesWell: { value: false, sources: [sample-source-a] }
+evidenceBasis: assessment-only
+cardLine: Firm and smooth, with no soft spots or sprouts.
+pick:
+  - Sample cue one
+  - Sample cue two
+  - Sample cue three
+avoid:
+  - Sample cue to avoid
+store:
+  temperature: cold
+  ethylene: neither
+  life: { min: 2, max: 4, unit: weeks }
+  text: Sample storage advice for layout checks.
+  sources: [sample-source-a]
+prep: Sample prep advice for layout checks.
+origins:
+  - origin: us-co
+    windows:
+      - { from: jan-1, to: may-2, rating: poor }
+      - { from: jun-1, to: jun-2, rating: fair }
+      - { from: jul-1, to: dec-2, rating: poor }
+typicalOrigins:
+  - from: jan
+    to: dec
+    origins:
+      - { origin: us-co, major: true }
+    sources: [sample-source-a]
+status: draft
+synthetic: true

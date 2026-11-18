@@ -22,7 +22,7 @@ export interface AppItem {
   cardLine: string;
   pick: string[];
   avoid: string[];
-  store: { text: string; life: Item["store"]["life"] };
+  store: { text: string; temperature: Item["store"]["temperature"]; life: Item["store"]["life"] };
   ripen: string | null;
   prep: string;
   varieties: AppVariety[];
@@ -52,7 +52,7 @@ export function appData(data: Dataset, builtOn: string): AppData {
       cardLine: item.cardLine,
       pick: item.pick,
       avoid: item.avoid,
-      store: { text: item.store.text, life: item.store.life },
+      store: { text: item.store.text, temperature: item.store.temperature, life: item.store.life },
       ripen: item.ripen?.text ?? null,
       prep: item.prep,
       varieties: item.varieties.map((v) => ({

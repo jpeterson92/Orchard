@@ -21,14 +21,19 @@ const yamlFiles = (dir: string) =>
     .sort()
     .map((f) => ({ file: `${dir}/${f}`, data: yaml(join(dir, f)) }));
 
+// Synthetic fixtures (content/fixtures/: items, evidence and sources, all `synthetic: true`) show every Today
+// section in dev and preview builds; production builds leave them out.
+const fixtures = production ? null : "content/fixtures";
+const list = (file: string): unknown[] => (yaml(file) as unknown[] | null) ?? [];
+
 const raw: RawInputs = {
   rules: yaml("data/rules.yaml"),
-  sources: yaml("data/sources.yaml") ?? [],
+  sources: [...list("data/sources.yaml"), ...(fixtures ? list(`${fixtures}/sources.yaml`) : [])],
   categories: yaml("data/categories.yaml"),
   states: parseCsv("data/us-states.csv", read("data/us-states.csv"), ["state", "name"]),
   advisories: yaml("data/advisories.yaml") ?? [],
-  items: yamlFiles("content/items"),
-  evidence: yamlFiles("content/evidence"),
+  items: [...yamlFiles("content/items"), ...(fixtures ? yamlFiles(`${fixtures}/items`) : [])],
+  evidence: [...yamlFiles("content/evidence"), ...(fixtures ? yamlFiles(`${fixtures}/evidence`) : [])],
   typicalOrigins: csv("data/usda/typical-origins.csv", ["item", "month", "rank", "origin", "major"]),
   supplyIndex: csv("data/usda/supply-index.csv", ["item", "month", "origin", "value", "reason"]),
   varietyCalendar: csv("data/usda/variety-calendar.csv", ["item", "variety", "month", "share", "origins"]),
@@ -48,8 +53,9 @@ const app = appData(dataset, new Date().toISOString().slice(0, 10));
 writeFileSync("src/generated/app.json", JSON.stringify(app));
 
 const reviewed = dataset.items.filter((i) => i.status === "reviewed").length;
+const synthetic = dataset.items.filter((i) => i.synthetic).length;
 console.log(
-  `Items: ${dataset.items.length} (${reviewed} reviewed, ${dataset.items.length - reviewed} draft)`,
+  `Items: ${dataset.items.length} (${reviewed} reviewed, ${dataset.items.length - reviewed} draft, ${synthetic} synthetic)`,
 );
 const claims = dataset.evidence.reduce((n, e) => n + e.claims.length, 0);
 console.log(`Evidence files: ${dataset.evidence.length} (${claims} claims)`);

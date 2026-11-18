@@ -7,9 +7,10 @@
   },
   "scripts": {
     "dev": "tsx scripts/data-build.ts && vite",
-    "build": "tsx scripts/data-build.ts && vite build && vite build --config vite.prerender.config.ts && tsx scripts/prerender.ts",
+    "build": "tsx scripts/data-build.ts && npm run build:app",
+    "build:app": "vite build && vite build --config vite.prerender.config.ts && tsx scripts/prerender.ts",
     "preview": "vite preview",
-    "deploy": "tsx scripts/data-build.ts --production && npm run build && wrangler deploy",
+    "deploy": "tsx scripts/data-build.ts --production && npm run build:app && wrangler deploy",
     "typecheck": "tsx scripts/data-build.ts && tsc -b",
     "lint": "biome check .",
     "format": "biome check --write .",

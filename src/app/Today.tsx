@@ -1,5 +1,6 @@
 // Today (product spec §5, design system §5–6, reference 00-today-anchor.png).
-import { useEffect, useState } from "react";
+import { useEffect, useId, useState } from "react";
+import { Link } from "react-router";
 import appJson from "../generated/app.json";
 import type { AppData, FilterGroup } from "../shared/app-data";
 import type { Verdict } from "../shared/verdict";
@@ -137,25 +138,69 @@ function Rows({ cards }: { cards: Card[] }) {
 }
 
 function Row({ card }: { card: Card }) {
+  const [open, setOpen] = useState(false);
+  const panel = useId();
   return (
-    <li className="flex gap-4 py-5">
-      {/* Art slot: a mostly transparent placeholder until approved art exists (design system §6). */}
-      <div aria-hidden className="size-24 shrink-0 rounded-full bg-surface/70 sm:size-28" />
-      <div className="min-w-0 flex-1">
-        <h3 className="font-editorial text-2xl leading-tight font-bold">{card.name}</h3>
-        {card.varietyLine && <p className="font-editorial text-lg text-ink-secondary">{card.varietyLine}</p>}
-        <p className="mt-1 flex items-center gap-1.5 font-editorial text-lg font-bold text-olive italic">
-          <VerdictIcon verdict={card.verdict} />
-          {VERDICT_WORD[card.verdict]}
-        </p>
-        {card.tags.length > 0 && <p className="text-sm font-medium text-olive">{card.tags.join(" · ")}</p>}
-        <p className="mt-1">{card.reason}</p>
-        {card.origin && <p className="font-editorial text-ink-secondary italic">{card.origin}</p>}
-        {card.draft && (
-          <p className="mt-1 text-sm text-ink-secondary">
-            <span className="rounded border border-rule px-1.5 py-0.5">Draft</span>
-          </p>
-        )}
+    <li className="py-5">
+      {/* The whole collapsed card is the expand button; the Details link sits outside it (design system §6). */}
+      <button
+        type="button"
+        aria-expanded={open}
+        aria-controls={panel}
+        onClick={() => setOpen((o) => !o)}
+        className="flex w-full cursor-pointer gap-4 rounded-sm text-left focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+      >
+        {/* Art slot: a mostly transparent placeholder until approved art exists (design system §6). */}
+        <span aria-hidden className="size-24 shrink-0 rounded-full bg-surface/70 sm:size-28" />
+        <span className="block min-w-0 flex-1">
+          <span className="block font-editorial text-2xl leading-tight font-bold">{card.name}</span>
+          {card.varietyLine && (
+            <span className="block font-editorial text-lg text-ink-secondary">{card.varietyLine}</span>
+          )}
+          <span className="mt-1 flex items-center gap-1.5 font-editorial text-lg font-bold text-olive italic">
+            <VerdictIcon verdict={card.verdict} />
+            {VERDICT_WORD[card.verdict]}
+          </span>
+          {card.tags.length > 0 && (
+            <span className="block text-sm font-medium text-olive">{card.tags.join(" · ")}</span>
+          )}
+          <span className="mt-1 block">{card.reason}</span>
+          {card.origin && (
+            <span className="block font-editorial text-ink-secondary italic">{card.origin}</span>
+          )}
+          {(card.draft || card.synthetic) && (
+            <span className="mt-1 flex gap-2 text-sm text-ink-secondary">
+              {card.draft && <span className="rounded border border-rule px-1.5 py-0.5">Draft</span>}
+              {card.synthetic && (
+                <span className="rounded border border-rule px-1.5 py-0.5">Sample data</span>
+              )}
+            </span>
+          )}
+        </span>
+      </button>
+      {/* Expands in place over 200 ms (none with reduced motion); inert while closed. */}
+      <div
+        id={panel}
+        inert={!open}
+        style={{ gridTemplateRows: open ? "1fr" : "0fr" }}
+        className="grid transition-[grid-template-rows] duration-200 ease-out motion-reduce:transition-none"
+      >
+        <div className="overflow-hidden">
+          <div className="mt-4 space-y-1 border-l-2 border-olive/70 pl-3">
+            <p>
+              <span className="font-semibold">Pick:</span> {card.pick}
+            </p>
+            <p>
+              <span className="font-semibold">Store:</span> {card.storage}
+            </p>
+          </div>
+          <Link
+            to={`/items/${card.id}`}
+            className="mt-1 inline-flex min-h-11 items-center gap-1 font-semibold text-olive underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+          >
+            Details <span aria-hidden>→</span>
+          </Link>
+        </div>
       </div>
     </li>
   );

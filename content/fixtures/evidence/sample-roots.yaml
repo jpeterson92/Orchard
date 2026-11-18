@@ -1,0 +1,22 @@
+item: sample-roots
+status: draft
+synthetic: true
+claims:
+  - source: sample-source-a
+    origin: us-co
+    windows:
+      - { from: jan-1, to: may-2, rating: poor }
+      - { from: jun-1, to: jun-2, rating: fair }
+      - { from: jul-1, to: dec-2, rating: poor }
+    specificity: half-month
+    directness: eating-quality
+    paraphrase: Synthetic claim matching the fixture's ratings.
+  - source: sample-source-b
+    origin: us-co
+    windows:
+      - { from: jan-1, to: may-2, rating: poor }
+      - { from: jun-1, to: jun-2, rating: fair }
+      - { from: jul-1, to: dec-2, rating: poor }
+    specificity: half-month
+    directness: eating-quality
+    paraphrase: Synthetic claim matching the fixture's ratings.

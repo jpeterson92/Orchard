@@ -41,6 +41,8 @@ export const sourceSchema = z.strictObject({
   tier: z.enum(["authoritative", "mainstream"]),
   /** The source this one restates, so the two count once (P12). */
   basedOn: id.optional(),
+  /** An invented source for synthetic fixtures; production builds refuse it. */
+  synthetic: z.literal(true).optional(),
 });
 
 /** `group`: the Today filter chip (product spec §5): Fruit, Vegetables, or Herbs & mushrooms. */

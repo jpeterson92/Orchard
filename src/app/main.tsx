@@ -14,6 +14,6 @@ const app = (
   </StrictMode>
 );
 
-// Prerendered pages arrive with markup to hydrate; the SPA fallback arrives empty.
-if (container.hasChildNodes()) hydrateRoot(container, app);
+// Prerendered pages arrive with markup to hydrate; the SPA fallback and dev arrive with only the placeholder comment.
+if (container.firstElementChild) hydrateRoot(container, app);
 else createRoot(container).render(app);

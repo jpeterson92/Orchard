@@ -23,7 +23,11 @@ export interface Card {
   origin: string | null;
   tags: string[];
   group: FilterGroup;
+  /** Expanded card: the pick cue and the typical storage range (product spec §5 "Card behavior"). */
+  pick: string;
+  storage: string;
   draft: boolean;
+  synthetic: boolean;
 }
 
 export interface TodayView {
@@ -58,6 +62,20 @@ const regionNames = new Intl.DisplayNames(["en"], { type: "region" });
 
 export function originName(origin: string, data: AppData): string {
   return data.stateNames[origin] ?? regionNames.of(origin.toUpperCase()) ?? origin;
+}
+
+const PLACE: Record<AppItem["store"]["temperature"], string> = {
+  cold: "in the fridge",
+  cool: "somewhere cool",
+  room: "at room temperature",
+};
+
+/** "Typically keeps 2–3 days in the fridge." A range, never a guarantee (product spec §8). */
+export function storageLine(store: AppItem["store"]): string {
+  const { min, max, unit } = store.life;
+  const span = min === max ? `${min}` : `${min}–${max}`;
+  const u = max === 1 ? unit.slice(0, -1) : unit;
+  return `Typically keeps ${span} ${u} ${PLACE[store.temperature]}.`;
 }
 
 const LIMITED_REASONS: Partial<Record<Reason["code"], string>> = {
@@ -120,7 +138,10 @@ export function todayView(data: AppData, date: PlainDate): TodayView {
       origin: top === undefined ? null : originName(top, data),
       tags: tags(item, result.markers),
       group: item.group,
+      pick: item.cardLine,
+      storage: storageLine(item.store),
       draft: item.status === "draft",
+      synthetic: item.synthetic,
     });
     return {
       id: item.inputs.id,

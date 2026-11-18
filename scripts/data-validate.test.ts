@@ -720,6 +720,15 @@ describe("validate: production builds", () => {
     expect(errors).toContain("evidence test-fruit: synthetic records can't ship (production build)");
   });
 
+  it("refuse synthetic sources", () => {
+    const raw = structuredClone(base());
+    (raw.sources as Any[])[0].synthetic = true;
+    expect(validate(raw, { production: true }).errors).toContain(
+      "source s1: synthetic records can't ship (production build)",
+    );
+    expect(validate(raw, { production: false }).errors).toEqual([]);
+  });
+
   it("accept reviewed real records", () => {
     const raw = structuredClone(base());
     for (const r of [firstItem(raw), firstAdvisory(raw), (raw.evidence[0] as { data: Any }).data]) {

@@ -1,0 +1,18 @@
+item: sample-greens
+status: draft
+synthetic: true
+claims:
+  - source: sample-source-a
+    origin: us-ca
+    windows:
+      - { from: jan-1, to: dec-2, rating: fair }
+    specificity: half-month
+    directness: eating-quality
+    paraphrase: Synthetic claim matching the fixture's ratings.
+  - source: sample-source-b
+    origin: us-ca
+    windows:
+      - { from: jan-1, to: dec-2, rating: fair }
+    specificity: half-month
+    directness: eating-quality
+    paraphrase: Synthetic claim matching the fixture's ratings.

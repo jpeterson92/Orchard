@@ -360,6 +360,8 @@ export function validate(raw: RawInputs, opts: { production: boolean }): Result 
 
   if (opts.production) {
     const records = [...items, ...advisories, ...evidence.map((e) => ({ ...e, id: `evidence ${e.item}` }))];
+    for (const s of sources)
+      if (s.synthetic) errors.push(`source ${s.id}: synthetic records can't ship (production build)`);
     for (const r of records) {
       if (r.status === "draft") errors.push(`${r.id}: draft records can't ship (production build)`);
       if (r.synthetic) errors.push(`${r.id}: synthetic records can't ship (production build)`);
