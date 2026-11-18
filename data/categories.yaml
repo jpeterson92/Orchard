@@ -1,17 +1,17 @@
-# Browse categories, in display order (docs/data/usda.md launch list).
-- { id: apples-pears, name: Apples & pears }
-- { id: citrus, name: Citrus }
-- { id: stone-fruit, name: Stone fruit }
-- { id: berries, name: Berries }
-- { id: grapes, name: Grapes }
-- { id: melons, name: Melons }
-- { id: tropical, name: Tropical & subtropical }
-- { id: leafy-greens, name: Leafy greens & lettuces }
-- { id: brassicas, name: Brassicas }
-- { id: roots, name: Roots & tubers }
-- { id: alliums, name: Alliums }
-- { id: squash, name: Squash }
-- { id: tomatoes-peppers, name: "Tomatoes, peppers & eggplant" }
-- { id: beans-peas-corn, name: "Beans, peas, corn & stalks" }
-- { id: mushrooms, name: Mushrooms }
-- { id: herbs, name: Herbs }
+# Browse categories, in display order (docs/data/usda.md launch list), each in a Today filter group.
+- { id: apples-pears, name: Apples & pears, group: fruit }
+- { id: citrus, name: Citrus, group: fruit }
+- { id: stone-fruit, name: Stone fruit, group: fruit }
+- { id: berries, name: Berries, group: fruit }
+- { id: grapes, name: Grapes, group: fruit }
+- { id: melons, name: Melons, group: fruit }
+- { id: tropical, name: Tropical & subtropical, group: fruit }
+- { id: leafy-greens, name: Leafy greens & lettuces, group: vegetables }
+- { id: brassicas, name: Brassicas, group: vegetables }
+- { id: roots, name: Roots & tubers, group: vegetables }
+- { id: alliums, name: Alliums, group: vegetables }
+- { id: squash, name: Squash, group: vegetables }
+- { id: tomatoes-peppers, name: "Tomatoes, peppers & eggplant", group: vegetables }
+- { id: beans-peas-corn, name: "Beans, peas, corn & stalks", group: vegetables }
+- { id: mushrooms, name: Mushrooms, group: herbs-mushrooms }
+- { id: herbs, name: Herbs, group: herbs-mushrooms }

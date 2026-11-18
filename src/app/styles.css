@@ -18,6 +18,23 @@
   --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
+/* Dark mode: design system §3 initial dark values. */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-canvas: #25211f;
+    --color-surface: #302a27;
+    --color-ink: #f5eee3;
+    --color-ink-secondary: #c1b5a5;
+    --color-olive: #cbd0a2;
+    --color-accent: #e69a68;
+    --color-rule: #665b50;
+    --color-peak-icon: #e6b65c;
+    --color-good-icon: #b0c7a6;
+    --color-skip-icon: #d8ae8e;
+    --color-limited-icon: #c1b5a5;
+  }
+}
+
 body {
   background: var(--color-canvas);
   color: var(--color-ink);

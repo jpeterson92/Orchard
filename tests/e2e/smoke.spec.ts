@@ -3,7 +3,7 @@ import { expect, test } from "@playwright/test";
 
 test("home page is prerendered: heading is in the HTML before any JavaScript runs", async ({ request }) => {
   const html = await (await request.get("/")).text();
-  expect(html).toMatch(/<h1[^>]*>Orchard<\/h1>/);
+  expect(html).toMatch(/<h1[^>]*>Good things today<\/h1>/);
 });
 
 test("home page hydrates without errors and has no axe violations", async ({ page }) => {
@@ -11,7 +11,7 @@ test("home page hydrates without errors and has no axe violations", async ({ pag
   page.on("console", (msg) => msg.type() === "error" && errors.push(msg.text()));
   page.on("pageerror", (err) => errors.push(err.message));
   await page.goto("/");
-  await expect(page.getByRole("heading", { level: 1, name: "Orchard" })).toBeVisible();
+  await expect(page.getByRole("heading", { level: 1, name: "Good things today" })).toBeVisible();
   expect(errors).toEqual([]);
   const axe = await new AxeBuilder({ page }).analyze();
   expect(axe.violations).toEqual([]);

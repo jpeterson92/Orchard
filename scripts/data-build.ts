@@ -1,10 +1,12 @@
 // npm run data:build [-- --production]
-// Validates content/ and data/ (engineering plan §4.1), writes src/generated/data.json, prints counts.
+// Validates content/ and data/ (engineering plan §4.1), writes src/generated/data.json and the bundled
+// src/generated/app.json, prints counts.
 // Editorial review listings live in `npm run content:report`, run only when reviewing content.
 // Reads committed files only: it never fetches from the network and never edits content.
 import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { parse as parseYaml } from "yaml";
+import { appData } from "../src/shared/app-data";
 import { type Csv, parseCsv, type RawInputs, validate } from "./data-validate";
 
 const production = process.argv.includes("--production");
@@ -42,6 +44,8 @@ if (dataset === null) {
 
 mkdirSync("src/generated", { recursive: true });
 writeFileSync("src/generated/data.json", JSON.stringify(dataset));
+const app = appData(dataset, new Date().toISOString().slice(0, 10));
+writeFileSync("src/generated/app.json", JSON.stringify(app));
 
 const reviewed = dataset.items.filter((i) => i.status === "reviewed").length;
 console.log(
@@ -57,3 +61,4 @@ console.log(
     : "Supply snapshot: none yet",
 );
 console.log(`Advisories: ${dataset.advisories.length}${production ? " · production build" : ""}`);
+console.log(`App data: ${Math.round(JSON.stringify(app).length / 1024)} KB`);

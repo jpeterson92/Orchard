@@ -43,7 +43,12 @@ export const sourceSchema = z.strictObject({
   basedOn: id.optional(),
 });
 
-export const categorySchema = z.strictObject({ id, name: text });
+/** `group`: the Today filter chip (product spec §5): Fruit, Vegetables, or Herbs & mushrooms. */
+export const categorySchema = z.strictObject({
+  id,
+  name: text,
+  group: z.enum(["fruit", "vegetables", "herbs-mushrooms"]),
+});
 
 export const stateSchema = z.strictObject({ state: stateCode, name: text });
 

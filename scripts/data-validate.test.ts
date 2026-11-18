@@ -86,7 +86,7 @@ function base(): RawInputs {
       lastCallWindows: 2,
     },
     sources: [source("s1"), source("s2")],
-    categories: [{ id: "berries", name: "Berries" }],
+    categories: [{ id: "berries", name: "Berries", group: "fruit" }],
     states: csv("data/us-states.csv", [
       { state: "CA", name: "California" },
       { state: "WA", name: "Washington" },
@@ -363,7 +363,7 @@ const broken: [string, (r: RawInputs) => void, string][] = [
   ["duplicate source", (r) => (r.sources as Any[]).push(source("s1")), "duplicate source s1"],
   [
     "duplicate category",
-    (r) => (r.categories as Any[]).push({ id: "berries", name: "More berries" }),
+    (r) => (r.categories as Any[]).push({ id: "berries", name: "More berries", group: "fruit" }),
     "duplicate category berries",
   ],
   ["duplicate state", (r) => r.states.rows.push({ state: "CA", name: "Cali" }), "duplicate state CA"],

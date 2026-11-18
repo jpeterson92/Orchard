@@ -1,0 +1,149 @@
+// Today's cards for a date: runs the engine over the bundled items and groups them (product spec §5 "Today").
+import type { AppData, AppItem, FilterGroup } from "../shared/app-data";
+import { windowIndex, windowLabel } from "../shared/time";
+import { groupToday, type TodayEntry } from "../shared/today";
+import {
+  evaluate,
+  type Marker,
+  type PlainDate,
+  type Reason,
+  typicalOutlook,
+  type Verdict,
+} from "../shared/verdict";
+
+export interface Card {
+  id: string;
+  name: string;
+  /** Items rated by variety: which variety the verdict means ("Honeycrisp", "6 varieties at their best"). */
+  varietyLine: string | null;
+  verdict: Verdict;
+  /** One short factual reason. */
+  reason: string;
+  /** The month's top typical origin, named. */
+  origin: string | null;
+  tags: string[];
+  group: FilterGroup;
+  draft: boolean;
+}
+
+export interface TodayView {
+  best: Card[];
+  good: Card[];
+  skip: Card[];
+  limited: Card[];
+}
+
+const MONTHS = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
+
+/** "early December" or "late December" for a half-month window. */
+export function windowPhrase(window: number): string {
+  const [, half] = windowLabel(window).split("-");
+  return `${half === "1" ? "early" : "late"} ${MONTHS[Math.floor(window / 2)]}`;
+}
+
+const regionNames = new Intl.DisplayNames(["en"], { type: "region" });
+
+export function originName(origin: string, data: AppData): string {
+  return data.stateNames[origin] ?? regionNames.of(origin.toUpperCase()) ?? origin;
+}
+
+const LIMITED_REASONS: Partial<Record<Reason["code"], string>> = {
+  "no-typical-origins": "Not enough supply data to call it now.",
+  "origin-unrated": "Supply now is mostly from origins we haven't assessed.",
+  "no-variety-in-stores": "None of its rated varieties is usually in stores now.",
+  "variety-unrated": "The varieties in stores now aren't rated yet.",
+};
+
+function reasonText(verdict: Verdict, reasons: readonly Reason[], markers: readonly Marker[]): string {
+  const lastCall = markers.find((m) => m.kind === "last-call");
+  if (lastCall && (verdict === "peak" || verdict === "good"))
+    return `Fades by ${windowPhrase(lastCall.fadesBy)}.`;
+  if (verdict === "peak") return "At its best this time of year.";
+  if (verdict === "good") return "Eating well this time of year.";
+  if (verdict === "skip") {
+    const improves = markers.find((m) => m.kind === "improves");
+    return improves ? `Usually improves in ${windowPhrase(improves.window)}.` : "Not at its best now.";
+  }
+  for (const r of reasons) {
+    const text = LIMITED_REASONS[r.code];
+    if (text) return text;
+  }
+  return "Not enough evidence to call it now.";
+}
+
+function varietyLine(item: AppItem, ids: readonly string[] | null, verdict: Verdict): string | null {
+  if (!ids || ids.length === 0) return null;
+  const names = ids.map((id) => item.varieties.find((v) => v.id === id)?.name ?? id);
+  if (names.length === 1) return names[0] ?? null;
+  if (names.length === 2) return `${names[0]} and ${names[1]}`;
+  return verdict === "peak" ? `${names.length} varieties at their best` : `${names.length} varieties`;
+}
+
+function tags(item: AppItem, markers: readonly Marker[]): string[] {
+  const out: string[] = [];
+  if (item.inputs.alwaysGood) out.push("Always good");
+  for (const m of markers) {
+    if (m.kind === "last-call") out.push("Last call");
+    else if (m.kind === "reliable-year-round" && !item.inputs.alwaysGood) out.push("Reliable year-round");
+    else if (m.kind === "advisory") out.push("Advisory");
+    else if (m.kind === "check-label") out.push("Check the label");
+  }
+  return out;
+}
+
+export function todayView(data: AppData, date: PlainDate): TodayView {
+  const window = windowIndex(date.month, date.day);
+  const cards = new Map<string, Card>();
+  const entries: TodayEntry[] = data.items.map((item) => {
+    const result = evaluate(item.inputs, { date, mode: "today" }, data.env);
+    const typical = evaluate(item.inputs, { date, mode: "typical" }, data.env);
+    const top = item.inputs.typicalOrigins[Math.floor(window / 2)]?.[0];
+    cards.set(item.inputs.id, {
+      id: item.inputs.id,
+      name: item.name,
+      varietyLine: varietyLine(item, result.varietyLine, result.verdict),
+      verdict: result.verdict,
+      reason: reasonText(result.verdict, result.reasons, result.markers),
+      origin: top === undefined ? null : originName(top, data),
+      tags: tags(item, result.markers),
+      group: item.group,
+      draft: item.status === "draft",
+    });
+    return {
+      id: item.inputs.id,
+      purchaseRank: item.purchaseRank,
+      alwaysGood: item.inputs.alwaysGood,
+      verdict: result.verdict,
+      confidence: result.confidence,
+      typicalVerdict: typical.verdict,
+      peakWindows: typicalOutlook(item.inputs, data.env, date.year).filter((v) => v === "peak").length,
+    };
+  });
+  const groups = groupToday(entries);
+  const pick = (ids: string[]) => ids.flatMap((id) => cards.get(id) ?? []);
+  return {
+    best: pick(groups.best),
+    good: pick(groups.good),
+    skip: pick(groups.skip),
+    limited: pick(groups.limited),
+  };
+}
+
+/** A YYYY-MM-DD string as a plain date. */
+export function plainDate(iso: string): PlainDate {
+  const [year, month, day] = iso.split("-").map(Number);
+  return { year: year ?? 1970, month: month ?? 1, day: day ?? 1 };
+}
