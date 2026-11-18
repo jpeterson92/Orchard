@@ -268,7 +268,9 @@ Selected navigation uses a restrained orange icon/text treatment and optional sh
 
 ### Season strips and comparisons
 
-Season strips and heatmaps require a stable, documented mapping between verdict and fill intensity or pattern. They cannot rely on tiny star icons alone. The phone calendar study uses a list; the detailed heatmap and strip treatment remains provisional.
+Season strips and heatmaps require a stable, documented mapping between verdict and fill intensity or pattern. They cannot rely on tiny star icons alone. The phone calendar study uses a list; the heatmap treatment remains provisional.
+
+The item page's 24-window strip: Peak is a solid ochre cell, Good a lighter green cell, Skip a hatched cell, Limited evidence an empty outlined cell; today's window carries an ink outline, month initials sit underneath, and a legend names all four. The strip's accessible name states its runs in words ("Peak early November to late May; Limited evidence early June to late October"). Typical main supply origins follow as a short list of month ranges.
 
 Keep written labels or accessible tables available. Use the warm neutral canvas and clear ink rather than introducing an unrelated chart palette.
 

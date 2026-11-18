@@ -407,11 +407,18 @@ export function evaluate(item: ItemInputs, ctx: EvalContext, env: Env): VerdictR
   return { ...core, markers, labelNote, byOrigin, byVariety, varietyLine };
 }
 
-/** The typical-outlook verdict in each of the 24 windows (advisories ignored). */
-export function typicalOutlook(item: ItemInputs, env: Env, year: number): Verdict[] {
+/** The typical-outlook verdict in each of the 24 windows (advisories ignored): the item's, or one rated
+ * variety's as if the label named it (the item page's variety strips). */
+export function typicalOutlook(item: ItemInputs, env: Env, year: number, variety?: VarietyId): Verdict[] {
+  const basis: Basis = variety === undefined ? { kind: "typical" } : { kind: "variety", variety };
   return Array.from({ length: WINDOW_COUNT }, (_, w) => {
     const date = { year, month: monthOf(w) + 1, day: w % 2 === 0 ? 1 : 16 };
-    return evaluateCore(item, { kind: "typical" }, w, { date, mode: "typical" }, env).verdict;
+    const ctx: EvalContext = {
+      date,
+      mode: "typical",
+      ...(variety === undefined ? {} : { labelVariety: variety }),
+    };
+    return evaluateCore(item, basis, w, ctx, env).verdict;
   });
 }
 

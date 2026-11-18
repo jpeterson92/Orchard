@@ -25,8 +25,11 @@ export interface AppItem {
   store: { text: string; temperature: Item["store"]["temperature"]; life: Item["store"]["life"] };
   ripen: string | null;
   prep: string;
+  /** Type notes, shown with the pick cues where the type changes the advice. */
+  types: { name: string; note: string | null }[];
   varieties: AppVariety[];
   status: Item["status"];
+  reviewedOn: string | null;
   synthetic: boolean;
 }
 
@@ -35,6 +38,8 @@ export interface AppData {
   items: AppItem[];
   /** US state origins (`us-wa`) to names; countries are named with Intl.DisplayNames. */
   stateNames: Record<string, string>;
+  /** Advisory id to its note ("what it covers"), for the item page. */
+  advisoryNotes: Record<string, string>;
   /** The build's date (YYYY-MM-DD): prerendered pages show verdicts for it until the phone recomputes. */
   builtOn: string;
 }
@@ -55,6 +60,7 @@ export function appData(data: Dataset, builtOn: string): AppData {
       store: { text: item.store.text, temperature: item.store.temperature, life: item.store.life },
       ripen: item.ripen?.text ?? null,
       prep: item.prep,
+      types: item.types.map((t) => ({ name: t.name, note: t.note ?? null })),
       varieties: item.varieties.map((v) => ({
         id: v.id,
         name: v.name,
@@ -62,8 +68,10 @@ export function appData(data: Dataset, builtOn: string): AppData {
         bestUses: v.bestUses,
       })),
       status: item.status,
+      reviewedOn: item.reviewedOn ?? null,
       synthetic: item.synthetic === true,
     })),
+    advisoryNotes: Object.fromEntries(data.advisories.map((a) => [a.id, a.note])),
     stateNames: Object.fromEntries(data.states.map((s) => [`us-${s.state.toLowerCase()}`, s.name])),
     builtOn,
   };

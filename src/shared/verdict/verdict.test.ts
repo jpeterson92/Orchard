@@ -776,6 +776,20 @@ describe("typical outlook and the Always good evidence", () => {
     expect(
       typicalOutlook(item({ advisories: [advisory({ from: "2026-01-01", to: "2026-03-31" })] }), ENV, 2026),
     ).toEqual(Array(24).fill("peak")));
+
+  it("rates one variety as if the label named it, whatever the best variety is", () => {
+    const i = item({
+      origins: {},
+      varieties: [
+        variety("early", rated("prime", { "jan-1": "poor", "jan-2": null })),
+        variety("late", rated("fair"), inNov(false, true)),
+      ],
+    });
+    const early = typicalOutlook(i, ENV, 2026, "early");
+    expect(early.slice(0, 3)).toEqual(["skip", "limited", "peak"]);
+    expect(typicalOutlook(i, ENV, 2026, "late")[windowFromLabel("nov-2")]).toBe("good");
+    expect(typicalOutlook(i, ENV, 2026)[windowFromLabel("nov-2")]).toBe("peak");
+  });
 });
 
 describe("Peak worth seeking", () => {

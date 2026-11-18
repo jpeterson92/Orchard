@@ -1,20 +1,14 @@
 // Today (product spec §5, design system §5–6, reference 00-today-anchor.png).
-import { useEffect, useId, useState } from "react";
+import { useId, useState } from "react";
 import { Link } from "react-router";
 import appJson from "../generated/app.json";
 import type { AppData, FilterGroup } from "../shared/app-data";
-import type { Verdict } from "../shared/verdict";
-import { LeafMark, VerdictIcon } from "./icons";
-import { type Card, plainDate, todayView } from "./today-view";
+import { useToday } from "./date";
+import { VerdictIcon } from "./icons";
+import { Masthead } from "./Masthead";
+import { type Card, plainDate, todayView, VERDICT_WORD } from "./today-view";
 
 const data = appJson as unknown as AppData;
-
-const VERDICT_WORD: Record<Verdict, string> = {
-  peak: "Peak",
-  good: "Good",
-  skip: "Skip for now",
-  limited: "Limited evidence",
-};
 
 const FILTERS: { id: FilterGroup | "all"; label: string }[] = [
   { id: "all", label: "All" },
@@ -23,40 +17,15 @@ const FILTERS: { id: FilterGroup | "all"; label: string }[] = [
   { id: "herbs-mushrooms", label: "Herbs & mushrooms" },
 ];
 
-const localIso = (d: Date) =>
-  `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
-
-const chipDate = (iso: string) => {
-  const { year, month, day } = plainDate(iso);
-  return new Intl.DateTimeFormat("en-US", {
-    weekday: "short",
-    month: "short",
-    day: "numeric",
-    timeZone: "UTC",
-  })
-    .format(new Date(Date.UTC(year, month - 1, day)))
-    .replace(",", "");
-};
-
 export function Today() {
-  // Prerendered with the build date; the phone recomputes for its own date after hydrating.
-  const [iso, setIso] = useState(data.builtOn);
-  useEffect(() => setIso(localIso(new Date())), []);
+  const iso = useToday(data);
   const [filter, setFilter] = useState<FilterGroup | "all">("all");
   const view = todayView(data, plainDate(iso));
   const good = view.good.filter((c) => filter === "all" || c.group === filter);
 
   return (
     <div className="mx-auto max-w-2xl px-4 pb-12 sm:px-6">
-      <header className="flex items-center justify-between gap-4 border-b border-olive/60 py-3">
-        <div className="flex items-center gap-2">
-          <LeafMark />
-          <span className="font-editorial text-2xl font-bold">Orchard</span>
-        </div>
-        <span className="rounded-full border border-olive px-3 py-1 text-sm font-medium text-olive">
-          <time dateTime={iso}>{chipDate(iso)}</time>
-        </span>
-      </header>
+      <Masthead iso={iso} />
       <main>
         <h1 className="mt-6 font-editorial text-[2rem] leading-tight font-bold">Good things today</h1>
 

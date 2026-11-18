@@ -11,6 +11,13 @@ import {
   type Verdict,
 } from "../shared/verdict";
 
+export const VERDICT_WORD: Record<Verdict, string> = {
+  peak: "Peak",
+  good: "Good",
+  skip: "Skip for now",
+  limited: "Limited evidence",
+};
+
 export interface Card {
   id: string;
   name: string;
@@ -37,7 +44,7 @@ export interface TodayView {
   limited: Card[];
 }
 
-const MONTHS = [
+export const MONTHS = [
   "January",
   "February",
   "March",
@@ -85,7 +92,7 @@ const LIMITED_REASONS: Partial<Record<Reason["code"], string>> = {
   "variety-unrated": "The varieties in stores now aren't rated yet.",
 };
 
-function reasonText(verdict: Verdict, reasons: readonly Reason[], markers: readonly Marker[]): string {
+export function reasonText(verdict: Verdict, reasons: readonly Reason[], markers: readonly Marker[]): string {
   const lastCall = markers.find((m) => m.kind === "last-call");
   if (lastCall && (verdict === "peak" || verdict === "good"))
     return `Fades by ${windowPhrase(lastCall.fadesBy)}.`;
@@ -102,7 +109,7 @@ function reasonText(verdict: Verdict, reasons: readonly Reason[], markers: reado
   return "Not enough evidence to call it now.";
 }
 
-function varietyLine(item: AppItem, ids: readonly string[] | null, verdict: Verdict): string | null {
+export function varietyLine(item: AppItem, ids: readonly string[] | null, verdict: Verdict): string | null {
   if (!ids || ids.length === 0) return null;
   const names = ids.map((id) => item.varieties.find((v) => v.id === id)?.name ?? id);
   if (names.length === 1) return names[0] ?? null;
@@ -110,7 +117,7 @@ function varietyLine(item: AppItem, ids: readonly string[] | null, verdict: Verd
   return verdict === "peak" ? `${names.length} varieties at their best` : `${names.length} varieties`;
 }
 
-function tags(item: AppItem, markers: readonly Marker[]): string[] {
+export function tags(item: AppItem, markers: readonly Marker[]): string[] {
   const out: string[] = [];
   if (item.inputs.alwaysGood) out.push("Always good");
   for (const m of markers) {
