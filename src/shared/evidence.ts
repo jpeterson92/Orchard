@@ -159,6 +159,9 @@ function availabilityValues(
     }
   }
   const step = P12.value.prime - P12.value.fair;
+  // Stored domestic fruit is on sale outside an import's season, so a stores-well import speaks only for its listing.
+  if (imported && item.shipsWell && item.storesWell)
+    return listed.map((v) => (v === null ? null : Math.max(P12.value.poor, v - step)));
   return listed.map((v, i) => {
     if (v === null && shoulders[i] === null && offSeason === null) return null;
     if (imported && !item.shipsWell) return P12.value.poor;

@@ -71,12 +71,18 @@ varieties:
     bestUses: [Snacking, lunch boxes]
     label: Gala or Royal Gala
     windows:
-      - { from: jan-1, to: jul-1, rating: fair }
-      - from: aug-2
-        to: sep-2
-        rating: prime
-        reason: Washington harvests Gala in August and one source rates September best; late August reads fair only against New Jersey's storage reading, and late September only at the edge of the writer's own storage claim.
-      - { from: oct-1, to: dec-2, rating: fair }
+      - from: jan-1
+        to: apr-1
+        rating: poor
+        reason: Sources split on Gala from storage (one says it keeps well, one that it turns soft); a marginal Gala rates down.
+      - { from: apr-2, to: jul-1, rating: fair }
+      - { from: aug-2, to: aug-2, rating: fair }
+      - { from: sep-1, to: sep-1, rating: prime }
+      - { from: sep-2, to: sep-2, rating: fair }
+      - from: oct-1
+        to: dec-2
+        rating: poor
+        reason: Sources split on Gala from storage (one says it keeps well, one that it turns soft); a marginal Gala rates down.
     quotedAs: [gala, royal-gala]
   - id: fuji
     name: Fuji

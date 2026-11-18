@@ -475,9 +475,10 @@ describe("availability curves (P14)", () => {
     expect(valuesAt(v, ["jul-1", "jul-2", "aug-1", "oct-2", "nov-1", "mar-1"])).toEqual([
       0.5, 0.5, 1, 1, 0.5, 0.5,
     ]);
-    // An import that ships and stores well reads poor away from its own season, fair in it.
-    const mx = claimValues(avail("mar-1..may-2 prime", { origin: "nz" }), STORES);
-    expect(valuesAt(mx, ["feb-2", "mar-1", "may-2", "jun-1", "sep-1"])).toEqual([0, 0.5, 0.5, 0, 0]);
+    // An import that ships and stores well reads fair in its own season and says nothing else: stored domestic
+    // fruit is on sale the rest of the year.
+    const nz = claimValues(avail("mar-1..may-2 prime", { origin: "nz" }), STORES);
+    expect(valuesAt(nz, ["feb-2", "mar-1", "may-2", "jun-1", "sep-1"])).toEqual([null, 0.5, 0.5, null, null]);
   });
 
   it("an import that tastes very good can still read prime from eating-quality evidence", () => {
@@ -654,13 +655,18 @@ describe("availability curves (P14)", () => {
     );
   });
 
-  it("an import's curve is the domestic curve one level lower, or poor throughout when the item doesn't ship well (property)", () => {
+  it("an import's curve is the domestic curve one level lower (only its listing when it stores well), or poor throughout when the item doesn't ship well (property)", () => {
     fc.assert(
       fc.property(availArb, fc.boolean(), (c, storesWell) => {
         const traits = { shipsWell: true, storesWell };
         const domestic = claimValues({ ...c, origin: "us-wa" }, traits);
         const imported = claimValues({ ...c, origin: "mx" }, traits);
-        expect(imported).toEqual(domestic.map((x) => Math.max(0, (x as number) - 0.5)));
+        const listed = claimValues({ ...c, directness: "eating-quality", specificity: "month" }, traits);
+        expect(imported).toEqual(
+          domestic.map((x, i) =>
+            storesWell && listed[i] === null ? null : Math.max(0, (x as number) - 0.5),
+          ),
+        );
         const notShipping = claimValues({ ...c, origin: "mx" }, { shipsWell: false, storesWell });
         expect(notShipping.every((x) => x === 0)).toBe(true);
       }),
