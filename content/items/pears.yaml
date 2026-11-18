@@ -1,0 +1,94 @@
+id: pears
+name: Pears
+synonyms: [pear, anjou, d'anjou, bartlett, williams, bosc, comice, seckel, starkrimson]
+misspellings: [pare, paers, pearz, barlett, d anjou]
+category: apples-pears
+purchaseRank: 10
+alwaysGood: false
+shipsWell:
+  value: true
+  sources: [freshfruitportal-pear-imports-2012, freshplaza-argentina-pears-2026]
+  note: Picked mature and ripened after harvest; Argentina and Chile fill spring shelves.
+peakWorthSeeking:
+  value: true
+  sources: [specialtyproduce-anjou, agalert-argentine-pears-2026]
+  note: New-crop fall pears eat best; long-stored spring imports often never ripen well.
+storesWell:
+  value: true
+  sources: [usapears-green-anjou, markon-pears-update-5]
+  note: Anjou keeps in cold storage from the fall harvest through summer.
+evidenceBasis: supply+assessment
+cardLine: Buy firm; ripe when the neck gives to gentle pressure.
+pick:
+  - Firm, with smooth skin and no cuts or bruises
+  - Ripe when the neck, just below the stem, gives to gentle pressure
+  - Color is no guide for most pears; Bartlett turns from green to yellow
+  - Brown russeting on Bosc is normal and doesn't affect quality
+avoid:
+  - Soft at the base; it's overripe
+  - Bruises, cuts or dark soft spots
+store:
+  temperature: cold
+  ethylene: producer
+  life: { min: 3, max: 5, unit: days }
+  text: Keep firm pears out of the fridge until ripe. Once the neck gives, refrigerate; ripe pears keep 3–5 days.
+  sources: [atk-shop-store-pears, superfresh-anjou-year-round, stemilt-how-to-ripen-pears]
+ripen:
+  text: Ripen firm pears at room temperature, usually 3–5 days. A paper bag, or a banana or apple beside them, speeds it up. Check the neck daily.
+  sources: [usapears-green-anjou, superfresh-anjou-year-round, stemilt-how-to-ripen-pears]
+prep: Rinse just before eating. Cut pears brown quickly; a squeeze of lemon juice slows it.
+varieties:
+  - id: anjou
+    name: Anjou
+    traits: {}
+    bestUses: [Snacking, salads, baking]
+    label: Anjou or D'Anjou
+    windows:
+      - { from: jan-1, to: sep-1, rating: fair }
+      - { from: sep-2, to: nov-2, rating: prime }
+      - { from: dec-1, to: dec-2, rating: fair }
+    quotedAs: [d-anjou]
+  - id: bartlett
+    name: Bartlett
+    traits: {}
+    bestUses: [Snacking, salads, canning]
+    label: Bartlett or Williams
+    windows:
+      - { from: jan-1, to: apr-2, rating: fair }
+      - { from: aug-1, to: oct-2, rating: prime }
+      - { from: nov-1, to: nov-1, rating: fair }
+    quotedAs: [bartlett, williams, summer-bartlett, mountain-bartlett]
+  - id: bosc
+    name: Bosc
+    traits: {}
+    bestUses: [Baking, poaching, snacking]
+    label: Bosc
+    windows:
+      - { from: apr-1, to: apr-2, rating: fair }
+      - { from: sep-2, to: dec-2, rating: prime }
+    quotedAs: [bosc, beurre-bosc]
+  - id: comice
+    name: Comice
+    traits: {}
+    bestUses: [Snacking, cheese plates]
+    label: Comice
+    windows:
+      - { from: oct-2, to: jan-2, rating: prime }
+    quotedAs: [comice]
+  - id: seckel
+    name: Seckel
+    traits: {}
+    bestUses: [Snacking, lunch boxes]
+    label: Seckel
+    windows:
+      - { from: sep-1, to: dec-2, rating: prime }
+    quotedAs: [seckel]
+  - id: starkrimson
+    name: Starkrimson
+    traits: {}
+    bestUses: [Snacking, salads]
+    label: Starkrimson
+    windows:
+      - { from: aug-1, to: oct-2, rating: prime }
+    quotedAs: [star-crimson, stark-crimson]
+status: draft
