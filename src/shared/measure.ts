@@ -24,7 +24,21 @@ export function bucketOf(metric: Metric, value: number): number {
   return Math.min(MS_CAP, Math.ceil(ms / 1000) * 1000);
 }
 
-/** One beacon: a page load's final value for each metric it measured, each at most once. */
+/**
+ * Diagnostic events (product spec §2), counted per UTC day with nothing else attached: an item page opened, a Today
+ * card expanded, a search closed with no match, the phone's first visit of its local day, and that visit coming 1 to
+ * 14 days after the previous one (the phone keeps only its last visit date and never sends it).
+ */
+export const EVENTS = ["item", "expand", "nomatch", "visit", "return14"] as const;
+export type Event = (typeof EVENTS)[number];
+
+/** Most of one event a single beacon may carry; the phone sends at most this many and drops the rest. */
+export const EVENT_CAP = 1000;
+
+/**
+ * One beacon: a page load's final value for each metric it measured, each at most once, and the events since the
+ * last beacon, each at most once with its count. Either list may be left out, not both.
+ */
 export const beaconSchema = z
   .strictObject({
     m: z
@@ -39,9 +53,17 @@ export const beaconSchema = z
         }),
       )
       .min(1)
-      .max(METRICS.length),
+      .max(METRICS.length)
+      .optional(),
+    e: z
+      .array(z.strictObject({ event: z.enum(EVENTS), n: z.int().min(1).max(EVENT_CAP) }))
+      .min(1)
+      .max(EVENTS.length)
+      .optional(),
   })
-  .refine((b) => new Set(b.m.map((e) => e.metric)).size === b.m.length, "each metric at most once");
+  .refine((b) => b.m !== undefined || b.e !== undefined, "metrics or events")
+  .refine((b) => new Set(b.m?.map((e) => e.metric)).size === (b.m?.length ?? 0), "each metric at most once")
+  .refine((b) => new Set(b.e?.map((e) => e.event)).size === (b.e?.length ?? 0), "each event at most once");
 export type Beacon = z.infer<typeof beaconSchema>;
 
 /**
@@ -58,4 +80,22 @@ export function percentile(rows: readonly { bucket: number; n: number }[], p: nu
     if (seen >= rank) return r.bucket;
   }
   return null;
+}
+
+/** Whole days from one ISO date to a later one; null when either isn't a date. */
+function daysBetween(from: string, to: string): number | null {
+  const at = (iso: string) => (/^\d{4}-\d{2}-\d{2}$/.test(iso) ? Date.parse(`${iso}T00:00:00Z`) : Number.NaN);
+  const days = (at(to) - at(from)) / 86_400_000;
+  return Number.isNaN(days) ? null : days;
+}
+
+/**
+ * The events a page load counts for the visit itself, from the phone's last visit date (null on a first visit) and
+ * today's local date: nothing on a later load the same day; otherwise a visit, and a 14-day return when the last
+ * visit was 1 to 14 days earlier. A last date in the future (the clock moved back) or unreadable counts a visit only.
+ */
+export function visitEvents(last: string | null, today: string): Event[] {
+  if (last === today) return [];
+  const days = last === null ? null : daysBetween(last, today);
+  return days !== null && days >= 1 && days <= 14 ? ["visit", "return14"] : ["visit"];
 }

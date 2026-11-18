@@ -1,6 +1,16 @@
 import fc from "fast-check";
 import { describe, expect, it } from "vitest";
-import { beaconSchema, bucketOf, METRICS, type Metric, percentile, TARGETS } from "./measure";
+import {
+  beaconSchema,
+  bucketOf,
+  EVENT_CAP,
+  EVENTS,
+  METRICS,
+  type Metric,
+  percentile,
+  TARGETS,
+  visitEvents,
+} from "./measure";
 
 describe("bucketOf", () => {
   it.each<[Metric, number, number]>([
@@ -134,6 +144,13 @@ describe("beaconSchema", () => {
     expect(beaconSchema.safeParse({ m: [{ metric: "cls", value: 0 }] }).success).toBe(true);
   });
 
+  it("takes events with their counts, alone or with metrics", () => {
+    const e = EVENTS.map((event) => ({ event, n: 1 }));
+    expect(beaconSchema.safeParse({ e }).success).toBe(true);
+    expect(beaconSchema.safeParse({ m: [{ metric: "lcp", value: 1 }], e }).success).toBe(true);
+    expect(beaconSchema.safeParse({ e: [{ event: "expand", n: EVENT_CAP }] }).success).toBe(true);
+  });
+
   it.each([
     ["nothing", {}],
     ["an empty list", { m: [] }],
@@ -149,7 +166,54 @@ describe("beaconSchema", () => {
     ["infinity", { m: [{ metric: "lcp", value: Number.POSITIVE_INFINITY }] }],
     ["NaN", { m: [{ metric: "lcp", value: Number.NaN }] }],
     ["a page", { m: [{ metric: "lcp", value: 1 }], page: "/" }],
+    ["an empty event list", { e: [] }],
+    ["an unknown event", { e: [{ event: "search", n: 1 }] }],
+    ["an event's item", { e: [{ event: "item", n: 1, item: "apples" }] }],
+    ["a search's text", { e: [{ event: "nomatch", n: 1, q: "kumquat" }] }],
+    [
+      "a repeated event",
+      {
+        e: [
+          { event: "expand", n: 1 },
+          { event: "expand", n: 2 },
+        ],
+      },
+    ],
+    ["a zero count", { e: [{ event: "visit", n: 0 }] }],
+    ["a fractional count", { e: [{ event: "visit", n: 1.5 }] }],
+    ["a count past the cap", { e: [{ event: "expand", n: EVENT_CAP + 1 }] }],
   ])("refuses %s", (_, body) => {
     expect(beaconSchema.safeParse(body).success).toBe(false);
+  });
+});
+
+describe("visitEvents", () => {
+  it.each([
+    ["a first visit", null, "2026-11-18", ["visit"]],
+    ["a later load the same day", "2026-11-18", "2026-11-18", []],
+    ["the next day", "2026-11-17", "2026-11-18", ["visit", "return14"]],
+    ["14 days on", "2026-11-04", "2026-11-18", ["visit", "return14"]],
+    ["15 days on", "2026-11-03", "2026-11-18", ["visit"]],
+    ["across a year end", "2026-12-25", "2027-01-02", ["visit", "return14"]],
+    ["across a leap day", "2028-02-15", "2028-02-29", ["visit", "return14"]],
+    ["a last visit in the future", "2026-11-20", "2026-11-18", ["visit"]],
+    ["an unreadable last visit", "yesterday", "2026-11-18", ["visit"]],
+  ] as const)("counts %s", (_, last, today, expected) => {
+    expect(visitEvents(last, today)).toEqual(expected);
+  });
+
+  it("counts a 14-day return exactly when the last visit was 1 to 14 days before", () => {
+    const day = fc.integer({
+      min: Date.UTC(2020, 0, 1) / 86_400_000,
+      max: Date.UTC(2040, 0, 1) / 86_400_000,
+    });
+    const iso = (d: number) => new Date(d * 86_400_000).toISOString().slice(0, 10);
+    fc.assert(
+      fc.property(day, fc.integer({ min: -30, max: 30 }), (today, gap) => {
+        const events = visitEvents(iso(today - gap), iso(today));
+        if (gap === 0) expect(events).toEqual([]);
+        else expect(events).toEqual(gap >= 1 && gap <= 14 ? ["visit", "return14"] : ["visit"]);
+      }),
+    );
   });
 });

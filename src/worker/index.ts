@@ -17,6 +17,8 @@ export interface Bindings {
 
 const COUNT = `INSERT INTO measure (day, metric, bucket, n) VALUES (?, ?, ?, 1)
   ON CONFLICT (day, metric, bucket) DO UPDATE SET n = n + 1`;
+const ADD = `INSERT INTO events (day, event, n) VALUES (?, ?, ?)
+  ON CONFLICT (day, event) DO UPDATE SET n = n + excluded.n`;
 
 export const app = new Hono<{ Bindings: Bindings }>();
 
@@ -25,7 +27,10 @@ app.onError((_, c) => c.json({ error: "server" }, 500));
 
 app.get("/api/health", (c) => c.json({ ok: true }));
 
-/** A page load's measurements (src/app/measure.ts): each adds one to today's count for its metric and bucket. */
+/**
+ * A page load's measurements and events (src/app/measure.ts): each metric adds one to today's count for its metric
+ * and bucket; each event adds its count to today's total for that event.
+ */
 app.post(
   "/api/measure",
   bodyLimit({ maxSize: 1024, onError: (c) => c.json({ error: "too-large" }, 413) }),
@@ -41,8 +46,13 @@ app.post(
     if (!parsed.success) return c.json({ error: "invalid" }, 400);
 
     const day = new Date().toISOString().slice(0, 10);
+    const { m = [], e = [] } = parsed.data;
     const count = c.env.DB.prepare(COUNT);
-    await c.env.DB.batch(parsed.data.m.map((e) => count.bind(day, e.metric, bucketOf(e.metric, e.value))));
+    const add = c.env.DB.prepare(ADD);
+    await c.env.DB.batch([
+      ...m.map((x) => count.bind(day, x.metric, bucketOf(x.metric, x.value))),
+      ...e.map((x) => add.bind(day, x.event, x.n)),
+    ]);
     return c.body(null, 204);
   },
 );

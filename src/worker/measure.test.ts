@@ -24,7 +24,8 @@ function bindings() {
     },
   };
   const rows = () => sqlite.prepare("SELECT * FROM measure ORDER BY metric, bucket").all();
-  return { env, rows };
+  const events = () => sqlite.prepare("SELECT * FROM events ORDER BY event").all();
+  return { env, rows, events };
 }
 
 const post = (env: Bindings, body: unknown, headers: Record<string, string> = {}) =>
@@ -94,6 +95,34 @@ describe("POST /api/measure", () => {
     ]);
   });
 
+  it("adds each event's count to the day's total, and stores no IP, item or search text", async () => {
+    const { env, rows, events } = bindings();
+    const day = new Date().toISOString().slice(0, 10);
+    const res = await post(env, {
+      ...load,
+      e: [
+        { event: "visit", n: 1 },
+        { event: "item", n: 3 },
+      ],
+    });
+    expect(res.status).toBe(204);
+    await post(env, {
+      e: [
+        { event: "item", n: 2 },
+        { event: "nomatch", n: 1 },
+      ],
+    });
+    expect(rows()).toHaveLength(4);
+    expect(events()).toEqual([
+      { day, event: "item", n: 5 },
+      { day, event: "nomatch", n: 1 },
+      { day, event: "visit", n: 1 },
+    ]);
+    const everything = JSON.stringify({ stored: events(), logged });
+    for (const secret of [IP, IPV6, "Pixel 7"]) expect(everything).not.toContain(secret);
+    expect(logged).toEqual([]);
+  });
+
   it("accepts a JSON content type as well as sendBeacon's text/plain", async () => {
     const { env, rows } = bindings();
     const res = await post(
@@ -123,11 +152,14 @@ describe("POST /api/measure", () => {
     ],
     ["an extra field on a measurement", { m: [{ metric: "lcp", value: 1800, page: "/items/apples" }] }],
     ["an extra top-level field", { m: [{ metric: "lcp", value: 1800 }], visitor: "abc" }],
+    ["an event with its item", { e: [{ event: "item", n: 1, item: "apples" }] }],
+    ["good metrics with a bad event", { m: [{ metric: "lcp", value: 1800 }], e: [{ event: "item", n: -1 }] }],
   ])("rejects %s and stores nothing", async (_, body) => {
-    const { env, rows } = bindings();
+    const { env, rows, events } = bindings();
     const res = await post(env, body);
     expect(res.status).toBe(400);
     expect(rows()).toEqual([]);
+    expect(events()).toEqual([]);
     expect(logged).toEqual([]);
   });
 

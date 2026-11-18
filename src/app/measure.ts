@@ -1,13 +1,17 @@
 // Real-user measurement on the phone (product spec §2, §10; engineering plan §5 M8). Each page load sends its final
-// LCP, INP, CLS and time to first verdict once, in one beacon, when the page is first hidden. The beacon carries only
-// metric names and values: no page, item, search text, identifier or cookie. Production builds only.
+// LCP, INP, CLS and time to first verdict once, in one beacon, when the page is first hidden; each hide also sends
+// how many times each diagnostic event happened since the last beacon. The beacon carries only metric names, values,
+// event names and counts: no page, item, search text, identifier or cookie. Production builds only.
 import { useEffect } from "react";
 import { onCLS, onFCP, onINP, onLCP } from "web-vitals";
-import type { Metric } from "../shared/measure";
+import { EVENT_CAP, type Event, type Metric, visitEvents } from "../shared/measure";
 import { windowIndex } from "../shared/time";
 import { localIso } from "./date";
 
 const queue = new Map<Metric, number>();
+const events = new Map<Event, number>();
+/** The phone's last visit date (local), kept on the device only, for the 14-day return count. */
+const LAST_VISIT = "orchard:last-visit";
 const sent = new Set<Metric>();
 let started = false;
 let prerendered = false;
@@ -21,11 +25,27 @@ function add(metric: Metric, value: number) {
   if (!sent.has(metric) && !queue.has(metric)) queue.set(metric, value);
 }
 
+/** Counts one diagnostic event, sent with the next beacon. Does nothing until measuring starts (dev builds never). */
+export function count(event: Event) {
+  if (started) events.set(event, Math.min(EVENT_CAP, (events.get(event) ?? 0) + 1));
+}
+
+/** Counts `event` once each time `key` changes to a value other than null (an item page's id, say). */
+export function useCount(event: Event, key: string | null) {
+  useEffect(() => {
+    if (key !== null) count(event);
+  }, [event, key]);
+}
+
 function flush() {
-  if (queue.size === 0) return;
-  const body = JSON.stringify({ m: [...queue].map(([metric, value]) => ({ metric, value })) });
+  if (queue.size === 0 && events.size === 0) return;
+  const body = JSON.stringify({
+    ...(queue.size > 0 && { m: [...queue].map(([metric, value]) => ({ metric, value })) }),
+    ...(events.size > 0 && { e: [...events].map(([event, n]) => ({ event, n })) }),
+  });
   for (const metric of queue.keys()) sent.add(metric);
   queue.clear();
+  events.clear();
   if (!navigator.sendBeacon?.("/api/measure", body))
     void fetch("/api/measure", { method: "POST", body, keepalive: true }).catch(() => {});
 }
@@ -37,6 +57,7 @@ export function startMeasuring(fromPrerender: boolean) {
   prerendered = fromPrerender;
   landing = location.pathname;
   if (document.visibilityState === "hidden") hiddenAt = 0;
+  countVisit();
   onLCP((m) => add("lcp", m.value));
   onINP((m) => add("inp", m.value));
   onCLS((m) => add("cls", m.value));
@@ -45,6 +66,19 @@ export function startMeasuring(fromPrerender: boolean) {
     hiddenAt = Math.min(hiddenAt, performance.now());
     flush();
   });
+}
+
+/** The visit and 14-day return counts, once per local day; storage that throws (private modes) counts nothing. */
+function countVisit() {
+  const today = localIso(new Date());
+  let last: string | null;
+  try {
+    last = localStorage.getItem(LAST_VISIT);
+    localStorage.setItem(LAST_VISIT, today);
+  } catch {
+    return;
+  }
+  for (const event of visitEvents(last, today)) count(event);
 }
 
 const sameWindow = (a: string, b: string) =>

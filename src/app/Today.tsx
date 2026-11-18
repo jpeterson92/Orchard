@@ -8,7 +8,7 @@ import { Art } from "./Art";
 import { useAppDate } from "./date";
 import { StatusLabels, VerdictMark } from "./icons";
 import { Masthead, PreviewNotice } from "./Masthead";
-import { useVerdictVisible } from "./measure";
+import { count, useVerdictVisible } from "./measure";
 import { readinessText, useReadiness } from "./offline";
 import { type Card, plainDate, todayView } from "./today-view";
 
@@ -142,7 +142,10 @@ function Row({ card }: { card: Card }) {
         type="button"
         aria-expanded={open}
         aria-controls={panel}
-        onClick={() => setOpen((o) => !o)}
+        onClick={() => {
+          if (!open) count("expand");
+          setOpen(!open);
+        }}
         className="flex w-full cursor-pointer items-start gap-4 rounded-sm text-left focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
       >
         <Art id={card.art} sizes="72px" className="size-18 shrink-0" />

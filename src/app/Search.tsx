@@ -8,6 +8,7 @@ import type { AppData } from "../shared/app-data";
 import { Art } from "./Art";
 import { useAppDate } from "./date";
 import { SearchIcon, StatusLabels, VerdictMark } from "./icons";
+import { count } from "./measure";
 import { type SearchResult, search, searchIndex } from "./search-view";
 import { plainDate } from "./today-view";
 
@@ -93,7 +94,11 @@ function SearchDialog({
     <dialog
       ref={dialog}
       aria-label="Search produce"
-      onClose={() => setQuery("")}
+      onClose={() => {
+        // A search that ends with nothing matched counts once, without its text (product spec §2).
+        if (outcome.kind === "none") count("nomatch");
+        setQuery("");
+      }}
       // A tap on the dimmed backdrop (wide screens) closes it, like Escape.
       onClick={(e) => e.target === e.currentTarget && close()}
       className="m-0 h-dvh max-h-none w-full max-w-none bg-canvas text-ink backdrop:bg-ink/40 sm:mx-auto sm:mt-20 sm:h-auto sm:max-h-[75dvh] sm:max-w-xl sm:rounded-lg sm:shadow-xl"

@@ -149,8 +149,13 @@ test("a page load sends one beacon with its metrics and time to first verdict, a
     document.dispatchEvent(new Event("visibilitychange", { bubbles: true }));
   `);
   const request = await beacon;
-  const body = JSON.parse(request.postData() ?? "{}") as { m: { metric: string; value: number }[] };
-  expect(Object.keys(body)).toEqual(["m"]);
+  const body = JSON.parse(request.postData() ?? "{}") as {
+    m: { metric: string; value: number }[];
+    e: { event: string; n: number }[];
+  };
+  expect(Object.keys(body)).toEqual(["m", "e"]);
+  // A fresh browser's first load counts a visit, and nothing more about it.
+  expect(body.e).toEqual([{ event: "visit", n: 1 }]);
   expect(body.m.map((e) => e.metric)).toEqual(expect.arrayContaining(["lcp", "cls", "verdict"]));
   for (const e of body.m) expect(Object.keys(e).sort()).toEqual(["metric", "value"]);
   expect((await request.response())?.status()).toBe(204);
