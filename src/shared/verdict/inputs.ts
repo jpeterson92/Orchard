@@ -94,16 +94,6 @@ export function itemInputs(item: Item, data: Dataset): ItemInputs {
     typicalShares,
     minorOrigins,
     supply,
-    advisories: data.advisories
-      .filter((a) => a.items.includes(item.id))
-      .map(({ id, origins, from, to, effect, reviewedOn }) => ({
-        id,
-        origins,
-        from,
-        to,
-        effect,
-        reviewedOn,
-      })),
   };
 }
 

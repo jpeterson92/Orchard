@@ -43,8 +43,6 @@ export interface AppData {
   items: AppItem[];
   /** US state origins (`us-wa`) to names; countries are named with Intl.DisplayNames. */
   stateNames: Record<string, string>;
-  /** Advisory id to its note ("what it covers"), for the item page. */
-  advisoryNotes: Record<string, string>;
   /** The build's date (YYYY-MM-DD): prerendered pages show verdicts for it until the phone recomputes. */
   builtOn: string;
 }
@@ -78,7 +76,6 @@ export function appData(data: Dataset, builtOn: string, art: ArtMap): AppData {
       reviewedOn: item.reviewedOn ?? null,
       synthetic: item.synthetic === true,
     })),
-    advisoryNotes: Object.fromEntries(data.advisories.map((a) => [a.id, a.note])),
     stateNames: Object.fromEntries(data.states.map((s) => [`us-${s.state.toLowerCase()}`, s.name])),
     builtOn,
   };

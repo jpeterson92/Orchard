@@ -184,21 +184,6 @@ export const itemSchema = z
   })
   .refine(reviewComplete, reviewMessage);
 
-export const advisorySchema = z
-  .strictObject({
-    id,
-    items: z.array(id).min(1),
-    /** Absent: every origin of the items. Advisories are national. */
-    origins: z.array(originId).min(1).optional(),
-    from: isoDate,
-    to: isoDate,
-    /** Skip sets the verdict; cap-good lowers Peak to Good (product spec rule 2). */
-    effect: z.enum(["skip", "cap-good"]),
-    note: words(SECTION_WORDS),
-    ...review,
-  })
-  .refine(reviewComplete, reviewMessage);
-
 /** One source claim about when an item (or one variety) is at its best (engineering plan §4.1). */
 export const evidenceClaimSchema = z.strictObject({
   source: id,
@@ -269,7 +254,6 @@ export type State = z.infer<typeof stateSchema>;
 export type Rules = z.infer<typeof rulesSchema>;
 export type Item = z.infer<typeof itemSchema>;
 export type QualityWindow = z.infer<typeof qualityWindowSchema>;
-export type Advisory = z.infer<typeof advisorySchema>;
 export type EvidenceClaim = z.infer<typeof evidenceClaimSchema>;
 export type EvidenceFile = z.infer<typeof evidenceFileSchema>;
 export type TypicalOriginRow = z.infer<typeof typicalOriginRowSchema>;
@@ -284,7 +268,6 @@ export interface Dataset {
   categories: Category[];
   states: State[];
   items: Item[];
-  advisories: Advisory[];
   evidence: EvidenceFile[];
   snapshot: Snapshot | null;
   typicalOrigins: TypicalOriginRow[];

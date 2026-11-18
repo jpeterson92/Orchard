@@ -1,16 +1,7 @@
 // Synthetic engine inputs for tests. Nothing here is real produce data.
 import type { Rules } from "../data/schema";
 import { WINDOW_COUNT, windowFromLabel } from "../time";
-import type {
-  Confidence,
-  EngineAdvisory,
-  Env,
-  ItemInputs,
-  PlainDate,
-  RatedSeries,
-  RatedVariety,
-  Rating,
-} from "./index";
+import type { Confidence, Env, ItemInputs, PlainDate, RatedSeries, RatedVariety, Rating } from "./index";
 
 export const RULES: Rules = {
   version: 1,
@@ -45,7 +36,7 @@ export function variety(id: string, series: RatedSeries, inStore: boolean[] = al
   return { id, ...series, inStore };
 }
 
-/** One US origin rated prime all year, normal supply, no advisories. */
+/** One US origin rated prime all year, normal supply. */
 export function item(overrides: Partial<ItemInputs> = {}): ItemInputs {
   const typicalOrigins = overrides.typicalOrigins ?? allMonths(["us-ca"]);
   return {
@@ -60,18 +51,6 @@ export function item(overrides: Partial<ItemInputs> = {}): ItemInputs {
     typicalShares: typicalOrigins.map((os) => os.map(() => 0.8 / os.length)),
     minorOrigins: allMonths([]),
     supply: { "us-ca": allMonths(1) },
-    advisories: [],
-    ...overrides,
-  };
-}
-
-export function advisory(overrides: Partial<EngineAdvisory> = {}): EngineAdvisory {
-  return {
-    id: "adv",
-    from: "2026-11-10",
-    to: "2026-11-30",
-    effect: "skip",
-    reviewedOn: "2026-11-16",
     ...overrides,
   };
 }

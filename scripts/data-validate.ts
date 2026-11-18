@@ -2,8 +2,6 @@
 // Takes already-parsed inputs so tests can feed broken fixtures without touching the disk.
 import type { z } from "zod";
 import {
-  type Advisory,
-  advisorySchema,
   type Category,
   categorySchema,
   type Dataset,
@@ -43,7 +41,6 @@ export interface RawInputs {
   states: Csv;
   items: { file: string; data: unknown }[];
   evidence: { file: string; data: unknown }[];
-  advisories: unknown;
   typicalOrigins: Csv | null;
   supplyIndex: Csv | null;
   varietyCalendar: Csv | null;
@@ -54,9 +51,6 @@ export interface Result {
   warnings: string[];
   dataset: Dataset | null;
 }
-
-/** Advisories are short-lived exceptions (product spec §7). */
-export const MAX_ADVISORY_DAYS = 90;
 
 export function parseCsv(file: string, text: string, columns: readonly string[]): Csv {
   const meta: Record<string, string> = {};
@@ -128,7 +122,6 @@ export function validate(raw: RawInputs, opts: { production: boolean }): Result 
   const sources: Source[] = list(sourceSchema, raw.sources, "data/sources.yaml");
   const categories: Category[] = list(categorySchema, raw.categories, "data/categories.yaml");
   const states: State[] = list(stateSchema, raw.states.rows, raw.states.file);
-  const advisories: Advisory[] = list(advisorySchema, raw.advisories, "data/advisories.yaml");
   const baseName = (file: string) =>
     file
       .split(/[\\/]/)
@@ -152,7 +145,6 @@ export function validate(raw: RawInputs, opts: { production: boolean }): Result 
   unique(states, (s) => s.state, "state");
   unique(items, (i) => i.id, "item");
   unique(items, (i) => String(i.purchaseRank), "purchaseRank");
-  unique(advisories, (a) => a.id, "advisory");
   unique(evidence, (e) => e.item, "evidence file for");
 
   const sourceIds = new Set(sources.map((s) => s.id));
@@ -280,15 +272,6 @@ export function validate(raw: RawInputs, opts: { production: boolean }): Result 
     }
   }
 
-  for (const a of advisories) {
-    const at = `advisory ${a.id}`;
-    for (const i of a.items) if (!itemIds.has(i)) errors.push(`${at}: unknown item ${i}`);
-    for (const o of a.origins ?? []) checkOrigin(o, at);
-    const days = (Date.parse(a.to) - Date.parse(a.from)) / 86_400_000;
-    if (days < 0) errors.push(`${at}: ends (${a.to}) before it starts (${a.from})`);
-    else if (days > MAX_ADVISORY_DAYS) errors.push(`${at}: lasts ${days} days, over ${MAX_ADVISORY_DAYS}`);
-  }
-
   const snapshots: Snapshot[] = [];
   function csvRows<S extends z.ZodType<{ item: string }>>(
     csv: Csv | null,
@@ -364,7 +347,7 @@ export function validate(raw: RawInputs, opts: { production: boolean }): Result 
   }
 
   if (opts.production) {
-    const records = [...items, ...advisories, ...evidence.map((e) => ({ ...e, id: `evidence ${e.item}` }))];
+    const records = [...items, ...evidence.map((e) => ({ ...e, id: `evidence ${e.item}` }))];
     for (const s of sources)
       if (s.synthetic) errors.push(`source ${s.id}: synthetic records can't ship (production build)`);
     for (const r of records) {
@@ -384,7 +367,6 @@ export function validate(raw: RawInputs, opts: { production: boolean }): Result 
       categories,
       states,
       items: byId(items),
-      advisories: byId(advisories),
       evidence: [...evidence].sort((a, b) => a.item.localeCompare(b.item)),
       snapshot,
       typicalOrigins,

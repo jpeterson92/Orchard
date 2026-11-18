@@ -74,7 +74,7 @@ for (const item of data.items) {
   // The evidence for whoever decides each window: the variety the card names, else the top typical origin.
   const deciderProposal = Array.from({ length: WINDOW_COUNT }, (_, w) => {
     const date = { year, month: Math.floor(w / 2) + 1, day: w % 2 === 0 ? 1 : 16 };
-    const r = evaluate(inputs, { date, mode: "typical" }, env);
+    const r = evaluate(inputs, { date }, env);
     const variety = r.varietyLine?.[0];
     const origin = inputs.typicalOrigins[Math.floor(w / 2)]?.[0];
     const target: Target | null = variety ? { variety } : origin ? { origin } : null;

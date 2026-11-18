@@ -1,5 +1,5 @@
 // The verdict engine (product spec §7, engineering plan §4.2–4.3). Pure: no I/O, no clock.
-// Rules 1–5 run in order and the first match wins; markers, label advice and variety results re-run them.
+// Rules 1–4 run in order and the first match wins; markers, label advice and variety results re-run them.
 import type { Rules } from "../data/schema";
 import { WINDOW_COUNT, windowIndex } from "../time";
 
@@ -29,16 +29,6 @@ export interface RatedVariety extends RatedSeries {
   inStore: readonly boolean[];
 }
 
-export interface EngineAdvisory {
-  id: string;
-  /** Absent: every origin of the item. */
-  origins?: readonly OriginId[];
-  from: string;
-  to: string;
-  effect: "skip" | "cap-good";
-  reviewedOn?: string;
-}
-
 export interface ItemInputs {
   id: string;
   evidenceBasis: "supply+assessment" | "assessment-only";
@@ -59,13 +49,10 @@ export interface ItemInputs {
   /** Per origin, indexed by month 0–11: that origin's typical supply index against its own season (P11). A
    * missing origin or month has none. */
   supply: Readonly<Record<OriginId, readonly (number | null)[]>>;
-  /** This item's advisories. */
-  advisories: readonly EngineAdvisory[];
 }
 
 export interface EvalContext {
   date: PlainDate;
-  mode: "today" | "typical";
   labelOrigin?: OriginId;
   labelVariety?: VarietyId;
 }
@@ -81,7 +68,6 @@ export type Reason =
   | { code: "origin-unrated"; origin: OriginId }
   | { code: "no-variety-in-stores" }
   | { code: "variety-unrated"; variety: VarietyId }
-  | { code: "advisory"; advisory: string; effect: EngineAdvisory["effect"] }
   | { code: "rated"; rating: Rating; origin?: OriginId; variety?: VarietyId }
   | { code: "supply-thin" }
   /** Rated prime, but the item tastes much the same in and out of its best season: Good, not Peak. */
@@ -91,18 +77,15 @@ export type Reason =
 
 export interface CoreResult {
   verdict: Verdict;
-  ruleFired: 1 | 2 | 3 | 4 | 5;
+  ruleFired: 1 | 2 | 3 | 4;
   reasons: Reason[];
   confidence: Confidence;
   weakProperties: WeakProperty[];
-  /** The advisory that applied, if any. */
-  advisory: string | null;
 }
 
 export type Marker =
   | { kind: "last-call"; fadesBy: number }
   | { kind: "reliable-year-round" }
-  | { kind: "advisory"; advisory: string }
   /** The label note applies: typical origins mix poor with better, so the shopper should check the label (P9). */
   | { kind: "check-label" }
   | { kind: "improves"; window: number };
@@ -130,8 +113,6 @@ export const verdictRank = (v: Verdict): number => VERDICT_RANK[v];
 export const confidenceRank = (c: Confidence): number => CONFIDENCE_RANK[c];
 
 const monthOf = (window: number): number => Math.floor(window / 2);
-const isoDate = (d: PlainDate): string =>
-  `${d.year}-${String(d.month).padStart(2, "0")}-${String(d.day).padStart(2, "0")}`;
 
 function evaluateCore(
   item: ItemInputs,
@@ -147,7 +128,7 @@ function evaluateCore(
   const missing: Reason[] = [];
   let rating: Rating | null = null;
   let decider: RatedSeries | undefined;
-  let advisoryOrigin: OriginId | undefined;
+  let supplyOrigin: OriginId | undefined;
   let labelNote = false;
   let poorOrigin: OriginId | undefined;
 
@@ -182,7 +163,7 @@ function evaluateCore(
           : top;
       decider = item.origins[lead];
       rating = ratingOf(lead);
-      advisoryOrigin = lead;
+      supplyOrigin = lead;
       const ratings = ratedTypical.map(ratingOf);
       labelNote = ratings.includes("poor") && ratings.some((r) => r !== "poor");
       poorOrigin = ratedTypical.find((o) => o !== lead && ratingOf(o) === "poor");
@@ -190,55 +171,31 @@ function evaluateCore(
   } else if (basis.kind === "origin") {
     decider = item.origins[basis.origin];
     rating = decider?.windows[window] ?? null;
-    advisoryOrigin = basis.origin;
+    supplyOrigin = basis.origin;
     if (rating === null) missing.push({ code: "origin-unrated", origin: basis.origin });
   } else {
     decider = item.varieties.find((v) => v.id === basis.variety);
     rating = decider?.windows[window] ?? null;
-    advisoryOrigin = typical[0];
+    supplyOrigin = typical[0];
     if (rating === null) missing.push({ code: "variety-unrated", variety: basis.variety });
   }
 
-  const advisory = rating === null ? undefined : activeAdvisory(item, advisoryOrigin, ctx);
   return decide(
     item,
-    {
-      rating,
-      decider,
-      missing,
-      advisory,
-      labelNote,
-      poorOrigin,
-      supplyOrigin: advisoryOrigin,
-      basis,
-      window,
-    },
+    { rating, decider, missing, labelNote, poorOrigin, supplyOrigin, basis, window },
     ctx,
     env,
   );
-}
-
-function activeAdvisory(item: ItemInputs, origin: OriginId | undefined, ctx: EvalContext) {
-  if (ctx.mode !== "today") return undefined;
-  const today = isoDate(ctx.date);
-  const applies = item.advisories.filter(
-    (a) =>
-      a.from <= today &&
-      today <= a.to &&
-      (a.origins === undefined || (origin !== undefined && a.origins.includes(origin))),
-  );
-  return applies.find((a) => a.effect === "skip") ?? applies[0];
 }
 
 interface Decision {
   rating: Rating | null;
   decider: RatedSeries | undefined;
   missing: Reason[];
-  advisory: EngineAdvisory | undefined;
   labelNote: boolean;
   /** Typical basis only: a typical origin other than the deciding one rated poor this window. */
   poorOrigin?: OriginId | undefined;
-  /** The deciding origin, for its supply index and advisories (the top typical one for a variety). */
+  /** The deciding origin, for its supply index (the top typical one for a variety). */
   supplyOrigin: OriginId | undefined;
   basis: Basis;
   window: number;
@@ -270,29 +227,21 @@ function decide(
             origin: d.basis.kind === "origin" ? d.basis.origin : (d.supplyOrigin ?? ""),
           };
     reasons.push({ code: "rated", rating: d.rating, ...by });
-    if (d.advisory) reasons.push({ code: "advisory", advisory: d.advisory.id, effect: d.advisory.effect });
     if (d.rating === "prime" && thin) reasons.push({ code: "supply-thin" });
     if (d.rating === "prime" && !item.peakWorthSeeking) reasons.push({ code: "peak-not-worth-seeking" });
     if (d.rating !== "poor" && d.poorOrigin)
       reasons.push({ code: "typical-origin-poor", origin: d.poorOrigin });
 
-    if (d.advisory?.effect === "skip") [verdict, ruleFired] = ["skip", 2];
-    else if (d.rating === "poor") [verdict, ruleFired] = ["skip", 3];
-    else if (d.rating === "prime" && !thin && d.advisory?.effect === "cap-good")
-      [verdict, ruleFired] = ["good", 2];
+    if (d.rating === "poor") [verdict, ruleFired] = ["skip", 2];
     else if (d.rating === "prime" && !thin && item.peakWorthSeeking && !d.poorOrigin)
-      [verdict, ruleFired] = ["peak", 4];
-    else [verdict, ruleFired] = ["good", 5];
+      [verdict, ruleFired] = ["peak", 3];
+    else [verdict, ruleFired] = ["good", 4];
   }
 
   const weak: WeakProperty[] = [];
   if (verdict === "limited" || d.decider?.evidence?.[d.window] === "low") weak.push("coverage");
   if (item.evidenceBasis === "assessment-only") weak.push("relevance");
-  if (
-    staleSnapshot(item, ctx.date, env) ||
-    (d.advisory !== undefined && !reviewedThisWindow(d.advisory, ctx.date))
-  )
-    weak.push("freshness");
+  if (staleSnapshot(item, ctx.date, env)) weak.push("freshness");
   if ((d.rating === "prime" && thin) || (d.rating === "poor" && strong) || d.labelNote)
     weak.push("agreement");
 
@@ -302,7 +251,6 @@ function decide(
     reasons,
     confidence: weak.length === 0 ? "high" : weak.length === 1 ? "medium" : "low",
     weakProperties: weak,
-    advisory: d.advisory?.id ?? null,
     labelNote: d.labelNote,
   };
 }
@@ -312,12 +260,6 @@ function staleSnapshot(item: ItemInputs, date: PlainDate, env: Env): boolean {
   if (env.snapshotTo === null) return true;
   const [y, m] = env.snapshotTo.split("-").map(Number) as [number, number];
   return date.year * 12 + date.month - (y * 12 + m) > env.rules.snapshotMaxAgeMonths;
-}
-
-function reviewedThisWindow(a: EngineAdvisory, date: PlainDate): boolean {
-  if (a.reviewedOn === undefined) return false;
-  const [y, m, d] = a.reviewedOn.split("-").map(Number) as [number, number, number];
-  return y === date.year && windowIndex(m, d) === windowIndex(date.month, date.day);
 }
 
 /** P13: the item result is the best among in-store rated varieties, ties by confidence, then file order. */
@@ -342,7 +284,6 @@ function bestVariety(item: ItemInputs, window: number, ctx: EvalContext, env: En
       rating: null,
       decider: undefined,
       missing: [{ code: "no-variety-in-stores" }],
-      advisory: undefined,
       labelNote: false,
       supplyOrigin: undefined,
       basis: { kind: "typical" },
@@ -375,8 +316,7 @@ export function evaluate(item: ItemInputs, ctx: EvalContext, env: Env): VerdictR
   const labelNote = head.labelNote === true;
   const core = stripNote(head);
 
-  const typicalCtx: EvalContext = { ...ctx, mode: "typical" };
-  const outlook = (w: number) => evaluateCore(item, basis, w % WINDOW_COUNT, typicalCtx, env).verdict;
+  const outlook = (w: number) => evaluateCore(item, basis, w % WINDOW_COUNT, ctx, env).verdict;
   const markers: Marker[] = [];
 
   if (core.verdict === "peak" || core.verdict === "good") {
@@ -393,7 +333,6 @@ export function evaluate(item: ItemInputs, ctx: EvalContext, env: Env): VerdictR
     for (let w = 0; w < WINDOW_COUNT; w++) if (VERDICT_RANK[outlook(w)] >= VERDICT_RANK.good) goodOrBetter++;
     if (goodOrBetter >= env.rules.reliableYearRoundWindows) markers.push({ kind: "reliable-year-round" });
   }
-  if (core.advisory !== null) markers.push({ kind: "advisory", advisory: core.advisory });
   if (labelNote) markers.push({ kind: "check-label" });
   if (core.verdict === "skip") {
     for (let k = 1; k < WINDOW_COUNT; k++) {
@@ -421,17 +360,13 @@ export function evaluate(item: ItemInputs, ctx: EvalContext, env: Env): VerdictR
   return { ...core, markers, labelNote, byOrigin, byVariety, varietyLine };
 }
 
-/** The typical-outlook verdict in each of the 24 windows (advisories ignored): the item's, or one rated
+/** The typical-outlook verdict in each of the 24 windows: the item's, or one rated
  * variety's as if the label named it (the item page's variety strips). */
 export function typicalOutlook(item: ItemInputs, env: Env, year: number, variety?: VarietyId): Verdict[] {
   const basis: Basis = variety === undefined ? { kind: "typical" } : { kind: "variety", variety };
   return Array.from({ length: WINDOW_COUNT }, (_, w) => {
     const date = { year, month: monthOf(w) + 1, day: w % 2 === 0 ? 1 : 16 };
-    const ctx: EvalContext = {
-      date,
-      mode: "typical",
-      ...(variety === undefined ? {} : { labelVariety: variety }),
-    };
+    const ctx: EvalContext = { date, ...(variety === undefined ? {} : { labelVariety: variety }) };
     return evaluateCore(item, basis, w, ctx, env).verdict;
   });
 }

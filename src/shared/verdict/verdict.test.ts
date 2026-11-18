@@ -11,9 +11,9 @@ import {
   typicalOutlook,
   type VerdictResult,
 } from "./index";
-import { advisory, allMonths, ENV, item, NOV_17, rated, variety } from "./test-helpers";
+import { allMonths, ENV, item, NOV_17, rated, variety } from "./test-helpers";
 
-const today: EvalContext = { date: NOV_17, mode: "today" };
+const today: EvalContext = { date: NOV_17 };
 const NOV = 10; // month index of NOV_17
 
 /** Typical origins and supply that differ in November only. */
@@ -57,7 +57,7 @@ const cases: Case[] = [
       typicalShares: allMonths([0.6, 0.2]),
     }),
     verdict: "peak",
-    rule: 4,
+    rule: 3,
   },
   {
     name: "1: rated origins hold under 75% of the typical volume (P1)",
@@ -77,7 +77,7 @@ const cases: Case[] = [
       typicalShares: allMonths([0.2, 0.2, 0.2, 0.2]),
     }),
     verdict: "good",
-    rule: 5,
+    rule: 4,
   },
   {
     name: "1: editorial typical origins carry no share, so every one must be rated (P1)",
@@ -101,129 +101,52 @@ const cases: Case[] = [
     verdict: "limited",
     rule: 1,
   },
-  // Rule 2: Advisory
-  { name: "2: skip advisory on prime", item: item({ advisories: [advisory()] }), verdict: "skip", rule: 2 },
+  // Rule 2: Skip
   {
-    name: "2: cap-good lowers Peak to Good",
-    item: item({ advisories: [advisory({ effect: "cap-good" })] }),
-    verdict: "good",
-    rule: 2,
-  },
-  {
-    name: "2: cap-good lets rule 3 run",
-    item: item({ origins: { "us-ca": rated("poor") }, advisories: [advisory({ effect: "cap-good" })] }),
-    verdict: "skip",
-    rule: 3,
-  },
-  {
-    name: "2: cap-good on fair leaves rule 5",
-    item: item({ origins: { "us-ca": rated("fair") }, advisories: [advisory({ effect: "cap-good" })] }),
-    verdict: "good",
-    rule: 5,
-  },
-  {
-    name: "2: advisory naming the top origin applies",
-    item: item({
-      origins: two,
-      typicalOrigins: allMonths(["us-ca", "mx"]),
-      advisories: [advisory({ origins: ["us-ca"] })],
-    }),
-    verdict: "skip",
-    rule: 2,
-  },
-  {
-    name: "2: advisory naming only a lower-ranked origin does not apply",
-    item: item({
-      origins: two,
-      typicalOrigins: allMonths(["us-ca", "mx"]),
-      advisories: [advisory({ origins: ["mx"] })],
-    }),
-    verdict: "peak",
-    rule: 4,
-  },
-  {
-    name: "2: skip beats cap-good when both are active",
-    item: item({ advisories: [advisory({ id: "cap", effect: "cap-good" }), advisory({ id: "skip" })] }),
-    verdict: "skip",
-    rule: 2,
-  },
-  {
-    name: "2: expired advisory does not apply",
-    item: item({ advisories: [advisory({ from: "2026-10-01", to: "2026-11-16" })] }),
-    verdict: "peak",
-    rule: 4,
-  },
-  {
-    name: "2: advisory starting tomorrow does not apply",
-    item: item({ advisories: [advisory({ from: "2026-11-18", to: "2026-11-30" })] }),
-    verdict: "peak",
-    rule: 4,
-  },
-  {
-    name: "2: advisory active on its last day",
-    item: item({ advisories: [advisory({ from: "2026-11-01", to: "2026-11-17" })] }),
-    verdict: "skip",
-    rule: 2,
-  },
-  {
-    name: "2: typical mode ignores advisories",
-    item: item({ advisories: [advisory()] }),
-    ctx: { mode: "typical" },
-    verdict: "peak",
-    rule: 4,
-  },
-  // Rule 3: Skip
-  {
-    name: "3: top origin poor",
+    name: "2: top origin poor",
     item: item({ origins: { "us-ca": rated("poor") } }),
     verdict: "skip",
-    rule: 3,
+    rule: 2,
   },
   {
-    name: "3: poor with strong supply weakens agreement",
+    name: "2: poor with strong supply weakens agreement",
     item: item({ origins: { "us-ca": rated("poor") }, supply: { "us-ca": allMonths(1.2) } }),
     verdict: "skip",
-    rule: 3,
+    rule: 2,
     weak: ["agreement"],
   },
-  // Rule 4: Peak
-  { name: "4: prime, normal supply", item: item(), verdict: "peak", rule: 4, weak: [] },
+  // Rule 3: Peak
+  { name: "3: prime, normal supply", item: item(), verdict: "peak", rule: 3, weak: [] },
   {
-    name: "4: prime, supply exactly at the thin line",
+    name: "3: prime, supply exactly at the thin line",
     item: item({ supply: { "us-ca": allMonths(0.8) } }),
     verdict: "peak",
-    rule: 4,
+    rule: 3,
   },
   {
-    name: "4: prime, no supply index",
+    name: "3: prime, no supply index",
     item: item({ supply: { "us-ca": allMonths(null) } }),
     verdict: "peak",
-    rule: 4,
+    rule: 3,
   },
-  // Rule 5: Good
+  // Rule 4: Good
   {
-    name: "5: prime but thin supply",
+    name: "4: prime but thin supply",
     item: item({ supply: { "us-ca": allMonths(0.79) } }),
     verdict: "good",
-    rule: 5,
+    rule: 4,
     weak: ["agreement"],
   },
   {
-    name: "5: fair",
+    name: "4: fair",
     item: item({ origins: { "us-ca": rated("fair") } }),
     verdict: "good",
-    rule: 5,
+    rule: 4,
     weak: [],
   },
   // Precedence pairs
   {
-    name: "1 over 2: unrated origin beats a skip advisory",
-    item: item({ origins: { "us-ca": rated(null) }, advisories: [advisory()] }),
-    verdict: "limited",
-    rule: 1,
-  },
-  {
-    name: "1 over 3: an unrated second origin beats a poor top origin",
+    name: "1 over 2: an unrated second origin beats a poor top origin",
     item: item({
       origins: { "us-ca": rated("poor"), mx: rated(null) },
       typicalOrigins: allMonths(["us-ca", "mx"]),
@@ -232,31 +155,13 @@ const cases: Case[] = [
     rule: 1,
   },
   {
-    name: "1 over 4: an unrated second origin beats a prime top origin",
+    name: "1 over 3: an unrated second origin beats a prime top origin",
     item: item({
       origins: { "us-ca": rated("prime"), mx: rated(null) },
       typicalOrigins: allMonths(["us-ca", "mx"]),
     }),
     verdict: "limited",
     rule: 1,
-  },
-  {
-    name: "2 over 3: skip advisory on a poor origin",
-    item: item({ origins: { "us-ca": rated("poor") }, advisories: [advisory()] }),
-    verdict: "skip",
-    rule: 2,
-  },
-  {
-    name: "2 over 5: skip advisory on a fair origin",
-    item: item({ origins: { "us-ca": rated("fair") }, advisories: [advisory()] }),
-    verdict: "skip",
-    rule: 2,
-  },
-  {
-    name: "2 cap over 4, with thin supply: rule 5 still decides",
-    item: item({ supply: { "us-ca": allMonths(0.5) }, advisories: [advisory({ effect: "cap-good" })] }),
-    verdict: "good",
-    rule: 5,
   },
   {
     name: "P9: poor top origin gives way to a prime second, Good not Peak",
@@ -266,50 +171,38 @@ const cases: Case[] = [
       supply: { "us-ca": allMonths(1), mx: allMonths(1) },
     }),
     verdict: "good",
-    rule: 5,
+    rule: 4,
   },
   {
-    name: "3 over 5: poor top origin, prime second on Low evidence",
+    name: "2 over 4: poor top origin, prime second on Low evidence",
     item: item({
       origins: { "us-ca": rated("poor"), mx: rated("prime", {}, { "nov-2": "low" }) },
       typicalOrigins: allMonths(["us-ca", "mx"]),
     }),
     verdict: "skip",
-    rule: 3,
+    rule: 2,
   },
   {
-    name: "4 over 5: prime top origin, fair second",
+    name: "3 over 4: prime top origin, fair second",
     item: item({
       origins: { "us-ca": rated("prime"), mx: rated("fair") },
       typicalOrigins: allMonths(["us-ca", "mx"]),
     }),
     verdict: "peak",
-    rule: 4,
+    rule: 3,
   },
-  // Rule 4 needs a Peak worth seeking
+  // Rule 3 needs a Peak worth seeking
   {
-    name: "4: prime, normal supply, Peak not worth seeking: rule 5 Good",
+    name: "3: prime, normal supply, Peak not worth seeking: rule 4 Good",
     item: item({ peakWorthSeeking: false }),
     verdict: "good",
-    rule: 5,
+    rule: 4,
   },
   {
-    name: "2 over 4: cap-good on an item whose Peak isn't worth seeking",
-    item: item({ peakWorthSeeking: false, advisories: [advisory({ effect: "cap-good" })] }),
-    verdict: "good",
-    rule: 2,
-  },
-  {
-    name: "2 skip on an item whose Peak isn't worth seeking",
-    item: item({ peakWorthSeeking: false, advisories: [advisory()] }),
-    verdict: "skip",
-    rule: 2,
-  },
-  {
-    name: "3: poor stays Skip when Peak isn't worth seeking",
+    name: "2: poor stays Skip when Peak isn't worth seeking",
     item: item({ peakWorthSeeking: false, origins: { "us-ca": rated("poor") } }),
     verdict: "skip",
-    rule: 3,
+    rule: 2,
   },
   {
     name: "1: Limited evidence stays when Peak isn't worth seeking",
@@ -318,10 +211,10 @@ const cases: Case[] = [
     rule: 1,
   },
   {
-    name: "5: thin supply and Peak not worth seeking",
+    name: "4: thin supply and Peak not worth seeking",
     item: item({ peakWorthSeeking: false, supply: { "us-ca": allMonths(0.5) } }),
     verdict: "good",
-    rule: 5,
+    rule: 4,
   },
   // P9: the top-ranked origin decides
   {
@@ -331,7 +224,7 @@ const cases: Case[] = [
       typicalOrigins: allMonths(["us-ca", "mx"]),
     }),
     verdict: "good",
-    rule: 5,
+    rule: 4,
   },
   {
     name: "P9: November's ranking applies in November (prime top, poor second: Good)",
@@ -340,42 +233,42 @@ const cases: Case[] = [
       typicalOrigins: inNov(["us-ca", "mx"], ["mx", "us-ca"]),
     }),
     verdict: "good",
-    rule: 5,
+    rule: 4,
     weak: ["agreement"],
   },
   // The deciding origin's own supply (P11)
   {
-    name: "4: thin supply at another origin doesn't hold the top origin's Peak",
+    name: "3: thin supply at another origin doesn't hold the top origin's Peak",
     item: item({
       origins: two,
       typicalOrigins: allMonths(["us-ca", "mx"]),
       supply: { "us-ca": allMonths(1), mx: allMonths(0.5) },
     }),
     verdict: "peak",
-    rule: 4,
+    rule: 3,
   },
   {
-    name: "5: thin supply at the origin that tops November",
+    name: "4: thin supply at the origin that tops November",
     item: item({
       origins: two,
       typicalOrigins: inNov(["us-ca", "mx"], ["mx", "us-ca"]),
       supply: { "us-ca": allMonths(1), mx: allMonths(0.5) },
     }),
     verdict: "good",
-    rule: 5,
+    rule: 4,
   },
   {
-    name: "4: an import in a normal month of its own season, with no US supply that month",
+    name: "3: an import in a normal month of its own season, with no US supply that month",
     item: item({
       origins: { cl: rated("prime") },
       typicalOrigins: allMonths(["cl"]),
       supply: { cl: allMonths(1.1) },
     }),
     verdict: "peak",
-    rule: 4,
+    rule: 3,
   },
   {
-    name: "5: a label origin uses its own thin supply",
+    name: "4: a label origin uses its own thin supply",
     item: item({
       origins: two,
       typicalOrigins: allMonths(["us-ca", "mx"]),
@@ -383,9 +276,9 @@ const cases: Case[] = [
     }),
     ctx: { labelOrigin: "mx" },
     verdict: "good",
-    rule: 5,
+    rule: 4,
   },
-  // Rule 4 needs no typical origin rated poor
+  // Rule 3 needs no typical origin rated poor
   {
     name: "4 held at 5: prime top origin, poor third",
     item: item({
@@ -393,16 +286,16 @@ const cases: Case[] = [
       typicalOrigins: allMonths(["us-ca", "mx", "cl"]),
     }),
     verdict: "good",
-    rule: 5,
+    rule: 4,
   },
   {
-    name: "4: prime top origin, fair others",
+    name: "3: prime top origin, fair others",
     item: item({
       origins: { "us-ca": rated("prime"), mx: rated("fair"), cl: rated("fair") },
       typicalOrigins: allMonths(["us-ca", "mx", "cl"]),
     }),
     verdict: "peak",
-    rule: 4,
+    rule: 3,
   },
   {
     name: "4 for a label origin: the shopper's origin alone decides",
@@ -412,20 +305,20 @@ const cases: Case[] = [
     }),
     ctx: { labelOrigin: "us-ca" },
     verdict: "peak",
-    rule: 4,
+    rule: 3,
   },
   {
-    name: "3 over the poor-origin hold: poor top origin is Skip",
+    name: "2 over the poor-origin hold: poor top origin is Skip",
     item: item({
       origins: { "us-ca": rated("poor"), mx: rated("poor") },
       typicalOrigins: allMonths(["us-ca", "mx"]),
     }),
     verdict: "skip",
-    rule: 3,
+    rule: 2,
   },
 ];
 
-describe("rules 1–5", () => {
+describe("rules 1–4", () => {
   it.each(cases)("$name", (c) => {
     const r = evaluate(c.item, { ...today, ...c.ctx }, c.env ?? ENV);
     expect([r.verdict, r.ruleFired]).toEqual([c.verdict, c.rule]);
@@ -492,11 +385,11 @@ describe("origins that disagree (P9)", () => {
 
   it("a second origin on Low evidence never lifts a poor top origin", () => {
     const r = run(["poor", "fair"], {}, "low");
-    expect([r.verdict, r.ruleFired, r.labelNote]).toEqual(["skip", 3, true]);
+    expect([r.verdict, r.ruleFired, r.labelNote]).toEqual(["skip", 2, true]);
   });
   it("a minor second origin never lifts a poor top origin", () => {
     const r = run(["poor", "prime"], {}, undefined, allMonths(["mx"]));
-    expect([r.verdict, r.ruleFired, r.labelNote]).toEqual(["skip", 3, true]);
+    expect([r.verdict, r.ruleFired, r.labelNote]).toEqual(["skip", 2, true]);
   });
   it("a second origin minor only in another month still takes over", () => {
     const minor = allMonths<string[]>([]);
@@ -508,17 +401,6 @@ describe("origins that disagree (P9)", () => {
   it("label advice for the poor origin is Skip, with no note", () => {
     const r = run(["fair", "poor"], { labelOrigin: "mx" });
     expect([r.verdict, r.labelNote]).toEqual(["skip", false]);
-  });
-  it("an advisory follows the deciding origin", () => {
-    const base = {
-      origins: { "us-ca": rated("poor"), mx: rated("fair") },
-      typicalOrigins: allMonths(["us-ca", "mx"]),
-      supply: { "us-ca": allMonths(1), mx: allMonths(1) },
-    };
-    const onTop = evaluate(item({ ...base, advisories: [advisory({ origins: ["us-ca"] })] }), today, ENV);
-    expect(onTop.verdict).toBe("good");
-    const onLead = evaluate(item({ ...base, advisories: [advisory({ origins: ["mx"] })] }), today, ENV);
-    expect([onLead.verdict, onLead.ruleFired]).toEqual(["skip", 2]);
   });
   it("supply comes from the deciding origin", () => {
     const r = evaluate(
@@ -572,21 +454,6 @@ describe("confidence (P10)", () => {
       "medium",
       ["relevance"],
     ]));
-  it("freshness: advisory not reviewed this window", () =>
-    expect(conf(item({ advisories: [advisory({ reviewedOn: "2026-11-15" })] }))).toEqual([
-      "medium",
-      ["freshness"],
-    ]));
-  it("freshness: advisory never reviewed", () =>
-    expect(conf(item({ advisories: [advisory({ reviewedOn: undefined })] }))).toEqual([
-      "medium",
-      ["freshness"],
-    ]));
-  it("freshness: same window a year earlier is not this window", () =>
-    expect(conf(item({ advisories: [advisory({ reviewedOn: "2025-11-20" })] }))).toEqual([
-      "medium",
-      ["freshness"],
-    ]));
   it("Low with two weak properties", () =>
     expect(conf(item({ evidenceBasis: "assessment-only", supply: { "us-ca": allMonths(0.5) } }))).toEqual([
       "low",
@@ -624,7 +491,7 @@ describe("markers", () => {
     expect(
       evaluate(
         item({ origins: { "us-ca": rated("fair", { "jan-1": "poor" }) } }),
-        { date: { year: 2026, month: 12, day: 20 }, mode: "today" },
+        { date: { year: 2026, month: 12, day: 20 } },
         ENV,
       ).markers,
     ).toContainEqual({ kind: "last-call", fadesBy: 0 }));
@@ -654,18 +521,10 @@ describe("markers", () => {
   it("Always good items show no Reliable year-round marker", () =>
     expect(kinds(item({ alwaysGood: true, origins: { "us-ca": rated("fair") } }))).toEqual([]));
 
-  it("Advisory marker when an advisory applies", () =>
-    expect(kinds(item({ advisories: [advisory()] }))).toContainEqual({ kind: "advisory", advisory: "adv" }));
-
   it("Usually improves names the next Good-or-better window", () =>
     expect(kinds(item({ origins: { "us-ca": rated("poor", { "jan-2": "fair" }) } }))).toContainEqual({
       kind: "improves",
       window: windowFromLabel("jan-2"),
-    }));
-  it("Usually improves on an advisory Skip uses the typical outlook", () =>
-    expect(kinds(item({ advisories: [advisory()] }))).toContainEqual({
-      kind: "improves",
-      window: windowFromLabel("dec-1"),
     }));
   it("no Usually improves when it never improves", () =>
     expect(kinds(item({ origins: { "us-ca": rated("poor") } }))).toEqual([]));
@@ -688,10 +547,6 @@ describe("label advice and byOrigin", () => {
       mx: "skip",
       cl: "limited",
     });
-  });
-  it("an advisory applies to a label origin it names", () => {
-    const r = evaluate(item({ origins: two, advisories: [advisory({ origins: ["mx"] })] }), today, ENV);
-    expect([r.byOrigin["us-ca"]?.verdict, r.byOrigin.mx?.verdict]).toEqual(["peak", "skip"]);
   });
 });
 
@@ -759,31 +614,6 @@ describe("items rated by variety (P13)", () => {
     );
     expect(r.confidence).toBe("high");
   });
-  it("an advisory on the top typical origin applies to every variety", () => {
-    const r = evaluate(
-      item({
-        ...base,
-        varieties: [variety("a", rated("prime")), variety("b", rated("prime"))],
-        advisories: [advisory({ origins: ["us-wa"] })],
-      }),
-      today,
-      ENV,
-    );
-    expect([r.verdict, r.byVariety.a?.verdict, r.byVariety.b?.verdict]).toEqual(["skip", "skip", "skip"]);
-  });
-  it("a national advisory applies even with no typical origins", () => {
-    const r = evaluate(
-      item({
-        ...base,
-        typicalOrigins: allMonths([]),
-        varieties: [variety("a", rated("prime"))],
-        advisories: [advisory()],
-      }),
-      today,
-      ENV,
-    );
-    expect(r.verdict).toBe("skip");
-  });
   it("labelVariety rates that variety even out of stores", () => {
     const i = item({
       ...base,
@@ -812,10 +642,6 @@ describe("typical outlook and the Always good evidence", () => {
         typicalOutlook(item({ origins: { "us-ca": rated("fair", { "jul-1": null }) } }), ENV, 2026),
       ),
     ).toBe(false));
-  it("ignores advisories", () =>
-    expect(
-      typicalOutlook(item({ advisories: [advisory({ from: "2026-01-01", to: "2026-03-31" })] }), ENV, 2026),
-    ).toEqual(Array(24).fill("peak")));
 
   it("rates one variety as if the label named it, whatever the best variety is", () => {
     const i = item({

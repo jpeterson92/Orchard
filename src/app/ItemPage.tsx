@@ -80,9 +80,8 @@ function Item({ view, mode }: { view: ItemView; mode: Mode }) {
         ))}
       </div>
 
-      {(view.notes.length > 0 || view.advisory) && (
+      {view.notes.length > 0 && (
         <div className="mt-3 space-y-1 border-l-2 border-accent/70 pl-3">
-          {view.advisory && <p>{view.advisory}</p>}
           {view.notes.map((n) => (
             <p key={n}>{n}</p>
           ))}

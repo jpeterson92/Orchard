@@ -9,8 +9,6 @@ export interface TodayEntry {
   alwaysGood: boolean;
   verdict: Verdict;
   confidence: Confidence;
-  /** The typical-outlook verdict for the same date: an always-good item joins Today only when they differ. */
-  typicalVerdict: Verdict;
   /** Peak windows in the item's typical outlook over the year: a shorter Peak is more worth buying now. */
   peakWindows: number;
 }
@@ -28,7 +26,7 @@ export interface TodayGroups {
  */
 export function groupToday(entries: readonly TodayEntry[]): TodayGroups {
   const shown = entries
-    .filter((e) => !e.alwaysGood || e.verdict !== e.typicalVerdict)
+    .filter((e) => !e.alwaysGood)
     .sort(
       (a, b) =>
         verdictRank(b.verdict) - verdictRank(a.verdict) ||

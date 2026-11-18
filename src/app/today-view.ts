@@ -136,19 +136,17 @@ export function tags(item: AppItem, markers: readonly Marker[]): string[] {
   for (const m of markers) {
     if (m.kind === "last-call") out.push("Last call");
     else if (m.kind === "reliable-year-round" && !item.inputs.alwaysGood) out.push("Reliable year-round");
-    else if (m.kind === "advisory") out.push("Advisory");
     else if (m.kind === "check-label") out.push("Check the label");
   }
   return out;
 }
 
-/** `mode: "typical"` for a planning date: every verdict is the typical outlook (engineering plan §4). */
+/** `mode: "typical"` for a planning date: the wording says "then" where it would say "now". */
 export function todayView(data: AppData, date: PlainDate, mode: "today" | "typical" = "today"): TodayView {
   const window = windowIndex(date.month, date.day);
   const cards = new Map<string, Card>();
   const entries: TodayEntry[] = data.items.map((item) => {
-    const result = evaluate(item.inputs, { date, mode }, data.env);
-    const typical = evaluate(item.inputs, { date, mode: "typical" }, data.env);
+    const result = evaluate(item.inputs, { date }, data.env);
     const top = item.inputs.typicalOrigins[Math.floor(window / 2)]?.[0];
     const reason = reasonText(result.verdict, result.reasons, result.markers);
     cards.set(item.inputs.id, {
@@ -172,7 +170,6 @@ export function todayView(data: AppData, date: PlainDate, mode: "today" | "typic
       alwaysGood: item.inputs.alwaysGood,
       verdict: result.verdict,
       confidence: result.confidence,
-      typicalVerdict: typical.verdict,
       peakWindows: typicalOutlook(item.inputs, data.env, date.year).filter((v) => v === "peak").length,
     };
   });

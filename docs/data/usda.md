@@ -121,7 +121,7 @@ The evidence basis for each added item is set when its record is drafted:
 
 ## Quality notes in terminal reports
 
-Terminal market rows carry `appearance`, `quality` and `condition` fields, plus a free-text `reporter_comment`. They are exception flags, not a measure of taste: over 3 years, under 1% of apple, pear and mandarin quotes carry one ("Fair Quality", "Fair Condition", "Holdovers", "poorer quality and condition lower"). Apples show a faint rise in January–May, which fits storage decline, but the counts are too small to rate a window. The `storage` field is empty (`N/A`) on every apple quote, so it can't show which varieties sell from long storage. Quality windows therefore rest on cited sources; these flags may later help an editor spot advisory candidates.
+Terminal market rows carry `appearance`, `quality` and `condition` fields, plus a free-text `reporter_comment`. They are exception flags, not a measure of taste: over 3 years, under 1% of apple, pear and mandarin quotes carry one ("Fair Quality", "Fair Condition", "Holdovers", "poorer quality and condition lower"). Apples show a faint rise in January–May, which fits storage decline, but the counts are too small to rate a window. The `storage` field is empty (`N/A`) on every apple quote, so it can't show which varieties sell from long storage. Quality windows therefore rest on cited sources.
 
 ## Regional data (v1.1)
 

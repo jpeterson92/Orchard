@@ -3,7 +3,6 @@ import { describe, expect, it } from "vitest";
 import { WINDOW_COUNT, windowIndex } from "../time";
 import {
   type CoreResult,
-  type EngineAdvisory,
   type EvalContext,
   evaluate,
   type ItemInputs,
@@ -25,29 +24,6 @@ const series = fc.record(
 const months = <T>(a: fc.Arbitrary<T>) => fc.array(a, { minLength: 12, maxLength: 12 });
 const supplyValue = fc.constantFrom(null, 0.5, 0.79, 0.8, 1, 1.19, 1.2, 1.6);
 const day = fc.record({ month: fc.integer({ min: 1, max: 12 }), day: fc.integer({ min: 1, max: 28 }) });
-const iso = (m: number, d: number) => `2026-${String(m).padStart(2, "0")}-${String(d).padStart(2, "0")}`;
-
-const advisoryArb = fc
-  .record({
-    id: fc.constantFrom("a1", "a2", "a3"),
-    origins: fc.option(fc.subarray([...ORIGINS], { minLength: 1 }), { nil: undefined }),
-    from: day,
-    length: fc.integer({ min: 0, max: 60 }),
-    effect: fc.constantFrom("skip" as const, "cap-good" as const),
-    reviewed: fc.option(day, { nil: undefined }),
-  })
-  .map(({ id, origins, from, length, effect, reviewed }): EngineAdvisory => {
-    const start = new Date(Date.UTC(2026, from.month - 1, from.day));
-    const end = new Date(start.getTime() + length * 86_400_000);
-    return {
-      id,
-      ...(origins ? { origins } : {}),
-      from: start.toISOString().slice(0, 10),
-      to: end.toISOString().slice(0, 10),
-      effect,
-      ...(reviewed ? { reviewedOn: iso(reviewed.month, reviewed.day) } : {}),
-    };
-  });
 
 const itemArb: fc.Arbitrary<ItemInputs> = fc
   .record({
@@ -59,7 +35,6 @@ const itemArb: fc.Arbitrary<ItemInputs> = fc
     shares: months(fc.array(fc.integer({ min: 1, max: 33 }), { minLength: 3, maxLength: 3 })),
     editorialOrigins: fc.boolean(),
     supply: fc.tuple(...ORIGINS.map(() => months(supplyValue))),
-    advisories: fc.uniqueArray(advisoryArb, { selector: (a) => a.id, maxLength: 3 }),
     varieties: fc.array(fc.record({ s: series, inStore: months(fc.boolean()) }), { maxLength: 3 }),
     evidenceBasis: fc.constantFrom("supply+assessment" as const, "assessment-only" as const),
     alwaysGood: fc.boolean(),
@@ -81,13 +56,9 @@ const itemArb: fc.Arbitrary<ItemInputs> = fc
     ),
     minorOrigins: r.typical.map((os, m) => os.filter((_, i) => r.minorMask[m]?.[i])),
     supply: Object.fromEntries(ORIGINS.map((o, i) => [o, r.supply[i] ?? []])),
-    advisories: r.advisories,
   }));
 
-const ctxArb: fc.Arbitrary<EvalContext> = fc.record({
-  date: day.map((d) => ({ year: 2026, ...d })),
-  mode: fc.constantFrom("today" as const, "typical" as const),
-});
+const ctxArb: fc.Arbitrary<EvalContext> = fc.record({ date: day.map((d) => ({ year: 2026, ...d })) });
 
 const core = (r: CoreResult): CoreResult => ({
   verdict: r.verdict,
@@ -95,7 +66,6 @@ const core = (r: CoreResult): CoreResult => ({
   reasons: r.reasons,
   confidence: r.confidence,
   weakProperties: r.weakProperties,
-  advisory: r.advisory,
 });
 
 const RUNS = { numRuns: 500 };
@@ -110,35 +80,6 @@ describe("verdict engine invariants", () => {
       fc.property(itemArb, ctxArb, (item, ctx) => {
         const r = evaluate(item, ctx, ENV);
         expect(r.verdict === "limited").toBe(r.ruleFired === 1);
-      }),
-      RUNS,
-    ));
-
-  it("an applied advisory decides unless rule 1 fired", () =>
-    fc.assert(
-      fc.property(itemArb, ctxArb, (item, ctx) => {
-        const r = evaluate(item, ctx, ENV);
-        if (r.advisory === null) return;
-        expect(r.ruleFired).not.toBe(1);
-        const effect = item.advisories.find((a) => a.id === r.advisory)?.effect;
-        if (effect === "skip") expect(r.verdict).toBe("skip");
-        else expect(r.verdict).not.toBe("peak");
-      }),
-      RUNS,
-    ));
-
-  it("a skip advisory on every origin makes every non-Limited verdict Skip", () =>
-    fc.assert(
-      fc.property(itemArb, day, (item, d) => {
-        const date = { year: 2026, ...d };
-        const all: EngineAdvisory = {
-          id: "all",
-          from: iso(d.month, d.day),
-          to: iso(d.month, d.day),
-          effect: "skip",
-        };
-        const r = evaluate({ ...item, advisories: [all] }, { date, mode: "today" }, ENV);
-        expect(["skip", "limited"]).toContain(r.verdict);
       }),
       RUNS,
     ));
@@ -184,7 +125,7 @@ describe("verdict engine invariants", () => {
     fc.assert(
       fc.property(itemArb, ctxArb, (item, ctx) => {
         if (item.varieties.length > 0) return;
-        const r = evaluate(item, { date: ctx.date, mode: ctx.mode }, ENV);
+        const r = evaluate(item, { date: ctx.date }, ENV);
         const w = windowIndex(ctx.date.month, ctx.date.day);
         const typical = item.typicalOrigins[ctx.date.month - 1] ?? [];
         if (typical.some((o) => item.origins[o]?.windows[w] === "poor")) expect(r.verdict).not.toBe("peak");
@@ -196,40 +137,29 @@ describe("verdict engine invariants", () => {
     fc.assert(
       fc.property(itemArb, ctxArb, (item, ctx) => {
         if (item.varieties.length > 0) return;
-        const r = evaluate(item, { date: ctx.date, mode: ctx.mode }, ENV);
+        const r = evaluate(item, { date: ctx.date }, ENV);
         if (r.verdict === "limited") return;
         const w = windowIndex(ctx.date.month, ctx.date.day);
         const ratings = ratedTypical(item, ctx.date.month - 1, w).map((o) => item.origins[o]?.windows[w]);
         expect(r.labelNote).toBe(ratings.includes("poor") && ratings.some((x) => x !== "poor"));
         for (const o of Object.keys(item.origins))
-          expect(evaluate(item, { date: ctx.date, mode: ctx.mode, labelOrigin: o }, ENV).labelNote).toBe(
-            false,
-          );
+          expect(evaluate(item, { date: ctx.date, labelOrigin: o }, ENV).labelNote).toBe(false);
       }),
       RUNS,
     ));
 
-  it("P9: rated Skip (rule 3) only when the second typical origin can't be relied on above poor or is minor", () =>
+  it("P9: rated Skip (rule 2) only when the second typical origin can't be relied on above poor or is minor", () =>
     fc.assert(
       fc.property(itemArb, ctxArb, (item, ctx) => {
         if (item.varieties.length > 0) return;
-        const r = evaluate(item, { date: ctx.date, mode: ctx.mode }, ENV);
-        if (r.ruleFired !== 3) return;
+        const r = evaluate(item, { date: ctx.date }, ENV);
+        if (r.ruleFired !== 2) return;
         const w = windowIndex(ctx.date.month, ctx.date.day);
         const [top, second] = ratedTypical(item, ctx.date.month - 1, w);
         expect(item.origins[top as string]?.windows[w]).toBe("poor");
         const minor = item.minorOrigins[ctx.date.month - 1]?.includes(second as string);
         if (second !== undefined && !minor && item.origins[second]?.windows[w] !== "poor")
           expect(item.origins[second]?.evidence?.[w]).toBe("low");
-      }),
-      RUNS,
-    ));
-
-  it("typical mode ignores advisories", () =>
-    fc.assert(
-      fc.property(itemArb, ctxArb, (item, ctx) => {
-        const typical = { ...ctx, mode: "typical" as const };
-        expect(evaluate(item, typical, ENV)).toEqual(evaluate({ ...item, advisories: [] }, typical, ENV));
       }),
       RUNS,
     ));

@@ -94,19 +94,6 @@ function base(): RawInputs {
     ]),
     items: [{ file: "content/items/test-fruit.yaml", data: item("test-fruit", 1) }],
     evidence: [{ file: "content/evidence/test-fruit.yaml", data: evidence("test-fruit") }],
-    advisories: [
-      {
-        id: "test-advisory",
-        items: ["test-fruit"],
-        origins: ["mx"],
-        from: "2026-11-01",
-        to: "2026-12-15",
-        effect: "skip",
-        note: "Test advisory note.",
-        status: "draft",
-        synthetic: true,
-      },
-    ],
     typicalOrigins: csv("data/usda/typical-origins.csv", [
       { item: "test-fruit", month: "5", rank: "1", origin: "us-ca", major: "true", share: "0.6" },
       { item: "test-fruit", month: "5", rank: "2", origin: "mx", major: "false", share: "0.2" },
@@ -129,7 +116,6 @@ function base(): RawInputs {
 // biome-ignore lint/suspicious/noExplicitAny: fixtures poke into untyped raw input on purpose
 type Any = any;
 const firstItem = (r: RawInputs): Any => (r.items[0] as { data: Any }).data;
-const firstAdvisory = (r: RawInputs): Any => (r.advisories as Any[])[0];
 const claims = (r: RawInputs): Any[] => (r.evidence[0] as { data: Any }).data.claims;
 const firstClaim = (r: RawInputs): Any => claims(r)[0];
 const gala = (windows?: object[]) => ({
@@ -290,7 +276,6 @@ const broken: [string, (r: RawInputs) => void, string][] = [
   ],
   ["bad source url", (r) => ((r.sources as Any[])[0].url = "not a url"), "url"],
   ["sources not a list", (r) => (r.sources = { id: "s1" }), "expected a list"],
-  ["bad advisory effect", (r) => (firstAdvisory(r).effect = "peak"), "effect"],
   ["bad snapshot header", (r) => ((r.typicalOrigins as Csv).meta.to = "2026-13"), "YYYY-MM"],
   [
     "snapshot runs backwards",
@@ -334,12 +319,6 @@ const broken: [string, (r: RawInputs) => void, string][] = [
   ],
   ["unknown country origin", (r) => (firstItem(r).origins[1].origin = "qq"), "unknown origin qq"],
   ["plain us origin", (r) => (firstItem(r).origins[1].origin = "us"), "unknown origin us"],
-  ["advisory for unknown item", (r) => (firstAdvisory(r).items = ["kumquats"]), "unknown item kumquats"],
-  [
-    "advisory with unknown origin",
-    (r) => (firstAdvisory(r).origins = ["us-xx"]),
-    "unknown US state in origin us-xx",
-  ],
   [
     "typical origin unknown",
     (r) => (((r.typicalOrigins as Csv).rows[1] as Any).origin = "qq"),
@@ -460,11 +439,6 @@ const broken: [string, (r: RawInputs) => void, string][] = [
       firstItem(r).varieties[0].windows[0].rating = "fair";
     },
     "variety gala apr-1..jun-2: rated fair, but the evidence proposes prime",
-  ],
-  [
-    "duplicate advisory",
-    (r) => (r.advisories as Any[]).push({ ...firstAdvisory(r) }),
-    "duplicate advisory test-advisory",
   ],
   [
     "duplicate typical rank",
@@ -666,9 +640,6 @@ const broken: [string, (r: RawInputs) => void, string][] = [
     },
     "major",
   ],
-  // Advisory dates
-  ["inverted advisory", (r) => (firstAdvisory(r).to = "2026-10-01"), "ends (2026-10-01) before it starts"],
-  ["over-long advisory", (r) => (firstAdvisory(r).to = "2027-02-01"), "over 90"],
 ];
 
 describe("validate: each broken input fails with a clear error", () => {
@@ -682,12 +653,6 @@ describe("validate: each broken input fails with a clear error", () => {
 });
 
 describe("validate: edge cases that are allowed", () => {
-  it("an advisory of exactly 90 days", () => {
-    const raw = structuredClone(base());
-    firstAdvisory(raw).to = "2027-01-30";
-    expect(validate(raw, { production: false }).errors).toEqual([]);
-  });
-
   it("windows that wrap past December without overlapping", () => {
     const raw = structuredClone(base());
     const year = [
@@ -727,7 +692,6 @@ describe("validate: production builds", () => {
     expect(dataset).toBeNull();
     expect(errors).toContain("test-fruit: draft records can't ship (production build)");
     expect(errors).toContain("test-fruit: synthetic records can't ship (production build)");
-    expect(errors).toContain("test-advisory: draft records can't ship (production build)");
     expect(errors).toContain("evidence test-fruit: draft records can't ship (production build)");
     expect(errors).toContain("evidence test-fruit: synthetic records can't ship (production build)");
   });
@@ -743,7 +707,7 @@ describe("validate: production builds", () => {
 
   it("accept reviewed real records", () => {
     const raw = structuredClone(base());
-    for (const r of [firstItem(raw), firstAdvisory(raw), (raw.evidence[0] as { data: Any }).data]) {
+    for (const r of [firstItem(raw), (raw.evidence[0] as { data: Any }).data]) {
       Object.assign(r, { status: "reviewed", reviewer: "Jared", reviewedOn: "2026-11-17" });
       delete r.synthetic;
     }

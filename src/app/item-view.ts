@@ -60,7 +60,6 @@ export interface ItemView {
   /** The "Depends on the label" note applies: the label control then sits just below the notes. */
   labelNote: boolean;
   labelChoices: LabelChoices;
-  advisory: string | null;
   varieties: VarietyRow[];
   pick: string[];
   avoid: string[];
@@ -173,7 +172,7 @@ export function itemView(
   const item = data.items.find((i) => i.inputs.id === id);
   if (!item) return null;
   const window = windowIndex(date.month, date.day);
-  const result = evaluate(item.inputs, { date, mode }, data.env);
+  const result = evaluate(item.inputs, { date }, data.env);
 
   // The card's reason leads when it says something specific (Last call, when it improves, why it's unknown);
   // the generic "At its best this time of year" gives way to the rating behind it.
@@ -198,19 +197,6 @@ export function itemView(
     notes.push(
       `Depends on the label: ${item.name} from ${originName(poor.origin, data)} often disappoint now.`,
     );
-
-  const advisoryId = result.advisory;
-  const advisory = advisoryId
-    ? (() => {
-        const a = item.inputs.advisories.find((x) => x.id === advisoryId);
-        const where = a?.origins?.length
-          ? ` from ${a.origins.map((o) => originName(o, data)).join(", ")}`
-          : "";
-        const until = a ? ` · through ${monthDay(a.to)}` : "";
-        const note = data.advisoryNotes[advisoryId];
-        return `Affects: ${item.name.toLowerCase()}${where}${until}.${note ? ` ${note}` : ""}`;
-      })()
-    : null;
 
   const rated = new Set(item.inputs.varieties.map((v) => v.id));
   const varieties: VarietyRow[] = item.inputs.varieties
@@ -268,7 +254,6 @@ export function itemView(
     notes: notes.map((n) => atDate(n, mode)),
     labelNote: result.labelNote,
     labelChoices: labelChoices(item, data, window),
-    advisory,
     varieties,
     pick: item.pick,
     avoid: item.avoid,
@@ -332,7 +317,7 @@ export function labelResult(
   if (!item || !key || (kind !== "o:" && kind !== "v:")) return null;
   const variety = kind === "v:" ? item.varieties.find((v) => v.id === key) : undefined;
   const ctx = kind === "v:" ? { labelVariety: key } : { labelOrigin: key };
-  const r = evaluate(item.inputs, { date, mode, ...ctx }, data.env);
+  const r = evaluate(item.inputs, { date, ...ctx }, data.env);
 
   const subject = variety ? variety.name : originName(key, data);
   const unrated = r.reasons.some((x) => x.code === "origin-unrated" || x.code === "variety-unrated");
@@ -354,9 +339,4 @@ export function labelResult(
     confidence: r.confidence,
     bestUses: variety?.bestUses ?? [],
   };
-}
-
-function monthDay(iso: string): string {
-  const [, m, d] = iso.split("-").map(Number);
-  return `${MONTHS[(m ?? 1) - 1]?.slice(0, 3)} ${d}`;
 }

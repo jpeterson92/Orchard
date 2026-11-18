@@ -8,7 +8,6 @@ const entry = (id: string, over: Partial<TodayEntry> = {}): TodayEntry => ({
   alwaysGood: false,
   verdict: "peak",
   confidence: "high",
-  typicalVerdict: "peak",
   peakWindows: 6,
   ...over,
 });
@@ -55,12 +54,12 @@ describe("groupToday", () => {
     expect([g.skip, g.limited]).toEqual([["s1", "s2"], ["l1"]]);
   });
 
-  it("leaves always-good items out unless an advisory changes their verdict today", () => {
+  it("leaves always-good items out", () => {
     const g = groupToday([
-      entry("steady", { alwaysGood: true, verdict: "good", typicalVerdict: "good" }),
-      entry("advised", { alwaysGood: true, verdict: "skip", typicalVerdict: "good" }),
+      entry("steady", { alwaysGood: true, verdict: "good" }),
+      entry("seasonal", { verdict: "good" }),
     ]);
-    expect(g).toEqual({ best: [], good: [], skip: ["advised"], limited: [] });
+    expect(g).toEqual({ best: [], good: ["seasonal"], skip: [], limited: [] });
   });
 });
 
@@ -72,7 +71,6 @@ const entries = fc.uniqueArray(
     alwaysGood: fc.boolean(),
     verdict,
     confidence: fc.constantFrom("high" as const, "medium" as const, "low" as const),
-    typicalVerdict: verdict,
     peakWindows: fc.integer({ min: 0, max: 24 }),
   }),
   { selector: (e) => e.id, maxLength: 30 },
@@ -84,7 +82,7 @@ describe("groupToday invariants", () => {
       fc.property(entries, (list) => {
         const g = groupToday(list);
         const placed = [...g.best, ...g.good, ...g.skip, ...g.limited];
-        const shown = list.filter((e) => !e.alwaysGood || e.verdict !== e.typicalVerdict);
+        const shown = list.filter((e) => !e.alwaysGood);
         expect([...placed].sort()).toEqual(shown.map((e) => e.id).sort());
         const byId = new Map(list.map((e) => [e.id, e]));
         for (const id of g.best) expect(byId.get(id)?.verdict).toBe("peak");
@@ -98,9 +96,7 @@ describe("groupToday invariants", () => {
     fc.assert(
       fc.property(entries, (list) => {
         const g = groupToday(list);
-        const peaks = list.filter(
-          (e) => e.verdict === "peak" && (!e.alwaysGood || e.typicalVerdict !== "peak"),
-        );
+        const peaks = list.filter((e) => e.verdict === "peak" && !e.alwaysGood);
         expect(g.best.length).toBe(Math.min(BEST_NOW_MAX, peaks.length));
         const byId = new Map(list.map((e) => [e.id, e]));
         if (g.best.length < BEST_NOW_MAX) for (const id of g.good) expect(byId.get(id)?.verdict).toBe("good");

@@ -32,7 +32,6 @@ const raw: RawInputs = {
   sources: [...list("data/sources.yaml"), ...(fixtures ? list(`${fixtures}/sources.yaml`) : [])],
   categories: yaml("data/categories.yaml"),
   states: parseCsv("data/us-states.csv", read("data/us-states.csv"), ["state", "name"]),
-  advisories: yaml("data/advisories.yaml") ?? [],
   items: [...yamlFiles("content/items"), ...(fixtures ? yamlFiles(`${fixtures}/items`) : [])],
   evidence: [...yamlFiles("content/evidence"), ...(fixtures ? yamlFiles(`${fixtures}/evidence`) : [])],
   typicalOrigins: csv("data/usda/typical-origins.csv", ["item", "month", "rank", "origin", "major", "share"]),
@@ -84,5 +83,5 @@ console.log(
 console.log(
   `Art: ${Object.keys(art.art.items).length} of ${dataset.items.length} items, ${Object.keys(art.art.varieties).length} varieties`,
 );
-console.log(`Advisories: ${dataset.advisories.length}${production ? " · production build" : ""}`);
+if (production) console.log("Production build");
 console.log(`App data: ${Math.round(JSON.stringify(app).length / 1024)} KB`);

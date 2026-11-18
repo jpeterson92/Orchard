@@ -265,7 +265,7 @@ A separate text link, such as “Picking & storage,” opens the detail page. Ad
 | Skip for now | Small clock and explicit wording; secondary explanation |
 | Limited evidence | Neutral information symbol and explicit wording |
 
-Reliable year-round, Last call, Advisory and Good value are markers, not verdicts: small text tags under the verdict word, per the product spec. Visual labels must follow the product’s approved terminology and contract. If methodology changes, update labels consistently. This table describes presentation, not new verdict logic.
+Reliable year-round, Last call, Check the label and Good value are markers, not verdicts: small text tags under the verdict word, per the product spec. Visual labels must follow the product’s approved terminology and contract. If methodology changes, update labels consistently. This table describes presentation, not new verdict logic.
 
 No filled pill backgrounds, large medallions, numerical scores invented for display, or alarming red treatment for ordinary seasonal advice. Never convey a verdict only through color.
 

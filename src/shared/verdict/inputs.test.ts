@@ -44,7 +44,6 @@ const data = {
       status: "draft",
     },
   ],
-  advisories: [],
   snapshot: null,
   typicalOrigins: [
     { item: "test-fruit", month: 6, rank: 2, origin: "mx", major: false, share: 0.15 },
@@ -118,7 +117,7 @@ describe("itemInputs", () => {
   });
 
   it("an item rated by variety is Limited evidence when no rated variety is in stores", () => {
-    const may = { date: { year: 2026, month: 5, day: 10 }, mode: "typical" } as const;
+    const may = { date: { year: 2026, month: 5, day: 10 } } as const;
     const env = { rules: RULES, snapshotTo: null };
     expect(evaluate(inputs, may, env).verdict).not.toBe("limited");
     const noCalendar = itemInputs(item, { ...data, varietyCalendar: [] });
