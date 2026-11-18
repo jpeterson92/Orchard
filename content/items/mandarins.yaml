@@ -58,15 +58,8 @@ varieties:
       - from: nov-1
         to: jan-1
         rating: prime
-        reason: Four California sources put clementines here; Chile's and Morocco's off-season readings pull the proposal down.
-      - from: jan-2
-        to: jan-2
-        rating: fair
-        reason: California finishes in the second half of January; Sunkist runs through January and Moroccan clementines fill in.
-      - from: aug-1
-        to: oct-2
-        rating: fair
-        reason: Chile ships clementines to the US August to November, and citrus ships well; California's charts describe only California's off-season.
+        reason: Four California sources put clementines here; Moroccan clementines in the same weeks read only fair.
+      - { from: jan-2, to: jan-2, rating: fair }
     quotedAs: [clementines-unspecified]
   - id: w-murcott
     name: W. Murcott and Tango
@@ -77,15 +70,11 @@ varieties:
       - from: jan-2
         to: apr-2
         rating: prime
-        reason: Three California sources put Tango and Murcott here, and one rates late-March Murcotts the best; import off-season readings pull the proposal down.
+        reason: Three California sources put Tango and Murcott here, and one rates late-March Murcotts the best; Moroccan fruit in the same weeks reads only fair.
       - from: may-1
         to: may-2
         rating: fair
         reason: California Murcotts run into May, tapering as the season closes.
-      - from: jul-2
-        to: oct-2
-        rating: fair
-        reason: Chile ships W. Murcotts to the US from late July through October, and citrus ships well; California's charts describe only California's off-season.
     quotedAs: [tangerines-w-murcott-afourer, tangerines-tango, tangerines-nadorcott]
   - id: minneola
     name: Minneola tangelo
@@ -97,10 +86,7 @@ varieties:
         to: dec-2
         rating: fair
         reason: Sunkist starts Minneolas mid-December, but one California shipper waits until late January for acid to drop.
-      - from: jan-1
-        to: apr-2
-        rating: prime
-        reason: All three sources run Minneolas to late April; evidence thins only in the last weeks as Florida's season ends.
+      - { from: jan-1, to: apr-2, rating: prime }
     quotedAs: [tangelos-minneola]
   - id: gold-nugget
     name: Gold Nugget

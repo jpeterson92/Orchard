@@ -113,22 +113,6 @@ claims:
     specificity: month
     directness: availability
     paraphrase: The importer's Moroccan Murcotts ship steadily from January through April.
-  - source: freshplaza-morocco-citrus-2025
-    origin: ma
-    variety: w-murcott
-    windows:
-      - { from: mar-1, to: mar-2, rating: prime }
-    specificity: month
-    directness: availability
-    paraphrase: Moroccan Nadorcotts were expected in the US until the end of March, perhaps early April.
-  - source: freshfruitportal-rioblanco-mandarins-2025
-    origin: cl
-    variety: w-murcott
-    windows:
-      - { from: jul-2, to: jul-2, rating: prime }
-    specificity: half-month
-    directness: availability
-    paraphrase: A Chilean grower starts its W. Murcott harvest at the end of July.
   - source: freshplaza-chile-late-mandarins-2014
     origin: cl
     variety: w-murcott
