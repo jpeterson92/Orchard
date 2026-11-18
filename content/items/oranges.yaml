@@ -41,15 +41,9 @@ varieties:
     bestUses: [Snacking, salads]
     label: Navel
     windows:
-      - from: nov-1
-        to: mar-2
-        rating: prime
-        reason: Four sources put California navels in season from November; early November and late March are where their charts start and end.
-      - from: apr-1
-        to: jun-2
-        rating: fair
-        reason: Late-season California navels; sources disagree on whether the season ends in spring or June. One importer praises South Africa's first June navels, but California still supplies late June.
-      - { from: jul-1, to: oct-2, rating: fair }
+      - { from: jan-1, to: mar-2, rating: prime }
+      - { from: apr-1, to: nov-2, rating: fair }
+      - { from: dec-1, to: dec-2, rating: prime }
     quotedAs: [oranges-navel, oranges-late-navel, oranges-navelinas]
   - id: valencia
     name: Valencia
@@ -58,15 +52,17 @@ varieties:
     label: Valencia
     windows:
       - { from: jan-1, to: jan-1, rating: poor }
-      - from: jan-2
+      - { from: jan-2, to: jan-2, rating: fair }
+      - from: feb-1
         to: feb-1
         rating: fair
-        reason: Sunkist's California season starts in February; the other charts start in March.
-      - { from: feb-2, to: aug-1, rating: prime }
-      - from: aug-2
+        reason: The model panel has no rating here, and the cited sources disagree; together they read fair.
+      - { from: feb-2, to: mar-2, rating: prime }
+      - { from: apr-1, to: oct-2, rating: fair }
+      - from: nov-1
         to: nov-1
         rating: fair
-        reason: Hale Groves puts the peak in May to July; late summer and fall sit between that and the end of the charts, which most put in September or October.
+        reason: The model panel has no rating here, and the cited sources disagree; together they read fair.
       - { from: nov-2, to: dec-2, rating: poor }
     quotedAs: [oranges-valencia, oranges-late-valencia, oranges-valencia-seedless]
   - id: blood
@@ -75,20 +71,14 @@ varieties:
     bestUses: [Salads, juice, desserts]
     label: Blood orange, such as Moro or Tarocco
     windows:
-      - from: dec-1
-        to: jan-1
-        rating: fair
-        reason: Sunkist starts blood oranges in December, but a tasting writer says they aren't good until mid to late January.
-      - from: jan-2
-        to: mar-2
-        rating: prime
-        reason: Sources agree on mid-January through March; the same writer says March has the best flavor.
-      - from: apr-1
-        to: apr-2
-        rating: fair
-        reason: Sunkist's season ends in mid-April.
+      - { from: jan-1, to: mar-2, rating: prime }
+      - { from: apr-1, to: apr-2, rating: fair }
       - { from: may-1, to: nov-1, rating: poor }
       - { from: nov-2, to: nov-2, rating: fair }
+      - from: dec-1
+        to: dec-2
+        rating: fair
+        reason: The model panel has no rating here, and the cited sources disagree; together they read fair.
     quotedAs:
       [
         blood-orange-moro,

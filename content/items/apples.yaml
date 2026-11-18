@@ -45,31 +45,10 @@ varieties:
       sources: [eatlikenoone-honeycrisp-fall, producebusiness-apples-winter]
       note: Stays crisp in storage, but flavor fades and late-season fruit is uneven.
     windows:
-      - from: jan-1
-        to: feb-2
-        rating: poor
-        reason: Cited sources read late-winter storage Honeycrisp as poor; only the model panel reads fair.
-      - from: mar-1
-        to: may-2
-        rating: fair
-        reason: Chilean imports arrive for spring; Washington storage fruit stays crisp but loses flavor.
-      - { from: jun-1, to: jul-1, rating: poor }
-      - from: jul-2
-        to: aug-2
-        rating: fair
-        reason: Washington's harvest starts in August, while stores still sell storage and import fruit.
-      - from: sep-1
-        to: oct-2
-        rating: prime
-        reason: Four sources put new-crop Honeycrisp at its best in September and October; early September and late October read fair only at the edges of Minnesota's and the summer imports' charts.
-      - from: nov-1
-        to: nov-2
-        rating: fair
-        reason: Local fall supply ends by Thanksgiving; Washington storage fruit is crisp but less flavorful.
-      - from: dec-1
-        to: dec-2
-        rating: poor
-        reason: Three cited sources read December Honeycrisp from storage as poor; the model panel reads early December prime.
+      - { from: jan-1, to: apr-2, rating: fair }
+      - { from: may-1, to: aug-2, rating: poor }
+      - { from: sep-1, to: dec-1, rating: prime }
+      - { from: dec-2, to: dec-2, rating: fair }
     quotedAs: [honeycrisp]
   - id: gala
     name: Gala
@@ -77,21 +56,9 @@ varieties:
     bestUses: [Snacking, lunch boxes]
     label: Gala or Royal Gala
     windows:
-      - from: jan-1
-        to: apr-1
-        rating: poor
-        reason: Sources split on Gala from storage (one says it keeps well, one that it turns soft); a marginal Gala rates down.
-      - { from: apr-2, to: jul-1, rating: fair }
-      - from: aug-2
-        to: aug-2
-        rating: fair
-        reason: Both cited sources put the start of new-crop Gala at the edge here; only the model panel reads prime.
-      - { from: sep-1, to: sep-1, rating: prime }
-      - { from: sep-2, to: sep-2, rating: fair }
-      - from: oct-1
-        to: dec-2
-        rating: poor
-        reason: Sources split on Gala from storage (one says it keeps well, one that it turns soft); a marginal Gala rates down.
+      - { from: jan-1, to: jul-1, rating: fair }
+      - { from: aug-2, to: nov-2, rating: prime }
+      - { from: dec-1, to: dec-2, rating: fair }
     quotedAs: [gala, royal-gala]
   - id: fuji
     name: Fuji
@@ -100,8 +67,7 @@ varieties:
     label: Fuji
     windows:
       - { from: jan-1, to: sep-2, rating: fair }
-      - { from: oct-1, to: oct-2, rating: prime }
-      - { from: nov-1, to: dec-2, rating: fair }
+      - { from: oct-1, to: dec-2, rating: prime }
     quotedAs: [fuji]
   - id: granny-smith
     name: Granny Smith
@@ -117,12 +83,11 @@ varieties:
     bestUses: [Snacking, baking]
     label: Pink Lady or Cripps Pink
     windows:
-      - { from: jan-1, to: sep-2, rating: fair }
-      - from: oct-1
-        to: nov-1
-        rating: prime
-        reason: Two Washington sources put the harvest in October and early November; late October reads fair only against New Jersey's off-season reading.
-      - { from: nov-2, to: dec-2, rating: fair }
+      - { from: jan-1, to: jan-2, rating: prime }
+      - { from: feb-1, to: sep-2, rating: fair }
+      - { from: oct-1, to: oct-1, rating: prime }
+      - { from: oct-2, to: oct-2, rating: fair }
+      - { from: nov-1, to: dec-2, rating: prime }
     quotedAs: [pink-lady-cripps-pink]
   - id: cosmic-crisp
     name: Cosmic Crisp
@@ -130,10 +95,11 @@ varieties:
     bestUses: [Snacking, salads, baking]
     label: Cosmic Crisp
     windows:
-      - { from: jun-2, to: sep-1, rating: fair }
+      - { from: jan-1, to: oct-2, rating: fair }
       - from: nov-1
-        to: dec-2
+        to: nov-2
         rating: prime
-        reason: Both cited sources rate new-crop Cosmic Crisp prime through December; only the model panel reads fair.
+        reason: Washington State University CAHNRS rates eating quality prime here, outweighing the model panel's fair.
+      - { from: dec-1, to: dec-2, rating: fair }
     quotedAs: [cosmic-crisp]
 status: draft

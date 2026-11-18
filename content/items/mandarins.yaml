@@ -55,14 +55,11 @@ varieties:
     bestUses: [Snacking and lunch boxes]
     label: Clementine; often sold as Cuties or Halos in winter
     windows:
-      - from: nov-1
-        to: jan-1
-        rating: prime
-        reason: Four California sources put clementines here; Moroccan clementines in the same weeks read only fair.
-      - from: jan-2
-        to: jan-2
-        rating: fair
-        reason: Four cited sources taper California clementines to fair by late January; only the model panel holds prime.
+      - { from: jan-1, to: jan-2, rating: prime }
+      - { from: feb-1, to: feb-2, rating: fair }
+      - { from: may-2, to: jul-1, rating: poor }
+      - { from: oct-2, to: oct-2, rating: fair }
+      - { from: nov-1, to: dec-2, rating: prime }
     quotedAs: [clementines-unspecified]
   - id: w-murcott
     name: W. Murcott and Tango
@@ -70,14 +67,9 @@ varieties:
     bestUses: [Snacking and lunch boxes]
     label: W. Murcott, Tango, Afourer or Nadorcott; late-season Cuties and Halos
     windows:
-      - from: jan-2
-        to: apr-2
-        rating: prime
-        reason: Three California sources put Tango and Murcott here, and one rates late-March Murcotts the best; Moroccan fruit in the same weeks reads only fair.
-      - from: may-1
-        to: may-2
-        rating: fair
-        reason: California Murcotts run into May, tapering as the season closes.
+      - { from: jan-1, to: apr-2, rating: prime }
+      - { from: may-1, to: oct-2, rating: fair }
+      - { from: nov-2, to: dec-1, rating: poor }
     quotedAs: [tangerines-w-murcott-afourer, tangerines-tango, tangerines-nadorcott]
   - id: minneola
     name: Minneola tangelo
@@ -85,11 +77,11 @@ varieties:
     bestUses: [Snacking, juicing]
     label: Minneola or Honeybell tangelo
     windows:
-      - from: dec-2
-        to: dec-2
-        rating: fair
-        reason: Sunkist starts Minneolas mid-December, but one California shipper waits until late January for acid to drop.
       - { from: jan-1, to: apr-2, rating: prime }
+      - { from: may-1, to: may-1, rating: fair }
+      - { from: may-2, to: oct-1, rating: poor }
+      - { from: dec-1, to: dec-1, rating: fair }
+      - { from: dec-2, to: dec-2, rating: prime }
     quotedAs: [tangelos-minneola]
   - id: gold-nugget
     name: Gold Nugget
@@ -97,6 +89,7 @@ varieties:
     bestUses: [Snacking]
     label: Gold Nugget mandarin
     windows:
+      - { from: feb-1, to: feb-2, rating: fair }
       - { from: may-1, to: may-2, rating: prime }
     quotedAs: [tangerines-golden-nugget]
 typicalOrigins:

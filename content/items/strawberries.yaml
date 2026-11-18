@@ -40,33 +40,29 @@ prep: Rinse under cool water just before eating, then hull. Washing ahead speeds
 origins:
   - origin: us-ca
     windows:
-      - from: mar-1
-        to: nov-1
-        rating: prime
-        reason: Both cited sources rate California berries prime into early November; the model panel reads October on as fair.
+      - { from: jan-1, to: jan-2, rating: poor }
+      - { from: feb-1, to: feb-2, rating: fair }
+      - { from: mar-1, to: jun-2, rating: prime }
+      - { from: jul-1, to: nov-1, rating: fair }
       - from: nov-2
-        to: feb-2
-        rating: fair
-        reason: Both sources say California harvests year-round; winter berries are off-peak, not out of season.
-  - origin: mx
-    windows:
-      - from: nov-1
         to: nov-2
         rating: fair
-        reason: ProducePay gives Mexico's season as November to July; "winter supplier" is its main US role, not its whole season.
-      - { from: dec-1, to: feb-2, rating: fair }
-      - from: mar-1
-        to: jul-2
-        rating: fair
-        reason: ProducePay gives Mexico's season as November to July; "winter supplier" is its main US role, not its whole season.
-      - { from: aug-1, to: oct-2, rating: poor }
+        reason: The model panel has no rating here, and the cited sources disagree; together they read fair.
+      - { from: dec-1, to: dec-2, rating: poor }
+  - origin: mx
+    windows:
+      - { from: jan-1, to: apr-2, rating: fair }
+      - { from: may-1, to: oct-2, rating: poor }
+      - { from: nov-1, to: dec-2, rating: fair }
   - origin: us-fl
     windows:
-      - from: dec-1
+      - { from: jan-1, to: jan-2, rating: fair }
+      - { from: feb-1, to: mar-1, rating: prime }
+      - from: mar-2
         to: mar-2
         rating: prime
-        reason: Sources end Florida's season in March or April; UF/IFAS names March a peak eating month.
+        reason: The model panel has no rating here, and the cited sources disagree; together they read prime.
       - { from: apr-1, to: apr-1, rating: fair }
       - { from: apr-2, to: nov-1, rating: poor }
-      - { from: nov-2, to: nov-2, rating: fair }
+      - { from: nov-2, to: dec-2, rating: fair }
 status: draft
