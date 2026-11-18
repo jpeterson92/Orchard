@@ -1,13 +1,14 @@
 // Item page (product spec §4 "Item page order", §5 "Item page"). One readable column in the spec's order, the
 // in-store answer first: the verdict and why, then varieties, how to pick and store. What the verdict rests on is one
 // tap away under "About this verdict". On wide screens the artwork takes a column of its own.
-// Not yet here: "What does the label say?", the variety guide link and feedback (later slices).
+// Not yet here: the variety guide link and feedback (later slices).
+import { useState } from "react";
 import { Link, useParams } from "react-router";
 import appJson from "../generated/app.json";
 import type { AppData } from "../shared/app-data";
 import { useToday } from "./date";
 import { StatusLabels, VerdictMark } from "./icons";
-import { type ItemView, itemView, type VarietyRow } from "./item-view";
+import { type ItemView, itemView, type LabelOption, labelResult, type VarietyRow } from "./item-view";
 import { Masthead, PreviewNotice } from "./Masthead";
 import { MonthAxis, SeasonStrip, StripLegend } from "./SeasonStrip";
 import { plainDate } from "./today-view";
@@ -82,6 +83,8 @@ function Item({ view }: { view: ItemView }) {
           ))}
         </div>
       )}
+      {/* Where the label decides it, the control sits just below the note; otherwise in the page order. */}
+      {view.labelNote && <LabelCheck view={view} />}
 
       <details className="group mt-2">
         <summary className="flex min-h-11 cursor-pointer list-none items-center gap-2 rounded-sm text-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent">
@@ -135,6 +138,12 @@ function Item({ view }: { view: ItemView }) {
         {view.ripen && <p className="mt-2">{view.ripen}</p>}
       </Section>
 
+      {!view.labelNote && (
+        <Section title="What does the label say?">
+          <LabelCheck view={view} />
+        </Section>
+      )}
+
       <Section title="Typical seasonal outlook">
         <SeasonStrip outlook={view.outlook} today={view.window} />
         <div className="mt-1">
@@ -158,6 +167,67 @@ function Item({ view }: { view: ItemView }) {
         <p>{view.prep}</p>
       </Section>
     </main>
+  );
+}
+
+/** Pick the origin or variety on the label or sticker; its own verdict shows below. The page's verdict stays. */
+function LabelCheck({ view }: { view: ItemView }) {
+  const [choice, setChoice] = useState("");
+  const iso = useToday(data);
+  const { varieties, origins } = view.labelChoices;
+  if (varieties.length + origins.length === 0) return null;
+  const result = choice ? labelResult(data, view.id, plainDate(iso), choice) : null;
+  const both = varieties.length > 0 && origins.length > 0;
+  const what = both ? "origin or variety" : varieties.length > 0 ? "variety" : "origin";
+  const options = (list: LabelOption[]) =>
+    list.map((o) => (
+      <option key={o.value} value={o.value}>
+        {o.text}
+      </option>
+    ));
+
+  return (
+    <div className={view.labelNote ? "mt-3" : undefined}>
+      <label className="block">
+        <span className={view.labelNote ? "font-semibold" : "text-ink-secondary"}>
+          {view.labelNote ? "What does the label say?" : `Pick the ${what} on the label or sticker.`}
+        </span>
+        <select
+          value={choice}
+          onChange={(e) => setChoice(e.target.value)}
+          className="mt-1 block min-h-11 w-full max-w-sm rounded-md border border-rule bg-surface px-3 text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+        >
+          <option value="">
+            Choose {/^[aeiou]/.test(what) ? "an" : "a"} {what}
+          </option>
+          {both ? (
+            <>
+              <optgroup label="Varieties">{options(varieties)}</optgroup>
+              <optgroup label="Origins">{options(origins)}</optgroup>
+            </>
+          ) : (
+            options(varieties.length > 0 ? varieties : origins)
+          )}
+        </select>
+      </label>
+      {/* Announced when it changes, so a screen-reader user hears the new verdict. */}
+      <div aria-live="polite" className="mt-3">
+        {result && (
+          <div className="space-y-1 rounded-md bg-surface/60 p-3">
+            <p>
+              <VerdictMark verdict={result.verdict} />
+            </p>
+            {result.reasons.map((r) => (
+              <p key={r}>{r}</p>
+            ))}
+            {result.bestUses.length > 0 && <p>Best for: {result.bestUses.join(", ").toLowerCase()}.</p>}
+            {result.verdict !== "limited" && (
+              <p className="text-sm text-ink-secondary">{CONFIDENCE_WORD[result.confidence]} confidence</p>
+            )}
+          </div>
+        )}
+      </div>
+    </div>
   );
 }
 

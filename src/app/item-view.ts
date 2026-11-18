@@ -53,6 +53,9 @@ export interface ItemView {
   reviewDate: string;
   /** "Depends on the label" and other context notes, shown only when relevant. */
   notes: string[];
+  /** The "Depends on the label" note applies: the label control then sits just below the notes. */
+  labelNote: boolean;
+  labelChoices: LabelChoices;
   advisory: string | null;
   varieties: VarietyRow[];
   pick: string[];
@@ -251,6 +254,8 @@ export function itemView(data: AppData, id: string, date: PlainDate): ItemView |
         ? `Guidance reviewed ${monthYear(item.reviewedOn)}`
         : "Guidance not yet reviewed",
     notes,
+    labelNote: result.labelNote,
+    labelChoices: labelChoices(item, data, window),
     advisory,
     varieties,
     pick: item.pick,
@@ -265,6 +270,67 @@ export function itemView(data: AppData, id: string, date: PlainDate): ItemView |
     draft: item.status === "draft",
     synthetic: item.synthetic,
   };
+}
+
+// "What does the label say?" (product spec §5 "Item page", §7 "Label-based advice"): rules 1–5 re-run for the
+// origin or variety the shopper picks.
+
+export interface LabelOption {
+  /** "o:mx" or "v:honeycrisp". */
+  value: string;
+  text: string;
+}
+
+export interface LabelChoices {
+  varieties: LabelOption[];
+  origins: LabelOption[];
+}
+
+export interface LabelResult {
+  verdict: Verdict;
+  reasons: string[];
+  confidence: Confidence;
+  /** A variety's best uses, as the tip that changes with the label. */
+  bestUses: string[];
+}
+
+/** Varieties as labels name them; origins usual this month first (top-ranked first), then the other assessed ones.
+ * Origins are offered only where origins are rated, so an item rated only by variety never lists dead ends. */
+export function labelChoices(item: AppItem, data: AppData, window: number): LabelChoices {
+  const varieties = item.varieties.map((v) => ({ value: `v:${v.id}`, text: v.label }));
+  const rated = Object.keys(item.inputs.origins);
+  if (rated.length === 0) return { varieties, origins: [] };
+  const usual = item.inputs.typicalOrigins[Math.floor(window / 2)] ?? [];
+  const rest = rated
+    .filter((o) => !usual.includes(o))
+    .sort((a, b) => originName(a, data).localeCompare(originName(b, data)));
+  const origins = [...usual, ...rest].map((o) => ({ value: `o:${o}`, text: originName(o, data) }));
+  return { varieties, origins };
+}
+
+export function labelResult(data: AppData, id: string, date: PlainDate, choice: string): LabelResult | null {
+  const item = data.items.find((i) => i.inputs.id === id);
+  const [kind, key] = [choice.slice(0, 2), choice.slice(2)];
+  if (!item || !key || (kind !== "o:" && kind !== "v:")) return null;
+  const variety = kind === "v:" ? item.varieties.find((v) => v.id === key) : undefined;
+  const ctx = kind === "v:" ? { labelVariety: key } : { labelOrigin: key };
+  const r = evaluate(item.inputs, { date, mode: "today", ...ctx }, data.env);
+
+  const subject = variety ? variety.name : originName(key, data);
+  const unrated = r.reasons.some((x) => x.code === "origin-unrated" || x.code === "variety-unrated");
+  const headline = unrated
+    ? variety
+      ? `${subject} isn't rated yet.`
+      : `${item.name} from ${subject} aren't assessed yet.`
+    : r.verdict === "limited"
+      ? reasonText(r.verdict, r.reasons, r.markers)
+      : null;
+  const lines = reasonLines(item, data, r.reasons);
+  const timing = r.markers.some((m) => m.kind === "last-call" || m.kind === "improves")
+    ? reasonText(r.verdict, r.reasons, r.markers)
+    : null;
+  const reasons = [headline, ...lines, timing].filter((x): x is string => x !== null).slice(0, 3);
+  return { verdict: r.verdict, reasons, confidence: r.confidence, bestUses: variety?.bestUses ?? [] };
 }
 
 function monthDay(iso: string): string {
