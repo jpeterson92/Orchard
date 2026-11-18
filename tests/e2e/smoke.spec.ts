@@ -44,6 +44,24 @@ test("pages are served at clean URLs", async ({ request }) => {
   expect(await res.text()).toMatch(/<h1[^>]*>Strawberries<\/h1>/);
 });
 
+test("Browse reaches an item in three taps from Today, and back returns to the category", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 375, height: 812 });
+  await page.goto("/");
+  const nav = page.getByRole("navigation", { name: "Main" });
+  await nav.getByRole("link", { name: "Browse" }).click();
+  await expect(page.getByRole("heading", { level: 1, name: "Browse" })).toBeVisible();
+  await page.getByRole("link", { name: /^Berries/ }).click();
+  await expect(page.getByRole("heading", { level: 1, name: "Berries" })).toBeVisible();
+  await page.getByRole("link", { name: /^Strawberries/ }).click();
+  await expect(page.getByRole("heading", { level: 1, name: "Strawberries" })).toBeVisible();
+  await page.getByRole("link", { name: "Berries" }).click();
+  await expect(page.getByRole("heading", { level: 1, name: "Berries" })).toBeVisible();
+  const axe = await new AxeBuilder({ page }).analyze();
+  expect(axe.violations).toEqual([]);
+});
+
 test("a link shared for a date pins it; Switch to today drops it", async ({ page }) => {
   const d = new Date();
   d.setDate(d.getDate() + 40);
@@ -63,7 +81,7 @@ test("a link shared for a date pins it; Switch to today drops it", async ({ page
     `/items/strawberries?date=${iso}`,
   );
   // The pinned date carries to the other screens.
-  await page.getByRole("link", { name: "Today" }).click();
+  await page.getByRole("navigation", { name: "Main" }).getByRole("link", { name: "Today" }).click();
   await expect(page.getByRole("heading", { level: 2, name: "Typically best" })).toBeVisible();
   await page.goBack();
   await banner.getByRole("button", { name: "Switch to today" }).click();

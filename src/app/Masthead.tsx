@@ -1,9 +1,10 @@
-// Brand and date chip, the same on every screen (design system §6 "Brand and date").
+// Brand, primary navigation from 600 px, and date chip, the same on every screen (design system §6 "Brand and date").
 import { type MouseEvent, useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import type { AppData } from "../shared/app-data";
 import { type AppDate, DATE_PARAM, sharedLink, useChooseDate } from "./date";
 import { LeafMark } from "./icons";
+import { TopNav } from "./Nav";
 import { plainDate } from "./today-view";
 
 const fullDate = (iso: string) => {
@@ -50,6 +51,7 @@ export function Masthead({ date, shareTitle }: { date: AppDate; shareTitle?: str
           <LeafMark />
           <span className="font-editorial text-2xl font-bold">Orchard</span>
         </Link>
+        <TopNav />
         <DateChip date={date} onChoose={choose} />
       </header>
       {date.planning && (

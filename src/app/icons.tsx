@@ -42,6 +42,27 @@ export function VerdictIcon({ verdict }: { verdict: Verdict }) {
   );
 }
 
+/** Navigation destinations: Today (the day's sun), Browse (a grid of categories). */
+export function TodayIcon() {
+  return (
+    <svg aria-hidden="true" {...base} width={22} height={22} strokeWidth={1.7}>
+      <circle cx="12" cy="12" r="4" />
+      <path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6l1.4 1.4M17 17l1.4 1.4M5.6 18.4L7 17M17 7l1.4-1.4" />
+    </svg>
+  );
+}
+
+export function BrowseIcon() {
+  return (
+    <svg aria-hidden="true" {...base} width={22} height={22} strokeWidth={1.7}>
+      <rect x="4" y="4" width="6.5" height="6.5" rx="1.5" />
+      <rect x="13.5" y="4" width="6.5" height="6.5" rx="1.5" />
+      <rect x="4" y="13.5" width="6.5" height="6.5" rx="1.5" />
+      <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1.5" />
+    </svg>
+  );
+}
+
 export function LeafMark() {
   return (
     <svg aria-hidden="true" {...base} width={26} height={26} className="text-olive" strokeWidth={1.6}>

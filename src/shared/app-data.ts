@@ -38,9 +38,17 @@ export interface AppItem {
   synthetic: boolean;
 }
 
+/** A Browse category that holds at least one bundled item, in display order (product spec §4). */
+export interface AppCategory {
+  id: string;
+  name: string;
+  group: FilterGroup;
+}
+
 export interface AppData {
   env: Env;
   items: AppItem[];
+  categories: AppCategory[];
   /** US state origins (`us-wa`) to names; countries are named with Intl.DisplayNames. */
   stateNames: Record<string, string>;
   /** The build's date (YYYY-MM-DD): prerendered pages show verdicts for it until the phone recomputes. */
@@ -76,6 +84,9 @@ export function appData(data: Dataset, builtOn: string, art: ArtMap): AppData {
       reviewedOn: item.reviewedOn ?? null,
       synthetic: item.synthetic === true,
     })),
+    categories: data.categories
+      .filter((c) => data.items.some((i) => i.category === c.id))
+      .map((c) => ({ id: c.id, name: c.name, group: c.group })),
     stateNames: Object.fromEntries(data.states.map((s) => [`us-${s.state.toLowerCase()}`, s.name])),
     builtOn,
   };

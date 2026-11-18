@@ -3,10 +3,11 @@
 // tap away under "About this verdict". On wide screens the artwork takes a column of its own.
 // Not yet here: the variety guide link and feedback (later slices).
 import { useState } from "react";
-import { Link, useParams } from "react-router";
+import { Link, useLocation, useParams } from "react-router";
 import appJson from "../generated/app.json";
 import type { AppData } from "../shared/app-data";
 import { Art } from "./Art";
+import type { BackTo } from "./Browse";
 import { type Mode, useAppDate } from "./date";
 import { StatusLabels, VerdictMark } from "./icons";
 import { type ItemView, itemView, type LabelOption, labelResult, type VarietyRow } from "./item-view";
@@ -25,13 +26,15 @@ export function ItemPage() {
   const { id = "" } = useParams();
   const date = useAppDate(data);
   const view = itemView(data, id, plainDate(date.iso), date.mode);
+  // Back to the Browse list it was opened from; Today otherwise (a shared link, search, Today itself).
+  const back = (useLocation().state as { back?: BackTo } | null)?.back ?? { to: "/", label: "Today" };
 
   return (
     <div className="mx-auto max-w-2xl px-4 pb-12 sm:px-6 md:max-w-5xl">
       <Masthead date={date} shareTitle={view ? `${view.name} · Orchard` : undefined} />
       <PreviewNotice data={data} />
-      <Link to="/" className={`${linkClass} mt-1`}>
-        <span aria-hidden>←</span> Today
+      <Link to={back.to} className={`${linkClass} mt-1`}>
+        <span aria-hidden>←</span> {back.label}
       </Link>
       {view ? (
         <div className="lg:grid lg:grid-cols-[minmax(0,40rem)_1fr] lg:gap-12">
