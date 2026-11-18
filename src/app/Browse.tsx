@@ -7,7 +7,7 @@ import { Art } from "./Art";
 import { type BrowseRow, browseGroups, categoryRows } from "./browse-view";
 import { useAppDate } from "./date";
 import { StatusLabels, VerdictMark } from "./icons";
-import { Masthead, PreviewNotice } from "./Masthead";
+import { Masthead, PageTitle, PreviewNotice } from "./Masthead";
 import { plainDate } from "./today-view";
 
 const data = appJson as unknown as AppData;
@@ -29,6 +29,7 @@ export function Browse() {
       <Masthead date={date} />
       <PreviewNotice data={data} />
       <main>
+        <PageTitle name="Browse" />
         <h1 className="mt-6 font-editorial text-3xl font-bold">Browse</h1>
         {browseGroups(data).map((g) => (
           <section key={g.label} className="mt-6">
@@ -80,6 +81,7 @@ export function BrowseCategory() {
       <main>
         {rows && name ? (
           <>
+            <PageTitle name={name} />
             <h1 className="mt-2 font-editorial text-3xl font-bold">{name}</h1>
             <ul className="mt-2">
               {rows.map((r) => (
@@ -89,6 +91,7 @@ export function BrowseCategory() {
           </>
         ) : (
           <>
+            <PageTitle name="Category not found" />
             <h1 className="mt-2 font-editorial text-3xl font-bold">Category not found</h1>
             <p className="mt-2">We don't have a category at this address.</p>
           </>

@@ -11,7 +11,7 @@ import type { BackTo } from "./Browse";
 import { type Mode, useAppDate } from "./date";
 import { StatusLabels, VerdictMark } from "./icons";
 import { type ItemView, itemView, type LabelOption, labelResult, type VarietyRow } from "./item-view";
-import { Masthead, PreviewNotice } from "./Masthead";
+import { Masthead, PageTitle, PreviewNotice } from "./Masthead";
 import { useCount, useVerdictVisible } from "./measure";
 import { MonthAxis, SeasonStrip, StripLegend } from "./SeasonStrip";
 import { atDate, plainDate } from "./today-view";
@@ -51,6 +51,7 @@ export function ItemPage() {
         </div>
       ) : (
         <main>
+          <PageTitle name="Not covered" />
           <h1 className="mt-4 font-editorial text-[2rem] leading-tight font-bold">Not covered</h1>
           <p className="mt-2">Orchard doesn't have guidance for this item yet.</p>
         </main>
@@ -68,6 +69,7 @@ function Item({ view, mode }: { view: ItemView; mode: Mode }) {
     <main>
       <div className="mt-1 flex gap-4">
         <div className="min-w-0 flex-1">
+          <PageTitle name={view.name} />
           <h1 className="font-editorial text-[2rem] leading-tight font-bold">{view.name}</h1>
           <StatusLabels draft={view.draft} synthetic={view.synthetic} />
           {view.varietyLine && (

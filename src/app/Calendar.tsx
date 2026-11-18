@@ -11,7 +11,7 @@ import type { BackTo } from "./Browse";
 import { type CalendarRow, calendarRows, monthSections } from "./calendar-view";
 import { useAppDate } from "./date";
 import { StatusLabels } from "./icons";
-import { Masthead, PreviewNotice } from "./Masthead";
+import { Masthead, PageTitle, PreviewNotice } from "./Masthead";
 import { FILL, StripLegend } from "./SeasonStrip";
 import { MONTHS, plainDate, VERDICT_WORD } from "./today-view";
 
@@ -39,6 +39,7 @@ export function Calendar() {
       <Masthead date={date} />
       <PreviewNotice data={data} />
       <main>
+        <PageTitle name="Typical seasonal outlook" />
         <h1 className="mt-6 font-editorial text-3xl font-bold">Typical seasonal outlook</h1>
         <div className="mt-3">
           <StripLegend />

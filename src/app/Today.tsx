@@ -7,7 +7,7 @@ import type { AppData, FilterGroup } from "../shared/app-data";
 import { Art } from "./Art";
 import { useAppDate } from "./date";
 import { StatusLabels, VerdictMark } from "./icons";
-import { Masthead, PreviewNotice } from "./Masthead";
+import { Masthead, PageTitle, PreviewNotice } from "./Masthead";
 import { count, useVerdictVisible } from "./measure";
 import { readinessText, useReadiness } from "./offline";
 import { type Card, plainDate, todayView } from "./today-view";
@@ -33,6 +33,7 @@ export function Today() {
       <Masthead date={date} />
       <PreviewNotice data={data} />
       <main>
+        <PageTitle />
         <h1 className="sr-only">Today</h1>
         <OfflineStatus iso={date.today} />
 

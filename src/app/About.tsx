@@ -4,7 +4,7 @@ import appJson from "../generated/app.json";
 import type { AppData } from "../shared/app-data";
 import { useAppDate } from "./date";
 import { StatusLabels } from "./icons";
-import { Masthead } from "./Masthead";
+import { Masthead, PageTitle } from "./Masthead";
 
 const data = appJson as unknown as AppData;
 const { about } = data;
@@ -36,6 +36,7 @@ function TextPage({
     <div className={page}>
       <Masthead date={date} />
       <main>
+        <PageTitle name={title} />
         <h1 className="mt-6 font-editorial text-3xl font-bold">{title}</h1>
         <StatusLabels draft={text.draft} synthetic={false} />
         {/* Built from our own Markdown in content/, never from user input. */}

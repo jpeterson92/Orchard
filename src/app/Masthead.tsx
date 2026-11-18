@@ -169,3 +169,8 @@ export function PreviewNotice({ data }: { data: AppData }) {
     </aside>
   );
 }
+
+/** The document title: the page's name, then the brand; Today is the brand alone. React moves it into the head. */
+export function PageTitle({ name }: { name?: string }) {
+  return <title>{name ? `${name} · Orchard` : "Orchard"}</title>;
+}

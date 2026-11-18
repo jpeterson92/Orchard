@@ -186,7 +186,7 @@ Each milestone takes 1–3 sessions and ends with something Jared can review. Th
 | Evidence curves (P12) | Vitest table cases per rule; fast-check invariants (the combined value lies between the covering curves' minimum and maximum; an uncovered window has no proposal; adding a claim that agrees with the proposal never lowers its confidence; `basedOn` sources count once) | Thorough |
 | Content and data | `data:build` validation, plus one broken-input fixture per check | Thorough |
 | UI components | Typecheck, plus a test only where a component carries a product rule | Light |
-| End to end | Playwright smoke in Chromium (Pixel 7) and WebKit (iPhone 15): Today renders, open an item, offline after the first visit, security headers on static and API responses, and every screen (Today with a card open, an item page with a variety picked, Browse, a category, Calendar, Methods, Privacy, search) passes axe in light and dark mode with no console or CSP errors | A handful of tests |
+| End to end | Playwright smoke in Chromium (Pixel 7) and WebKit (iPhone 15): Today renders, open an item, each page's own title, offline after the first visit, security headers on static and API responses, and every screen (Today with a card open, an item page with a variety picked, Browse, a category, Calendar, Methods, Privacy, search) passes axe in light and dark mode with no console or CSP errors | A handful of tests |
 | Visual | Screenshots at 375 px and one wide width, shown to Jared | No baseline suites |
 
 Run the tests for what you touched while working. Run the full suite before pushing. CI runs everything on each push.

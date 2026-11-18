@@ -44,6 +44,23 @@ test("pages are served at clean URLs", async ({ request }) => {
   expect(await res.text()).toMatch(/<h1[^>]*>Strawberries<\/h1>/);
 });
 
+test("each page has its own title, in the prerendered head and after navigating", async ({
+  page,
+  request,
+}) => {
+  const html = await (await request.get("/items/apples")).text();
+  expect(html).toMatch(/<head>[\s\S]*<title>Apples · Orchard<\/title>[\s\S]*<\/head>/);
+  expect(html.match(/<title>/g)).toHaveLength(1);
+  await page.goto("/items/apples");
+  await expect(page.getByRole("heading", { level: 1, name: "Apples" })).toBeVisible();
+  await expect(page).toHaveTitle("Apples · Orchard");
+  await page.getByRole("navigation", { name: "Main" }).getByRole("link", { name: "Browse" }).click();
+  await expect(page).toHaveTitle("Browse · Orchard");
+  await page.getByRole("navigation", { name: "Main" }).getByRole("link", { name: "Today" }).click();
+  await expect(page).toHaveTitle("Orchard");
+  expect(await page.locator("title").count()).toBe(1);
+});
+
 test("Browse reaches an item in three taps from Today, and back returns to the category", async ({
   page,
 }) => {
