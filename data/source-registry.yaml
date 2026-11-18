@@ -20,7 +20,8 @@ items:
       red delicious,
       golden delicious,
     ]
-  pears: [pear, pears, anjou, bartlett, bartletts, bosc, comice, seckel, forelle, starkrimson, concorde, packham]
+  pears:
+    [pear, pears, anjou, bartlett, bartletts, bosc, comice, seckel, forelle, starkrimson, concorde, packham]
   strawberries: [strawberry, strawberries]
   broccoli: [broccoli]
   mandarins:
