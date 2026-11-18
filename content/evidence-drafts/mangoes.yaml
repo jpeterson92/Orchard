@@ -1,0 +1,67 @@
+item: mangoes
+status: draft
+claims:
+  # Tommy Atkins and Haden are not rated: neither reads better than fair even at its peak (product spec §5,
+  # items rated by variety). Their claims wait here in case Jared rates them.
+  - source: nmb-when-in-season
+    origin: mx
+    variety: tommy-atkins
+    windows:
+      - { from: jan-2, to: feb-2, rating: fair }
+      - { from: mar-1, to: jul-1, rating: prime }
+      - { from: jul-2, to: dec-2, rating: fair }
+    specificity: half-month
+    directness: availability
+    paraphrase: Tommy Atkins mangos peak in stores from early March to mid-July, with some from late January and through December.
+  - source: foodandwine-mango-types
+    origin: mx
+    variety: tommy-atkins
+    windows:
+      - { from: mar-1, to: jul-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Tommy Atkins, the most widely sold US variety, sweet-tart with moderate fiber, is available March through July.
+  - source: producebusiness-mangos-sage
+    origin: mx
+    variety: tommy-atkins
+    windows:
+      - { from: mar-1, to: jul-2, rating: prime }
+      - { from: aug-1, to: aug-2, rating: fair }
+      - { from: sep-1, to: dec-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Tommy Atkins, fairly fibrous and not the sweetest, runs from about March to December with a lull in August.
+  - source: producebusiness-mexican-mangos-make-the-most
+    origin: mx
+    variety: tommy-atkins
+    windows:
+      - { from: feb-2, to: jun-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Mexican Tommy Atkins typically ship from mid-February into June.
+  - source: nmb-when-in-season
+    origin: mx
+    variety: haden
+    windows:
+      - { from: jan-2, to: feb-2, rating: fair }
+      - { from: mar-1, to: may-1, rating: prime }
+      - { from: may-2, to: dec-1, rating: fair }
+    specificity: half-month
+    directness: availability
+    paraphrase: Haden mangos peak in stores in March, April and early May, with some from mid-January and into December.
+  - source: foodandwine-mango-types
+    origin: mx
+    variety: haden
+    windows:
+      - { from: mar-1, to: may-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Haden mangoes, sweet-sour with a slightly bitter aftertaste, have a short season from March to May.
+  - source: producebusiness-mangos-sage
+    origin: mx
+    variety: haden
+    windows:
+      - { from: mar-1, to: may-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Haden mangos peak March through May, with some October through December.

@@ -720,3 +720,87 @@
   accessed: 2026-11-18
   tier: mainstream
   basedOn: halegroves-florida-oranges
+- id: nmb-when-in-season
+  title: "When are mangos in season?"
+  publisher: "National Mango Board"
+  url: https://www.mango.org/blog/when-are-mangos-in-season
+  accessed: 2026-11-18
+  tier: authoritative
+- id: nmb-varieties
+  title: "Mango Varieties"
+  publisher: "National Mango Board"
+  url: https://www.mango.org/mango-varieties-availability/
+  accessed: 2026-11-18
+  tier: authoritative
+- id: ucdavis-postharvest-mango
+  title: "Mango: Recommendations for Maintaining Postharvest Quality"
+  publisher: "UC Davis Postharvest Research and Extension Center"
+  url: https://postharvest.ucdavis.edu/produce-facts-sheets/mango
+  accessed: 2026-11-18
+  tier: authoritative
+- id: foodnetwork-mangoes
+  title: "Everything to Know About Mangoes"
+  publisher: "Food Network"
+  url: https://www.foodnetwork.com/how-to/packages/food-network-essentials/when-are-mangoes-in-season
+  accessed: 2026-11-18
+  tier: mainstream
+- id: foodandwine-mango-types
+  title: "6 Types of Mangoes You'll Find This Season, From Ataulfo to Tommy Atkins"
+  publisher: "Food & Wine (via AOL)"
+  url: https://www.aol.com/6-types-mangoes-ll-season-152700896.html
+  accessed: 2026-11-18
+  tier: mainstream
+- id: theproducemoms-mangos
+  title: "Mangos"
+  publisher: "The Produce Moms"
+  url: https://www.theproducemoms.com/produce/mangos/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: producebusiness-mexican-mango-mania
+  title: "Mexican Mango Mania"
+  publisher: "Produce Business"
+  url: https://producebusiness.com/mexican-mango-mania/
+  accessed: 2026-11-18
+  tier: authoritative
+- id: producebusiness-mexican-mangos-delight
+  title: "Mexican Mangos Delight Consumers"
+  publisher: "Produce Business"
+  url: https://producebusiness.com/mexican-mangos-delight-consumers/
+  accessed: 2026-11-18
+  tier: authoritative
+- id: producebusiness-mexican-mangos-make-the-most
+  title: "Make The Most Of This Year's Mexican Mangos"
+  publisher: "Produce Business"
+  url: https://producebusiness.com/make-the-most-of-this-years-mexican-mangos/
+  accessed: 2026-11-18
+  tier: authoritative
+- id: producebusiness-mangos-sage
+  title: "Mangos (Sage Fruit)"
+  publisher: "Produce Business"
+  url: https://producebusiness.com/?p=3940
+  accessed: 2026-11-18
+  tier: authoritative
+- id: freshplaza-mexico-ramps-up-peru-winds-down
+  title: "Mexican mango season ramps up as Peru winds down"
+  publisher: "FreshPlaza"
+  url: https://www.freshplaza.com/article/9818249/mexican-mango-season-ramps-up-as-peru-winds-down
+  accessed: 2026-11-18
+  tier: mainstream
+- id: freshplaza-south-america-mango-volumes
+  title: "South America ships larger mango volumes to the US this season"
+  publisher: "FreshPlaza"
+  url: https://www.freshplaza.com/north-america/article/9493659/south-america-ships-larger-mango-volumes-to-the-us-this-season/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: nmb-choose-a-mango
+  title: "How To Choose A Mango"
+  publisher: "National Mango Board"
+  url: https://www.mango.org/choose-a-mango/
+  accessed: 2026-11-18
+  tier: authoritative
+- id: nmb-ripening-storing
+  title: "Ripening and Storing Mangos"
+  publisher: "National Mango Board"
+  url: https://www.mango.org/ripening-and-storing-mangos/
+  accessed: 2026-11-18
+  tier: authoritative

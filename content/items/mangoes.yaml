@@ -1,0 +1,99 @@
+id: mangoes
+name: Mangoes
+synonyms: [mango, mangos, ataulfo, honey mango, champagne mango, kent, keitt, tommy atkins, haden]
+misspellings: [mangoe, mangos', mango's, manggo, mangoz, ataulfa, atulfo, kiet]
+category: tropical
+purchaseRank: 16
+alwaysGood: false
+shipsWell:
+  value: true
+  sources: [nmb-ripening-storing, ucdavis-postharvest-mango]
+  note: Picked mature and ripens after harvest, so imports sweeten on the counter.
+peakWorthSeeking:
+  value: true
+  sources: [foodnetwork-mangoes, theproducemoms-mangos]
+  note: Sources name the late spring and summer season as clearly better eating.
+storesWell:
+  value: false
+  sources: [ucdavis-postharvest-mango, nmb-ripening-storing]
+  note: Keeps only weeks even in commercial storage, and cold damages its flavor.
+evidenceBasis: supply+assessment
+cardLine: Gives slightly when squeezed; judge by feel, not color.
+pick:
+  - Gives slightly when gently squeezed
+  - Fruity smell at the stem end
+  - Plump, full cheeks
+  - Red blush doesn't mean ripe; color is no guide
+  - Honey mangos wrinkle a little as they ripen
+avoid:
+  - Mushy spots, bruises or broken skin
+store:
+  temperature: cold
+  ethylene: producer
+  life: { min: 3, max: 5, unit: days }
+  text: Don't refrigerate a mango until it's ripe; the cold dulls its flavor. Once ripe, keep it whole in the fridge for up to 5 days.
+  sources: [nmb-ripening-storing, ucdavis-postharvest-mango]
+ripen:
+  text: Leave firm mangoes on the counter for a few days to sweeten and soften. A closed paper bag speeds it up.
+  sources: [nmb-ripening-storing]
+prep: Rinse, then slice the two cheeks off either side of the flat seed. Score the flesh in a grid and scoop it out.
+varieties:
+  - id: ataulfo
+    name: Ataulfo (Honey)
+    traits: {}
+    bestUses: [Snacking, smoothies, desserts]
+    label: Ataulfo or Honey mango
+    sources: [nmb-varieties, foodandwine-mango-types]
+    windows:
+      - { from: jan-1, to: jan-2, rating: poor }
+      - { from: feb-1, to: feb-2, rating: fair }
+      - { from: mar-1, to: jun-2, rating: prime }
+      - { from: jul-1, to: aug-1, rating: fair }
+      - { from: aug-2, to: dec-2, rating: poor }
+    quotedAs: [ataulfo]
+  - id: kent
+    name: Kent
+    traits: {}
+    bestUses: [Snacking, salads, salsas]
+    label: Kent
+    sources: [nmb-varieties, foodandwine-mango-types]
+    windows:
+      - { from: jan-1, to: mar-2, rating: fair }
+      - { from: apr-1, to: may-2, rating: poor }
+      - { from: jun-1, to: aug-2, rating: prime }
+      - { from: sep-1, to: oct-2, rating: poor }
+      - { from: nov-1, to: dec-2, rating: fair }
+    quotedAs: [kent]
+  - id: keitt
+    name: Keitt
+    traits: {}
+    bestUses: [Snacking, green mango salads]
+    label: Keitt, which stays green when ripe
+    sources: [nmb-varieties, foodandwine-mango-types, producebusiness-mangos-sage]
+    windows:
+      - { from: jan-1, to: jul-1, rating: poor }
+      - { from: jul-2, to: jul-2, rating: fair }
+      - { from: aug-1, to: oct-1, rating: prime }
+      - { from: oct-2, to: dec-2, rating: poor }
+    quotedAs: [keitt]
+origins:
+  - origin: mx
+    windows:
+      - { from: jan-1, to: jan-1, rating: poor }
+      - { from: jan-2, to: mar-2, rating: fair }
+      - { from: apr-1, to: jul-2, rating: prime }
+      - from: aug-1
+        to: sep-2
+        rating: prime
+        reason: Food Network and The Produce Moms rate eating quality prime here, outweighing the model panel's fair.
+      - { from: oct-1, to: dec-2, rating: poor }
+  - origin: pe
+    windows:
+      - { from: jan-1, to: mar-2, rating: fair }
+      - { from: apr-1, to: nov-2, rating: poor }
+      - { from: dec-1, to: dec-2, rating: fair }
+  - origin: ec
+    windows:
+      - { from: jan-1, to: jan-1, rating: fair }
+      - { from: oct-2, to: dec-2, rating: fair }
+status: draft

@@ -1,0 +1,174 @@
+item: mangoes
+status: draft
+claims:
+  # Mexico, the main supplier, from late winter to early fall; Peru from December to March.
+  - source: foodnetwork-mangoes
+    origin: mx
+    windows:
+      - { from: may-1, to: sep-2, rating: prime }
+    specificity: month
+    directness: eating-quality
+    paraphrase: Mangoes reach their full flavor in the peak season, May through September; imports fill the rest of the year.
+  - source: theproducemoms-mangos
+    origin: mx
+    windows:
+      - { from: may-1, to: sep-2, rating: prime }
+    specificity: month
+    directness: eating-quality
+    paraphrase: The best season to eat mangoes in the US is May to September; they are at their best in summer.
+  - source: producebusiness-mexican-mango-mania
+    origin: mx
+    windows:
+      - { from: jan-2, to: sep-2, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: Mexican mangos reach the market in mid-January and last through September.
+  - source: producebusiness-mexican-mangos-delight
+    origin: mx
+    windows:
+      - { from: mar-1, to: sep-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Mexican mangos, the largest share of US supply, have a long March to September season.
+  - source: producebusiness-mexican-mangos-make-the-most
+    origin: mx
+    windows:
+      - { from: jan-1, to: sep-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: The National Mango Board says the Mexican season runs from the first week of January through September.
+  - source: freshplaza-mexico-ramps-up-peru-winds-down
+    origin: pe
+    windows:
+      - { from: dec-1, to: feb-2, rating: prime }
+      - { from: mar-1, to: mar-2, rating: fair }
+    specificity: month
+    directness: availability
+    paraphrase: Peru's US shipments peak December to February, then wind down through late March.
+  - source: freshplaza-south-america-mango-volumes
+    origin: pe
+    windows:
+      - { from: dec-1, to: mar-2, rating: prime }
+    specificity: season
+    directness: availability
+    paraphrase: Peru is a main winter shipper to the US and ships until March.
+
+  # Ataulfo (Honey): Mexico's spring and early summer.
+  - source: nmb-when-in-season
+    origin: mx
+    variety: ataulfo
+    windows:
+      - { from: jan-1, to: feb-1, rating: fair }
+      - { from: feb-2, to: jul-1, rating: prime }
+      - { from: jul-2, to: dec-2, rating: fair }
+    specificity: half-month
+    directness: availability
+    paraphrase: Honey mangos peak in stores from late February to mid-July, with some from late July through February.
+  - source: foodandwine-mango-types
+    origin: mx
+    variety: ataulfo
+    windows:
+      - { from: mar-1, to: jul-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Ataulfo (Honey) mangoes, sweet and almost fiberless, are available March through July.
+  - source: producebusiness-mangos-sage
+    origin: mx
+    variety: ataulfo
+    windows:
+      - { from: mar-1, to: jun-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: The Honey mango, originally the Ataulfo, is available from March to June.
+
+  # Kent: Peru in winter, Mexico in summer.
+  - source: nmb-when-in-season
+    origin: pe
+    variety: kent
+    windows:
+      - { from: jan-1, to: feb-1, rating: prime }
+      - { from: dec-2, to: dec-2, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: Kent mangos peak in stores from late December to early February.
+  - source: nmb-when-in-season
+    origin: mx
+    variety: kent
+    windows:
+      - { from: feb-2, to: dec-1, rating: fair }
+    specificity: half-month
+    directness: availability
+    paraphrase: Kent mangos have some availability from early February to the beginning of December.
+  - source: foodandwine-mango-types
+    origin: pe
+    variety: kent
+    windows:
+      - { from: dec-1, to: feb-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Juicy, low-fiber Kent mangoes are available December through February.
+  - source: producebusiness-mangos-sage
+    origin: pe
+    variety: kent
+    windows:
+      - { from: dec-1, to: mar-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Kent mangos, sweet and low in fiber, peak in availability December to March.
+  - source: producebusiness-mangos-sage
+    origin: mx
+    variety: kent
+    windows:
+      - { from: jun-1, to: aug-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Kent mangos peak in availability again from June to August.
+  - source: producebusiness-mexican-mangos-make-the-most
+    origin: mx
+    variety: kent
+    windows:
+      - { from: may-1, to: aug-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Mexican Kents ship from May and June through August.
+
+  # Keitt: Mexico's late summer.
+  - source: nmb-when-in-season
+    origin: mx
+    variety: keitt
+    windows:
+      - { from: mar-1, to: mar-1, rating: fair }
+      - { from: mar-2, to: apr-1, rating: prime }
+      - { from: apr-2, to: jul-2, rating: fair }
+      - { from: aug-1, to: sep-2, rating: prime }
+      - { from: oct-1, to: dec-2, rating: fair }
+    specificity: half-month
+    directness: availability
+    paraphrase: Keitt mangos peak in stores from mid-March to early April and again August through September, with some through December.
+  - source: foodandwine-mango-types
+    origin: mx
+    variety: keitt
+    windows:
+      - { from: jan-1, to: apr-2, rating: prime }
+      - { from: aug-1, to: sep-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Keitt mangoes, firm and juicy with few fibers, are available January to April and again in August and September.
+  - source: producebusiness-mangos-sage
+    origin: mx
+    variety: keitt
+    windows:
+      - { from: jun-1, to: jun-2, rating: fair }
+      - { from: jul-1, to: sep-2, rating: prime }
+      - { from: oct-1, to: oct-2, rating: fair }
+    specificity: month
+    directness: availability
+    paraphrase: Keitts are available mainly July to September, with some in June and October.
+  - source: producebusiness-mexican-mangos-make-the-most
+    origin: mx
+    variety: keitt
+    windows:
+      - { from: jul-2, to: sep-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Mexican Keitts usually begin in late July and ship through early fall.
