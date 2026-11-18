@@ -20,7 +20,7 @@ items:
       red delicious,
       golden delicious,
     ]
-  pears: [pear, pears]
+  pears: [pear, pears, anjou, bartlett, bartletts, bosc, comice, seckel, forelle, starkrimson, concorde, packham]
   strawberries: [strawberry, strawberries]
   broccoli: [broccoli]
   mandarins:
@@ -422,3 +422,98 @@ pages:
     kind: item-page
     origin: us-wa
     items: [apples]
+  - source: usapears-green-anjou
+    url: https://www.usapears.org/green-anjou/
+    kind: item-page
+    origin: us-wa
+    items: [pears]
+  - source: usapears-red-anjou
+    url: https://www.usapears.org/red-anjou/
+    kind: item-page
+    origin: us-wa
+    items: [pears]
+  - source: usapears-bartlett
+    url: https://www.usapears.org/bartlett/
+    kind: item-page
+    origin: us-wa
+    items: [pears]
+  - source: usapears-red-bartlett
+    url: https://www.usapears.org/red-bartlett/
+    kind: item-page
+    origin: us-wa
+    items: [pears]
+  - source: usapears-comice
+    url: https://www.usapears.org/comice/
+    kind: item-page
+    origin: us-wa
+    items: [pears]
+  - source: usapears-seckel
+    url: https://www.usapears.org/seckel/
+    kind: item-page
+    origin: us-wa
+    items: [pears]
+  - source: usapears-forelle
+    url: https://www.usapears.org/forelle/
+    kind: item-page
+    origin: us-wa
+    items: [pears]
+  - source: usapears-concorde
+    url: https://www.usapears.org/concorde/
+    kind: item-page
+    origin: us-wa
+    items: [pears]
+  - source: calpear-varieties
+    url: https://www.calpear.com/pear-varieties
+    kind: item-page
+    origin: us-ca
+    items: [pears]
+  - source: markon-pears-update-5
+    url: https://resources.markon.com/news/markon-updates/update-pears-5
+    kind: item-page
+    origin: us
+    items: [pears]
+  - source: markon-pears-update-2
+    url: https://resources.markon.com/news/markon-updates/update-pears-2
+    kind: item-page
+    origin: us
+    items: [pears]
+  - source: markon-pears-26108
+    url: https://resources.markon.com/node/26108
+    kind: item-page
+    origin: us
+    items: [pears]
+  - source: veritable-pear-guide
+    url: https://veritablevegetable.com/pear-variety-guide/
+    kind: item-page
+    origin: us
+    items: [pears]
+  - source: superfresh-anjou-year-round
+    url: https://superfreshgrowers.com/the-bite/anjou-pears-gain-year-round-popularity
+    kind: item-page
+    origin: us-wa
+    items: [pears]
+  - source: specialtyproduce-anjou
+    url: https://specialtyproduce.com/produce/pears/anjou_6587.php
+    kind: item-page
+    origin: us
+    items: [pears]
+  - source: freshplaza-us-pears-slow-start
+    url: https://www.freshplaza.com/north-america/article/9471510/us-pears-available-after-slow-start-to-season
+    kind: item-page
+    origin: us
+    items: [pears]
+  - source: agalert-argentine-pears-2026
+    url: https://www.agalert.com/california-ag-news/archives/january-14-2026/pear-farmers-seek-to-limit-argentine-fruit-in-us-market/
+    kind: item-page
+    origin: us-ca
+    items: [pears]
+  - source: freshfruitportal-pear-imports-2012
+    url: https://www.freshfruitportal.com/archive/2012/03/28/u-s-domestic-pear-oversupply-to-hit-exporters-hard/
+    kind: item-page
+    origin: us
+    items: [pears]
+  - source: theproducemoms-nw-pears
+    url: https://www.theproducemoms.com/?p=73797
+    kind: item-page
+    origin: us-wa
+    items: [pears]

@@ -6,13 +6,13 @@
   title: Buy Fresh Fruits and Vegetables in Season!
   publisher: Mississippi State University Extension Service
   url: https://extension.msstate.edu/publications/buy-fresh-fruits-and-vegetables-season
-  accessed: 2026-11-17
+  accessed: 2026-11-18
   tier: authoritative
 - id: psu-harvest-calendar
   title: Harvest Calendar
   publisher: Penn State Extension
   url: https://extension.psu.edu/harvest-calendar
-  accessed: 2026-11-17
+  accessed: 2026-11-18
   tier: authoritative
 - id: florida-strawberry-growers
   title: Florida Strawberry
@@ -36,13 +36,13 @@
   title: Bosc Pears
   publisher: USA Pears (Pear Bureau Northwest)
   url: https://www.usapears.org/bosc/
-  accessed: 2026-11-17
+  accessed: 2026-11-18
   tier: authoritative
 - id: usapears-starkrimson
   title: Starkrimson Pears
   publisher: USA Pears (Pear Bureau Northwest)
   url: https://www.usapears.org/starkrimson/
-  accessed: 2026-11-17
+  accessed: 2026-11-18
   tier: authoritative
 - id: usapears-2023-crop
   title: Northwest Fresh Pear Industry Announces 2023 Crop Estimate and Promotions
@@ -108,7 +108,7 @@
   title: Mandarins
   publisher: Sunkist Growers (foodservice)
   url: https://foodservice.sunkist.com/citrus-info/mandarins
-  accessed: 2026-11-17
+  accessed: 2026-11-18
   tier: authoritative
 - id: produce-business-california-mandarins
   title: "By Any Name: California Mandarins Grow in Popularity"
@@ -138,7 +138,7 @@
   title: "California Mandarins Season: Begin and End"
   publisher: Eat Like No One Else
   url: https://www.eatlikenoone.com/california-mandarins-season-begin-end.htm
-  accessed: 2026-11-17
+  accessed: 2026-11-18
   tier: mainstream
 - id: cal-strawberry-commission-facts
   title: Strawberry Facts
@@ -492,4 +492,120 @@
   publisher: Perishable News
   url: https://perishablenews.com/?p=97599
   accessed: 2026-11-17
+  tier: mainstream
+- id: usapears-green-anjou
+  title: "Green Anjou Pears"
+  publisher: USA Pears (Pear Bureau Northwest)
+  url: https://www.usapears.org/green-anjou/
+  accessed: 2026-11-18
+  tier: authoritative
+- id: usapears-red-anjou
+  title: "Red Anjou Pears"
+  publisher: USA Pears (Pear Bureau Northwest)
+  url: https://www.usapears.org/red-anjou/
+  accessed: 2026-11-18
+  tier: authoritative
+- id: usapears-bartlett
+  title: "Bartlett Pears"
+  publisher: USA Pears (Pear Bureau Northwest)
+  url: https://www.usapears.org/bartlett/
+  accessed: 2026-11-18
+  tier: authoritative
+- id: usapears-red-bartlett
+  title: "Red Bartlett Pears"
+  publisher: USA Pears (Pear Bureau Northwest)
+  url: https://www.usapears.org/red-bartlett/
+  accessed: 2026-11-18
+  tier: authoritative
+- id: usapears-comice
+  title: "Comice Pears"
+  publisher: USA Pears (Pear Bureau Northwest)
+  url: https://www.usapears.org/comice/
+  accessed: 2026-11-18
+  tier: authoritative
+- id: usapears-seckel
+  title: "Seckel Pears"
+  publisher: USA Pears (Pear Bureau Northwest)
+  url: https://www.usapears.org/seckel/
+  accessed: 2026-11-18
+  tier: authoritative
+- id: usapears-forelle
+  title: "Forelle Pears"
+  publisher: USA Pears (Pear Bureau Northwest)
+  url: https://www.usapears.org/forelle/
+  accessed: 2026-11-18
+  tier: authoritative
+- id: usapears-concorde
+  title: "Concorde Pears"
+  publisher: USA Pears (Pear Bureau Northwest)
+  url: https://www.usapears.org/concorde/
+  accessed: 2026-11-18
+  tier: authoritative
+- id: calpear-varieties
+  title: "Pear Varieties"
+  publisher: California Pear Advisory Board
+  url: https://www.calpear.com/pear-varieties
+  accessed: 2026-11-18
+  tier: authoritative
+- id: markon-pears-update-5
+  title: "Markon Update: Pears"
+  publisher: Markon Cooperative
+  url: https://resources.markon.com/news/markon-updates/update-pears-5
+  accessed: 2026-11-18
+  tier: authoritative
+- id: markon-pears-update-2
+  title: "Markon Update: Pears"
+  publisher: Markon Cooperative
+  url: https://resources.markon.com/news/markon-updates/update-pears-2
+  accessed: 2026-11-18
+  tier: authoritative
+  basedOn: markon-pears-update-5
+- id: markon-pears-26108
+  title: "Markon Update: Pears"
+  publisher: Markon Cooperative
+  url: https://resources.markon.com/node/26108
+  accessed: 2026-11-18
+  tier: authoritative
+  basedOn: markon-pears-update-5
+- id: veritable-pear-guide
+  title: "Pear Variety Guide"
+  publisher: Veritable Vegetable
+  url: https://veritablevegetable.com/pear-variety-guide/
+  accessed: 2026-11-18
+  tier: authoritative
+- id: superfresh-anjou-year-round
+  title: "Anjou Pears Gain Year-Round Popularity"
+  publisher: Superfresh Growers
+  url: https://superfreshgrowers.com/the-bite/anjou-pears-gain-year-round-popularity
+  accessed: 2026-11-18
+  tier: mainstream
+- id: specialtyproduce-anjou
+  title: "Anjou Pears"
+  publisher: Specialty Produce
+  url: https://specialtyproduce.com/produce/pears/anjou_6587.php
+  accessed: 2026-11-18
+  tier: mainstream
+- id: freshplaza-us-pears-slow-start
+  title: "US pears available after slow start to season"
+  publisher: FreshPlaza
+  url: https://www.freshplaza.com/north-america/article/9471510/us-pears-available-after-slow-start-to-season
+  accessed: 2026-11-18
+  tier: mainstream
+- id: agalert-argentine-pears-2026
+  title: "Pear farmers seek to limit Argentine fruit in US market"
+  publisher: Ag Alert (California Farm Bureau)
+  url: https://www.agalert.com/california-ag-news/archives/january-14-2026/pear-farmers-seek-to-limit-argentine-fruit-in-us-market/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: freshfruitportal-pear-imports-2012
+  title: "U.S. domestic pear oversupply to hit exporters hard"
+  publisher: FreshFruitPortal
+  url: https://www.freshfruitportal.com/archive/2012/03/28/u-s-domestic-pear-oversupply-to-hit-exporters-hard/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: theproducemoms-nw-pears
+  title: "All About Pacific Northwest Pears"
+  publisher: The Produce Moms
+  url: https://www.theproducemoms.com/?p=73797
+  accessed: 2026-11-18
   tier: mainstream

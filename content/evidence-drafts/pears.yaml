@@ -19,14 +19,80 @@ claims:
     specificity: half-month
     directness: availability
     paraphrase: Pennsylvania harvest chart lists pears in season Aug to Oct.
-  - source: usapears-bosc
+  # Anjou (green), sold all year: four sources, all availability.
+  - source: usapears-green-anjou
     origin: us-wa
-    variety: bosc
+    variety: anjou
     windows:
-      - { from: sep-2, to: apr-2, rating: prime }
+      - { from: sep-2, to: aug-2, rating: prime }
+    specificity: season
+    directness: availability
+    paraphrase: Northwest green Anjou reaches stores by late September and stays through the summer.
+  - source: markon-pears-update-5
+    origin: us-wa
+    variety: anjou
+    windows:
+      - { from: sep-1, to: jul-2, rating: prime }
     specificity: half-month
     directness: availability
-    paraphrase: Washington and Oregon Bosc is in season from late September through April.
+    paraphrase: Washington D'Anjou production starts in early September and runs through July.
+  - source: superfresh-anjou-year-round
+    origin: us-wa
+    variety: anjou
+    windows:
+      - { from: sep-2, to: aug-2, rating: prime }
+    specificity: season
+    directness: availability
+    paraphrase: Green Anjou arrives in late September or early October and is the most common pear all summer.
+  - source: specialtyproduce-anjou
+    origin: us
+    variety: anjou
+    windows:
+      - { from: nov-1, to: feb-2, rating: prime }
+    specificity: season
+    directness: availability
+    paraphrase: Anjou is sold all year; its peak season runs from late fall through winter.
+  - source: usapears-red-anjou
+    origin: us-wa
+    variety: red-anjou
+    windows:
+      - { from: sep-2, to: aug-2, rating: prime }
+    specificity: season
+    directness: availability
+    paraphrase: Northwest Red Anjou is in markets from late September or early October through the summer.
+  # Bartlett: Washington in fall, California in summer, Argentine imports in spring.
+  - source: usapears-bartlett
+    origin: us-wa
+    variety: bartlett
+    windows:
+      - { from: aug-2, to: dec-2, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: Northwest Bartletts are picked late August to early September and usually stay in stores into winter.
+  - source: markon-pears-26108
+    origin: us-ca
+    variety: bartlett
+    windows:
+      - { from: jul-2, to: oct-2, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: California's new-crop Bartlett season starts in mid-July and runs through October.
+  - source: agalert-argentine-pears-2026
+    origin: ar
+    variety: bartlett
+    windows:
+      - { from: may-1, to: jun-2, rating: poor }
+    specificity: month
+    directness: eating-quality
+    paraphrase: California's pear board says long-stored Argentine Bartletts sold in May and June often fail to ripen well.
+  - source: usapears-red-bartlett
+    origin: us-wa
+    variety: red-bartlett
+    windows:
+      - { from: aug-2, to: dec-2, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: Northwest Red Bartletts are picked late August to early September and sold through December.
   - source: usapears-starkrimson
     origin: us-wa
     variety: starkrimson
@@ -35,3 +101,60 @@ claims:
     specificity: month
     directness: availability
     paraphrase: Northwest Starkrimson, a summer pear, is in season August through November.
+  # Bosc and the specialty pears.
+  - source: usapears-bosc
+    origin: us-wa
+    variety: bosc
+    windows:
+      - { from: sep-2, to: apr-2, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: Washington and Oregon Bosc is in season from late September through April.
+  - source: freshfruitportal-pear-imports-2012
+    origin: cl
+    variety: bosc
+    windows:
+      - { from: apr-1, to: apr-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Chilean and Argentine Bosc is usually packed in February and March to sell in the US in April.
+  - source: freshfruitportal-pear-imports-2012
+    origin: ar
+    variety: packham
+    windows:
+      - { from: apr-1, to: may-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Packham pears are usually shipped to the US in April and May, ahead of the domestic Bartletts.
+  - source: usapears-comice
+    origin: us-wa
+    variety: comice
+    windows:
+      - { from: sep-1, to: feb-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Northwest Comice, the "Christmas pear," is sold from September through February.
+  - source: usapears-seckel
+    origin: us-wa
+    variety: seckel
+    windows:
+      - { from: sep-1, to: feb-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Seckel pears are in season from September through February.
+  - source: usapears-forelle
+    origin: us-wa
+    variety: forelle
+    windows:
+      - { from: sep-1, to: jan-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Northwest Forelles are available from September through January.
+  - source: usapears-concorde
+    origin: us-wa
+    variety: concorde
+    windows:
+      - { from: sep-2, to: dec-2, rating: prime }
+    specificity: season
+    directness: availability
+    paraphrase: Concorde harvest starts in the fall and the crop usually sells out in December.
