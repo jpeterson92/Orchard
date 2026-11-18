@@ -110,6 +110,11 @@ function Item({ view, mode }: { view: ItemView; mode: Mode }) {
           {view.confidenceNote && <p>Not higher because {view.confidenceNote}.</p>}
           <p>Based on: {view.basis.charAt(0).toLowerCase() + view.basis.slice(1)}.</p>
           <p>{[view.supplyDate, view.reviewDate].filter(Boolean).join(" · ")}</p>
+          <p>
+            <Link to="/methods" className={linkClass}>
+              How Orchard rates produce →
+            </Link>
+          </p>
         </div>
       </details>
 

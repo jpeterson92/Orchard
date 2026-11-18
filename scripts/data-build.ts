@@ -9,6 +9,7 @@ import { parse as parseYaml } from "yaml";
 import { appData } from "../src/shared/app-data";
 import { ART_WIDTHS, artFile, resolveArt } from "../src/shared/art";
 import { type Csv, parseCsv, type RawInputs, validate } from "./data-validate";
+import { citedSourceIds, renderPage, ruleValues } from "./pages-lib";
 
 const production = process.argv.includes("--production");
 const read = (file: string) => readFileSync(file, "utf8");
@@ -61,9 +62,39 @@ if (art.errors.length > 0) {
   process.exit(1);
 }
 
+// The Methods and Privacy pages: their text, the sources the bundled items cite, and the model panel's runs.
+const pageErrors: string[] = [];
+const page = (file: string) => {
+  const { page: rendered, errors } = renderPage(file, read(file), ruleValues(dataset.rules));
+  pageErrors.push(...errors);
+  if (rendered?.draft && production)
+    pageErrors.push(`${file} is a draft; production builds need it reviewed`);
+  return rendered ?? { html: "", draft: true };
+};
+const methods = page("content/methods.md");
+const privacy = page("content/privacy.md");
+if (pageErrors.length > 0) {
+  for (const e of pageErrors) console.error(`error: ${e}`);
+  console.error(
+    `data:build failed with ${pageErrors.length} page error${pageErrors.length === 1 ? "" : "s"}`,
+  );
+  process.exit(1);
+}
+const cited = citedSourceIds(dataset);
+const tierOrder = { authoritative: 0, mainstream: 1 };
+const sources = dataset.sources
+  .filter((s) => cited.has(s.id) && !s.synthetic)
+  .sort((a, b) => tierOrder[a.tier] - tierOrder[b.tier] || a.publisher.localeCompare(b.publisher))
+  .map(({ id, title, publisher, url, accessed, tier }) => ({ id, title, publisher, url, accessed, tier }));
+const panel = readdirSync("content/panel", { withFileTypes: true })
+  .filter((d) => d.isDirectory() && existsSync(`content/panel/${d.name}/run.yaml`))
+  .map((d) => yaml(`content/panel/${d.name}/run.yaml`) as { model: string; provider: string; date: string })
+  .map(({ model, provider, date }) => ({ model, provider, date: String(date) }));
+const about = { methods, privacy, sources, panel, snapshot: dataset.snapshot };
+
 mkdirSync("src/generated", { recursive: true });
 writeFileSync("src/generated/data.json", JSON.stringify(dataset));
-const app = appData(dataset, new Date().toISOString().slice(0, 10), art.art);
+const app = appData(dataset, new Date().toISOString().slice(0, 10), art.art, about);
 writeFileSync("src/generated/app.json", JSON.stringify(app));
 
 const reviewed = dataset.items.filter((i) => i.status === "reviewed").length;

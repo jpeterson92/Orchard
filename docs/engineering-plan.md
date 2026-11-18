@@ -33,6 +33,7 @@ Mature, widely used tools only. At scaffold time, take the newest release whose 
 | Write store | D1, plain SQL migrations through Wrangler | Introduced in M8. No ORM unless queries grow |
 | Validation and types | zod 4.6.7, yaml 2.9.1 | One schema per content and data file; types come from `z.infer`. Content and data files are YAML, parsed by `yaml` in `data:build` only. No code generation |
 | Search | MiniSearch 7.2.0 | Prefix and fuzzy matching over item names, synonyms, misspellings and variety names, built on the phone at first query. The overlay is a native `<dialog>` of result links (no combobox) |
+| Page text | marked 18.1.3 (dev only) | `data:build` renders `content/methods.md` and `content/privacy.md` to HTML for the bundle. Front matter gives `status: draft` or `reviewed` (production refuses drafts); `{{name}}` fills a rule value from `rules.yaml` |
 | Images | sharp 0.35.5 (dev only) | `art:process`: checks painted masters and writes WebP derivatives |
 | Lint and format | Biome | One tool, one config |
 | Tests | Vitest, fast-check (property tests), Testing Library, Playwright + `@axe-core/playwright` | See §6 |
@@ -54,7 +55,8 @@ content/
   evidence/<item-id>.yaml    each source's claims about the item: origin, rated windows, specificity, directness
   panel/                     model panel: PROMPT.md, scope.yaml, and one folder per model run (run.yaml + one file per category)
   summaries.yaml             24 national half-month Today summaries
-  methods.md                 Methods page text
+  methods.md  privacy.md     Methods and Privacy page text (Markdown); Methods also lists the cited sources, the
+                             USDA snapshot and the model panel's runs
 data/
   sources.yaml               every citation: id, tier, title, publisher, url, accessed date, optional basedOn
   source-registry.yaml       what the evidence pipeline reads: the batch's items with the words naming them, and pages
@@ -68,7 +70,7 @@ data/
   us-states.csv              state code and name, for `us-<state>` origins
 scripts/                     prerender.ts, data-build.ts, content-report.ts, review.ts; usda-client.ts and usda-lib.ts (shared),
                              usda-probe.ts, usda-terminal-probe.ts, usda-terminal-screen.ts, usda-derive.ts;
-                             evidence-lib.ts (shared), evidence-fetch.ts, evidence-check.ts; panel-lib.ts, panel-check.ts;
+                             evidence-lib.ts (shared), evidence-fetch.ts, evidence-check.ts; panel-lib.ts, panel-check.ts; pages-lib.ts;
                              art-lib.ts, art-process.ts
 src/
   shared/                    zod schemas, verdict engine, evidence curves, window math. Imports nothing from app/ or worker/

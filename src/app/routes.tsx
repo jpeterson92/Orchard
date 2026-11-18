@@ -1,6 +1,7 @@
-import { Outlet, type RouteObject, ScrollRestoration } from "react-router";
+import { Link, Outlet, type RouteObject, ScrollRestoration } from "react-router";
 import appJson from "../generated/app.json";
 import type { AppData } from "../shared/app-data";
+import { Methods, Privacy } from "./About";
 import { Browse, BrowseCategory } from "./Browse";
 import { Calendar } from "./Calendar";
 import { ItemPage } from "./ItemPage";
@@ -10,6 +11,9 @@ import { Today } from "./Today";
 
 const data = appJson as unknown as AppData;
 
+const footerLink =
+  "inline-flex min-h-11 items-center rounded-sm text-ink-secondary underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
+
 // Back returns to the exact scroll position; a new page opens at the top (product spec §4).
 function Layout() {
   return (
@@ -18,6 +22,16 @@ function Layout() {
     <SearchProvider>
       <div className="pb-[calc(7rem+env(safe-area-inset-bottom))] sm:pb-0">
         <Outlet />
+        <footer className="mx-auto max-w-2xl border-t border-rule px-4 py-2 text-sm sm:px-6">
+          <nav aria-label="About Orchard" className="flex gap-6">
+            <Link to="/methods" className={footerLink}>
+              How Orchard rates produce
+            </Link>
+            <Link to="/privacy" className={footerLink}>
+              Privacy
+            </Link>
+          </nav>
+        </footer>
         <TabBar />
         {/* Every first load shares the key "default"; keying those by path stops one page restoring another's. */}
         <ScrollRestoration getKey={(l) => (l.key === "default" ? l.pathname : l.key)} />
@@ -36,15 +50,20 @@ export const routes: RouteObject[] = [
       { path: "/browse/:category", element: <BrowseCategory /> },
       { path: "/calendar", element: <Calendar /> },
       { path: "/items/:id", element: <ItemPage /> },
+      { path: "/methods", element: <Methods /> },
+      { path: "/privacy", element: <Privacy /> },
     ],
   },
 ];
 
-// Routes written to static HTML at build time: Today, Browse and each category, Calendar, and one page per bundled item.
+// Routes written to static HTML at build time: Today, Browse and each category, Calendar, Methods, Privacy, and one
+// page per bundled item.
 export const prerenderPaths = [
   "/",
   "/browse",
   ...data.categories.map((c) => `/browse/${c.id}`),
   "/calendar",
+  "/methods",
+  "/privacy",
   ...data.items.map((i) => `/items/${i.inputs.id}`),
 ];

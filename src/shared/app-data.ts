@@ -1,7 +1,7 @@
 // What the app bundles (engineering plan §1): each item's engine inputs plus the text its screens show.
 // Built by `npm run data:build` into src/generated/app.json; raw evidence and USDA rows stay out of the bundle.
 import type { ArtMap } from "./art";
-import type { Category, Dataset, Item } from "./data/schema";
+import type { Category, Dataset, Item, Snapshot, Source } from "./data/schema";
 import type { Env, ItemInputs } from "./verdict";
 import { engineEnv, itemInputs } from "./verdict/inputs";
 
@@ -56,9 +56,22 @@ export interface AppData {
   stateNames: Record<string, string>;
   /** The build's date (YYYY-MM-DD): prerendered pages show verdicts for it until the phone recomputes. */
   builtOn: string;
+  about: About;
 }
 
-export function appData(data: Dataset, builtOn: string, art: ArtMap): AppData {
+/** The Methods and Privacy pages (product spec §5 "Methods page", §10): their text, and what Methods lists. */
+export interface About {
+  methods: { html: string; draft: boolean };
+  privacy: { html: string; draft: boolean };
+  /** Every real source the bundled items cite, authoritative first. */
+  sources: Pick<Source, "id" | "title" | "publisher" | "url" | "accessed" | "tier">[];
+  /** The AI model panel's runs (product spec §8). */
+  panel: { model: string; provider: string; date: string }[];
+  /** The USDA supply snapshot, or null before one is derived. */
+  snapshot: Snapshot | null;
+}
+
+export function appData(data: Dataset, builtOn: string, art: ArtMap, about: About): AppData {
   const groups = new Map(data.categories.map((c) => [c.id, c.group]));
   return {
     env: engineEnv(data),
@@ -94,5 +107,6 @@ export function appData(data: Dataset, builtOn: string, art: ArtMap): AppData {
       .map((c) => ({ id: c.id, name: c.name, group: c.group })),
     stateNames: Object.fromEntries(data.states.map((s) => [`us-${s.state.toLowerCase()}`, s.name])),
     builtOn,
+    about,
   };
 }
