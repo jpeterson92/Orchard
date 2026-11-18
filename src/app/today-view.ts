@@ -101,6 +101,10 @@ export const GENERIC_REASON = {
 };
 const isGeneric = (text: string) => text === GENERIC_REASON.peak || text === GENERIC_REASON.good;
 
+/** Copy is written for today; for a planning date "now" becomes "then", so it never reads as a current assessment. */
+export const atDate = (text: string, mode: "today" | "typical"): string =>
+  mode === "typical" ? text.replace(/\bnow\b/g, "then") : text;
+
 export function reasonText(verdict: Verdict, reasons: readonly Reason[], markers: readonly Marker[]): string {
   const lastCall = markers.find((m) => m.kind === "last-call");
   if (lastCall && (verdict === "peak" || verdict === "good"))
@@ -138,11 +142,12 @@ export function tags(item: AppItem, markers: readonly Marker[]): string[] {
   return out;
 }
 
-export function todayView(data: AppData, date: PlainDate): TodayView {
+/** `mode: "typical"` for a planning date: every verdict is the typical outlook (engineering plan §4). */
+export function todayView(data: AppData, date: PlainDate, mode: "today" | "typical" = "today"): TodayView {
   const window = windowIndex(date.month, date.day);
   const cards = new Map<string, Card>();
   const entries: TodayEntry[] = data.items.map((item) => {
-    const result = evaluate(item.inputs, { date, mode: "today" }, data.env);
+    const result = evaluate(item.inputs, { date, mode }, data.env);
     const typical = evaluate(item.inputs, { date, mode: "typical" }, data.env);
     const top = item.inputs.typicalOrigins[Math.floor(window / 2)]?.[0];
     const reason = reasonText(result.verdict, result.reasons, result.markers);
@@ -152,7 +157,7 @@ export function todayView(data: AppData, date: PlainDate): TodayView {
       art: item.art,
       varietyLine: varietyLine(item, result.varietyLine, result.verdict),
       verdict: result.verdict,
-      reason: isGeneric(reason) ? null : reason,
+      reason: isGeneric(reason) ? null : atDate(reason, mode),
       origin: top === undefined ? null : originName(top, data),
       tags: tags(item, result.markers),
       group: item.group,

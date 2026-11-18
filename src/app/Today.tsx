@@ -5,7 +5,7 @@ import { Link } from "react-router";
 import appJson from "../generated/app.json";
 import type { AppData, FilterGroup } from "../shared/app-data";
 import { Art } from "./Art";
-import { useToday } from "./date";
+import { useAppDate } from "./date";
 import { StatusLabels, VerdictMark } from "./icons";
 import { Masthead, PreviewNotice } from "./Masthead";
 import { readinessText, useReadiness } from "./offline";
@@ -21,21 +21,21 @@ const FILTERS: { id: FilterGroup | "all"; label: string }[] = [
 ];
 
 export function Today() {
-  const iso = useToday(data);
+  const date = useAppDate(data);
   const [filter, setFilter] = useState<FilterGroup | "all">("all");
-  const view = todayView(data, plainDate(iso));
+  const view = todayView(data, plainDate(date.iso), date.mode);
   const good = view.good.filter((c) => filter === "all" || c.group === filter);
 
   return (
     <div className="mx-auto max-w-2xl px-4 pb-12 sm:px-6 md:max-w-5xl">
-      <Masthead iso={iso} />
+      <Masthead date={date} />
       <PreviewNotice data={data} />
       <main>
         <h1 className="sr-only">Today</h1>
-        <OfflineStatus iso={iso} />
+        <OfflineStatus iso={date.today} />
 
         {view.best.length > 0 && (
-          <Section title="Best right now">
+          <Section title={date.planning ? "Typically best" : "Best right now"}>
             <Rows cards={view.best} />
           </Section>
         )}

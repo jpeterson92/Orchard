@@ -7,12 +7,12 @@ import { Link, useParams } from "react-router";
 import appJson from "../generated/app.json";
 import type { AppData } from "../shared/app-data";
 import { Art } from "./Art";
-import { useToday } from "./date";
+import { type Mode, useAppDate } from "./date";
 import { StatusLabels, VerdictMark } from "./icons";
 import { type ItemView, itemView, type LabelOption, labelResult, type VarietyRow } from "./item-view";
 import { Masthead, PreviewNotice } from "./Masthead";
 import { MonthAxis, SeasonStrip, StripLegend } from "./SeasonStrip";
-import { plainDate } from "./today-view";
+import { atDate, plainDate } from "./today-view";
 
 const data = appJson as unknown as AppData;
 
@@ -23,19 +23,19 @@ const linkClass =
 
 export function ItemPage() {
   const { id = "" } = useParams();
-  const iso = useToday(data);
-  const view = itemView(data, id, plainDate(iso));
+  const date = useAppDate(data);
+  const view = itemView(data, id, plainDate(date.iso), date.mode);
 
   return (
     <div className="mx-auto max-w-2xl px-4 pb-12 sm:px-6 md:max-w-5xl">
-      <Masthead iso={iso} />
+      <Masthead date={date} />
       <PreviewNotice data={data} />
       <Link to="/" className={`${linkClass} mt-1`}>
         <span aria-hidden>←</span> Today
       </Link>
       {view ? (
         <div className="lg:grid lg:grid-cols-[minmax(0,40rem)_1fr] lg:gap-12">
-          <Item view={view} />
+          <Item view={view} mode={date.mode} />
           {/* Wide screens: the artwork gets its own column and stays in view. */}
           <aside className="hidden lg:block">
             <Art id={view.art} sizes="320px" className="sticky top-6 aspect-square w-full max-w-80" />
@@ -51,7 +51,7 @@ export function ItemPage() {
   );
 }
 
-function Item({ view }: { view: ItemView }) {
+function Item({ view, mode }: { view: ItemView; mode: Mode }) {
   return (
     <main>
       <div className="mt-1 flex gap-4">
@@ -112,14 +112,14 @@ function Item({ view }: { view: ItemView }) {
       </details>
 
       {view.varieties.length > 0 && (
-        <Section title="Varieties now">
+        <Section title={atDate("Varieties now", mode)}>
           <StripLegend />
           <div className="mt-3">
             <MonthAxis current={Math.floor(view.window / 2)} />
           </div>
           <ul>
             {view.varieties.map((v) => (
-              <Variety key={v.id} row={v} today={view.window} />
+              <Variety key={v.id} row={v} today={view.window} mode={mode} />
             ))}
           </ul>
         </Section>
@@ -178,10 +178,10 @@ function Item({ view }: { view: ItemView }) {
 /** Pick the origin or variety on the label or sticker; its own verdict shows below. The page's verdict stays. */
 function LabelCheck({ view }: { view: ItemView }) {
   const [choice, setChoice] = useState("");
-  const iso = useToday(data);
+  const date = useAppDate(data);
   const { varieties, origins } = view.labelChoices;
   if (varieties.length + origins.length === 0) return null;
-  const result = choice ? labelResult(data, view.id, plainDate(iso), choice) : null;
+  const result = choice ? labelResult(data, view.id, plainDate(date.iso), choice, date.mode) : null;
   const both = varieties.length > 0 && origins.length > 0;
   const what = both ? "origin or variety" : varieties.length > 0 ? "variety" : "origin";
   const options = (list: LabelOption[]) =>
@@ -236,7 +236,7 @@ function LabelCheck({ view }: { view: ItemView }) {
   );
 }
 
-function Variety({ row, today }: { row: VarietyRow; today: number }) {
+function Variety({ row, today, mode }: { row: VarietyRow; today: number; mode: Mode }) {
   return (
     <li className="border-b border-rule py-3 last:border-b-0">
       <div className="flex items-center gap-3">
@@ -253,7 +253,7 @@ function Variety({ row, today }: { row: VarietyRow; today: number }) {
           {row.confidence && (
             <p className="text-sm text-ink-secondary">
               {CONFIDENCE_WORD[row.confidence]} confidence
-              {!row.inStore && " · Not usually in stores now"}
+              {!row.inStore && atDate(" · Not usually in stores now", mode)}
             </p>
           )}
         </div>

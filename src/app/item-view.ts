@@ -13,6 +13,7 @@ import {
   type WeakProperty,
 } from "../shared/verdict";
 import {
+  atDate,
   GENERIC_REASON,
   MONTHS,
   originName,
@@ -163,11 +164,16 @@ export function outlookSummary(outlook: readonly Verdict[]): string {
   return parts.join("; ");
 }
 
-export function itemView(data: AppData, id: string, date: PlainDate): ItemView | null {
+export function itemView(
+  data: AppData,
+  id: string,
+  date: PlainDate,
+  mode: "today" | "typical" = "today",
+): ItemView | null {
   const item = data.items.find((i) => i.inputs.id === id);
   if (!item) return null;
   const window = windowIndex(date.month, date.day);
-  const result = evaluate(item.inputs, { date, mode: "today" }, data.env);
+  const result = evaluate(item.inputs, { date, mode }, data.env);
 
   // The card's reason leads when it says something specific (Last call, when it improves, why it's unknown);
   // the generic "At its best this time of year" gives way to the rating behind it.
@@ -248,7 +254,7 @@ export function itemView(data: AppData, id: string, date: PlainDate): ItemView |
     varietyLine: varietyLine(item, result.varietyLine, result.verdict),
     verdict: result.verdict,
     tags: tags(item, result.markers),
-    reasons,
+    reasons: reasons.map((r) => atDate(r, mode)),
     confidence: result.confidence,
     confidenceNote:
       result.weakProperties.length > 0 ? result.weakProperties.map((w) => WEAK[w]).join("; ") : null,
@@ -259,7 +265,7 @@ export function itemView(data: AppData, id: string, date: PlainDate): ItemView |
       reviewed && item.reviewedOn
         ? `Guidance reviewed ${monthYear(item.reviewedOn)}`
         : "Guidance not yet reviewed",
-    notes,
+    notes: notes.map((n) => atDate(n, mode)),
     labelNote: result.labelNote,
     labelChoices: labelChoices(item, data, window),
     advisory,
@@ -314,13 +320,19 @@ export function labelChoices(item: AppItem, data: AppData, window: number): Labe
   return { varieties, origins };
 }
 
-export function labelResult(data: AppData, id: string, date: PlainDate, choice: string): LabelResult | null {
+export function labelResult(
+  data: AppData,
+  id: string,
+  date: PlainDate,
+  choice: string,
+  mode: "today" | "typical" = "today",
+): LabelResult | null {
   const item = data.items.find((i) => i.inputs.id === id);
   const [kind, key] = [choice.slice(0, 2), choice.slice(2)];
   if (!item || !key || (kind !== "o:" && kind !== "v:")) return null;
   const variety = kind === "v:" ? item.varieties.find((v) => v.id === key) : undefined;
   const ctx = kind === "v:" ? { labelVariety: key } : { labelOrigin: key };
-  const r = evaluate(item.inputs, { date, mode: "today", ...ctx }, data.env);
+  const r = evaluate(item.inputs, { date, mode, ...ctx }, data.env);
 
   const subject = variety ? variety.name : originName(key, data);
   const unrated = r.reasons.some((x) => x.code === "origin-unrated" || x.code === "variety-unrated");
@@ -336,7 +348,12 @@ export function labelResult(data: AppData, id: string, date: PlainDate, choice: 
     ? reasonText(r.verdict, r.reasons, r.markers)
     : null;
   const reasons = [headline, ...lines, timing].filter((x): x is string => x !== null).slice(0, 3);
-  return { verdict: r.verdict, reasons, confidence: r.confidence, bestUses: variety?.bestUses ?? [] };
+  return {
+    verdict: r.verdict,
+    reasons: reasons.map((x) => atDate(x, mode)),
+    confidence: r.confidence,
+    bestUses: variety?.bestUses ?? [],
+  };
 }
 
 function monthDay(iso: string): string {

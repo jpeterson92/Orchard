@@ -216,7 +216,7 @@ An item that is both Peak and Last call appears once, under Best right now, carr
 
 ### Date
 
-Today by default. "Plan for another date" shows that date's **typical seasonal outlook**, under a banner that says so ("Typical outlook for Dec 20 · Back to today"). It is never presented as a current assessment.
+Today by default; the date follows the phone's clock, rolling over at midnight. Tapping the date chip picks a date up to a year ahead, which shows that date's **typical seasonal outlook**, under a banner that says so ("Typical outlook for Dec 20 · Back to today"). It is never presented as a current assessment: copy says "then" where it would say "now", and "Best right now" becomes "Typically best". A planning date lasts until the app is closed.
 
 ### Methods page
 
