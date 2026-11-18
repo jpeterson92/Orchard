@@ -4,23 +4,13 @@
     {
       "name": "orchard-dev",
       "runtimeExecutable": "npm",
-      "runtimeArgs": [
-        "run",
-        "dev"
-      ],
+      "runtimeArgs": ["run", "dev"],
       "port": 5173
     },
     {
       "name": "orchard-preview",
       "runtimeExecutable": "npm",
-      "runtimeArgs": [
-        "run",
-        "preview",
-        "--",
-        "--port",
-        "4180",
-        "--strictPort"
-      ],
+      "runtimeArgs": ["run", "preview", "--", "--port", "4180", "--strictPort"],
       "port": 4180
     }
   ]

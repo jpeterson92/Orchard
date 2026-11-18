@@ -119,6 +119,24 @@ Dark mode is part of the product requirements. A proposed mode study exists, but
 
 Recheck foregrounds on filled controls in dark mode. Do not blindly reuse white text on a light accent. Inspect transparent artwork for pale halos.
 
+### Higher contrast
+
+There is no in-app contrast or large-type mode. When the device asks for more contrast (`prefers-contrast: more`), these values replace the standard ones; surface stays as it is.
+
+| Role | Light | Dark |
+| --- | --- | --- |
+| Canvas | #FFFDF7 | #25211F |
+| Ink | #2A0F1C (17.4:1) | #F5EEE3 |
+| Secondary ink, limited evidence icon | #463B34 (10.7:1) | #DDD2C3 (10.7:1) |
+| Olive | #384020 (10.7:1) | #DDE1B8 (11.8:1) |
+| Accent | #A3400F (6.3:1; white on it 6.4:1) | #E69A68 |
+| Rule | #8F8573 (3.6:1) | #8A7D70 (4.0:1) |
+| Peak icon | #8A5600 (6.1:1) | #E6B65C |
+| Good icon | #2C5636 (8.3:1) | #B0C7A6 |
+| Skip icon | #6F4628 (8.0:1) | #D8AE8E |
+
+Text sizes are in rem, so the phone's own text-size setting scales them.
+
 ## 4. Typography and spacing
 
 ### Type roles
@@ -204,7 +222,7 @@ Keep reading text to a comfortable measure, approximately 60–70 characters whe
 
 ### In the store
 
-The phone view is the in-store view; there is no separate mode. Today reflects offline readiness and data age in one quiet secondary line under the masthead, never a banner.
+The phone view is the in-store view; there is no separate mode, and the screen sleeps normally. Today reflects offline readiness and data age in one quiet secondary line under the masthead, never a banner.
 
 ## 6. Component rules and states
 

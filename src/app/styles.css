@@ -35,6 +35,36 @@
   }
 }
 
+/* Higher contrast when the device asks for it (design system §3 "Higher contrast"). */
+@media (prefers-contrast: more) {
+  :root {
+    --color-canvas: #fffdf7;
+    --color-ink: #2a0f1c;
+    --color-ink-secondary: #463b34;
+    --color-olive: #384020;
+    --color-accent: #a3400f;
+    --color-rule: #8f8573;
+    --color-peak-icon: #8a5600;
+    --color-good-icon: #2c5636;
+    --color-skip-icon: #6f4628;
+    --color-limited-icon: #463b34;
+  }
+}
+@media (prefers-contrast: more) and (prefers-color-scheme: dark) {
+  :root {
+    --color-canvas: #25211f;
+    --color-ink: #f5eee3;
+    --color-ink-secondary: #ddd2c3;
+    --color-olive: #dde1b8;
+    --color-accent: #e69a68;
+    --color-rule: #8a7d70;
+    --color-peak-icon: #e6b65c;
+    --color-good-icon: #b0c7a6;
+    --color-skip-icon: #d8ae8e;
+    --color-limited-icon: #ddd2c3;
+  }
+}
+
 body {
   background: var(--color-canvas);
   color: var(--color-ink);

@@ -402,8 +402,8 @@ Visual details are governed by the design system (`docs/design/design-system.md`
 
 | Element | Direction |
 | --- | --- |
-| Canvas | Warm off-white in light mode, deep warm gray in dark mode, following the device setting. |
-| Type | A humanist sans for interface and body text; an editorial serif for page titles and variety names. Body at least 16 px. Fixed-width digits for days and prices. |
+| Canvas | Warm off-white in light mode, deep warm gray in dark mode, following the device setting. Higher contrast when the device asks for it. |
+| Type | A humanist sans for interface and body text; an editorial serif for page titles and variety names. Body at least 16 px, scaled by the phone's own text-size setting. Fixed-width digits for days and prices. |
 | Color | Neutral interface; the produce illustrations supply the color. Verdicts have their own reserved palette. |
 | Verdict marks | Peak: filled star + "Peak" · Good: check + "Good" · Skip: clock + "Skip for now" · Limited evidence: information symbol + "Limited evidence", in a neutral tone so it never reads as a warning about the produce. The palette is checked under color-blindness simulation; red vs green is never the only difference. |
 | Markers | Small text tags under the verdict: "Last call", "Reliable year-round", "Good value" (v1.1), and an outlined "Advisory" tag that opens its scope and expiry. |
