@@ -30,7 +30,7 @@ Mature, widely used tools only. At scaffold time, take the newest release whose 
 | Styling | Tailwind CSS 4 | Design-system tokens as CSS variables in `@theme`; native `<dialog>` and hand-written disclosure buttons for simple cases. Adopt Base UI (headless and accessible) at the first complex control (popover, select, tabs, sortable table); never hand-build those |
 | Offline | `workbox-build` 7.4.1 (`generateSW`, dev only) | `scripts/sw-build.ts` runs after the prerender so the precache holds every page; precache everything; updates activate on the next launch. Pages are served at clean URLs (`html_handling: drop-trailing-slash`) |
 | Worker | `@cloudflare/vite-plugin`, Wrangler, Hono (for `/api` routes) | Static assets with SPA fallback |
-| Write store | D1, plain SQL migrations through Wrangler | Introduced in M8. No ORM unless queries grow |
+| Write store | D1, plain SQL migrations in `migrations/` through Wrangler (`npm run db:migrate:local` for dev) | No ORM unless queries grow. Abuse limit: the Workers Rate Limiting binding, 10 posts a minute per visitor, keyed by a SHA-256 hash of the IP. Worker tests run the real migrations in `node:sqlite` |
 | Validation and types | zod 4.6.7, yaml 2.9.1 | One schema per content and data file; types come from `z.infer`. Content and data files are YAML, parsed by `yaml` in `data:build` only. No code generation |
 | Search | MiniSearch 7.2.0 | Prefix and fuzzy matching over item names, synonyms, misspellings and variety names, built on the phone at first query. The overlay is a native `<dialog>` of result links (no combobox) |
 | Page text | marked 18.1.3 (dev only) | `data:build` renders `content/methods.md` and `content/privacy.md` to HTML for the bundle. Front matter gives `status: draft` or `reviewed` (production refuses drafts); `{{name}}` fills a rule value from `rules.yaml` |
@@ -75,7 +75,8 @@ scripts/                     prerender.ts, data-build.ts, content-report.ts, rev
 src/
   shared/                    zod schemas, verdict engine, evidence curves, window math. Imports nothing from app/ or worker/
   app/                       React app: routes, components, styles, service worker registration
-  worker/                    Cloudflare Worker: /api/*
+  worker/                    Cloudflare Worker: /api/* (feedback)
+migrations/                  D1 schema, plain SQL
   generated/                 data-build output (gitignored)
 tests/e2e/                   Playwright smoke tests
 docs/                        product spec, engineering plan, design, data findings
@@ -195,7 +196,7 @@ Run the tests for what you touched while working. Run the full suite before push
 - **Deploy:** `npm run deploy` (build, then `wrangler deploy`) from a machine signed in with `wrangler login`. Move deploys into CI when it becomes convenient, using a scoped API token in a GitHub secret.
 - **Data refresh:** on demand, usually with the yearly content review. `npm run usda:derive` rewrites the typical-origins and supply-index CSVs from the last 3 years; Jared reviews the diff before it is committed and deployed. Items without usable USDA data use cited editorial origins and a `null` supply index. Seasonal evidence refreshes the same way: `evidence:fetch` and `evidence:check`, reviewed like content.
 - **Stale data:** each build records its supply snapshot's date range. When the snapshot is more than 15 months old (a missed yearly refresh), freshness lowers confidence and the item page says so; the app never pretends to be current.
-- **Privacy:** no accounts, cookies or location. The Worker never logs URLs, query strings, bodies or IPs; automatic invocation logs are turned off at M8. D1 stores the date, never anything about where the shopper is.
+- **Privacy:** no accounts, cookies or location. The Worker never logs URLs, query strings, bodies or IPs, and observability and invocation logs are off in `wrangler.jsonc`. D1 stores the date, never a time, an IP or anything about where the shopper is. The rate limiter sees only a hash of the IP, in short-lived counters.
 - **Rollback:** redeploy the previous Worker version (`wrangler rollback`). Data rolls back with it.
 
 ## 8. Deliberately not built

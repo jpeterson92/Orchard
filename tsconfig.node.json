@@ -13,5 +13,5 @@
     "skipLibCheck": true,
     "noEmit": true
   },
-  "include": ["*.config.ts", "scripts", "tests"]
+  "include": ["*.config.ts", "scripts", "tests", "src/worker/**/*.test.ts"]
 }
