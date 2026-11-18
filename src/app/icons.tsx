@@ -1,5 +1,6 @@
 // One set of simple line icons (design system §6 "Navigation and icons"). Decorative: callers pair each with text.
 import type { Verdict } from "../shared/verdict";
+import { VERDICT_WORD } from "./today-view";
 
 const base = {
   width: 18,
@@ -47,5 +48,27 @@ export function LeafMark() {
       <path d="M4 20c2-6 6-11 15-15-1 8-5 13-12 14" />
       <path d="M4 20c4-4 7-7 10-9" />
     </svg>
+  );
+}
+
+/** The verdict as icon and word, announced once by its word (design system §6 "Verdicts"). */
+export function VerdictMark({ verdict, size = "base" }: { verdict: Verdict; size?: "base" | "lg" }) {
+  return (
+    <span
+      className={`inline-flex items-center gap-1.5 font-editorial font-bold text-olive italic ${size === "lg" ? "text-xl" : "text-lg"}`}
+    >
+      <VerdictIcon verdict={verdict} />
+      {VERDICT_WORD[verdict]}
+    </span>
+  );
+}
+
+/** Quiet preview labels beside a name: unreviewed guidance and made-up test data. */
+export function StatusLabels({ draft, synthetic }: { draft: boolean; synthetic: boolean }) {
+  if (!draft && !synthetic) return null;
+  return (
+    <span className="text-xs font-semibold tracking-wide text-ink-secondary uppercase">
+      {[draft && "Draft", synthetic && "Sample"].filter(Boolean).join(" · ")}
+    </span>
   );
 }

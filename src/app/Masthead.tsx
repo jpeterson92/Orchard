@@ -1,5 +1,6 @@
 // Brand and date chip, the same on every screen (design system §6 "Brand and date").
 import { Link } from "react-router";
+import type { AppData } from "../shared/app-data";
 import { LeafMark } from "./icons";
 import { plainDate } from "./today-view";
 
@@ -29,5 +30,19 @@ export function Masthead({ iso }: { iso: string }) {
         <time dateTime={iso}>{chipDate(iso)}</time>
       </span>
     </header>
+  );
+}
+
+/** One line for preview builds, so the per-row Draft and Sample labels need no explaining. */
+export function PreviewNotice({ data }: { data: AppData }) {
+  const draft = data.items.some((i) => i.status === "draft");
+  const synthetic = data.items.some((i) => i.synthetic);
+  if (!draft && !synthetic) return null;
+  return (
+    <p className="mt-3 rounded-sm bg-surface px-3 py-2 text-sm text-ink-secondary">
+      Preview.
+      {draft && " Draft guidance hasn't been reviewed yet."}
+      {synthetic && " Sample items are made-up test data."}
+    </p>
   );
 }

@@ -186,7 +186,7 @@ Keep semantic values centralized. Avoid a token for every incidental measurement
 
 ### Mobile Today
 
-Order: compact brand and date → title and short seasonal summary → category filters → produce sections → freshness information. Search and primary navigation remain within thumb reach.
+Order: compact brand and date → short seasonal summary → produce sections → freshness information. The page title is for screen readers only, so the best items show on the first screen. Category filters sit in one row under Good buys and scroll sideways rather than wrap. Collapsed Skip for now and Limited evidence sections list their item names, so a shopper sees what to pass over without opening them. Search and primary navigation remain within thumb reach.
 
 Keep decorative header art secondary. It may occupy a small upper-right area but never sit behind text. Aim for a compact header rather than an oversized introduction. Reflow the date onto its own line when necessary.
 
@@ -200,7 +200,7 @@ Follow the product’s navigation and information architecture. Reuse the same t
 
 Use the product’s proposed breakpoints as the initial baseline: phone below 600 px, tablet 600–1024 px, desktop above 1024 px. Content must also behave between those sizes.
 
-Keep reading text to a comfortable measure, approximately 60–70 characters where applicable. Desktop calendar and comparison layouts may be wider. A two-pane desktop study is available; exact responsive arrangements still require implementation and review.
+Keep reading text to a comfortable measure, approximately 60–70 characters where applicable. From 768 px, Today's rows run in two columns inside a 1024 px page. The item page stays one reading column (at most 40 rem) in product order; from 1024 px its artwork moves to a column of its own on the right and stays in view. Below the verdict, the confidence level is visible and "About this verdict" opens what it rests on: why confidence isn't higher, the evidence basis and the two dates. Desktop calendar and comparison layouts may be wider. A two-pane desktop study is available; exact responsive arrangements still require implementation and review.
 
 ### In-store mode
 
@@ -220,12 +220,11 @@ One selected state with a restrained orange fill and a contrasting foreground. U
 
 ### Produce row
 
-Collapsed content:
-- Recognizable watercolor image.
-- Produce name as the strongest text.
-- Subtle icon and verdict word.
-- One short factual reason.
-- Secondary origin caption when supported by data.
+Rows are compact so a shopper can scan many in an aisle (about 100 px tall on a phone). Collapsed content:
+- Recognizable watercolor image, 72 px.
+- Produce name as the strongest text, with quiet uppercase Draft or Sample labels beside it in previews; one preview notice under the masthead explains them.
+- Subtle icon and verdict word, with the origin in small secondary text on the same line ("Peak · California"); markers (Last call, Reliable year-round, Check the label) on a quiet olive line below.
+- A short factual reason only when it says more than the section heading (when it fades, when it improves, why it can't be called); "At its best this time of year" is never shown.
 - For items rated by variety, a quieter variety line under the name ("Ataulfo", or "6 varieties at their best"); the image is that variety's, or the item's when the line gives a count.
 - Without approved art, a mostly transparent placeholder of the same size holds the image slot.
 

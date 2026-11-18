@@ -12,7 +12,15 @@ import {
   verdictRank,
   type WeakProperty,
 } from "../shared/verdict";
-import { MONTHS, originName, reasonText, tags, varietyLine, windowPhrase } from "./today-view";
+import {
+  GENERIC_REASON,
+  MONTHS,
+  originName,
+  reasonText,
+  tags,
+  varietyLine,
+  windowPhrase,
+} from "./today-view";
 
 export interface VarietyRow {
   id: string;
@@ -65,8 +73,6 @@ const RATED: Record<"prime" | "fair" | "poor", string> = {
   fair: "typically eats well now",
   poor: "typically below its best now",
 };
-
-const GENERIC = { peak: "At its best this time of year.", good: "Eating well this time of year." };
 
 const WEAK: Record<WeakProperty, string> = {
   coverage: "little evidence covers this time of year",
@@ -166,7 +172,12 @@ export function itemView(data: AppData, id: string, date: PlainDate): ItemView |
     data,
     result.reasons.filter((r) => !(severalVarieties && r.code === "rated" && r.variety)),
   );
-  const generic = headline === GENERIC.peak || headline === GENERIC.good;
+  const generic = headline === GENERIC_REASON.peak || headline === GENERIC_REASON.good;
+  if (severalVarieties && result.varietyLine) {
+    const names = result.varietyLine.map((v) => item.varieties.find((x) => x.id === v)?.name ?? v);
+    const list = `${names.slice(0, -1).join(", ")} and ${names.at(-1)}`;
+    lines.unshift(`${list} are ${result.verdict === "peak" ? "at their best" : "eating well"} now.`);
+  }
   const reasons = (generic && lines.length > 0 ? lines : [headline, ...lines]).slice(0, 3);
 
   const notes: string[] = [];

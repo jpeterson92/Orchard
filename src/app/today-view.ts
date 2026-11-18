@@ -24,8 +24,8 @@ export interface Card {
   /** Items rated by variety: which variety the verdict means ("Honeycrisp", "6 varieties at their best"). */
   varietyLine: string | null;
   verdict: Verdict;
-  /** One short factual reason. */
-  reason: string;
+  /** One short factual reason, or null when it would only repeat the section ("At its best this time of year"). */
+  reason: string | null;
   /** The month's top typical origin, named. */
   origin: string | null;
   tags: string[];
@@ -92,12 +92,19 @@ const LIMITED_REASONS: Partial<Record<Reason["code"], string>> = {
   "variety-unrated": "The varieties in stores now aren't rated yet.",
 };
 
+/** The reasons that say no more than the verdict itself. */
+export const GENERIC_REASON = {
+  peak: "At its best this time of year.",
+  good: "Eating well this time of year.",
+};
+const isGeneric = (text: string) => text === GENERIC_REASON.peak || text === GENERIC_REASON.good;
+
 export function reasonText(verdict: Verdict, reasons: readonly Reason[], markers: readonly Marker[]): string {
   const lastCall = markers.find((m) => m.kind === "last-call");
   if (lastCall && (verdict === "peak" || verdict === "good"))
     return `Fades by ${windowPhrase(lastCall.fadesBy)}.`;
-  if (verdict === "peak") return "At its best this time of year.";
-  if (verdict === "good") return "Eating well this time of year.";
+  if (verdict === "peak") return GENERIC_REASON.peak;
+  if (verdict === "good") return GENERIC_REASON.good;
   if (verdict === "skip") {
     const improves = markers.find((m) => m.kind === "improves");
     return improves ? `Usually improves in ${windowPhrase(improves.window)}.` : "Not at its best now.";
@@ -136,12 +143,13 @@ export function todayView(data: AppData, date: PlainDate): TodayView {
     const result = evaluate(item.inputs, { date, mode: "today" }, data.env);
     const typical = evaluate(item.inputs, { date, mode: "typical" }, data.env);
     const top = item.inputs.typicalOrigins[Math.floor(window / 2)]?.[0];
+    const reason = reasonText(result.verdict, result.reasons, result.markers);
     cards.set(item.inputs.id, {
       id: item.inputs.id,
       name: item.name,
       varietyLine: varietyLine(item, result.varietyLine, result.verdict),
       verdict: result.verdict,
-      reason: reasonText(result.verdict, result.reasons, result.markers),
+      reason: isGeneric(reason) ? null : reason,
       origin: top === undefined ? null : originName(top, data),
       tags: tags(item, result.markers),
       group: item.group,

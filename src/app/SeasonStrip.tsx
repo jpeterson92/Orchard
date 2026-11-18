@@ -12,35 +12,29 @@ const FILL: Record<Verdict, string> = {
   limited: "border border-rule",
 };
 
-export function SeasonStrip({
-  outlook,
-  today,
-  months = false,
-}: {
-  outlook: readonly Verdict[];
-  /** The current window, marked under its cell. */
-  today?: number;
-  /** Month initials under the strip. */
-  months?: boolean;
-}) {
+export function SeasonStrip({ outlook, today }: { outlook: readonly Verdict[]; today?: number }) {
   return (
-    <div>
-      <div role="img" aria-label={outlookSummary(outlook)} className="grid grid-cols-24 gap-0.5">
-        {outlook.map((v, w) => (
-          <span
-            // biome-ignore lint/suspicious/noArrayIndexKey: the 24 windows are fixed positions
-            key={w}
-            className={`h-5 rounded-[2px] ${FILL[v]} ${w === today ? "outline-2 outline-offset-1 outline-ink" : ""}`}
-          />
-        ))}
-      </div>
-      {months && (
-        <div aria-hidden className="mt-1 grid grid-cols-12 text-center text-xs text-ink-secondary">
-          {MONTHS.map((m) => (
-            <span key={m}>{m[0]}</span>
-          ))}
-        </div>
-      )}
+    <div role="img" aria-label={outlookSummary(outlook)} className="grid grid-cols-24 gap-0.5">
+      {outlook.map((v, w) => (
+        <span
+          // biome-ignore lint/suspicious/noArrayIndexKey: the 24 windows are fixed positions
+          key={w}
+          className={`h-5 rounded-[2px] ${FILL[v]} ${w === today ? "outline-2 outline-offset-1 outline-ink" : ""}`}
+        />
+      ))}
+    </div>
+  );
+}
+
+/** Month initials aligned with the strips; the current month stands out. One axis can serve several strips. */
+export function MonthAxis({ current }: { current?: number }) {
+  return (
+    <div aria-hidden className="grid grid-cols-12 text-center text-xs text-ink-secondary">
+      {MONTHS.map((m, i) => (
+        <span key={m} className={i === current ? "font-bold text-accent" : ""}>
+          {m[0]}
+        </span>
+      ))}
     </div>
   );
 }
@@ -53,7 +47,7 @@ export function StripLegend() {
     ["limited", "Limited evidence"],
   ];
   return (
-    <ul aria-hidden className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-sm text-ink-secondary">
+    <ul aria-hidden className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-ink-secondary">
       {entries.map(([v, label]) => (
         <li key={v} className="flex items-center gap-1.5">
           <span className={`size-3.5 rounded-[2px] ${FILL[v]}`} />

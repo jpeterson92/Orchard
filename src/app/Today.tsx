@@ -1,12 +1,13 @@
-// Today (product spec §5, design system §5–6, reference 00-today-anchor.png).
+// Today (product spec §5, design system §5–6). Built for scanning in a store aisle: compact rows, the verdict and
+// origin on one line, a reason only when it says more than the section heading, two columns of rows on wide screens.
 import { useId, useState } from "react";
 import { Link } from "react-router";
 import appJson from "../generated/app.json";
 import type { AppData, FilterGroup } from "../shared/app-data";
 import { useToday } from "./date";
-import { VerdictIcon } from "./icons";
-import { Masthead } from "./Masthead";
-import { type Card, plainDate, todayView, VERDICT_WORD } from "./today-view";
+import { StatusLabels, VerdictMark } from "./icons";
+import { Masthead, PreviewNotice } from "./Masthead";
+import { type Card, plainDate, todayView } from "./today-view";
 
 const data = appJson as unknown as AppData;
 
@@ -24,10 +25,11 @@ export function Today() {
   const good = view.good.filter((c) => filter === "all" || c.group === filter);
 
   return (
-    <div className="mx-auto max-w-2xl px-4 pb-12 sm:px-6">
+    <div className="mx-auto max-w-2xl px-4 pb-12 sm:px-6 md:max-w-5xl">
       <Masthead iso={iso} />
+      <PreviewNotice data={data} />
       <main>
-        <h1 className="mt-6 font-editorial text-[2rem] leading-tight font-bold">Good things today</h1>
+        <h1 className="sr-only">Today</h1>
 
         {view.best.length > 0 && (
           <Section title="Best right now">
@@ -37,21 +39,24 @@ export function Today() {
 
         {view.good.length > 0 && (
           <Section title="Good buys">
-            <fieldset className="mt-3 flex flex-wrap gap-2">
+            {/* One row of filters; it scrolls sideways on a narrow phone rather than wrapping. */}
+            <fieldset className="-mx-4 mt-3 min-w-0 overflow-x-auto px-4 [scrollbar-width:none] sm:mx-0 sm:px-0">
               <legend className="sr-only">Show</legend>
-              {FILTERS.map((f) => (
-                <button
-                  key={f.id}
-                  type="button"
-                  aria-pressed={filter === f.id}
-                  onClick={() => setFilter(f.id)}
-                  className={`min-h-11 rounded-full border px-4 text-base font-medium focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent ${
-                    filter === f.id ? "border-accent bg-accent text-white" : "border-olive text-ink"
-                  }`}
-                >
-                  {f.label}
-                </button>
-              ))}
+              <div className="flex w-max gap-2">
+                {FILTERS.map((f) => (
+                  <button
+                    key={f.id}
+                    type="button"
+                    aria-pressed={filter === f.id}
+                    onClick={() => setFilter(f.id)}
+                    className={`min-h-11 rounded-full border px-4 text-sm font-medium whitespace-nowrap focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent ${
+                      filter === f.id ? "border-accent bg-accent text-white" : "border-olive text-ink"
+                    }`}
+                  >
+                    {f.label}
+                  </button>
+                ))}
+              </div>
             </fieldset>
             {good.length > 0 ? (
               <Rows cards={good} />
@@ -70,7 +75,7 @@ export function Today() {
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <section className="mt-8">
+    <section className="mt-6">
       <h2 className="flex items-center gap-4 font-editorial text-2xl font-bold">
         {title}
         <span aria-hidden className="h-px flex-1 bg-olive/60" />
@@ -80,15 +85,21 @@ function Section({ title, children }: { title: string; children: React.ReactNode
   );
 }
 
+/** Collapsed by default, but the names show, so a shopper sees what to pass over without opening it. */
 function Collapsed({ title, cards }: { title: string; cards: Card[] }) {
   return (
     <details className="group mt-8">
-      <summary className="flex min-h-11 cursor-pointer list-none items-center gap-4 font-editorial text-2xl font-bold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent">
-        {title}
-        <span className="font-sans text-base font-normal text-ink-secondary">({cards.length})</span>
-        <span aria-hidden className="h-px flex-1 bg-olive/60" />
-        <span aria-hidden className="text-olive transition-transform group-open:rotate-180">
-          ▾
+      <summary className="cursor-pointer list-none rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent">
+        <span className="flex min-h-11 items-center gap-4 font-editorial text-2xl font-bold">
+          {title}
+          <span className="font-sans text-base font-normal text-ink-secondary">({cards.length})</span>
+          <span aria-hidden className="h-px flex-1 bg-olive/60" />
+          <span aria-hidden className="text-olive transition-transform group-open:rotate-180">
+            ▾
+          </span>
+        </span>
+        <span className="block text-ink-secondary group-open:hidden">
+          {cards.map((c) => c.name).join(", ")}
         </span>
       </summary>
       <Rows cards={cards} />
@@ -98,7 +109,7 @@ function Collapsed({ title, cards }: { title: string; cards: Card[] }) {
 
 function Rows({ cards }: { cards: Card[] }) {
   return (
-    <ul className="divide-y divide-rule">
+    <ul className="md:grid md:grid-cols-2 md:gap-x-10">
       {cards.map((c) => (
         <Row key={c.id} card={c} />
       ))}
@@ -110,41 +121,40 @@ function Row({ card }: { card: Card }) {
   const [open, setOpen] = useState(false);
   const panel = useId();
   return (
-    <li className="py-5">
+    <li className="border-b border-rule py-4">
       {/* The whole collapsed card is the expand button; the Details link sits outside it (design system §6). */}
       <button
         type="button"
         aria-expanded={open}
         aria-controls={panel}
         onClick={() => setOpen((o) => !o)}
-        className="flex w-full cursor-pointer gap-4 rounded-sm text-left focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+        className="flex w-full cursor-pointer items-start gap-4 rounded-sm text-left focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
       >
         {/* Art slot: a mostly transparent placeholder until approved art exists (design system §6). */}
-        <span aria-hidden className="size-24 shrink-0 rounded-full bg-surface/70 sm:size-28" />
+        <span aria-hidden className="size-18 shrink-0 rounded-full bg-surface/70" />
         <span className="block min-w-0 flex-1">
-          <span className="block font-editorial text-2xl leading-tight font-bold">{card.name}</span>
+          <span className="flex flex-wrap items-baseline gap-x-2">
+            <span className="font-editorial text-xl leading-tight font-bold">{card.name}</span>
+            <StatusLabels draft={card.draft} synthetic={card.synthetic} />
+          </span>
           {card.varietyLine && (
-            <span className="block font-editorial text-lg text-ink-secondary">{card.varietyLine}</span>
+            <span className="block font-editorial text-ink-secondary">{card.varietyLine}</span>
           )}
-          <span className="mt-1 flex items-center gap-1.5 font-editorial text-lg font-bold text-olive italic">
-            <VerdictIcon verdict={card.verdict} />
-            {VERDICT_WORD[card.verdict]}
+          {/* Inline, so a long line wraps inside its text rather than starting a line with a separator. */}
+          <span className="mt-0.5 block">
+            <VerdictMark verdict={card.verdict} />
+            {card.origin && <span className="text-sm text-ink-secondary"> · {card.origin}</span>}
           </span>
           {card.tags.length > 0 && (
             <span className="block text-sm font-medium text-olive">{card.tags.join(" · ")}</span>
           )}
-          <span className="mt-1 block">{card.reason}</span>
-          {card.origin && (
-            <span className="block font-editorial text-ink-secondary italic">{card.origin}</span>
-          )}
-          {(card.draft || card.synthetic) && (
-            <span className="mt-1 flex gap-2 text-sm text-ink-secondary">
-              {card.draft && <span className="rounded border border-rule px-1.5 py-0.5">Draft</span>}
-              {card.synthetic && (
-                <span className="rounded border border-rule px-1.5 py-0.5">Sample data</span>
-              )}
-            </span>
-          )}
+          {card.reason && <span className="mt-0.5 block text-sm">{card.reason}</span>}
+        </span>
+        <span
+          aria-hidden
+          className={`mt-1 shrink-0 text-olive transition-transform motion-reduce:transition-none ${open ? "rotate-180" : ""}`}
+        >
+          ▾
         </span>
       </button>
       {/* Expands in place over 200 ms (none with reduced motion); inert while closed. */}
@@ -155,20 +165,20 @@ function Row({ card }: { card: Card }) {
         className="grid transition-[grid-template-rows] duration-200 ease-out motion-reduce:transition-none"
       >
         <div className="overflow-hidden">
-          <div className="mt-4 space-y-1 border-l-2 border-olive/70 pl-3">
+          <div className="mt-3 ml-22 space-y-1 border-l-2 border-olive/70 pl-3">
             <p>
               <span className="font-semibold">Pick:</span> {card.pick}
             </p>
             <p>
               <span className="font-semibold">Store:</span> {card.storage}
             </p>
+            <Link
+              to={`/items/${card.id}`}
+              className="inline-flex min-h-11 items-center gap-1 font-semibold text-olive underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+            >
+              Details <span aria-hidden>→</span>
+            </Link>
           </div>
-          <Link
-            to={`/items/${card.id}`}
-            className="mt-1 inline-flex min-h-11 items-center gap-1 font-semibold text-olive underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-          >
-            Details <span aria-hidden>→</span>
-          </Link>
         </div>
       </div>
     </li>
