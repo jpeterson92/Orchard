@@ -1,7 +1,8 @@
 // Brand and date chip, the same on every screen (design system §6 "Brand and date").
-import { Link } from "react-router";
+import { type MouseEvent, useEffect, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router";
 import type { AppData } from "../shared/app-data";
-import { type AppDate, setPlanDate } from "./date";
+import { type AppDate, DATE_PARAM, sharedLink, useChooseDate } from "./date";
 import { LeafMark } from "./icons";
 import { plainDate } from "./today-view";
 
@@ -33,7 +34,12 @@ const chipDate = (iso: string) => {
     .replace(",", "");
 };
 
-export function Masthead({ date }: { date: AppDate }) {
+const bannerLink =
+  "min-h-11 rounded-sm text-olive underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
+
+/** `shareTitle` offers "Share for this date" in the planning banner (item pages). */
+export function Masthead({ date, shareTitle }: { date: AppDate; shareTitle?: string }) {
+  const choose = useChooseDate();
   return (
     <>
       <header className="flex items-center justify-between gap-4 border-b border-olive/60 py-3">
@@ -44,21 +50,21 @@ export function Masthead({ date }: { date: AppDate }) {
           <LeafMark />
           <span className="font-editorial text-2xl font-bold">Orchard</span>
         </Link>
-        <DateChip date={date} />
+        <DateChip date={date} onChoose={choose} />
       </header>
       {date.planning && (
         <aside
           aria-label="Planning date"
-          className="mt-3 flex flex-wrap items-center gap-x-2 rounded-sm bg-olive/15 px-3 py-1 font-medium"
+          className="mt-3 flex flex-wrap items-center gap-x-4 rounded-sm bg-olive/15 px-3 py-1 font-medium"
         >
-          <span>Typical outlook for {bannerDate(date.iso)}</span>
-          <span aria-hidden>·</span>
-          <button
-            type="button"
-            onClick={() => setPlanDate(null)}
-            className="min-h-11 rounded-sm text-olive underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-          >
-            Back to today
+          {/* Opened from a link shared for a date: the spec's own wording, so the recipient knows it isn't today.
+              Actions are spaced, not dotted, so a wrapped line never starts or ends on a separator. */}
+          <span>
+            {date.pinned ? "Showing" : "Typical outlook for"} {bannerDate(date.iso)}
+          </span>
+          {shareTitle && <ShareForDate title={shareTitle} iso={date.iso} />}
+          <button type="button" onClick={() => choose(null)} className={bannerLink}>
+            {date.pinned ? "Switch to today" : "Back to today"}
           </button>
         </aside>
       )}
@@ -67,10 +73,55 @@ export function Masthead({ date }: { date: AppDate }) {
 }
 
 /**
+ * A link to this page with the date pinned. A tap opens the device's share sheet, or copies the link where there is
+ * none; with neither, it opens the pinned link so the address bar holds it.
+ */
+function ShareForDate({ title, iso }: { title: string; iso: string }) {
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
+  const [copied, setCopied] = useState(false);
+  useEffect(() => {
+    if (!copied) return;
+    const t = setTimeout(() => setCopied(false), 3000);
+    return () => clearTimeout(t);
+  }, [copied]);
+
+  const href = `${pathname}?${DATE_PARAM}=${iso}`;
+  const share = async (e: MouseEvent) => {
+    e.preventDefault();
+    const url = sharedLink(window.location.origin, pathname, iso);
+    if (navigator.share) {
+      try {
+        await navigator.share({ title, url });
+      } catch {
+        // Dismissed, or refused: nothing to do.
+      }
+      return;
+    }
+    try {
+      await navigator.clipboard.writeText(url);
+      setCopied(true);
+    } catch {
+      navigate(href, { replace: true, preventScrollReset: true });
+    }
+  };
+  return (
+    <>
+      <a href={href} onClick={share} className={`${bannerLink} inline-flex items-center`}>
+        Share for this date
+      </a>
+      <span role="status" className="text-sm text-ink-secondary empty:hidden">
+        {copied ? "Link copied" : ""}
+      </span>
+    </>
+  );
+}
+
+/**
  * The date chip is the date control (design system §6 "Brand and date"): a native date input laid over the chip,
  * so a tap opens the phone's own picker. A planning date fills the chip, and the banner below offers the way back.
  */
-function DateChip({ date }: { date: AppDate }) {
+function DateChip({ date, onChoose }: { date: AppDate; onChoose: (iso: string | null) => void }) {
   return (
     <label
       className={`relative flex min-h-11 items-center rounded-full border px-3 text-sm font-medium has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-accent ${
@@ -86,7 +137,7 @@ function DateChip({ date }: { date: AppDate }) {
         value={date.iso}
         min={date.today}
         max={maxPlan(date.today)}
-        onChange={(e) => setPlanDate(e.target.value && e.target.value !== date.today ? e.target.value : null)}
+        onChange={(e) => onChoose(e.target.value && e.target.value !== date.today ? e.target.value : null)}
         onClick={(e) => {
           try {
             e.currentTarget.showPicker();

@@ -216,7 +216,7 @@ An item that is both Peak and Last call appears once, under Best right now, carr
 
 ### Date
 
-Today by default; the date follows the phone's clock, rolling over at midnight. Tapping the date chip picks a date up to a year ahead, which shows that date's **typical seasonal outlook**, under a banner that says so ("Typical outlook for Dec 20 · Back to today"). It is never presented as a current assessment: copy says "then" where it would say "now", and "Best right now" becomes "Typically best". A planning date lasts until the app is closed.
+Today by default; the date follows the phone's clock, rolling over at midnight. Tapping the date chip picks a date up to a year ahead, which shows that date's **typical seasonal outlook**, under a banner that says so ("Typical outlook for Dec 20 · Back to today"). It is never presented as a current assessment: copy says "then" where it would say "now", and "Best right now" becomes "Typically best". A planning date lasts until the app is closed. On an item page the banner also offers "Share for this date", which opens the phone's share sheet (or copies the link) for a link that pins the date.
 
 ### Methods page
 

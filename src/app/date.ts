@@ -1,7 +1,10 @@
 // The one date every screen follows (product spec §4, §5 "Date"). Today by default: the build's date while
 // prerendered, then the device's, recomputed at midnight and whenever the app comes back to the foreground. A
 // planning date shows that date's typical outlook; it lasts for this tab's session, so a fresh launch opens on today.
-import { useEffect, useState, useSyncExternalStore } from "react";
+// A link shared for a date carries it as `?date=`: opening one adopts that date as the planning date, and the banner
+// says it came from the link. Plain links carry no date, so they follow the recipient's today.
+import { useCallback, useEffect, useState, useSyncExternalStore } from "react";
+import { useSearchParams } from "react-router";
 import type { AppData } from "../shared/app-data";
 
 export type Mode = "today" | "typical";
@@ -13,10 +16,20 @@ export interface AppDate {
   today: string;
   /** True for a planning date: verdicts are the typical outlook and a banner says so. */
   planning: boolean;
+  /** True when the planning date came from a link shared for that date (`?date=`). */
+  pinned: boolean;
   mode: Mode;
 }
 
 const PLAN_KEY = "orchard.planDate";
+export const DATE_PARAM = "date";
+
+/** A real calendar date written YYYY-MM-DD, or null. */
+export function parseIsoDate(value: string | null): string | null {
+  if (!value || !/^\d{4}-\d{2}-\d{2}$/.test(value)) return null;
+  const d = new Date(`${value}T00:00:00Z`);
+  return !Number.isNaN(d.getTime()) && d.toISOString().startsWith(value) ? value : null;
+}
 
 export const localIso = (d: Date) =>
   `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
@@ -75,14 +88,44 @@ const subscribe = (fn: () => void) => {
   return () => listeners.delete(fn);
 };
 
-/** A planning date counts only while it is after today; once the day arrives, the screens are on today again. */
-export function appDate(today: string, planIso: string | null): AppDate {
+/**
+ * A planning date counts only while it is after today; once the day arrives, the screens are on today again. It is
+ * pinned while the page's link names that same date.
+ */
+export function appDate(today: string, planIso: string | null, linkIso: string | null = null): AppDate {
   const planning = planIso !== null && planIso > today;
-  return { iso: planning ? planIso : today, today, planning, mode: planning ? "typical" : "today" };
+  const iso = planning ? planIso : today;
+  return { iso, today, planning, pinned: planning && linkIso === iso, mode: planning ? "typical" : "today" };
 }
 
 export function useAppDate(data: AppData): AppDate {
   const today = useToday(data);
   const planIso = useSyncExternalStore(subscribe, readPlan, () => null);
-  return appDate(today, planIso);
+  const [params] = useSearchParams();
+  const linkIso = parseIsoDate(params.get(DATE_PARAM));
+  // Adopted after hydrating, so the prerendered markup (which has no query) still matches the first render.
+  useEffect(() => {
+    if (linkIso) setPlanDate(linkIso);
+  }, [linkIso]);
+  return appDate(today, planIso, linkIso);
 }
+
+/** Choosing a date (or today, with null) also drops a shared link's date, keeping the page and its scroll. */
+export function useChooseDate(): (iso: string | null) => void {
+  const [params, setParams] = useSearchParams();
+  return useCallback(
+    (iso) => {
+      setPlanDate(iso);
+      if (params.has(DATE_PARAM)) {
+        const next = new URLSearchParams(params);
+        next.delete(DATE_PARAM);
+        setParams(next, { replace: true, preventScrollReset: true });
+      }
+    },
+    [params, setParams],
+  );
+}
+
+/** The link that shares a page for a date: the same page, with the date pinned. */
+export const sharedLink = (origin: string, pathname: string, iso: string) =>
+  `${origin}${pathname}?${DATE_PARAM}=${iso}`;

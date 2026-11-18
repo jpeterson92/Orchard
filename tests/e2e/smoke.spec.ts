@@ -43,3 +43,30 @@ test("pages are served at clean URLs", async ({ request }) => {
   expect(res.status()).toBe(200);
   expect(await res.text()).toMatch(/<h1[^>]*>Strawberries<\/h1>/);
 });
+
+test("a link shared for a date pins it; Switch to today drops it", async ({ page }) => {
+  const d = new Date();
+  d.setDate(d.getDate() + 40);
+  const iso = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+  const shown = new Intl.DateTimeFormat("en-US", { month: "short", day: "numeric" }).format(d);
+  const banner = page.getByRole("complementary", { name: "Planning date" });
+
+  // A plain link follows today.
+  await page.goto("/items/strawberries");
+  await expect(page.getByRole("heading", { level: 1, name: "Strawberries" })).toBeVisible();
+  await expect(banner).toHaveCount(0);
+
+  await page.goto(`/items/strawberries?date=${iso}`);
+  await expect(banner).toContainText(`Showing ${shown}`);
+  await expect(banner.getByRole("link", { name: "Share for this date" })).toHaveAttribute(
+    "href",
+    `/items/strawberries?date=${iso}`,
+  );
+  // The pinned date carries to the other screens.
+  await page.getByRole("link", { name: "Today" }).click();
+  await expect(page.getByRole("heading", { level: 2, name: "Typically best" })).toBeVisible();
+  await page.goBack();
+  await banner.getByRole("button", { name: "Switch to today" }).click();
+  await expect(banner).toHaveCount(0);
+  await expect(page).toHaveURL(/\/items\/strawberries$/);
+});

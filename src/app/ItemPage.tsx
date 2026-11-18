@@ -28,7 +28,7 @@ export function ItemPage() {
 
   return (
     <div className="mx-auto max-w-2xl px-4 pb-12 sm:px-6 md:max-w-5xl">
-      <Masthead date={date} />
+      <Masthead date={date} shareTitle={view ? `${view.name} · Orchard` : undefined} />
       <PreviewNotice data={data} />
       <Link to="/" className={`${linkClass} mt-1`}>
         <span aria-hidden>←</span> Today
