@@ -2,6 +2,7 @@ import { StrictMode } from "react";
 import { createRoot, hydrateRoot } from "react-dom/client";
 import { createBrowserRouter } from "react-router";
 import { RouterProvider } from "react-router/dom";
+import { flushFeedback } from "./feedback";
 import { routes } from "./routes";
 import "./styles.css";
 
@@ -17,6 +18,10 @@ const app = (
 // The service worker's precache is the offline copy (scripts/sw-build.ts). Production builds only: dev has none.
 if (import.meta.env.PROD && "serviceWorker" in navigator)
   window.addEventListener("load", () => void navigator.serviceWorker.register("/sw.js"));
+
+// Feedback tapped without signal goes out on the next launch, or as soon as the connection returns.
+void flushFeedback();
+window.addEventListener("online", () => void flushFeedback());
 
 // Prerendered pages arrive with markup to hydrate; the SPA fallback and dev arrive with only the placeholder comment.
 if (container.firstElementChild) hydrateRoot(container, app);

@@ -3,6 +3,7 @@
 // src/generated/app.json, prints counts.
 // Editorial review listings live in `npm run content:report`, run only when reviewing content.
 // Reads committed files only: it never fetches from the network and never edits content.
+import { execSync } from "node:child_process";
 import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { parse as parseYaml } from "yaml";
@@ -94,7 +95,9 @@ const about = { methods, privacy, sources, panel, snapshot: dataset.snapshot };
 
 mkdirSync("src/generated", { recursive: true });
 writeFileSync("src/generated/data.json", JSON.stringify(dataset));
-const app = appData(dataset, new Date().toISOString().slice(0, 10), art.art, about);
+const builtOn = new Date().toISOString().slice(0, 10);
+const commit = execSync("git rev-parse --short HEAD", { encoding: "utf8" }).trim();
+const app = appData(dataset, { on: builtOn, version: `${builtOn}.${commit}` }, art.art, about);
 writeFileSync("src/generated/app.json", JSON.stringify(app));
 
 const reviewed = dataset.items.filter((i) => i.status === "reviewed").length;

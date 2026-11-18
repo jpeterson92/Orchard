@@ -2,13 +2,14 @@
 // in-store answer first: the verdict and why, then varieties, how to pick and store. What the verdict rests on is one
 // tap away under "About this verdict". On wide screens the artwork takes a column of its own.
 // Not yet here: the variety guide link and feedback (later slices).
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useLocation, useParams } from "react-router";
 import appJson from "../generated/app.json";
 import type { AppData } from "../shared/app-data";
 import { Art } from "./Art";
 import type { BackTo } from "./Browse";
 import { type Mode, useAppDate } from "./date";
+import { givenToday, labelFields, OUTCOMES, type Outcome, sendFeedback } from "./feedback";
 import { StatusLabels, VerdictMark } from "./icons";
 import { type ItemView, itemView, type LabelOption, labelResult, type VarietyRow } from "./item-view";
 import { Masthead, PreviewNotice } from "./Masthead";
@@ -55,6 +56,10 @@ export function ItemPage() {
 }
 
 function Item({ view, mode }: { view: ItemView; mode: Mode }) {
+  // The label pick is shared by the label check and feedback. A variety found by search opens with it picked.
+  const picked = (useLocation().state as { label?: string | null } | null)?.label;
+  const [label, setLabel] = useState(picked ?? "");
+  const labelCheck = <LabelCheck view={view} choice={label} onChoose={setLabel} />;
   return (
     <main>
       <div className="mt-1 flex gap-4">
@@ -91,7 +96,7 @@ function Item({ view, mode }: { view: ItemView; mode: Mode }) {
         </div>
       )}
       {/* Where the label decides it, the control sits just below the note; otherwise in the page order. */}
-      {view.labelNote && <LabelCheck view={view} />}
+      {view.labelNote && labelCheck}
 
       <details className="group mt-2">
         <summary className="flex min-h-11 cursor-pointer list-none items-center gap-2 rounded-sm text-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent">
@@ -150,11 +155,7 @@ function Item({ view, mode }: { view: ItemView; mode: Mode }) {
         {view.ripen && <p className="mt-2">{view.ripen}</p>}
       </Section>
 
-      {!view.labelNote && (
-        <Section title="What does the label say?">
-          <LabelCheck view={view} />
-        </Section>
-      )}
+      {!view.labelNote && <Section title="What does the label say?">{labelCheck}</Section>}
 
       <Section title="Typical seasonal outlook">
         <SeasonStrip outlook={view.outlook} today={view.window} />
@@ -178,15 +179,22 @@ function Item({ view, mode }: { view: ItemView; mode: Mode }) {
       <Section title="Prep and use">
         <p>{view.prep}</p>
       </Section>
+
+      <Feedback view={view} label={label} />
     </main>
   );
 }
 
 /** Pick the origin or variety on the label or sticker; its own verdict shows below. The page's verdict stays. */
-function LabelCheck({ view }: { view: ItemView }) {
-  // A variety found by search opens here with that variety picked.
-  const picked = (useLocation().state as { label?: string | null } | null)?.label;
-  const [choice, setChoice] = useState(picked ?? "");
+function LabelCheck({
+  view,
+  choice,
+  onChoose,
+}: {
+  view: ItemView;
+  choice: string;
+  onChoose: (choice: string) => void;
+}) {
   const date = useAppDate(data);
   const { varieties, origins } = view.labelChoices;
   if (varieties.length + origins.length === 0) return null;
@@ -208,7 +216,7 @@ function LabelCheck({ view }: { view: ItemView }) {
         </span>
         <select
           value={choice}
-          onChange={(e) => setChoice(e.target.value)}
+          onChange={(e) => onChoose(e.target.value)}
           className="mt-1 block min-h-11 w-full max-w-sm rounded-md border border-rule bg-surface px-3 text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
         >
           <option value="">
@@ -242,6 +250,66 @@ function LabelCheck({ view }: { view: ItemView }) {
         )}
       </div>
     </div>
+  );
+}
+
+/**
+ * "At your store today:" one optional tap (product spec §5 "Item page"), with the label pick when there is one.
+ * Hidden for a planning date: it reports on today's store.
+ */
+function Feedback({ view, label }: { view: ItemView; label: string }) {
+  const date = useAppDate(data);
+  const [given, setGiven] = useState<Outcome | null>(null);
+  // Read after hydration: the prerendered page always shows the buttons.
+  useEffect(() => setGiven(givenToday(view.id, date.today)), [view.id, date.today]);
+  if (date.planning) return null;
+
+  const tap = (outcome: Outcome) => {
+    setGiven(outcome);
+    void sendFeedback(
+      {
+        appVersion: data.version,
+        item: view.id,
+        window: view.window,
+        verdict: view.verdict,
+        outcome,
+        ...labelFields(label),
+      },
+      date.today,
+    );
+  };
+
+  return (
+    <Section title="At your store today">
+      {/* Announced when it changes, so a screen-reader user hears the thanks. */}
+      <div aria-live="polite">
+        {given ? (
+          <p>
+            Thanks. You said{" "}
+            <span className="font-semibold">
+              {OUTCOMES.find((o) => o.value === given)?.text.toLowerCase()}
+            </span>
+            .
+          </p>
+        ) : (
+          <>
+            <p className="text-ink-secondary">One tap, optional. It helps us check our verdicts.</p>
+            <div className="mt-3 grid grid-cols-2 gap-2 sm:flex sm:flex-wrap">
+              {OUTCOMES.map((o) => (
+                <button
+                  key={o.value}
+                  type="button"
+                  onClick={() => tap(o.value)}
+                  className="min-h-11 rounded-full border border-rule bg-surface px-4 font-medium text-ink hover:border-olive focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+                >
+                  {o.text}
+                </button>
+              ))}
+            </div>
+          </>
+        )}
+      </div>
+    </Section>
   );
 }
 
