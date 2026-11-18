@@ -28,7 +28,7 @@ Mature, widely used tools only. At scaffold time, take the newest release whose 
 | Language | TypeScript 6 (`tsc -b`, project references for app, Worker and Node scripts) | |
 | App | React 19, Vite 8, React Router 8 in library mode | Build-time prerendering by `scripts/prerender.ts`: `renderToString` per route, injected into the built `index.html`, then hydrated. React Compiler on. Search is an overlay, not a route |
 | Styling | Tailwind CSS 4 | Design-system tokens as CSS variables in `@theme`; native `<dialog>` and hand-written disclosure buttons for simple cases. Adopt Base UI (headless and accessible) at the first complex control (popover, select, tabs, sortable table); never hand-build those |
-| Offline | `vite-plugin-pwa` (Workbox) | Precache everything; activate updates on next launch |
+| Offline | `workbox-build` 7.4.1 (`generateSW`, dev only) | `scripts/sw-build.ts` runs after the prerender so the precache holds every page; precache everything; updates activate on the next launch. Pages are served at clean URLs (`html_handling: drop-trailing-slash`) |
 | Worker | `@cloudflare/vite-plugin`, Wrangler, Hono (for `/api` routes) | Static assets with SPA fallback |
 | Write store | D1, plain SQL migrations through Wrangler | Introduced in M8. No ORM unless queries grow |
 | Validation and types | zod 4.6.7, yaml 2.9.1 | One schema per content and data file; types come from `z.infer`. Content and data files are YAML, parsed by `yaml` in `data:build` only. No code generation |

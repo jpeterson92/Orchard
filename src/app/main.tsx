@@ -14,6 +14,10 @@ const app = (
   </StrictMode>
 );
 
+// The service worker's precache is the offline copy (scripts/sw-build.ts). Production builds only: dev has none.
+if (import.meta.env.PROD && "serviceWorker" in navigator)
+  window.addEventListener("load", () => void navigator.serviceWorker.register("/sw.js"));
+
 // Prerendered pages arrive with markup to hydrate; the SPA fallback and dev arrive with only the placeholder comment.
 if (container.firstElementChild) hydrateRoot(container, app);
 else createRoot(container).render(app);

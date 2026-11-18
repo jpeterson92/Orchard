@@ -22,3 +22,20 @@ test("Worker answers /api/health", async ({ request }) => {
   expect(res.ok()).toBe(true);
   expect(await res.json()).toEqual({ ok: true });
 });
+
+test("after one visit, an item never visited opens offline", async ({ page, context }) => {
+  await page.goto("/");
+  // The service worker activates once its precache (every page, the app and its data) is complete.
+  await page.evaluate("navigator.serviceWorker.ready.then(() => true)");
+  await context.setOffline(true);
+  await page.goto("/items/strawberries");
+  await expect(page.getByRole("heading", { level: 1, name: "Strawberries" })).toBeVisible();
+  await page.reload();
+  await expect(page.getByRole("heading", { level: 1, name: "Strawberries" })).toBeVisible();
+});
+
+test("pages are served at clean URLs", async ({ request }) => {
+  const res = await request.get("/items/strawberries");
+  expect(res.status()).toBe(200);
+  expect(await res.text()).toMatch(/<h1[^>]*>Strawberries<\/h1>/);
+});
