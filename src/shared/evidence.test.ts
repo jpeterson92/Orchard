@@ -9,6 +9,7 @@ import {
   claimWeight,
   combinedConfidence,
   type EvidenceSource,
+  otherOrigin,
   type Proposal,
   propose,
   ratingForValue,
@@ -566,6 +567,29 @@ describe("availability curves (P14)", () => {
       expect(at(propose([ca, late], sources, V1, SHIPS), "dec-1")).toMatchObject({ rating: "fair" });
     });
 
+    it.each([
+      ["a national eating-quality claim", claim("b", "nov-1..may-2 fair", { origin: "us", variety: "v1" })],
+      [
+        "a national chart",
+        claim("b", "nov-1..may-2 prime", { directness: "availability", origin: "us", variety: "v1" }),
+      ],
+    ])("%s is no other origin than a state's: the state chart keeps its off-season", (_, other) => {
+      const wa = avail("aug-1..aug-2 prime", { origin: "us-wa", variety: "v1" });
+      const p = propose([wa, other], sources, V1, STORES);
+      expect(valuesAt(curve(p, "a"), ["jan-1"])).toEqual([0.5]);
+      expect(at(p, "jan-1")?.sources).toEqual(["a", "b"]);
+    });
+
+    it.each([
+      ["us-wa", "us-mn", true],
+      ["us", "us-wa", false],
+      ["us-wa", "us", false],
+      ["us", "cl", true],
+      ["cl", "nz", true],
+    ])("%s and %s are other origins: %s", (a, b, other) => {
+      expect(otherOrigin(a, b)).toBe(other);
+    });
+
     it("an origin's curve is unchanged: a national chart's season doesn't drop a state chart's off-season", () => {
       const national = claim("b", "dec-1..feb-2 prime", { directness: "availability", origin: "us" });
       const p = propose([avail("jun-1..aug-2 prime"), national], sources, US_WA, SHIPS);
@@ -599,9 +623,11 @@ describe("availability curves (P14)", () => {
             if (x !== null) expect(x).toBe(full[i]);
             else if (full[i] !== null) {
               expect(seasons[j]?.[i]).toBeNull();
-              expect(claims.some((o, k) => o.origin !== claims[j]?.origin && seasons[k]?.[i] !== null)).toBe(
-                true,
-              );
+              expect(
+                claims.some(
+                  (o, k) => otherOrigin(o.origin, claims[j]?.origin ?? "") && seasons[k]?.[i] !== null,
+                ),
+              ).toBe(true);
             }
           }
         });

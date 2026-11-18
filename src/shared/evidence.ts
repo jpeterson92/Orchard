@@ -200,8 +200,12 @@ export function claimsFor<C extends Claim>(
 /**
  * Each claim's values for a target. A variety's claims span origins, so one origin's chart doesn't speak for
  * another's season (P14): an availability claim's off-season reading is dropped in any window that a claim for
- * the variety from another origin covers with its own season (listed windows and shoulders).
+ * the variety from another origin covers with its own season (listed windows and shoulders). A US claim naming no
+ * state (`us`) is no other origin than any state's.
  */
+export const otherOrigin = (a: string, b: string): boolean =>
+  a !== b && !(a === "us" && b.startsWith("us-")) && !(b === "us" && a.startsWith("us-"));
+
 function targetValues(claims: readonly Claim[], target: Target, item: ItemTraits): (number | null)[][] {
   const values = claims.map((c) => claimValues(c, item));
   if (!("variety" in target)) return values;
@@ -210,7 +214,7 @@ function targetValues(claims: readonly Claim[], target: Target, item: ItemTraits
     v.map((x, i) =>
       x !== null &&
       seasons[j]?.[i] === null &&
-      claims.some((o, k) => o.origin !== claims[j]?.origin && seasons[k]?.[i] !== null)
+      claims.some((o, k) => otherOrigin(o.origin, claims[j]?.origin ?? "") && seasons[k]?.[i] !== null)
         ? null
         : x,
     ),
