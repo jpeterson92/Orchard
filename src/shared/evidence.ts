@@ -239,19 +239,20 @@ function targetValues(claims: readonly Claim[], target: Target, item: ItemTraits
 export type PanelRange = readonly [string, string, Rating, Confidence];
 
 /**
- * The panel's curve for one target (P15): per window, the mean of the counted runs that rate it, leaving out
- * low-confidence ranges. Null where no run rates the window, or where runs differ by more than one level.
+ * The panel's curve for one target (P15): per window, the rating a strict majority of the counted runs that rate
+ * it give, leaving out low-confidence ranges; fair where they split evenly one level apart (prime against fair,
+ * or fair against poor). Null where no run rates the window, or where runs differ by more than one level.
  */
 export function panelValues(runs: readonly (readonly PanelRange[])[]): (number | null)[] {
   const byWindow: number[][] = Array.from({ length: WINDOW_COUNT }, () => []);
   for (const ranges of runs)
     for (const [from, to, rating, confidence] of ranges)
       if (confidence !== "low") for (const i of windowRange(from, to)) byWindow[i]?.push(P12.value[rating]);
-  return byWindow.map((vs) =>
-    vs.length === 0 || Math.max(...vs) - Math.min(...vs) > P15.maxGap + EPS
-      ? null
-      : vs.reduce((a, b) => a + b, 0) / vs.length,
-  );
+  return byWindow.map((vs) => {
+    if (vs.length === 0 || Math.max(...vs) - Math.min(...vs) > P15.maxGap + EPS) return null;
+    const majority = vs.find((v) => vs.filter((w) => w === v).length * 2 > vs.length);
+    return majority ?? P12.value.fair;
+  });
 }
 
 export function panelFor(

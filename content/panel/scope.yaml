@@ -1,10 +1,49 @@
 # The items the model panel judges: the 89-item launch list (docs/data/usda.md), with provisional ids until the
-# item files in content/items/ exist. Types in brackets are one item. ratedBy: variety items also rate varieties.
-- { item: apples, name: Apples, category: apples-pears, ratedBy: variety }
-- { item: pears, name: Pears, category: apples-pears, ratedBy: variety }
+# item files in content/items/ exist. Types in brackets are one item. ratedBy: variety items also rate varieties,
+# named with the listed ids where they fit (shiranui is sold as Sumo; green-skin covers Florida avocados).
+- {
+    item: apples,
+    name: Apples,
+    category: apples-pears,
+    ratedBy: variety,
+    varieties:
+      [
+        honeycrisp,
+        gala,
+        fuji,
+        granny-smith,
+        pink-lady,
+        cosmic-crisp,
+        red-delicious,
+        golden-delicious,
+        mcintosh,
+        ambrosia,
+        sweetango,
+      ],
+  }
+- {
+    item: pears,
+    name: Pears,
+    category: apples-pears,
+    ratedBy: variety,
+    varieties:
+      [bartlett, anjou, bosc, comice, starkrimson, seckel, red-anjou, red-bartlett, forelle, concorde],
+  }
 - { item: asian-pears, name: Asian pears, category: apples-pears }
-- { item: mandarins, name: "Mandarins [clementines, satsumas, tangelos]", category: citrus, ratedBy: variety }
-- { item: oranges, name: "Oranges [navel, Valencia, blood, Cara Cara]", category: citrus, ratedBy: variety }
+- {
+    item: mandarins,
+    name: "Mandarins [clementines, satsumas, tangelos]",
+    category: citrus,
+    ratedBy: variety,
+    varieties: [clementine, satsuma, w-murcott, minneola, shiranui, gold-nugget, tango],
+  }
+- {
+    item: oranges,
+    name: "Oranges [navel, Valencia, blood, Cara Cara]",
+    category: citrus,
+    ratedBy: variety,
+    varieties: [navel, valencia, cara-cara, blood],
+  }
 - { item: lemons, name: Lemons, category: citrus }
 - { item: limes, name: Limes, category: citrus }
 - { item: grapefruit, name: Grapefruit, category: citrus }
@@ -24,8 +63,14 @@
 - { item: honeydew, name: Honeydew, category: melons }
 - { item: bananas, name: Bananas, category: tropical }
 - { item: plantains, name: Plantains, category: tropical }
-- { item: avocados, name: Avocados, category: tropical, ratedBy: variety }
-- { item: mangoes, name: Mangoes, category: tropical, ratedBy: variety }
+- { item: avocados, name: Avocados, category: tropical, ratedBy: variety, varieties: [hass, green-skin] }
+- {
+    item: mangoes,
+    name: Mangoes,
+    category: tropical,
+    ratedBy: variety,
+    varieties: [tommy-atkins, ataulfo, kent, keitt, haden],
+  }
 - { item: pineapples, name: Pineapples, category: tropical }
 - { item: papaya, name: Papaya, category: tropical }
 - { item: kiwifruit, name: Kiwifruit, category: tropical }

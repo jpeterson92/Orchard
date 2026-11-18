@@ -49,7 +49,14 @@ export const panelRunSchema = z.strictObject({
 });
 
 export const scopeSchema = z.array(
-  z.strictObject({ item: id, name: z.string(), category: id, ratedBy: z.literal("variety").optional() }),
+  z.strictObject({
+    item: id,
+    name: z.string(),
+    category: id,
+    ratedBy: z.literal("variety").optional(),
+    /** Ids to use for these varieties, so runs and item files name them alike; others may be added. */
+    varieties: z.array(id).optional(),
+  }),
 );
 
 export type PanelItem = z.infer<typeof panelItemSchema>;
@@ -115,6 +122,11 @@ export function checkRun(
         ...item.origins.map((o) => ({ name: o.origin, windows: o.windows })),
         ...(item.varieties ?? []).map((v) => ({ name: v.variety, windows: v.windows })),
       ];
+      for (const v of item.varieties ?? [])
+        if (s.varieties !== undefined && !s.varieties.includes(v.variety))
+          warnings.push(
+            `${at}: variety ${v.variety} isn't a scope id (${s.varieties.join(", ")}); rename it if it's one of them`,
+          );
       const names = new Set<string>();
       for (const t of targets) {
         if (names.has(t.name)) errors.push(`${at}: ${t.name} listed twice`);

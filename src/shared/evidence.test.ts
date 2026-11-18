@@ -704,9 +704,17 @@ const range = (from: string, to: string, rating: Rating, confidence: PanelRange[
 ];
 
 describe("model panel curve (P15)", () => {
-  it("takes the mean of the runs that rate a window", () => {
+  it("takes the majority of the runs that rate a window, and fair on an even split", () => {
     const v = panelValues([[range("jun-1", "jun-2", "prime")], [range("jun-1", "jun-1", "fair")]]);
-    expect(valuesAt(v, ["may-2", "jun-1", "jun-2"])).toEqual([null, 0.75, 1]);
+    expect(valuesAt(v, ["may-2", "jun-1", "jun-2"])).toEqual([null, 0.5, 1]);
+    const low = panelValues([[range("jun-1", "jun-1", "poor")], [range("jun-1", "jun-1", "fair")]]);
+    expect(valuesAt(low, ["jun-1"])).toEqual([0.5]);
+    const three = panelValues([
+      [range("jun-1", "jun-1", "prime")],
+      [range("jun-1", "jun-1", "prime")],
+      [range("jun-1", "jun-1", "fair")],
+    ]);
+    expect(valuesAt(three, ["jun-1"])).toEqual([1]);
   });
   it("leaves out low-confidence ranges", () => {
     const v = panelValues([
@@ -721,7 +729,7 @@ describe("model panel curve (P15)", () => {
       [range("jun-1", "jun-2", "prime")],
       [range("jun-1", "jun-1", "poor"), range("jun-2", "jun-2", "fair")],
     ]);
-    expect(valuesAt(v, ["jun-1", "jun-2"])).toEqual([null, 0.75]);
+    expect(valuesAt(v, ["jun-1", "jun-2"])).toEqual([null, 0.5]);
   });
   it("finds a target's curve by origin or variety", () => {
     const curves = [

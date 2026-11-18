@@ -26,7 +26,7 @@ None.
 - **Preview deploy** for the M3 phone review, whenever you want it. The next deploy also creates a free D1 database named `orchard` on your Cloudflare account for the speed counts (then `npm run db:migrate`); say if you'd rather it didn't.
 
 - **Recruit the independent reviewer** Gate 1 needs (a person; product spec §12) before the first release.
-- **Model panel runs from other providers** with `content/panel/PROMPT.md`: P15 is built, so each provider's latest run now counts (one source, weight 1).
+- **Model panel runs from other providers:** follow `content/panel/README.md` (what to paste, `npm run panel:import`, how runs combine), then ask Claude to review the run.
 - **Re-rated under panel-first P15:** all five drafted items now follow the panel where it rates. Peak runs: apples late August to January, pears August to January, oranges December to March, mandarins November to May (summer is now Good, not Limited evidence), strawberries April to June. The only overrule is WSU's new-crop Cosmic Crisp in November. Worth a look in `content:report`.
 - **P1 at 75%:** no change yet on the 3 drafted items (apples and mandarins are rated by variety; strawberries rate every origin). Its effect shows as more items are drafted; revisit then.
 

@@ -2,7 +2,7 @@
 
 Prompt version: 2
 
-Give this file to any AI model. If it can read and write files, point it at the Orchard project folder and say "Follow content/panel/PROMPT.md". If it's a chat, paste this file and `content/panel/scope.yaml`, then save each category it returns as a file yourself. Afterwards run `npm run panel:check`.
+Give this file to any AI model; `content/panel/README.md` is the step-by-step for whoever runs it. A model that reads and writes files can be pointed at the project and told "Follow content/panel/PROMPT.md". A chat gets this file and `content/panel/scope.yaml` pasted in, and its replies are saved with `npm run panel:import`.
 
 ---
 
@@ -20,7 +20,7 @@ For each item in the scope, judge a typical recent year in mainstream US superma
 
 1. **Origins:** which origins supply most of what's in stores, and when. List them in order of how much they supply over the year. Use `us-<state>` (`us-ca`), `us` only for something grown in many states with no single leading state, or a 2-letter country code (`mx`, `cl`, `pe`).
 2. **Quality windows:** for each origin, how the item typically eats in each half-month while that origin is in stores in real volume. Leave out windows when it isn't.
-3. **Varieties:** for items with `ratedBy: variety`, also rate the varieties that make up most of the supermarket supply. A variety's windows describe it as typically sold in US supermarkets, whatever its origin, and cover only the months it's in stores in real volume. Choose the varieties yourself and name them with lowercase-kebab ids (`honeycrisp`, `cara-cara`, `w-murcott`).
+3. **Varieties:** for items with `ratedBy: variety`, also rate the varieties that make up most of the supermarket supply. A variety's windows describe it as typically sold in US supermarkets, whatever its origin, and cover only the months it's in stores in real volume. Choose the varieties yourself. Name them with the ids the scope lists for that item where one fits; for any other variety, use a lowercase-kebab id of its common name (`honeycrisp`, `w-murcott`).
 4. **Traits:** four yes/no judgments, defined below.
 
 Judge by taste and how reliably good the item at the store will be. Don't prefer US-grown. Think about the supermarket version specifically: picked underripe to survive shipping, held in storage, gassed, or picked ripe.
@@ -61,7 +61,7 @@ knowledgeCutoff: 2026-06      # your training cutoff, YYYY-MM, if you know it
 note: Recall only, no files read beyond the prompt and scope.
 ```
 
-One file per category, named by the category id from the scope (`citrus.yaml`), covering every item in that category:
+One file per category, named by the category id from the scope (`citrus.yaml`), covering every item in that category. In a chat, reply with `run.yaml` first, then the categories in scope order, each in its own `yaml` code block that starts with `category:`, as many per reply as fit; stop when a reply is full and continue when asked:
 
 ```yaml
 category: stone-fruit

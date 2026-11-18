@@ -225,7 +225,7 @@ describe("panelCurves (P15)", () => {
     expect(r.errors).toEqual([]);
     expect(r.counted).toEqual(["a-new", "b"]);
     expect(r.curves.map((c) => [c.item, c.origin])).toEqual([["peaches", "us-ca"]]);
-    expect(jun(r)).toBe(0.75);
+    expect(jun(r)).toBe(0.5); // prime against fair splits evenly: fair
   });
   it("refuses a run that fails its checks or names the wrong folder", () => {
     const bad = { ...run("x", "A", "2026-01-01", "prime"), meta: { run: "y" } };
