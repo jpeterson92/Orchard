@@ -102,3 +102,12 @@ export function StatusLabels({ draft, synthetic }: { draft: boolean; synthetic: 
     </span>
   );
 }
+
+export function SearchIcon() {
+  return (
+    <svg aria-hidden="true" {...base} width={20} height={20} strokeWidth={1.8}>
+      <circle cx="10.5" cy="10.5" r="6" />
+      <path d="M15 15l5 5" />
+    </svg>
+  );
+}

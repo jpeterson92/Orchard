@@ -32,7 +32,7 @@ Mature, widely used tools only. At scaffold time, take the newest release whose 
 | Worker | `@cloudflare/vite-plugin`, Wrangler, Hono (for `/api` routes) | Static assets with SPA fallback |
 | Write store | D1, plain SQL migrations through Wrangler | Introduced in M8. No ORM unless queries grow |
 | Validation and types | zod 4.6.7, yaml 2.9.1 | One schema per content and data file; types come from `z.infer`. Content and data files are YAML, parsed by `yaml` in `data:build` only. No code generation |
-| Search | MiniSearch | Prefix and fuzzy matching over names, synonyms and misspellings |
+| Search | MiniSearch 7.2.0 | Prefix and fuzzy matching over item names, synonyms, misspellings and variety names, built on the phone at first query. The overlay is a native `<dialog>` of result links (no combobox) |
 | Images | sharp 0.35.5 (dev only) | `art:process`: checks painted masters and writes WebP derivatives |
 | Lint and format | Biome | One tool, one config |
 | Tests | Vitest, fast-check (property tests), Testing Library, Playwright + `@axe-core/playwright` | See §6 |

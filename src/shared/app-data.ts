@@ -19,6 +19,9 @@ export interface AppVariety {
 export interface AppItem {
   inputs: ItemInputs;
   name: string;
+  /** Search matches these too (product spec §5 "Search"). */
+  synonyms: string[];
+  misspellings: string[];
   category: string;
   group: FilterGroup;
   purchaseRank: number;
@@ -62,6 +65,8 @@ export function appData(data: Dataset, builtOn: string, art: ArtMap): AppData {
     items: data.items.map((item) => ({
       inputs: itemInputs(item, data),
       name: item.name,
+      synonyms: item.synonyms,
+      misspellings: item.misspellings,
       category: item.category,
       group: groups.get(item.category) ?? "vegetables",
       purchaseRank: item.purchaseRank,

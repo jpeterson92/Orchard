@@ -113,3 +113,22 @@ test("a link shared for a date pins it; Switch to today drops it", async ({ page
   await expect(banner).toHaveCount(0);
   await expect(page).toHaveURL(/\/items\/strawberries$/);
 });
+
+test("search from the pinned field: a misspelled variety opens its item at that variety", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 375, height: 812 });
+  await page.goto("/");
+  await page.getByRole("button", { name: "Search produce" }).last().click();
+  const dialog = page.getByRole("dialog", { name: "Search produce" });
+  await dialog.getByRole("searchbox").fill("honeycrsp");
+  await expect(dialog.getByRole("link", { name: /^Honeycrisp/ })).toBeVisible();
+  const axe = await new AxeBuilder({ page }).include("dialog").analyze();
+  expect(axe.violations).toEqual([]);
+  await page.keyboard.press("Enter");
+  await expect(page.getByRole("heading", { level: 1, name: "Apples" })).toBeVisible();
+  await expect(page.locator("#label select")).toHaveValue("v:honeycrisp");
+  await page.getByRole("button", { name: "Search produce" }).last().click();
+  await dialog.getByRole("searchbox").fill("rhubarb");
+  await expect(dialog.getByText("We don't cover this yet", { exact: true }).first()).toBeVisible();
+});

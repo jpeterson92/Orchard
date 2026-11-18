@@ -179,7 +179,9 @@ function Item({ view, mode }: { view: ItemView; mode: Mode }) {
 
 /** Pick the origin or variety on the label or sticker; its own verdict shows below. The page's verdict stays. */
 function LabelCheck({ view }: { view: ItemView }) {
-  const [choice, setChoice] = useState("");
+  // A variety found by search opens here with that variety picked.
+  const picked = (useLocation().state as { label?: string | null } | null)?.label;
+  const [choice, setChoice] = useState(picked ?? "");
   const date = useAppDate(data);
   const { varieties, origins } = view.labelChoices;
   if (varieties.length + origins.length === 0) return null;
@@ -194,7 +196,7 @@ function LabelCheck({ view }: { view: ItemView }) {
     ));
 
   return (
-    <div className={view.labelNote ? "mt-3" : undefined}>
+    <div id="label" className={`scroll-mt-16 ${view.labelNote ? "mt-3" : ""}`}>
       <label className="block">
         <span className={view.labelNote ? "font-semibold" : "text-ink-secondary"}>
           {view.labelNote ? "What does the label say?" : `Pick the ${what} on the label or sticker.`}

@@ -5,6 +5,7 @@ import type { AppData } from "../shared/app-data";
 import { type AppDate, DATE_PARAM, sharedLink, useChooseDate } from "./date";
 import { LeafMark } from "./icons";
 import { TopNav } from "./Nav";
+import { SearchField } from "./Search";
 import { plainDate } from "./today-view";
 
 const fullDate = (iso: string) => {
@@ -52,6 +53,7 @@ export function Masthead({ date, shareTitle }: { date: AppDate; shareTitle?: str
           <span className="font-editorial text-2xl font-bold">Orchard</span>
         </Link>
         <TopNav />
+        <SearchField className="hidden shrink-0 sm:flex sm:max-md:w-11 sm:max-md:justify-center sm:max-md:px-0 md:w-44 lg:w-56" />
         <DateChip date={date} onChoose={choose} />
       </header>
       {date.planning && (
@@ -126,7 +128,7 @@ function ShareForDate({ title, iso }: { title: string; iso: string }) {
 function DateChip({ date, onChoose }: { date: AppDate; onChoose: (iso: string | null) => void }) {
   return (
     <label
-      className={`relative flex min-h-11 items-center rounded-full border px-3 text-sm font-medium has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-accent ${
+      className={`relative flex min-h-11 shrink-0 items-center rounded-full border px-3 whitespace-nowrap text-sm font-medium has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-accent ${
         date.planning ? "border-olive bg-olive text-canvas" : "border-olive text-olive"
       }`}
     >
