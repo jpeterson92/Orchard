@@ -38,11 +38,12 @@ export function PreviewNotice({ data }: { data: AppData }) {
   const draft = data.items.some((i) => i.status === "draft");
   const synthetic = data.items.some((i) => i.synthetic);
   if (!draft && !synthetic) return null;
+  // Its own landmark, so no page content sits outside one (axe "region").
   return (
-    <p className="mt-3 rounded-sm bg-surface px-3 py-2 text-sm text-ink-secondary">
+    <aside aria-label="Preview" className="mt-3 rounded-sm bg-surface px-3 py-2 text-sm text-ink-secondary">
       Preview.
       {draft && " Draft guidance hasn't been reviewed yet."}
       {synthetic && " Sample items are made-up test data."}
-    </p>
+    </aside>
   );
 }
