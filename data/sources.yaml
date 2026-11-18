@@ -720,3 +720,111 @@
   accessed: 2026-11-18
   tier: mainstream
   basedOn: halegroves-florida-oranges
+- id: freshplaza-latam-blueberry-overlap
+  title: "Latin American blueberry seasons increasingly overlap as Peru expands"
+  publisher: FreshPlaza
+  url: https://www.freshplaza.com/north-america/article/9864005/latin-american-blueberry-seasons-increasingly-overlap-as-peru-expands/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: freshplaza-us-blueberry-imports
+  title: "U.S. blueberry imports rise to meet year-round demand"
+  publisher: FreshPlaza
+  url: https://www.freshplaza.com/north-america/article/9781611/u-s-blueberry-imports-rise-to-meet-year-round-demand/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: uga-extension-blueberries
+  title: "Blueberries"
+  publisher: University of Georgia Extension
+  url: https://extension.uga.edu/agriculture/ag-fruits-vegetables/blueberries/
+  accessed: 2026-11-18
+  tier: authoritative
+- id: uga-blueberry-harvest-forecast
+  title: "Blueberry farmers project 60 million pound blueberry harvest"
+  publisher: University of Georgia CAES
+  url: https://fieldreport.caes.uga.edu/news/blueberry-farmers-project-60-million-pound-blueberry-harvest/
+  accessed: 2026-11-18
+  tier: authoritative
+- id: ufifas-florida-blueberry-season-2022
+  title: "Florida blueberry season: Top-notch fruit, tools and knowledge from UF/IFAS research"
+  publisher: UF/IFAS
+  url: https://blogs.ifas.ufl.edu/news/2022/03/30/florida-blueberry-season-top-notch-fruit-tools-and-knowledge-from-uf-ifas-research
+  accessed: 2026-11-18
+  tier: authoritative
+- id: wgcu-florida-blueberries-2026
+  title: "Blueberry growers work to bounce back after a chilly winter"
+  publisher: WGCU News
+  url: https://www.wgcu.org/top-story/2026-03-11/blueberry-growers-work-to-bounce-back-after-a-chilly-winter-deliver-sumptuous-fruit-to-consumers
+  accessed: 2026-11-18
+  tier: mainstream
+- id: pnwag-blueberry-season
+  title: "Blueberry season in full swing"
+  publisher: PNW Ag Network
+  url: https://pnwag.net/blueberry-season-in-full-swing/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: njda-blueberries-2024
+  title: "Jersey Fresh blueberries"
+  publisher: New Jersey Department of Agriculture
+  url: https://www.nj.gov/agriculture/news/press/2024/press240617.shtml
+  accessed: 2026-11-18
+  tier: authoritative
+- id: ncsu-meteoric-rise-blueberries
+  title: "The Meteoric Rise of North Carolina Blueberries"
+  publisher: NC State Extension
+  url: https://www.ces.ncsu.edu/2022/06/the-meteoric-rise-of-north-carolina-blueberries
+  accessed: 2026-11-18
+  tier: authoritative
+- id: ncsu-forsyth-blueberry-season
+  title: "Blueberry Season Is Here"
+  publisher: NC State Extension
+  url: https://forsyth.ces.ncsu.edu/news/blueberry-season-is-here
+  accessed: 2026-11-18
+  tier: authoritative
+- id: bc-blueberry-whats-in-season
+  title: "What's in Season"
+  publisher: BC Blueberry Council
+  url: https://www.bcblueberry.com/whats-in-season/
+  accessed: 2026-11-18
+  tier: authoritative
+- id: ffp-california-blueberries-record-2024
+  title: "Agronometrics in Charts: California set to achieve a record-breaking blueberry season"
+  publisher: FreshFruitPortal
+  url: https://www.freshfruitportal.com/archive/2024/06/13/california-set-to-achieve-a-record-breaking-blueberry-season/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: ncsu-cals-blueberries
+  title: "Easy to grow throughout North Carolina, blueberries are a favorite summertime treat"
+  publisher: NC State College of Agriculture and Life Sciences
+  url: https://cals.ncsu.edu/?p=189670
+  accessed: 2026-11-18
+  tier: authoritative
+- id: ffp-bc-blueberry-harvest-2017
+  title: "Canada: BC blueberry harvest kicks off with lighter early crop expected"
+  publisher: FreshFruitPortal
+  url: https://www.freshfruitportal.com/archive/2017/07/12/canada-bc-blueberry-harvest-kicks-off-lighter-early-crop-expected/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: fruitandveggie-bc-blueberry-early-july
+  title: "BC's blueberry season gets ready for early July start"
+  publisher: Canadian Fruit & Vegetable Grower
+  url: https://www.fruitandveggie.com/bcs-blueberry-season-gets-ready-for-early-july-start-20173/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: ucdavis-postharvest-bushberry
+  title: "Bushberries: Produce Facts"
+  publisher: UC Davis Postharvest Research and Extension Center
+  url: https://postharvest.ucdavis.edu/produce-facts-sheets/bushberry
+  accessed: 2026-11-18
+  tier: authoritative
+- id: osu-ohioline-berries
+  title: "Selecting, Storing, and Serving Ohio Blueberries, Blackberries, and Raspberries"
+  publisher: Ohio State University Extension
+  url: https://ohioline.osu.edu/factsheet/HYG-5511
+  accessed: 2026-11-18
+  tier: authoritative
+- id: driscolls-blueberries
+  title: "Driscoll's Blueberries"
+  publisher: Driscoll's
+  url: https://www.driscolls.com/berries/blueberries
+  accessed: 2026-11-18
+  tier: mainstream

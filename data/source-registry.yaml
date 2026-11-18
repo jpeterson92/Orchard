@@ -60,6 +60,10 @@ items:
     - gold nugget
     - nuggets
     - cuties
+  blueberries: [blueberry, blueberries]
+  raspberries: [raspberry, raspberries]
+  blackberries: [blackberry, blackberries]
+  grapes: [grape, grapes, table grape, table grapes]
 
 pages:
   - source: msstate-fruits-vegetables-in-season
@@ -607,3 +611,78 @@ pages:
     kind: item-page
     origin: us-fl
     items: [oranges]
+  - source: freshplaza-latam-blueberry-overlap
+    url: https://www.freshplaza.com/north-america/article/9864005/latin-american-blueberry-seasons-increasingly-overlap-as-peru-expands/
+    kind: item-page
+    origin: pe
+    items: [blueberries]
+  - source: freshplaza-us-blueberry-imports
+    url: https://www.freshplaza.com/north-america/article/9781611/u-s-blueberry-imports-rise-to-meet-year-round-demand/
+    kind: item-page
+    origin: pe
+    items: [blueberries]
+  - source: uga-extension-blueberries
+    url: https://extension.uga.edu/agriculture/ag-fruits-vegetables/blueberries/
+    kind: item-page
+    origin: us-ga
+    items: [blueberries]
+  - source: uga-blueberry-harvest-forecast
+    url: https://fieldreport.caes.uga.edu/news/blueberry-farmers-project-60-million-pound-blueberry-harvest/
+    kind: item-page
+    origin: us-ga
+    items: [blueberries]
+  - source: ufifas-florida-blueberry-season-2022
+    url: https://blogs.ifas.ufl.edu/news/2022/03/30/florida-blueberry-season-top-notch-fruit-tools-and-knowledge-from-uf-ifas-research
+    kind: item-page
+    origin: us-fl
+    items: [blueberries]
+  - source: wgcu-florida-blueberries-2026
+    url: https://www.wgcu.org/top-story/2026-03-11/blueberry-growers-work-to-bounce-back-after-a-chilly-winter-deliver-sumptuous-fruit-to-consumers
+    kind: item-page
+    origin: us-fl
+    items: [blueberries]
+  - source: pnwag-blueberry-season
+    url: https://pnwag.net/blueberry-season-in-full-swing/
+    kind: item-page
+    origin: us-or
+    items: [blueberries]
+  - source: njda-blueberries-2024
+    url: https://www.nj.gov/agriculture/news/press/2024/press240617.shtml
+    kind: item-page
+    origin: us-nj
+    items: [blueberries]
+  - source: ncsu-meteoric-rise-blueberries
+    url: https://www.ces.ncsu.edu/2022/06/the-meteoric-rise-of-north-carolina-blueberries
+    kind: item-page
+    origin: us-nc
+    items: [blueberries]
+  - source: ncsu-forsyth-blueberry-season
+    url: https://forsyth.ces.ncsu.edu/news/blueberry-season-is-here
+    kind: item-page
+    origin: us-nc
+    items: [blueberries]
+  - source: bc-blueberry-whats-in-season
+    url: https://www.bcblueberry.com/whats-in-season/
+    kind: item-page
+    origin: ca
+    items: [blueberries]
+  - source: ffp-california-blueberries-record-2024
+    url: https://www.freshfruitportal.com/archive/2024/06/13/california-set-to-achieve-a-record-breaking-blueberry-season/
+    kind: item-page
+    origin: us-ca
+    items: [blueberries]
+  - source: ncsu-cals-blueberries
+    url: https://cals.ncsu.edu/?p=189670
+    kind: item-page
+    origin: us-nc
+    items: [blueberries]
+  - source: ffp-bc-blueberry-harvest-2017
+    url: https://www.freshfruitportal.com/archive/2017/07/12/canada-bc-blueberry-harvest-kicks-off-lighter-early-crop-expected/
+    kind: item-page
+    origin: ca
+    items: [blueberries]
+  - source: fruitandveggie-bc-blueberry-early-july
+    url: https://www.fruitandveggie.com/bcs-blueberry-season-gets-ready-for-early-july-start-20173/
+    kind: item-page
+    origin: ca
+    items: [blueberries]
