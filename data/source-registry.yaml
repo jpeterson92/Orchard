@@ -61,6 +61,10 @@ items:
     - nuggets
     - cuties
 
+  peaches: [peach, peaches, white peach, white peaches, yellow peach, donut peach, saturn peach]
+  nectarines: [nectarine, nectarines]
+  plums: [plum, plums, pluot, pluots, plumcot, plumcots]
+
 pages:
   - source: msstate-fruits-vegetables-in-season
     url: https://extension.msstate.edu/publications/buy-fresh-fruits-and-vegetables-season
@@ -607,3 +611,98 @@ pages:
     kind: item-page
     origin: us-fl
     items: [oranges]
+  - source: eatlikenoone-peach-season
+    url: https://www.eatlikenoone.com/when-does-peach-season-begin-and-end.htm
+    kind: item-page
+    origin: us
+    items: [peaches]
+  - source: californiagrown-peach-recipes
+    url: https://californiagrown.org/blog/peach-recipes/
+    kind: item-page
+    origin: us-ca
+    items: [peaches]
+  - source: thepeachtruck-peach-season
+    url: https://thepeachtruck.com/blogs/blog/peach-season
+    kind: item-page
+    origin: us-ga
+    items: [peaches]
+  - source: lane-southern-peach-season
+    url: https://lanesouthernorchards.com/info/when-is-peach-season
+    kind: item-page
+    origin: us-ga
+    items: [peaches]
+  - source: pearsonfarm-georgia-peaches
+    url: https://pearsonfarm.com/blogs/blog/when-are-georgia-peaches-in-season
+    kind: item-page
+    origin: us-ga
+    items: [peaches]
+  - source: producebusiness-southeast-peaches
+    url: https://producebusiness.com/?p=20273
+    kind: item-page
+    origin: us-sc
+    items: [peaches]
+  - source: producebusiness-sc-peaches
+    url: https://producebusiness.com/?p=26447
+    kind: item-page
+    origin: us-sc
+    items: [peaches]
+  - source: freshplaza-sc-early-peaches
+    url: https://www.freshplaza.com/north-america/article/2160398/us-sc-strong-start-for-early-peaches-challenges-for-late-varieties/
+    kind: item-page
+    origin: us-sc
+    items: [peaches]
+  - source: freshplaza-nj-peach-season
+    url: https://www.freshplaza.com/north-america/article/9435632/new-jersey-peach-season-to-kick-off-early-july
+    kind: item-page
+    origin: us-nj
+    items: [peaches]
+  - source: umd-peach-chilling-injury
+    url: https://extension.umd.edu/resource/what-chilling-injury-peaches-what-causes-it-and-how-can-you-manage-it-fs-1141
+    kind: item-page
+    origin: us-md
+    items: [peaches, nectarines]
+  - source: freshplaza-chile-stone-fruit-final-stretch
+    url: https://www.freshplaza.com/north-america/article/9615961/tough-final-stretch-of-chile-s-stone-fruit-season/
+    kind: item-page
+    origin: cl
+    items: [peaches, nectarines, plums]
+  - source: freshplaza-chile-stone-fruit-volumes
+    url: https://www.freshplaza.com/article/9206935/overall-stone-fruit-volumes-from-chile-are-down-but-market-is-steady/
+    kind: item-page
+    origin: cl
+    items: [peaches, nectarines, plums]
+  - source: freshplaza-chile-stone-fruit-2025
+    url: https://www.freshplaza.com/article/9715897/finishing-a-challenging-season-on-chilean-stone-fruit
+    kind: item-page
+    origin: cl
+    items: [peaches, nectarines, plums]
+  - source: scripps-summer-fruit-months
+    url: https://www.tmj4.com/these-are-the-months-each-summer-fruit-tastes-best
+    kind: item-page
+    origin: us
+    items: [peaches, nectarines, plums]
+  - source: usu-store-peaches
+    url: https://extension.usu.edu/answers/articles/how-do-i-store-fresh-peaches
+    kind: item-page
+    origin: us-ut
+    items: [peaches]
+  - source: osu-livesmart-peaches
+    url: https://livesmartohio.osu.edu/?p=10989
+    kind: item-page
+    origin: us-oh
+    items: [peaches]
+  - source: purdue-foodlink-peach
+    url: https://www.extension.purdue.edu/foodlink/food.php?food=peach
+    kind: item-page
+    origin: us-in
+    items: [peaches]
+  - source: udel-stone-fruit-cold-storage
+    url: https://sites.udel.edu/weeklycropupdate/?p=23265
+    kind: item-page
+    origin: us-de
+    items: [peaches, nectarines, plums]
+  - source: eatlikenoone-refrigerate-peaches
+    url: https://www.eatlikenoone.com/when-do-you-refrigerate-peaches.htm
+    kind: item-page
+    origin: us
+    items: [peaches]

@@ -1,0 +1,102 @@
+id: peaches
+name: Peaches
+synonyms:
+  [
+    peach,
+    white peach,
+    white peaches,
+    yellow peach,
+    yellow peaches,
+    donut peach,
+    donut peaches,
+    saturn peach,
+    flat peach,
+  ]
+misspellings: [peachs, peaces, peeches, peech]
+category: stone-fruit
+purchaseRank: 9
+alwaysGood: false
+shipsWell:
+  value: false
+  sources: [eatlikenoone-peach-season, ucdavis-postharvest-peach, umd-peach-chilling-injury]
+  note: Long cold shipping risks mealy, flavorless fruit; winter imports are picked early for the trip.
+peakWorthSeeking:
+  value: true
+  sources: [eatlikenoone-peach-season, scripps-summer-fruit-months]
+  note: Peaches really have to be in season to taste good; summer fruit is far better.
+storesWell:
+  value: false
+  sources: [ucdavis-postharvest-peach, udel-stone-fruit-cold-storage]
+  note: Market life is weeks at most, and cold storage risks mealy, browned flesh.
+evidenceBasis: supply+assessment
+cardLine: Smells like a peach and gives slightly near the stem.
+pick:
+  - A sweet peach smell
+  - Yellow or creamy background color, with no green
+  - Gives slightly to gentle pressure
+  - Smooth skin without bruises or wrinkles
+avoid:
+  - Green background color; picked too early, it won't ripen well
+  - Bruised, soft or shriveled fruit
+store:
+  temperature: cold
+  ethylene: producer
+  life: { min: 3, max: 5, unit: days }
+  text: Once ripe, refrigerate in a bag and eat within 3–5 days. Don't chill hard peaches; cold before ripening can turn them mealy.
+  sources: [usu-store-peaches, osu-livesmart-peaches, ucdavis-postharvest-peach]
+ripen:
+  text: Ripen firm peaches at room temperature in a loosely closed paper bag, in a single layer. Check daily; it usually takes a day or two.
+  sources: [osu-livesmart-peaches, usu-store-peaches]
+prep: Rinse just before eating. Peel if you like by dipping in boiling water for 30 seconds, then ice water.
+origins:
+  - origin: us-ca
+    windows:
+      - { from: jan-1, to: apr-2, rating: poor }
+      - { from: may-1, to: may-2, rating: fair }
+      - { from: jun-1, to: aug-2, rating: prime }
+      - { from: sep-1, to: sep-2, rating: fair }
+      - from: oct-1
+        to: oct-2
+        rating: fair
+        reason: The model panel has no rating here, and the cited sources disagree; together they read fair.
+      - { from: nov-1, to: dec-2, rating: poor }
+  - origin: us-ga
+    windows:
+      - { from: jan-1, to: apr-2, rating: poor }
+      - { from: may-1, to: may-2, rating: fair }
+      - { from: jun-1, to: jul-2, rating: prime }
+      - { from: aug-1, to: aug-2, rating: fair }
+      - from: sep-1
+        to: dec-2
+        rating: poor
+        reason: Georgia sources end the harvest in mid-August; only US-wide season spans reach September.
+  - origin: us-sc
+    windows:
+      - { from: jan-1, to: apr-2, rating: poor }
+      - from: may-1
+        to: may-1
+        rating: fair
+        reason: The model panel has no rating here, and the cited sources disagree; together they read fair.
+      - { from: may-2, to: may-2, rating: fair }
+      - { from: jun-1, to: jul-2, rating: prime }
+      - { from: aug-1, to: aug-2, rating: fair }
+      - from: sep-1
+        to: sep-2
+        rating: fair
+        reason: The season winds down in September, after an August the model panel rates fair; the charts reaching it mark availability only.
+      - { from: oct-1, to: dec-2, rating: poor }
+  - origin: us-nj
+    windows:
+      - from: jan-1
+        to: jun-1
+        rating: poor
+        reason: New Jersey sources start the harvest in early July; only US-wide season spans reach May.
+      - { from: jun-2, to: jun-2, rating: fair }
+      - { from: jul-1, to: aug-2, rating: prime }
+      - { from: sep-1, to: sep-2, rating: fair }
+      - { from: oct-1, to: dec-2, rating: poor }
+  - origin: cl
+    windows:
+      - { from: jan-1, to: mar-2, rating: poor }
+      - { from: nov-2, to: dec-2, rating: poor }
+status: draft
