@@ -1,0 +1,118 @@
+{
+  "assets": [
+    {
+      "id": "apples-thumbnail-v1",
+      "item": "apples",
+      "role": "thumbnail",
+      "alt": "A whole red apple with a leaf",
+      "revision": 1,
+      "status": "requested"
+    },
+    {
+      "id": "apples-honeycrisp-thumbnail-v1",
+      "item": "apples",
+      "variety": "honeycrisp",
+      "role": "thumbnail",
+      "alt": "A large Honeycrisp apple, red mottled over yellow",
+      "revision": 1,
+      "status": "requested"
+    },
+    {
+      "id": "apples-gala-thumbnail-v1",
+      "item": "apples",
+      "variety": "gala",
+      "role": "thumbnail",
+      "alt": "A small Gala apple with orange-red stripes over gold",
+      "revision": 1,
+      "status": "requested"
+    },
+    {
+      "id": "apples-fuji-thumbnail-v1",
+      "item": "apples",
+      "variety": "fuji",
+      "role": "thumbnail",
+      "alt": "A round Fuji apple, pinkish-red over yellow-green",
+      "revision": 1,
+      "status": "requested"
+    },
+    {
+      "id": "apples-granny-smith-thumbnail-v1",
+      "item": "apples",
+      "variety": "granny-smith",
+      "role": "thumbnail",
+      "alt": "A bright green Granny Smith apple",
+      "revision": 1,
+      "status": "requested"
+    },
+    {
+      "id": "apples-pink-lady-thumbnail-v1",
+      "item": "apples",
+      "variety": "pink-lady",
+      "role": "thumbnail",
+      "alt": "An oval Pink Lady apple, pink blush over yellow-green",
+      "revision": 1,
+      "status": "requested"
+    },
+    {
+      "id": "apples-cosmic-crisp-thumbnail-v1",
+      "item": "apples",
+      "variety": "cosmic-crisp",
+      "role": "thumbnail",
+      "alt": "A dark red Cosmic Crisp apple speckled with pale dots",
+      "revision": 1,
+      "status": "requested"
+    },
+    {
+      "id": "strawberries-thumbnail-v1",
+      "item": "strawberries",
+      "role": "thumbnail",
+      "alt": "Two red strawberries with green caps",
+      "revision": 1,
+      "status": "requested"
+    },
+    {
+      "id": "mandarins-thumbnail-v1",
+      "item": "mandarins",
+      "role": "thumbnail",
+      "alt": "A whole mandarin with leaves and two peeled segments",
+      "revision": 1,
+      "status": "requested"
+    },
+    {
+      "id": "mandarins-clementine-thumbnail-v1",
+      "item": "mandarins",
+      "variety": "clementine",
+      "role": "thumbnail",
+      "alt": "A small clementine with a leaf",
+      "revision": 1,
+      "status": "requested"
+    },
+    {
+      "id": "mandarins-w-murcott-thumbnail-v1",
+      "item": "mandarins",
+      "variety": "w-murcott",
+      "role": "thumbnail",
+      "alt": "A flattened, deep reddish-orange W. Murcott mandarin",
+      "revision": 1,
+      "status": "requested"
+    },
+    {
+      "id": "mandarins-minneola-thumbnail-v1",
+      "item": "mandarins",
+      "variety": "minneola",
+      "role": "thumbnail",
+      "alt": "A Minneola tangelo with its knobbed neck",
+      "revision": 1,
+      "status": "requested"
+    },
+    {
+      "id": "mandarins-gold-nugget-thumbnail-v1",
+      "item": "mandarins",
+      "variety": "gold-nugget",
+      "role": "thumbnail",
+      "alt": "A Gold Nugget mandarin with bumpy, pebbled skin",
+      "revision": 1,
+      "status": "requested"
+    }
+  ]
+}

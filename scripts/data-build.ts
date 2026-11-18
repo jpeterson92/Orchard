@@ -7,6 +7,7 @@ import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 
 import { join } from "node:path";
 import { parse as parseYaml } from "yaml";
 import { appData } from "../src/shared/app-data";
+import { ART_WIDTHS, artFile, resolveArt } from "../src/shared/art";
 import { type Csv, parseCsv, type RawInputs, validate } from "./data-validate";
 
 const production = process.argv.includes("--production");
@@ -47,9 +48,23 @@ if (dataset === null) {
   process.exit(1);
 }
 
+// Painted art (engineering plan §5, art track): which processed asset each item and variety shows.
+const artFiles = new Set(existsSync("public/art") ? readdirSync("public/art") : []);
+const processed = new Set(
+  [...artFiles]
+    .map((f) => /^(.+)-\d+\.webp$/.exec(f)?.[1])
+    .filter((id): id is string => id !== undefined && ART_WIDTHS.every((w) => artFiles.has(artFile(id, w)))),
+);
+const art = resolveArt(JSON.parse(read("art/manifest.json")), dataset.items, { production, processed });
+if (art.errors.length > 0) {
+  for (const e of art.errors) console.error(`error: ${e}`);
+  console.error(`data:build failed with ${art.errors.length} art error${art.errors.length === 1 ? "" : "s"}`);
+  process.exit(1);
+}
+
 mkdirSync("src/generated", { recursive: true });
 writeFileSync("src/generated/data.json", JSON.stringify(dataset));
-const app = appData(dataset, new Date().toISOString().slice(0, 10));
+const app = appData(dataset, new Date().toISOString().slice(0, 10), art.art);
 writeFileSync("src/generated/app.json", JSON.stringify(app));
 
 const reviewed = dataset.items.filter((i) => i.status === "reviewed").length;
@@ -65,6 +80,9 @@ console.log(
   snap
     ? `Supply snapshot: ${snap.from} to ${snap.to} (derived ${snap.derived})`
     : "Supply snapshot: none yet",
+);
+console.log(
+  `Art: ${Object.keys(art.art.items).length} of ${dataset.items.length} items, ${Object.keys(art.art.varieties).length} varieties`,
 );
 console.log(`Advisories: ${dataset.advisories.length}${production ? " · production build" : ""}`);
 console.log(`App data: ${Math.round(JSON.stringify(app).length / 1024)} KB`);

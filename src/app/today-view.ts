@@ -21,6 +21,8 @@ export const VERDICT_WORD: Record<Verdict, string> = {
 export interface Card {
   id: string;
   name: string;
+  /** Thumbnail asset id, or null for the placeholder. */
+  art: string | null;
   /** Items rated by variety: which variety the verdict means ("Honeycrisp", "6 varieties at their best"). */
   varietyLine: string | null;
   verdict: Verdict;
@@ -147,6 +149,7 @@ export function todayView(data: AppData, date: PlainDate): TodayView {
     cards.set(item.inputs.id, {
       id: item.inputs.id,
       name: item.name,
+      art: item.art,
       varietyLine: varietyLine(item, result.varietyLine, result.verdict),
       verdict: result.verdict,
       reason: isGeneric(reason) ? null : reason,

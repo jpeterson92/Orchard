@@ -33,6 +33,7 @@ Mature, widely used tools only. At scaffold time, take the newest release whose 
 | Write store | D1, plain SQL migrations through Wrangler | Introduced in M8. No ORM unless queries grow |
 | Validation and types | zod 4.6.7, yaml 2.9.1 | One schema per content and data file; types come from `z.infer`. Content and data files are YAML, parsed by `yaml` in `data:build` only. No code generation |
 | Search | MiniSearch | Prefix and fuzzy matching over names, synonyms and misspellings |
+| Images | sharp 0.35.5 (dev only) | `art:process`: checks painted masters and writes WebP derivatives |
 | Lint and format | Biome | One tool, one config |
 | Tests | Vitest, fast-check (property tests), Testing Library, Playwright + `@axe-core/playwright` | See §6 |
 | CI | GitHub Actions on `ubuntu-latest`, on each push to `main` | Typecheck, lint, unit tests, Playwright e2e against the build |
@@ -43,6 +44,11 @@ Mature, widely used tools only. At scaffold time, take the newest release whose 
 ```
 CLAUDE.md  PROGRESS.md  README.md
 package.json  tsconfig.json  vite.config.ts  wrangler.jsonc  biome.json  playwright.config.ts
+art/
+  requests/batch-N.md        ready-to-paste prompts per asset (art track, §5)
+  masters/<asset-id>.png     Jared's painted masters
+  manifest.json              every asset: item, variety, role, alt-text context, revision, status
+public/art/                  WebP derivatives written by `art:process`
 content/
   items/<item-id>.yaml       one file per item: editorial copy, origins + quality windows, varieties, type notes
   evidence/<item-id>.yaml    each source's claims about the item: origin, rated windows, specificity, directness
@@ -63,7 +69,8 @@ data/
   us-states.csv              state code and name, for `us-<state>` origins
 scripts/                     prerender.ts, data-build.ts, content-report.ts, review.ts; usda-client.ts and usda-lib.ts (shared),
                              usda-probe.ts, usda-terminal-probe.ts, usda-terminal-screen.ts, usda-derive.ts;
-                             evidence-lib.ts (shared), evidence-fetch.ts, evidence-check.ts; panel-lib.ts, panel-check.ts
+                             evidence-lib.ts (shared), evidence-fetch.ts, evidence-check.ts; panel-lib.ts, panel-check.ts;
+                             art-lib.ts, art-process.ts
 src/
   shared/                    zod schemas, verdict engine, evidence curves, window math. Imports nothing from app/ or worker/
   app/                       React app: routes, components, styles, service worker registration
@@ -164,9 +171,9 @@ Each milestone takes 1–3 sessions and ends with something Jared can review. Th
 
 1. **Request.** Claude writes a batch file `art/requests/batch-N.md`. It holds one block per asset: the asset ID (`persimmon-fuyu-thumbnail-v1`, per the illustration guide), its class and display size, a ready-to-paste prompt assembled from illustration guide §2, the botanical checks, and the export settings (transparent background, size).
 2. **Generate.** Jared pastes each prompt into ChatGPT, keeping one conversation per batch so the style stays consistent. He saves each result as `art/masters/<asset-id>.png`.
-3. **Process.** `npm run art:process` checks each master: real alpha channel, dimensions, and no white-rectangle background. It writes optimized derivatives to `public/art/` and a contact sheet of every asset over ivory and warm charcoal.
-4. **Review.** Jared approves or rejects each asset from the contact sheet. Approvals are recorded in `art/manifest.json` (asset ID, item, role, alt-text context, revision, status). A rejected asset gets a targeted revision prompt (§2 F) in the next batch.
-5. Production builds refuse unapproved art, as they refuse draft content, and refuse an item without approved art; a rated variety without its own uses its item's. In development and preview, missing art shows a mostly transparent placeholder of the same size, so layouts don't shift while the art catches up.
+3. **Process.** `npm run art:process` checks each master (square, at least 1024 px, a real alpha channel with a mostly clear canvas, the painting clear of every edge, no pale halo), writes WebP derivatives at 160, 320 and 640 px to `public/art/`, moves the asset from `requested` to `review`, and writes a contact sheet of every asset over ivory and warm charcoal (`.cache/art/contact-sheet.html`). Masters and derivatives are committed.
+4. **Review.** Jared approves or rejects each asset from the contact sheet; Claude records it in `art/manifest.json` (asset ID, item, variety, role, alt-text context, revision, status: `requested`, `review`, `approved` or `rejected`). The batch's entries are added as `requested` with the batch file. A rejected asset gets a targeted revision prompt (§2 F) in the next batch.
+5. `data:build` validates the manifest and picks each item's and variety's asset: the highest approved revision, or in dev and preview the highest approved or `review` one. Production builds ship only approved art and refuse an item without it. A variety without its own art shows the placeholder, never its item's painting (illustration guide: one specimen never stands for several varieties). Missing art shows a mostly transparent placeholder of the same size, so layouts don't shift while the art catches up.
 
 **After v1 (v1.1+):** value markers; named-chain notes; Spanish; location-aware context (regional advisories, local harvest) only if usage shows a need.
 

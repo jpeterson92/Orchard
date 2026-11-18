@@ -6,6 +6,7 @@ import { useState } from "react";
 import { Link, useParams } from "react-router";
 import appJson from "../generated/app.json";
 import type { AppData } from "../shared/app-data";
+import { Art } from "./Art";
 import { useToday } from "./date";
 import { StatusLabels, VerdictMark } from "./icons";
 import { type ItemView, itemView, type LabelOption, labelResult, type VarietyRow } from "./item-view";
@@ -35,9 +36,9 @@ export function ItemPage() {
       {view ? (
         <div className="lg:grid lg:grid-cols-[minmax(0,40rem)_1fr] lg:gap-12">
           <Item view={view} />
-          {/* Wide screens: the artwork gets its own column and stays in view (placeholder until art exists). */}
-          <aside aria-hidden className="hidden lg:block">
-            <span className="sticky top-6 block aspect-square w-full max-w-80 rounded-full bg-surface/70" />
+          {/* Wide screens: the artwork gets its own column and stays in view. */}
+          <aside className="hidden lg:block">
+            <Art id={view.art} sizes="320px" className="sticky top-6 aspect-square w-full max-w-80" />
           </aside>
         </div>
       ) : (
@@ -66,7 +67,11 @@ function Item({ view }: { view: ItemView }) {
           {view.tags.length > 0 && <p className="text-sm font-medium text-olive">{view.tags.join(" · ")}</p>}
         </div>
         {/* Phone and tablet art slot; wide screens show it in its own column. */}
-        <span aria-hidden className="size-24 shrink-0 rounded-full bg-surface/70 sm:size-28 lg:hidden" />
+        <Art
+          id={view.art}
+          sizes="(min-width: 640px) 112px, 96px"
+          className="size-24 shrink-0 sm:size-28 lg:hidden"
+        />
       </div>
 
       <div className="mt-3 space-y-1">
@@ -234,20 +239,26 @@ function LabelCheck({ view }: { view: ItemView }) {
 function Variety({ row, today }: { row: VarietyRow; today: number }) {
   return (
     <li className="border-b border-rule py-3 last:border-b-0">
-      <div className="flex flex-wrap items-baseline justify-between gap-x-4">
-        <h3 className="font-editorial text-lg font-bold">{row.name}</h3>
-        {row.verdict ? (
-          <VerdictMark verdict={row.verdict} />
-        ) : (
-          <span className="text-ink-secondary">Not rated</span>
-        )}
+      <div className="flex items-center gap-3">
+        <Art id={row.art} sizes="48px" className="size-12 shrink-0" />
+        <div className="min-w-0 flex-1">
+          <div className="flex flex-wrap items-baseline justify-between gap-x-4">
+            <h3 className="font-editorial text-lg font-bold">{row.name}</h3>
+            {row.verdict ? (
+              <VerdictMark verdict={row.verdict} />
+            ) : (
+              <span className="text-ink-secondary">Not rated</span>
+            )}
+          </div>
+          {row.confidence && (
+            <p className="text-sm text-ink-secondary">
+              {CONFIDENCE_WORD[row.confidence]} confidence
+              {!row.inStore && " · Not usually in stores now"}
+            </p>
+          )}
+        </div>
       </div>
-      {row.confidence && (
-        <p className="text-sm text-ink-secondary">
-          {CONFIDENCE_WORD[row.confidence]} confidence
-          {!row.inStore && " · Not usually in stores now"}
-        </p>
-      )}
+      {/* Full width, so the strip lines up with the month axis above the list. */}
       {row.outlook && (
         <div className="mt-2">
           <SeasonStrip outlook={row.outlook} today={today} />

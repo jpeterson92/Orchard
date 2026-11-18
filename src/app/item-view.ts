@@ -25,6 +25,8 @@ import {
 export interface VarietyRow {
   id: string;
   name: string;
+  /** The variety's own painting, or null for the placeholder (never its item's art). */
+  art: string | null;
   /** Null for a variety without variety-specific evidence: listed, never ranked. */
   verdict: Verdict | null;
   confidence: Confidence | null;
@@ -40,6 +42,7 @@ export interface SupplyRun {
 export interface ItemView {
   id: string;
   name: string;
+  art: string | null;
   varietyLine: string | null;
   verdict: Verdict;
   tags: string[];
@@ -210,6 +213,7 @@ export function itemView(data: AppData, id: string, date: PlainDate): ItemView |
       return {
         id: v.id,
         name: item.varieties.find((x) => x.id === v.id)?.name ?? v.id,
+        art: item.varieties.find((x) => x.id === v.id)?.art ?? null,
         verdict: r?.verdict ?? null,
         confidence: r?.confidence ?? null,
         inStore: r?.inStore ?? false,
@@ -228,6 +232,7 @@ export function itemView(data: AppData, id: string, date: PlainDate): ItemView |
       varieties.push({
         id: v.id,
         name: v.name,
+        art: v.art,
         verdict: null,
         confidence: null,
         inStore: false,
@@ -239,6 +244,7 @@ export function itemView(data: AppData, id: string, date: PlainDate): ItemView |
   return {
     id: item.inputs.id,
     name: item.name,
+    art: item.art,
     varietyLine: varietyLine(item, result.varietyLine, result.verdict),
     verdict: result.verdict,
     tags: tags(item, result.markers),

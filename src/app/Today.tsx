@@ -4,6 +4,7 @@ import { useId, useState } from "react";
 import { Link } from "react-router";
 import appJson from "../generated/app.json";
 import type { AppData, FilterGroup } from "../shared/app-data";
+import { Art } from "./Art";
 import { useToday } from "./date";
 import { StatusLabels, VerdictMark } from "./icons";
 import { Masthead, PreviewNotice } from "./Masthead";
@@ -130,8 +131,7 @@ function Row({ card }: { card: Card }) {
         onClick={() => setOpen((o) => !o)}
         className="flex w-full cursor-pointer items-start gap-4 rounded-sm text-left focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
       >
-        {/* Art slot: a mostly transparent placeholder until approved art exists (design system §6). */}
-        <span aria-hidden className="size-18 shrink-0 rounded-full bg-surface/70" />
+        <Art id={card.art} sizes="72px" className="size-18 shrink-0" />
         <span className="block min-w-0 flex-1">
           <span className="flex flex-wrap items-baseline gap-x-2">
             <span className="font-editorial text-xl leading-tight font-bold">{card.name}</span>

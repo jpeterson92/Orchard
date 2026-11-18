@@ -1,5 +1,6 @@
 // What the app bundles (engineering plan §1): each item's engine inputs plus the text its screens show.
 // Built by `npm run data:build` into src/generated/app.json; raw evidence and USDA rows stay out of the bundle.
+import type { ArtMap } from "./art";
 import type { Category, Dataset, Item } from "./data/schema";
 import type { Env, ItemInputs } from "./verdict";
 import { engineEnv, itemInputs } from "./verdict/inputs";
@@ -11,6 +12,8 @@ export interface AppVariety {
   name: string;
   label: string;
   bestUses: string[];
+  /** Asset id of the variety's own painting (src/shared/art.ts), or null: the placeholder shows. */
+  art: string | null;
 }
 
 export interface AppItem {
@@ -28,6 +31,8 @@ export interface AppItem {
   /** Type notes, shown with the pick cues where the type changes the advice. */
   types: { name: string; note: string | null }[];
   varieties: AppVariety[];
+  /** Asset id of the item's thumbnail, or null: the placeholder shows (dev and preview only). */
+  art: string | null;
   status: Item["status"];
   reviewedOn: string | null;
   synthetic: boolean;
@@ -44,7 +49,7 @@ export interface AppData {
   builtOn: string;
 }
 
-export function appData(data: Dataset, builtOn: string): AppData {
+export function appData(data: Dataset, builtOn: string, art: ArtMap): AppData {
   const groups = new Map(data.categories.map((c) => [c.id, c.group]));
   return {
     env: engineEnv(data),
@@ -66,7 +71,9 @@ export function appData(data: Dataset, builtOn: string): AppData {
         name: v.name,
         label: v.label,
         bestUses: v.bestUses,
+        art: art.varieties[`${item.id}/${v.id}`] ?? null,
       })),
+      art: art.items[item.id] ?? null,
       status: item.status,
       reviewedOn: item.reviewedOn ?? null,
       synthetic: item.synthetic === true,

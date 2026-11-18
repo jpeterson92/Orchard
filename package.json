@@ -28,7 +28,8 @@
     "content:report": "tsx scripts/content-report.ts",
     "evidence:fetch": "tsx scripts/evidence-fetch.ts",
     "evidence:check": "tsx scripts/evidence-check.ts",
-    "panel:check": "tsx scripts/panel-check.ts"
+    "panel:check": "tsx scripts/panel-check.ts",
+    "art:process": "tsx scripts/art-process.ts"
   },
   "dependencies": {
     "hono": "4.13.19",
@@ -52,6 +53,7 @@
     "@vitejs/plugin-react": "6.3.0",
     "babel-plugin-react-compiler": "1.0.0",
     "fast-check": "4.10.2",
+    "sharp": "0.35.5",
     "tailwindcss": "4.3.5",
     "tsx": "4.23.15",
     "typescript": "6.0.3",
