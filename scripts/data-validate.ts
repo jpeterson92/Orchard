@@ -308,15 +308,20 @@ export function validate(raw: RawInputs, opts: { production: boolean }): Result 
   const typicalOrigins: TypicalOriginRow[] = csvRows(raw.typicalOrigins, typicalOriginRowSchema, (r) => r);
   unique(typicalOrigins, (r) => `${r.item}/${r.month}/rank ${r.rank}`, "typical origin");
   unique(typicalOrigins, (r) => `${r.item}/${r.month}/${r.origin}`, "typical origin");
-  const ranks = new Map<string, number[]>();
+  const months = new Map<string, TypicalOriginRow[]>();
   for (const r of typicalOrigins) {
     checkOrigin(r.origin, `typical origin ${r.item}/${r.month}`);
     const key = `${r.item}/${r.month}`;
-    ranks.set(key, [...(ranks.get(key) ?? []), r.rank]);
+    months.set(key, [...(months.get(key) ?? []), r]);
   }
-  for (const [key, rs] of ranks) {
-    if (rs.sort((a, b) => a - b).some((r, i) => r !== i + 1))
-      errors.push(`typical origin ${key}: ranks must run 1..n`);
+  for (const [key, rows] of months) {
+    rows.sort((a, b) => a.rank - b.rank);
+    if (rows.some((r, i) => r.rank !== i + 1)) errors.push(`typical origin ${key}: ranks must run 1..n`);
+    if (rows.some((r, i) => i > 0 && r.share > (rows[i - 1]?.share ?? 1)))
+      errors.push(`typical origin ${key}: shares must not rise with rank`);
+    // Shares are rounded to 3 places, so a sum may run a little over 1.
+    if (rows.reduce((a, r) => a + r.share, 0) > 1.005)
+      errors.push(`typical origin ${key}: shares sum over 1`);
   }
   for (const item of items)
     if (item.typicalOrigins.length > 0 && typicalOrigins.some((r) => r.item === item.id))

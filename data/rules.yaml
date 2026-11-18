@@ -1,7 +1,8 @@
 # Verdict thresholds (product spec §7, engineering plan §4.3). Bump `version` whenever a value changes.
-version: 4
+version: 5
 typicalOriginShare: 0.70 # typical origins cover at least this share of reported volume
 decidingOriginShare: 0.25 # P9: only a typical origin with at least this share can take over from a poor top origin
+ratedTypicalShare: 0.75 # P1: rated typical origins must hold at least this share of the typical origins' volume
 supplyIndex:
   thin: 0.8 # below: thin supply
   strong: 1.2 # at or above: strong supply

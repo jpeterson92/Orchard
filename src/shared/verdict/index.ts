@@ -50,6 +50,9 @@ export interface ItemInputs {
   varieties: readonly RatedVariety[];
   /** Indexed by month 0–11: typical origins, top-ranked first. */
   typicalOrigins: readonly (readonly OriginId[])[];
+  /** Indexed by month 0–11, in typicalOrigins' order: each one's share of the month's volume (P1). Null for
+   * editorial typical origins, which carry no volume. */
+  typicalShares: readonly (readonly (number | null)[])[];
   /** Indexed by month 0–11: typical origins under rules.decidingOriginShare of the month's volume, which never take
    * over from the top origin (P9). */
   minorOrigins: readonly (readonly OriginId[])[];
@@ -149,13 +152,24 @@ function evaluateCore(
   let poorOrigin: OriginId | undefined;
 
   if (basis.kind === "typical") {
+    const ratingOf = (o: OriginId) => item.origins[o]?.windows[window] ?? null;
+    const shares = item.typicalShares[month] ?? [];
+    const ratedTypical = typical.filter((o) => ratingOf(o) !== null);
+    // P1: the rated typical origins must hold enough of the typical volume; with any share unknown
+    // (editorial typical origins), every typical origin must be rated.
+    const known = shares.length === typical.length && shares.every((s) => s !== null);
+    const shareOf = (os: readonly OriginId[]) =>
+      os.reduce((sum, o) => sum + ((shares[typical.indexOf(o)] as number | null) ?? 0), 0);
+    const covered = known
+      ? shareOf(ratedTypical) >= env.rules.ratedTypicalShare * shareOf(typical) - 1e-9
+      : ratedTypical.length === typical.length;
     if (typical.length === 0) missing.push({ code: "no-typical-origins" });
-    for (const origin of typical)
-      if ((item.origins[origin]?.windows[window] ?? null) === null)
-        missing.push({ code: "origin-unrated", origin });
+    else if (!covered)
+      for (const origin of typical)
+        if (ratingOf(origin) === null) missing.push({ code: "origin-unrated", origin });
     if (missing.length === 0) {
-      const ratingOf = (o: OriginId) => item.origins[o]?.windows[window] ?? null;
-      const [top, second] = typical as [OriginId, ...OriginId[]];
+      // Unrated typical origins below the P1 share are passed over: the rated ones decide.
+      const [top, second] = ratedTypical as [OriginId, ...OriginId[]];
       // P9: the verdict follows the top origin, unless it's poor and the second origin, a major one, is rated
       // better on evidence that isn't Low, so one weak call or a small origin never lifts a Skip.
       const lead =
@@ -169,9 +183,9 @@ function evaluateCore(
       decider = item.origins[lead];
       rating = ratingOf(lead);
       advisoryOrigin = lead;
-      const ratings = typical.map(ratingOf);
+      const ratings = ratedTypical.map(ratingOf);
       labelNote = ratings.includes("poor") && ratings.some((r) => r !== "poor");
-      poorOrigin = typical.find((o) => o !== lead && ratingOf(o) === "poor");
+      poorOrigin = ratedTypical.find((o) => o !== lead && ratingOf(o) === "poor");
     }
   } else if (basis.kind === "origin") {
     decider = item.origins[basis.origin];

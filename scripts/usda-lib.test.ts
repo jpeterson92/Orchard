@@ -169,11 +169,11 @@ describe("typicalOrigins", () => {
   ]);
   test("ranks to the threshold and marks origins at the major share", () =>
     expect(typicalOrigins(vol, 0.7, 0.25)).toEqual([
-      { origin: "A", major: true },
-      { origin: "B", major: true },
+      { origin: "A", major: true, share: 0.5 },
+      { origin: "B", major: true, share: 0.3 },
     ]));
   test("a minor origin can be typical", () =>
-    expect(typicalOrigins(vol, 0.9, 0.25).at(-1)).toEqual({ origin: "C", major: false }));
+    expect(typicalOrigins(vol, 0.9, 0.25).at(-1)).toEqual({ origin: "C", major: false, share: 0.15 }));
   test("unnameable regions count toward the total but are passed over", () => {
     const withRegion = new Map([
       ["R", 60],
@@ -181,8 +181,8 @@ describe("typicalOrigins", () => {
       ["B", 10],
     ]);
     expect(typicalOrigins(withRegion, 0.7, 0.25, (o) => o !== "R")).toEqual([
-      { origin: "A", major: true },
-      { origin: "B", major: false },
+      { origin: "A", major: true, share: 0.3 },
+      { origin: "B", major: false, share: 0.1 },
     ]);
   });
   test("no volume, no origins", () => expect(typicalOrigins(new Map([["A", 0]]), 0.7, 0.25)).toEqual([]));

@@ -60,6 +60,8 @@ export const rulesSchema = z.strictObject({
   typicalOriginShare: z.number().gt(0).lte(1),
   /** P9: a typical origin below this share of the month's volume never takes over from the top one. */
   decidingOriginShare: z.number().gt(0).lte(1),
+  /** P1: rule 1 passes when the rated typical origins hold at least this share of the typical origins' volume. */
+  ratedTypicalShare: z.number().gt(0).lte(1),
   supplyIndex: z
     .strictObject({ thin: z.number().positive(), strong: z.number().positive() })
     .refine((s) => s.thin < s.strong, "thin must be below strong"),
@@ -223,6 +225,8 @@ export const typicalOriginRowSchema = z.strictObject({
   origin: originId,
   /** At least rules.decidingOriginShare of the month's volume (P9). Used internally, never shown as a share. */
   major: z.enum(["true", "false"]).transform((v) => v === "true"),
+  /** Its share of the month's reported volume (P1). */
+  share: z.coerce.number().pipe(z.number().gt(0).lte(1)),
 });
 
 const supplyNullReason = z.enum(["no_data", "no_baseline", "not_reported"]);

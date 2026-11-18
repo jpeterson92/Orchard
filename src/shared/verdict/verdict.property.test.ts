@@ -55,6 +55,9 @@ const itemArb: fc.Arbitrary<ItemInputs> = fc
     seriesList: fc.array(series, { minLength: 4, maxLength: 4 }),
     typical: months(fc.shuffledSubarray([...ORIGINS], { maxLength: 3 })),
     minorMask: months(fc.array(fc.boolean(), { minLength: 3, maxLength: 3 })),
+    // Each typical origin's share of the month's volume, in percent; editorial typical origins have none.
+    shares: months(fc.array(fc.integer({ min: 1, max: 33 }), { minLength: 3, maxLength: 3 })),
+    editorialOrigins: fc.boolean(),
     supply: fc.tuple(...ORIGINS.map(() => months(supplyValue))),
     advisories: fc.uniqueArray(advisoryArb, { selector: (a) => a.id, maxLength: 3 }),
     varieties: fc.array(fc.record({ s: series, inStore: months(fc.boolean()) }), { maxLength: 3 }),
@@ -70,6 +73,12 @@ const itemArb: fc.Arbitrary<ItemInputs> = fc
     origins: Object.fromEntries(r.rated.map((o, i) => [o, r.seriesList[i] ?? { windows: [] }])),
     varieties: r.varieties.map((v, i) => ({ id: `v${i}`, ...v.s, inStore: v.inStore })),
     typicalOrigins: r.typical,
+    typicalShares: r.typical.map((os, m) =>
+      [...(r.shares[m] ?? [])]
+        .sort((a, b) => b - a)
+        .slice(0, os.length)
+        .map((p) => (r.editorialOrigins ? null : p / 100)),
+    ),
     minorOrigins: r.typical.map((os, m) => os.filter((_, i) => r.minorMask[m]?.[i])),
     supply: Object.fromEntries(ORIGINS.map((o, i) => [o, r.supply[i] ?? []])),
     advisories: r.advisories,
@@ -279,6 +288,20 @@ describe("verdict engine invariants", () => {
           }
           if (m.kind === "reliable-year-round") expect(item.alwaysGood).toBe(false);
         }
+      }),
+      RUNS,
+    ));
+
+  it("rating one more typical origin never brings back Limited evidence (P1)", () =>
+    fc.assert(
+      fc.property(itemArb, ctxArb, fc.constantFrom(...ORIGINS), (item, ctx, origin) => {
+        const w = windowIndex(ctx.date.month, ctx.date.day);
+        const series = item.origins[origin];
+        if (series === undefined || series.windows[w] !== null) return;
+        const windows = series.windows.map((r, i) => (i === w ? ("fair" as const) : r));
+        const more = { ...item, origins: { ...item.origins, [origin]: { ...series, windows } } };
+        if (evaluate(item, ctx, ENV).verdict !== "limited")
+          expect(evaluate(more, ctx, ENV).verdict).not.toBe("limited");
       }),
       RUNS,
     ));

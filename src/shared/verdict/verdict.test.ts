@@ -50,6 +50,46 @@ const cases: Case[] = [
     rule: 1,
   },
   {
+    name: "1: rated origins hold 75% of the typical volume, so an unrated small one is passed over (P1)",
+    item: item({
+      origins: { "us-ca": rated("prime"), mx: rated(null) },
+      typicalOrigins: allMonths(["us-ca", "mx"]),
+      typicalShares: allMonths([0.6, 0.2]),
+    }),
+    verdict: "peak",
+    rule: 4,
+  },
+  {
+    name: "1: rated origins hold under 75% of the typical volume (P1)",
+    item: item({
+      origins: { "us-ca": rated("prime"), mx: rated(null) },
+      typicalOrigins: allMonths(["us-ca", "mx"]),
+      typicalShares: allMonths([0.59, 0.21]),
+    }),
+    verdict: "limited",
+    rule: 1,
+  },
+  {
+    name: "1: an unrated top origin under 25% of typical volume leaves the next rated one deciding (P1)",
+    item: item({
+      origins: { mx: rated(null), "us-ca": rated("poor"), cl: rated("fair"), pe: rated("fair") },
+      typicalOrigins: allMonths(["mx", "us-ca", "cl", "pe"]),
+      typicalShares: allMonths([0.2, 0.2, 0.2, 0.2]),
+    }),
+    verdict: "good",
+    rule: 5,
+  },
+  {
+    name: "1: editorial typical origins carry no share, so every one must be rated (P1)",
+    item: item({
+      origins: { "us-ca": rated("prime"), mx: rated(null) },
+      typicalOrigins: allMonths(["us-ca", "mx"]),
+      typicalShares: allMonths([null, null]),
+    }),
+    verdict: "limited",
+    rule: 1,
+  },
+  {
     name: "1: top origin unrated in this window only",
     item: item({ origins: { "us-ca": rated("prime", { "nov-2": null }) } }),
     verdict: "limited",

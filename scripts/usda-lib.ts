@@ -218,6 +218,8 @@ export interface TypicalOrigin {
   origin: string;
   /** Has at least `majorShare` of the month's volume (P9: only such an origin can take over from the top one). */
   major: boolean;
+  /** Its share of the month's reported volume, unnameable regions included (P1). */
+  share: number;
 }
 
 /**
@@ -239,7 +241,7 @@ export function typicalOrigins(
   let sum = 0;
   for (const [origin, lb] of ranked) {
     if (sum >= threshold * total || lb <= 0) break;
-    out.push({ origin, major: lb >= majorShare * total });
+    out.push({ origin, major: lb >= majorShare * total, share: lb / total });
     sum += lb;
   }
   return out;

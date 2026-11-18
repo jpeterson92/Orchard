@@ -16,6 +16,7 @@ export const RULES: Rules = {
   version: 1,
   typicalOriginShare: 0.7,
   decidingOriginShare: 0.25,
+  ratedTypicalShare: 0.75,
   supplyIndex: { thin: 0.8, strong: 1.2 },
   varietyInStoreShare: 0.1,
   reliableYearRoundWindows: 20,
@@ -46,6 +47,7 @@ export function variety(id: string, series: RatedSeries, inStore: boolean[] = al
 
 /** One US origin rated prime all year, normal supply, no advisories. */
 export function item(overrides: Partial<ItemInputs> = {}): ItemInputs {
+  const typicalOrigins = overrides.typicalOrigins ?? allMonths(["us-ca"]);
   return {
     id: "test-item",
     evidenceBasis: "supply+assessment",
@@ -53,7 +55,9 @@ export function item(overrides: Partial<ItemInputs> = {}): ItemInputs {
     peakWorthSeeking: true,
     origins: { "us-ca": rated("prime") },
     varieties: [],
-    typicalOrigins: allMonths(["us-ca"]),
+    typicalOrigins,
+    // Unless a test sets them: the typical origins split 80% of the month's volume evenly.
+    typicalShares: typicalOrigins.map((os) => os.map(() => 0.8 / os.length)),
     minorOrigins: allMonths([]),
     supply: { "us-ca": allMonths(1) },
     advisories: [],

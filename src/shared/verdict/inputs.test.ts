@@ -47,9 +47,9 @@ const data = {
   advisories: [],
   snapshot: null,
   typicalOrigins: [
-    { item: "test-fruit", month: 6, rank: 2, origin: "mx", major: false },
-    { item: "test-fruit", month: 6, rank: 1, origin: "us-ca", major: true },
-    { item: "test-fruit", month: 5, rank: 1, origin: "us-ca", major: true },
+    { item: "test-fruit", month: 6, rank: 2, origin: "mx", major: false, share: 0.15 },
+    { item: "test-fruit", month: 6, rank: 1, origin: "us-ca", major: true, share: 0.6 },
+    { item: "test-fruit", month: 5, rank: 1, origin: "us-ca", major: true, share: 0.8 },
   ],
   supplyIndex: [],
   // In May the two names reach 0.1 only together; in June one alone; never in July; capped where they overlap.
@@ -78,6 +78,7 @@ describe("itemInputs", () => {
   it("ranks typical origins per month and marks the minor ones", () => {
     expect(inputs.typicalOrigins[5]).toEqual(["us-ca", "mx"]);
     expect(inputs.minorOrigins[5]).toEqual(["mx"]);
+    expect(inputs.typicalShares[5]).toEqual([0.6, 0.15]);
     expect([inputs.typicalOrigins[6], inputs.minorOrigins[6]]).toEqual([[], []]);
   });
   it("takes an item's editorial typical origins in place of USDA's, wrapping past December", () => {
@@ -100,6 +101,7 @@ describe("itemInputs", () => {
     for (const m of [10, 11, 0, 1]) {
       expect(own.typicalOrigins[m]).toEqual(["us-ca", "mx"]);
       expect(own.minorOrigins[m]).toEqual(["mx"]);
+      expect(own.typicalShares[m]).toEqual([null, null]);
     }
     expect(own.typicalOrigins[5]).toEqual(["cl"]);
     expect([own.typicalOrigins[2], own.typicalOrigins[4]]).toEqual([[], []]);

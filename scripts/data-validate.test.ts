@@ -79,6 +79,7 @@ function base(): RawInputs {
       version: 1,
       typicalOriginShare: 0.7,
       decidingOriginShare: 0.25,
+      ratedTypicalShare: 0.75,
       supplyIndex: { thin: 0.8, strong: 1.2 },
       varietyInStoreShare: 0.1,
       reliableYearRoundWindows: 20,
@@ -107,8 +108,8 @@ function base(): RawInputs {
       },
     ],
     typicalOrigins: csv("data/usda/typical-origins.csv", [
-      { item: "test-fruit", month: "5", rank: "1", origin: "us-ca", major: "true" },
-      { item: "test-fruit", month: "5", rank: "2", origin: "mx", major: "false" },
+      { item: "test-fruit", month: "5", rank: "1", origin: "us-ca", major: "true", share: "0.6" },
+      { item: "test-fruit", month: "5", rank: "2", origin: "mx", major: "false", share: "0.2" },
     ]),
     supplyIndex: csv("data/usda/supply-index.csv", [
       { item: "test-fruit", month: "5", origin: "us-ca", value: "1.31", reason: "" },
@@ -475,6 +476,17 @@ const broken: [string, (r: RawInputs) => void, string][] = [
     (r) => (((r.typicalOrigins as Csv).rows[1] as Any).origin = "us-ca"),
     "duplicate typical origin test-fruit/5/us-ca",
   ],
+  [
+    "typical share rising with rank",
+    (r) => (((r.typicalOrigins as Csv).rows[1] as Any).share = "0.7"),
+    "shares must not rise with rank",
+  ],
+  [
+    "typical shares over 1",
+    (r) => (((r.typicalOrigins as Csv).rows[0] as Any).share = "0.9"),
+    "shares sum over 1",
+  ],
+  ["typical share missing", (r) => (((r.typicalOrigins as Csv).rows[0] as Any).share = ""), "line 2"],
   [
     "gap in typical ranks",
     (r) => (((r.typicalOrigins as Csv).rows[1] as Any).rank = "3"),

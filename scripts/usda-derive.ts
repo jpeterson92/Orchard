@@ -191,7 +191,7 @@ for (const [item, candidates] of Object.entries(ITEMS)) {
     counts.push(typical.length);
     typical.forEach((t, i) => {
       named.add(t.origin);
-      typicalCsv.push(`${item},${month},${i + 1},${idOf(t.origin)},${t.major}`);
+      typicalCsv.push(`${item},${month},${i + 1},${idOf(t.origin)},${t.major},${Number(t.share.toFixed(3))}`);
     });
     const shares = typical.map(
       (t) => `${idOf(t.origin)} ${pct((pooled.get(t.origin) ?? 0) / total)}${t.major ? "" : " (minor)"}`,
@@ -285,7 +285,7 @@ const header = [
 mkdirSync("data/usda", { recursive: true });
 writeFileSync(
   "data/usda/typical-origins.csv",
-  [...header, "item,month,rank,origin,major", ...typicalCsv, ""].join("\n"),
+  [...header, "item,month,rank,origin,major,share", ...typicalCsv, ""].join("\n"),
 );
 writeFileSync(
   "data/usda/supply-index.csv",
