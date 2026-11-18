@@ -56,8 +56,6 @@ export interface AppData {
   stateNames: Record<string, string>;
   /** The build's date (YYYY-MM-DD): prerendered pages show verdicts for it until the phone recomputes. */
   builtOn: string;
-  /** The build's date and commit (`2026-11-18.32bba00`), sent with feedback. */
-  version: string;
   about: About;
 }
 
@@ -73,12 +71,7 @@ export interface About {
   snapshot: Snapshot | null;
 }
 
-export function appData(
-  data: Dataset,
-  build: { on: string; version: string },
-  art: ArtMap,
-  about: About,
-): AppData {
+export function appData(data: Dataset, builtOn: string, art: ArtMap, about: About): AppData {
   const groups = new Map(data.categories.map((c) => [c.id, c.group]));
   return {
     env: engineEnv(data),
@@ -113,8 +106,7 @@ export function appData(
       .filter((c) => data.items.some((i) => i.category === c.id))
       .map((c) => ({ id: c.id, name: c.name, group: c.group })),
     stateNames: Object.fromEntries(data.states.map((s) => [`us-${s.state.toLowerCase()}`, s.name])),
-    builtOn: build.on,
-    version: build.version,
+    builtOn,
     about,
   };
 }

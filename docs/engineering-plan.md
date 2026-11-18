@@ -11,7 +11,7 @@ content/ + data/  ──(npm run data:build: validate, derive)──>  src/gener
                                                                      │ bundled
 browser ── first visit ──> Cloudflare static assets (prerendered pages, app, data)
         <── service worker precaches app + all data ──  every covered item works offline
-        ── /api/* (later): feedback, requests, events ──> Worker (Hono) ──> D1
+        ── /api/* (later): measurement beacons ──> Worker (Hono)
 ```
 
 - **The verdict engine runs on the phone.** It is a pure TypeScript module fed by the bundled inputs: quality windows, typical origins, supply index and rules. The inputs are tiny (a few thousand ratings), so this costs microseconds. Running it on the phone gives label-based advice and planning dates for free, and the same code runs in tests and scripts. One implementation, used everywhere.
@@ -30,7 +30,6 @@ Mature, widely used tools only. At scaffold time, take the newest release whose 
 | Styling | Tailwind CSS 4 | Design-system tokens as CSS variables in `@theme`; native `<dialog>` and hand-written disclosure buttons for simple cases. Adopt Base UI (headless and accessible) at the first complex control (popover, select, tabs, sortable table); never hand-build those |
 | Offline | `workbox-build` 7.4.1 (`generateSW`, dev only) | `scripts/sw-build.ts` runs after the prerender so the precache holds every page; precache everything; updates activate on the next launch. Pages are served at clean URLs (`html_handling: drop-trailing-slash`) |
 | Worker | `@cloudflare/vite-plugin`, Wrangler, Hono (for `/api` routes) | Static assets with SPA fallback |
-| Write store | D1, plain SQL migrations in `migrations/` through Wrangler (`npm run db:migrate:local` for dev) | No ORM unless queries grow. Abuse limit: the Workers Rate Limiting binding, 10 posts a minute per visitor, keyed by a SHA-256 hash of the IP. Worker tests run the real migrations in `node:sqlite` |
 | Validation and types | zod 4.6.7, yaml 2.9.1 | One schema per content and data file; types come from `z.infer`. Content and data files are YAML, parsed by `yaml` in `data:build` only. No code generation |
 | Search | MiniSearch 7.2.0 | Prefix and fuzzy matching over item names, synonyms, misspellings and variety names, built on the phone at first query. The overlay is a native `<dialog>` of result links (no combobox) |
 | Page text | marked 18.1.3 (dev only) | `data:build` renders `content/methods.md` and `content/privacy.md` to HTML for the bundle. Front matter gives `status: draft` or `reviewed` (production refuses drafts); `{{name}}` fills a rule value from `rules.yaml` |
@@ -75,8 +74,7 @@ scripts/                     prerender.ts, data-build.ts, content-report.ts, rev
 src/
   shared/                    zod schemas, verdict engine, evidence curves, window math. Imports nothing from app/ or worker/
   app/                       React app: routes, components, styles, service worker registration
-  worker/                    Cloudflare Worker: /api/* (feedback, taste)
-migrations/                  D1 schema, plain SQL
+  worker/                    Cloudflare Worker: /api/* (health check; measurement beacons in M8)
   generated/                 data-build output (gitignored)
 tests/e2e/                   Playwright smoke tests
 docs/                        product spec, engineering plan, design, data findings
@@ -157,8 +155,8 @@ Each milestone takes 1–3 sessions and ends with something Jared can review. Th
 | M5 | **Date and label advice.** Planning date with the typical-outlook banner; "Share for this date"; label-based advice (origin or variety, plus PLU code if licensed); recompute at midnight and on `visibilitychange` | Unit tests for window math; e2e for a pinned date | — |
 | M6 | **Browse, search, Calendar, Methods.** Categories; MiniSearch with synonyms and misspellings; no-match flow; Calendar as a month list on phone and a heatmap with a table equivalent on wider screens; Methods and privacy pages; headless component library adopted here or in M5, whichever first needs a complex control | Every item reachable in ≤ 3 taps or one search; "scallion" and "corriander" find the right items | — |
 | M7 | **Variety guides:** apples, mandarins & oranges, pears: traits, finder, cards on phone, a sortable table on wider screens, variety pages | Jared reviews the 3 guides | Variety content |
-| M8 | **Feedback and measurement.** D1 tables; feedback, taste, request and event endpoints; rate limiting; `web-vitals` + `verdict-visible` beacon; privacy-safe logging | A test proves no IP reaches logs or D1; a feedback row records app version, date, item, and the label origin or variety when the shopper set one. `content:report` then flags any item × window whose Peak or Good verdict draws at least 30% "Disappointing" taste answers or "Looked poor" over at least 20 responses, and any Peak that fails the audit, so the editor reviews those windows; a flag never changes a verdict by itself | — |
-| M9 | **Launch readiness.** All launch content reviewed, illustrations, Turnstile, CSP and security headers, axe plus a quick VoiceOver/TalkBack pass, a performance check on a mid-range Android, offline check on a real iPhone, production domain | Jared decides launch once Gate 1 (product spec §12) is met | Domain, devices, the independent reviewer |
+| M8 | **Measurement.** `web-vitals` + `verdict-visible` beacon and the diagnostic events (product spec §2); privacy-safe logging; the event store is chosen when this is built | A test proves no IP reaches logs or storage; time to first verdict is measurable at the 75th percentile | — |
+| M9 | **Launch readiness.** All launch content reviewed, illustrations, CSP and security headers, axe plus a quick VoiceOver/TalkBack pass, a performance check on a mid-range Android, offline check on a real iPhone, production domain | Jared decides launch once Gate 1 (product spec §12) is met | Domain, devices, the independent reviewer |
 
 **Content track.** Claude drafts in batches of about 10 items (5 in M2), all marked `draft`. Research is mostly programmatic, so AI effort goes to judgment, not gathering:
   1. **Source registry** (`data/source-registry.yaml`, curated): built once by category, then extended as items need. Sources about eating quality come first, for the origins that actually supply supermarkets (the item's typical origins: Washington, California, Mexico, Chile and so on): commodity boards' variety and season guides, UC Davis postharvest fact sheets, trade quality references and food publications' tasting guides. Harvest charts fill in timing, preferably from the producing state or country rather than a local one. Before an item goes to review, every rated origin and variety should have at least one eating-quality claim; without one its windows stay at Medium confidence at best (P12). Pages the pipeline can't fetch may be read in a browser for research, but only fetched pages give excerpts. No search API unless the registry proves too thin.
@@ -196,7 +194,7 @@ Run the tests for what you touched while working. Run the full suite before push
 - **Deploy:** `npm run deploy` (build, then `wrangler deploy`) from a machine signed in with `wrangler login`. Move deploys into CI when it becomes convenient, using a scoped API token in a GitHub secret.
 - **Data refresh:** on demand, usually with the yearly content review. `npm run usda:derive` rewrites the typical-origins and supply-index CSVs from the last 3 years; Jared reviews the diff before it is committed and deployed. Items without usable USDA data use cited editorial origins and a `null` supply index. Seasonal evidence refreshes the same way: `evidence:fetch` and `evidence:check`, reviewed like content.
 - **Stale data:** each build records its supply snapshot's date range. When the snapshot is more than 15 months old (a missed yearly refresh), freshness lowers confidence and the item page says so; the app never pretends to be current.
-- **Privacy:** no accounts, cookies or location. The Worker never logs URLs, query strings, bodies or IPs, and observability and invocation logs are off in `wrangler.jsonc`. D1 stores the date, never a time, an IP or anything about where the shopper is. The rate limiter sees only a hash of the IP, in short-lived counters.
+- **Privacy:** no accounts, cookies or location. The Worker never logs URLs, query strings, bodies or IPs, and observability and invocation logs are off in `wrangler.jsonc`. Nothing the Worker stores holds a time of day, an IP or anything about where the shopper is.
 - **Rollback:** redeploy the previous Worker version (`wrangler rollback`). Data rolls back with it.
 
 ## 8. Deliberately not built

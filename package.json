@@ -25,7 +25,6 @@
     "usda:terminal-screen": "tsx scripts/usda-terminal-screen.ts",
     "check:changed": "tsx scripts/data-build.ts && tsc -b && biome check . && vitest run --passWithNoTests --changed",
     "data:build": "tsx scripts/data-build.ts",
-    "db:migrate:local": "wrangler d1 migrations apply orchard --local",
     "content:report": "tsx scripts/content-report.ts",
     "evidence:fetch": "tsx scripts/evidence-fetch.ts",
     "evidence:check": "tsx scripts/evidence-check.ts",

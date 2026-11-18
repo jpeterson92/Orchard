@@ -37,6 +37,7 @@ The product succeeds if a shopper can pick a good purchase within five seconds o
 - Store-specific stock or shelf prices.
 - Price-driven recommendations. Value is shown as a separate note (v1.1) and never decides a verdict.
 - Nutrition or health claims, and pesticide or organic rankings.
+- Feedback from shoppers in the app: in-store reports, taste questions and item requests. A later version may add them.
 - Device-specific experiences: a desktop planning workspace, a kitchen view and printable sheets wait until there is evidence people want them (section 6).
 - Users outside the US, and any e-commerce or delivery.
 
@@ -48,18 +49,12 @@ These measure shopping outcomes, not clicks. Reading a verdict in search results
 | --- | --- | --- |
 | Good purchase found within 5 s | Moderated phone tests in real stores, 12+ participants per round | ≥ 80% of participants |
 | Selection advice found for a named item ("How do you pick a ripe mango?") | Same tests | ≥ 90% within 2 taps or one search |
-| Guidance changed or improved a decision | Optional one-question prompt at the end of a session: "Did this change what you bought?" | Baseline first, then set |
-| Purchase met expectations | Optional next-visit prompt for items the shopper marked "Bought it": "How was it?" (Great · OK · Disappointing) | ≥ 80% Great or OK for Peak items |
 | Peak audit pass rate | The audit protocol below | Set after 2 audit cycles |
 | Time to first verdict on a mid-range phone over 4G (75th percentile) | Real-user monitoring | ≤ 2.5 s |
 
 ### Diagnostic metrics: watched, no targets
 
-Item and variety page opens, card expansions, search queries with no result, 14-day return visits, and feedback volume by outcome. These explain why a primary metric moved; they don't count as success or failure on their own.
-
-### In-store feedback keeps outcomes apart
-
-The item page's one-tap feedback records *which* thing happened, rather than a single yes/no: **Looked good · Looked poor · Not in stock · Too pricey**. Taste is asked separately on the next visit, and only for items the shopper marked "Bought it". Availability, appearance, price and eating quality are different findings, and audits analyze them separately.
+Item and variety page opens, card expansions, search queries with no result, and 14-day return visits. These explain why a primary metric moved; they don't count as success or failure on their own.
 
 ### What "Peak confirmed" means: the audit protocol
 
@@ -127,7 +122,7 @@ A category appears only when it holds at least one covered item.
 - **Short type notes** go on any item page where the type changes how to pick or ripen it. Examples: starchy vs waxy potatoes, and on-the-vine vs Roma vs cherry vs heirloom tomatoes.
 - **Further guides** are chosen by the names shoppers actually meet, measured by search queries and the variety names on retailer labels and in USDA data. Some items earn a deep guide; others need only a few sharp comparisons.
 
-**Item page order (phone):** verdict and why → varieties now (items rated by variety) → how to pick (with type notes) → store and ripen → "What does the label say?" (optional) → typical seasonal outlook → variety guide → value note (v1.1) → prep → feedback. The in-store needs come first.
+**Item page order (phone):** verdict and why → varieties now (items rated by variety) → how to pick (with type notes) → store and ripen → "What does the label say?" (optional) → typical seasonal outlook → variety guide → value note (v1.1) → prep. The in-store needs come first.
 
 ## 5. Core screens and behavior
 
@@ -179,7 +174,6 @@ An item that is both Peak and Last call appears once, under Best right now, carr
 - **Variety guide** (where one exists): a link to the item's guide.
 - **Value note** (v1.1): e.g. "Advertised more than usual nationally this week." It never changes the verdict.
 - **Prep and use:** 2–4 lines.
-- **Feedback:** "At your store today:" Looked good · Looked poor · Not in stock · Too pricey, all one tap and optional. A "Bought it" toggle triggers a taste question on the next visit.
 
 ### Variety guide (launch: apples, mandarins & oranges, pears)
 
@@ -210,7 +204,7 @@ An item that is both Peak and Last call appears once, under Best right now, carr
 - A global control, pinned in thumb reach. Suggestions start at the first letter.
 - Results show the verdict badge, so a lookup often needs no tap.
 - Matches item names, variety names ("Honeycrisp" → its variety page; "Ataulfo" → the mango page, at that variety), synonyms (scallion = green onion, cilantro = coriander leaf) and common misspellings. Spanish names come in v2.
-- No match: "We don't cover this yet", the closest items, and a "Request it" button.
+- No match: "We don't cover this yet", and the closest items.
 
 ### Date
 
@@ -255,7 +249,7 @@ The rules run in a fixed order and the first match wins, so no two rules can pro
 | Dimension | Question it answers | Where it shows | Changes the verdict? |
 | --- | --- | --- | --- |
 | **Eating quality** | Is this likely to taste particularly good now? | The verdict itself | It is the verdict |
-| **Availability** | Is this likely to be widely stocked? | "Typical supermarket supply" note; "Not in stock" feedback | Only by capping Peak at Good when supply is thin (rule 3) |
+| **Availability** | Is this likely to be widely stocked? | "Typical supermarket supply" note | Only by capping Peak at Good when supply is thin (rule 3) |
 | **Value** | Is this a relatively good time to buy it? | "Good value" or "Pricier than usual" marker (v1.1) | Never |
 
 So an expensive item can still be Peak, and a heavily advertised item can't become Peak just because stores are promoting it.
@@ -336,7 +330,6 @@ An item launches only once its evidence passes review. Editors write content onc
 | Supply profile | Item × month: typical origins (ranked); item × origin × month: supply index | Derived from USDA on demand, then reviewed | \~360 (30 × 12) at first release | Grows with items |
 | Value signal (v1.1) | Item × week, national | Computed | \~4,600 a year | Grows with items |
 | Window summary | The one-line Today summary, national | Drafted, then edited | 24 | 24 |
-| Feedback | Item, window, outcome (looked good / looked poor / not in stock / too pricey), optional taste answer | Collected | — | — |
 
 **Evidence screen before an item is admitted.** There are two acceptable evidence bases, and the item page states which one applies:
 
