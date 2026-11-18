@@ -100,6 +100,10 @@ const core = (r: CoreResult): CoreResult => ({
 
 const RUNS = { numRuns: 500 };
 
+/** Typical origins rated for the window: unrated ones are passed over (P1) and the rated ones decide (P9). */
+const ratedTypical = (item: ItemInputs, month: number, window: number): string[] =>
+  (item.typicalOrigins[month] ?? []).filter((o) => (item.origins[o]?.windows[window] ?? null) !== null);
+
 describe("verdict engine invariants", () => {
   it("Limited evidence exactly when rule 1 fires", () =>
     fc.assert(
@@ -144,7 +148,11 @@ describe("verdict engine invariants", () => {
       fc.property(itemArb, ctxArb, (item, ctx) => {
         const r = evaluate(item, ctx, ENV);
         const month = ctx.date.month - 1;
-        const decider = ctx.labelOrigin ?? item.typicalOrigins[month]?.[0];
+        const w = windowIndex(ctx.date.month, ctx.date.day);
+        // An item rated by variety takes its supply from the top typical origin, rated or not.
+        const decider =
+          ctx.labelOrigin ??
+          (item.varieties.length > 0 ? item.typicalOrigins[month]?.[0] : ratedTypical(item, month, w)[0]);
         const supply = (decider === undefined ? null : item.supply[decider]?.[month]) ?? null;
         if (supply !== null && supply < ENV.rules.supplyIndex.thin) expect(r.verdict).not.toBe("peak");
       }),
@@ -191,9 +199,7 @@ describe("verdict engine invariants", () => {
         const r = evaluate(item, { date: ctx.date, mode: ctx.mode }, ENV);
         if (r.verdict === "limited") return;
         const w = windowIndex(ctx.date.month, ctx.date.day);
-        const ratings = (item.typicalOrigins[ctx.date.month - 1] ?? []).map(
-          (o) => item.origins[o]?.windows[w],
-        );
+        const ratings = ratedTypical(item, ctx.date.month - 1, w).map((o) => item.origins[o]?.windows[w]);
         expect(r.labelNote).toBe(ratings.includes("poor") && ratings.some((x) => x !== "poor"));
         for (const o of Object.keys(item.origins))
           expect(evaluate(item, { date: ctx.date, mode: ctx.mode, labelOrigin: o }, ENV).labelNote).toBe(
@@ -210,7 +216,7 @@ describe("verdict engine invariants", () => {
         const r = evaluate(item, { date: ctx.date, mode: ctx.mode }, ENV);
         if (r.ruleFired !== 3) return;
         const w = windowIndex(ctx.date.month, ctx.date.day);
-        const [top, second] = item.typicalOrigins[ctx.date.month - 1] ?? [];
+        const [top, second] = ratedTypical(item, ctx.date.month - 1, w);
         expect(item.origins[top as string]?.windows[w]).toBe("poor");
         const minor = item.minorOrigins[ctx.date.month - 1]?.includes(second as string);
         if (second !== undefined && !minor && item.origins[second]?.windows[w] !== "poor")
