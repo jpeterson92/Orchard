@@ -230,7 +230,7 @@ v1 uses one information hierarchy on every device. Layouts adapt to the screen w
 | Today | One column of cards | The same sections; cards 2–3 across | Same as tablet, with a wider content column |
 | Item page | One column | One column, wider | One column, wider |
 | Variety guide | Cards + filter chips | Sortable comparison table | Sortable comparison table |
-| Calendar | One month at a time | Half-year heatmap | Full-year heatmap |
+| Calendar | One month at a time | Full-year heatmap | Full-year heatmap |
 
 **Candidates for later, each added only if testing or usage shows demand:** a two-pane tablet layout, a desktop planning workspace, a large-type kitchen view for storage and ripening, and a printable one-page sheet for a month.
 

@@ -62,6 +62,31 @@ test("Browse reaches an item in three taps from Today, and back returns to the c
   expect(axe.violations).toEqual([]);
 });
 
+test("Calendar: a month at a time on phone, kept on return; a heatmap table on wide screens", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 375, height: 812 });
+  await page.goto("/");
+  await page.getByRole("navigation", { name: "Main" }).getByRole("link", { name: "Calendar" }).click();
+  await expect(page.getByRole("heading", { level: 1, name: "Typical seasonal outlook" })).toBeVisible();
+  const month = page.getByRole("heading", { level: 2 });
+  const shown = await month.textContent();
+  await page.getByRole("button", { name: /^Next month/ }).click();
+  await expect(month).not.toHaveText(shown ?? "");
+  const next = await month.textContent();
+  await page.getByRole("link", { name: /^Strawberries/ }).click();
+  await page.getByRole("link", { name: "Calendar", exact: true }).first().click();
+  await expect(month).toHaveText(next ?? "");
+  expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
+
+  await page.setViewportSize({ width: 1280, height: 900 });
+  await expect(
+    page.getByRole("table", { name: "Typical verdict for each item by half-month" }),
+  ).toBeVisible();
+  await expect(page.getByRole("rowheader", { name: /^Strawberries/ })).toBeVisible();
+  expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
+});
+
 test("a link shared for a date pins it; Switch to today drops it", async ({ page }) => {
   const d = new Date();
   d.setDate(d.getDate() + 40);

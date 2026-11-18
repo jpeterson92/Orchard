@@ -1,11 +1,12 @@
 // Primary navigation (product spec §4, design system §6 "Navigation and icons"): a bottom tab bar on phone, the same
 // destinations in the top bar from 600 px. The selected one is a restrained orange with a short underline.
 import { NavLink } from "react-router";
-import { BrowseIcon, TodayIcon } from "./icons";
+import { BrowseIcon, CalendarIcon, TodayIcon } from "./icons";
 
 const DESTINATIONS = [
   { to: "/", label: "Today", Icon: TodayIcon, end: true },
   { to: "/browse", label: "Browse", Icon: BrowseIcon, end: false },
+  { to: "/calendar", label: "Calendar", Icon: CalendarIcon, end: true },
 ] as const;
 
 const focus = "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";

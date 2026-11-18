@@ -5,7 +5,7 @@ import type { Verdict } from "../shared/verdict";
 import { outlookSummary } from "./item-view";
 import { MONTHS } from "./today-view";
 
-const FILL: Record<Verdict, string> = {
+export const FILL: Record<Verdict, string> = {
   peak: "bg-peak-icon",
   good: "bg-good-icon/55",
   skip: "strip-hatch",

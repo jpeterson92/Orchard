@@ -42,7 +42,7 @@ export function VerdictIcon({ verdict }: { verdict: Verdict }) {
   );
 }
 
-/** Navigation destinations: Today (the day's sun), Browse (a grid of categories). */
+/** Navigation destinations: Today (the day's sun), Browse (a grid of categories), Calendar. */
 export function TodayIcon() {
   return (
     <svg aria-hidden="true" {...base} width={22} height={22} strokeWidth={1.7}>
@@ -59,6 +59,15 @@ export function BrowseIcon() {
       <rect x="13.5" y="4" width="6.5" height="6.5" rx="1.5" />
       <rect x="4" y="13.5" width="6.5" height="6.5" rx="1.5" />
       <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1.5" />
+    </svg>
+  );
+}
+
+export function CalendarIcon() {
+  return (
+    <svg aria-hidden="true" {...base} width={22} height={22} strokeWidth={1.7}>
+      <rect x="4" y="5" width="16" height="15" rx="2" />
+      <path d="M4 10h16M8.5 3v4M15.5 3v4" />
     </svg>
   );
 }
