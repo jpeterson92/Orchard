@@ -75,7 +75,7 @@ scripts/                     prerender.ts, data-build.ts, content-report.ts, rev
 src/
   shared/                    zod schemas, verdict engine, evidence curves, window math. Imports nothing from app/ or worker/
   app/                       React app: routes, components, styles, service worker registration
-  worker/                    Cloudflare Worker: /api/* (feedback)
+  worker/                    Cloudflare Worker: /api/* (feedback, taste)
 migrations/                  D1 schema, plain SQL
   generated/                 data-build output (gitignored)
 tests/e2e/                   Playwright smoke tests

@@ -1,7 +1,7 @@
 // Item page (product spec §4 "Item page order", §5 "Item page"). One readable column in the spec's order, the
 // in-store answer first: the verdict and why, then varieties, how to pick and store. What the verdict rests on is one
 // tap away under "About this verdict". On wide screens the artwork takes a column of its own.
-// Not yet here: the variety guide link and feedback (later slices).
+// Not yet here: the variety guide link (M7).
 import { useEffect, useState } from "react";
 import { Link, useLocation, useParams } from "react-router";
 import appJson from "../generated/app.json";
@@ -9,11 +9,21 @@ import type { AppData } from "../shared/app-data";
 import { Art } from "./Art";
 import type { BackTo } from "./Browse";
 import { type Mode, useAppDate } from "./date";
-import { givenToday, labelFields, OUTCOMES, type Outcome, sendFeedback } from "./feedback";
+import {
+  boughtToday,
+  givenToday,
+  labelFields,
+  OUTCOMES,
+  type Outcome,
+  type Shown,
+  sendFeedback,
+  setBought,
+} from "./feedback";
 import { StatusLabels, VerdictMark } from "./icons";
 import { type ItemView, itemView, type LabelOption, labelResult, type VarietyRow } from "./item-view";
 import { Masthead, PreviewNotice } from "./Masthead";
 import { MonthAxis, SeasonStrip, StripLegend } from "./SeasonStrip";
+import { TasteQuestion } from "./Taste";
 import { atDate, plainDate } from "./today-view";
 
 const data = appJson as unknown as AppData;
@@ -254,33 +264,45 @@ function LabelCheck({
 }
 
 /**
- * "At your store today:" one optional tap (product spec §5 "Item page"), with the label pick when there is one.
+ * "At your store today:" one optional tap (product spec §5 "Item page"), with the label pick when there is one, and
+ * the "Bought it" toggle whose taste question waits for a later visit (shown here and on Today when due).
  * Hidden for a planning date: it reports on today's store.
  */
 function Feedback({ view, label }: { view: ItemView; label: string }) {
   const date = useAppDate(data);
   const [given, setGiven] = useState<Outcome | null>(null);
+  const [bought, setBoughtState] = useState(false);
   // Read after hydration: the prerendered page always shows the buttons.
-  useEffect(() => setGiven(givenToday(view.id, date.today)), [view.id, date.today]);
+  useEffect(() => {
+    setGiven(givenToday(view.id, date.today));
+    setBoughtState(boughtToday(view.id, date.today));
+  }, [view.id, date.today]);
+  const shown: Shown = {
+    appVersion: data.version,
+    item: view.id,
+    window: view.window,
+    verdict: view.verdict,
+    ...labelFields(label),
+  };
+  // A label picked after "Bought it" belongs to the purchase too.
+  // biome-ignore lint/correctness/useExhaustiveDependencies: re-record only when the label pick changes.
+  useEffect(() => {
+    if (bought) setBought(shown, date.today, true);
+  }, [label]);
   if (date.planning) return null;
 
   const tap = (outcome: Outcome) => {
     setGiven(outcome);
-    void sendFeedback(
-      {
-        appVersion: data.version,
-        item: view.id,
-        window: view.window,
-        verdict: view.verdict,
-        outcome,
-        ...labelFields(label),
-      },
-      date.today,
-    );
+    void sendFeedback({ ...shown, outcome }, date.today);
+  };
+  const toggleBought = () => {
+    setBought(shown, date.today, !bought);
+    setBoughtState(!bought);
   };
 
   return (
     <Section title="At your store today">
+      <TasteQuestion item={view.id} className="mb-4" />
       {/* Announced when it changes, so a screen-reader user hears the thanks. */}
       <div aria-live="polite">
         {given ? (
@@ -308,6 +330,21 @@ function Feedback({ view, label }: { view: ItemView; label: string }) {
             </div>
           </>
         )}
+      </div>
+      <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1">
+        <button
+          type="button"
+          aria-pressed={bought}
+          onClick={toggleBought}
+          className={`min-h-11 rounded-full border px-4 font-medium focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent ${
+            bought
+              ? "border-accent bg-accent text-white"
+              : "border-olive bg-surface text-ink hover:border-accent"
+          }`}
+        >
+          {bought && <span aria-hidden>✓ </span>}Bought it
+        </button>
+        <p className="text-sm text-ink-secondary">We'll ask how it was on your next visit.</p>
       </div>
     </Section>
   );

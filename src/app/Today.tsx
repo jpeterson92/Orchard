@@ -9,6 +9,7 @@ import { useAppDate } from "./date";
 import { StatusLabels, VerdictMark } from "./icons";
 import { Masthead, PreviewNotice } from "./Masthead";
 import { readinessText, useReadiness } from "./offline";
+import { TasteQuestion } from "./Taste";
 import { type Card, plainDate, todayView } from "./today-view";
 
 const data = appJson as unknown as AppData;
@@ -33,6 +34,7 @@ export function Today() {
       <main>
         <h1 className="sr-only">Today</h1>
         <OfflineStatus iso={date.today} />
+        <TasteQuestion className="mt-4" />
 
         {view.best.length > 0 && (
           <Section title={date.planning ? "Typically best" : "Best right now"}>

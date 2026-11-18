@@ -27,7 +27,7 @@ function bindings(allow = true) {
       },
     },
   };
-  const rows = () => sqlite.prepare("SELECT * FROM feedback").all();
+  const rows = (table = "feedback") => sqlite.prepare(`SELECT * FROM ${table}`).all();
   return { env, rows, keys };
 }
 
@@ -40,9 +40,9 @@ const valid = {
   labelVariety: "honeycrisp",
 };
 
-const post = (env: Bindings, body: unknown, headers: Record<string, string> = {}) =>
+const post = (env: Bindings, body: unknown, headers: Record<string, string> = {}, path = "/api/feedback") =>
   app.request(
-    "/api/feedback",
+    path,
     {
       method: "POST",
       headers: {
@@ -57,18 +57,18 @@ const post = (env: Bindings, body: unknown, headers: Record<string, string> = {}
     env,
   );
 
-describe("POST /api/feedback", () => {
-  let logged: unknown[][];
-  beforeEach(() => {
-    logged = [];
-    for (const level of ["log", "info", "warn", "error", "debug"] as const) {
-      vi.spyOn(console, level).mockImplementation((...args) => {
-        logged.push(args);
-      });
-    }
-  });
-  afterEach(() => vi.restoreAllMocks());
+let logged: unknown[][];
+beforeEach(() => {
+  logged = [];
+  for (const level of ["log", "info", "warn", "error", "debug"] as const) {
+    vi.spyOn(console, level).mockImplementation((...args) => {
+      logged.push(args);
+    });
+  }
+});
+afterEach(() => vi.restoreAllMocks());
 
+describe("POST /api/feedback", () => {
   it("stores one row with the date only, and no IP anywhere", async () => {
     const { env, rows, keys } = bindings();
     const res = await post(env, valid);
@@ -138,5 +138,66 @@ describe("POST /api/feedback", () => {
     expect(res.status).toBe(500);
     expect(JSON.stringify(await res.json())).not.toContain(IP);
     expect(logged).toEqual([]);
+  });
+});
+
+describe("POST /api/taste", () => {
+  const taste = {
+    appVersion: "2026-11-17.abc1234",
+    item: "apples",
+    window: 20,
+    verdict: "peak",
+    taste: "disappointing",
+    labelOrigin: "wa",
+  };
+  const postTaste = (env: Bindings, body: unknown) => post(env, body, {}, "/api/taste");
+
+  it("stores one taste row with the date only, and no IP anywhere", async () => {
+    const { env, rows, keys } = bindings();
+    const res = await postTaste(env, taste);
+    expect(res.status).toBe(204);
+    const stored = rows("taste");
+    expect(stored).toHaveLength(1);
+    expect(stored[0]).toMatchObject({
+      app_version: taste.appVersion,
+      item: "apples",
+      half_month: 20,
+      verdict: "peak",
+      taste: "disappointing",
+      label_origin: "wa",
+      label_variety: null,
+    });
+    expect(stored[0]?.received_on).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+    expect(rows("feedback")).toEqual([]);
+    const everything = JSON.stringify({ stored, logged, keys });
+    expect(everything).not.toContain(IP);
+    expect(everything).not.toContain(IPV6);
+    expect(keys[0]).toMatch(/^[0-9a-f]{64}$/);
+    expect(logged).toEqual([]);
+  });
+
+  it.each([
+    ["an unknown answer", { ...taste, taste: "meh" }],
+    ["an in-store outcome", { ...taste, taste: undefined, outcome: "looked-good" }],
+    ["an extra field", { ...taste, boughtOn: "2026-11-17" }],
+    ["a window past 23", { ...taste, window: 24 }],
+  ])("refuses %s and stores nothing", async (_, body) => {
+    const { env, rows } = bindings();
+    const res = await postTaste(env, body);
+    expect(res.status).toBe(400);
+    expect(rows("taste")).toEqual([]);
+    expect(logged).toEqual([]);
+  });
+
+  it("shares the rate limit with feedback", async () => {
+    const { env, rows } = bindings(false);
+    expect((await postTaste(env, taste)).status).toBe(429);
+    expect(rows("taste")).toEqual([]);
+  });
+
+  it("refuses a body over 2 KB", async () => {
+    const { env, rows } = bindings();
+    expect((await postTaste(env, { ...taste, appVersion: "x".repeat(3000) })).status).toBe(413);
+    expect(rows("taste")).toEqual([]);
   });
 });
