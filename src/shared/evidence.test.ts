@@ -523,7 +523,91 @@ describe("availability curves (P14)", () => {
     expect(at(p, "jul-1")).toMatchObject({ rating: "prime" });
   });
 
+  describe("a variety sold from several origins", () => {
+    const V1: Target = { variety: "v1" };
+    const ca = avail("nov-1..jan-2 prime", { origin: "us-ca", variety: "v1" });
+    const cl = claim("b", "aug-1..nov-2 prime", { directness: "availability", origin: "cl", variety: "v1" });
+    const curve = (p: Proposal, source: string) => p.curves.find((c) => c.source === source)?.values ?? [];
+
+    it.each([
+      // California's season: Chile's off-season reading is dropped, so only California speaks.
+      ["dec-2", "prime", ["a"]],
+      // Chile's season: California's off-season reading is dropped; the import reads fair.
+      ["sep-1", "fair", ["b"]],
+      // Both in season: both count.
+      ["nov-1", "prime", ["a", "b"]],
+      // Chile's shoulder (fair, so poor for an import) is its own season too: California's reading is dropped.
+      ["jul-2", "poor", ["b"]],
+      // Neither origin's season: both off-season readings stand.
+      ["may-1", "poor", ["a", "b"]],
+    ])("at %s it reads %s from %j", (window, rating, from) => {
+      expect(at(propose([ca, cl], sources, V1, SHIPS), window)).toMatchObject({ rating, sources: from });
+    });
+
+    it("the source curves show the dropped windows as empty", () => {
+      const p = propose([ca, cl], sources, V1, SHIPS);
+      expect(valuesAt(curve(p, "b"), ["dec-2", "may-1"])).toEqual([null, 0]);
+      expect(valuesAt(curve(p, "a"), ["sep-1", "may-1"])).toEqual([null, 0]);
+    });
+
+    it("another origin's eating-quality claim also covers its windows", () => {
+      const ma = claim("m", "mar-1 fair", { origin: "ma", variety: "v1" });
+      const p = propose([ca, ma], sources, V1, SHIPS);
+      expect(at(p, "mar-1")).toMatchObject({ rating: "fair", sources: ["m"] });
+      expect(at(p, "apr-1")).toMatchObject({ rating: "poor", sources: ["a"] });
+    });
+
+    it("charts from the same origin still read each other's off-season", () => {
+      const late = claim("b", "mar-1..apr-2 prime", {
+        directness: "availability",
+        origin: "us-ca",
+        variety: "v1",
+      });
+      expect(at(propose([ca, late], sources, V1, SHIPS), "dec-1")).toMatchObject({ rating: "fair" });
+    });
+
+    it("an origin's curve is unchanged: a national chart's season doesn't drop a state chart's off-season", () => {
+      const national = claim("b", "dec-1..feb-2 prime", { directness: "availability", origin: "us" });
+      const p = propose([avail("jun-1..aug-2 prime"), national], sources, US_WA, SHIPS);
+      expect(valuesAt(curve(p, "a"), ["jan-1"])).toEqual([0]);
+    });
+  });
+
   const availArb = claimArb.map((c) => ({ ...c, directness: "availability" as const }));
+
+  it("a variety's claims from one origin read exactly as their own curves (property)", () => {
+    fc.assert(
+      fc.property(fc.array(availArb, { maxLength: 6 }), fc.boolean(), (cs, storesWell) => {
+        const claims = cs.map((c) => ({ ...c, origin: "us-wa", variety: "v1" }));
+        const traits = { shipsWell: true, storesWell };
+        const p = propose(claims, sources, { variety: "v1" }, traits);
+        expect(p.curves.map((c) => c.values)).toEqual(claims.map((c) => claimValues(c, traits)));
+      }),
+    );
+  });
+
+  it("across origins, a variety drops only off-season readings, and only where another origin is in season (property)", () => {
+    fc.assert(
+      fc.property(claimsArb, fc.boolean(), fc.boolean(), (cs, shipsWell, storesWell) => {
+        const claims = cs.map((c) => ({ ...c, variety: "v1" }));
+        const traits = { shipsWell, storesWell };
+        const p = propose(claims, sources, { variety: "v1" }, traits);
+        const seasons = claims.map((c) => claimValues(c, traits, false));
+        p.curves.forEach((curve, j) => {
+          const full = claimValues(claims[j] as Claim, traits);
+          for (const [i, x] of curve.values.entries()) {
+            if (x !== null) expect(x).toBe(full[i]);
+            else if (full[i] !== null) {
+              expect(seasons[j]?.[i]).toBeNull();
+              expect(claims.some((o, k) => o.origin !== claims[j]?.origin && seasons[k]?.[i] !== null)).toBe(
+                true,
+              );
+            }
+          }
+        });
+      }),
+    );
+  });
 
   it("a domestic availability curve covers every window, keeps listed windows, and reads fair or poor elsewhere (fair throughout when it stores well) (property)", () => {
     fc.assert(

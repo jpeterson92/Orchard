@@ -107,6 +107,7 @@ export function ratingForValue(value: number): Rating {
  * well. A US-grown claim naming no state keeps only its listed windows and shoulders: it can't say when each
  * state is out of season. An import's availability curve sits one level lower, so its own season reads fair; for an item that
  * doesn't ship well every window reads poor. Eating-quality claims, imports included, are read as written.
+ * With `offSeason` false, an availability claim keeps only its own season: listed windows and shoulders.
  *
  * Otherwise windows the claim doesn't rate have no value. A `season` claim gets a soft shoulder one window
  * beyond each end of each rated range, at half the edge value; shoulders never override a window the claim
@@ -115,11 +116,13 @@ export function ratingForValue(value: number): Rating {
 export function claimValues(
   claim: Pick<Claim, "windows" | "specificity" | "directness" | "origin">,
   item: ItemTraits,
+  offSeason = true,
 ): (number | null)[] {
   const values: (number | null)[] = Array(WINDOW_COUNT).fill(null);
   const ranges = claim.windows.map((w) => ({ range: windowRange(w.from, w.to), value: P12.value[w.rating] }));
   for (const { range, value } of ranges) for (const i of range) values[i] = value;
-  if (claim.directness === "availability") return availabilityValues(values, ranges, claim.origin, item);
+  if (claim.directness === "availability")
+    return availabilityValues(values, ranges, claim.origin, item, offSeason);
   if (claim.specificity !== "season") return values;
   const shoulders: (number | null)[] = Array(WINDOW_COUNT).fill(null);
   for (const { range, value } of ranges) {
@@ -138,12 +141,12 @@ function availabilityValues(
   ranges: { range: number[]; value: number }[],
   origin: string,
   item: ItemTraits,
+  readOffSeason: boolean,
 ): (number | null)[] {
   const imported = isImport(origin);
-  if (imported && !item.shipsWell) return Array(WINDOW_COUNT).fill(P12.value.poor);
   // A claim naming no state can't say when every state's season is: it keeps only its listed season.
   const national = origin === "us";
-  const offSeason = national ? null : item.storesWell ? P12.value.fair : P12.value.poor;
+  const offSeason = national || !readOffSeason ? null : item.storesWell ? P12.value.fair : P12.value.poor;
   const shoulders: (number | null)[] = Array(WINDOW_COUNT).fill(null);
   for (const { range, value } of ranges) {
     if (range.length >= WINDOW_COUNT) continue;
@@ -158,6 +161,7 @@ function availabilityValues(
   const step = P12.value.prime - P12.value.fair;
   return listed.map((v, i) => {
     if (v === null && shoulders[i] === null && offSeason === null) return null;
+    if (imported && !item.shipsWell) return P12.value.poor;
     const value = v ?? Math.max(offSeason ?? P12.value.poor, shoulders[i] ?? P12.value.poor);
     return imported ? Math.max(P12.value.poor, value - step) : value;
   });
@@ -193,28 +197,48 @@ export function claimsFor<C extends Claim>(
   return [...own, ...plain.filter((c) => c.origin === "us" && !specific.has(root(c.source)))];
 }
 
+/**
+ * Each claim's values for a target. A variety's claims span origins, so one origin's chart doesn't speak for
+ * another's season (P14): an availability claim's off-season reading is dropped in any window that a claim for
+ * the variety from another origin covers with its own season (listed windows and shoulders).
+ */
+function targetValues(claims: readonly Claim[], target: Target, item: ItemTraits): (number | null)[][] {
+  const values = claims.map((c) => claimValues(c, item));
+  if (!("variety" in target)) return values;
+  const seasons = claims.map((c) => claimValues(c, item, false));
+  return values.map((v, j) =>
+    v.map((x, i) =>
+      x !== null &&
+      seasons[j]?.[i] === null &&
+      claims.some((o, k) => o.origin !== claims[j]?.origin && seasons[k]?.[i] !== null)
+        ? null
+        : x,
+    ),
+  );
+}
+
 export function propose(
   claims: readonly Claim[],
   sources: ReadonlyMap<string, EvidenceSource>,
   target: Target,
   item: ItemTraits,
 ): Proposal {
-  const curves: (ClaimCurve & { root: string; authoritative: boolean; taste: boolean })[] = claimsFor(
-    claims,
-    target,
-    (s) => rootOf(s, sources),
-  ).map((c) => {
-    const source = sources.get(c.source);
-    if (source === undefined) throw new Error(`unknown source ${c.source}`);
-    return {
-      source: c.source,
-      weight: claimWeight(source.tier, c.directness),
-      values: claimValues(c, item),
-      root: rootOf(c.source, sources),
-      authoritative: source.tier === "authoritative",
-      taste: c.directness === "eating-quality",
-    };
-  });
+  const own = claimsFor(claims, target, (s) => rootOf(s, sources));
+  const values = targetValues(own, target, item);
+  const curves: (ClaimCurve & { root: string; authoritative: boolean; taste: boolean })[] = own.map(
+    (c, j) => {
+      const source = sources.get(c.source);
+      if (source === undefined) throw new Error(`unknown source ${c.source}`);
+      return {
+        source: c.source,
+        weight: claimWeight(source.tier, c.directness),
+        values: values[j] as (number | null)[],
+        root: rootOf(c.source, sources),
+        authoritative: source.tier === "authoritative",
+        taste: c.directness === "eating-quality",
+      };
+    },
+  );
 
   const windows = Array.from({ length: WINDOW_COUNT }, (_, i): WindowProposal | null => {
     // Per independent source, keep its highest-weight curve here; equal-weight curves average.
