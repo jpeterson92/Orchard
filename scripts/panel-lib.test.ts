@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { checkRun, overlaps, type Scope } from "./panel-lib";
+import { windowFromLabel } from "../src/shared/time";
+import { checkRun, type LoadedRun, overlaps, panelCurves, promptVersion, type Scope } from "./panel-lib";
 
 const scope: Scope = [
   { item: "peaches", name: "Peaches", category: "stone-fruit" },
@@ -189,5 +190,80 @@ describe("checkRun", () => {
     const w = checkRun([file([item])], scope, states).warnings;
     expect(w).toContain("stone-fruit.yaml: peaches: alwaysGood, but some window isn't fair");
     expect(w).toContain("stone-fruit.yaml: peaches: alwaysGood and peakWorthSeeking both true");
+  });
+});
+
+describe("promptVersion", () => {
+  it("reads the version line", () => {
+    expect(promptVersion("# Prompt\n\nPrompt version: 3\n\nText")).toBe(3);
+    expect(promptVersion("# Prompt\n")).toBeNull();
+  });
+});
+
+describe("panelCurves (P15)", () => {
+  const run = (dir: string, provider: string, date: string, rating: string, version = 2): LoadedRun => ({
+    dir,
+    meta: { run: dir, model: dir, provider, date, promptVersion: version, webAccess: false },
+    files: [
+      file([{ ...peaches, origins: [{ origin: "us-ca", windows: [["jun-1", "jun-1", rating, "high"]] }] }]),
+    ],
+  });
+  const jun = (r: ReturnType<typeof panelCurves>) => r.curves[0]?.values[windowFromLabel("jun-1")];
+
+  it("counts each provider's latest run on the current prompt version, and combines providers", () => {
+    const r = panelCurves(
+      [
+        run("a-old", "A", "2026-01-01", "poor"),
+        run("a-new", "A", "2026-06-01", "prime"),
+        run("a-v3", "A", "2026-09-01", "poor", 3),
+        run("b", "B", "2026-02-01", "fair"),
+      ],
+      2,
+      scope,
+      states,
+    );
+    expect(r.errors).toEqual([]);
+    expect(r.counted).toEqual(["a-new", "b"]);
+    expect(r.curves.map((c) => [c.item, c.origin])).toEqual([["peaches", "us-ca"]]);
+    expect(jun(r)).toBe(0.75);
+  });
+  it("refuses a run that fails its checks or names the wrong folder", () => {
+    const bad = { ...run("x", "A", "2026-01-01", "prime"), meta: { run: "y" } };
+    const wrong = { ...run("z", "B", "2026-01-01", "prime"), dir: "w" };
+    const r = panelCurves([bad, wrong], 2, scope, states);
+    expect(r.errors.some((e) => e.startsWith("panel x/run.yaml"))).toBe(true);
+    expect(r.errors.some((e) => e.includes("doesn't match the folder"))).toBe(true);
+  });
+  it("keeps origins and varieties as separate targets", () => {
+    const apples = {
+      item: "apples",
+      traits,
+      origins: [{ origin: "us-wa", windows: [["jan-1", "dec-2", "fair", "high"]] }],
+      varieties: [{ variety: "gala", windows: [["sep-1", "oct-2", "prime", "high"]] }],
+      note: "Apples.",
+    };
+    const r = panelCurves(
+      [
+        {
+          dir: "a",
+          meta: {
+            run: "a",
+            model: "m",
+            provider: "A",
+            date: "2026-01-01",
+            promptVersion: 2,
+            webAccess: false,
+          },
+          files: [file([apples], "apples-pears.yaml", "apples-pears")],
+        },
+      ],
+      2,
+      scope,
+      states,
+    );
+    expect(r.curves.map((c) => [c.origin ?? null, c.variety ?? null])).toEqual([
+      [null, "gala"],
+      ["us-wa", null],
+    ]);
   });
 });

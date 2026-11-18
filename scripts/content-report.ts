@@ -5,8 +5,8 @@
 // confidence and each source's curve. It changes nothing.
 import { readFileSync } from "node:fs";
 import type { Dataset } from "../src/shared/data/schema";
-import { propose, type Target, traitsFor } from "../src/shared/evidence";
-import { WINDOW_COUNT } from "../src/shared/time";
+import { P15, panelFor, propose, ratingForValue, type Target, traitsFor } from "../src/shared/evidence";
+import { WINDOW_COUNT, windowLabel } from "../src/shared/time";
 import { evaluate, looksAlwaysGood, typicalOutlook } from "../src/shared/verdict";
 import { engineEnv, itemInputs } from "../src/shared/verdict/inputs";
 import {
@@ -49,7 +49,7 @@ for (const item of data.items) {
     const key = JSON.stringify(target);
     let p = cache.get(key);
     if (p === undefined) {
-      p = propose(claims, sources, target, traitsFor(item, target));
+      p = propose(claims, sources, target, traitsFor(item, target), panelFor(data.panel, item.id, target));
       cache.set(key, p);
     }
     return p;
@@ -115,6 +115,18 @@ for (const item of data.items) {
     detail.push(row("  confidence", confidenceStrip(proposal.windows)));
     for (const c of proposal.curves)
       detail.push(row(`    ×${c.weight.toFixed(1)} ${c.source}`, ratingStrip(c.values)));
+    // P15: the panel beside the cited evidence; where it disagrees, research goes there first.
+    const panel = panelFor(data.panel, item.id, target);
+    if (panel !== null) {
+      detail.push(row(`    ×${P15.weight.toFixed(1)} model panel`, ratingStrip(panel)));
+      const cited = propose(claims, sources, target, traitsFor(item, target)).windows;
+      const differs = panel.flatMap((v, i) => {
+        const c = cited[i];
+        return v !== null && c != null && ratingForValue(v) !== c.rating ? [windowLabel(i)] : [];
+      });
+      if (differs.length > 0)
+        note(`${name}: the model panel disagrees with the cited evidence at ${differs.join(", ")}`);
+    }
   }
 }
 

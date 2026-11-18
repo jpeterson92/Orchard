@@ -40,7 +40,10 @@ prep: Rinse under cool water just before eating, then hull. Washing ahead speeds
 origins:
   - origin: us-ca
     windows:
-      - { from: mar-1, to: nov-1, rating: prime }
+      - from: mar-1
+        to: nov-1
+        rating: prime
+        reason: Both cited sources rate California berries prime into early November; the model panel reads October on as fair.
       - from: nov-2
         to: feb-2
         rating: fair

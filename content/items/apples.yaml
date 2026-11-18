@@ -45,7 +45,10 @@ varieties:
       sources: [eatlikenoone-honeycrisp-fall, producebusiness-apples-winter]
       note: Stays crisp in storage, but flavor fades and late-season fruit is uneven.
     windows:
-      - { from: jan-1, to: feb-2, rating: poor }
+      - from: jan-1
+        to: feb-2
+        rating: poor
+        reason: Cited sources read late-winter storage Honeycrisp as poor; only the model panel reads fair.
       - from: mar-1
         to: may-2
         rating: fair
@@ -63,7 +66,10 @@ varieties:
         to: nov-2
         rating: fair
         reason: Local fall supply ends by Thanksgiving; Washington storage fruit is crisp but less flavorful.
-      - { from: dec-1, to: dec-2, rating: poor }
+      - from: dec-1
+        to: dec-2
+        rating: poor
+        reason: Three cited sources read December Honeycrisp from storage as poor; the model panel reads early December prime.
     quotedAs: [honeycrisp]
   - id: gala
     name: Gala
@@ -76,7 +82,10 @@ varieties:
         rating: poor
         reason: Sources split on Gala from storage (one says it keeps well, one that it turns soft); a marginal Gala rates down.
       - { from: apr-2, to: jul-1, rating: fair }
-      - { from: aug-2, to: aug-2, rating: fair }
+      - from: aug-2
+        to: aug-2
+        rating: fair
+        reason: Both cited sources put the start of new-crop Gala at the edge here; only the model panel reads prime.
       - { from: sep-1, to: sep-1, rating: prime }
       - { from: sep-2, to: sep-2, rating: fair }
       - from: oct-1
@@ -122,6 +131,9 @@ varieties:
     label: Cosmic Crisp
     windows:
       - { from: jun-2, to: sep-1, rating: fair }
-      - { from: nov-1, to: dec-2, rating: prime }
+      - from: nov-1
+        to: dec-2
+        rating: prime
+        reason: Both cited sources rate new-crop Cosmic Crisp prime through December; only the model panel reads fair.
     quotedAs: [cosmic-crisp]
 status: draft

@@ -51,6 +51,7 @@ const data = {
     { item: "test-fruit", month: 5, rank: 1, origin: "us-ca", major: true, share: 0.8 },
   ],
   supplyIndex: [],
+  panel: [],
   // In May the two names reach 0.1 only together; in June one alone; never in July; capped where they overlap.
   varietyCalendar: [
     { item: "test-fruit", variety: "rated-usda", month: 5, share: 0.06, origins: [] },

@@ -1,7 +1,7 @@
 // Seasonal evidence combined as quality curves (engineering plan §4.3, P12). Pure: no I/O.
 // Each claim becomes a curve over the 24 half-month windows; the curves covering a window combine into a
 // proposed rating with a confidence. The editorial windows in item files are the call; this is the evidence.
-import type { EvidenceClaim, Source } from "./data/schema";
+import type { EvidenceClaim, PanelCurve, Source } from "./data/schema";
 import { WINDOW_COUNT, windowRange } from "./time";
 import type { Confidence, Rating } from "./verdict";
 
@@ -18,6 +18,14 @@ export const P12 = {
   /** P14: windows either side of an availability claim's listed range that read fair. */
   availabilityShoulder: 1,
 } as const;
+
+/**
+ * P15: the model panel. All counted runs share one root, so it is one source of weight 1 however many models
+ * answer. It abstains where runs differ by more than one level (prime against poor).
+ */
+export const P15 = { weight: 1, maxGap: 0.5 } as const;
+/** The panel's name among a window's independent sources. */
+export const PANEL = "panel";
 
 /** Weights are sums of products like 0.6 × 2; compare with a little tolerance. */
 const EPS = 1e-9;
@@ -224,11 +232,50 @@ function targetValues(claims: readonly Claim[], target: Target, item: ItemTraits
   );
 }
 
+/** One run's range for a target: from, to, rating and the run's confidence in it. */
+export type PanelRange = readonly [string, string, Rating, Confidence];
+
+/**
+ * The panel's curve for one target (P15): per window, the mean of the counted runs that rate it, leaving out
+ * low-confidence ranges. Null where no run rates the window, or where runs differ by more than one level.
+ */
+export function panelValues(runs: readonly (readonly PanelRange[])[]): (number | null)[] {
+  const byWindow: number[][] = Array.from({ length: WINDOW_COUNT }, () => []);
+  for (const ranges of runs)
+    for (const [from, to, rating, confidence] of ranges)
+      if (confidence !== "low") for (const i of windowRange(from, to)) byWindow[i]?.push(P12.value[rating]);
+  return byWindow.map((vs) =>
+    vs.length === 0 || Math.max(...vs) - Math.min(...vs) > P15.maxGap + EPS
+      ? null
+      : vs.reduce((a, b) => a + b, 0) / vs.length,
+  );
+}
+
+export function panelFor(
+  curves: readonly PanelCurve[],
+  item: string,
+  target: Target,
+): (number | null)[] | null {
+  const found = curves.find(
+    (c) =>
+      c.item === item && ("variety" in target ? c.variety === target.variety : c.origin === target.origin),
+  );
+  return found?.values ?? null;
+}
+
+/**
+ * Proposes a rating and confidence per window from the target's claims and, where given, the model panel's
+ * curve (P15). The panel never rates a window alone: with no cited curve there is no proposal. Its value always
+ * joins the weighted mean, but it counts toward the independent sources only where its rating matches a cited
+ * source's there, a window resting on it and one cited source is Medium at most, and it never supplies the
+ * authoritative or eating-quality conditions for High.
+ */
 export function propose(
   claims: readonly Claim[],
   sources: ReadonlyMap<string, EvidenceSource>,
   target: Target,
   item: ItemTraits,
+  panel: readonly (number | null)[] | null = null,
 ): Proposal {
   const own = claimsFor(claims, target, (s) => rootOf(s, sources));
   const values = targetValues(own, target, item);
@@ -266,22 +313,26 @@ export function propose(
       }
     }
     if (kept.size === 0) return null;
-    const counted = [...kept.values()].map((k) => ({
+    const cited = [...kept.values()].map((k) => ({
       weight: k.weight,
       value: k.values.reduce((a, b) => a + b, 0) / k.values.length,
     }));
+    const p = panel?.[i] ?? null;
+    const counted = p === null ? cited : [...cited, { weight: P15.weight, value: p }];
+    const agrees = p !== null && cited.some((c) => ratingForValue(c.value) === ratingForValue(p));
     const weight = counted.reduce((a, c) => a + c.weight, 0);
     const value = counted.reduce((a, c) => a + c.weight * c.value, 0) / weight;
     const spread = Math.sqrt(counted.reduce((a, c) => a + c.weight * (c.value - value) ** 2, 0) / weight);
     const authoritative = [...kept.values()].some((k) => k.authoritative);
     const taste = [...kept.values()].some((k) => k.taste);
+    const confidence = combinedConfidence(kept.size + (agrees ? 1 : 0), weight, spread, authoritative, taste);
     return {
       value,
       rating: ratingForValue(value),
-      confidence: combinedConfidence(kept.size, weight, spread, authoritative, taste),
+      confidence: kept.size < P12.combined.minSources && confidence === "high" ? "medium" : confidence,
       weight,
       spread,
-      sources: [...kept.keys()].sort(),
+      sources: [...[...kept.keys()].sort(), ...(agrees ? [PANEL] : [])],
     };
   });
 

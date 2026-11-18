@@ -10,7 +10,11 @@ import {
   combinedConfidence,
   type EvidenceSource,
   otherOrigin,
+  PANEL,
+  type PanelRange,
   type Proposal,
+  panelFor,
+  panelValues,
   propose,
   ratingForValue,
   sourceConfidence,
@@ -669,6 +673,133 @@ describe("availability curves (P14)", () => {
         );
         const notShipping = claimValues({ ...c, origin: "mx" }, { shipsWell: false, storesWell });
         expect(notShipping.every((x) => x === 0)).toBe(true);
+      }),
+    );
+  });
+});
+
+// P15: the model panel, one source of weight 1.
+/** `panel("jun-1 prime")`: a panel curve rating only the listed windows. */
+function panel(windows: string): (number | null)[] {
+  const values: (number | null)[] = Array(WINDOW_COUNT).fill(null);
+  for (const part of windows.split(",")) {
+    const [l, rating] = part.trim().split(" ") as [string, Rating];
+    values[windowFromLabel(l)] = { prime: 1, fair: 0.5, poor: 0 }[rating];
+  }
+  return values;
+}
+const range = (from: string, to: string, rating: Rating, confidence: PanelRange[3] = "high"): PanelRange => [
+  from,
+  to,
+  rating,
+  confidence,
+];
+
+describe("model panel curve (P15)", () => {
+  it("takes the mean of the runs that rate a window", () => {
+    const v = panelValues([[range("jun-1", "jun-2", "prime")], [range("jun-1", "jun-1", "fair")]]);
+    expect(valuesAt(v, ["may-2", "jun-1", "jun-2"])).toEqual([null, 0.75, 1]);
+  });
+  it("leaves out low-confidence ranges", () => {
+    const v = panelValues([
+      [range("jun-1", "jun-1", "prime", "low")],
+      [range("jun-1", "jun-1", "poor", "medium")],
+    ]);
+    expect(valuesAt(v, ["jun-1"])).toEqual([0]);
+    expect(valuesAt(panelValues([[range("jun-1", "jun-1", "prime", "low")]]), ["jun-1"])).toEqual([null]);
+  });
+  it("abstains where runs differ by more than one level", () => {
+    const v = panelValues([
+      [range("jun-1", "jun-2", "prime")],
+      [range("jun-1", "jun-1", "poor"), range("jun-2", "jun-2", "fair")],
+    ]);
+    expect(valuesAt(v, ["jun-1", "jun-2"])).toEqual([null, 0.75]);
+  });
+  it("finds a target's curve by origin or variety", () => {
+    const curves = [
+      { item: "x", origin: "us-wa", values: panel("jun-1 prime") },
+      { item: "x", variety: "v1", values: panel("jun-1 poor") },
+    ];
+    expect(panelFor(curves, "x", { origin: "us-wa" })?.[windowFromLabel("jun-1")]).toBe(1);
+    expect(panelFor(curves, "x", { variety: "v1" })?.[windowFromLabel("jun-1")]).toBe(0);
+    expect(panelFor(curves, "x", { origin: "mx" })).toBeNull();
+    expect(panelFor(curves, "y", { origin: "us-wa" })).toBeNull();
+  });
+});
+
+describe("combining with the model panel (P15)", () => {
+  const one = (p: (number | null)[], claims = [claim("a", "jun-1 prime")]) =>
+    at(propose(claims, sources, US_WA, SHIPS, p), "jun-1");
+
+  it("never rates a window alone", () => {
+    expect(at(propose([], sources, US_WA, SHIPS, panel("jun-1 prime")), "jun-1")).toBeNull();
+    expect(
+      at(propose([claim("a", "jun-2 prime")], sources, US_WA, SHIPS, panel("jun-1 prime")), "jun-1"),
+    ).toBeNull();
+  });
+  it("agreeing with a cited source, it is the second source, at Medium at most", () => {
+    // Authoritative eating-quality 2 + panel 1 reaches weight 3 with no spread, yet stays Medium.
+    expect(one(panel("jun-1 prime"))).toEqual({
+      value: 1,
+      rating: "prime",
+      confidence: "medium",
+      weight: 3,
+      spread: 0,
+      sources: ["a", PANEL],
+    });
+  });
+  it("disagreeing, it moves the value but doesn't count toward the sources", () => {
+    const w = one(panel("jun-1 poor"));
+    expect(w?.value).toBeCloseTo(2 / 3, 12);
+    expect(w).toMatchObject({ rating: "fair", confidence: "low", weight: 3, sources: ["a"] });
+  });
+  it("matches any one cited source's rating", () => {
+    const w = one(panel("jun-1 fair"), [claim("a", "jun-1 prime"), claim("m", "jun-1 fair")]);
+    expect(w?.sources).toEqual(["a", "m", PANEL]);
+  });
+  it("adds weight but never supplies the authoritative or eating-quality condition for High", () => {
+    const mainstream = [claim("m", "jun-1 prime"), claim("n", "jun-1 prime")];
+    expect(one(panel("jun-1 prime"), mainstream)).toMatchObject({ weight: 3, confidence: "medium" });
+    const avail = { directness: "availability" as const };
+    const charts = [claim("a", "jun-1 prime", avail), claim("b", "jun-1 prime", avail)];
+    expect(one(panel("jun-1 prime"), charts)).toMatchObject({ weight: 3.4, confidence: "medium" });
+  });
+  it("with two agreeing cited sources it can join a High window", () => {
+    expect(one(panel("jun-1 prime"), [claim("a", "jun-1 prime"), claim("b", "jun-1 prime")])).toMatchObject({
+      weight: 5,
+      confidence: "high",
+      sources: ["a", "b", PANEL],
+    });
+  });
+  it("an abstaining window is as if there were no panel", () => {
+    const p = panel("jun-2 prime");
+    expect(one(p)).toEqual(one(Array(WINDOW_COUNT).fill(null)));
+    expect(one(p)).toEqual(at(propose([claim("a", "jun-1 prime")], sources, US_WA, SHIPS), "jun-1"));
+  });
+});
+
+const panelArb = fc.array(fc.option(fc.constantFrom(0, 0.25, 0.5, 0.75, 1), { nil: null }), {
+  minLength: WINDOW_COUNT,
+  maxLength: WINDOW_COUNT,
+});
+
+describe("combining with the model panel: properties", () => {
+  it("the panel never rates alone, counts only when it agrees, and caps one cited source at Medium", () => {
+    fc.assert(
+      fc.property(claimsArb, targetArb, panelArb, (claims, target, p) => {
+        const without = propose(claims, sources, target, SHIPS);
+        const withPanel = propose(claims, sources, target, SHIPS, p);
+        for (const [i, w] of withPanel.windows.entries()) {
+          const base = without.windows[i] ?? null;
+          expect(w === null).toBe(base === null);
+          if (w === null || base === null) continue;
+          const cited = w.sources.filter((s) => s !== PANEL);
+          expect(cited).toEqual(base.sources);
+          expect(w.rating).toBe(ratingForValue(w.value));
+          if (w.sources.includes(PANEL)) expect(p[i]).not.toBeNull();
+          if (cited.length < 2) expect(w.confidence).not.toBe("high");
+          if (w.sources.length < 2) expect(w.confidence).toBe("low");
+        }
       }),
     );
   });

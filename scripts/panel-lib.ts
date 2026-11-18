@@ -1,6 +1,8 @@
 // Pure helpers for `npm run panel:check`: the model panel's run format (content/panel/PROMPT.md) and the checks
 // that run before a model's judgment is read alongside the cited evidence (engineering plan §4.1, P15).
 import { z } from "zod";
+import type { PanelCurve } from "../src/shared/data/schema";
+import { type PanelRange, panelValues } from "../src/shared/evidence";
 import { WINDOW_LABEL, windowRange } from "../src/shared/time";
 
 const id = z.string().regex(/^[a-z0-9]+(-[a-z0-9]+)*$/, "use a lowercase-kebab id");
@@ -146,4 +148,77 @@ export function checkRun(
   }
   for (const s of scope) if (!seen.has(s.item)) warnings.push(`missing: ${s.item}`);
   return { errors, warnings, covered: seen.size };
+}
+
+/** A run folder as read from disk: its `run.yaml` and its category files. */
+export interface LoadedRun {
+  dir: string;
+  meta: unknown;
+  files: { name: string; data: unknown }[];
+}
+
+/** `Prompt version: N` at the top of content/panel/PROMPT.md. */
+export function promptVersion(prompt: string): number | null {
+  const m = /^Prompt version: (\d+)\s*$/m.exec(prompt);
+  return m ? Number(m[1]) : null;
+}
+
+/**
+ * The model panel as `data:build` reads it (P15): every run must pass `checkRun`; of those on the current prompt
+ * version, each provider's latest counts (by date, then run id). Per item and target (an origin or a variety),
+ * the counted runs' ranges combine into one curve with `panelValues`.
+ */
+export function panelCurves(
+  runs: readonly LoadedRun[],
+  version: number,
+  scope: Scope,
+  states: ReadonlySet<string>,
+): { errors: string[]; counted: string[]; curves: PanelCurve[] } {
+  const errors: string[] = [];
+  const valid: { run: z.infer<typeof panelRunSchema>; items: PanelItem[] }[] = [];
+  for (const r of runs) {
+    const meta = panelRunSchema.safeParse(r.meta);
+    if (!meta.success) {
+      for (const i of meta.error.issues)
+        errors.push(`panel ${r.dir}/run.yaml: ${i.path.join(".")}: ${i.message}`);
+      continue;
+    }
+    if (meta.data.run !== r.dir)
+      errors.push(`panel ${r.dir}/run.yaml: run ${meta.data.run} doesn't match the folder`);
+    const report = checkRun(r.files, scope, states);
+    for (const e of report.errors) errors.push(`panel ${r.dir}/${e}`);
+    if (report.errors.length > 0) continue;
+    const items = r.files.flatMap((f) => panelCategorySchema.parse(f.data).items);
+    valid.push({ run: meta.data, items });
+  }
+  const latest = new Map<string, (typeof valid)[number]>();
+  for (const v of valid) {
+    if (v.run.promptVersion !== version) continue;
+    const at = latest.get(v.run.provider);
+    const key = (x: (typeof valid)[number]) => `${x.run.date} ${x.run.run}`;
+    if (at === undefined || key(v) > key(at)) latest.set(v.run.provider, v);
+  }
+  const counted = [...latest.values()];
+  const ranges = new Map<string, { item: string; origin?: string; variety?: string; runs: PanelRange[][] }>();
+  for (const { items } of counted)
+    for (const item of items) {
+      const targets = [
+        ...item.origins.map((o) => ({ origin: o.origin, windows: o.windows })),
+        ...(item.varieties ?? []).map((v) => ({ variety: v.variety, windows: v.windows })),
+      ];
+      for (const { windows, ...target } of targets) {
+        const k = `${item.item} ${"variety" in target ? `variety ${target.variety}` : target.origin}`;
+        const entry = ranges.get(k) ?? { item: item.item, ...target, runs: [] };
+        entry.runs.push(windows);
+        ranges.set(k, entry);
+      }
+    }
+  const curves = [...ranges.values()]
+    .map(({ runs: rs, ...t }) => ({ ...t, values: panelValues(rs) }))
+    .sort((a, b) =>
+      `${a.item} ${a.origin ?? ""} ${a.variety ?? ""}`.localeCompare(
+        `${b.item} ${b.origin ?? ""} ${b.variety ?? ""}`,
+      ),
+    );
+  return { errors, counted: counted.map((c) => c.run.run).sort(), curves };
 }

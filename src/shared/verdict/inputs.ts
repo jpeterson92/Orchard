@@ -1,6 +1,6 @@
 // Builds the engine's inputs from the validated dataset (engineering plan §4.1 → §4.2).
 import type { Dataset, Item, TypicalOriginRow } from "../data/schema";
-import { type Claim, type EvidenceSource, propose, type Target, traitsFor } from "../evidence";
+import { type Claim, type EvidenceSource, panelFor, propose, type Target, traitsFor } from "../evidence";
 import { monthRange, WINDOW_COUNT, windowRange } from "../time";
 import type { Env, ItemInputs, RatedSeries, RatedVariety, Rating } from "./index";
 
@@ -22,10 +22,12 @@ function series(
   sources: ReadonlyMap<string, EvidenceSource>,
   target: Target,
   item: Item,
+  data: Dataset,
 ): RatedSeries {
   const ratings: (Rating | null)[] = Array(WINDOW_COUNT).fill(null);
   for (const w of windows) for (const i of windowRange(w.from, w.to)) ratings[i] = w.rating;
-  const evidence = propose(claims, sources, target, traitsFor(item, target)).windows.map(
+  const panel = panelFor(data.panel, item.id, target);
+  const evidence = propose(claims, sources, target, traitsFor(item, target), panel).windows.map(
     (p) => p?.confidence ?? null,
   );
   return { windows: ratings, evidence };
@@ -75,7 +77,7 @@ export function itemInputs(item: Item, data: Dataset): ItemInputs {
       ? [
           {
             id: v.id,
-            ...series(v.windows, claims, sources, { variety: v.id }, item),
+            ...series(v.windows, claims, sources, { variety: v.id }, item, data),
             inStore: inStore(item, v.quotedAs ?? [], data),
           },
         ]
@@ -87,7 +89,10 @@ export function itemInputs(item: Item, data: Dataset): ItemInputs {
     alwaysGood: item.alwaysGood,
     peakWorthSeeking: item.peakWorthSeeking.value,
     origins: Object.fromEntries(
-      item.origins.map((o) => [o.origin, series(o.windows, claims, sources, { origin: o.origin }, item)]),
+      item.origins.map((o) => [
+        o.origin,
+        series(o.windows, claims, sources, { origin: o.origin }, item, data),
+      ]),
     ),
     varieties,
     typicalOrigins,

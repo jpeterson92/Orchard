@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import { WINDOW_COUNT, windowRange } from "../src/shared/time";
 import { type Csv, parseCsv, type RawInputs, validate } from "./data-validate";
 
 // A minimal valid dataset. Everything here is invented test data (synthetic: true).
@@ -102,6 +103,7 @@ function base(): RawInputs {
       { item: "test-fruit", month: "5", origin: "us-ca", value: "1.31", reason: "" },
       { item: "test-fruit", month: "6", origin: "us-ca", value: "", reason: "not_reported" },
     ]),
+    panel: [],
     varietyCalendar: {
       ...csv("data/usda/variety-calendar.csv", [
         { item: "test-fruit", variety: "gala", month: "5", share: "0.42", origins: "us-ca mx" },
@@ -202,6 +204,20 @@ describe("validate: a valid dataset", () => {
       reason: "Late-summer fruit in test stores is usually soft.",
     });
     expect(validate(raw, { production: false }).errors).toEqual([]);
+  });
+
+  it("accepts one cited source and an agreeing model panel (P15), but not a disagreeing one", () => {
+    const raw = structuredClone(base());
+    claims(raw)[1].source = "s1";
+    const values = Array(WINDOW_COUNT).fill(null);
+    for (const i of windowRange("apr-1", "jun-2")) values[i] = 1;
+    for (const i of windowRange("jul-1", "aug-2")) values[i] = 0.5;
+    raw.panel = [{ item: "test-fruit", origin: "us-ca", values }];
+    expect(validate(raw, { production: false }).errors).toEqual([]);
+    for (const i of windowRange("jul-1", "aug-2")) values[i] = 0;
+    expect(validate(raw, { production: false }).errors.join("\n")).toContain(
+      "us-ca jul-1..aug-2: needs claims from 2 independent sources, has 1 at jul-1",
+    );
   });
 
   it("accepts Low-confidence evidence when the rating gives a reason", () => {

@@ -9,6 +9,7 @@ import {
   evidenceFileSchema,
   type Item,
   itemSchema,
+  type PanelCurve,
   type Rules,
   rulesSchema,
   type Snapshot,
@@ -24,7 +25,7 @@ import {
   type VarietyCalendarRow,
   varietyCalendarRowSchema,
 } from "../src/shared/data/schema";
-import { propose, type Target, traitsFor } from "../src/shared/evidence";
+import { panelFor, propose, type Target, traitsFor } from "../src/shared/evidence";
 import { monthRange, windowLabel, windowRange } from "../src/shared/time";
 
 export interface Csv {
@@ -44,6 +45,8 @@ export interface RawInputs {
   typicalOrigins: Csv | null;
   supplyIndex: Csv | null;
   varietyCalendar: Csv | null;
+  /** The model panel's curves from the counted runs (P15), built by `panelCurves`. */
+  panel: PanelCurve[];
 }
 
 export interface Result {
@@ -248,14 +251,17 @@ export function validate(raw: RawInputs, opts: { production: boolean }): Result 
       sourceIds.has(c.source),
     );
     for (const [name, windows, target] of ratedSeries(item)) {
-      const proposal = propose(claims, sourcesById, target, traitsFor(item, target)).windows;
+      const panel = panelFor(raw.panel, item.id, target);
+      const proposal = propose(claims, sourcesById, target, traitsFor(item, target), panel).windows;
       for (const w of windows) {
         const at = `item ${item.id} ${name} ${w.from}..${w.to}`;
         const range = windowRange(w.from, w.to);
         const thin = range.find((i) => (proposal[i]?.sources.length ?? 0) < 2);
         if (thin !== undefined) {
           const n = proposal[thin]?.sources.length ?? 0;
-          errors.push(`${at}: needs claims from 2 independent sources, has ${n} at ${windowLabel(thin)}`);
+          errors.push(
+            `${at}: needs claims from 2 independent sources, has ${n} at ${windowLabel(thin)} (an agreeing model panel counts as one)`,
+          );
           continue;
         }
         if (w.reason !== undefined) continue;
@@ -372,6 +378,7 @@ export function validate(raw: RawInputs, opts: { production: boolean }): Result 
       typicalOrigins,
       supplyIndex,
       varietyCalendar,
+      panel: raw.panel,
     },
   };
 }

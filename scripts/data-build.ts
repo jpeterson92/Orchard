@@ -11,6 +11,7 @@ import { appData } from "../src/shared/app-data";
 import { ART_WIDTHS, artFile, resolveArt } from "../src/shared/art";
 import { type Csv, parseCsv, type RawInputs, validate } from "./data-validate";
 import { citedSourceIds, renderPage, ruleValues } from "./pages-lib";
+import { type LoadedRun, panelCurves, promptVersion, scopeSchema } from "./panel-lib";
 
 const production = process.argv.includes("--production");
 const read = (file: string) => readFileSync(file, "utf8");
@@ -29,16 +30,46 @@ const yamlFiles = (dir: string) =>
 const fixtures = production ? null : "content/fixtures";
 const list = (file: string): unknown[] => (yaml(file) as unknown[] | null) ?? [];
 
+// The model panel (P15): each provider's latest run on the current prompt version, as one curve per target.
+const PANEL = "content/panel";
+const panelRuns: LoadedRun[] = readdirSync(PANEL, { withFileTypes: true })
+  .filter((d) => d.isDirectory())
+  .map((d) => ({
+    dir: d.name,
+    meta: existsSync(`${PANEL}/${d.name}/run.yaml`) ? yaml(`${PANEL}/${d.name}/run.yaml`) : null,
+    files: readdirSync(`${PANEL}/${d.name}`)
+      .filter((f) => f.endsWith(".yaml") && f !== "run.yaml")
+      .sort()
+      .map((name) => ({ name, data: yaml(`${PANEL}/${d.name}/${name}`) })),
+  }));
+const version = promptVersion(read(`${PANEL}/PROMPT.md`));
+const states = parseCsv("data/us-states.csv", read("data/us-states.csv"), ["state", "name"]);
+const panel = panelCurves(
+  panelRuns,
+  version ?? 0,
+  scopeSchema.parse(yaml(`${PANEL}/scope.yaml`)),
+  new Set(states.rows.map((r) => r.state ?? "")),
+);
+if (version === null) panel.errors.push(`${PANEL}/PROMPT.md: no "Prompt version: N" line`);
+if (panel.errors.length > 0) {
+  for (const e of panel.errors) console.error(`error: ${e}`);
+  console.error(
+    `data:build failed with ${panel.errors.length} panel error${panel.errors.length === 1 ? "" : "s"}`,
+  );
+  process.exit(1);
+}
+
 const raw: RawInputs = {
   rules: yaml("data/rules.yaml"),
   sources: [...list("data/sources.yaml"), ...(fixtures ? list(`${fixtures}/sources.yaml`) : [])],
   categories: yaml("data/categories.yaml"),
-  states: parseCsv("data/us-states.csv", read("data/us-states.csv"), ["state", "name"]),
+  states,
   items: [...yamlFiles("content/items"), ...(fixtures ? yamlFiles(`${fixtures}/items`) : [])],
   evidence: [...yamlFiles("content/evidence"), ...(fixtures ? yamlFiles(`${fixtures}/evidence`) : [])],
   typicalOrigins: csv("data/usda/typical-origins.csv", ["item", "month", "rank", "origin", "major", "share"]),
   supplyIndex: csv("data/usda/supply-index.csv", ["item", "month", "origin", "value", "reason"]),
   varietyCalendar: csv("data/usda/variety-calendar.csv", ["item", "variety", "month", "share", "origins"]),
+  panel: panel.curves,
 };
 
 const { errors, warnings, dataset } = validate(raw, { production });
@@ -87,11 +118,11 @@ const sources = dataset.sources
   .filter((s) => cited.has(s.id) && !s.synthetic)
   .sort((a, b) => tierOrder[a.tier] - tierOrder[b.tier] || a.publisher.localeCompare(b.publisher))
   .map(({ id, title, publisher, url, accessed, tier }) => ({ id, title, publisher, url, accessed, tier }));
-const panel = readdirSync("content/panel", { withFileTypes: true })
-  .filter((d) => d.isDirectory() && existsSync(`content/panel/${d.name}/run.yaml`))
-  .map((d) => yaml(`content/panel/${d.name}/run.yaml`) as { model: string; provider: string; date: string })
+const panelModels = panelRuns
+  .filter((r) => panel.counted.includes(r.dir))
+  .map((r) => r.meta as { model: string; provider: string; date: string })
   .map(({ model, provider, date }) => ({ model, provider, date: String(date) }));
-const about = { methods, privacy, sources, panel, snapshot: dataset.snapshot };
+const about = { methods, privacy, sources, panel: panelModels, snapshot: dataset.snapshot };
 
 mkdirSync("src/generated", { recursive: true });
 writeFileSync("src/generated/data.json", JSON.stringify(dataset));

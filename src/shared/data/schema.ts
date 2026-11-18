@@ -261,6 +261,15 @@ export type SupplyIndexRow = z.infer<typeof supplyIndexRowSchema>;
 export type VarietyCalendarRow = z.infer<typeof varietyCalendarRowSchema>;
 export type Snapshot = z.infer<typeof snapshotSchema>;
 
+/** The model panel's combined curve for one item and target (P15), from the counted runs. */
+export interface PanelCurve {
+  item: string;
+  origin?: string | undefined;
+  variety?: string | undefined;
+  /** Indexed by window 0–23; null where the panel abstains. */
+  values: (number | null)[];
+}
+
 /** What data-build writes to `src/generated/data.json`. */
 export interface Dataset {
   rules: Rules;
@@ -273,4 +282,5 @@ export interface Dataset {
   typicalOrigins: TypicalOriginRow[];
   supplyIndex: SupplyIndexRow[];
   varietyCalendar: VarietyCalendarRow[];
+  panel: PanelCurve[];
 }

@@ -59,7 +59,10 @@ varieties:
         to: jan-1
         rating: prime
         reason: Four California sources put clementines here; Moroccan clementines in the same weeks read only fair.
-      - { from: jan-2, to: jan-2, rating: fair }
+      - from: jan-2
+        to: jan-2
+        rating: fair
+        reason: Four cited sources taper California clementines to fair by late January; only the model panel holds prime.
     quotedAs: [clementines-unspecified]
   - id: w-murcott
     name: W. Murcott and Tango
