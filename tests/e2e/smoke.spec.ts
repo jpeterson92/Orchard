@@ -145,7 +145,9 @@ test("a page load sends one beacon with its metrics and time to first verdict, a
   // A first key press settles LCP (web-vitals finalizes it in an idle callback after trusted input); then leaving
   // the app hides the page, which sends the beacon. A synthetic hide alone isn't trusted, so it can't settle LCP.
   await page.keyboard.press("Shift");
-  await page.evaluate("new Promise((done) => requestIdleCallback(done, { timeout: 2000 }))");
+  // Safari has no requestIdleCallback; web-vitals then finalizes on a timeout, so a short wait stands in.
+  await page.evaluate(`new Promise((done) =>
+    "requestIdleCallback" in window ? requestIdleCallback(done, { timeout: 2000 }) : setTimeout(done, 100))`);
   const beacon = page.waitForRequest("**/api/measure");
   await page.evaluate(`
     Object.defineProperty(document, "visibilityState", { value: "hidden", configurable: true });
@@ -159,7 +161,11 @@ test("a page load sends one beacon with its metrics and time to first verdict, a
   expect(Object.keys(body)).toEqual(["m", "e"]);
   // A fresh browser's first load counts a visit, and nothing more about it.
   expect(body.e).toEqual([{ event: "visit", n: 1 }]);
-  expect(body.m.map((e) => e.metric)).toEqual(expect.arrayContaining(["lcp", "cls", "verdict"]));
+  // Safari has no layout-shift entries, so its phones never report CLS.
+  const shifts = await page.evaluate(`PerformanceObserver.supportedEntryTypes.includes("layout-shift")`);
+  expect(body.m.map((e) => e.metric)).toEqual(
+    expect.arrayContaining(["lcp", "verdict", ...(shifts ? ["cls"] : [])]),
+  );
   for (const e of body.m) expect(Object.keys(e).sort()).toEqual(["metric", "value"]);
   expect((await request.response())?.status()).toBe(204);
 });

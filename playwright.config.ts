@@ -6,7 +6,10 @@ const port = 4173;
 export default defineConfig({
   testDir: "tests/e2e",
   use: { baseURL: `http://localhost:${port}` },
-  projects: [{ name: "phone", use: { ...devices["Pixel 7"] } }],
+  projects: [
+    { name: "phone", use: { ...devices["Pixel 7"] } },
+    { name: "iphone", use: { ...devices["iPhone 15"] } },
+  ],
   webServer: {
     command: `npm run build && npm run db:migrate:local && npm run preview -- --port ${port} --strictPort`,
     url: `http://localhost:${port}`,
