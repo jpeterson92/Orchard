@@ -1,0 +1,126 @@
+id: oranges
+name: Oranges
+synonyms: [orange, navel, navels, valencia, valencias, cara cara, blood orange, blood oranges, moro, tarocco]
+misspellings: [ornage, orang, oragne, oranges', navals, valencias']
+category: citrus
+purchaseRank: 5
+alwaysGood: false
+shipsWell:
+  value: true
+  sources: [freshplaza-south-africa-citrus-quality, producebusiness-summer-citrus]
+  note: Picked ripe and holds up in transit; Chile and South Africa fill summer shelves.
+peakWorthSeeking:
+  value: true
+  sources: [eatlikenoone-orange-mandarin-season, wholefoods-winter-citrus-round-two]
+  note: Later-winter varieties gain flavor on the tree, and sources name clearly better months.
+storesWell:
+  value: false
+  sources: [illinois-extension-winter-citrus, ucdavis-postharvest-orange]
+  note: Decay limits storage, so summer navels are imports rather than stored California fruit.
+evidenceBasis: assessment-only
+cardLine: Heavy for its size and firm, with no soft spots.
+pick:
+  - Heavy for its size
+  - Firm, with a slight give
+  - Smooth skin without bruises or blemishes
+  - A green tinge on a Valencia is fine; ripe fruit can regreen
+avoid:
+  - Overly soft or moldy fruit
+  - Light, puffy fruit; it's often dry inside
+store:
+  temperature: cold
+  ethylene: neither
+  life: { min: 1, max: 2, unit: weeks }
+  text: Keeps a week or more on a cool counter, and longer loose in the fridge. Check often and remove any soft or moldy fruit.
+  sources: [illinois-extension-winter-citrus, ucdavis-postharvest-orange]
+prep: Rinse before peeling or cutting. Navels peel easily by hand; Valencias are the classic juicing orange.
+varieties:
+  - id: navel
+    name: Navel
+    traits: {}
+    bestUses: [Snacking, salads]
+    label: Navel
+    windows:
+      - from: nov-1
+        to: mar-2
+        rating: prime
+        reason: Four sources put California navels in season from November; early November and late March are where their charts start and end.
+      - from: apr-1
+        to: jun-2
+        rating: fair
+        reason: Late-season California navels; sources disagree on whether the season ends in spring or June. One importer praises South Africa's first June navels, but California still supplies late June.
+      - { from: jul-1, to: oct-2, rating: fair }
+    quotedAs: [oranges-navel, oranges-late-navel, oranges-navelinas]
+  - id: valencia
+    name: Valencia
+    traits: {}
+    bestUses: [Juice, snacking]
+    label: Valencia
+    windows:
+      - { from: jan-1, to: jan-1, rating: poor }
+      - from: jan-2
+        to: feb-1
+        rating: fair
+        reason: Sunkist's California season starts in February; the other charts start in March.
+      - { from: feb-2, to: aug-1, rating: prime }
+      - from: aug-2
+        to: nov-1
+        rating: fair
+        reason: Hale Groves puts the peak in May to July; late summer and fall sit between that and the end of the charts, which most put in September or October.
+      - { from: nov-2, to: dec-2, rating: poor }
+    quotedAs: [oranges-valencia, oranges-late-valencia, oranges-valencia-seedless]
+  - id: blood
+    name: Blood orange
+    traits: {}
+    bestUses: [Salads, juice, desserts]
+    label: Blood orange, such as Moro or Tarocco
+    windows:
+      - from: dec-1
+        to: jan-1
+        rating: fair
+        reason: Sunkist starts blood oranges in December, but a tasting writer says they aren't good until mid to late January.
+      - from: jan-2
+        to: mar-2
+        rating: prime
+        reason: Sources agree on mid-January through March; the same writer says March has the best flavor.
+      - from: apr-1
+        to: apr-2
+        rating: fair
+        reason: Sunkist's season ends in mid-April.
+      - { from: may-1, to: nov-1, rating: poor }
+      - { from: nov-2, to: nov-2, rating: fair }
+    quotedAs:
+      [
+        blood-orange-moro,
+        blood-orange-red,
+        blood-orange-sanguine,
+        blood-orange-sanguinelli,
+        blood-orange-tarocco,
+        blood-orange-unspecified,
+      ]
+typicalOrigins:
+  - from: nov
+    to: nov
+    origins: [{ origin: us-ca, major: true }, { origin: za, major: false }]
+    sources: [usda-ams-fv-movement, sunkist-fs-oranges, freshplaza-south-africa-citrus-quality]
+  - from: dec
+    to: jun
+    origins: [{ origin: us-ca, major: true }]
+    sources: [usda-ams-fv-movement, sunkist-fs-oranges]
+  - from: jul
+    to: jul
+    origins: [{ origin: cl, major: true }, { origin: za, major: true }, { origin: us-ca, major: true }]
+    sources: [usda-ams-fv-movement, producebusiness-summer-citrus, freshplaza-south-africa-citrus-quality]
+  - from: aug
+    to: aug
+    origins: [{ origin: cl, major: true }, { origin: za, major: false }]
+    sources: [usda-ams-fv-movement, producebusiness-summer-citrus]
+  - from: sep
+    to: sep
+    origins: [{ origin: cl, major: true }, { origin: us-ca, major: true }]
+    sources: [usda-ams-fv-movement, producebusiness-summer-citrus, sunkist-fs-oranges]
+  - from: oct
+    to: oct
+    origins: [{ origin: za, major: true }, { origin: cl, major: true }, { origin: us-ca, major: false }]
+    sources: [usda-ams-fv-movement, freshplaza-import-citrus-second-half, producebusiness-summer-citrus]
+status: draft

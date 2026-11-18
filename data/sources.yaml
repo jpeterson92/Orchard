@@ -621,3 +621,102 @@
   url: https://www.americastestkitchen.com/how_tos/12019-how-to-shop-for-and-store-pears
   accessed: 2026-11-18
   tier: mainstream
+- id: sunkist-fs-oranges
+  title: "Oranges"
+  publisher: Sunkist Growers (foodservice)
+  url: https://foodservice.sunkist.com/citrus-info/oranges/
+  accessed: 2026-11-18
+  tier: authoritative
+- id: sunkist-oranges
+  title: "Iconic Sunkist Navels"
+  publisher: Sunkist Growers
+  url: https://sunkist.com/citrus/oranges/
+  accessed: 2026-11-18
+  tier: authoritative
+  basedOn: sunkist-fs-oranges
+- id: sunkist-peak-citrus-season
+  title: "Diverse Varieties Plentiful at Height of Peak Citrus Season"
+  publisher: Sunkist Growers
+  url: https://www.sunkist.com/?p=3430
+  accessed: 2026-11-18
+  tier: authoritative
+- id: scvnews-sunkist-navels-prime
+  title: "Sunkist announces navel oranges are at their prime"
+  publisher: SCV News
+  url: https://scvnews.com/sunkist-announces-navel-oranges-are-at-their-prime
+  accessed: 2026-11-18
+  tier: mainstream
+- id: eatlikenoone-cara-cara
+  title: "When are Cara Cara navel oranges in season"
+  publisher: Eat Like No One Else
+  url: https://www.eatlikenoone.com/when-are-cara-cara-navel-oranges-in-season.htm
+  accessed: 2026-11-18
+  tier: mainstream
+- id: eatlikenoone-orange-mandarin-season
+  title: "When does orange and mandarin season begin and end"
+  publisher: Eat Like No One Else
+  url: https://www.eatlikenoone.com/when-does-orange-and-mandarin-season-begin-and-end.htm
+  accessed: 2026-11-18
+  tier: mainstream
+  basedOn: eatlikenoone-cara-cara
+- id: fruitguys-oranges-in-season
+  title: "When Are Oranges in Season? A Guide to Top Varieties"
+  publisher: The FruitGuys
+  url: https://fruitguys.com/blog/when-are-oranges-in-season-a-guide-to-top-varieties/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: halegroves-florida-oranges
+  title: "When are Florida Oranges in Season?"
+  publisher: Hale Groves
+  url: https://www.halegroves.com/blog/?p=33757
+  accessed: 2026-11-18
+  tier: mainstream
+- id: arizona-low-desert-citrus
+  title: "Low Desert Citrus Varieties"
+  publisher: University of Arizona Cooperative Extension
+  url: https://extension.arizona.edu/pubs/low-desert-citrus-varieties
+  accessed: 2026-11-18
+  tier: authoritative
+- id: producebusiness-summer-citrus
+  title: "Summer Citrus Bursts With Demand"
+  publisher: Produce Business
+  url: https://producebusiness.com/summer-citrus-bursts-with-demand/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: freshfruitportal-orange-imports-chile-sa
+  title: "U.S. pricing reflects greater orange imports from Chile, South Africa"
+  publisher: FreshFruitPortal
+  url: https://freshfruitportal.com/?p=110844
+  accessed: 2026-11-18
+  tier: mainstream
+- id: freshplaza-south-africa-citrus-quality
+  title: "Excellent quality citrus from South Africa"
+  publisher: FreshPlaza
+  url: https://www.freshplaza.com/north-america/article/2144455/excellent-quality-citrus-from-south-africa/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: freshplaza-import-citrus-second-half
+  title: "Second half of citrus import season sees much improvement from first half"
+  publisher: FreshPlaza
+  url: https://www.freshplaza.com/north-america/article/9559534/second-half-of-citrus-import-season-sees-much-improvement-from-first-half/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: wholefoods-winter-citrus-round-two
+  title: "Winter Citrus, Round Two"
+  publisher: Whole Foods Market
+  url: https://www.wholefoodsmarket.com/blog/whole-story/winter-citrus-round-two
+  accessed: 2026-11-18
+  tier: mainstream
+- id: ucdavis-postharvest-orange
+  title: "Orange: Recommendations for Maintaining Postharvest Quality"
+  publisher: UC Davis Postharvest Research and Extension Center
+  url: https://postharvest.ucdavis.edu/produce-facts-sheets/orange
+  accessed: 2026-11-18
+  tier: authoritative
+- id: halegroves-valencia-sweet
+  title: Are Valencia Oranges Sweet?
+  publisher: Hale Groves
+  url: https://www.halegroves.com/blog/are-valencia-oranges-sweet/
+  accessed: 2026-11-18
+  tier: mainstream
+  basedOn: halegroves-florida-oranges

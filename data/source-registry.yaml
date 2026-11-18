@@ -22,6 +22,8 @@ items:
     ]
   pears:
     [pear, pears, anjou, bartlett, bartletts, bosc, comice, seckel, forelle, starkrimson, concorde, packham]
+  oranges:
+    [orange, oranges, navel, navels, valencia, valencias, cara cara, blood orange, blood oranges, moro, tarocco]
   strawberries: [strawberry, strawberries]
   broccoli: [broccoli]
   mandarins:
@@ -322,7 +324,7 @@ pages:
     url: https://extension.illinois.edu/blogs/live-well-eat-well/2024-01-24-eat-all-varieties-winter-citrus
     kind: item-page
     origin: us
-    items: [mandarins]
+    items: [mandarins, oranges]
   - source: cuties-how-long-they-last
     url: https://cutiescitrus.com/cuties-corner/how-long-do-cuties-last-how-to-keep-fresh-longerresh-longer
     kind: item-page
@@ -518,3 +520,78 @@ pages:
     kind: item-page
     origin: us-wa
     items: [pears]
+  - source: sunkist-fs-oranges
+    url: https://foodservice.sunkist.com/citrus-info/oranges/
+    kind: item-page
+    origin: us-ca
+    items: [oranges]
+  - source: sunkist-oranges
+    url: https://sunkist.com/citrus/oranges/
+    kind: item-page
+    origin: us-ca
+    items: [oranges]
+  - source: sunkist-peak-citrus-season
+    url: https://www.sunkist.com/?p=3430
+    kind: item-page
+    origin: us-ca
+    items: [oranges]
+  - source: scvnews-sunkist-navels-prime
+    url: https://scvnews.com/sunkist-announces-navel-oranges-are-at-their-prime
+    kind: item-page
+    origin: us-ca
+    items: [oranges]
+  - source: eatlikenoone-cara-cara
+    url: https://www.eatlikenoone.com/when-are-cara-cara-navel-oranges-in-season.htm
+    kind: item-page
+    origin: us-ca
+    items: [oranges]
+  - source: eatlikenoone-orange-mandarin-season
+    url: https://www.eatlikenoone.com/when-does-orange-and-mandarin-season-begin-and-end.htm
+    kind: item-page
+    origin: us-ca
+    items: [oranges]
+  - source: fruitguys-oranges-in-season
+    url: https://fruitguys.com/blog/when-are-oranges-in-season-a-guide-to-top-varieties/
+    kind: item-page
+    origin: us
+    items: [oranges]
+  - source: halegroves-florida-oranges
+    url: https://www.halegroves.com/blog/?p=33757
+    kind: item-page
+    origin: us-fl
+    items: [oranges]
+  - source: arizona-low-desert-citrus
+    url: https://extension.arizona.edu/pubs/low-desert-citrus-varieties
+    kind: item-page
+    origin: us-az
+    items: [oranges]
+  - source: producebusiness-summer-citrus
+    url: https://producebusiness.com/summer-citrus-bursts-with-demand/
+    kind: item-page
+    origin: us
+    items: [oranges]
+  - source: freshfruitportal-orange-imports-chile-sa
+    url: https://freshfruitportal.com/?p=110844
+    kind: item-page
+    origin: cl
+    items: [oranges]
+  - source: freshplaza-south-africa-citrus-quality
+    url: https://www.freshplaza.com/north-america/article/2144455/excellent-quality-citrus-from-south-africa/
+    kind: item-page
+    origin: za
+    items: [oranges]
+  - source: freshplaza-import-citrus-second-half
+    url: https://www.freshplaza.com/north-america/article/9559534/second-half-of-citrus-import-season-sees-much-improvement-from-first-half/
+    kind: item-page
+    origin: us
+    items: [oranges]
+  - source: wholefoods-winter-citrus-round-two
+    url: https://www.wholefoodsmarket.com/blog/whole-story/winter-citrus-round-two
+    kind: item-page
+    origin: us
+    items: [oranges]
+  - source: halegroves-valencia-sweet
+    url: https://www.halegroves.com/blog/are-valencia-oranges-sweet/
+    kind: item-page
+    origin: us-fl
+    items: [oranges]

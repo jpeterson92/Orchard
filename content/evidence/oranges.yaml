@@ -1,0 +1,122 @@
+item: oranges
+status: draft
+claims:
+  # Navel: California November to June; South African imports in summer.
+  - source: sunkist-fs-oranges
+    origin: us-ca
+    variety: navel
+    windows:
+      - { from: nov-1, to: jun-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: California navel oranges are available from November through June.
+  - source: sunkist-oranges
+    origin: us-ca
+    variety: navel
+    windows:
+      - { from: nov-1, to: jun-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Navels are in season November to June; imports cover the summer.
+  - source: eatlikenoone-orange-mandarin-season
+    origin: us-ca
+    variety: navel
+    windows:
+      - { from: nov-1, to: apr-2, rating: prime }
+    specificity: season
+    directness: availability
+    paraphrase: US navels reach stores in November and usually last until spring.
+  - source: fruitguys-oranges-in-season
+    origin: us-ca
+    variety: navel
+    windows:
+      - { from: oct-1, to: feb-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Navels are typically in season October to February, after the summer Valencias.
+  - source: halegroves-florida-oranges
+    origin: us-fl
+    variety: navel
+    windows:
+      - { from: nov-1, to: jan-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Florida navels are in season November to January.
+  - source: freshplaza-south-africa-citrus-quality
+    origin: za
+    variety: navel
+    windows:
+      - { from: jun-2, to: oct-2, rating: prime }
+    specificity: season
+    directness: availability
+    paraphrase: South African navels ship to the US from the end of the domestic spring season through October.
+  - source: producebusiness-summer-citrus
+    origin: za
+    variety: navel
+    windows:
+      - { from: jun-2, to: jun-2, rating: prime }
+    specificity: half-month
+    directness: eating-quality
+    paraphrase: An importer's South African navels, sweet and juicy and of high quality, arrived in mid-June.
+  # Valencia: the summer orange.
+  - source: sunkist-fs-oranges
+    origin: us-ca
+    variety: valencia
+    windows:
+      - { from: feb-1, to: nov-1, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: California Valencias, the summer orange, are available from February through early November.
+  - source: fruitguys-oranges-in-season
+    origin: us-ca
+    variety: valencia
+    windows:
+      - { from: mar-1, to: sep-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Valencias are the main summer orange, usually available March to September.
+  - source: halegroves-florida-oranges
+    origin: us-fl
+    variety: valencia
+    windows:
+      - { from: mar-1, to: may-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Florida Valencias come late in the season; the best time to buy them is March to May.
+  - source: halegroves-valencia-sweet
+    origin: us-ca
+    variety: valencia
+    windows:
+      - { from: feb-1, to: feb-2, rating: fair }
+      - { from: may-1, to: jul-2, rating: prime }
+      - { from: oct-1, to: oct-2, rating: fair }
+    specificity: month
+    directness: availability
+    paraphrase: California Valencias are sold February through October and peak in May, June and July.
+  # Blood oranges: later winter.
+  - source: sunkist-fs-oranges
+    origin: us-ca
+    variety: blood
+    windows:
+      - { from: dec-1, to: apr-1, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: California blood oranges are available from December through mid-April.
+  - source: eatlikenoone-orange-mandarin-season
+    origin: us-ca
+    variety: blood
+    windows:
+      - { from: jan-1, to: jan-1, rating: poor }
+      - { from: jan-2, to: jan-2, rating: fair }
+      - { from: mar-1, to: mar-2, rating: prime }
+    specificity: half-month
+    directness: eating-quality
+    paraphrase: Blood oranges aren't good until mid to late January; March brings the best flavor.
+  - source: wholefoods-winter-citrus-round-two
+    origin: us-ca
+    variety: blood
+    windows:
+      - { from: jan-2, to: feb-2, rating: prime }
+    specificity: season
+    directness: availability
+    paraphrase: Blood oranges debut later in the winter, as the early citrus varieties finish.
