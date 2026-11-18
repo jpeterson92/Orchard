@@ -25,7 +25,7 @@ import {
   type VarietyCalendarRow,
   varietyCalendarRowSchema,
 } from "../src/shared/data/schema";
-import { panelFor, propose, type Target, traitsFor } from "../src/shared/evidence";
+import { PANEL as PANEL_SOURCE, panelFor, propose, type Target, traitsFor } from "../src/shared/evidence";
 import { monthRange, windowLabel, windowRange } from "../src/shared/time";
 
 export interface Csv {
@@ -244,8 +244,9 @@ export function validate(raw: RawInputs, opts: { production: boolean }): Result 
     }
   }
 
-  // Every rated window rests on the evidence (P12): 2 independent sources, and a reason where the call departs
-  // from the proposal or the proposal is Low confidence.
+  // Every rated window rests on the evidence (P12, P15): the model panel's rating, an eating-quality overrule of
+  // it, or 2 independent cited sources where the panel abstains; and a reason where the call departs from the
+  // proposal or the proposal is Low confidence.
   for (const item of items) {
     const claims = (evidence.find((e) => e.item === item.id)?.claims ?? []).filter((c) =>
       sourceIds.has(c.source),
@@ -256,11 +257,14 @@ export function validate(raw: RawInputs, opts: { production: boolean }): Result 
       for (const w of windows) {
         const at = `item ${item.id} ${name} ${w.from}..${w.to}`;
         const range = windowRange(w.from, w.to);
-        const thin = range.find((i) => (proposal[i]?.sources.length ?? 0) < 2);
+        const thin = range.find((i) => {
+          const p = proposal[i];
+          return p == null || !(p.sources.includes(PANEL_SOURCE) || p.overrules || p.sources.length >= 2);
+        });
         if (thin !== undefined) {
           const n = proposal[thin]?.sources.length ?? 0;
           errors.push(
-            `${at}: needs claims from 2 independent sources, has ${n} at ${windowLabel(thin)} (an agreeing model panel counts as one)`,
+            `${at}: needs claims from 2 independent sources, has ${n} at ${windowLabel(thin)} (where the model panel abstains)`,
           );
           continue;
         }

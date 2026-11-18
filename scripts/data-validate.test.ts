@@ -206,7 +206,7 @@ describe("validate: a valid dataset", () => {
     expect(validate(raw, { production: false }).errors).toEqual([]);
   });
 
-  it("accepts one cited source and an agreeing model panel (P15), but not a disagreeing one", () => {
+  it("accepts a window the model panel rates (P15); eating-quality claims outweighing it overrule it at Low", () => {
     const raw = structuredClone(base());
     claims(raw)[1].source = "s1";
     const values = Array(WINDOW_COUNT).fill(null);
@@ -216,7 +216,22 @@ describe("validate: a valid dataset", () => {
     expect(validate(raw, { production: false }).errors).toEqual([]);
     for (const i of windowRange("jul-1", "aug-2")) values[i] = 0;
     expect(validate(raw, { production: false }).errors.join("\n")).toContain(
-      "us-ca jul-1..aug-2: needs claims from 2 independent sources, has 1 at jul-1",
+      "us-ca jul-1..aug-2: the evidence is Low confidence at jul-1; add a reason",
+    );
+  });
+
+  it("accepts a window the model panel rates with no cited source (P15)", () => {
+    const raw = structuredClone(base());
+    raw.evidence = [];
+    const values = Array(WINDOW_COUNT).fill(null);
+    for (const i of windowRange("apr-1", "jun-2")) values[i] = 1;
+    for (const i of windowRange("jul-1", "aug-2")) values[i] = 0.5;
+    raw.panel = [{ item: "test-fruit", origin: "us-ca", values }];
+    const usCa = () => validate(raw, { production: false }).errors.filter((e) => e.includes(" us-ca "));
+    expect(usCa()).toEqual([]);
+    raw.panel = [];
+    expect(validate(raw, { production: false }).errors.join(String.fromCharCode(10))).toContain(
+      "needs claims from 2 independent sources, has 0 at apr-1",
     );
   });
 

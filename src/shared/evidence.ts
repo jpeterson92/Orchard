@@ -20,8 +20,9 @@ export const P12 = {
 } as const;
 
 /**
- * P15: the model panel. All counted runs share one root, so it is one source of weight 1 however many models
- * answer. It abstains where runs differ by more than one level (prime against poor).
+ * P15: the model panel is the first-order source. All counted runs share one root, so it is one source however
+ * many models answer, and its weight counts toward High. It abstains where runs differ by more than one level
+ * (prime against poor).
  */
 export const P15 = { weight: 1, maxGap: 0.5 } as const;
 /** The panel's name among a window's independent sources. */
@@ -82,6 +83,8 @@ export interface WindowProposal {
   spread: number;
   /** Independent sources counted, each named by the source the others restate. */
   sources: string[];
+  /** Eating-quality claims overrule the model panel's rating here (P15): Low confidence, so it needs a reason. */
+  overrules: boolean;
 }
 
 export interface Proposal {
@@ -265,10 +268,11 @@ export function panelFor(
 
 /**
  * Proposes a rating and confidence per window from the target's claims and, where given, the model panel's
- * curve (P15). The panel never rates a window alone: with no cited curve there is no proposal. Its value always
- * joins the weighted mean, but it counts toward the independent sources only where its rating matches a cited
- * source's there, a window resting on it and one cited source is Medium at most, and it never supplies the
- * authoritative or eating-quality conditions for High.
+ * curve (P15). Where the panel rates a window, its rating is the proposal: alone it is Medium; cited sources
+ * that agree with it count beside it and can lift it to High (with an authoritative and an eating-quality source
+ * among them, and weight enough); cited sources that disagree don't move it, except that eating-quality claims
+ * that disagree, outweighing it, overrule it at Low confidence. Where the panel abstains or has no curve, the
+ * cited curves combine as before (P12).
  */
 export function propose(
   claims: readonly Claim[],
@@ -312,27 +316,69 @@ export function propose(
         k.taste ||= c.taste;
       }
     }
-    if (kept.size === 0) return null;
-    const cited = [...kept.values()].map((k) => ({
+    const p = panel?.[i] ?? null;
+    if (kept.size === 0 && p === null) return null;
+    const cited = [...kept].map(([root, k]) => ({
+      root,
       weight: k.weight,
       value: k.values.reduce((a, b) => a + b, 0) / k.values.length,
+      authoritative: k.authoritative,
+      taste: k.taste,
     }));
-    const p = panel?.[i] ?? null;
-    const counted = p === null ? cited : [...cited, { weight: P15.weight, value: p }];
-    const agrees = p !== null && cited.some((c) => ratingForValue(c.value) === ratingForValue(p));
-    const weight = counted.reduce((a, c) => a + c.weight, 0);
-    const value = counted.reduce((a, c) => a + c.weight * c.value, 0) / weight;
-    const spread = Math.sqrt(counted.reduce((a, c) => a + c.weight * (c.value - value) ** 2, 0) / weight);
-    const authoritative = [...kept.values()].some((k) => k.authoritative);
-    const taste = [...kept.values()].some((k) => k.taste);
-    const confidence = combinedConfidence(kept.size + (agrees ? 1 : 0), weight, spread, authoritative, taste);
+    const mean = (cs: readonly { weight: number; value: number }[]) => {
+      const weight = cs.reduce((a, c) => a + c.weight, 0);
+      const value = cs.reduce((a, c) => a + c.weight * c.value, 0) / weight;
+      const spread = Math.sqrt(cs.reduce((a, c) => a + c.weight * (c.value - value) ** 2, 0) / weight);
+      return { weight, value, spread };
+    };
+    const names = (cs: readonly { root: string }[]) => cs.map((c) => c.root).sort();
+
+    if (p === null) {
+      const { weight, value, spread } = mean(cited);
+      const authoritative = cited.some((c) => c.authoritative);
+      const taste = cited.some((c) => c.taste);
+      const confidence = combinedConfidence(cited.length, weight, spread, authoritative, taste);
+      return {
+        value,
+        rating: ratingForValue(value),
+        confidence,
+        weight,
+        spread,
+        sources: names(cited),
+        overrules: false,
+      };
+    }
+
+    // Eating-quality claims overrule the panel only where those that disagree with it outweigh it.
+    const tasting = cited.filter((c) => c.taste);
+    const against = tasting.filter((c) => ratingForValue(c.value) !== ratingForValue(p));
+    if (against.reduce((a, c) => a + c.weight, 0) > P15.weight + EPS) {
+      const t = mean(tasting);
+      if (ratingForValue(t.value) !== ratingForValue(p)) {
+        return {
+          ...t,
+          rating: ratingForValue(t.value),
+          confidence: "low",
+          sources: names(tasting),
+          overrules: true,
+        };
+      }
+    }
+    const agreeing = cited.filter((c) => ratingForValue(c.value) === ratingForValue(p));
+    const weight = P15.weight + agreeing.reduce((a, c) => a + c.weight, 0);
+    const { spread } = mean([...cited, { weight: P15.weight, value: p }]);
+    const high =
+      weight >= P12.combined.highWeight - EPS &&
+      agreeing.some((c) => c.authoritative) &&
+      agreeing.some((c) => c.taste);
     return {
-      value,
-      rating: ratingForValue(value),
-      confidence: kept.size < P12.combined.minSources && confidence === "high" ? "medium" : confidence,
+      value: p,
+      rating: ratingForValue(p),
+      confidence: high ? "high" : "medium",
       weight,
       spread,
-      sources: [...[...kept.keys()].sort(), ...(agrees ? [PANEL] : [])],
+      sources: [...names(agreeing), PANEL],
+      overrules: false,
     };
   });
 

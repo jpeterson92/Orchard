@@ -58,14 +58,14 @@ USDA supply data is a yearly snapshot of the last three years of reports. The se
 
 ## How sources are weighed
 
-Ratings start from what a wide range of sources say about when an item eats best:
+Ratings start from an AI model panel: several AI models each rate every item from what they learned, using one shared prompt, and together they count as one source. Cited sources then check that rating. Where they agree, confidence rises. Where sources about eating quality clearly disagree, they win and the rating is marked Low confidence. A rating from the panel alone is Medium confidence. Where the panel gives no rating, at least two cited sources are needed.
+
+The cited sources come from a wide range of places that say when an item eats best:
 
 - **Authoritative sources** (university extension services, commodity boards, USDA and trade references) carry more weight.
 - **Mainstream sources** (major food publications and grocer guides) count too, with less weight.
 - A source that restates another counts once.
 - Harvest calendars show timing but not taste, so on their own they support Medium confidence at most. High confidence needs a source about eating quality.
-
-An AI model panel adds one more judgment: several AI models each rate every item from what they learned, using one shared prompt. Together they count as a single mainstream source. The panel can be the second of a rating's two sources only where it agrees with a cited source, and that rating is Medium confidence at most. It never rates anything on its own.
 
 ## What the guidance covers
 

@@ -202,7 +202,15 @@ describe("combining curves", () => {
   it("two agreeing authoritative sources: prime, high confidence", () => {
     expect(
       at(propose([claim("a", "jun-1 prime"), claim("b", "jun-1 prime")], sources, US_WA, SHIPS), "jun-1"),
-    ).toEqual({ value: 1, rating: "prime", confidence: "high", weight: 4, spread: 0, sources: ["a", "b"] });
+    ).toEqual({
+      value: 1,
+      rating: "prime",
+      confidence: "high",
+      weight: 4,
+      spread: 0,
+      sources: ["a", "b"],
+      overrules: false,
+    });
   });
 
   it("takes the weighted mean, and spread lowers confidence", () => {
@@ -730,46 +738,71 @@ describe("model panel curve (P15)", () => {
 describe("combining with the model panel (P15)", () => {
   const one = (p: (number | null)[], claims = [claim("a", "jun-1 prime")]) =>
     at(propose(claims, sources, US_WA, SHIPS, p), "jun-1");
+  const avail = { directness: "availability" as const };
 
-  it("never rates a window alone", () => {
-    expect(at(propose([], sources, US_WA, SHIPS, panel("jun-1 prime")), "jun-1")).toBeNull();
-    expect(
-      at(propose([claim("a", "jun-2 prime")], sources, US_WA, SHIPS, panel("jun-1 prime")), "jun-1"),
-    ).toBeNull();
-  });
-  it("agreeing with a cited source, it is the second source, at Medium at most", () => {
-    // Authoritative eating-quality 2 + panel 1 reaches weight 3 with no spread, yet stays Medium.
-    expect(one(panel("jun-1 prime"))).toEqual({
+  it("rates a window alone, at Medium", () => {
+    expect(at(propose([], sources, US_WA, SHIPS, panel("jun-1 prime")), "jun-1")).toEqual({
       value: 1,
       rating: "prime",
       confidence: "medium",
+      weight: 1,
+      spread: 0,
+      sources: [PANEL],
+      overrules: false,
+    });
+  });
+  it("agreeing sources count beside it and can reach High", () => {
+    // Authoritative eating-quality 2 + panel 1: weight 3, with an authoritative and an eating-quality source.
+    expect(one(panel("jun-1 prime"))).toEqual({
+      value: 1,
+      rating: "prime",
+      confidence: "high",
       weight: 3,
       spread: 0,
       sources: ["a", PANEL],
+      overrules: false,
     });
   });
-  it("disagreeing, it moves the value but doesn't count toward the sources", () => {
-    const w = one(panel("jun-1 poor"));
-    expect(w?.value).toBeCloseTo(2 / 3, 12);
-    expect(w).toMatchObject({ rating: "fair", confidence: "low", weight: 3, sources: ["a"] });
-  });
-  it("matches any one cited source's rating", () => {
-    const w = one(panel("jun-1 fair"), [claim("a", "jun-1 prime"), claim("m", "jun-1 fair")]);
-    expect(w?.sources).toEqual(["a", "m", PANEL]);
-  });
-  it("adds weight but never supplies the authoritative or eating-quality condition for High", () => {
+  it("High needs an authoritative and an eating-quality source among those agreeing", () => {
     const mainstream = [claim("m", "jun-1 prime"), claim("n", "jun-1 prime")];
     expect(one(panel("jun-1 prime"), mainstream)).toMatchObject({ weight: 3, confidence: "medium" });
-    const avail = { directness: "availability" as const };
     const charts = [claim("a", "jun-1 prime", avail), claim("b", "jun-1 prime", avail)];
     expect(one(panel("jun-1 prime"), charts)).toMatchObject({ weight: 3.4, confidence: "medium" });
   });
-  it("with two agreeing cited sources it can join a High window", () => {
-    expect(one(panel("jun-1 prime"), [claim("a", "jun-1 prime"), claim("b", "jun-1 prime")])).toMatchObject({
-      weight: 5,
-      confidence: "high",
-      sources: ["a", "b", PANEL],
+  it("availability claims that disagree don't move it", () => {
+    const charts = [claim("a", "jun-1 prime", avail), claim("b", "jun-1 prime", avail)];
+    expect(one(panel("jun-1 fair"), charts)).toMatchObject({
+      value: 0.5,
+      rating: "fair",
+      confidence: "medium",
+      weight: 1,
+      sources: [PANEL],
+      overrules: false,
     });
+  });
+  it("eating-quality claims that disagree overrule it, at Low", () => {
+    const w = one(panel("jun-1 poor"), [claim("a", "jun-1 prime"), claim("b", "jun-1 fair", avail)]);
+    expect(w).toMatchObject({
+      value: 1,
+      rating: "prime",
+      confidence: "low",
+      sources: ["a"],
+      overrules: true,
+    });
+  });
+  it("one mainstream eating-quality source can't outweigh it", () => {
+    expect(one(panel("jun-1 poor"), [claim("m", "jun-1 prime")])).toMatchObject({
+      rating: "poor",
+      confidence: "medium",
+      sources: [PANEL],
+      overrules: false,
+    });
+    const two = one(panel("jun-1 poor"), [claim("m", "jun-1 prime"), claim("n", "jun-1 prime")]);
+    expect(two).toMatchObject({ rating: "prime", confidence: "low", overrules: true });
+  });
+  it("counts only the cited sources whose rating matches it", () => {
+    const w = one(panel("jun-1 fair"), [claim("a", "jun-1 fair", avail), claim("m", "jun-1 prime", avail)]);
+    expect(w?.sources).toEqual(["a", PANEL]);
   });
   it("an abstaining window is as if there were no panel", () => {
     const p = panel("jun-2 prime");
@@ -784,21 +817,31 @@ const panelArb = fc.array(fc.option(fc.constantFrom(0, 0.25, 0.5, 0.75, 1), { ni
 });
 
 describe("combining with the model panel: properties", () => {
-  it("the panel never rates alone, counts only when it agrees, and caps one cited source at Medium", () => {
+  it("the panel's rating stands unless eating-quality claims overrule it; abstaining, nothing changes", () => {
     fc.assert(
       fc.property(claimsArb, targetArb, panelArb, (claims, target, p) => {
         const without = propose(claims, sources, target, SHIPS);
         const withPanel = propose(claims, sources, target, SHIPS, p);
         for (const [i, w] of withPanel.windows.entries()) {
           const base = without.windows[i] ?? null;
-          expect(w === null).toBe(base === null);
-          if (w === null || base === null) continue;
-          const cited = w.sources.filter((s) => s !== PANEL);
-          expect(cited).toEqual(base.sources);
+          const pv = p[i] ?? null;
+          if (pv === null) {
+            expect(w).toEqual(base);
+            continue;
+          }
+          expect(w).not.toBeNull();
+          if (w === null) continue;
           expect(w.rating).toBe(ratingForValue(w.value));
-          if (w.sources.includes(PANEL)) expect(p[i]).not.toBeNull();
-          if (cited.length < 2) expect(w.confidence).not.toBe("high");
-          if (w.sources.length < 2) expect(w.confidence).toBe("low");
+          if (w.overrules) {
+            expect(w.rating).not.toBe(ratingForValue(pv));
+            expect(w.confidence).toBe("low");
+            expect(w.sources).not.toContain(PANEL);
+          } else {
+            expect(w.rating).toBe(ratingForValue(pv));
+            expect(w.sources).toContain(PANEL);
+            expect(w.confidence).not.toBe("low");
+            if (w.sources.length < 2) expect(w.confidence).toBe("medium");
+          }
         }
       }),
     );
