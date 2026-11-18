@@ -4,7 +4,7 @@
 // A link shared for a date carries it as `?date=`: opening one adopts that date as the planning date, and the banner
 // says it came from the link. Plain links carry no date, so they follow the recipient's today.
 import { useCallback, useEffect, useState, useSyncExternalStore } from "react";
-import { useSearchParams } from "react-router";
+import { useLocation, useSearchParams } from "react-router";
 import type { AppData } from "../shared/app-data";
 
 export type Mode = "today" | "typical";
@@ -98,15 +98,22 @@ export function appDate(today: string, planIso: string | null, linkIso: string |
   return { iso, today, planning, pinned: planning && linkIso === iso, mode: planning ? "typical" : "today" };
 }
 
+// History entries whose link date has been adopted. Once per entry, not per component: choosing today clears the
+// plan before the URL drops its date, and a component mounting in between must not adopt that date again.
+const adopted = new Set<string>();
+
 export function useAppDate(data: AppData): AppDate {
   const today = useToday(data);
   const planIso = useSyncExternalStore(subscribe, readPlan, () => null);
   const [params] = useSearchParams();
+  const { key } = useLocation();
   const linkIso = parseIsoDate(params.get(DATE_PARAM));
   // Adopted after hydrating, so the prerendered markup (which has no query) still matches the first render.
   useEffect(() => {
-    if (linkIso) setPlanDate(linkIso);
-  }, [linkIso]);
+    if (!linkIso || adopted.has(key)) return;
+    adopted.add(key);
+    setPlanDate(linkIso);
+  }, [linkIso, key]);
   return appDate(today, planIso, linkIso);
 }
 
