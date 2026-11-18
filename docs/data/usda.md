@@ -74,7 +74,9 @@ Notes:
 
 Reported volume (`npm run usda:probe`) can't serve as the filter. Cranberries, pumpkins, winter squash, Asian pears, dates, figs, shallots and most herbs have large US production that movement reports never include, so their reported volume understates them badly.
 
-**Launch list (89 items).** The screens above informed it; the list itself is curated, and changes to it are editorial decisions. Types in brackets are one item, not separate items.
+**First release (30 items).** Apples, strawberries, grapes, blueberries, tomatoes, oranges, mandarins, watermelon, peaches, cantaloupe, pears, sweet corn, cherries, raspberries, blackberries, mangoes, nectarines, plums, asparagus, honeydew, winter squash, grapefruit, Brussels sprouts, pomegranates, artichokes, collard greens, apricots, okra, figs, persimmons. Chosen from the list below as the produce US shoppers buy most whose eating quality changes through the year (the first model panel run rates each of them prime in some windows and only fair in others). Avocados, cranberries and rhubarb vary in supply more than in eating quality by season, so they wait with the always-good items.
+
+**Item list (89 items).** The screens above informed it; the list itself is curated, and changes to it are editorial decisions. Types in brackets are one item, not separate items.
 
 | Category | Items |
 | --- | --- |

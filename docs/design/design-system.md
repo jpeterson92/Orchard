@@ -8,7 +8,7 @@ This document defines Orchard's visual design for code: direction, tokens, layou
 
 The visual direction is **Orchard Editorial**: a practical produce companion with the warmth of an illustrated food journal—botanical watercolor, light ivory paper, plum typography, and an open, lightly ruled layout.
 
-Orchard is the project name. The in-app brand name and mark are still open.
+Orchard is the project name and the in-app brand. The mark is still open.
 
 ## 1. Approved direction and source of truth
 
@@ -210,7 +210,7 @@ Use at least 18 px body text, stronger functional contrast, no paper texture, an
 
 ### Brand and date
 
-The leaf mark is a provisional visual motif. Reuse a consistent asset rather than generating a different mark for every screen. The working brand is Produce Guide.
+The leaf mark is a provisional visual motif. Reuse a consistent asset rather than generating a different mark for every screen. The brand is Orchard.
 
 The date is a recognizable interactive control. A rounded outline or restrained wash is acceptable. Show planning mode explicitly with a return-to-today action. Keep full values accessible when visible text must abbreviate.
 
@@ -226,7 +226,7 @@ Rows are compact so a shopper can scan many in an aisle (about 100 px tall on a 
 - Subtle icon and verdict word, with the origin in small secondary text on the same line ("Peak · California"); markers (Last call, Reliable year-round, Check the label) on a quiet olive line below.
 - A short factual reason only when it says more than the section heading (when it fades, when it improves, why it can't be called); "At its best this time of year" is never shown.
 - For items rated by variety, a quieter variety line under the name ("Ataulfo", or "6 varieties at their best"); the image is that variety's, or the item's when the line gives a count.
-- Without approved art, a mostly transparent placeholder of the same size holds the image slot.
+- A rated variety without approved art uses its item's. In development and preview, missing art shows a mostly transparent placeholder of the same size.
 
 Do not repeat the same origin information in several adjacent labels. Examples in design references do not authorize invented source claims.
 
