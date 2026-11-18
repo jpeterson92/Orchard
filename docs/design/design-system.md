@@ -23,10 +23,10 @@ Orchard is the project name. The in-app brand name and mark are still open.
 
 Verdicts are subtle. **Never use A4’s colored verdict pills**, even where the rest of A4 is useful as an interaction reference.
 
-The approved synthesis is **Good things today: Orchard produce guide.png**:
-[Open the approved visual reference](references/00-today-anchor.png).
+The approved look is **Good things today: Orchard produce guide.png**:
+[Open the visual reference](references/00-today-anchor.png).
 
-That reference is an art-direction study. Its illustrative produce recommendations, dates, origin claims, and artwork are not a production dataset. Its exterior presentation title and rounded presentation frame are not app components. Its “Peak now” heading reads “Best right now” in the product. Its location chip ("Near San Francisco") is a date-only chip in the product: the app has no location.
+The reference images are graphical inspiration only: they set the palette, type, illustration style and quiet verdict marks. Their layouts, controls, screen structure and information are not requirements; Claude designs the UI and information for what serves shoppers best, and Jared reviews it with end users. That reference is an art-direction study. Its illustrative produce recommendations, dates, origin claims, and artwork are not a production dataset. Its exterior presentation title and rounded presentation frame are not app components. Its “Peak now” heading reads “Best right now” in the product. Its location chip ("Near San Francisco") is a date-only chip in the product: the app has no location.
 
 ### Authority and interpretation
 
@@ -34,7 +34,7 @@ That reference is an art-direction study. Its illustrative produce recommendatio
 2. The product specification governs behavior, coverage, and content requirements.
 3. This document governs visual design and graphics production.
 4. The engineering specification governs architecture and implementation tooling.
-5. Approved reference images illustrate appearance; they do not override readable text, accessibility, or functional behavior.
+5. Reference images illustrate the look only; they set no layout or information design and never override readable text, accessibility, or functional behavior.
 
 Preserve the selected identity when reconciling practical constraints. Explain consequential changes rather than silently creating a new visual direction.
 
@@ -321,7 +321,7 @@ The repository's CLAUDE.md carries this instruction; there is no separate AGENTS
 
 ## 9. Reference collection and acceptance criteria
 
-The original mobile Today synthesis remains the approved visual anchor. Eight complementary reference studies have since been generated. They are drafts for extension and review, not blanket approval of every visible control, placement, letterform, or botanical detail. The text in this guide remains usable without any of these images.
+The original mobile Today synthesis is the visual anchor for the look. Eight complementary reference studies have since been generated. All of them are inspiration for color, type and illustration only, not specifications of controls, placement, layout or content. The text in this guide remains usable without any of these images.
 
 | Study | Purpose | Reference |
 | --- | --- | --- |

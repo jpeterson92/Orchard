@@ -16,7 +16,7 @@ Read only the sections a task needs: Grep for the heading, then Read with offset
 | `docs/product-spec.md` | Behavior, scope, copy | §4 navigation · §5 screens · §6 in-store mode · §7 verdict rules · §8 content model and writing standards · §10 non-functional |
 | `docs/design/design-system.md` | Visual design, tokens, components | §3 color · §4 type and tokens · §5 layout · §6 components · §7 accessibility · §9 acceptance criteria |
 | `docs/design/illustration-guide.md` | Painted artwork and image prompts | Only for image work |
-| `docs/design/references/` | Mockups; `00-today-anchor.png` is the approved anchor | View the relevant one before UI work |
+| `docs/design/references/` | Mockups: inspiration for the look only (`00-today-anchor.png` is the anchor). Layout and information design are Claude's call | Glance at them for visual language, never copy their layout |
 | `docs/data/usda.md` | What USDA reference data covers, the 89-item launch scope | Coverage by item · Launch scope screen |
 
 When documents conflict: Jared's latest instruction > product spec for behavior > design system for visuals > engineering plan for how it's built. Fix the conflict in the losing doc in the same commit.
