@@ -1,0 +1,143 @@
+id: mandarins
+name: Mandarins
+synonyms:
+  [
+    mandarin,
+    tangerine,
+    tangerines,
+    clementine,
+    clementines,
+    satsuma,
+    satsumas,
+    tangelo,
+    tangelos,
+    cuties,
+    halos,
+  ]
+misspellings: [mandarine, mandrin, mandrins, clementien, tangarine]
+category: citrus
+purchaseRank: 6
+alwaysGood: false
+shipsWell:
+  value: true
+  sources: [freshfruitportal-lgs-clementines-2018, freshplaza-morocco-citrus-2025]
+  note: Citrus is picked ripe and holds up in transit; import quality varies by season.
+peakWorthSeeking:
+  value: true
+  sources:
+    [freshplaza-california-minneolas-2023, eatlikenoone-california-mandarins, freshplaza-morocco-citrus-2025]
+  note: Growers wait for acid to drop, and sources name clearly better and worse months.
+storesWell:
+  value: false
+  sources: [illinois-extension-winter-citrus, cuties-how-long-they-last]
+  note: Keeps a week or two, not months.
+evidenceBasis: assessment-only
+cardLine: Heavy for its size, firm and glossy, no soft spots.
+pick:
+  - Heavy for its size
+  - Firm, glossy skin with no soft spots
+  - Skin fairly snug, not puffy or hollow-feeling
+  - A fresh citrus smell at the stem
+avoid:
+  - Light, puffy fruit; it's often dry inside
+  - Soft, sunken or moldy spots
+store:
+  temperature: cold
+  ethylene: neither
+  life: { min: 1, max: 2, unit: weeks }
+  text: Keeps about a week on a cool counter, or 1–2 weeks loose in the fridge. Check every few days and remove any soft or moldy fruit.
+  sources: [illinois-extension-winter-citrus, cuties-how-long-they-last]
+prep: Rinse, then peel by hand from the stem end. The white pith is edible. Peeled segments keep up to a week, covered, in the fridge.
+varieties:
+  - id: clementine
+    name: Clementine
+    traits: {}
+    bestUses: [Snacking and lunch boxes]
+    label: Clementine; often sold as Cuties or Halos in winter
+    windows:
+      - from: nov-1
+        to: jan-1
+        rating: prime
+        reason: Four California sources put clementines here; Chile's and Morocco's off-season readings pull the proposal down.
+      - from: jan-2
+        to: jan-2
+        rating: fair
+        reason: California finishes in the second half of January; Sunkist runs through January and Moroccan clementines fill in.
+      - from: aug-1
+        to: oct-2
+        rating: fair
+        reason: Chile ships clementines to the US August to November, and citrus ships well; California's charts describe only California's off-season.
+    quotedAs: [clementines-unspecified]
+  - id: w-murcott
+    name: W. Murcott and Tango
+    traits: {}
+    bestUses: [Snacking and lunch boxes]
+    label: W. Murcott, Tango, Afourer or Nadorcott; late-season Cuties and Halos
+    windows:
+      - from: jan-2
+        to: apr-2
+        rating: prime
+        reason: Three California sources put Tango and Murcott here, and one rates late-March Murcotts the best; import off-season readings pull the proposal down.
+      - from: may-1
+        to: may-2
+        rating: fair
+        reason: California Murcotts run into May, tapering as the season closes.
+      - from: jul-2
+        to: oct-2
+        rating: fair
+        reason: Chile ships W. Murcotts to the US from late July through October, and citrus ships well; California's charts describe only California's off-season.
+    quotedAs: [tangerines-w-murcott-afourer, tangerines-tango, tangerines-nadorcott]
+  - id: minneola
+    name: Minneola tangelo
+    traits: {}
+    bestUses: [Snacking, juicing]
+    label: Minneola or Honeybell tangelo
+    windows:
+      - from: dec-2
+        to: dec-2
+        rating: fair
+        reason: Sunkist starts Minneolas mid-December, but one California shipper waits until late January for acid to drop.
+      - from: jan-1
+        to: apr-2
+        rating: prime
+        reason: All three sources run Minneolas to late April; evidence thins only in the last weeks as Florida's season ends.
+    quotedAs: [tangelos-minneola]
+  - id: gold-nugget
+    name: Gold Nugget
+    traits: {}
+    bestUses: [Snacking]
+    label: Gold Nugget mandarin
+    windows:
+      - { from: may-1, to: may-2, rating: prime }
+    quotedAs: [tangerines-golden-nugget]
+typicalOrigins:
+  - from: oct
+    to: oct
+    origins: [{ origin: cl, major: true }, { origin: pe, major: false }, { origin: us-ca, major: false }]
+    sources: [usda-ams-fv-movement, freshplaza-chile-late-mandarins-2014, produce-business-california-citrus]
+  - from: nov
+    to: nov
+    origins: [{ origin: us-ca, major: true }, { origin: cl, major: true }]
+    sources: [usda-ams-fv-movement, freshfruitportal-chile-mandarins-2024, freshplaza-california-citrus-2023]
+  - from: dec
+    to: apr
+    origins: [{ origin: us-ca, major: true }, { origin: ma, major: false }]
+    sources: [usda-ams-fv-movement, produce-business-california-citrus, freshfruitportal-lgs-clementines-2018]
+  - from: may
+    to: may
+    origins: [{ origin: us-ca, major: true }, { origin: pe, major: false }]
+    sources:
+      [usda-ams-fv-movement, produce-business-california-mandarins, freshfruitportal-peru-mandarins-2018]
+  - from: jun
+    to: jul
+    origins: [{ origin: cl, major: true }, { origin: pe, major: true }, { origin: za, major: false }]
+    sources: [usda-ams-fv-movement, citrusindustry-peru-mandarins-2026, freshplaza-california-mandarins-2026]
+  - from: aug
+    to: aug
+    origins: [{ origin: pe, major: true }, { origin: cl, major: false }, { origin: za, major: false }]
+    sources: [usda-ams-fv-movement, citrusindustry-peru-mandarins-2026]
+  - from: sep
+    to: sep
+    origins: [{ origin: cl, major: true }, { origin: pe, major: true }]
+    sources: [usda-ams-fv-movement, freshplaza-chile-late-mandarins-2014, freshplaza-peru-citrus-2025]
+status: draft

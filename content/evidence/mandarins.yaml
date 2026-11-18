@@ -1,0 +1,197 @@
+item: mandarins
+status: draft
+claims:
+  - source: produce-business-california-mandarins
+    origin: us-ca
+    windows:
+      - { from: nov-1, to: may-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: The California mandarin season runs November through May.
+  - source: eatlikenoone-california-mandarins
+    origin: us-ca
+    windows:
+      - { from: nov-1, to: may-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: California mandarins start in November and run into May, a few into June.
+  # Clementines
+  - source: sunkist-foodservice-mandarins
+    origin: us-ca
+    variety: clementine
+    windows:
+      - { from: nov-1, to: jan-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Sunkist's California clementines are available November through January.
+  - source: freshplaza-california-clementines-2024
+    origin: us-ca
+    variety: clementine
+    windows:
+      - { from: nov-1, to: jan-1, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: A large California shipper ramps clementines up in November and runs to about mid-January.
+  - source: freshplaza-california-citrus-2023
+    origin: us-ca
+    variety: clementine
+    windows:
+      - { from: nov-1, to: jan-1, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: California clementines are harvested first, November to mid-January.
+  - source: beesweet-california-mandarins-2019
+    origin: us-ca
+    variety: clementine
+    windows:
+      - { from: nov-1, to: dec-1, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: A California grower-shipper offers clementines from early November to mid-December.
+  - source: freshfruitportal-lgs-clementines-2018
+    origin: ma
+    variety: clementine
+    windows:
+      - { from: nov-1, to: apr-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: An importer brings Spanish and Moroccan clementines to the US from November through April.
+  - source: freshplaza-morocco-citrus-2025
+    origin: ma
+    variety: clementine
+    windows:
+      - { from: nov-1, to: dec-2, rating: fair }
+    specificity: month
+    directness: eating-quality
+    paraphrase: Moroccan clementines shipped to the US in November and December 2024 arrived soft and pale.
+  - source: freshfruitportal-chile-mandarins-2024
+    origin: cl
+    variety: clementine
+    windows:
+      - { from: aug-1, to: nov-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Chilean clementines typically reach the US from August to November.
+  # W. Murcott, Tango and Nadorcott (Afourer)
+  - source: sunkist-foodservice-mandarins
+    origin: us-ca
+    variety: w-murcott
+    windows:
+      - { from: feb-1, to: apr-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Sunkist's California W. Murcott mandarins are available February through April.
+  - source: freshplaza-california-citrus-2023
+    origin: us-ca
+    variety: w-murcott
+    windows:
+      - { from: jan-2, to: may-2, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: California Tangos run late January to April, then Murcotts mid-March to May.
+  - source: freshplaza-california-mandarins-2026
+    origin: us-ca
+    variety: w-murcott
+    windows:
+      - { from: jan-2, to: apr-2, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: A shipper of mostly Tangos and Murcotts says California supply runs late January to mid or late April.
+  - source: eatlikenoone-california-mandarins
+    origin: us-ca
+    variety: w-murcott
+    windows:
+      - { from: mar-2, to: mar-2, rating: prime }
+    specificity: half-month
+    directness: eating-quality
+    paraphrase: The writer's best-ever Murcotts were eaten in late March.
+  - source: freshfruitportal-lgs-clementines-2018
+    origin: ma
+    variety: w-murcott
+    windows:
+      - { from: jan-1, to: apr-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: The importer's Moroccan Murcotts ship steadily from January through April.
+  - source: freshplaza-morocco-citrus-2025
+    origin: ma
+    variety: w-murcott
+    windows:
+      - { from: mar-1, to: mar-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Moroccan Nadorcotts were expected in the US until the end of March, perhaps early April.
+  - source: freshfruitportal-rioblanco-mandarins-2025
+    origin: cl
+    variety: w-murcott
+    windows:
+      - { from: jul-2, to: jul-2, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: A Chilean grower starts its W. Murcott harvest at the end of July.
+  - source: freshplaza-chile-late-mandarins-2014
+    origin: cl
+    variety: w-murcott
+    windows:
+      - { from: sep-1, to: oct-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Chilean W. Murcotts go mostly to the US, almost unopposed in September and October.
+  # Minneola tangelos
+  - source: freshplaza-california-minneolas-2023
+    origin: us-ca
+    variety: minneola
+    windows:
+      - { from: jan-2, to: apr-2, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: California Minneolas run late January to late April, picked once acid drops for eating quality.
+  - source: sunkist-foodservice-tangerines-tangelos
+    origin: us-ca
+    variety: minneola
+    windows:
+      - { from: dec-2, to: apr-2, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: Sunkist's Minneolas are available mid-December through April.
+  - source: halegroves-tangelos
+    origin: us-fl
+    variety: minneola
+    windows:
+      - { from: nov-1, to: mar-2, rating: prime }
+    specificity: season
+    directness: availability
+    paraphrase: Florida Minneolas can appear from November; tangelos run late fall to early spring.
+  # Gold Nugget
+  - source: produce-business-california-mandarins
+    origin: us-ca
+    variety: gold-nugget
+    windows:
+      - { from: mar-1, to: may-2, rating: prime }
+    specificity: season
+    directness: availability
+    paraphrase: California Gold Nugget mandarins are a spring variety.
+  - source: eatlikenoone-california-mandarins
+    origin: us-ca
+    variety: gold-nugget
+    windows:
+      - { from: feb-1, to: feb-2, rating: fair }
+      - { from: may-1, to: may-2, rating: prime }
+    specificity: month
+    directness: eating-quality
+    paraphrase: Early Gold Nuggets in February are too early to be good; May's are among the best buys.
+  # Imports by origin, no variety named
+  - source: citrusindustry-peru-mandarins-2026
+    origin: pe
+    windows:
+      - { from: mar-1, to: oct-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Peru's main mandarin harvest runs March to October, peaking June to August.
+  - source: citrusindustry-peru-mandarins-2023
+    origin: pe
+    windows:
+      - { from: mar-1, to: nov-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Peru's mandarin harvest runs from March to November.

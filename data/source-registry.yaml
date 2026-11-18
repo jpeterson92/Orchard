@@ -19,6 +19,17 @@ items:
     - satsumas
     - tangelo
     - tangelos
+    - minneola
+    - minneolas
+    - murcott
+    - murcotts
+    - tango
+    - tangos
+    - nadorcott
+    - nadorcotts
+    - gold nugget
+    - nuggets
+    - cuties
 
 pages:
   - source: msstate-fruits-vegetables-in-season
@@ -181,3 +192,128 @@ pages:
     kind: item-page
     origin: us-fl
     items: [strawberries]
+  - source: freshplaza-california-clementines-2024
+    url: https://www.freshplaza.com/north-america/article/9680092/california-clementine-supply-increasing/
+    kind: item-page
+    origin: us-ca
+    items: [mandarins]
+  - source: freshplaza-california-citrus-2023
+    url: https://www.freshplaza.com/north-america/article/9568281/more-concise-california-citrus-season-expected/
+    kind: item-page
+    origin: us-ca
+    items: [mandarins]
+  - source: beesweet-california-mandarins-2019
+    url: https://perishablenews.com/produce/california-mandarin-varieties-available-from-bee-sweet-citrus-to-meet-holiday-market-demand/
+    kind: item-page
+    origin: us-ca
+    items: [mandarins]
+  - source: freshplaza-california-mandarins-2026
+    url: https://www.freshplaza.com/europe/article/9815780/california-mandarin-volume-good-despite-some-fruit-drop/
+    kind: item-page
+    origin: us-ca
+    items: [mandarins]
+  - source: freshplaza-california-murcotts-2023
+    url: https://www.freshplaza.com/africa/article/9508034/pricing-low-on-california-w-murcotts/
+    kind: item-page
+    origin: us-ca
+    items: [mandarins]
+  - source: freshplaza-mandarins-2025-11
+    url: https://www.freshplaza.com/north-america/article/9786837/global-market-overview-mandarins/
+    kind: item-page
+    origin: us-ca
+    items: [mandarins]
+  - source: freshplaza-california-minneolas-2023
+    url: https://www.freshplaza.com/north-america/article/9515585/what-s-the-future-for-california-minneolas/
+    kind: item-page
+    origin: us-ca
+    items: [mandarins]
+  - source: halegroves-tangelos
+    url: https://www.halegroves.com/blog/?p=34721
+    kind: item-page
+    origin: us-fl
+    items: [mandarins]
+  - source: freshfruitportal-peru-mandarins-2018
+    url: https://www.freshfruitportal.com/archive/2018/08/11/peru-boosts-mandarin-focus-on-u-s-china-at-expense-of-europe/
+    kind: item-page
+    origin: pe
+    items: [mandarins]
+  - source: citrusindustry-peru-mandarins-2023
+    url: https://citrusindustry.net/2023/01/26/all-about-perus-mandarin-tangerine-industry/
+    kind: item-page
+    origin: pe
+    items: [mandarins]
+  - source: citrusindustry-peru-mandarins-2026
+    url: https://citrusindustry.net/2026/01/08/peruvian-mandarin-production/
+    kind: item-page
+    origin: pe
+    items: [mandarins]
+  - source: freshplaza-peru-citrus-2025
+    url: https://www.freshplaza.com/north-america/article/9760901/peruvian-citrus-exports-increased-by-16-percent/
+    kind: item-page
+    origin: pe
+    items: [mandarins]
+  - source: freshfruitportal-chile-mandarins-2024
+    url: https://www.freshfruitportal.com/archive/2024/04/05/mandarin-orange-volume-projected-to-drop-in-chile-a-top-us-supplier/
+    kind: item-page
+    origin: cl
+    items: [mandarins]
+  - source: freshplaza-chile-late-mandarins-2014
+    url: https://www.freshplaza.com/north-america/article/2130691/chile-lower-volumes-of-late-mandarins-but-better-results
+    kind: item-page
+    origin: cl
+    items: [mandarins]
+  - source: freshplaza-chile-first-mandarins-2018
+    url: https://www.freshplaza.com/north-america/article/2198696/chile-sends-its-first-shipment-of-mandarins-to-the-us-and-canada
+    kind: item-page
+    origin: cl
+    items: [mandarins]
+  - source: freshfruitportal-rioblanco-mandarins-2025
+    url: https://www.freshfruitportal.com/archive/2025/08/11/rioblanco-mandarin-exports/
+    kind: item-page
+    origin: cl
+    items: [mandarins]
+  - source: freshplaza-chile-citrus-2026
+    url: https://www.freshplaza.com/north-america/article/9851112/chile-to-export-530-000-tons-of-citrus-in-2026/
+    kind: item-page
+    origin: cl
+    items: [mandarins]
+  - source: freshfruitportal-south-africa-citrus-2021
+    url: https://freshfruitportal.com/?p=415247
+    kind: item-page
+    origin: za
+    items: [mandarins]
+  - source: freshfruitportal-lgs-clementines-2018
+    url: https://www.freshfruitportal.com/archive/2018/11/05/lgs-specialty-sales-kicks-off-spanish-and-moroccan-clementine-season/
+    kind: item-page
+    origin: ma
+    items: [mandarins]
+  - source: freshplaza-morocco-citrus-2025
+    url: https://www.freshplaza.com/north-america/article/9695109/hoping-for-a-better-second-half-of-morocco-s-citrus-season/
+    kind: item-page
+    origin: ma
+    items: [mandarins]
+  - source: freshplaza-gold-nugget-2021
+    url: https://www.freshplaza.com/north-america/article/9315789/gold-nugget-mandarins-see-inconsistent-demand/
+    kind: item-page
+    origin: us-ca
+    items: [mandarins]
+  - source: freshplaza-gold-nugget-2017
+    url: https://www.freshplaza.com/north-america/article/2176650/extra-volume-for-california-gold-nugget-mandarins-this-season
+    kind: item-page
+    origin: us-ca
+    items: [mandarins]
+  - source: illinois-extension-winter-citrus
+    url: https://extension.illinois.edu/blogs/live-well-eat-well/2024-01-24-eat-all-varieties-winter-citrus
+    kind: item-page
+    origin: us
+    items: [mandarins]
+  - source: cuties-how-long-they-last
+    url: https://cutiescitrus.com/cuties-corner/how-long-do-cuties-last-how-to-keep-fresh-longerresh-longer
+    kind: item-page
+    origin: us-ca
+    items: [mandarins]
+  - source: sunkist-foodservice-tangerines-tangelos
+    url: https://foodservice.sunkist.com/citrus-info/tangerines-tangelos
+    kind: item-page
+    origin: us-ca
+    items: [mandarins]

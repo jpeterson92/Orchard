@@ -1,58 +1,28 @@
+# Claims for mandarin varieties not yet in the item file (Royal, satsuma, Sumo, Pixie); they move to
+# content/evidence/mandarins.yaml when those varieties are added.
 item: mandarins
 status: draft
 claims:
-  - source: produce-business-california-mandarins
-    origin: us-ca
-    windows:
-      - { from: nov-1, to: may-2, rating: prime }
-    specificity: month
-    directness: availability
-    paraphrase: The California mandarin season runs November through May.
-  - source: eatlikenoone-california-mandarins
-    origin: us-ca
-    windows:
-      - { from: nov-1, to: may-2, rating: prime }
-    specificity: month
-    directness: availability
-    paraphrase: California mandarins start in November and run into May, a few into June.
-  - source: sunkist-foodservice-mandarins
-    origin: us-ca
-    variety: clementine
-    windows:
-      - { from: nov-1, to: jan-2, rating: prime }
-    specificity: month
-    directness: availability
-    paraphrase: Sunkist's California clementines are available November through January.
-  - source: sunkist-foodservice-mandarins
-    origin: us-ca
-    variety: w-murcott
-    windows:
-      - { from: feb-1, to: apr-2, rating: prime }
-    specificity: month
-    directness: availability
-    paraphrase: Sunkist's California W. Murcott mandarins are available February through April.
   - source: sunkist-foodservice-mandarins
     origin: us-ca
     variety: royal
     windows:
-      - { from: jan-1, to: mar-1, rating: prime }
+      - from: jan-1
+        to: mar-1
+        rating: prime
     specificity: half-month
     directness: availability
     paraphrase: Sunkist's California Royal mandarins are available January through mid-March.
-  - source: produce-business-california-mandarins
-    origin: us-ca
-    variety: gold-nugget
-    windows:
-      - { from: mar-1, to: may-2, rating: prime }
-    specificity: season
-    directness: availability
-    paraphrase: California Gold Nugget mandarins are a spring variety.
   - source: eatlikenoone-california-mandarins
     origin: us-ca
     variety: satsuma
     windows:
-      - { from: dec-2, to: dec-2, rating: prime }
-      - { from: jan-1, to: jan-2, rating: fair }
+      - from: dec-2
+        to: dec-2
+        rating: prime
+      - from: jan-1
+        to: jan-2
+        rating: fair
     specificity: half-month
     directness: eating-quality
     paraphrase: California satsumas taste best around the third week of December, then soften in January.
@@ -60,24 +30,19 @@ claims:
     origin: us-ca
     variety: sumo
     windows:
-      - { from: jan-1, to: jan-2, rating: prime }
+      - from: jan-1
+        to: jan-2
+        rating: prime
     specificity: month
     directness: eating-quality
     paraphrase: The writer rates January's Sumo mandarins the best citrus of the year.
   - source: eatlikenoone-california-mandarins
     origin: us-ca
-    variety: gold-nugget
-    windows:
-      - { from: feb-1, to: feb-2, rating: fair }
-      - { from: may-1, to: may-2, rating: prime }
-    specificity: month
-    directness: eating-quality
-    paraphrase: Early Gold Nuggets in February are too early to be good; May's are among the best buys.
-  - source: eatlikenoone-california-mandarins
-    origin: us-ca
     variety: pixie
     windows:
-      - { from: may-1, to: may-2, rating: prime }
+      - from: may-1
+        to: may-2
+        rating: prime
     specificity: month
     directness: eating-quality
     paraphrase: Pixies are among the best mandarins to buy in May, the season's last month.
