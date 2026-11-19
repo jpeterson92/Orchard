@@ -1,17 +1,17 @@
 # PROGRESS
 
-Updated: 2026-11-19 · Phase: build · Live: https://orchard.jpeterson92.workers.dev (M0 placeholder) · 62 commits unsynced
+Updated: 2026-11-19 · Phase: build · Live: https://orchard.jpeterson92.workers.dev (M0 placeholder) · 64 commits unsynced
 
 ## Milestones
 
-- **Done:** M0 scaffold and deploy · M1 USDA probe · M2 schemas, verdict engine (P1, P10–P20), evidence pipeline, `usda:derive`, `content:report` · model panel run `claude-opus-5-5-2026-11-17` (89 items, prompt v2; P15 panel-first) · M4 offline · M5 planning date and shared dates · M6 navigation, Browse, Calendar, search, Methods and Privacy pages · M8 measurement (web vitals and daily event counts in D1; shopper feedback removed by Jared).
+- **Done:** M0 scaffold and deploy · M1 USDA probe · M2 schemas, verdict engine (P1, P10–P20), evidence pipeline, `usda:derive`, `content:report` · precalculated assessments in `generated/assessments/` (committed; `npm run check` and CI fail on drift) · model panel run `claude-opus-5-5-2026-11-17` (89 items, prompt v2; P15 panel-first) · M4 offline · M5 planning date and shared dates · M6 navigation, Browse, Calendar, search, Methods and Privacy pages · M8 measurement (web vitals and daily event counts in D1; shopper feedback removed by Jared).
 - **M3:** built; closes with Jared's phone review, which needs a preview deploy.
 - **M9:** slices 1–2 done (security headers, axe in light and dark, WebKit e2e, page titles). The rest waits on content, art, devices, the domain and the independent reviewer; check the security headers on the live URL (`curl -I`) after the next deploy.
 - **M7 (variety guides): not started; after the re-rating.** Scales for apples, pears and citrus are approved; traits for 33 varieties are drafted. Fold unrated varieties (Red Delicious, Golden Delicious and the rest) out of the item page's "Varieties now" list into the guide, where they belong; today they make nine "Not rated" rows on the apples page.
 
 ## Next concrete action
 
-Re-rate on the higher bar for Good (Jared, 2026-11-19): *fair* now means "you'll be happy with it", and merely fine half-months drop to *poor*. Update `content/panel/PROMPT.md` to the new definitions, re-run the panel for the 28 items, rebuild proposals, recheck the windows with reasons, and restate the evidence-reading defaults (harvest-chart edges, stored produce, imports in their own season read fair) on the new bar. Where round tomatoes fall to Skip in winter, a cherry-and-grape selection lifting to Good may be needed. Then M7.
+Re-rate on the higher bar for Good (Jared, 2026-11-19): *fair* now means "you'll be happy with it", and merely fine half-months drop to *poor*. Update `content/panel/PROMPT.md` to the new definitions, re-run the panel for the 28 items, rebuild proposals, recheck the windows with reasons, and restate the evidence-reading defaults (harvest-chart edges, stored produce, imports in their own season read fair) on the new bar. Where round tomatoes fall to Skip in winter, a cherry-and-grape selection lifting to Good may be needed. Then M7. Review the re-rating through the diff of `generated/assessments/` (per-item YAML and `index.csv`).
 
 ## Content
 

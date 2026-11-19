@@ -144,9 +144,44 @@ const monthOf = (window: number): number => Math.floor(window / 2);
 /** P16: grown in a country that can make the item verdict Peak. */
 const near = (origin: OriginId, env: Env): boolean => env.rules.peakCountries.includes(origin.slice(0, 2));
 
+/** P20 trace, typical basis on items rated by origin: one origin in a level's set. */
+export interface LevelOrigin {
+  origin: OriginId;
+  rating: Rating;
+  /** Its weight in the typical supply: the volume share, or 1 per major editorial origin (0 for minor). */
+  weight: number;
+  /** False: a low-confidence rating that isn't the top origin, so it doesn't make the level available. */
+  counts: boolean;
+  /** Cited as commonly in stores this month. */
+  inStores: boolean;
+}
+
+/** P20 trace: the rated typical origins at a level (Peak: prime, near and not thin; Good: fair or better). */
+export interface LevelSet {
+  origins: LevelOrigin[];
+  /** All its origins' weight over the typical total (the look-for test against rules.lookForShare). */
+  share: number;
+  /** Its counting origins' weight over the typical total (the availability test against rules.availableShare). */
+  countedShare: number;
+  /** How it is reasonably likely on the shelf, or null when it isn't. */
+  available: "share" | "in-stores" | null;
+}
+
+/** P20 trace for one window: how the item verdict's levels were weighed. */
+export interface Levels {
+  /** Volume shares from USDA, or equal weights for editorial typical origins. */
+  weights: "volume" | "editorial";
+  /** The typical origins' total weight this month. */
+  total: number;
+  /** Every typical origin, top-ranked first, with its rating (null: unrated) and supply index (P11). */
+  typical: { origin: OriginId; rating: Rating | null; weight: number; supply: number | null }[];
+  peak: LevelSet;
+  good: LevelSet;
+}
+
 /** `notPeak`: what a Peak window reads if P19 takes its Peak away (the Good call, or the typical result under a
  * selection's Peak). */
-type Core = CoreResult & { labelNote?: boolean; selection?: string; notPeak?: Core };
+type Core = CoreResult & { labelNote?: boolean; selection?: string; notPeak?: Core; levels?: Levels };
 
 function evaluateCore(item: ItemInputs, basis: Basis, window: number, ctx: EvalContext, env: Env): Core {
   const month = monthOf(window);
@@ -180,6 +215,7 @@ function evaluateCore(item: ItemInputs, basis: Basis, window: number, ctx: EvalC
   let peakAllowed = true;
   let lookFor: readonly OriginId[] = [];
   let good: Partial<Decision> | undefined;
+  let levels: Levels | undefined;
 
   if (basis.kind === "typical") {
     const ratingOf = (o: OriginId) => item.origins[o]?.windows[window] ?? null;
@@ -241,6 +277,37 @@ function evaluateCore(item: ItemInputs, basis: Basis, window: number, ctx: EvalC
           poorOrigin: ratedTypical.find((o) => o !== lead && ratingOf(o) === "poor"),
         };
       };
+      const trace = (os: readonly OriginId[]): LevelSet => {
+        const sure = os.filter(counts);
+        return {
+          origins: os.map((o) => ({
+            origin: o,
+            rating: ratingOf(o) as Rating,
+            weight: weight(o),
+            counts: counts(o),
+            inStores: item.originInStores[o]?.[month] === true,
+          })),
+          share: shareOf(os),
+          countedShare: shareOf(sure),
+          available: !available(os)
+            ? null
+            : sure.length > 0 && shareOf(sure) >= env.rules.availableShare - 1e-9
+              ? "share"
+              : "in-stores",
+        };
+      };
+      levels = {
+        weights: known ? "volume" : "editorial",
+        total,
+        typical: typical.map((o) => ({
+          origin: o,
+          rating: ratingOf(o),
+          weight: weight(o),
+          supply: item.supply[o]?.[month] ?? null,
+        })),
+        peak: trace(peakSet),
+        good: trace(goodSet),
+      };
       good = available(goodSet) ? at(goodSet, false) : undefined;
       // Skip: the top poor origin decides (with none, the top origin).
       const skipLead = ratedTypical.find((o) => ratingOf(o) === "poor") ?? top;
@@ -279,6 +346,7 @@ function evaluateCore(item: ItemInputs, basis: Basis, window: number, ctx: EvalC
     ctx,
     env,
   );
+  if (levels) result.levels = levels;
   // P19: a typical Peak taken away reads as the Good level, with that level's origins to look for.
   if (basis.kind === "typical" && result.verdict === "peak" && good) {
     const { notPeak: _, ...asGood } = decide(
@@ -337,6 +405,7 @@ function selectionPeak(
         reasons: [{ code: "selection", selection: s.id }, ...typical.reasons],
         selection: s.id,
         notPeak: typical,
+        ...(typical.levels ? { levels: typical.levels } : {}),
       };
   }
   return null;
@@ -491,7 +560,7 @@ function bestVariety(item: ItemInputs, window: number, ctx: EvalContext, env: En
 }
 
 function stripNote(r: Core): CoreResult {
-  const { labelNote: _, selection: __, notPeak: ___, ...core } = r;
+  const { labelNote: _, selection: __, notPeak: ___, levels: ____, ...core } = r;
   return core;
 }
 
@@ -601,6 +670,13 @@ function mainPeakOnly<C extends Core>(year: readonly C[]): C[] {
     };
     return { ...rest, reasons: [...rest.reasons, { code: "main-peak", from: main.from, to }] } as C;
   });
+}
+
+/** P20 trace for one window's item verdict: the Peak and Good sets as the engine weighed them. Null where they
+ * weren't weighed: rated by variety, out of season, or too little of the typical supply rated (P1). */
+export function typicalLevels(item: ItemInputs, ctx: EvalContext, env: Env): Levels | null {
+  const window = windowIndex(ctx.date.month, ctx.date.day);
+  return evaluateCore(item, { kind: "typical" }, window, ctx, env).levels ?? null;
 }
 
 /** The usual evidence for the editorial "Always good" class: Good in all 24 windows. */

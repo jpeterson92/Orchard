@@ -70,7 +70,7 @@ data/
   us-states.csv              state code and name, for `us-<state>` origins
 scripts/                     prerender.ts, data-build.ts, content-report.ts, review.ts; usda-client.ts and usda-lib.ts (shared),
                              usda-probe.ts, usda-terminal-probe.ts, usda-terminal-screen.ts, usda-derive.ts;
-                             evidence-lib.ts (shared), evidence-fetch.ts, evidence-check.ts; panel-lib.ts, panel-check.ts, panel-import.ts; pages-lib.ts;
+                             evidence-lib.ts (shared), evidence-fetch.ts, evidence-check.ts; panel-lib.ts, panel-check.ts, panel-import.ts; pages-lib.ts; assessments-lib.ts;
                              art-lib.ts, art-process.ts
 src/
   shared/                    zod schemas, verdict engine, evidence curves, window math. Imports nothing from app/ or worker/
@@ -78,6 +78,7 @@ src/
   worker/                    Cloudflare Worker: /api/health, /api/measure
 migrations/                  D1 schema, plain SQL
   generated/                 data-build output (gitignored)
+generated/assessments/       data-build output, committed: per-item verdict assessments and index.csv
 tests/e2e/                   Playwright smoke tests
 docs/                        product spec, engineering plan, design, data findings
 ```
@@ -100,6 +101,8 @@ docs/                        product spec, engineering plan, design, data findin
 - **PLU codes** (IFPS's exported list; IFPS has permitted Orchard to bundle it): PLU → item, variety, size, organic. Label-based advice accepts a sticker code as well as an origin.
 
 `data:build` fails on any schema error, unknown ID, duplicate key, a rated window with neither a model panel rating, an eating-quality overrule of it, nor claims from 2 independent sources, a departing or Low-confidence window without a `reason`, or a NaN. With `--production` (run first by `npm run deploy`) it also fails on any `draft` or `synthetic` record. Without it, it also loads `content/fixtures/` (synthetic items, evidence and sources that put an item in every Today section), so dev and preview builds show them and production builds never do. Schemas live in `src/shared/data/schema.ts`, the checks in `scripts/data-validate.ts`. It writes `src/generated/data.json` (the full dataset, for scripts) and `src/generated/app.json` (each item's engine inputs and display text, built in `src/shared/app-data.ts`: the only data the app bundles), and prints counts. `dev`, `build`, `typecheck` and `check:changed` run it first, since `src/generated/` is gitignored.
+
+It also writes `generated/assessments/` (committed, never hand-edited; `scripts/assessments-lib.ts`): per real item a YAML file of all 24 windows as the engine and the views see them (verdict, basis, deciding origin or variety with its evidence confidence, the P20 Peak and Good sets from `typicalLevels` with shares and availability, look-for origins, reasons, confidence, markers, P19, the Today card, the variety summary), plus `index.csv`, one row per item and window. Window dates use a fixed year (2026) and nothing reads the clock, so a diff shows only content, data or rule changes. Production builds skip it.
 
 Editorial review is a separate step, run only when content is being reviewed or updated, never during app work: `npm run content:report` reads the built dataset and lists what an editor should settle. First, every rated window that departs from its evidence proposal or rests on Low-confidence evidence, with its reason. Then per item: the typical year as a 24-window verdict strip, and its surprises (Peak where the deciding origin's or variety's evidence isn't prime, Skip where it is prime, Peak in more than 16 windows, a Peak worth seeking that never comes); windows where a typical origin, or an in-store rated variety, has no rating; `alwaysGood` disagreeing with the typical outlook; and per rated origin, rated variety and unrated typical origin, strips of the editorial rating, the evidence proposal, its confidence and each source's curve with its weight. The editor checks the strips against their own sense of the produce before approving a batch. Helpers in `scripts/review.ts`. It never changes content.
 
@@ -188,7 +191,7 @@ Each milestone takes 1–3 sessions and ends with something Jared can review. Th
 | --- | --- | --- |
 | Verdict engine, Today grouping, window math | Vitest: a table-driven case per rule and per precedence pair; fast-check invariants (Limited evidence exactly when rule 1 fires; no Peak on thin supply; no Peak while a typical origin is poor; no Peak without `peakWorthSeeking`; `byOrigin` and `byVariety` equal re-running the rules; value inputs never change a verdict, once they exist) | **Thorough.** This is where correctness lives |
 | Evidence curves (P12) | Vitest table cases per rule; fast-check invariants (the combined value lies between the covering curves' minimum and maximum; an uncovered window has no proposal; adding a claim that agrees with the proposal never lowers its confidence; `basedOn` sources count once) | Thorough |
-| Content and data | `data:build` validation, plus one broken-input fixture per check | Thorough |
+| Content and data | `data:build` validation, plus one broken-input fixture per check; `data:check` (first in `check` and CI) fails when `generated/assessments/` differs from a fresh build; tests for its determinism and drift detection | Thorough |
 | UI components | Typecheck, plus a test only where a component carries a product rule | Light |
 | End to end | Playwright smoke in Chromium (Pixel 7) and WebKit (iPhone 15): Today renders, open an item, each page's own title, offline after the first visit, security headers on static and API responses, and every screen (Today with a card open, an item page with a variety picked, Browse, a category, Calendar, Methods, Privacy, search) passes axe in light and dark mode with no console or CSP errors | A handful of tests |
 | Visual | Screenshots at 375 px and one wide width, shown to Jared | No baseline suites |

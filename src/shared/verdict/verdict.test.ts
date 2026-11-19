@@ -8,6 +8,7 @@ import {
   evaluate,
   type ItemInputs,
   looksAlwaysGood,
+  typicalLevels,
   typicalOutlook,
   type VerdictResult,
 } from "./index";
@@ -542,6 +543,75 @@ describe("a level reasonably likely on the shelf (P20)", () => {
     expect(at(editorial(["mx"])).verdict).toBe("peak"); // 1 of 3 major
     expect(at(editorial(["us-ga", "mx"])).verdict).toBe("skip"); // a minor prime origin weighs nothing
   });
+});
+
+describe("the P20 trace (typicalLevels)", () => {
+  const shares = (ratings: Record<string, "prime" | "fair" | "poor">, volume: number[]) => {
+    const ids = Object.keys(ratings);
+    return item({
+      origins: Object.fromEntries(ids.map((o) => [o, rated(ratings[o] ?? null)])),
+      typicalOrigins: allMonths(ids),
+      typicalShares: allMonths(volume),
+      supply: Object.fromEntries(ids.map((o) => [o, allMonths(1)])),
+    });
+  };
+  it("weighs each level's share and says how it is available", () => {
+    const l = typicalLevels(
+      shares({ "us-ca": "poor", mx: "prime", "us-ga": "fair" }, [0.25, 0.5, 0.25]),
+      today,
+      ENV,
+    );
+    expect(l?.weights).toBe("volume");
+    expect(l?.typical.map((o) => [o.origin, o.rating])).toEqual([
+      ["us-ca", "poor"],
+      ["mx", "prime"],
+      ["us-ga", "fair"],
+    ]);
+    expect([l?.peak.origins.map((o) => o.origin), l?.peak.share, l?.peak.available]).toEqual([
+      ["mx"],
+      0.5,
+      "share",
+    ]);
+    expect([l?.good.origins.map((o) => o.origin), l?.good.share, l?.good.available]).toEqual([
+      ["mx", "us-ga"],
+      0.75,
+      "share",
+    ]);
+  });
+  it("matches the verdict: an unavailable Peak set gives Good, a cited in-store month makes it available", () => {
+    const base = shares({ "us-ca": "fair", mx: "prime" }, [0.7, 0.1]);
+    expect([typicalLevels(base, today, ENV)?.peak.available, evaluate(base, today, ENV).verdict]).toEqual([
+      null,
+      "good",
+    ]);
+    const cited = { ...base, originInStores: { mx: allMonths(true) } };
+    expect([typicalLevels(cited, today, ENV)?.peak.available, evaluate(cited, today, ENV).verdict]).toEqual([
+      "in-stores",
+      "peak",
+    ]);
+  });
+  it("marks a low-confidence origin below the top as not counted", () => {
+    const low = item({
+      origins: { "us-ca": rated("poor"), mx: rated("prime", {}, { "nov-2": "low" }) },
+      typicalOrigins: allMonths(["us-ca", "mx"]),
+      typicalShares: allMonths([0.4, 0.4]),
+      supply: { "us-ca": allMonths(1), mx: allMonths(1) },
+    });
+    const l = typicalLevels(low, today, ENV);
+    expect([l?.peak.origins[0]?.counts, l?.peak.share, l?.peak.countedShare, l?.peak.available]).toEqual([
+      false,
+      0.5,
+      0,
+      null,
+    ]);
+  });
+  it("is null where no levels are weighed: rated by variety, out of season, or too little rated (P1)", () => {
+    expect(typicalLevels(item({ varieties: [variety("a", rated("prime"))] }), today, ENV)).toBeNull();
+    expect(typicalLevels(item({ typicalOrigins: inNov(["us-ca"], []) }), today, ENV)).toBeNull();
+    expect(typicalLevels(item({ typicalOrigins: allMonths(["us-ca", "mx", "pe"]) }), today, ENV)).toBeNull();
+  });
+  it("leaves VerdictResult unchanged: no trace on the result", () =>
+    expect(Object.keys(evaluate(item(), today, ENV))).not.toContain("levels"));
 });
 
 describe("confidence (P10)", () => {

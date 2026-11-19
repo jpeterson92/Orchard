@@ -50,6 +50,7 @@ When documents conflict: Jared's latest instruction > product spec for behavior 
 - Verdict methodology, thresholds and requirements come from the product spec or Jared. Never invent them.
 - Quality ratings start from the model panel (`content/panel/`, P15): Claude's own knowledge is the first-order source, and real, checked citations validate it, fill its gaps (at least 2 where the panel has no rating) and can overrule it only with eating-quality evidence. Traits, typical origins and store ranges still need real, checked citations. Editorial data starts as `status: draft`. A record becomes `reviewed` only on Jared's explicit approval. Production builds refuse drafts.
 - Copy follows the product spec's §8 writing standards: concrete cues, ranges rather than guarantees, card text of at most 12 words.
+- `generated/` is build output: never edit it; read it for analysis and editorial review.
 - Privacy: never log or store a ZIP, coordinates, IP address or search text on a server.
 
 ## Environment
@@ -58,13 +59,13 @@ When documents conflict: Jared's latest instruction > product spec for behavior 
 - Node 26 LTS (Scoop). Commands:
   - `npm run dev`: app and Worker locally, with hot reload
   - `npm run check:changed`: typecheck, lint, and the unit tests affected by uncommitted changes (before each commit; `-- HEAD~3` widens it to recent commits)
-  - `npm run check`: typecheck, lint, all unit tests (before a GitHub sync or a deploy)
+  - `npm run check`: assessments drift check, typecheck, lint, all unit tests (before a GitHub sync or a deploy)
   - `npm run e2e`: build, then Playwright smoke tests against the build running in workerd
   - `npm run build`: client build plus the prerendered HTML (`scripts/prerender.ts`)
   - `npm run deploy`: build, then `wrangler deploy` (wrangler is signed in on this machine)
   - `npm run format`: Biome autofix (Markdown is excluded, so docs keep their formatting)
   - `npm run cf-typegen`: regenerate Worker types after changing `wrangler.jsonc`
-  - `npm run data:build`: validate `content/` and `data/`, write `src/generated/data.json`, print counts (`-- --production` refuses drafts)
+  - `npm run data:build`: validate `content/` and `data/`, write `src/generated/data.json` and the committed assessments in `generated/assessments/`, print counts (`-- --production` refuses drafts). `npm run data:check` (first step of `check` and CI) fails when the committed assessments differ from a fresh build
   - `npm run content:report`: editorial review listings (unrated windows, `alwaysGood` vs outlook). Run only for content review, never during app work
   - `npm run art:process`: check Jared's painted masters in `art/masters/`, write `public/art/` derivatives and the contact sheet (`.cache/art/contact-sheet.html`)
   - `npm run usda:probe`, `usda:terminal-probe`, `usda:terminal-screen`: USDA reference-data probes (cached in `.cache/usda/`, run in the background)

@@ -1,18 +1,21 @@
-// npm run data:build [-- --production]
+// npm run data:build [-- --production] [-- --check]
 // Validates content/ and data/ (engineering plan §4.1), writes src/generated/data.json and the bundled
-// src/generated/app.json, prints counts.
+// src/generated/app.json, writes the committed assessments in generated/assessments/ (with --check it writes none
+// and fails when they differ from a fresh build), prints counts.
 // Editorial review listings live in `npm run content:report`, run only when reviewing content.
 // Reads committed files only: it never fetches from the network and never edits content.
-import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { parse as parseYaml } from "yaml";
 import { appData } from "../src/shared/app-data";
 import { ART_WIDTHS, artFile, resolveArt } from "../src/shared/art";
+import { ASSESSMENTS_DIR, drift, renderAssessments } from "./assessments-lib";
 import { type Csv, parseCsv, type RawInputs, validate } from "./data-validate";
 import { citedSourceIds, renderPage, ruleValues } from "./pages-lib";
 import { type LoadedRun, panelCurves, promptVersion, scopeSchema } from "./panel-lib";
 
 const production = process.argv.includes("--production");
+const checkOnly = process.argv.includes("--check");
 const read = (file: string) => readFileSync(file, "utf8");
 const yaml = (file: string): unknown => parseYaml(read(file));
 const csv = (file: string, columns: readonly string[]): Csv | null =>
@@ -128,6 +131,28 @@ mkdirSync("src/generated", { recursive: true });
 writeFileSync("src/generated/data.json", JSON.stringify(dataset));
 const app = appData(dataset, new Date().toISOString().slice(0, 10), art.art, about);
 writeFileSync("src/generated/app.json", JSON.stringify(app));
+
+// Precalculated assessments, committed so verdict changes are reviewable as diffs. Production builds leave them
+// alone: they drop the synthetic fixtures but must refuse drafts, so they never rebuild the committed set.
+if (!production) {
+  const files = renderAssessments(app);
+  const stale = drift(ASSESSMENTS_DIR, files);
+  if (checkOnly && stale.length > 0) {
+    for (const s of stale) console.error(`error: ${ASSESSMENTS_DIR}/${s}`);
+    console.error(
+      `${ASSESSMENTS_DIR} is out of date with content/, data/ or the engine: run \`npm run data:build\` and commit it`,
+    );
+    process.exit(1);
+  }
+  if (!checkOnly && stale.length > 0) {
+    mkdirSync(ASSESSMENTS_DIR, { recursive: true });
+    for (const name of readdirSync(ASSESSMENTS_DIR))
+      if (!files.has(name)) rmSync(join(ASSESSMENTS_DIR, name));
+    for (const [name, content] of files) writeFileSync(join(ASSESSMENTS_DIR, name), content);
+  }
+  const updated = !checkOnly && stale.length > 0 ? ` (${stale.length} files updated)` : "";
+  console.log(`Assessments: ${files.size - 1} items${updated}`);
+}
 
 const reviewed = dataset.items.filter((i) => i.status === "reviewed").length;
 const synthetic = dataset.items.filter((i) => i.synthetic).length;

@@ -9,6 +9,7 @@ import { P15, panelFor, propose, ratingForValue, type Target, traitsFor } from "
 import { WINDOW_COUNT, windowLabel } from "../src/shared/time";
 import { evaluate, looksAlwaysGood, typicalOutlook } from "../src/shared/verdict";
 import { engineEnv, itemInputs } from "../src/shared/verdict/inputs";
+import { ASSESSMENT_YEAR } from "./assessments-lib";
 import {
   confidenceStrip,
   editorialSeries,
@@ -25,7 +26,7 @@ import {
 const data = JSON.parse(readFileSync("src/generated/data.json", "utf8")) as Dataset;
 data.items = data.items.filter((i) => !i.synthetic); // fixtures aren't content to review
 const env = engineEnv(data);
-const year = new Date().getFullYear();
+const year = ASSESSMENT_YEAR; // the same dates as generated/assessments/, which holds the full per-window detail
 const sources = new Map(data.sources.map((s) => [s.id, s]));
 const LABEL = 34;
 const column = (label: string) =>
