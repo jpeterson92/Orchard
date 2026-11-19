@@ -1,0 +1,109 @@
+id: grapefruit
+name: Grapefruit
+synonyms:
+  [grapefruits, rio red, ruby red, star ruby, red grapefruit, pink grapefruit, white grapefruit, oro blanco]
+misspellings: [grapfruit, grapefriut, grape fruit]
+category: citrus
+types:
+  - id: red
+    name: Red
+    note: Rio Red and Star Ruby; the sweetest and most common.
+  - id: pink
+    name: Pink
+    note: Milder color than red, with a similar sweet-tart balance.
+  - id: white
+    name: White
+    note: Pale flesh and the most tart, classic bitter flavor.
+purchaseRank: 22
+alwaysGood: false
+shipsWell:
+  value: true
+  sources: [askthefoodgeek-grapefruit, perishablenews-sa-summer-citrus]
+  note: A thick peel protects it, and South African fruit fills summer shelves.
+peakWorthSeeking:
+  value: true
+  sources: [askthefoodgeek-grapefruit, freshplaza-texas-sweetest-grapefruit]
+  note: Grapefruit gets sweeter and less acidic later in the winter season.
+storesWell:
+  value: false
+  sources: [ucdavis-postharvest-grapefruit]
+  note: Holds six to eight weeks at best and doesn't ripen after picking.
+evidenceBasis: assessment-only
+cardLine: Heavy for its size, with smooth, firm skin.
+pick:
+  - Heavy for its size
+  - Firm, with a slight spring
+  - Smooth, thin-looking skin
+avoid:
+  - Soft, puffy or moldy fruit
+store:
+  temperature: cool
+  ethylene: neither
+  life: { min: 1, max: 3, unit: weeks }
+  text: Keeps about a week on the counter and two to three weeks loose in the fridge.
+  sources: [ucdavis-postharvest-grapefruit]
+prep: Halve across the middle and loosen the segments, or peel and cut out the segments.
+origins:
+  - origin: us-tx
+    windows:
+      - { from: jan-1, to: mar-2, rating: prime }
+      - { from: apr-1, to: may-1, rating: fair }
+      - from: may-2
+        to: may-2
+        rating: fair
+        reason: Only availability claims speak here, and the model panel has no rating.
+      - { from: jun-1, to: sep-2, rating: poor }
+      - from: oct-1
+        to: oct-1
+        rating: fair
+        reason: Only availability claims speak here, and the model panel has no rating.
+      - { from: oct-2, to: nov-2, rating: fair }
+      - { from: dec-1, to: dec-2, rating: prime }
+  - origin: us-fl
+    windows:
+      - { from: jan-1, to: mar-2, rating: prime }
+      - { from: apr-1, to: may-2, rating: fair }
+      - from: jun-1
+        to: jun-2
+        rating: fair
+        reason: Florida ships almost no fresh grapefruit this month; season charts alone overstate it.
+      - { from: jul-1, to: jul-1, rating: fair }
+      - { from: jul-2, to: aug-1, rating: poor }
+      - { from: aug-2, to: aug-2, rating: fair }
+      - from: sep-1
+        to: sep-2
+        rating: fair
+        reason: Florida ships almost no fresh grapefruit this month; season charts alone overstate it.
+      - { from: oct-1, to: nov-2, rating: fair }
+      - { from: dec-1, to: dec-2, rating: prime }
+  - origin: us-ca
+    windows:
+      - { from: jan-1, to: jul-2, rating: fair }
+      - from: aug-1
+        to: aug-2
+        rating: fair
+        reason: Only availability claims speak here, and the model panel has no rating.
+      - { from: sep-1, to: sep-1, rating: fair }
+      - { from: sep-2, to: dec-1, rating: poor }
+      - { from: dec-2, to: dec-2, rating: fair }
+  - origin: za
+    windows:
+      - { from: jun-1, to: sep-2, rating: fair }
+typicalOrigins:
+  - from: nov
+    to: mar
+    origins: [{ origin: us-tx, major: true }, { origin: us-fl, major: true }, { origin: us-ca, major: false }]
+    sources: [usda-ams-fv-movement, askthefoodgeek-grapefruit]
+  - from: apr
+    to: jun
+    origins: [{ origin: us-ca, major: true }]
+    sources: [usda-ams-fv-movement, askthefoodgeek-grapefruit]
+  - from: jul
+    to: sep
+    origins: [{ origin: za, major: true }, { origin: us-ca, major: true }]
+    sources: [usda-ams-fv-movement, perishablenews-sa-summer-citrus, freshplaza-texas-grapefruit-2025]
+  - from: oct
+    to: oct
+    origins: [{ origin: us-tx, major: true }, { origin: us-ca, major: true }, { origin: us-fl, major: true }]
+    sources: [usda-ams-fv-movement, wintersweetz-grapefruit-season]
+status: draft

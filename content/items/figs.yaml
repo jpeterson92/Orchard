@@ -1,0 +1,86 @@
+id: figs
+name: Figs
+synonyms: [fig, fresh figs, black mission, mission figs, brown turkey, calimyrna, kadota, tiger figs]
+misspellings: [figgs, fgis]
+category: tropical
+types:
+  - id: mission
+    name: Black Mission
+    note: Purple-black skin and deep, jammy sweetness; first of the season.
+  - id: brown-turkey
+    name: Brown Turkey
+    note: Copper skin and mild, less intense flavor.
+  - id: green
+    name: Green figs
+    note: Kadota, Calimyrna and Tiger; honeyed and nutty, mostly midsummer.
+purchaseRank: 29
+alwaysGood: false
+shipsWell:
+  value: false
+  sources: [ucdavis-postharvest-fig, producebusiness-figs-profitability]
+  note: Picked nearly ripe and soft; winter imports are flown in and inconsistent.
+peakWorthSeeking:
+  value: true
+  sources: [foodwise-what-the-fig, producebusiness-figs-profitability]
+  note: Fresh figs are a summer and fall treat; imports are pricey and uneven.
+storesWell:
+  value: false
+  sources: [ucdavis-postharvest-fig]
+  note: Highly perishable, lasting one to two weeks even under ideal cold storage.
+evidenceBasis: assessment-only
+cardLine: Soft and plump, with a bent neck and no sour smell.
+pick:
+  - Soft to the touch, with a slight give
+  - Plump, with a drooping neck
+  - Rich color for its type
+avoid:
+  - Sour or fermented smell
+  - Mushy, leaking or moldy fruit
+store:
+  temperature: cold
+  ethylene: sensitive
+  life: { min: 2, max: 5, unit: days }
+  text: Very perishable. Chill in a single layer, away from apples and bananas, and eat within a few days.
+  sources: [ucdavis-postharvest-fig]
+prep: Rinse gently and trim the stem. Eat whole, skin and all, or halve for salads and cheese boards.
+origins:
+  - origin: us-ca
+    windows:
+      - { from: jan-1, to: apr-1, rating: poor }
+      - { from: apr-2, to: apr-2, rating: fair }
+      - from: may-1
+        to: may-1
+        rating: fair
+        reason: Only availability claims speak here, and the model panel has no rating.
+      - { from: may-2, to: may-2, rating: prime }
+      - { from: jun-1, to: jun-2, rating: fair }
+      - { from: jul-1, to: sep-2, rating: prime }
+      - { from: oct-1, to: oct-2, rating: fair }
+      - { from: nov-1, to: nov-1, rating: prime }
+      - from: nov-2
+        to: nov-2
+        rating: fair
+        reason: Only availability claims speak here, and the model panel has no rating.
+      - { from: dec-1, to: dec-1, rating: fair }
+      - { from: dec-2, to: dec-2, rating: poor }
+  - origin: mx
+    windows:
+      - { from: jan-1, to: dec-2, rating: poor }
+typicalOrigins:
+  - from: may
+    to: may
+    origins: [{ origin: us-ca, major: true }, { origin: mx, major: true }]
+    sources: [freshplaza-ca-figs-similar-crop, freshplaza-mexican-figs-boost]
+  - from: jun
+    to: oct
+    origins: [{ origin: us-ca, major: true }]
+    sources: [freshplaza-ca-figs-similar-crop, foodwise-what-the-fig]
+  - from: nov
+    to: nov
+    origins: [{ origin: us-ca, major: true }, { origin: mx, major: true }]
+    sources: [freshplaza-ca-figs-similar-crop, freshplaza-mexican-figs-boost]
+  - from: dec
+    to: apr
+    origins: [{ origin: mx, major: true }]
+    sources: [freshplaza-mexican-figs-boost, producebusiness-figs-profitability]
+status: draft

@@ -1,0 +1,75 @@
+id: pomegranates
+name: Pomegranates
+synonyms: [pomegranate, wonderful pomegranate, pomegranate seeds, arils, granada]
+misspellings: [pomegranite, pomegranites, pomagranate, pomegrante]
+category: tropical
+purchaseRank: 24
+alwaysGood: false
+shipsWell:
+  value: true
+  sources: [freshplaza-ca-season-ends-chile, freshplaza-peru-figs-pomegranates-spring]
+  note: Its tough rind holds up; Chile and Peru fill the spring.
+peakWorthSeeking:
+  value: true
+  sources: [pom-season-returns-2015, freshplaza-ca-season-ends-chile]
+  note: California's fall Wonderfuls set the standard; spring imports are scarcer.
+storesWell:
+  value: false
+  sources: [askthefoodgeek-pomegranates, freshplaza-ca-pomegranates-demand]
+  note: Whole fresh fruit sells out by January; only packaged arils run later.
+evidenceBasis: assessment-only
+cardLine: Heavy for its size, with firm, unbroken skin.
+pick:
+  - Heavy for its size
+  - Firm, taut skin with no soft spots
+  - Slightly flattened sides; seeds pressing outward
+avoid:
+  - Soft, bruised or cracked fruit
+store:
+  temperature: cold
+  ethylene: neither
+  life: { min: 1, max: 4, unit: weeks }
+  text: Keeps about a week on the counter and several weeks in the fridge. Loose seeds keep up to a week, chilled.
+  sources: [askthefoodgeek-pomegranates]
+prep: Score the skin, break it open in a bowl of water and loosen the seeds; the white pith floats.
+origins:
+  - origin: us-ca
+    windows:
+      - { from: jan-1, to: feb-1, rating: fair }
+      - { from: feb-2, to: aug-2, rating: poor }
+      - from: sep-1
+        to: sep-1
+        rating: fair
+        reason: Only availability claims speak here, and the model panel has no rating.
+      - { from: sep-2, to: sep-2, rating: fair }
+      - { from: oct-1, to: dec-2, rating: prime }
+typicalOrigins:
+  - from: sep
+    to: dec
+    origins: [{ origin: us-ca, major: true }]
+    sources: [usda-ams-fv-movement, freshplaza-ca-pomegranates-demand]
+  - from: jan
+    to: jan
+    origins: [{ origin: il, major: true }, { origin: us-ca, major: true }]
+    sources: [usda-ams-fv-movement, pom-season-returns-2015]
+  - from: feb
+    to: feb
+    origins: [{ origin: il, major: true }]
+    sources: [usda-ams-fv-movement, freshplaza-peru-figs-pomegranates-spring]
+  - from: mar
+    to: mar
+    origins: [{ origin: il, major: true }, { origin: pe, major: true }, { origin: cl, major: true }]
+    sources: [usda-ams-fv-movement, freshplaza-peru-figs-pomegranates-spring, freshplaza-ca-season-ends-chile]
+  - from: apr
+    to: apr
+    origins: [{ origin: pe, major: true }, { origin: cl, major: true }]
+    sources: [usda-ams-fv-movement, freshplaza-peru-figs-pomegranates-spring]
+  - from: may
+    to: jun
+    origins: [{ origin: ar, major: true }, { origin: pe, major: true }, { origin: cl, major: true }]
+    sources: [usda-ams-fv-movement, freshplaza-peru-figs-pomegranates-spring]
+  - from: jul
+    to: aug
+    origins: [{ origin: pe, major: true }, { origin: ar, major: true }]
+    sources: [usda-ams-fv-movement]
+status: draft

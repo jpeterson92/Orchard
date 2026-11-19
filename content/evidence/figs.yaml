@@ -1,0 +1,47 @@
+item: figs
+status: draft
+claims:
+  # California: breba Missions in May and June, the main crop July to November.
+  - source: freshplaza-ca-figs-similar-crop
+    origin: us-ca
+    windows:
+      - { from: may-1, to: nov-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: California's breba Missions arrive in May and June; every variety is available July through November.
+  - source: foodwise-what-the-fig
+    origin: us-ca
+    windows:
+      - { from: jun-1, to: oct-2, rating: prime }
+    specificity: season
+    directness: availability
+    paraphrase: Fresh figs reach California markets in early summer, pause briefly, and the main crop runs through October.
+  - source: askthefoodgeek-figs
+    origin: us
+    windows:
+      - { from: may-2, to: nov-2, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: Figs are usually in season from mid-May through November; Calimyrnas only July to September.
+  - source: producebusiness-figs-profitability
+    origin: us
+    windows:
+      - { from: may-1, to: oct-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: The US fig season, nearly all Californian, starts in May and runs until the first frost in October or November.
+  # Mexico: the winter import.
+  - source: freshplaza-mexican-figs-boost
+    origin: mx
+    windows:
+      - { from: nov-1, to: may-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Mexico's fig season runs opposite California's, from November through the end of May.
+  - source: freshplaza-mexican-figs-peak
+    origin: mx
+    windows:
+      - { from: dec-1, to: may-1, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: In a slow year, Mexican figs began in the first week of December and ran to about mid-May.
