@@ -1,0 +1,40 @@
+item: pomegranates
+status: draft
+claims:
+  # California: Wonderful from mid-October through December.
+  - source: freshplaza-ca-pomegranates-demand
+    origin: us-ca
+    windows:
+      - { from: oct-2, to: dec-2, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: California's main Wonderful harvest starts around October 15, with whole fruit shipped until December 31.
+  - source: pom-season-returns-2015
+    origin: us-ca
+    windows:
+      - { from: oct-1, to: jan-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Fresh pomegranate season begins in October; POM Wonderful's fresh fruit is sold October through January.
+  - source: foodwise-fall-fruit
+    origin: us-ca
+    windows:
+      - { from: sep-2, to: nov-2, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: At California markets, pomegranates start in late September and pick up through October and November.
+  - source: askthefoodgeek-pomegranates
+    origin: us
+    windows:
+      - { from: sep-1, to: dec-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Pomegranates show up from September through December, sometimes January; packaged arils last into February.
+  # Chile: a spring import.
+  - source: freshplaza-ca-season-ends-chile
+    origin: cl
+    windows:
+      - { from: feb-1, to: may-2, rating: prime }
+    specificity: season
+    directness: availability
+    paraphrase: Chile's pomegranate season starts in February and runs into spring, when US demand is lower.
