@@ -6,6 +6,6 @@
   },
   "formatter": { "indentStyle": "space", "lineWidth": 110 },
   "css": { "parser": { "tailwindDirectives": true } },
-  "linter": { "rules": { "recommended": true } },
+  "linter": { "rules": { "preset": "recommended" } },
   "assist": { "actions": { "source": { "organizeImports": "on" } } }
 }
