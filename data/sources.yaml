@@ -822,3 +822,101 @@
   url: https://www.freshplaza.com/north-america/article/9104809/asparagus-supplies-in-crossover-season/
   accessed: 2026-11-18
   tier: mainstream
+- id: msu-brussels-sprouts
+  title: "Michigan Fresh: Brussels Sprouts"
+  publisher: Michigan State University Extension
+  url: https://www.canr.msu.edu/uploads/resources/pdfs/brussels_sprouts_(hni53).pdf
+  accessed: 2026-11-18
+  tier: authoritative
+- id: usu-brussels-sprouts
+  title: "Brussels Sprouts"
+  publisher: Utah State University Extension
+  url: https://extension.usu.edu/nutrition/research/brussel-sprouts.pdf
+  accessed: 2026-11-18
+  tier: authoritative
+- id: iastate-brussels-sprouts
+  title: "Brussel Sprouts"
+  publisher: Iowa State University Extension and Outreach
+  url: https://spendsmart.extension.iastate.edu/produce-item/brussel-sprouts/
+  accessed: 2026-11-18
+  tier: authoritative
+- id: missouri-ipm-brussels-sprouts
+  title: "Brussels Sprouts"
+  publisher: University of Missouri Integrated Pest Management
+  url: https://ipm.missouri.edu/MEG/2018/10/brusselsSprouts
+  accessed: 2026-11-18
+  tier: authoritative
+- id: williams-sonoma-brussels-sprouts
+  title: "All About Brussels Sprouts"
+  publisher: Williams Sonoma
+  url: https://www.williams-sonoma.com/recipe/tip/all-about-brussels-sprouts/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: taylorfarms-brussels-sprouts
+  title: "All About Brussels Sprouts"
+  publisher: Taylor Farms
+  url: https://www.taylorfarms.com/vegetable-type/cruciferous/brussels-sprouts/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: dailymeal-brussels-sprouts
+  title: "In Season: Brussels Sprouts"
+  publisher: The Daily Meal
+  url: https://www.thedailymeal.com/season-brussels-sprouts/112113
+  accessed: 2026-11-18
+  tier: mainstream
+- id: freshplaza-baja-brussels-sprouts
+  title: "US: Mexico's Baja region main supplier of Brussels sprouts"
+  publisher: FreshPlaza
+  url: https://www.freshplaza.com/north-america/article/2135185/us-mexico-s-baja-region-main-supplier-brussels-sprouts/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: freshplaza-more-brussels-sprouts-mexico
+  title: "More Brussels sprouts coming from Mexico each year"
+  publisher: FreshPlaza
+  url: https://www.freshplaza.com/north-america/article/2190568/more-brussels-sprouts-coming-from-mexico-each-year/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: freshplaza-ca-brussels-sprouts-winding-down
+  title: "US (CA): Brussels sprouts production winding down, prices strong"
+  publisher: FreshPlaza
+  url: https://www.freshplaza.com/north-america/article/2132910/us-ca-brussels-sprouts-production-winding-down-prices-strong/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: freshplaza-brussels-sprouts-tight-july
+  title: "Brussels sprouts supply to stay tighter until mid-July"
+  publisher: FreshPlaza
+  url: https://www.freshplaza.com/north-america/article/9640171/brussels-sprouts-supply-to-stay-tighter-until-mid-july/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: freshplaza-brussels-sprouts-holiday-peak
+  title: "Peak Brussels sprouts crop ready for holiday season"
+  publisher: FreshPlaza
+  url: https://www.freshplaza.com/north-america/article/9480683/peak-brussels-sprouts-crop-ready-for-holiday-season/
+  accessed: 2026-11-18
+  tier: mainstream
+  basedOn: oceanmist-brussels-sprouts-holiday
+- id: oceanmist-brussels-sprouts-holiday
+  title: "Ocean Mist Farms High Quality Brussels Sprouts Available Now For Retail This Holiday Season"
+  publisher: Ocean Mist Farms
+  url: https://www.oceanmist.com/?p=2679
+  accessed: 2026-11-18
+  tier: mainstream
+- id: shelbyreport-oceanmist-brussels-sprouts
+  title: "Ocean Mist Farms introduces Brussels sprouts in retailers"
+  publisher: The Shelby Report
+  url: https://theshelbyreport.com/2022/11/23/ocean-mist-farms-introduces-brussels-sprouts-in-retailers
+  accessed: 2026-11-18
+  tier: mainstream
+  basedOn: oceanmist-brussels-sprouts-holiday
+- id: freshplaza-imported-brussels-sprouts-down
+  title: "Supplies down on imported Brussels sprouts"
+  publisher: FreshPlaza
+  url: https://www.freshplaza.com/north-america/article/9071684/supplies-down-on-imported-brussels-sprouts/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: freshplaza-brussels-sprouts-pipeline-refills
+  title: "Prices coming down as Brussels sprouts pipeline refills"
+  publisher: FreshPlaza
+  url: https://www.freshplaza.com/north-america/article/9811609/prices-coming-down-as-brussels-sprouts-pipeline-refills/
+  accessed: 2026-11-18
+  tier: mainstream

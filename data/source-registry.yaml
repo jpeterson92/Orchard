@@ -709,3 +709,83 @@ pages:
     kind: item-page
     origin: mx
     items: [asparagus]
+  - source: msu-brussels-sprouts
+    url: https://www.canr.msu.edu/uploads/resources/pdfs/brussels_sprouts_(hni53).pdf
+    kind: item-page
+    origin: us-mi
+    items: [brussels-sprouts]
+  - source: usu-brussels-sprouts
+    url: https://extension.usu.edu/nutrition/research/brussel-sprouts.pdf
+    kind: item-page
+    origin: us
+    items: [brussels-sprouts]
+  - source: iastate-brussels-sprouts
+    url: https://spendsmart.extension.iastate.edu/produce-item/brussel-sprouts/
+    kind: item-page
+    origin: us
+    items: [brussels-sprouts]
+  - source: missouri-ipm-brussels-sprouts
+    url: https://ipm.missouri.edu/MEG/2018/10/brusselsSprouts
+    kind: item-page
+    origin: us-mo
+    items: [brussels-sprouts]
+  - source: williams-sonoma-brussels-sprouts
+    url: https://www.williams-sonoma.com/recipe/tip/all-about-brussels-sprouts/
+    kind: item-page
+    origin: us
+    items: [brussels-sprouts]
+  - source: taylorfarms-brussels-sprouts
+    url: https://www.taylorfarms.com/vegetable-type/cruciferous/brussels-sprouts/
+    kind: item-page
+    origin: us-ca
+    items: [brussels-sprouts]
+  - source: dailymeal-brussels-sprouts
+    url: https://www.thedailymeal.com/season-brussels-sprouts/112113
+    kind: item-page
+    origin: us
+    items: [brussels-sprouts]
+  - source: freshplaza-baja-brussels-sprouts
+    url: https://www.freshplaza.com/north-america/article/2135185/us-mexico-s-baja-region-main-supplier-brussels-sprouts/
+    kind: item-page
+    origin: mx
+    items: [brussels-sprouts]
+  - source: freshplaza-more-brussels-sprouts-mexico
+    url: https://www.freshplaza.com/north-america/article/2190568/more-brussels-sprouts-coming-from-mexico-each-year/
+    kind: item-page
+    origin: mx
+    items: [brussels-sprouts]
+  - source: freshplaza-ca-brussels-sprouts-winding-down
+    url: https://www.freshplaza.com/north-america/article/2132910/us-ca-brussels-sprouts-production-winding-down-prices-strong/
+    kind: item-page
+    origin: us-ca
+    items: [brussels-sprouts]
+  - source: freshplaza-brussels-sprouts-tight-july
+    url: https://www.freshplaza.com/north-america/article/9640171/brussels-sprouts-supply-to-stay-tighter-until-mid-july/
+    kind: item-page
+    origin: us-ca
+    items: [brussels-sprouts]
+  - source: freshplaza-brussels-sprouts-holiday-peak
+    url: https://www.freshplaza.com/north-america/article/9480683/peak-brussels-sprouts-crop-ready-for-holiday-season/
+    kind: item-page
+    origin: us-ca
+    items: [brussels-sprouts]
+  - source: oceanmist-brussels-sprouts-holiday
+    url: https://www.oceanmist.com/?p=2679
+    kind: item-page
+    origin: us-ca
+    items: [brussels-sprouts]
+  - source: shelbyreport-oceanmist-brussels-sprouts
+    url: https://theshelbyreport.com/2022/11/23/ocean-mist-farms-introduces-brussels-sprouts-in-retailers
+    kind: item-page
+    origin: us-ca
+    items: [brussels-sprouts]
+  - source: freshplaza-imported-brussels-sprouts-down
+    url: https://www.freshplaza.com/north-america/article/9071684/supplies-down-on-imported-brussels-sprouts/
+    kind: item-page
+    origin: mx
+    items: [brussels-sprouts]
+  - source: freshplaza-brussels-sprouts-pipeline-refills
+    url: https://www.freshplaza.com/north-america/article/9811609/prices-coming-down-as-brussels-sprouts-pipeline-refills/
+    kind: item-page
+    origin: mx
+    items: [brussels-sprouts]

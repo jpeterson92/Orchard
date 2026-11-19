@@ -1,0 +1,54 @@
+item: brussels-sprouts
+status: draft
+claims:
+  # California: the Central Coast from summer into January, peaking in fall.
+  - source: taylorfarms-brussels-sprouts
+    origin: us-ca
+    windows:
+      - { from: jun-1, to: jan-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: California grows most US Brussels sprouts, mainly on the Central Coast from June to January.
+  - source: oceanmist-brussels-sprouts-holiday
+    origin: us-ca
+    windows:
+      - { from: nov-1, to: jan-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: A large grower says its Central Coast crop peaks in November and its harvest runs well into January.
+  - source: freshplaza-baja-brussels-sprouts
+    origin: us-ca
+    windows:
+      - { from: aug-1, to: nov-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: From August through November most US supply is grown domestically, mainly in California.
+  - source: missouri-ipm-brussels-sprouts
+    origin: us
+    windows:
+      - { from: oct-1, to: dec-2, rating: prime }
+    specificity: season
+    directness: eating-quality
+    paraphrase: Sprouts harvested through fall into early winter are firm and mild, as cool nights and frost improve their flavor; spring crops suffer in early heat.
+  # Mexico: the winter and spring deal.
+  - source: freshplaza-baja-brussels-sprouts
+    origin: mx
+    windows:
+      - { from: dec-1, to: may-2, rating: prime }
+    specificity: season
+    directness: availability
+    paraphrase: Baja California is the main supplier in winter and spring, after California's August to November crop.
+  - source: freshplaza-imported-brussels-sprouts-down
+    origin: mx
+    windows:
+      - { from: dec-1, to: apr-2, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: Importers run the winter deal on Brussels sprouts from early December to late April.
+  - source: freshplaza-brussels-sprouts-pipeline-refills
+    origin: mx
+    windows:
+      - { from: dec-1, to: may-1, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: After Salinas ends around December, Mexico ships until April or May, when Oxnard begins.

@@ -1,0 +1,54 @@
+id: brussels-sprouts
+name: Brussels sprouts
+synonyms: [brussels sprout, brussel sprouts, sprouts, brussels sprouts on the stalk]
+misspellings: [brussel sprout, brussles sprouts, brusselsprouts, brussell sprouts, brussels spouts]
+category: brassicas
+purchaseRank: 40
+alwaysGood: false
+shipsWell:
+  value: true
+  sources: [freshplaza-baja-brussels-sprouts, freshplaza-imported-brussels-sprouts-down]
+  note: Mexico's Baja crop is trucked north and fills winter and spring shelves.
+peakWorthSeeking:
+  value: true
+  sources: [missouri-ipm-brussels-sprouts, oceanmist-brussels-sprouts-holiday]
+  note: Cool fall nights and frost make them firmer and milder; the California crop peaks in November.
+storesWell:
+  value: false
+  sources: [iastate-brussels-sprouts, usu-brussels-sprouts]
+  note: Keeps about a week in the fridge, not months.
+evidenceBasis: supply+assessment
+cardLine: Small, firm, tight heads with bright green leaves.
+pick:
+  - Firm, compact heads that feel heavy for their size
+  - Bright green, tightly wrapped leaves
+  - Smaller sprouts are usually sweeter and more tender
+  - Clean, pale cut ends
+avoid:
+  - Yellowing, loose or wilted leaves
+  - Black spots, holes or a strong cabbage smell
+store:
+  temperature: cold
+  ethylene: sensitive
+  life: { min: 3, max: 7, unit: days }
+  text: Refrigerate unwashed in a loose plastic bag; pull off any wilted outer leaves first. Typically keeps 3–7 days; flavor turns stronger with time.
+  sources: [iastate-brussels-sprouts, usu-brussels-sprouts]
+prep: Rinse, trim the stem end and pull off loose outer leaves. Halve larger sprouts so they cook evenly.
+origins:
+  - origin: mx
+    windows:
+      - { from: jan-1, to: may-1, rating: fair }
+      - { from: may-2, to: nov-2, rating: poor }
+      - { from: dec-1, to: dec-2, rating: fair }
+  - origin: us-ca
+    windows:
+      - { from: jan-1, to: jan-1, rating: fair }
+      - from: jan-2
+        to: jan-2
+        rating: fair
+        reason: The panel has no rating here; California's harvest runs into January, so the cited sources split between fair and poor as it ends.
+      - { from: feb-1, to: feb-1, rating: fair }
+      - { from: feb-2, to: may-2, rating: poor }
+      - { from: jun-1, to: sep-2, rating: fair }
+      - { from: oct-1, to: dec-2, rating: prime }
+status: draft
