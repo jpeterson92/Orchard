@@ -149,6 +149,11 @@ export const varietySchema = z.strictObject({
   traits: z.record(id, z.int().min(1).max(5)),
   bestUses: z.array(words(CARD_WORDS)).min(1),
   label: words(CARD_WORDS),
+  /** Price-lookup sticker numbers IFPS assigns to it (conventional, any size or growing region); organic ones put
+   * a 9 in front. */
+  plu: z
+    .strictObject({ codes: z.array(z.int().min(3000).max(4999)).min(1), sources: sourceIds(1) })
+    .optional(),
   /** How to tell when it's ripe, on guides with `ripeCues` (e.g. a Bartlett turns yellow). */
   ripeCue: words(CARD_WORDS).optional(),
   /** How to find it and tell it apart in the store, on the item page, where its name alone doesn't (local field

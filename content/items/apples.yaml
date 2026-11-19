@@ -41,6 +41,7 @@ varieties:
     overallScore: { source: 83, editorial: 78 }
     bestUses: [Snacking, salads]
     label: Honeycrisp
+    plu: { codes: [3283, 3468], sources: [ifps-plu-codes] }
     sources: [usapple-honeycrisp, veritable-apple-guide, atk-apples-for-cooking, umd-apple-cultivars]
     storesWell:
       value: false
@@ -58,6 +59,7 @@ varieties:
     overallScore: { source: 68, editorial: 72 }
     bestUses: [Snacking, lunch boxes]
     label: Gala or Royal Gala
+    plu: { codes: [4132, 4133, 4134, 4135, 4173, 4174], sources: [ifps-plu-codes] }
     sources: [usapple-gala, veritable-apple-guide, atk-apples-for-cooking, rutgers-apple-varieties]
     windows:
       - { from: aug-2, to: nov-2, rating: prime }
@@ -70,6 +72,7 @@ varieties:
     overallScore: { source: 56, editorial: 76 }
     bestUses: [Snacking, salads]
     label: Fuji
+    plu: { codes: [4129, 4131], sources: [ifps-plu-codes] }
     sources: [usapple-fuji, veritable-apple-guide, fruitguys-sweetest-apples]
     windows:
       - { from: jan-1, to: sep-2, rating: fair }
@@ -81,6 +84,7 @@ varieties:
     overallScore: { source: 57, editorial: 66 }
     bestUses: [Baking, pies, salads]
     label: Granny Smith
+    plu: { codes: [4017, 4018, 4138, 4139], sources: [ifps-plu-codes] }
     sources: [usapple-granny-smith, veritable-apple-guide, atk-apples-for-cooking, umd-apple-cultivars]
     windows:
       - { from: jan-1, to: dec-2, rating: fair }
@@ -91,6 +95,7 @@ varieties:
     overallScore: { source: 90, editorial: 72 }
     bestUses: [Snacking, baking]
     label: Pink Lady
+    plu: { codes: [4128, 4130], sources: [ifps-plu-codes] }
     sources:
       [veritable-apple-guide, atk-apples-for-cooking, rutgers-apple-varieties, almanac-best-apples-baking]
     windows:
@@ -108,6 +113,7 @@ varieties:
     overallScore: { source: 88, editorial: 100 }
     bestUses: [Snacking, salads, slicing ahead]
     label: Cosmic Crisp
+    plu: { codes: [3507], sources: [ifps-plu-codes] }
     sources: [veritable-apple-guide, fruitguys-sweetest-apples, theproducemoms-apples-sweet-to-tart]
     windows:
       - { from: jan-1, to: oct-2, rating: fair }
@@ -123,6 +129,7 @@ varieties:
     overallScore: { source: 25, editorial: 35 }
     bestUses: [Eating fresh, salads]
     label: Red Delicious
+    plu: { codes: [3284, 4015, 4016, 4167, 4168], sources: [ifps-plu-codes] }
     sources: [usapple-red-delicious, atk-apples-for-cooking, theproducemoms-apples-sweet-to-tart]
   - id: golden-delicious
     name: Golden Delicious
@@ -130,6 +137,7 @@ varieties:
     overallScore: { source: 56, editorial: 60 }
     bestUses: [Applesauce, pies mixed with a tart apple]
     label: Golden Delicious
+    plu: { codes: [3285, 4020, 4021, 4136, 4137], sources: [ifps-plu-codes] }
     sources: [usapple-golden-delicious, umd-apple-cultivars, atk-apples-for-cooking, veritable-apple-guide]
   - id: ambrosia
     name: Ambrosia
@@ -137,6 +145,7 @@ varieties:
     overallScore: { source: 70, editorial: 78 }
     bestUses: [Snacking, salads, baked apples]
     label: Ambrosia
+    plu: { codes: [3438, 3510], sources: [ifps-plu-codes] }
     sources: [veritable-apple-guide, theproducemoms-apples-sweet-to-tart]
   - id: mcintosh
     name: McIntosh
@@ -144,6 +153,7 @@ varieties:
     overallScore: { source: 47, editorial: 62 }
     bestUses: [Applesauce, snacking]
     label: McIntosh
+    plu: { codes: [4019, 4152, 4153, 4154], sources: [ifps-plu-codes] }
     sources: [usapple-mcintosh, veritable-apple-guide, atk-apples-for-cooking]
   - id: braeburn
     name: Braeburn
@@ -151,6 +161,7 @@ varieties:
     overallScore: { source: 71, editorial: 74 }
     bestUses: [Snacking, pies and crisps]
     label: Braeburn
+    plu: { codes: [4101, 4103], sources: [ifps-plu-codes] }
     sources: [veritable-apple-guide, fruitguys-sweetest-apples, atk-apples-for-cooking, umd-apple-cultivars]
   - id: jazz
     name: Jazz
@@ -158,6 +169,7 @@ varieties:
     overallScore: { source: 69, editorial: 76 }
     bestUses: [Snacking, pies]
     label: Jazz or Scifresh
+    plu: { codes: [3293, 3294], sources: [ifps-plu-codes] }
     sources: [veritable-apple-guide, almanac-best-apples-baking]
   - id: envy
     name: Envy
@@ -165,6 +177,7 @@ varieties:
     overallScore: { source: 82, editorial: 86 }
     bestUses: [Snacking, slicing ahead]
     label: Envy
+    plu: { codes: [3315, 3616], sources: [ifps-plu-codes] }
     sources: [veritable-apple-guide, specialtyproduce-envy]
   - id: sweetango
     name: SweeTango
@@ -172,6 +185,7 @@ varieties:
     overallScore: { source: 95, editorial: 85 }
     bestUses: [Snacking, salads]
     label: SweeTango
+    plu: { codes: [3603], sources: [ifps-plu-codes] }
     sources: [umn-sweetango, fruitguys-sweetest-apples]
   - id: sugarbee
     name: SugarBee
@@ -179,6 +193,7 @@ varieties:
     overallScore: { source: 90, editorial: 96 }
     bestUses: [Snacking, tarts and pies]
     label: SugarBee
+    plu: { codes: [3486, 3525], sources: [ifps-plu-codes] }
     sources: [specialtyproduce-sugarbee, fruitguys-sweetest-apples, eatlikenoone-sugarbee]
   - id: kanzi
     name: Kanzi
@@ -186,6 +201,7 @@ varieties:
     overallScore: { source: 85, editorial: 80 }
     bestUses: [Snacking, salads]
     label: Kanzi
+    plu: { codes: [3605], sources: [ifps-plu-codes] }
     sources: [applerankings-kanzi, orangepippin-kanzi, kanzi-apple]
   - id: snapdragon
     name: SnapDragon
@@ -193,5 +209,6 @@ varieties:
     overallScore: { source: 77, editorial: 84 }
     bestUses: [Snacking]
     label: SnapDragon
+    plu: { codes: [3442], sources: [ifps-plu-codes] }
     sources: [applerankings-snapdragon, orangepippin-snapdragon, cornell-tree-fruits]
 status: draft

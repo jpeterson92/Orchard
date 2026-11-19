@@ -12,6 +12,7 @@ const v = (id: string, traits: Record<string, number>, uses: string[] = []): App
   id,
   name: id.toUpperCase(),
   label: id,
+  plu: [],
   bestUses: [],
   uses,
   cue: null,

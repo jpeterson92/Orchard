@@ -54,6 +54,7 @@ varieties:
     traits: { sweetness: 4, ease-of-peeling: 5, seeds: 1, juiciness: 3 }
     bestUses: [Snacking and lunch boxes]
     label: Clementine; often sold as Cuties or Halos in winter
+    plu: { codes: [3383, 3384, 3385, 4450], sources: [ifps-plu-codes] }
     sources: [sunkist-foodservice-mandarins, eatlikenoone-california-mandarins]
     windows:
       - { from: may-2, to: jul-1, rating: poor }
@@ -67,6 +68,7 @@ varieties:
     traits: { sweetness: 4, ease-of-peeling: 5, seeds: 3, juiciness: 3 }
     bestUses: [Snacking and lunch boxes]
     label: W. Murcott, Tango, Afourer or Nadorcott; late-season Cuties and Halos
+    plu: { codes: [3556], sources: [ifps-plu-codes] }
     sources: [ucr-w-murcott, sunkist-foodservice-mandarins]
     windows:
       - { from: jan-1, to: apr-2, rating: prime }
@@ -79,6 +81,7 @@ varieties:
     traits: { sweetness: 1, acidity: 5, ease-of-peeling: 3, seeds: 3, juiciness: 5 }
     bestUses: [Snacking, juicing]
     label: Minneola or Honeybell tangelo
+    plu: { codes: [4383], sources: [ifps-plu-codes] }
     sources: [ucr-minneola, sunkist-foodservice-tangerines-tangelos]
     windows:
       - { from: jan-1, to: apr-2, rating: prime }
@@ -102,12 +105,14 @@ varieties:
     traits: { sweetness: 4, acidity: 2, ease-of-peeling: 5, seeds: 1, juiciness: 4 }
     bestUses: [Snacking, lunch boxes]
     label: Satsuma or satsuma mandarin
+    plu: { codes: [3029, 3389], sources: [ifps-plu-codes] }
     sources: [ufifas-satsuma-mandarin, eatlikenoone-california-mandarins]
   - id: sumo
     name: Sumo
     traits: { sweetness: 5, acidity: 2, ease-of-peeling: 5, seeds: 1, juiciness: 4 }
     bestUses: [Snacking]
     label: Sumo Citrus, a dekopon with a top knot
+    plu: { codes: [3632], sources: [ifps-plu-codes] }
     sources: [sumocitrus-101, specialtyproduce-sumo, eatlikenoone-california-mandarins]
   - id: pixie
     name: Pixie

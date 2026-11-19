@@ -11,6 +11,8 @@ export interface AppVariety {
   id: string;
   name: string;
   label: string;
+  /** IFPS sticker numbers, ascending; empty where IFPS assigns none of its own. */
+  plu: number[];
   bestUses: string[];
   /** Its guide's use chips (ids) that its best uses fall under; empty without a guide. */
   uses: string[];
@@ -163,6 +165,7 @@ export function appData(data: Dataset, builtOn: string, art: ArtMap, about: Abou
         id: v.id,
         name: v.name,
         label: v.label,
+        plu: [...(v.plu?.codes ?? [])].sort((a, b) => a - b),
         bestUses: v.bestUses,
         uses: usesOf(v.bestUses, guideFor(item.id)?.uses ?? []),
         cue: v.cue ?? null,

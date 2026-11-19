@@ -43,6 +43,7 @@ varieties:
     traits: { sweetness: 3, texture: 3, juiciness: 3, holds-shape: 4 }
     bestUses: [Snacking, salads, baking]
     label: Anjou or D'Anjou
+    plu: { codes: [4025, 4416], sources: [ifps-plu-codes] }
     ripeCue: Stays green; ripe when the neck gives to gentle pressure
     sources: [usapears-green-anjou, veritable-pear-guide]
     windows:
@@ -57,6 +58,7 @@ varieties:
     traits: { sweetness: 4, texture: 2, juiciness: 4, holds-shape: 3 }
     bestUses: [Snacking, salads, canning]
     label: Bartlett or Williams
+    plu: { codes: [4024, 4409], sources: [ifps-plu-codes] }
     ripeCue: Turns from green to yellow; sweetest when golden
     sources: [usapears-bartlett, veritable-pear-guide]
     windows:
@@ -70,6 +72,7 @@ varieties:
     traits: { sweetness: 4, texture: 4, juiciness: 3, holds-shape: 5 }
     bestUses: [Baking, poaching, snacking]
     label: Bosc
+    plu: { codes: [4026, 4411, 4412, 4413], sources: [ifps-plu-codes] }
     ripeCue: Sweet before fully soft; the neck gives only slightly
     sources: [usapears-bosc, veritable-pear-guide]
     windows:
@@ -81,6 +84,7 @@ varieties:
     traits: { sweetness: 5, texture: 1, juiciness: 5, holds-shape: 1 }
     bestUses: [Snacking, cheese plates]
     label: Comice
+    plu: { codes: [4414], sources: [ifps-plu-codes] }
     ripeCue: Ripe when the neck gives; don't rely on color
     sources: [usapears-comice, veritable-pear-guide]
     windows:
@@ -93,6 +97,7 @@ varieties:
     traits: { sweetness: 5, texture: 4, holds-shape: 4 }
     bestUses: [Snacking, lunch boxes]
     label: Seckel
+    plu: { codes: [4422], sources: [ifps-plu-codes] }
     ripeCue: Ripe when the neck yields and the middle stays firm
     sources: [usapears-seckel, veritable-pear-guide]
     windows:
@@ -103,6 +108,7 @@ varieties:
     traits: { sweetness: 3, texture: 2, juiciness: 4 }
     bestUses: [Snacking, salads]
     label: Starkrimson; often sold as red pears
+    plu: { codes: [3118], sources: [ifps-plu-codes] }
     ripeCue: Turns from deep to bright crimson; skin thins
     sources: [usapears-starkrimson, veritable-pear-guide]
     windows:
@@ -113,6 +119,7 @@ varieties:
     traits: { sweetness: 3, texture: 3, juiciness: 3, holds-shape: 4 }
     bestUses: [Salads with the skin on, baking]
     label: Red Anjou; often sold as red pears
+    plu: { codes: [4417], sources: [ifps-plu-codes] }
     ripeCue: Color barely changes; ripe when the neck gives
     sources: [usapears-red-anjou, veritable-pear-guide]
   - id: red-bartlett
@@ -120,6 +127,7 @@ varieties:
     traits: { sweetness: 4, texture: 2, juiciness: 4, holds-shape: 3 }
     bestUses: [Snacking, salads, canning]
     label: Red Bartlett; often sold as red pears
+    plu: { codes: [4410], sources: [ifps-plu-codes] }
     ripeCue: Brightens from dark red to vivid red as it ripens
     sources: [usapears-red-bartlett, veritable-pear-guide]
   - id: forelle
@@ -127,6 +135,7 @@ varieties:
     traits: { sweetness: 4, texture: 4, juiciness: 3 }
     bestUses: [Snacking, lunch boxes]
     label: Forelle
+    plu: { codes: [4418], sources: [ifps-plu-codes] }
     ripeCue: Green skin turns bright yellow; red freckles stay
     sources: [usapears-forelle, veritable-pear-guide]
   - id: concorde
@@ -134,6 +143,7 @@ varieties:
     traits: { sweetness: 4, texture: 5, juiciness: 3, holds-shape: 5 }
     bestUses: [Snacking, cheese boards, roasting]
     label: Concorde
+    plu: { codes: [3016], sources: [ifps-plu-codes] }
     ripeCue: Sweet while still firm; the neck gives only slightly
     sources: [usapears-concorde, veritable-pear-guide]
 status: draft

@@ -150,6 +150,12 @@ export function validate(raw: RawInputs, opts: { production: boolean }): Result 
   });
 
   unique(sources, (s) => s.id, "source");
+  // A sticker number names one variety.
+  unique(
+    items.flatMap((i) => i.varieties.flatMap((v) => v.plu?.codes ?? [])),
+    String,
+    "PLU code",
+  );
   unique(categories, (c) => c.id, "category");
   unique(states, (s) => s.state, "state");
   unique(items, (i) => i.id, "item");
@@ -191,6 +197,7 @@ export function validate(raw: RawInputs, opts: { production: boolean }): Result 
     for (const t of ["shipsWell", "storesWell", "peakWorthSeeking"] as const)
       checkSources(item[t].sources, `${at} ${t}`);
     for (const v of item.varieties) {
+      if (v.plu) checkSources(v.plu.sources, `${at} variety ${v.id} plu`);
       if (v.storesWell) checkSources(v.storesWell.sources, `${at} variety ${v.id} storesWell`);
       for (const r of v.inStores) checkSources(r.sources, `${at} variety ${v.id} inStores`);
     }

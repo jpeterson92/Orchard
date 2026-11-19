@@ -17,6 +17,10 @@ import { type VarietyView, varietyPath, varietyView } from "./variety-view";
 
 const data = appJson as unknown as AppData;
 
+/** "a", "a or b", "a, b or c". */
+const orList = (xs: string[]) =>
+  xs.length < 2 ? (xs[0] ?? "") : `${xs.slice(0, -1).join(", ")} or ${xs.at(-1)}`;
+
 const CONFIDENCE_WORD = { high: "High", medium: "Medium", low: "Low" } as const;
 const linkClass =
   "inline-flex min-h-11 items-center gap-1 font-semibold text-olive underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
@@ -88,6 +92,13 @@ function Body({ view, mode }: { view: VarietyView; mode: Mode }) {
           Look for <span className="font-semibold">{v.label}</span> on the sign or sticker. The label is the
           surest way to tell varieties apart.
         </p>
+        {v.plu.length > 0 && (
+          <p className="mt-2">
+            Sticker number (PLU):{" "}
+            <span className="font-semibold tabular-nums">{orList(v.plu.map(String))}</span>. Organic ones put
+            a 9 in front, as in <span className="tabular-nums">9{v.plu[0]}</span>.
+          </p>
+        )}
         {v.cue && <p className="mt-2">How to find it: {v.cue}</p>}
       </Section>
 

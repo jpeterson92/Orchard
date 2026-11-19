@@ -40,6 +40,7 @@ varieties:
     traits: { sweetness: 3, acidity: 3, ease-of-peeling: 4, seeds: 1, juiciness: 2 }
     bestUses: [Snacking, salads]
     label: Navel
+    plu: { codes: [3107, 4012, 4013, 4384, 4385], sources: [ifps-plu-codes] }
     sources: [ucr-washington-navel, sunkist-fs-oranges, sunkist-oranges, halegroves-valencia-sweet]
     windows:
       - { from: jan-1, to: mar-2, rating: prime }
@@ -51,6 +52,7 @@ varieties:
     traits: { sweetness: 3, acidity: 4, seeds: 3, juiciness: 5 }
     bestUses: [Juice, snacking]
     label: Valencia
+    plu: { codes: [3108, 4014, 4388], sources: [ifps-plu-codes] }
     sources: [sunkist-fs-oranges, sunkist-oranges, halegroves-valencia-sweet]
     windows:
       - { from: jan-1, to: jan-1, rating: poor }
@@ -79,6 +81,7 @@ varieties:
     traits: { sweetness: 3, acidity: 4, ease-of-peeling: 3, seeds: 2, juiciness: 3 }
     bestUses: [Salads, juice, desserts]
     label: Blood orange, such as Moro or Tarocco
+    plu: { codes: [4381], sources: [ifps-plu-codes] }
     sources: [ucr-moro, sunkist-fs-oranges, eatlikenoone-cara-cara]
     windows:
       - { from: jan-1, to: mar-2, rating: prime }
@@ -103,6 +106,7 @@ varieties:
     traits: { sweetness: 5, acidity: 1, ease-of-peeling: 4, seeds: 1, juiciness: 2 }
     bestUses: [Snacking, salads]
     label: Cara Cara navel
+    plu: { codes: [3110], sources: [ifps-plu-codes] }
     sources: [ucr-cara-cara, sunkist-fs-oranges, eatlikenoone-cara-cara]
 typicalOrigins:
   - from: nov

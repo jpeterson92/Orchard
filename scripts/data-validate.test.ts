@@ -604,6 +604,30 @@ const broken: [string, (r: RawInputs) => void, string][] = [
     (r) => (firstItem(r).varieties = [{ ...gala(), sources: ["s9"] }]),
     "variety gala: unknown source s9",
   ],
+  [
+    "PLU codes citing an unknown source",
+    (r) => (firstItem(r).varieties = [{ ...gala(), plu: { codes: [4133], sources: ["s9"] } }]),
+    "variety gala plu: unknown source s9",
+  ],
+  [
+    "a PLU code on two varieties",
+    (r) =>
+      (firstItem(r).varieties = [
+        { ...gala(), plu: { codes: [4133, 4135], sources: ["s1"] } },
+        { ...gala(), id: "fuji", plu: { codes: [4131, 4135], sources: ["s1"] } },
+      ]),
+    "duplicate PLU code 4135",
+  ],
+  [
+    "a PLU code outside 3000–4999",
+    (r) => (firstItem(r).varieties = [{ ...gala(), plu: { codes: [94133], sources: ["s1"] } }]),
+    "plu",
+  ],
+  [
+    "PLU with no codes",
+    (r) => (firstItem(r).varieties = [{ ...gala(), plu: { codes: [], sources: ["s1"] } }]),
+    "plu",
+  ],
   ["unknown store source", (r) => (firstItem(r).store.sources = ["s9"]), "store: unknown source s9"],
   ["unknown trait source", (r) => (firstItem(r).shipsWell.sources = ["s9"]), "shipsWell: unknown source s9"],
   [
