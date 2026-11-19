@@ -14,7 +14,7 @@ import { type ItemView, itemView, type LabelOption, labelResult, type VarietyRow
 import { Masthead, PageTitle, PreviewNotice } from "./Masthead";
 import { useCount, useVerdictVisible } from "./measure";
 import { MonthAxis, SeasonStrip, StripLegend } from "./SeasonStrip";
-import { atDate, plainDate } from "./today-view";
+import { atDate, listNames, plainDate, VERDICT_WORD } from "./today-view";
 
 const data = appJson as unknown as AppData;
 
@@ -93,6 +93,20 @@ function Item({ view, mode }: { view: ItemView; mode: Mode }) {
           <p key={r}>{r}</p>
         ))}
       </div>
+
+      {view.varietySummary.length > 0 && (
+        // Where each variety falls today, so a shopper after one variety can check it at a glance.
+        <dl className="mt-3 space-y-0.5">
+          {view.varietySummary.map((g) => (
+            <div key={g.verdict ?? "out"}>
+              <dt className="inline font-semibold">
+                {g.verdict === null ? atDate("Not in stores now", mode) : VERDICT_WORD[g.verdict]}:
+              </dt>{" "}
+              <dd className="inline">{listNames(g.names)}</dd>
+            </div>
+          ))}
+        </dl>
+      )}
 
       {view.notes.length > 0 && (
         <div className="mt-3 space-y-1 border-l-2 border-accent/70 pl-3">

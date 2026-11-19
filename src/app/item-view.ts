@@ -24,6 +24,26 @@ import {
   windowPhrase,
 } from "./today-view";
 
+/** One line of the variety summary: "Peak: Honeycrisp, Gala and Fuji". `verdict` null: not in stores now. */
+export interface VarietyGroup {
+  verdict: Verdict | null;
+  names: string[];
+}
+
+/** Rated varieties grouped by today's verdict, best first, then those not usually in stores now. Unrated varieties
+ * are left out: they have no verdict to report. */
+export function varietySummary(rows: readonly VarietyRow[]): VarietyGroup[] {
+  const order: (Verdict | null)[] = ["peak", "good", "skip", "limited", null];
+  return order.flatMap((verdict) => {
+    const names = rows
+      .filter(
+        (r) => r.verdict !== null && (verdict === null ? !r.inStore : r.inStore && r.verdict === verdict),
+      )
+      .map((r) => r.name);
+    return names.length > 0 ? [{ verdict, names }] : [];
+  });
+}
+
 export interface VarietyRow {
   id: string;
   name: string;
@@ -62,6 +82,8 @@ export interface ItemView {
   labelNote: boolean;
   labelChoices: LabelChoices;
   varieties: VarietyRow[];
+  /** Items rated by variety: where each rated variety falls today, for a quick check at the top of the page. */
+  varietySummary: VarietyGroup[];
   pick: string[];
   avoid: string[];
   types: AppItem["types"];
@@ -187,18 +209,13 @@ export function itemView(
   // The card's reason leads when it says something specific (Last call, when it improves, why it's unknown);
   // the generic "At its best this time of year" gives way to the rating behind it.
   const headline = reasonText(result.verdict, result.reasons, result.markers);
-  const severalVarieties = (result.varietyLine?.length ?? 0) > 1;
+  // Items rated by variety: the variety summary says which varieties hold the verdict, so the reasons don't repeat it.
   const lines = reasonLines(
     item,
     data,
-    result.reasons.filter((r) => !(severalVarieties && r.code === "rated" && r.variety)),
+    result.reasons.filter((r) => !(r.code === "rated" && r.variety)),
   );
   const generic = headline === GENERIC_REASON.peak || headline === GENERIC_REASON.good;
-  if (severalVarieties && result.varietyLine) {
-    const names = result.varietyLine.map((v) => item.varieties.find((x) => x.id === v)?.name ?? v);
-    const list = listNames(names);
-    lines.unshift(`${list} are ${result.verdict === "peak" ? "at their best" : "eating well"} now.`);
-  }
   const reasons = (generic && lines.length > 0 ? lines : [headline, ...lines]).slice(0, 3);
 
   const notes: string[] = [];
@@ -273,6 +290,7 @@ export function itemView(
     labelNote: result.labelNote,
     labelChoices: labelChoices(item, data, window),
     varieties,
+    varietySummary: varietySummary(varieties),
     pick: item.pick,
     avoid: item.avoid,
     types: item.types,

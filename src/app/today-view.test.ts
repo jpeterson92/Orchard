@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import type { AppData, AppItem } from "../shared/app-data";
 import type { Reason } from "../shared/verdict";
+import { type VarietyRow, varietySummary } from "./item-view";
 import { avoidLine, cardOrigin, listNames, reasonText, varietyLine } from "./today-view";
 
 // Synthetic: just enough of an item and the app data for the card lines.
@@ -109,4 +110,33 @@ describe("listNames", () => {
       "A, B and C",
     ]);
   });
+});
+
+describe("varietySummary", () => {
+  const row = (name: string, verdict: VarietyRow["verdict"], inStore = true): VarietyRow => ({
+    id: name,
+    name,
+    art: null,
+    verdict,
+    confidence: verdict === null ? null : "high",
+    inStore,
+    outlook: null,
+  });
+  it("groups in-store varieties by verdict, best first, then those not in stores, leaving out unrated ones", () =>
+    expect(
+      varietySummary([
+        row("Granny Smith", "good"),
+        row("Honeycrisp", "peak"),
+        row("Gala", "peak"),
+        row("Envy", "skip", false),
+        row("Red Delicious", null),
+        row("Fuji", "skip"),
+      ]),
+    ).toEqual([
+      { verdict: "peak", names: ["Honeycrisp", "Gala"] },
+      { verdict: "good", names: ["Granny Smith"] },
+      { verdict: "skip", names: ["Fuji"] },
+      { verdict: null, names: ["Envy"] },
+    ]));
+  it("is empty for an item not rated by variety", () => expect(varietySummary([])).toEqual([]));
 });

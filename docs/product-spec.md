@@ -167,6 +167,7 @@ An item that is both Peak and Last call appears once, under Best right now, carr
 ### Item page
 
 - **Verdict block:** the badge, 1–3 reasons, the confidence level, and one line on what it rests on ("Reviewed seasonal assessment + typical national supply"). Two dates appear, worded so they can't be mistaken for an in-store check: "Supply data through Oct 2026" and "Guidance reviewed Oct 2026".
+- **Variety summary** (items rated by variety), right under the reasons: where each rated variety falls today, best first, so a shopper after one variety can check it at a glance ("Peak: Honeycrisp, Gala, Fuji and Pink Lady · Good: Granny Smith · Not in stores now: Cosmic Crisp"). Today's card names only the varieties holding the item's verdict, and the reasons don't repeat them.
 - **Context notes**, separate and only shown when relevant:
   - "Typical supermarket supply: favorable this month"
   - "Depends on the label", naming the origin that is usually poor now ("Florida field tomatoes often disappoint now"), with the "What does the label say?" control just below
