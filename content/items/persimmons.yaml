@@ -1,0 +1,89 @@
+id: persimmons
+name: Persimmons
+synonyms: [persimmon, fuyu, fuyus, hachiya, hachiyas, sharon fruit, kaki, persimon]
+misspellings: [persimon, persimmmon, persimmins, persimons]
+category: tropical
+types:
+  - id: fuyu
+    name: Fuyu
+    note: Squat and tomato-shaped; eat it crisp like an apple, or soft.
+  - id: hachiya
+    name: Hachiya
+    note: Acorn-shaped; bitter until it is jelly-soft all the way through.
+purchaseRank: 30
+alwaysGood: false
+shipsWell:
+  value: true
+  sources: [freshplaza-spanish-persimmons-us, freshplaza-spanish-persimmons-volume]
+  note: Spanish fruit fills shelves as California winds down in winter.
+peakWorthSeeking:
+  value: true
+  sources: [freshplaza-peak-ca-persimmons, freshfruitportal-persimmon-season-late]
+  note: A fall fruit; California's season is short and sought after.
+storesWell:
+  value: false
+  sources: [freshplaza-spanish-persimmons-us, freshplaza-ca-fall-exotics]
+  note: California fruit is sold from the fall harvest, not from storage, and ends by January.
+evidenceBasis: assessment-only
+cardLine: Deep orange and glossy, with the green cap attached.
+pick:
+  - Deep orange, glossy skin
+  - Green, fresh-looking cap
+  - Fuyu firm to slightly soft; Hachiya soft if eating today
+avoid:
+  - Bruised, split or blackened skin
+store:
+  temperature: room
+  ethylene: sensitive
+  life: { min: 3, max: 14, unit: days }
+  text: Ripen on the counter away from bananas and apples, then chill ripe fruit for a few days.
+  sources: [ucdavis-postharvest-persimmon]
+ripen:
+  text: Hachiyas stay astringent until jelly-soft; ripening near ethylene speeds softening.
+  sources: [ucdavis-postharvest-persimmon]
+prep: Rinse and slice a Fuyu, skin and all. Halve a soft Hachiya and scoop out the pulp.
+origins:
+  - origin: us-ca
+    windows:
+      - { from: jan-1, to: aug-2, rating: poor }
+      - { from: sep-1, to: sep-1, rating: fair }
+      - from: sep-2
+        to: sep-2
+        rating: fair
+        reason: Only availability claims speak here, and the model panel has no rating.
+      - { from: oct-1, to: dec-2, rating: prime }
+  - origin: es
+    windows:
+      - { from: jan-1, to: feb-2, rating: fair }
+      - { from: mar-1, to: nov-1, rating: poor }
+      - { from: nov-2, to: dec-2, rating: fair }
+  - origin: il
+    windows:
+      - { from: jan-1, to: feb-1, rating: fair }
+      - { from: nov-1, to: dec-2, rating: fair }
+typicalOrigins:
+  - from: sep
+    to: nov
+    origins: [{ origin: us-ca, major: true }]
+    sources: [usda-ams-fv-movement, freshplaza-peak-ca-persimmons]
+  - from: dec
+    to: dec
+    origins: [{ origin: us-ca, major: true }, { origin: es, major: true }]
+    sources: [usda-ams-fv-movement, freshplaza-spanish-persimmons-volume]
+  - from: jan
+    to: jan
+    origins: [{ origin: es, major: true }]
+    sources: [usda-ams-fv-movement, freshplaza-spanish-persimmons-us]
+  - from: feb
+    to: feb
+    origins: [{ origin: es, major: true }, { origin: il, major: true }]
+    sources: [usda-ams-fv-movement, freshplaza-spanish-persimmons-volume]
+  - from: mar
+    to: apr
+    origins: [{ origin: il, major: true }, { origin: cl, major: false }]
+    sources: [usda-ams-fv-movement, freshfruitportal-persimmon-season-late]
+  - from: may
+    to: jul
+    origins: [{ origin: cl, major: true }]
+    sources: [usda-ams-fv-movement, freshfruitportal-persimmon-season-late]
+status: draft

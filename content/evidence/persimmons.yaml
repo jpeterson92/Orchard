@@ -1,0 +1,54 @@
+item: persimmons
+status: draft
+claims:
+  # California: Fuyu from mid-September, Hachiya from mid-October, through December.
+  - source: freshplaza-ca-persimmons-larger
+    origin: us-ca
+    windows:
+      - { from: oct-2, to: dec-2, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: A late year's California Fuyu harvest began in mid-October and was expected to run through December.
+  - source: freshplaza-ca-fall-exotics
+    origin: us-ca
+    windows:
+      - { from: oct-2, to: dec-1, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: California Hachiyas run from mid-October to mid-December; Fuyus harvest into late December.
+  - source: freshplaza-peak-ca-persimmons
+    origin: us-ca
+    windows:
+      - { from: sep-2, to: nov-2, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: The California harvest usually starts in the second or third week of September and runs to late November.
+  - source: freshplaza-persimmons-cooler-nights
+    origin: us-ca
+    windows:
+      - { from: sep-2, to: dec-2, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: California Fuyus start in mid-September and Hachiyas in mid-October, with supply into December.
+  - source: foodwise-fall-fruit
+    origin: us-ca
+    windows:
+      - { from: sep-2, to: nov-2, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: At California markets, persimmons start in late September and pick up through October and November.
+  # Spain: early winter imports as California winds down.
+  - source: freshplaza-spanish-persimmons-us
+    origin: es
+    windows:
+      - { from: dec-1, to: jan-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: An importer brings in Spanish persimmons in December and January, as California supply winds down.
+  - source: freshplaza-spanish-persimmons-volume
+    origin: es
+    windows:
+      - { from: nov-2, to: feb-1, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: An importer sources Spanish persimmons from late November through early February.
