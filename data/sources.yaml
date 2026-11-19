@@ -1000,3 +1000,9 @@
   url: https://postharvest.ucdavis.edu/produce-facts-sheets/persimmon
   accessed: 2026-11-18
   tier: authoritative
+- id: ucdavis-postharvest-fig
+  title: "Fig: Recommendations for Maintaining Postharvest Quality"
+  publisher: UC Davis Postharvest Research and Extension Center
+  url: https://postharvest.ucdavis.edu/produce-facts-sheets/fig
+  accessed: 2026-11-18
+  tier: authoritative
