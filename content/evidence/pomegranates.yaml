@@ -38,3 +38,18 @@ claims:
     specificity: season
     directness: availability
     paraphrase: Chile's pomegranate season starts in February and runs into spring, when US demand is lower.
+  # Israel: Wonderful exports from late October through February, into March.
+  - source: freshplaza-israeli-pomegranates-in-markets
+    origin: il
+    windows:
+      - { from: oct-2, to: feb-2, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: Israel's Wonderful pomegranates run from the end of October through February, peaking in December.
+  - source: perishablenews-israeli-pomegranates-march
+    origin: il
+    windows:
+      - { from: mar-1, to: mar-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Israeli pomegranates follow the holidays, with availability extending into March.

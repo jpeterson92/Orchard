@@ -855,3 +855,14 @@ pages:
     kind: item-page
     origin: us
     items: [figs]
+  # pomegranates
+  - source: perishablenews-israeli-pomegranates-march
+    url: https://perishablenews.com/?p=185404
+    kind: item-page
+    origin: il
+    items: [pomegranates]
+  - source: freshplaza-israeli-pomegranates-in-markets
+    url: https://www.freshplaza.com/article/2128673/israeli-pomegranates-now-in-markets/
+    kind: item-page
+    origin: il
+    items: [pomegranates]

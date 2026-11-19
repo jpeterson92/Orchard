@@ -22,8 +22,8 @@ peakWorthSeeking:
   note: A fall fruit; California's season is short and sought after.
 storesWell:
   value: false
-  sources: [freshplaza-spanish-persimmons-us, freshplaza-ca-fall-exotics]
-  note: California fruit is sold from the fall harvest, not from storage, and ends by January.
+  sources: [usda-ams-fv-movement, ucdavis-postharvest-persimmon]
+  note: "California fruit isn't sold from storage; Spain and Israel fill the winter."
 evidenceBasis: assessment-only
 cardLine: Deep orange and glossy, with the green cap attached.
 pick:

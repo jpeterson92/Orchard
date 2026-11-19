@@ -1006,3 +1006,16 @@
   url: https://postharvest.ucdavis.edu/produce-facts-sheets/fig
   accessed: 2026-11-18
   tier: authoritative
+# pomegranates
+- id: perishablenews-israeli-pomegranates-march
+  title: "Israeli Pomegranates Expected to Extend the Promotional Season into March"
+  publisher: Perishable News
+  url: https://perishablenews.com/?p=185404
+  accessed: 2026-11-18
+  tier: mainstream
+- id: freshplaza-israeli-pomegranates-in-markets
+  title: "Israeli pomegranates now in markets"
+  publisher: FreshPlaza
+  url: https://www.freshplaza.com/article/2128673/israeli-pomegranates-now-in-markets/
+  accessed: 2026-11-18
+  tier: mainstream
