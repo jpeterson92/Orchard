@@ -3,7 +3,7 @@ name: Watermelon
 synonyms: [watermelons, seedless watermelon, mini watermelon, personal watermelon]
 misspellings: [watermellon, watermelons', water melon, wattermelon]
 category: melons
-purchaseRank: 7
+purchaseRank: 8
 alwaysGood: false
 shipsWell:
   value: true
