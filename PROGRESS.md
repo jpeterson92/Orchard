@@ -1,10 +1,10 @@
 # PROGRESS
 
-Updated: 2026-11-19 · Phase: build · Live: https://orchard.jpeterson92.workers.dev (M0 placeholder) · 54 commits unsynced
+Updated: 2026-11-19 · Phase: build · Live: https://orchard.jpeterson92.workers.dev (M0 placeholder) · 59 commits unsynced
 
 ## Milestones
 
-- **Done:** M0 scaffold and deploy · M1 USDA probe · M2 schemas, verdict engine (P9–P16), evidence pipeline, `usda:derive`, `content:report` · model panel run `claude-opus-5-5-2026-11-17` (89 items, prompt v2; P15 panel-first) · M4 offline · M5 planning date and shared dates · M6 navigation, Browse, Calendar, search, Methods and Privacy pages · M8 measurement (web vitals and daily event counts in D1; shopper feedback removed by Jared).
+- **Done:** M0 scaffold and deploy · M1 USDA probe · M2 schemas, verdict engine (P9–P19), evidence pipeline, `usda:derive`, `content:report` · model panel run `claude-opus-5-5-2026-11-17` (89 items, prompt v2; P15 panel-first) · M4 offline · M5 planning date and shared dates · M6 navigation, Browse, Calendar, search, Methods and Privacy pages · M8 measurement (web vitals and daily event counts in D1; shopper feedback removed by Jared).
 - **M3:** built; closes with Jared's phone review, which needs a preview deploy.
 - **M9:** slices 1–2 done (security headers, axe in light and dark, WebKit e2e, page titles). The rest waits on content, art, devices, the domain and the independent reviewer; check the security headers on the live URL (`curl -I`) after the next deploy.
 - **M7 (variety guides): not started, next.** Scales for apples, pears and citrus are approved; traits for 33 varieties are drafted. Fold unrated varieties (Red Delicious, Golden Delicious and the rest) out of the item page's "Varieties now" list into the guide, where they belong; today they make nine "Not rated" rows on the apples page.
@@ -31,11 +31,9 @@ None.
 
 ## For Jared (non-blocking)
 
-Decisions from the 2026-11-19 evaluation (details in `.cache/evaluation-2026-11-19.md`):
+Applied 2026-11-19 (Jared's decisions): Peak when prime origins hold half the supply, with Check the label (P17); out of season reads Skip, "Usually back in …" (P18); one Peak season a year (P19); Today shows only Peak and seasonal Good items. All 28 drafted items now have a Peak season. Content fixes: Valencia oranges prime May–July, five one-window spikes and dips, mandarin prep.
 
-- **A small poor origin holds the height of a season at Good.** Rule 3 blocks Peak when any typical origin is poor, so June blueberries and watermelon (Mexico at 14%), November Brussels sprouts (Mexico at 18%), honeydew and late-November grapefruit read Good between Peak windows: 14 windows on 6 items. Recommendation: a poor origin blocks Peak only when it holds at least 25% of the month's volume (the share that already lets an origin decide); smaller ones keep Check the label. This also answers most of the P14 question below.
-- **"Reliable year-round" is on 13 of 17 Good cards** in late November, so it no longer tells shoppers anything. Recommendation: show it on item pages and in Browse, not on Today cards.
-- **Out-of-season items sit under Limited evidence** (apricots, nectarines in November). Their line now says "Rarely in stores now." Recommendation: list them under Skip for now with "Usually back in May", since "out of season" is a call, not missing evidence.
+- Worth a glance: late-November Today now holds 6 Peak and 6 Good items (was 4 and 17). Brussels sprouts are Peak with Check the label (Mexico, 18%, rated poor). June honeydew stays Good: Mexico (34%) is poor and California's supply is thin then, so only Arizona's third counts.
 - Earlier questions still open: (1) P14 reads one shipper's or state's chart as the whole origin's, so its other months read poor where other sources say supply continues (Mexican watermelon, Honduran okra, Georgia's fall okra); (2) the panel's low-confidence ranges are dropped, which leaves Mexico (sweet corn, okra) and Florida (okra) unrated; (3) `purchaseRank`: one pass over all 30 from one source would settle it, say which source; (4) P1 at 75%: revisit as more items are drafted.
 
 To do when convenient:
