@@ -26,7 +26,10 @@ export function Today() {
   useVerdictVisible(data.builtOn, date.today);
   const [filter, setFilter] = useState<FilterGroup | "all">("all");
   const view = todayView(data, plainDate(date.iso), date.mode);
-  const good = view.good.filter((c) => filter === "all" || c.group === filter);
+  const inGroup = (c: Card) => filter === "all" || c.group === filter;
+  const best = view.best.filter(inGroup);
+  const good = view.good.filter(inGroup);
+  const any = view.best.length + view.good.length > 0;
 
   return (
     <div className="mx-auto max-w-2xl px-4 pb-12 sm:px-6 md:max-w-5xl">
@@ -37,41 +40,42 @@ export function Today() {
         <h1 className="sr-only">Today</h1>
         <OfflineStatus iso={date.today} />
 
-        {view.best.length > 0 && (
-          <Section title={date.planning ? "Typically best" : "Best right now"}>
-            <Rows cards={view.best} />
-          </Section>
+        {any && (
+          // One row of filters for both lists; it scrolls sideways on a narrow phone rather than wrapping.
+          <fieldset className="-mx-4 mt-3 min-w-0 overflow-x-auto px-4 [scrollbar-width:none] sm:mx-0 sm:px-0">
+            <legend className="sr-only">Show</legend>
+            <div className="flex w-max gap-2">
+              {FILTERS.map((f) => (
+                <button
+                  key={f.id}
+                  type="button"
+                  aria-pressed={filter === f.id}
+                  onClick={() => setFilter(f.id)}
+                  className={`min-h-11 rounded-full border px-4 text-sm font-medium whitespace-nowrap focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent ${
+                    filter === f.id
+                      ? "border-accent bg-accent text-white dark:text-canvas"
+                      : "border-olive text-ink"
+                  }`}
+                >
+                  {f.label}
+                </button>
+              ))}
+            </div>
+          </fieldset>
         )}
 
-        {view.good.length > 0 && (
-          <Section title="Good buys">
-            {/* One row of filters; it scrolls sideways on a narrow phone rather than wrapping. */}
-            <fieldset className="-mx-4 mt-3 min-w-0 overflow-x-auto px-4 [scrollbar-width:none] sm:mx-0 sm:px-0">
-              <legend className="sr-only">Show</legend>
-              <div className="flex w-max gap-2">
-                {FILTERS.map((f) => (
-                  <button
-                    key={f.id}
-                    type="button"
-                    aria-pressed={filter === f.id}
-                    onClick={() => setFilter(f.id)}
-                    className={`min-h-11 rounded-full border px-4 text-sm font-medium whitespace-nowrap focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent ${
-                      filter === f.id
-                        ? "border-accent bg-accent text-white dark:text-canvas"
-                        : "border-olive text-ink"
-                    }`}
-                  >
-                    {f.label}
-                  </button>
-                ))}
-              </div>
-            </fieldset>
-            {good.length > 0 ? (
-              <Rows cards={good} />
-            ) : (
-              <p className="py-6 text-ink-secondary">No good buys in this group today.</p>
-            )}
+        {best.length > 0 && (
+          <Section title={date.planning ? "Typically best" : "Best right now"}>
+            <Rows cards={best} />
           </Section>
+        )}
+        {good.length > 0 && (
+          <Section title="Good buys">
+            <Rows cards={good} />
+          </Section>
+        )}
+        {any && best.length + good.length === 0 && (
+          <p className="py-6 text-ink-secondary">Nothing in this group today.</p>
         )}
       </main>
     </div>
@@ -161,6 +165,7 @@ function Row({ card }: { card: Card }) {
       >
         <div className="overflow-hidden">
           <div className="mt-3 ml-22 space-y-1 border-l-2 border-olive/70 pl-3">
+            {card.avoid && <p>{card.avoid}</p>}
             <p>
               <span className="font-semibold">Pick:</span> {card.pick}
             </p>

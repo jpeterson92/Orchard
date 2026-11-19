@@ -6,8 +6,9 @@ import type { Confidence, Env, ItemInputs, PlainDate, RatedSeries, RatedVariety,
 export const RULES: Rules = {
   version: 1,
   typicalOriginShare: 0.7,
-  decidingOriginShare: 0.25,
-  peakShare: 0.5,
+  majorOriginShare: 0.25,
+  availableShare: 0.33,
+  lookForShare: 0.75,
   ratedTypicalShare: 0.75,
   supplyIndex: { thin: 0.8, strong: 1.2 },
   varietyInStoreShare: 0.1,
@@ -53,6 +54,7 @@ export function item(overrides: Partial<ItemInputs> = {}): ItemInputs {
     // Unless a test sets them: the typical origins split 80% of the month's volume evenly.
     typicalShares: typicalOrigins.map((os) => os.map(() => 0.8 / os.length)),
     minorOrigins: allMonths([]),
+    originInStores: {},
     supply: { "us-ca": allMonths(1) },
     ...overrides,
   };

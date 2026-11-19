@@ -24,7 +24,8 @@ export interface Card {
   name: string;
   /** Thumbnail asset id, or null for the placeholder. */
   art: string | null;
-  /** Items rated by variety: which variety the verdict means ("Honeycrisp", "6 varieties at their best"). */
+  /** What to pick, when the verdict holds for only part of the bin: the varieties ("Honeycrisp and Gala"), the
+   * origins ("Look for ones from California") or the selection ("Look for local field-grown"). */
   varietyLine: string | null;
   verdict: Verdict;
   /** One short factual reason, or null when it would only repeat the section ("At its best this time of year"). */
@@ -33,7 +34,9 @@ export interface Card {
   origin: string | null;
   tags: string[];
   group: FilterGroup;
-  /** Expanded card: the pick cue and the typical storage range (product spec §5 "Card behavior"). */
+  /** Expanded card: what to avoid when the shopper picks by the label ("Brussels sprouts from Mexico often
+   * disappoint now."), the pick cue and the typical storage range (product spec §5 "Card behavior"). */
+  avoid: string | null;
   pick: string;
   storage: string;
   draft: boolean;
@@ -128,34 +131,53 @@ export function listNames(names: readonly string[]): string {
   return names.length < 2 ? (names[0] ?? "") : `${names.slice(0, -1).join(", ")} and ${names.at(-1)}`;
 }
 
-/** The card's second line: what to look for (P16), or the varieties holding the verdict (P13). */
+/** The most varieties a card names; more read "Honeycrisp, Gala, Fuji and 2 more". */
+const MAX_NAMED = 4;
+
+/** The card's second line: what to pick. The selection (P16), the origins to look for by the label (P20), or the
+ * varieties holding the verdict (P13). */
 export function varietyLine(
   item: AppItem,
-  { varietyLine: ids, verdict, selection }: Pick<VerdictResult, "varietyLine" | "verdict" | "selection">,
+  { varietyLine: ids, reasons, selection }: Pick<VerdictResult, "varietyLine" | "reasons" | "selection">,
+  data: AppData,
 ): string | null {
   const s = item.selections.find((x) => x.id === selection);
   if (s) return `Look for ${s.label}`;
+  const look = reasons.find((r) => r.code === "look-for");
+  if (look?.code === "look-for")
+    return `Look for ones from ${listNames(look.origins.map((o) => originName(o, data)))}`;
   if (!ids || ids.length === 0) return null;
   const names = ids.map((id) => item.varieties.find((v) => v.id === id)?.name ?? id);
-  if (names.length === 1) return names[0] ?? null;
-  if (names.length === 2) return `${names[0]} and ${names[1]}`;
-  return verdict === "peak" ? `${names.length} varieties at their best` : `${names.length} varieties`;
+  if (names.length <= MAX_NAMED) return listNames(names);
+  return `${names.slice(0, MAX_NAMED - 1).join(", ")} and ${names.length - MAX_NAMED + 1} more`;
 }
 
-/** The card's origin: the one the verdict rests on, so a card never names a poor origin beside a better verdict
- * (P9: when the second typical origin decides, it is the one named). A selection's Peak names none, since its line
- * says what to look for (P16). Items rated by variety, and Limited evidence, name the month's top typical origin. */
+/** The expanded card's warning, when the shopper picks by the label and a typical origin often disappoints now. */
+export function avoidLine(
+  item: AppItem,
+  { reasons, labelNote }: Pick<VerdictResult, "reasons" | "labelNote">,
+  data: AppData,
+): string | null {
+  const poor = reasons.find((r) => r.code === "typical-origin-poor");
+  if (!labelNote || poor?.code !== "typical-origin-poor") return null;
+  return `${item.name} from ${originName(poor.origin, data)} often disappoint now.`;
+}
+
+/** The card's origin: the one the verdict rests on, so a card never names a poor origin beside a better verdict.
+ * None when the second line already says what to look for (P16, P20). Items rated by variety, and Limited
+ * evidence, name the month's top typical origin. */
 export function cardOrigin(
   { reasons, selection }: Pick<VerdictResult, "reasons" | "selection">,
   top: string | undefined,
 ): string | null {
-  if (selection !== null) return null;
+  if (selection !== null || reasons.some((r) => r.code === "look-for")) return null;
   const rated = reasons.find((r) => r.code === "rated");
   if (rated && "origin" in rated && rated.origin) return rated.origin;
   return top ?? null;
 }
 
-/** `today`: Today's cards leave out Reliable year-round, since only such an item's Peak reaches Today. */
+/** `today`: Today's cards leave out Reliable year-round, since only such an item's Peak reaches Today. Check the
+ * label is never a tag: the second line says what to look for. */
 export function tags(item: AppItem, markers: readonly Marker[], { today = false } = {}): string[] {
   const out: string[] = [];
   if (item.inputs.alwaysGood) out.push("Always good");
@@ -163,7 +185,6 @@ export function tags(item: AppItem, markers: readonly Marker[], { today = false 
     if (m.kind === "last-call") out.push("Last call");
     else if (m.kind === "reliable-year-round" && !item.inputs.alwaysGood && !today)
       out.push("Reliable year-round");
-    else if (m.kind === "check-label") out.push("Check the label");
   }
   return out;
 }
@@ -174,18 +195,25 @@ export function todayView(data: AppData, date: PlainDate, mode: "today" | "typic
   const cards = new Map<string, Card>();
   const entries: TodayEntry[] = data.items.map((item) => {
     const result = evaluate(item.inputs, { date }, data.env);
+    const outlook = typicalOutlook(item.inputs, data.env, date.year);
+    let peakLeft = 0;
+    while (peakLeft < outlook.length && outlook[(window + peakLeft) % outlook.length] === "peak") peakLeft++;
     const origin = cardOrigin(result, item.inputs.typicalOrigins[Math.floor(window / 2)]?.[0]);
     const reason = reasonText(result.verdict, result.reasons, result.markers);
     cards.set(item.inputs.id, {
       id: item.inputs.id,
       name: item.name,
       art: item.art,
-      varietyLine: varietyLine(item, result),
+      varietyLine: varietyLine(item, result, data),
       verdict: result.verdict,
       reason: isGeneric(reason) ? null : atDate(reason, mode),
       origin: origin === null ? null : originName(origin, data),
       tags: tags(item, result.markers, { today: true }),
       group: item.group,
+      avoid: (() => {
+        const a = avoidLine(item, result, data);
+        return a === null ? null : atDate(a, mode);
+      })(),
       pick: item.cardLine,
       storage: storageLine(item.store),
       draft: item.status === "draft",
@@ -198,7 +226,8 @@ export function todayView(data: AppData, date: PlainDate, mode: "today" | "typic
       reliableYearRound: result.markers.some((m) => m.kind === "reliable-year-round"),
       verdict: result.verdict,
       confidence: result.confidence,
-      peakWindows: typicalOutlook(item.inputs, data.env, date.year).filter((v) => v === "peak").length,
+      peakWindows: outlook.filter((v) => v === "peak").length,
+      peakLeft,
     };
   });
   const groups = groupToday(entries);

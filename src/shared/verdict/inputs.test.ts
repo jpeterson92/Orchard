@@ -24,7 +24,7 @@ const item = {
   shipsWell: { value: true, sources: ["a"] },
   peakWorthSeeking: { value: true, sources: ["a"] },
   storesWell: { value: false, sources: ["a"] },
-  origins: [{ origin: "us-ca", windows: SUMMER }],
+  origins: [{ origin: "us-ca", windows: SUMMER, inStores: [] }],
   varieties: [
     { id: "rated", windows: SUMMER, quotedAs: ["rated-usda", "rated-alt"] },
     { id: "unrated", windows: undefined },
@@ -130,7 +130,7 @@ describe("itemInputs", () => {
   it("P16: a selection is in stores in cited months, or where its origins hold the variety share of volume", () => {
     const withSel = {
       ...item,
-      origins: [...item.origins, { origin: "mx", windows: SUMMER }],
+      origins: [...item.origins, { origin: "mx", windows: SUMMER, inStores: [] }],
       varieties: [],
       selections: [
         { id: "cited", origins: ["us-ca"], inStores: [{ from: "nov", to: "jan", sources: ["a"] }] },
@@ -141,6 +141,21 @@ describe("itemInputs", () => {
     // us-ca is typical in May (0.8) and June (0.6); mx holds 0.15 in June only.
     expect(cited?.inStore.map((x, m) => (x ? m + 1 : 0)).filter(Boolean)).toEqual([1, 5, 6, 11, 12]);
     expect(volume?.inStore.map((x, m) => (x ? m + 1 : 0)).filter(Boolean)).toEqual([6]);
+  });
+
+  it("P20: an origin is cited in stores in its cited months only, wrapping past December", () => {
+    const cited = {
+      ...item,
+      origins: [
+        { origin: "us-ca", windows: SUMMER, inStores: [{ from: "nov", to: "jan", sources: ["a"] }] },
+        { origin: "mx", windows: SUMMER, inStores: [] },
+      ],
+    } as unknown as Item;
+    const inputs = itemInputs(cited, data);
+    expect(inputs.originInStores["us-ca"]?.map((x, m) => (x ? m + 1 : 0)).filter(Boolean)).toEqual([
+      1, 11, 12,
+    ]);
+    expect(inputs.originInStores.mx).toBeUndefined();
   });
 
   it("gives an item without an evidence file no confidence anywhere", () => {

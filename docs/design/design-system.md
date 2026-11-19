@@ -241,9 +241,9 @@ One selected state with a restrained orange fill and a contrasting foreground. U
 Rows are compact so a shopper can scan many in an aisle (about 100 px tall on a phone). Collapsed content:
 - Recognizable watercolor image, 72 px.
 - Produce name as the strongest text, with quiet uppercase Draft or Sample labels beside it in previews; one preview notice under the masthead explains them.
-- Subtle icon and verdict word, with the origin in small secondary text on the same line ("Peak · California"); markers (Last call, Reliable year-round, Check the label) on a quiet olive line below.
+- Subtle icon and verdict word, with the origin in small secondary text on the same line ("Peak · California"); markers (Last call, Reliable year-round) on a quiet olive line below. When the shopper must pick, a "Look for ones from California" line sits under the name in place of the origin.
 - A short factual reason only when it says more than the section heading (when it fades, when it improves, why it can't be called); "At its best this time of year" is never shown.
-- For items rated by variety, a quieter variety line under the name ("Ataulfo", or "6 varieties at their best"); the image is that variety's, or the item's when the line gives a count.
+- For items rated by variety, a quieter variety line under the name ("Ataulfo", or "Honeycrisp, Gala, Fuji and Pink Lady"); the image is that variety's, or the item's when the line names more than two.
 - A rated variety without approved art uses its item's. In development and preview, missing art shows a mostly transparent placeholder of the same size.
 
 Do not repeat the same origin information in several adjacent labels. Examples in design references do not authorize invented source claims.
@@ -265,7 +265,7 @@ A separate text link, such as “Picking & storage,” opens the detail page. Ad
 | Skip for now | Small clock and explicit wording; secondary explanation |
 | Limited evidence | Neutral information symbol and explicit wording |
 
-Reliable year-round, Last call, Check the label and Good value are markers, not verdicts: small text tags under the verdict word, per the product spec. Visual labels must follow the product’s approved terminology and contract. If methodology changes, update labels consistently. This table describes presentation, not new verdict logic.
+Reliable year-round, Last call and Good value are markers, not verdicts: small text tags under the verdict word, per the product spec. Visual labels must follow the product’s approved terminology and contract. If methodology changes, update labels consistently. This table describes presentation, not new verdict logic.
 
 No filled pill backgrounds, large medallions, numerical scores invented for display, or alarming red treatment for ordinary seasonal advice. Never convey a verdict only through color.
 

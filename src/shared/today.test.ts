@@ -1,6 +1,6 @@
 import fc from "fast-check";
 import { describe, expect, it } from "vitest";
-import { BEST_NOW_MAX, groupToday, onToday, type TodayEntry } from "./today";
+import { groupToday, onToday, type TodayEntry } from "./today";
 
 const entry = (id: string, over: Partial<TodayEntry> = {}): TodayEntry => ({
   id,
@@ -10,11 +10,12 @@ const entry = (id: string, over: Partial<TodayEntry> = {}): TodayEntry => ({
   verdict: "peak",
   confidence: "high",
   peakWindows: 6,
+  peakLeft: 2,
   ...over,
 });
 
 describe("groupToday", () => {
-  it("Best right now takes up to 6 Peak items by confidence, then purchase rank", () => {
+  it("Best right now holds every Peak item, by confidence then purchase rank when they end together", () => {
     const entries = [
       entry("a", { confidence: "medium", purchaseRank: 1 }),
       entry("b", { purchaseRank: 5 }),
@@ -24,20 +25,22 @@ describe("groupToday", () => {
       entry("f", { purchaseRank: 3 }),
       entry("g", { purchaseRank: 4 }),
       entry("h", { verdict: "good", purchaseRank: 1 }),
+      entry("i", { verdict: "good", purchaseRank: 2, confidence: "medium" }),
     ];
     const g = groupToday(entries);
-    expect(g.best).toEqual(["c", "f", "g", "b", "e", "a"]);
-    expect(g.good).toEqual(["d", "h"]);
+    expect(g.best).toEqual(["c", "f", "g", "b", "e", "a", "d"]);
+    expect(g.good).toEqual(["h", "i"]);
   });
 
-  it("puts the shortest Peak first, then confidence", () => {
+  it("puts the Peak ending soonest first, then the shortest Peak season, then confidence", () => {
     const g = groupToday([
-      entry("long", { peakWindows: 16, purchaseRank: 1 }),
-      entry("short", { peakWindows: 3, confidence: "medium", purchaseRank: 9 }),
-      entry("mid", { peakWindows: 6 }),
-      entry("good", { verdict: "good", peakWindows: 1 }),
+      entry("long-ending", { peakWindows: 16, peakLeft: 1, purchaseRank: 9 }),
+      entry("short", { peakWindows: 3, peakLeft: 3, confidence: "medium" }),
+      entry("long", { peakWindows: 16, peakLeft: 3, purchaseRank: 1 }),
+      entry("mid", { peakWindows: 6, peakLeft: 2 }),
+      entry("good", { verdict: "good", peakWindows: 1, peakLeft: 0 }),
     ]);
-    expect(g.best).toEqual(["short", "mid", "long"]);
+    expect(g.best).toEqual(["long-ending", "mid", "short", "long"]);
     expect(g.good).toEqual(["good"]);
   });
 
@@ -79,6 +82,7 @@ const entries = fc.uniqueArray(
     verdict,
     confidence: fc.constantFrom("high" as const, "medium" as const, "low" as const),
     peakWindows: fc.integer({ min: 0, max: 24 }),
+    peakLeft: fc.integer({ min: 0, max: 24 }),
   }),
   { selector: (e) => e.id, maxLength: 30 },
 );
@@ -93,7 +97,7 @@ describe("groupToday invariants", () => {
         expect([...placed].sort()).toEqual(shown.map((e) => e.id).sort());
         const byId = new Map(list.map((e) => [e.id, e]));
         for (const id of g.best) expect(byId.get(id)?.verdict).toBe("peak");
-        for (const id of g.good) expect(["peak", "good"]).toContain(byId.get(id)?.verdict);
+        for (const id of g.good) expect(byId.get(id)?.verdict).toBe("good");
       }),
     ));
 
@@ -111,14 +115,12 @@ describe("groupToday invariants", () => {
       }),
     ));
 
-  it("Best right now holds min(6, Peak count) items, and Good buys holds Peak only once Best is full", () =>
+  it("Best right now runs from the Peak ending soonest", () =>
     fc.assert(
       fc.property(entries, (list) => {
-        const g = groupToday(list);
-        const peaks = list.filter((e) => e.verdict === "peak" && !e.alwaysGood);
-        expect(g.best.length).toBe(Math.min(BEST_NOW_MAX, peaks.length));
         const byId = new Map(list.map((e) => [e.id, e]));
-        if (g.best.length < BEST_NOW_MAX) for (const id of g.good) expect(byId.get(id)?.verdict).toBe("good");
+        const left = groupToday(list).best.map((id) => byId.get(id)?.peakLeft ?? 0);
+        expect(left).toEqual([...left].sort((a, b) => a - b));
       }),
     ));
 });

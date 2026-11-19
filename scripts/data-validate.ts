@@ -191,7 +191,10 @@ export function validate(raw: RawInputs, opts: { production: boolean }): Result 
       checkSources(item[t].sources, `${at} ${t}`);
     for (const v of item.varieties)
       if (v.storesWell) checkSources(v.storesWell.sources, `${at} variety ${v.id} storesWell`);
-    for (const o of item.origins) checkOrigin(o.origin, at);
+    for (const o of item.origins) {
+      checkOrigin(o.origin, at);
+      for (const r of o.inStores) checkSources(r.sources, `${at} origin ${o.origin} inStores`);
+    }
     unique(item.selections, (s) => `${item.id}/${s.id}`, "selection");
     for (const s of item.selections) {
       const where = `${at} selection ${s.id}`;

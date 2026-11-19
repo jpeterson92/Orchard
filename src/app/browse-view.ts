@@ -48,7 +48,7 @@ export function categoryRows(data: AppData, categoryId: string, date: PlainDate)
         id: item.inputs.id,
         name: item.name,
         art: item.art,
-        varietyLine: varietyLine(item, result),
+        varietyLine: varietyLine(item, result, data),
         verdict: result.verdict,
         tags: tags(item, result.markers),
         draft: item.status === "draft",

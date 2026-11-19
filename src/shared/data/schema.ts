@@ -58,10 +58,14 @@ export const rulesSchema = z.strictObject({
   version: z.int().positive(),
   /** Typical origins cover at least this share of reported volume. */
   typicalOriginShare: z.number().gt(0).lte(1),
-  /** P9: a typical origin below this share of the month's volume never takes over from the top one. */
-  decidingOriginShare: z.number().gt(0).lte(1),
-  /** P17: Peak-capable prime origins holding at least this share of the month's volume make the item Peak. */
-  peakShare: z.number().gt(0).lte(1),
+  /** `usda:derive` marks a typical origin major at this share of the month's volume. */
+  majorOriginShare: z.number().gt(0).lte(1),
+  /** P20: origins at a quality level holding this share of the typical supply make that level reasonably likely
+   * on the shelf. */
+  availableShare: z.number().gt(0).lte(1),
+  /** P20: the card says what to look for unless more than this share of the typical supply is at the verdict's
+   * level. */
+  lookForShare: z.number().gt(0).lte(1),
   /** P1: rule 1 passes when the rated typical origins hold at least this share of the typical origins' volume. */
   ratedTypicalShare: z.number().gt(0).lte(1),
   supplyIndex: z
@@ -90,9 +94,22 @@ export const qualityWindowSchema = z.strictObject({
 });
 const qualityWindows = z.array(qualityWindowSchema).min(1);
 
+/** Months mainstream supermarkets typically carry it, cited, where USDA volume undercounts it. */
+const inStores = z
+  .array(
+    z.strictObject({
+      from: z.string().regex(MONTH_LABEL, 'use a month label such as "jun"'),
+      to: z.string().regex(MONTH_LABEL, 'use a month label such as "jun"'),
+      sources: sourceIds(1),
+    }),
+  )
+  .default([]);
+
 export const itemOriginSchema = z.strictObject({
   origin: originId,
   windows: qualityWindows,
+  /** P20: cited months it is commonly on supermarket shelves, so it counts as available whatever its share. */
+  inStores,
 });
 
 const storageLife = z
@@ -115,7 +132,8 @@ export const editorialTypicalOriginsSchema = z.strictObject({
   from: z.string().regex(MONTH_LABEL, 'use a month label such as "jun"'),
   /** May wrap past December. */
   to: z.string().regex(MONTH_LABEL, 'use a month label such as "jun"'),
-  /** Ranked, top first. `major`: at least rules.decidingOriginShare of the month's supply (P9). */
+  /** Ranked, top first. `major`: a main supplier that month; where shares are unknown, only major origins weigh
+   * in P20. */
   origins: z.array(z.strictObject({ origin: originId, major: z.boolean() })).min(1),
   sources: sourceIds(1),
 });
@@ -148,16 +166,7 @@ export const selectionSchema = z.strictObject({
   cue: words(SECTION_WORDS),
   /** Rated origins of the item it groups, in rules.peakCountries; its rating in a window is the best of theirs. */
   origins: z.array(originId).min(1),
-  /** Months mainstream supermarkets typically carry it, cited, where USDA volume undercounts it. */
-  inStores: z
-    .array(
-      z.strictObject({
-        from: z.string().regex(MONTH_LABEL, 'use a month label such as "jun"'),
-        to: z.string().regex(MONTH_LABEL, 'use a month label such as "jun"'),
-        sources: sourceIds(1),
-      }),
-    )
-    .default([]),
+  inStores,
 });
 
 const anchor = z.strictObject({
@@ -268,7 +277,7 @@ export const typicalOriginRowSchema = z.strictObject({
   month,
   rank: z.coerce.number().pipe(z.int().positive()),
   origin: originId,
-  /** At least rules.decidingOriginShare of the month's volume (P9). Used internally, never shown as a share. */
+  /** At least rules.majorOriginShare of the month's volume. Used internally, never shown as a share. */
   major: z.enum(["true", "false"]).transform((v) => v === "true"),
   /** Its share of the month's reported volume (P1). */
   share: z.coerce.number().pipe(z.number().gt(0).lte(1)),

@@ -139,7 +139,7 @@ const supplyCsv: string[] = [];
 const report: string[] = [
   `# usda:derive report`,
   "",
-  `Period ${FROM} to ${TO}. Typical origins reach ${pct(rules.typicalOriginShare)} of volume; major at ${pct(rules.decidingOriginShare)}. Exports excluded. Lump sums (a row over half the item's average month and over twice its origin's next-largest row) are dropped.`,
+  `Period ${FROM} to ${TO}. Typical origins reach ${pct(rules.typicalOriginShare)} of volume; major at ${pct(rules.majorOriginShare)}. Exports excluded. Lump sums (a row over half the item's average month and over twice its origin's next-largest row) are dropped.`,
   "",
   "| Item | Lump rows dropped | Unnamed regions | Months by origin count |",
   "| --- | --- | --- | --- |",
@@ -185,7 +185,7 @@ for (const [item, candidates] of Object.entries(ITEMS)) {
     const typical = typicalOrigins(
       pooled,
       rules.typicalOriginShare,
-      rules.decidingOriginShare,
+      rules.majorOriginShare,
       (o) => o !== REGION,
     );
     counts.push(typical.length);

@@ -42,6 +42,8 @@ const itemArb: fc.Arbitrary<ItemInputs> = fc
     // Each typical origin's share of the month's volume, in percent; editorial typical origins have none.
     shares: months(fc.array(fc.integer({ min: 1, max: 33 }), { minLength: 3, maxLength: 3 })),
     editorialOrigins: fc.boolean(),
+    // P20: origins cited as commonly in stores, by month.
+    cited: months(fc.subarray([...ORIGINS], { maxLength: 1 })),
     supply: fc.tuple(...ORIGINS.map(() => months(supplyValue))),
     varieties: fc.array(fc.record({ s: series, inStore: months(fc.boolean()) }), { maxLength: 3 }),
     evidenceBasis: fc.constantFrom("supply+assessment" as const, "assessment-only" as const),
@@ -72,6 +74,7 @@ const itemArb: fc.Arbitrary<ItemInputs> = fc
         .map((p) => (r.editorialOrigins ? null : p / 100)),
     ),
     minorOrigins: r.typical.map((os, m) => os.filter((_, i) => r.minorMask[m]?.[i])),
+    originInStores: Object.fromEntries(ORIGINS.map((o) => [o, r.cited.map((os) => os.includes(o))])),
     supply: Object.fromEntries(ORIGINS.map((o, i) => [o, r.supply[i] ?? []])),
   }));
 
@@ -99,6 +102,39 @@ const thinAt = (item: ItemInputs, o: string, month: number) => {
   const s = item.supply[o]?.[month];
   return s != null && s < ENV.rules.supplyIndex.thin;
 };
+/** P20, restated: the typical origins at Peak and at Good or better this window, whether a set of them is
+ * reasonably likely on the shelf, and the share of the typical supply it holds. */
+function levels(item: ItemInputs, month: number, w: number) {
+  const typical = item.typicalOrigins[month] ?? [];
+  const shares = item.typicalShares[month] ?? [];
+  const known = shares.length === typical.length && shares.every((x) => x !== null);
+  const weight = (o: string) =>
+    known ? (shares[typical.indexOf(o)] ?? 0) : item.minorOrigins[month]?.includes(o) ? 0 : 1;
+  const total = typical.reduce((sum, o) => sum + weight(o), 0);
+  const share = (os: string[]) => (total > 0 ? os.reduce((sum, o) => sum + weight(o), 0) / total : 0);
+  const rt = ratedTypical(item, month, w);
+  const sure = (o: string) => o === rt[0] || item.origins[o]?.evidence?.[w] !== "low";
+  const available = (os: string[]) => {
+    const counted = os.filter(sure);
+    return (
+      counted.length > 0 &&
+      (share(counted) >= ENV.rules.availableShare - 1e-9 ||
+        counted.some((o) => item.originInStores[o]?.[month] === true))
+    );
+  };
+  const rating = (o: string) => item.origins[o]?.windows[w];
+  return {
+    peak: rt.filter((o) => rating(o) === "prime" && near(o) && !thinAt(item, o, month)),
+    good: rt.filter((o) => rating(o) !== "poor"),
+    anyPoor: rt.some((o) => rating(o) === "poor"),
+    available,
+    share,
+  };
+}
+/** Item verdicts from typical origins alone: not rated by variety, no selections, and a rated, in-season month. */
+const byOrigins = (item: ItemInputs, r: VerdictResult, month: number) =>
+  item.varieties.length === 0 && r.verdict !== "limited" && !outOfSeason(item, month);
+
 /** The origin a `rated` reason names, if any. */
 const ratedOrigin = (r: Pick<VerdictResult, "reasons">): string | undefined => {
   const rated = r.reasons.find((x) => x.code === "rated");
@@ -153,7 +189,7 @@ describe("verdict engine invariants", () => {
       RUNS,
     ));
 
-  it("P17: a default Peak rests on a prime, near typical origin whose supply isn't thin", () =>
+  it("P20: a default Peak rests on a prime, near typical origin whose supply isn't thin", () =>
     fc.assert(
       fc.property(itemArb, ctxArb, (item, ctx) => {
         if (item.varieties.length > 0) return;
@@ -170,60 +206,58 @@ describe("verdict engine invariants", () => {
       RUNS,
     ));
 
-  it("P17: a Peak-capable top origin makes the item Peak, unless another Peak season is its main one", () =>
+  it("P20: the verdict is the best level reasonably likely on the shelf", () =>
     fc.assert(
-      fc.property(itemArb, ctxArb, (item, ctx) => {
-        if (item.varieties.length > 0 || !item.peakWorthSeeking) return;
+      fc.property(itemArb, ctxArb, (base, ctx) => {
+        const item = noSelections(base);
         const r = evaluate(item, { date: ctx.date }, ENV);
-        if (r.verdict === "limited") return; // P1: too little of the volume is rated
         const month = ctx.date.month - 1;
-        const w = windowIndex(ctx.date.month, ctx.date.day);
-        const [top] = ratedTypical(item, month, w);
-        if (
-          top !== undefined &&
-          item.origins[top]?.windows[w] === "prime" &&
-          near(top) &&
-          !thinAt(item, top, month)
-        )
+        if (!byOrigins(item, r, month)) return;
+        const l = levels(item, month, windowIndex(ctx.date.month, ctx.date.day));
+        if (item.peakWorthSeeking && l.available(l.peak))
           expect(r.verdict === "peak" || demoted(r)).toBe(true);
+        else if (l.available(l.good)) expect(r.verdict).toBe("good");
+        // With no poor origin at all, the top origin decides as rated.
+        else if (l.anyPoor) expect([r.verdict, r.ruleFired]).toEqual(["skip", 2]);
       }),
       RUNS,
     ));
 
-  it("P9, P17: the label note shows exactly when origins mix poor with better or a Peak mixes prime with less", () =>
+  it("P20: the label note shows exactly when the verdict's level holds at most the look-for share", () =>
     fc.assert(
-      fc.property(itemArb, ctxArb, (item, ctx) => {
-        if (item.varieties.length > 0) return;
+      fc.property(itemArb, ctxArb, (base, ctx) => {
+        const item = noSelections(base);
         const r = evaluate(item, { date: ctx.date }, ENV);
-        if (r.verdict === "limited") return;
-        const w = windowIndex(ctx.date.month, ctx.date.day);
-        const ratings = ratedTypical(item, ctx.date.month - 1, w).map((o) => item.origins[o]?.windows[w]);
-        const mixed = ratings.includes("poor") && ratings.some((x) => x !== "poor");
-        // P17: a Peak from supply with any origin below prime means picking by the label.
-        const mixedPeak = r.verdict === "peak" && ratings.some((x) => x !== "prime");
-        expect(r.labelNote).toBe(r.selection !== null || mixed || mixedPeak);
+        const month = ctx.date.month - 1;
+        if (!byOrigins(item, r, month)) return;
+        const l = levels(item, month, windowIndex(ctx.date.month, ctx.date.day));
+        const level = r.verdict === "peak" ? l.peak : r.verdict === "good" ? l.good : null;
+        const pick = level !== null && l.available(level) && l.share(level) <= ENV.rules.lookForShare + 1e-9;
+        expect(r.labelNote).toBe(pick);
+        expect(r.markers.some((m) => m.kind === "check-label")).toBe(pick);
         for (const o of Object.keys(item.origins))
           expect(evaluate(item, { date: ctx.date, labelOrigin: o }, ENV).labelNote).toBe(false);
       }),
       RUNS,
     ));
 
-  it("P9: rated Skip (rule 2) only when the second typical origin can't be relied on above poor or is minor", () =>
+  it("P20: raising one typical origin's rating this window never lowers the verdict", () =>
     fc.assert(
-      fc.property(itemArb, ctxArb, (item, ctx) => {
+      fc.property(itemArb, ctxArb, fc.nat(), (item, ctx, pick) => {
         if (item.varieties.length > 0) return;
-        const r = evaluate(item, { date: ctx.date }, ENV);
-        if (r.ruleFired !== 2) return;
-        if (r.reasons.some((x) => x.code === "out-of-season")) {
-          expect(outOfSeason(item, ctx.date.month - 1)).toBe(true);
-          return;
-        }
+        const month = ctx.date.month - 1;
         const w = windowIndex(ctx.date.month, ctx.date.day);
-        const [top, second] = ratedTypical(item, ctx.date.month - 1, w);
-        expect(item.origins[top as string]?.windows[w]).toBe("poor");
-        const minor = item.minorOrigins[ctx.date.month - 1]?.includes(second as string);
-        if (second !== undefined && !minor && item.origins[second]?.windows[w] !== "poor")
-          expect(item.origins[second]?.evidence?.[w]).toBe("low");
+        const rt = ratedTypical(item, month, w);
+        const o = rt[pick % Math.max(1, rt.length)];
+        const series = o === undefined ? undefined : item.origins[o];
+        const from = series?.windows[w];
+        if (o === undefined || series === undefined || from === "prime" || from == null) return;
+        const windows = [...series.windows];
+        windows[w] = from === "poor" ? "fair" : "prime";
+        const raised = { ...item, origins: { ...item.origins, [o]: { ...series, windows } } };
+        const before = evaluate(item, { date: ctx.date }, ENV).verdict;
+        const after = evaluate(raised, { date: ctx.date }, ENV).verdict;
+        expect(verdictRank(after)).toBeGreaterThanOrEqual(verdictRank(before));
       }),
       RUNS,
     ));
@@ -306,7 +340,7 @@ describe("verdict engine invariants", () => {
       RUNS,
     ));
 
-  it("P16: a selection only lifts the item to Peak, with Check the label, from a prime in-store origin", () =>
+  it("P16: a selection only lifts the item to Peak, with the label note, from a prime in-store origin", () =>
     fc.assert(
       fc.property(itemArb, ctxArb, (item, ctx) => {
         if (item.varieties.length > 0) return;

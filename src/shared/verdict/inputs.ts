@@ -125,6 +125,14 @@ export function itemInputs(item: Item, data: Dataset): ItemInputs {
     typicalOrigins,
     typicalShares,
     minorOrigins,
+    originInStores: Object.fromEntries(
+      item.origins
+        .filter((o) => o.inStores.length > 0)
+        .map((o) => {
+          const cited = new Set(o.inStores.flatMap((r) => monthRange(r.from, r.to)));
+          return [o.origin, Array.from({ length: MONTHS }, (_, m) => cited.has(m + 1))];
+        }),
+    ),
     supply,
   };
 }

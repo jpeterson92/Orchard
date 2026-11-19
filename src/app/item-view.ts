@@ -204,11 +204,13 @@ export function itemView(
   const notes: string[] = [];
   const selection = item.selections.find((s) => s.id === result.selection);
   if (selection) notes.push(`How to find it: ${selection.cue}`);
-  // P9, P17: which origins are at their best, and which often disappoint.
+  // P20: which origins hold the verdict, and which often disappoint.
   const label: string[] = [];
   for (const r of result.reasons)
-    if (r.code === "peak-origins")
-      label.push(`best now from ${listNames(r.origins.map((o) => originName(o, data)))}`);
+    if (r.code === "look-for")
+      label.push(
+        `${result.verdict === "peak" ? "best" : "good"} now from ${listNames(r.origins.map((o) => originName(o, data)))}`,
+      );
   for (const r of result.reasons)
     if (r.code === "typical-origin-poor")
       label.push(`often disappointing from ${originName(r.origin, data)}`);
@@ -253,7 +255,7 @@ export function itemView(
     id: item.inputs.id,
     name: item.name,
     art: item.art,
-    varietyLine: varietyLine(item, result),
+    varietyLine: varietyLine(item, result, data),
     verdict: result.verdict,
     tags: tags(item, result.markers),
     reasons: reasons.map((r) => atDate(r, mode)),

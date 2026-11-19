@@ -54,9 +54,10 @@ export interface ItemInputs {
   /** Indexed by month 0–11, in typicalOrigins' order: each one's share of the month's volume (P1). Null for
    * editorial typical origins, which carry no volume. */
   typicalShares: readonly (readonly (number | null)[])[];
-  /** Indexed by month 0–11: typical origins under rules.decidingOriginShare of the month's volume, which never take
-   * over from the top origin (P9). */
+  /** Indexed by month 0–11: typical origins not marked major. Where shares are unknown they weigh nothing (P20). */
   minorOrigins: readonly (readonly OriginId[])[];
+  /** P20, per origin, indexed by month 0–11: cited as commonly on supermarket shelves, whatever its share. */
+  originInStores: Readonly<Record<OriginId, readonly boolean[]>>;
   /** Per origin, indexed by month 0–11: that origin's typical supply index against its own season (P11). A
    * missing origin or month has none. */
   supply: Readonly<Record<OriginId, readonly (number | null)[]>>;
@@ -83,14 +84,15 @@ export type Reason =
   | { code: "supply-thin" }
   /** Rated prime, but the item tastes much the same in and out of its best season: Good, not Peak. */
   | { code: "peak-not-worth-seeking" }
-  /** Another typical origin this window is poor: never Peak, and the label note names it (P9). */
+  /** Another typical origin this window is poor; the item page names it. */
   | { code: "typical-origin-poor"; origin: OriginId }
   /** P16: rated prime, but shipped from outside rules.peakCountries, so the item verdict is Good at most. */
   | { code: "far-origin"; origin: OriginId }
   /** P16: Peak because a selection the shopper can pick out is prime and common enough; typical supply is worse. */
   | { code: "selection"; selection: string }
-  /** P17: Peak from mixed supply: the typical origins at their best (top first, at most 3); pick by the label. */
-  | { code: "peak-origins"; origins: OriginId[] }
+  /** P20: at most rules.lookForShare of the typical supply is at the verdict's level: the origins that are (top
+   * first, at most 3), so the shopper picks by the label. */
+  | { code: "look-for"; origins: OriginId[] }
   /** P18: no origin typically supplies it this month. */
   | { code: "out-of-season" }
   /** P19: rated Peak here, but Peak is kept for the item's main season, windows `from` to `to`. */
@@ -107,14 +109,14 @@ export interface CoreResult {
 export type Marker =
   | { kind: "last-call"; fadesBy: number }
   | { kind: "reliable-year-round" }
-  /** The label note applies: typical origins mix poor with better, so the shopper should check the label (P9). */
+  /** The label note applies: the shopper picks by the label (P20, P16). */
   | { kind: "check-label" }
   | { kind: "improves"; window: number };
 
 export interface VerdictResult extends CoreResult {
   markers: Marker[];
-  /** "Depends on the label": the typical origins this window include a poor one and a better one (P9), the item is
-   * Peak from mixed supply (P17), or a selection makes it Peak (P16). */
+  /** "Depends on the label": the verdict holds only for origins the shopper picks by the label (P20), or a
+   * selection makes it Peak (P16). */
   labelNote: boolean;
   byOrigin: Record<OriginId, CoreResult>;
   byVariety: Record<VarietyId, CoreResult & { inStore: boolean }>;
@@ -173,11 +175,11 @@ function evaluateCore(item: ItemInputs, basis: Basis, window: number, ctx: EvalC
   let rating: Rating | null = null;
   let decider: RatedSeries | undefined;
   let supplyOrigin: OriginId | undefined;
-  let labelNote = false;
+  const labelNote = false;
   let poorOrigin: OriginId | undefined;
-  let peakOrigins: OriginId[] = [];
   let peakAllowed = true;
-  let mixed = false;
+  let lookFor: readonly OriginId[] = [];
+  let good: Partial<Decision> | undefined;
 
   if (basis.kind === "typical") {
     const ratingOf = (o: OriginId) => item.origins[o]?.windows[window] ?? null;
@@ -186,10 +188,10 @@ function evaluateCore(item: ItemInputs, basis: Basis, window: number, ctx: EvalC
     // P1: the rated typical origins must hold enough of the typical volume; with any share unknown
     // (editorial typical origins), every typical origin must be rated.
     const known = shares.length === typical.length && shares.every((s) => s !== null);
-    const shareOf = (os: readonly OriginId[]) =>
+    const volume = (os: readonly OriginId[]) =>
       os.reduce((sum, o) => sum + ((shares[typical.indexOf(o)] as number | null) ?? 0), 0);
     const covered = known
-      ? shareOf(ratedTypical) >= env.rules.ratedTypicalShare * shareOf(typical) - 1e-9
+      ? volume(ratedTypical) >= env.rules.ratedTypicalShare * volume(typical) - 1e-9
       : ratedTypical.length === typical.length;
     if (typical.length === 0) missing.push({ code: "no-typical-origins" });
     else if (!covered)
@@ -197,43 +199,64 @@ function evaluateCore(item: ItemInputs, basis: Basis, window: number, ctx: EvalC
         if (ratingOf(origin) === null) missing.push({ code: "origin-unrated", origin });
     if (missing.length === 0) {
       // Unrated typical origins below the P1 share are passed over: the rated ones decide.
-      const [top, second] = ratedTypical as [OriginId, ...OriginId[]];
-      // P9: the verdict follows the top origin, unless it's poor and the second origin, a major one, is rated
-      // better on evidence that isn't Low, so one weak call or a small origin never lifts a Skip.
-      let lead =
-        ratingOf(top) === "poor" &&
-        second !== undefined &&
-        !item.minorOrigins[month]?.includes(second) &&
-        ratingOf(second) !== "poor" &&
-        item.origins[second]?.evidence?.[window] !== "low"
-          ? second
-          : top;
-      // P17: Peak when a shopper has a good chance of finding it at its best: the top origin can make it Peak,
-      // or such origins hold rules.peakShare of the month's volume (editorial origins: an equal share per
-      // major origin). Any typical origin below prime then means picking by the label.
-      const thinAt = (o: OriginId) => {
-        const s = item.supply[o]?.[month];
-        return s != null && s < env.rules.supplyIndex.thin;
-      };
-      peakOrigins = ratedTypical.filter((o) => ratingOf(o) === "prime" && near(o, env) && !thinAt(o));
+      const top = ratedTypical[0] as OriginId;
+      // P20: a level counts when origins rated at it or better are reasonably likely on the shelf: they hold
+      // rules.availableShare of the typical supply (editorial origins: an equal share per major origin), or one
+      // is cited as commonly in stores this month. Low-confidence ratings count only for the top origin. Peak
+      // also needs each origin near (P16) and its supply not thin.
       const weight = (o: OriginId) =>
         known
           ? ((shares[typical.indexOf(o)] as number | null) ?? 0)
           : item.minorOrigins[month]?.includes(o)
             ? 0
             : 1;
-      const total = known ? 1 : typical.reduce((sum, o) => sum + weight(o), 0);
-      const share = total > 0 ? peakOrigins.reduce((sum, o) => sum + weight(o), 0) / total : 0;
-      const topCan = lead === top && peakOrigins.includes(top);
-      peakAllowed = topCan || share >= env.rules.peakShare - 1e-9;
-      if (!topCan && peakAllowed) lead = peakOrigins[0] as OriginId;
-      mixed = ratedTypical.some((o) => ratingOf(o) !== "prime");
-      decider = item.origins[lead];
-      rating = ratingOf(lead);
-      supplyOrigin = lead;
-      const ratings = ratedTypical.map(ratingOf);
-      labelNote = ratings.includes("poor") && ratings.some((r) => r !== "poor");
-      poorOrigin = ratedTypical.find((o) => o !== lead && ratingOf(o) === "poor");
+      const total = typical.reduce((sum, o) => sum + weight(o), 0);
+      const shareOf = (os: readonly OriginId[]) =>
+        total > 0 ? os.reduce((sum, o) => sum + weight(o), 0) / total : 0;
+      const counts = (o: OriginId) => o === top || item.origins[o]?.evidence?.[window] !== "low";
+      const available = (os: readonly OriginId[]) => {
+        const sure = os.filter(counts);
+        return (
+          sure.length > 0 &&
+          (shareOf(sure) >= env.rules.availableShare - 1e-9 ||
+            sure.some((o) => item.originInStores[o]?.[month] === true))
+        );
+      };
+      const thinAt = (o: OriginId) => {
+        const s = item.supply[o]?.[month];
+        return s != null && s < env.rules.supplyIndex.thin;
+      };
+      const peakSet = ratedTypical.filter((o) => ratingOf(o) === "prime" && near(o, env) && !thinAt(o));
+      const goodSet = ratedTypical.filter((o) => ratingOf(o) !== "poor");
+      // The level's top-ranked origin that counts decides. The shopper picks by the label unless more than
+      // rules.lookForShare of the typical supply is at the level.
+      const at = (os: readonly OriginId[], peak: boolean): Partial<Decision> => {
+        const lead = os.find(counts) as OriginId;
+        return {
+          rating: ratingOf(lead),
+          decider: item.origins[lead],
+          supplyOrigin: lead,
+          peakAllowed: peak,
+          lookFor: shareOf(os) > env.rules.lookForShare + 1e-9 ? [] : os.slice(0, 3),
+          poorOrigin: ratedTypical.find((o) => o !== lead && ratingOf(o) === "poor"),
+        };
+      };
+      good = available(goodSet) ? at(goodSet, false) : undefined;
+      // Skip: the top poor origin decides (with none, the top origin).
+      const skipLead = ratedTypical.find((o) => ratingOf(o) === "poor") ?? top;
+      const chosen = (item.peakWorthSeeking && available(peakSet) ? at(peakSet, true) : undefined) ??
+        good ?? {
+          rating: ratingOf(skipLead),
+          decider: item.origins[skipLead],
+          supplyOrigin: skipLead,
+          peakAllowed: false,
+        };
+      rating = chosen.rating ?? null;
+      decider = chosen.decider;
+      supplyOrigin = chosen.supplyOrigin;
+      peakAllowed = chosen.peakAllowed ?? false;
+      lookFor = chosen.lookFor ?? [];
+      poorOrigin = chosen.poorOrigin;
     }
   } else if (basis.kind === "origin") {
     decider = item.origins[basis.origin];
@@ -249,25 +272,23 @@ function evaluateCore(item: ItemInputs, basis: Basis, window: number, ctx: EvalC
 
   // P16: the distance cap applies to the item verdict, never to label advice.
   const capped = basis.kind === "typical" || (basis.kind === "variety" && basis.item === true);
-  const result = decide(
+  const base = { missing, labelNote, basis, window, capped };
+  const result: Core = decide(
     item,
-    {
-      rating,
-      decider,
-      missing,
-      labelNote,
-      poorOrigin,
-      supplyOrigin,
-      basis,
-      window,
-      capped,
-      peakAllowed,
-      mixed,
-      peakOrigins,
-    },
+    { ...base, rating, decider, poorOrigin, supplyOrigin, peakAllowed, lookFor },
     ctx,
     env,
   );
+  // P19: a typical Peak taken away reads as the Good level, with that level's origins to look for.
+  if (basis.kind === "typical" && result.verdict === "peak" && good) {
+    const { notPeak: _, ...asGood } = decide(
+      item,
+      { ...base, rating: null, decider: undefined, supplyOrigin: undefined, ...good },
+      ctx,
+      env,
+    );
+    result.notPeak = asGood;
+  }
   if (basis.kind === "typical" && result.verdict !== "peak") {
     const lifted = selectionPeak(item, window, result, ctx, env);
     if (lifted) return lifted;
@@ -276,7 +297,7 @@ function evaluateCore(item: ItemInputs, basis: Basis, window: number, ctx: EvalC
 }
 
 /** P16: the first selection (file order) in stores this month whose best origin, rated prime, runs rules 2–4 to
- * Peak. Typical supply is worse, so the label note and Check the label apply. */
+ * Peak. Typical supply is worse, so the label note applies. */
 function selectionPeak(
   item: ItemInputs,
   window: number,
@@ -336,12 +357,10 @@ interface Decision {
   capped: boolean;
   /** P18: no origin typically supplies the item this month. */
   outOfSeason?: boolean;
-  /** Typical basis, P17: the top origin can make it Peak, or Peak-capable origins hold rules.peakShare. */
+  /** Typical basis, P20: the Peak level is reasonably likely on the shelf. */
   peakAllowed?: boolean;
-  /** Typical basis, P17: a typical origin is rated below prime, so a Peak means picking by the label. */
-  mixed?: boolean;
-  /** Typical basis, P17: the prime typical origins that can make it Peak, top first. */
-  peakOrigins?: OriginId[];
+  /** Typical basis, P20: the level's origins to look for by the label, when the shopper must pick. */
+  lookFor?: readonly OriginId[];
 }
 
 function decide(
@@ -387,10 +406,10 @@ function decide(
     else if (d.rating === "prime" && !thin && item.peakWorthSeeking && !far && d.peakAllowed !== false)
       [verdict, ruleFired] = ["peak", 3];
     else [verdict, ruleFired] = ["good", 4];
-    // P17: a Peak from mixed supply names the origins at their best, and the shopper picks by the label.
-    if (verdict === "peak" && d.mixed) {
+    // P20: the verdict holds for only part of the supply, so the shopper picks by the label.
+    if (verdict !== "skip" && d.lookFor && d.lookFor.length > 0) {
       labelNote = true;
-      reasons.push({ code: "peak-origins", origins: (d.peakOrigins ?? []).slice(0, 3) });
+      reasons.push({ code: "look-for", origins: [...d.lookFor] });
     }
   }
 
@@ -421,7 +440,7 @@ function decide(
   const good = finish(
     "good",
     4,
-    reasons.filter((r) => r.code !== "peak-origins"),
+    reasons.filter((r) => r.code !== "look-for"),
     d.labelNote,
   );
   return { ...result, notPeak: good };

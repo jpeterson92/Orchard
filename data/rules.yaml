@@ -1,8 +1,9 @@
 # Verdict thresholds (product spec §7, engineering plan §4.3). Bump `version` whenever a value changes.
-version: 7
+version: 8
 typicalOriginShare: 0.70 # typical origins cover at least this share of reported volume
-decidingOriginShare: 0.25 # P9: only a typical origin with at least this share can take over from a poor top origin
-peakShare: 0.50 # P17: near, non-thin prime origins holding this share of the month's volume make the item Peak
+majorOriginShare: 0.25 # usda:derive marks a typical origin major at this share of the month's volume
+availableShare: 0.33 # P20: origins at a level holding this share of the typical supply make it reasonably likely on the shelf
+lookForShare: 0.75 # P20: the card names what to look for unless more than this share of typical supply is at the verdict's level
 ratedTypicalShare: 0.75 # P1: rated typical origins must hold at least this share of the typical origins' volume
 supplyIndex:
   thin: 0.8 # below: thin supply

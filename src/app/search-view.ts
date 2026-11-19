@@ -2,7 +2,7 @@
 // letter, with typos forgiven. Results carry their verdict, so a lookup often ends without a tap. Runs on the phone
 // over the bundled data, so it works offline.
 import MiniSearch from "minisearch";
-import type { AppData, AppItem } from "../shared/app-data";
+import type { AppData } from "../shared/app-data";
 import { evaluate, type PlainDate, type Verdict } from "../shared/verdict";
 import { tags, varietyLine } from "./today-view";
 
@@ -114,19 +114,15 @@ function result(data: AppData, key: string, date: PlainDate): SearchResult | nul
       subtitle: item.name,
       art: variety.art ?? item.art,
       verdict: r.verdict,
-      tags: varietyTags(item, r.markers),
+      tags: tags(item, r.markers),
     };
   return {
     ...common,
     label: null,
     title: item.name,
-    subtitle: varietyLine(item, r),
+    subtitle: varietyLine(item, r, data),
     art: item.art,
     verdict: r.verdict,
     tags: tags(item, r.markers),
   };
 }
-
-/** A variety's own verdict already answers "Check the label". */
-const varietyTags = (item: AppItem, markers: Parameters<typeof tags>[1]) =>
-  tags(item, markers).filter((t) => t !== "Check the label");
