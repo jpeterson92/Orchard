@@ -1,0 +1,139 @@
+id: watermelon
+name: Watermelon
+synonyms: [watermelons, seedless watermelon, mini watermelon, personal watermelon]
+misspellings: [watermellon, watermelons', water melon, wattermelon]
+category: melons
+purchaseRank: 7
+alwaysGood: false
+shipsWell:
+  value: true
+  sources: [ucdavis-postharvest-watermelon, producebusiness-winter-melon-guide]
+  note: Picked fully ripe since it won't sweeten later; winter melons ship north from Mexico and Guatemala.
+peakWorthSeeking:
+  value: true
+  sources: [thetakeout-watermelon-season, producebusiness-winter-melon-guide]
+  note: Summer melons are sweetest; winter imports have had sugar problems and rarely match them.
+storesWell:
+  value: false
+  sources: [ucdavis-postharvest-watermelon]
+  note: Keeps about two weeks whole and is chill-sensitive, so it isn't stored between seasons.
+evidenceBasis: supply+assessment
+cardLine: Heavy, with a creamy yellow ground spot.
+pick:
+  - Heavy for its size
+  - A creamy yellow ground spot, not white
+  - Symmetrical, with a bright, waxy rind
+avoid:
+  - Bruises, cracks or soft spots
+store:
+  temperature: cool
+  ethylene: sensitive
+  life: { min: 1, max: 2, unit: weeks }
+  text: Keep whole melons cool and away from bananas and apples; the fridge for long spells can dull the flavor. Refrigerate cut melon, covered, and eat it within a few days.
+  sources: [ucdavis-postharvest-watermelon, thetakeout-watermelon-season]
+ripen:
+  text: It won't ripen or sweeten after picking, so choose a ripe one in the store.
+  sources: [ucdavis-postharvest-watermelon]
+prep: Rinse the rind before cutting so the knife doesn't carry dirt into the flesh.
+origins:
+  - origin: us-fl
+    windows:
+      - { from: apr-1, to: apr-2, rating: fair }
+      - { from: may-1, to: jun-2, rating: prime }
+      - from: jul-1
+        to: sep-2
+        rating: fair
+        reason: The model panel has no rating here, and the cited sources disagree; together they read fair.
+      - { from: oct-1, to: oct-1, rating: poor }
+  - origin: us-ga
+    windows:
+      - { from: apr-2, to: apr-2, rating: poor }
+      - from: may-1
+        to: may-1
+        rating: fair
+        reason: The model panel has no rating here, and the cited sources disagree; together they read fair.
+      - { from: may-2, to: sep-1, rating: prime }
+      - from: sep-2
+        to: sep-2
+        rating: fair
+        reason: The model panel has no rating here, and the cited sources disagree; together they read fair.
+      - { from: oct-1, to: oct-1, rating: poor }
+  - origin: us-tx
+    windows:
+      - { from: apr-2, to: apr-2, rating: poor }
+      - from: may-1
+        to: may-1
+        rating: fair
+        reason: The model panel has no rating here, and the cited sources disagree; together they read fair.
+      - { from: may-2, to: sep-1, rating: prime }
+      - from: sep-2
+        to: sep-2
+        rating: fair
+        reason: The model panel has no rating here, and the cited sources disagree; together they read fair.
+      - { from: oct-1, to: oct-1, rating: poor }
+  - origin: us-ca
+    windows:
+      - { from: jan-1, to: apr-2, rating: poor }
+      - from: may-1
+        to: jun-1
+        rating: fair
+        reason: The model panel has no rating here, and the cited sources disagree; together they read fair.
+      - { from: jun-2, to: sep-1, rating: prime }
+      - { from: sep-2, to: oct-1, rating: fair }
+      - from: oct-2
+        to: oct-2
+        rating: fair
+        reason: The model panel has no rating here, and the cited sources disagree; together they read fair.
+      - { from: nov-1, to: dec-2, rating: poor }
+  - origin: us-in
+    windows:
+      - { from: may-1, to: may-2, rating: fair }
+      - { from: jun-1, to: sep-1, rating: prime }
+      - { from: sep-2, to: sep-2, rating: fair }
+  - origin: us-az
+    windows:
+      - { from: may-1, to: may-2, rating: fair }
+      - { from: jun-1, to: aug-2, rating: prime }
+      - { from: sep-1, to: sep-2, rating: fair }
+  - origin: us-nc
+    windows:
+      - { from: may-1, to: may-2, rating: fair }
+      - { from: jun-1, to: aug-2, rating: prime }
+      - { from: sep-1, to: sep-2, rating: fair }
+  - origin: us-de
+    windows:
+      - { from: may-1, to: may-2, rating: fair }
+      - { from: jun-1, to: aug-2, rating: prime }
+      - { from: sep-1, to: sep-2, rating: fair }
+  - origin: us-mo
+    windows:
+      - { from: may-1, to: may-2, rating: fair }
+      - { from: jun-1, to: aug-2, rating: prime }
+      - { from: sep-1, to: sep-2, rating: fair }
+  - origin: us-mi
+    windows:
+      - { from: may-1, to: may-2, rating: fair }
+      - { from: jun-1, to: aug-2, rating: prime }
+      - { from: sep-1, to: sep-2, rating: fair }
+  - origin: mx
+    windows:
+      - { from: jan-1, to: apr-1, rating: fair }
+      - from: apr-2
+        to: may-2
+        rating: fair
+        reason: Mexican shippers run into April and May, when Mexico still supplies much of the market; winter-only programs read these weeks poor.
+      - { from: jun-1, to: sep-2, rating: poor }
+      - from: oct-1
+        to: nov-1
+        rating: fair
+        reason: Two importers ship Sonoran watermelons from early October, when Mexico supplies most of the market; winter-only programs read these weeks poor.
+      - { from: nov-2, to: dec-2, rating: fair }
+  - origin: gt
+    windows:
+      - { from: jan-1, to: feb-2, rating: fair }
+      - from: mar-1
+        to: mar-2
+        rating: fair
+        reason: Guatemalan seedless watermelons ship through the end of March; the shorter winter claim reads March poor.
+      - { from: apr-1, to: dec-2, rating: poor }
+status: draft

@@ -1,0 +1,112 @@
+item: watermelon
+status: draft
+claims:
+  # Domestic summer: Florida first, then Georgia and Texas, then California and the Midwest.
+  - source: thetakeout-watermelon-season
+    origin: us
+    windows:
+      - { from: may-1, to: may-2, rating: fair }
+      - { from: jun-1, to: aug-2, rating: prime }
+      - { from: sep-1, to: sep-2, rating: fair }
+    specificity: month
+    directness: eating-quality
+    paraphrase: US watermelon peaks May to September, sweetest from June through August.
+  - source: thetakeout-watermelon-season
+    origin: us-fl
+    windows:
+      - { from: apr-1, to: may-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Florida's early-season melons usually reach stores in April and May.
+  - source: thetakeout-watermelon-season
+    origin: us-ga
+    windows:
+      - { from: jun-1, to: aug-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Georgia supplies summer watermelons from June to August.
+  - source: thetakeout-watermelon-season
+    origin: us-tx
+    windows:
+      - { from: jun-1, to: aug-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Texas supplies summer watermelons from June to August.
+  - source: thetakeout-watermelon-season
+    origin: us-ca
+    windows:
+      - { from: jul-1, to: sep-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: California and Arizona supply the late-summer melons, July to September.
+  - source: producebusiness-western-melons
+    origin: us-ca
+    windows:
+      - { from: may-2, to: oct-2, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: Citing UC extension advisors, Central Valley watermelons are harvested from mid-May to late October.
+  - source: foodrepublic-winter-watermelon
+    origin: us
+    windows:
+      - { from: may-1, to: sep-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Watermelons are grown across many southern and some northern states from May through September.
+  # Winter imports: Mexico, with Guatemala from January.
+  - source: thetakeout-watermelon-season
+    origin: mx
+    windows:
+      - { from: dec-1, to: feb-2, rating: fair }
+    specificity: season
+    directness: eating-quality
+    paraphrase: A midwinter watermelon tends to disappoint; imports rarely match summer melons for flavor.
+  - source: producebusiness-winter-melon-guide
+    origin: mx
+    windows:
+      - { from: dec-1, to: feb-2, rating: fair }
+    specificity: season
+    directness: eating-quality
+    paraphrase: A grocer says winter melons used to have sugar problems, though this has improved.
+  - source: producebusiness-winter-melon-guide
+    origin: mx
+    windows:
+      - { from: dec-1, to: apr-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: A shipper's Mexican watermelons come from Sinaloa in December and January, Colima to March, then Hermosillo in April.
+  - source: producebusiness-winter-melon-guide
+    origin: gt
+    windows:
+      - { from: jan-1, to: mar-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Guatemalan seedless watermelons ship to US ports from early January through March.
+  - source: freshplaza-mexico-watermelon-january
+    origin: mx
+    windows:
+      - { from: jan-1, to: may-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Mexican production moves between growing regions over winter and finishes in Tamaulipas in May.
+  - source: freshplaza-mexico-watermelon-january
+    origin: gt
+    windows:
+      - { from: dec-1, to: feb-2, rating: prime }
+    specificity: season
+    directness: availability
+    paraphrase: Guatemala and Honduras also ship watermelons through the northern winter.
+  - source: freshfruitportal-mexican-melons-late-fall
+    origin: mx
+    windows:
+      - { from: oct-1, to: apr-1, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: One importer's Mexican watermelons run from Sonora in the first week of October to Colima and Nayarit until early April.
+  - source: freshplaza-sonora-watermelon-early-end
+    origin: mx
+    windows:
+      - { from: oct-1, to: dec-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Sonora's fall watermelons run from October and in some years into mid to late December.

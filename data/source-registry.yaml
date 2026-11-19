@@ -60,6 +60,9 @@ items:
     - gold nugget
     - nuggets
     - cuties
+  watermelon: [watermelon, watermelons]
+  cantaloupe: [cantaloupe, cantaloupes, muskmelon, muskmelons]
+  honeydew: [honeydew, honeydews]
 
 pages:
   - source: msstate-fruits-vegetables-in-season
@@ -607,3 +610,199 @@ pages:
     kind: item-page
     origin: us-fl
     items: [oranges]
+  # Melons: watermelon, cantaloupe, honeydew.
+  - source: freshplaza-domestic-cantaloupe-flavor
+    url: https://www.freshplaza.com/north-america/article/2194584/consumers-should-see-better-flavor-in-domestic-cantaloupe/
+    kind: item-page
+    origin: us
+    items: [cantaloupe, honeydew]
+  - source: freshplaza-central-american-melon-start
+    url: https://www.freshplaza.com/north-america/article/2189028/central-american-melon-season-is-off-to-a-good-start/
+    kind: item-page
+    origin: hn
+    items: [cantaloupe, honeydew, watermelon]
+  - source: freshplaza-offshore-melon-transition
+    url: https://www.freshplaza.com/north-america/article/9806618/upcoming-transition-for-offshore-melons/
+    kind: item-page
+    origin: us
+    items: [cantaloupe, honeydew, watermelon]
+  - source: freshplaza-melons-back-to-arizona
+    url: https://www.freshplaza.com/north-america/article/9779185/melon-growing-transitions-back-to-arizona/
+    kind: item-page
+    origin: us-az
+    items: [cantaloupe, honeydew, watermelon]
+  - source: freshplaza-central-california-melons-july
+    url: https://www.freshplaza.com/north-america/article/9747007/central-california-gets-going-with-melon-production-ahead-of-the-4th-of-july/
+    kind: item-page
+    origin: us-ca
+    items: [cantaloupe, honeydew, watermelon]
+  - source: freshplaza-cantaloupe-central-valley
+    url: https://www.freshplaza.com/north-america/article/9128105/cantaloupe-season-underway-in-california-s-central-valley/
+    kind: item-page
+    origin: us-ca
+    items: [cantaloupe, honeydew]
+  - source: freshplaza-yuma-fall-melons
+    url: https://www.freshplaza.com/europe/article/9567457/less-acreage-but-clean-fall-melon-crop-in-yuma/
+    kind: item-page
+    origin: us-az
+    items: [cantaloupe, honeydew]
+  - source: freshplaza-domestic-cantaloupes-late-spring
+    url: https://www.freshplaza.com/north-america/article/9534593/domestic-cantaloupes-also-starting-late-this-spring/
+    kind: item-page
+    origin: us-az
+    items: [cantaloupe, honeydew]
+  - source: freshplaza-arizona-honeydew-late
+    url: https://www.freshplaza.com/latin-america/article/9106407/late-start-for-arizona-honeydew-season/
+    kind: item-page
+    origin: us-az
+    items: [honeydew, cantaloupe]
+  - source: producebusiness-winter-melon-guide
+    url: https://producebusiness.com/winter-melon-buying-guide/
+    kind: item-page
+    origin: us
+    items: [cantaloupe, honeydew, watermelon]
+  - source: producebusiness-western-melons
+    url: https://producebusiness.com/?p=4156
+    kind: item-page
+    origin: us
+    items: [cantaloupe, honeydew, watermelon]
+  - source: freshfruitportal-florida-watermelon-2024
+    url: https://www.freshfruitportal.com/news/2024/06/11/florida-leads-watermelon-season-with-excellent-quality-fruit/
+    kind: item-page
+    origin: us-fl
+    items: [watermelon]
+  - source: freshplaza-mexico-watermelon-january
+    url: https://www.freshplaza.com/article/9047821/mexico-watermelon-season-looking-good-until-january/
+    kind: item-page
+    origin: mx
+    items: [watermelon]
+  - source: freshplaza-watermelon-into-september
+    url: https://www.freshplaza.com/article/9613444/heavier-domestic-watermelon-plantings-could-extend-season-into-september/
+    kind: item-page
+    origin: us
+    items: [watermelon]
+  - source: freshplaza-watermelon-volume-ramping
+    url: https://www.freshplaza.com/article/9102262/after-slow-start-watermelon-volume-is-ramping-up-in-us/
+    kind: item-page
+    origin: us
+    items: [watermelon]
+  - source: foodrepublic-winter-watermelon
+    url: https://www.foodrepublic.com/1620299/where-does-watermelon-come-from-winter
+    kind: item-page
+    origin: mx
+    items: [watermelon]
+  - source: uga-cool-spring-sweet-watermelons
+    url: https://fieldreport.caes.uga.edu/news/cool-spring-brings-sweet-year-for-watermelons/
+    kind: item-page
+    origin: us-ga
+    items: [watermelon]
+  - source: specialtycropgrower-georgia-watermelon
+    url: https://specialtycropgrower.com/watermelon-market-georgia-sweet/
+    kind: item-page
+    origin: us-ga
+    items: [watermelon]
+  - source: californiagrown-cantaloupes
+    url: https://californiagrown.org/blog/how-cantaloupes-grow/
+    kind: item-page
+    origin: us-ca
+    items: [cantaloupe]
+  - source: agalert-durable-cantaloupe
+    url: https://www.agalert.com/california-ag-news/archives/august-10-2022/a-changing-market-gets-a-more-durable-cantaloupe/
+    kind: item-page
+    origin: us-ca
+    items: [cantaloupe]
+  - source: markon-melons-update-2
+    url: https://resources.markon.com/news/markon-updates/update-cantaloupe-and-honeydew-melons-2
+    kind: item-page
+    origin: us
+    items: [cantaloupe, honeydew]
+  - source: markon-melons-update-1
+    url: https://resources.markon.com/news/markon-updates/update-cantaloupe-and-honeydew-melons-1
+    kind: item-page
+    origin: us
+    items: [cantaloupe, honeydew]
+  - source: illinois-extension-melons
+    url: https://eatmovesave.extension.illinois.edu/eat/illinois-grown/melons
+    kind: item-page
+    origin: us-il
+    items: [cantaloupe, honeydew, watermelon]
+  - source: askthefoodgeek-melons
+    url: https://askthefoodgeek.com/watermelons-cantaloupe-and-honeydew-melons/
+    kind: item-page
+    origin: us
+    items: [cantaloupe, honeydew, watermelon]
+  - source: perishablenews-ccab-selecting-cantaloupe
+    url: https://www.perishablenews.com/produce/update-from-the-california-cantaloupe-advisory-board-things-have-changed-when-it-comes-to-selecting-the-perfect-cantaloupe-this-summer/
+    kind: item-page
+    origin: us-ca
+    items: [cantaloupe]
+  - source: chowhound-choose-cantaloupe
+    url: https://chowhound.com/1593555/how-choose-best-cantaloupe
+    kind: item-page
+    origin: us
+    items: [cantaloupe]
+  - source: thetakeout-watermelon-season
+    url: https://www.thetakeout.com/1853331/best-months-buy-watermelon-season/
+    kind: item-page
+    origin: us
+    items: [watermelon]
+  - source: thetakeout-flavorless-cantaloupe
+    url: https://www.thetakeout.com/2042359/why-cantaloupe-has-no-flavor/
+    kind: item-page
+    origin: us
+    items: [cantaloupe]
+  - source: healthyfamilyproject-honeydew
+    url: https://www.healthyfamilyproject.com/produce-tips/honeydew-melon
+    kind: item-page
+    origin: us
+    items: [honeydew]
+  - source: publix-honeydew
+    url: https://news.publix.org/shopping-is-a-pleasure/honey-dew-add-melon-to-your-shopping-list/
+    kind: item-page
+    origin: us
+    items: [honeydew]
+  - source: usu-extension-cantaloupe
+    url: https://extension.usu.edu/nutrition/research/cantaloupe
+    kind: item-page
+    origin: us-ut
+    items: [cantaloupe]
+  - source: usu-cucurbits-harvest-handling
+    url: https://extension.usu.edu/vegetableguide/cucurbits/harvest-handling.php
+    kind: item-page
+    origin: us-ut
+    items: [cantaloupe, honeydew, watermelon]
+  - source: kitchenstories-honeydew
+    url: https://kitchenstories.com/en/stories/everything-you-need-to-know-about-shopping-for-storing-and-preparing-in-season-honeydew-melon
+    kind: item-page
+    origin: us
+    items: [honeydew]
+  - source: grocery-coop-honeydew
+    url: https://www.grocery.coop/fresh-from-the-source/honeydew/
+    kind: item-page
+    origin: us
+    items: [honeydew]
+  - source: theproducemoms-honeydew
+    url: https://www.theproducemoms.com/?p=102324
+    kind: item-page
+    origin: us
+    items: [honeydew]
+  - source: freshplaza-sonora-watermelon-early-end
+    url: https://www.freshplaza.com/north-america/article/9788639/earlier-than-normal-end-for-sonora-watermelon-production/
+    kind: item-page
+    origin: mx
+    items: [watermelon, cantaloupe, honeydew]
+  - source: freshplaza-fall-mexico-melons
+    url: https://www.freshplaza.com/north-america/article/9476467/fall-update-on-mexico-melon-supplies/
+    kind: item-page
+    origin: mx
+    items: [watermelon, cantaloupe, honeydew]
+  - source: freshplaza-early-sonoran-melons
+    url: https://www.freshplaza.com/north-america/article/9828844/early-start-for-sonoran-melons/
+    kind: item-page
+    origin: mx
+    items: [watermelon, cantaloupe, honeydew]
+  - source: freshfruitportal-mexican-melons-late-fall
+    url: https://www.freshfruitportal.com/archive/2022/12/05/mexican-melon-business-comes-on-strong-late-this-fall/
+    kind: item-page
+    origin: mx
+    items: [watermelon, cantaloupe, honeydew]
