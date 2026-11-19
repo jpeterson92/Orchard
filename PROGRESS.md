@@ -1,13 +1,13 @@
 # PROGRESS
 
-Updated: 2026-11-19 · Phase: build · Live: https://orchard.jpeterson92.workers.dev (M0 placeholder) · 72 commits unsynced
+Updated: 2026-11-19 · Phase: build · Live: https://orchard.jpeterson92.workers.dev (M0 placeholder) · 74 commits unsynced
 
 ## Milestones
 
 - **Done:** M0 scaffold and deploy · M1 USDA probe · M2 schemas, verdict engine (P1, P10–P20), evidence pipeline, `usda:derive`, `content:report` · precalculated assessments in `generated/assessments/` (committed; `npm run check` and CI fail on drift) · model panel run `claude-opus-5-5-2026-11-19` (prompt v3, the higher bar for fair; the 28 drafted items, re-rated from the 89-item v2 run of 2026-11-17) · M4 offline · M5 planning date and shared dates · M6 navigation, Browse, Calendar, search, Methods and Privacy pages · M8 measurement (web vitals and daily event counts in D1; shopper feedback removed by Jared).
 - **M3:** built; closes with Jared's phone review, which needs a preview deploy.
 - **M9:** slices 1–2 done (security headers, axe in light and dark, WebKit e2e, page titles). The rest waits on content, art, devices, the domain and the independent reviewer; check the security headers on the live URL (`curl -I`) after the next deploy.
-- **M7 (variety guides): slice 1 done.** Guide screen at `/guides/<id>` for all three guides (phone cards, sortable table from 600 px, anchors), linked from the item page; unrated varieties left the item page's "Varieties now" list for the guide. Scales approved; traits for 33 varieties drafted.
+- **M7 (variety guides): slice 1 done.** Guide screen at `/guides/<id>` for all three guides (phone cards, sortable table from 600 px, anchors), linked from the item page; unrated varieties left the item page's "Varieties now" list for the guide. Apples carry an overall rating for eating raw (bad, fine, great, amazing) from applerankings.com scores; the apples guide opens sorted by it. Scales approved; traits for 33 varieties drafted.
 
 ## Next concrete action
 
