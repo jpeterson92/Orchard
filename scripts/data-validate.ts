@@ -236,6 +236,7 @@ export function validate(raw: RawInputs, opts: { production: boolean }): Result 
   const guideOf = new Map<string, Guide>();
   for (const g of guides) {
     const at = `guide ${g.id}`;
+    if (g.overall) checkSources([g.overall.source], `${at} overall`);
     unique(g.traits, (t) => `${g.id}/${t.id}`, "trait");
     const varieties = new Map<string, Item["varieties"][number]>();
     for (const id of g.items) {
@@ -267,11 +268,14 @@ export function validate(raw: RawInputs, opts: { production: boolean }): Result 
       const keys = Object.keys(v.traits);
       if (v.ripeCue !== undefined && !g?.ripeCues)
         errors.push(`${at}: a ripe cue needs a guide with ripeCues`);
+      if (v.overallScore !== undefined && !g?.overall)
+        errors.push(`${at}: an overall score needs a guide with an overall rating`);
       if (!g) {
         if (keys.length > 0) errors.push(`${at}: traits need a guide for ${item.id}`);
         continue;
       }
       if (g.ripeCues && v.ripeCue === undefined) warnings.push(`${at}: no ripe cue yet`);
+      if (g.overall && v.overallScore === undefined) warnings.push(`${at}: no overall score yet`);
       for (const k of keys)
         if (!g.traits.some((t) => t.id === k)) errors.push(`${at}: trait ${k} isn't on guide ${g.id}`);
       for (const t of g.traits) if (!(t.id in v.traits)) warnings.push(`${at}: no ${t.id} rating yet`);

@@ -1,6 +1,6 @@
 // A variety guide for a date (product spec §5 "Variety guide"): every variety of its items with its traits, uses and,
 // where it is rated, today's verdict. Unrated varieties live here rather than on the item page.
-import type { AppData, AppGuide } from "../shared/app-data";
+import type { AppData, AppGuide, AppVariety } from "../shared/app-data";
 import { evaluate, type PlainDate, type Verdict, verdictRank } from "../shared/verdict";
 
 export interface GuideRow {
@@ -16,6 +16,7 @@ export interface GuideRow {
   bestUses: string[];
   traits: Record<string, number>;
   ripeCue: string | null;
+  overall: AppVariety["overall"];
 }
 
 export interface GuideView {
@@ -24,11 +25,13 @@ export interface GuideView {
   names: Record<string, string>;
   /** Shown when the guide covers more than one item (mandarins & oranges). */
   multiItem: boolean;
+  /** The default order: overall rating where the guide has one, else best right now. */
+  defaultSort: SortKey;
   rows: GuideRow[];
 }
 
-/** What a column sorts by: today's verdict, the name, or a trait id. */
-export type SortKey = "now" | "name" | (string & {});
+/** What a column sorts by: today's verdict, the overall rating, the name, or a trait id. */
+export type SortKey = "now" | "overall" | "name" | (string & {});
 
 export function guideView(data: AppData, id: string, date: PlainDate): GuideView | null {
   const guide = data.guides.find((g) => g.id === id);
@@ -54,10 +57,12 @@ export function guideView(data: AppData, id: string, date: PlainDate): GuideView
         bestUses: v.bestUses,
         traits: v.traits,
         ripeCue: v.ripeCue,
+        overall: v.overall,
       });
     }
   }
-  return { guide, names, multiItem: guide.items.length > 1, rows: sortRows(rows, "now") };
+  const defaultSort = guide.overall ? "overall" : "now";
+  return { guide, names, multiItem: guide.items.length > 1, defaultSort, rows: sortRows(rows, defaultSort) };
 }
 
 /** Rank for "now": rated and in stores by verdict, then rated but out of stores; unrated has none. */
@@ -67,11 +72,12 @@ function nowRank(r: GuideRow): number | undefined {
 }
 
 /** Rows sorted by a column. "now" and traits default to best or most first; a variety with no value (unrated, or no
- * source for the trait) always sorts last. Ties keep A to Z. */
+ * source for the score or trait) always sorts last. Ties keep A to Z. */
 export function sortRows(rows: readonly GuideRow[], key: SortKey, descending = key !== "name"): GuideRow[] {
   const byName = [...rows].sort((a, b) => a.name.localeCompare(b.name, "en"));
   if (key === "name") return descending ? byName.reverse() : byName;
-  const value = (r: GuideRow) => (key === "now" ? nowRank(r) : r.traits[key]);
+  const value = (r: GuideRow) =>
+    key === "now" ? nowRank(r) : key === "overall" ? r.overall?.score : r.traits[key];
   return byName.sort((a, b) => {
     const x = value(a);
     const y = value(b);

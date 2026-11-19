@@ -2661,3 +2661,9 @@
   url: https://site.extension.uga.edu/aaecext/2025/12/georgias-month-by-month-produce-guide/
   accessed: 2026-11-19
   tier: authoritative
+- id: applerankings
+  title: The Frange 100 Point Apple Rating Scale (Brian Frange)
+  publisher: Apple Rankings
+  url: https://applerankings.com/
+  accessed: 2026-11-19
+  tier: mainstream

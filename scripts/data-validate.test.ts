@@ -188,6 +188,10 @@ const withGuide = (r: RawInputs) => {
   ];
 };
 const guide = (r: RawInputs): Any => (r.guides as Any[])[0];
+const withOverall = (r: RawInputs, tiers = { amazing: 90, great: 75, fine: 65 }, source = "s1") => {
+  withGuide(r);
+  guide(r).overall = { basis: "Eating raw", source, tiers };
+};
 
 describe("validate: a valid dataset", () => {
   it("accepts a variety guide whose varieties sit on its scales", () => {
@@ -217,6 +221,17 @@ describe("validate: a valid dataset", () => {
     const { errors, warnings } = validate(raw, { production: false });
     expect(errors).toEqual([]);
     expect(warnings).toEqual(["item test-fruit variety envy: no ripe cue yet"]);
+  });
+
+  it("asks for an overall score on every variety of a guide with an overall rating", () => {
+    const raw = structuredClone(base());
+    withGuide(raw);
+    guide(raw).overall = { basis: "Eating raw", source: "s1", tiers: { amazing: 90, great: 75, fine: 65 } };
+    firstItem(raw).varieties[0].overallScore = 95;
+    firstItem(raw).varieties[1].overallScore = 0;
+    const { errors, warnings } = validate(raw, { production: false });
+    expect(errors).toEqual([]);
+    expect(warnings).toEqual(["item test-fruit variety envy: no overall score yet"]);
   });
 
   it("passes and normalizes defaults", () => {
@@ -399,6 +414,37 @@ const broken: [string, (r: RawInputs) => void, string][] = [
       firstItem(r).varieties[0].ripeCue = "Turns yellow when ripe";
     },
     "item test-fruit variety gala: a ripe cue needs a guide with ripeCues",
+  ],
+  [
+    "overall score without an overall rating",
+    (r) => {
+      withGuide(r);
+      firstItem(r).varieties[0].overallScore = 80;
+    },
+    "item test-fruit variety gala: an overall score needs a guide with an overall rating",
+  ],
+  [
+    "overall score above 100",
+    (r) => {
+      withOverall(r);
+      firstItem(r).varieties[0].overallScore = 101;
+    },
+    "content/items/test-fruit.yaml: varieties.0.overallScore",
+  ],
+  [
+    "overall rating from an unknown source",
+    (r) => withOverall(r, undefined, "nobody"),
+    "guide test-guide overall: unknown source nobody",
+  ],
+  [
+    "overall tiers out of order",
+    (r) => withOverall(r, { amazing: 75, great: 90, fine: 65 }),
+    "tier floors must fall",
+  ],
+  [
+    "overall tier floor at 0",
+    (r) => withOverall(r, { amazing: 90, great: 75, fine: 0 }),
+    "tier floors must fall",
   ],
   [
     "ripe cue over 12 words",

@@ -4,6 +4,8 @@
 - id: apples
   name: Apples
   items: [apples]
+  # Overall: Apple Rankings' 0-100 scores judge each apple as a fresh "munching" apple; tiers by these floors.
+  overall: { basis: Eating raw, source: applerankings, tiers: { amazing: 90, great: 75, fine: 65 } }
   status: reviewed
   reviewer: Jared
   reviewedOn: 2026-11-18

@@ -1,7 +1,7 @@
 // What the app bundles (engineering plan §1): each item's engine inputs plus the text its screens show.
 // Built by `npm run data:build` into src/generated/app.json; raw evidence and USDA rows stay out of the bundle.
 import type { ArtMap } from "./art";
-import type { Category, Dataset, Item, Snapshot, Source } from "./data/schema";
+import type { Category, Dataset, Guide, Item, Snapshot, Source } from "./data/schema";
 import type { Env, ItemInputs } from "./verdict";
 import { engineEnv, itemInputs } from "./verdict/inputs";
 
@@ -20,6 +20,20 @@ export interface AppVariety {
   traits: Record<string, number>;
   /** How to tell when it's ripe, on guides with ripe cues (pears). */
   ripeCue: string | null;
+  /** On guides with an overall rating (apples): its source's 0–100 score and the tier it falls in. */
+  overall: { score: number; tier: OverallTier } | null;
+}
+
+export type OverallTier = "amazing" | "great" | "fine" | "bad";
+
+/** The tier a 0–100 score falls in, by the guide's floors; below `fine` is bad. */
+export function overallTier(
+  score: number,
+  floors: { amazing: number; great: number; fine: number },
+): OverallTier {
+  if (score >= floors.amazing) return "amazing";
+  if (score >= floors.great) return "great";
+  return score >= floors.fine ? "fine" : "bad";
 }
 
 /** A variety guide (product spec §5 "Variety guide"): its items and its anchored 1–5 scales. */
@@ -28,6 +42,8 @@ export interface AppGuide {
   name: string;
   items: string[];
   ripeCues: boolean;
+  /** What the overall rating judges (e.g. eating raw) and whose scores it uses, or null where there is none. */
+  overall: { basis: string; source: Pick<Source, "title" | "publisher" | "url"> } | null;
   traits: { id: string; name: string; anchors: Record<1 | 3 | 5, { text: string; varieties: string[] }> }[];
 }
 
@@ -93,6 +109,13 @@ export interface About {
 
 export function appData(data: Dataset, builtOn: string, art: ArtMap, about: About): AppData {
   const groups = new Map(data.categories.map((c) => [c.id, c.group]));
+  const guideFor = (itemId: string) => data.guides.find((g) => g.items.includes(itemId));
+  const overallOf = (score: number | undefined, overall: Guide["overall"]) =>
+    score !== undefined && overall ? { score, tier: overallTier(score, overall.tiers) } : null;
+  const sourceRef = (id: string) => {
+    const s = data.sources.find((x) => x.id === id);
+    return { title: s?.title ?? id, publisher: s?.publisher ?? id, url: s?.url ?? "" };
+  };
   return {
     env: engineEnv(data),
     items: data.items.map((item) => ({
@@ -119,8 +142,9 @@ export function appData(data: Dataset, builtOn: string, art: ArtMap, about: Abou
         art: art.varieties[`${item.id}/${v.id}`] ?? null,
         traits: v.traits,
         ripeCue: v.ripeCue ?? null,
+        overall: overallOf(v.overallScore, guideFor(item.id)?.overall),
       })),
-      guide: data.guides.find((g) => g.items.includes(item.id))?.id ?? null,
+      guide: guideFor(item.id)?.id ?? null,
       selections: item.selections.map((s) => ({ id: s.id, label: s.label, cue: s.cue })),
       art: art.items[item.id] ?? null,
       status: item.status,
@@ -132,6 +156,7 @@ export function appData(data: Dataset, builtOn: string, art: ArtMap, about: Abou
       name: g.name,
       items: g.items,
       ripeCues: g.ripeCues,
+      overall: g.overall ? { basis: g.overall.basis, source: sourceRef(g.overall.source) } : null,
       traits: g.traits.map((t) => ({ id: t.id, name: t.name, anchors: t.anchors })),
     })),
     categories: data.categories

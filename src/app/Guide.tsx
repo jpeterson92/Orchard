@@ -47,7 +47,11 @@ export function Guide() {
 }
 
 function GuideBody({ view, mode }: { view: GuideView; mode: "today" | "typical" }) {
-  const [sort, setSort] = useState<{ key: SortKey; descending: boolean }>({ key: "now", descending: true });
+  const [sort, setSort] = useState<{ key: SortKey; descending: boolean }>({
+    key: view.defaultSort,
+    descending: true,
+  });
+  const overall = view.guide.overall;
   const rows = sortRows(view.rows, sort.key, sort.descending);
   const choose = (key: SortKey) =>
     setSort((s) => ({ key, descending: s.key === key ? !s.descending : key !== "name" }));
@@ -60,8 +64,18 @@ function GuideBody({ view, mode }: { view: GuideView; mode: "today" | "typical" 
       <p className="mt-1 text-ink-secondary">
         {view.rows.length} varieties compared on {view.guide.traits.length} traits, each scored 1 to 5.
       </p>
+      {overall && (
+        <p className="mt-2">
+          <span className="font-semibold">Overall</span> rates each variety for {overall.basis.toLowerCase()}:
+          bad, fine, great or amazing, from the 100-point scores at{" "}
+          <a href={overall.source.url} className="text-olive underline underline-offset-4" rel="noopener">
+            {overall.source.publisher}
+          </a>
+          .
+        </p>
+      )}
 
-      {/* Phone: one card per variety, best right now first. */}
+      {/* Phone: one card per variety, in the default order (overall rating, or best right now). */}
       <ul className="mt-4 sm:hidden">
         {view.rows.map((r) => (
           <Card key={r.key} row={r} view={view} mode={mode} />
@@ -74,6 +88,7 @@ function GuideBody({ view, mode }: { view: GuideView; mode: "today" | "typical" 
           <thead>
             <tr className="border-b border-olive/60 align-bottom">
               <SortHeader label="Variety" k="name" sort={sort} onChoose={choose} />
+              {overall && <SortHeader label="Overall (raw)" k="overall" sort={sort} onChoose={choose} />}
               <SortHeader label={mode === "typical" ? "Then" : "Now"} k="now" sort={sort} onChoose={choose} />
               {view.guide.traits.map((t) => (
                 <SortHeader key={t.id} label={t.name} k={t.id} sort={sort} onChoose={choose} />
@@ -97,6 +112,11 @@ function GuideBody({ view, mode }: { view: GuideView; mode: "today" | "typical" 
                     </span>
                   </span>
                 </th>
+                {overall && (
+                  <td className="py-3 pr-3">
+                    <Overall value={r.overall} />
+                  </td>
+                )}
                 <td className="py-3 pr-3">
                   <Now row={r} mode={mode} short />
                 </td>
@@ -152,6 +172,12 @@ function Card({ row, view, mode }: { row: GuideRow; view: GuideView; mode: "toda
             <h2 className="font-editorial text-xl font-bold">{row.name}</h2>
             <Now row={row} mode={mode} />
           </div>
+          {view.guide.overall && (
+            <p className="mt-0.5">
+              <span className="sr-only">Overall, eating raw: </span>
+              <Overall value={row.overall} />
+            </p>
+          )}
           <p className="text-sm text-ink-secondary">
             {view.multiItem && `${row.itemName} · `}Best for {row.bestUses.join(", ").toLowerCase()}
           </p>
@@ -182,6 +208,34 @@ function Now({ row, mode, short = false }: { row: GuideRow; mode: "today" | "typ
   if (!row.inStore)
     return <span className="text-sm text-ink-secondary">{atDate("Not usually in stores now", mode)}</span>;
   return <VerdictMark verdict={row.verdict} />;
+}
+
+const TIER_WORD = { amazing: "Amazing", great: "Great", fine: "Fine", bad: "Bad" } as const;
+const TIER_LEVEL = { amazing: 4, great: 3, fine: 2, bad: 1 } as const;
+
+/** The overall tier as a four-step bar and its word; a dash where the source has no score. */
+function Overall({ value }: { value: GuideRow["overall"] }) {
+  if (value === null)
+    return (
+      <span className="text-ink-secondary">
+        <span aria-hidden>–</span>
+        <span className="sr-only">No overall rating</span>
+      </span>
+    );
+  const level = TIER_LEVEL[value.tier];
+  return (
+    <span className="inline-flex items-center gap-2 whitespace-nowrap">
+      <span aria-hidden className="inline-flex gap-0.5">
+        {[1, 2, 3, 4].map((n) => (
+          <span
+            key={n}
+            className={`h-2.5 w-4 rounded-sm border border-olive ${n <= level ? "bg-olive" : "bg-transparent"}`}
+          />
+        ))}
+      </span>
+      <span className="font-semibold">{TIER_WORD[value.tier]}</span>
+    </span>
+  );
 }
 
 /** A 1–5 score as five dots with the number for screen readers; a dash where no source gives one. */

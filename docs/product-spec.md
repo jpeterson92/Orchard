@@ -196,7 +196,8 @@ An item that is both Peak and Last call appears once, under Best right now, carr
 | Chiles & peppers | Heat range, sweetness, wall thickness |
 | Winter squash | Sweetness, dry ↔ moist flesh, ease of peeling |
 
-- **Every variety** of the guide's items: its scores as five dots with the number, best uses, its ripe cue (pears) and, where rated, today's verdict. Rated varieties in stores come first, best first; unrated ones follow, A to Z. The scales' anchors close the page.
+- **Overall rating** (apples only): each variety as bad, fine, great or amazing for eating raw, the page says so at the top. Tiers come from the 0–100 scores at applerankings.com (amazing 90 and up, great 75–89, fine 65–74, bad below 65). The apples guide opens sorted by it, best first.
+- **Every variety** of the guide's items: its scores as five dots with the number, best uses, its ripe cue (pears) and, where rated, today's verdict. Without an overall rating, rated varieties in stores come first, best first; unrated ones follow, A to Z. The scales' anchors close the page.
 - **Finder:** filter by use and by the group's traits. Results update instantly.
 - **Phone:** variety cards. **Tablet and desktop:** a sortable comparison table.
 - **Variety page:** traits, best uses, its quality across the year (only where evidence exists), what the label or price-lookup (PLU) sticker typically says, and "can't find it? try…". The label is the authority on identity. Pictures are decorative, and pages don't claim shoppers can tell similar varieties apart by sight.

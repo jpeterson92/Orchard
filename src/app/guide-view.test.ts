@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import appJson from "../generated/app.json";
-import type { AppData } from "../shared/app-data";
+import { type AppData, overallTier } from "../shared/app-data";
 import { guideView, sortRows } from "./guide-view";
 import { itemView } from "./item-view";
 
@@ -22,8 +22,29 @@ describe("Variety guide", () => {
     }
   });
 
-  it("puts unrated varieties after rated ones by default, and never gives them a verdict", () => {
-    const rows = guideView(data, "apples", date)?.rows ?? [];
+  it("sorts apples by overall rating for eating raw by default, best first, in tiers by score", () => {
+    const view = guideView(data, "apples", date);
+    expect(view?.defaultSort).toBe("overall");
+    const scores = (view?.rows ?? []).map((r) => r.overall?.score ?? -1);
+    expect(scores).toEqual([...scores].sort((a, b) => b - a));
+    const tier = (name: string) => view?.rows.find((r) => r.name === name)?.overall?.tier;
+    expect([tier("SweeTango"), tier("Honeycrisp"), tier("Gala"), tier("Red Delicious")]).toEqual([
+      "amazing",
+      "great",
+      "fine",
+      "bad",
+    ]);
+  });
+
+  it("gives an overall rating only where the guide has one, and keeps best right now first there", () => {
+    const view = guideView(data, "pears", date);
+    expect(view?.guide.overall).toBeNull();
+    expect(view?.defaultSort).toBe("now");
+    expect(view?.rows.every((r) => r.overall === null)).toBe(true);
+  });
+
+  it("puts unrated varieties after rated ones when sorted by now, and never gives them a verdict", () => {
+    const rows = sortRows(guideView(data, "apples", date)?.rows ?? [], "now");
     const firstUnrated = rows.findIndex((r) => r.verdict === null);
     expect(firstUnrated).toBeGreaterThan(0);
     expect(rows.slice(firstUnrated).every((r) => r.verdict === null)).toBe(true);
@@ -41,6 +62,19 @@ describe("Variety guide", () => {
     }
     const names = sortRows(rows, "name").map((r) => r.name);
     expect(names).toEqual([...names].sort((a, b) => a.localeCompare(b, "en")));
+  });
+
+  it.each([
+    [100, "amazing"],
+    [90, "amazing"],
+    [89, "great"],
+    [75, "great"],
+    [74, "fine"],
+    [65, "fine"],
+    [64, "bad"],
+    [0, "bad"],
+  ] as const)("puts a score of %i in the %s tier, each floor inclusive", (score, tier) => {
+    expect(overallTier(score, { amazing: 90, great: 75, fine: 65 })).toBe(tier);
   });
 
   it("returns null for an unknown guide", () => {
