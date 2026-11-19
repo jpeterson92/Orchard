@@ -1,0 +1,76 @@
+item: plums
+status: draft
+claims:
+  # California: plums and pluots, June to October (USDA movement).
+  - source: eatlikenoone-plum-season
+    origin: us-ca
+    windows:
+      - { from: may-2, to: sep-1, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: California plums usually start ripening in late May, and the season runs until about the start of September.
+  - source: freshplaza-ca-pluot-peak
+    origin: us-ca
+    windows:
+      - { from: jul-1, to: aug-2, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: A California pluot grower's peak volumes run from the second week of July to the end of August.
+  - source: freshplaza-ca-plum-varieties
+    origin: us-ca
+    windows:
+      - { from: jul-1, to: sep-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: July is the biggest month for California plums, with good supplies building again through September.
+  - source: eatlikenoone-pluot-season
+    origin: us-ca
+    windows:
+      - { from: jun-1, to: jun-1, rating: prime }
+    specificity: half-month
+    directness: eating-quality
+    paraphrase: The first really good pluot of the season, Honey Red Dino, arrives in early June and is very sweet.
+  - source: eatlikenoone-plum-season
+    origin: us
+    windows:
+      - { from: may-2, to: oct-1, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Plums are in season somewhere in the US from the end of May into October.
+  # Chile: winter imports.
+  - source: freshplaza-chile-stone-fruit-volumes
+    origin: cl
+    windows:
+      - { from: nov-2, to: may-1, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Chile supplies US stone fruit through the winter, and its plums traditionally run into mid-May.
+  - source: freshplaza-chile-stone-fruit-final-stretch
+    origin: cl
+    windows:
+      - { from: jan-1, to: apr-1, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: Chilean red plums arrive from early to mid-January and black plums from late January to mid-April.
+  - source: eatlikenoone-plum-season
+    origin: cl
+    windows:
+      - { from: dec-1, to: feb-2, rating: fair }
+    specificity: season
+    directness: eating-quality
+    paraphrase: Winter plums come from Chile; the writer usually avoids such distant fruit but found some Chilean lemon plums delicious.
+  # Harvest charts for other states.
+  - source: msstate-fruits-vegetables-in-season
+    origin: us-ms
+    windows:
+      - { from: jul-1, to: aug-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Mississippi harvest chart lists plums in season Jul to Aug.
+  - source: psu-harvest-calendar
+    origin: us-pa
+    windows:
+      - { from: aug-2, to: sep-2, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: Pennsylvania harvest chart lists plums in season late Aug to Sep.

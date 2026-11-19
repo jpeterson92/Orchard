@@ -1,0 +1,52 @@
+id: nectarines
+name: Nectarines
+synonyms: [nectarine, white nectarine, white nectarines, yellow nectarine, yellow nectarines]
+misspellings: [nectarines', nectarins, nectorine, nectorines, necterine]
+category: stone-fruit
+purchaseRank: 17
+alwaysGood: false
+shipsWell:
+  value: false
+  sources: [eatlikenoone-nectarine-season, ucdavis-postharvest-peach]
+  note: Long cold shipping risks mealy, flavorless fruit; winter imports are picked early.
+peakWorthSeeking:
+  value: true
+  sources: [njmonthly-produce-pete-nectarines, eatlikenoone-nectarine-season]
+  note: Tree-ripened summer fruit is far better than early or winter fruit.
+storesWell:
+  value: false
+  sources: [ucdavis-postharvest-peach, udel-stone-fruit-cold-storage]
+  note: Market life is weeks at most, and cold storage risks mealy, browned flesh.
+evidenceBasis: supply+assessment
+cardLine: Fragrant, brightly colored and giving slightly along the seam.
+pick:
+  - A sweet, fruity smell
+  - Yellow or creamy background color, with no green
+  - Gives slightly to gentle pressure
+  - Smooth skin without bruises or wrinkles
+avoid:
+  - Green, rock-hard fruit; it was picked too early
+  - Shriveled or soft, bruised fruit
+store:
+  temperature: cold
+  ethylene: producer
+  life: { min: 3, max: 5, unit: days }
+  text: Once ripe, refrigerate and eat within a few days. Don't chill hard nectarines; cold before ripening can turn them mealy and flavorless.
+  sources: [ucdavis-postharvest-peach, udel-stone-fruit-cold-storage]
+ripen:
+  text: Ripen firm nectarines at room temperature, out of the sun, for a day or two until they give slightly.
+  sources: [ucdavis-postharvest-peach, udel-stone-fruit-cold-storage]
+prep: Rinse just before eating. No need to peel; the skin is smooth.
+origins:
+  - origin: us-ca
+    windows:
+      - { from: apr-2, to: apr-2, rating: poor }
+      - { from: may-1, to: may-2, rating: fair }
+      - { from: jun-1, to: aug-2, rating: prime }
+      - { from: sep-1, to: oct-2, rating: fair }
+      - { from: nov-1, to: nov-1, rating: poor }
+  - origin: cl
+    windows:
+      - { from: jan-1, to: mar-2, rating: poor }
+      - { from: nov-2, to: dec-2, rating: poor }
+status: draft

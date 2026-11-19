@@ -1,0 +1,52 @@
+item: nectarines
+status: draft
+claims:
+  - source: freshplaza-ca-stone-fruit-kickoff
+    origin: us-ca
+    windows:
+      - { from: jun-1, to: aug-1, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: A California grower's nectarine lines are available from June or July through mid-August.
+  - source: eatlikenoone-nectarine-season
+    origin: us-ca
+    windows:
+      - { from: sep-1, to: oct-2, rating: fair }
+    specificity: season
+    directness: eating-quality
+    paraphrase: Nectarines last into early fall in smaller supply, and many of them are too mealy to be worth it.
+  - source: njmonthly-produce-pete-nectarines
+    origin: us-ca
+    windows:
+      - { from: jul-2, to: sep-2, rating: prime }
+    specificity: half-month
+    directness: eating-quality
+    paraphrase: From late July through September, California and local tree-ripened nectarines are superb.
+  - source: pittmandavis-nectarines
+    origin: us
+    windows:
+      - { from: may-1, to: sep-1, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: The US nectarine season starts around May, peaks in June and July, and ends with late varieties in August and early September.
+  - source: freshplaza-chile-stone-fruit-volumes
+    origin: cl
+    windows:
+      - { from: nov-1, to: mar-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Chile is the main US supplier of stone fruit from November through March.
+  - source: eatlikenoone-nectarine-season
+    origin: cl
+    windows:
+      - { from: dec-1, to: feb-2, rating: poor }
+    specificity: season
+    directness: eating-quality
+    paraphrase: Winter nectarines, mostly from Chile, are picked early or stored cold for the long trip and aren't worth buying.
+  - source: msstate-fruits-vegetables-in-season
+    origin: us-ms
+    windows:
+      - { from: may-1, to: sep-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Mississippi harvest chart lists nectarines in season May to Sep.
