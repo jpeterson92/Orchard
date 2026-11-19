@@ -59,8 +59,15 @@ varieties:
         to: feb-1
         rating: fair
         reason: The model panel has no rating here, and the cited sources disagree; together they read fair.
-      - { from: feb-2, to: mar-2, rating: prime }
-      - { from: apr-1, to: oct-2, rating: fair }
+      - from: feb-2
+        to: apr-2
+        rating: fair
+        reason: Early-season Valencias are still tart; Hale Groves puts California's peak in May to July.
+      - from: may-1
+        to: jul-2
+        rating: prime
+        reason: Valencias are sweetest in late spring and summer; Hale Groves puts California's peak in May, June and July.
+      - { from: aug-1, to: oct-2, rating: fair }
       - from: nov-1
         to: nov-1
         rating: fair

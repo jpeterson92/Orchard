@@ -49,7 +49,12 @@ origins:
             reason: "The model panel has no rating here, and the cited sources disagree; together they read fair.",
           },
           { from: sep-1, to: sep-1, rating: fair },
-          { from: sep-2, to: sep-2, rating: poor },
+          {
+            from: sep-2,
+            to: sep-2,
+            rating: fair,
+            reason: "Mexican raspberries read fair either side of late September; one poor half-month there is a gap in one chart, not a drop in quality.",
+          },
           { from: oct-1, to: dec-2, rating: fair },
         ],
     }

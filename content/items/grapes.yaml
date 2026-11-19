@@ -49,7 +49,12 @@ origins:
           },
           { from: feb-2, to: apr-1, rating: poor },
           { from: apr-2, to: apr-2, rating: fair },
-          { from: may-1, to: may-2, rating: prime },
+          {
+            from: may-1,
+            to: may-2,
+            rating: fair,
+            reason: "California's first grapes come from the Coachella Valley from mid-May; early-season fruit is fair, and the San Joaquin Valley crop from July is the best.",
+          },
           { from: jun-1, to: jul-1, rating: fair },
           { from: jul-2, to: oct-2, rating: prime },
           { from: nov-1, to: dec-2, rating: fair },

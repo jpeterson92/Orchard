@@ -91,8 +91,10 @@ varieties:
     windows:
       - { from: jan-1, to: jan-2, rating: prime }
       - { from: feb-1, to: sep-2, rating: fair }
-      - { from: oct-1, to: oct-1, rating: prime }
-      - { from: oct-2, to: oct-2, rating: fair }
+      - from: oct-1
+        to: oct-2
+        rating: fair
+        reason: Pink Lady is picked from late October, so early-October fruit is last season's, from long storage.
       - { from: nov-1, to: dec-2, rating: prime }
     quotedAs: [pink-lady-cripps-pink]
   - id: cosmic-crisp

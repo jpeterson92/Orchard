@@ -56,7 +56,10 @@ origins:
       - { from: jun-1, to: jun-2, rating: fair }
       - { from: jul-1, to: sep-2, rating: prime }
       - { from: oct-1, to: oct-2, rating: fair }
-      - { from: nov-1, to: nov-1, rating: prime }
+      - from: nov-1
+        to: nov-1
+        rating: fair
+        reason: California's main fig crop ends in October, so early-November figs are the last of it, after a fair October.
       - from: nov-2
         to: nov-2
         rating: fair

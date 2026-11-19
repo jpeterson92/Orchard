@@ -51,7 +51,10 @@ origins:
         reason: California Grown and Chowhound and The Takeout rate eating quality prime here, outweighing the model panel's fair.
       - { from: jun-2, to: sep-2, rating: prime }
       - { from: oct-1, to: oct-2, rating: fair }
-      - { from: nov-1, to: nov-1, rating: prime }
+      - from: nov-1
+        to: nov-1
+        rating: fair
+        reason: California's melon season is ending after a fair October, so early November isn't its best.
       - { from: nov-2, to: dec-2, rating: poor }
   - origin: us-az
     windows:

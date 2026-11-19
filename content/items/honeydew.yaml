@@ -41,7 +41,10 @@ origins:
     windows:
       - { from: apr-2, to: apr-2, rating: poor }
       - { from: may-1, to: may-2, rating: prime }
-      - { from: jun-1, to: jun-2, rating: fair }
+      - from: jun-1
+        to: jun-2
+        rating: prime
+        reason: California's desert crop runs through June before the Central Valley crop begins in July, so June sits with the prime windows either side.
       - { from: jul-1, to: nov-1, rating: prime }
   - origin: us-az
     windows:

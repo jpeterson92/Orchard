@@ -47,7 +47,7 @@ store:
   life: { min: 1, max: 2, unit: weeks }
   text: Keeps about a week on a cool counter, or 1–2 weeks loose in the fridge. Check every few days and remove any soft or moldy fruit.
   sources: [illinois-extension-winter-citrus, cuties-how-long-they-last]
-prep: Rinse, then peel by hand from the stem end. The white pith is edible. Peeled segments keep up to a week, covered, in the fridge.
+prep: Rinse, then peel by hand from the stem end. The white pith is edible. Peeled segments keep 2–3 days, covered, in the fridge.
 varieties:
   - id: clementine
     name: Clementine
