@@ -28,7 +28,7 @@ describe("Variety guide", () => {
     const scores = (view?.rows ?? []).map((r) => r.overall?.score ?? -1);
     expect(scores).toEqual([...scores].sort((a, b) => b - a));
     const tier = (name: string) => view?.rows.find((r) => r.name === name)?.overall?.tier;
-    expect([tier("SweeTango"), tier("Honeycrisp"), tier("Gala"), tier("Red Delicious")]).toEqual([
+    expect([tier("SweeTango"), tier("Envy"), tier("Gala"), tier("Red Delicious")]).toEqual([
       "amazing",
       "great",
       "fine",

@@ -2667,3 +2667,41 @@
   url: https://applerankings.com/
   accessed: 2026-11-19
   tier: mainstream
+- id: applerankings-kanzi
+  title: Kanzi Apple Review
+  publisher: Apple Rankings
+  url: https://applerankings.com/kanzi-apple-review/
+  accessed: 2026-11-19
+  tier: mainstream
+  basedOn: applerankings
+- id: applerankings-snapdragon
+  title: SnapDragon Apple Review
+  publisher: Apple Rankings
+  url: https://applerankings.com/snapdragon-apple-review/
+  accessed: 2026-11-19
+  tier: mainstream
+  basedOn: applerankings
+- id: orangepippin-kanzi
+  title: Apple - Kanzi - tasting notes, identification, reviews
+  publisher: Orange Pippin
+  url: https://www.orangepippin.com/varieties/apples/kanzi
+  accessed: 2026-11-19
+  tier: mainstream
+- id: orangepippin-snapdragon
+  title: Apple - SnapDragon - tasting notes, identification, reviews
+  publisher: Orange Pippin
+  url: https://www.orangepippin.com/varieties/apples/snapdragon
+  accessed: 2026-11-19
+  tier: mainstream
+- id: kanzi-apple
+  title: KANZI - The Power Apple
+  publisher: Kanzi
+  url: https://www.kanziapple.com/
+  accessed: 2026-11-19
+  tier: mainstream
+- id: cornell-tree-fruits
+  title: Tree Fruits
+  publisher: Cornell AgriTech
+  url: https://cals.cornell.edu/cornell-agritech/products-we-research/tree-fruits
+  accessed: 2026-11-19
+  tier: authoritative

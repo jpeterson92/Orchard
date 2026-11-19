@@ -180,4 +180,18 @@ varieties:
     bestUses: [Snacking, tarts and pies]
     label: SugarBee
     sources: [specialtyproduce-sugarbee, fruitguys-sweetest-apples, eatlikenoone-sugarbee]
+  - id: kanzi
+    name: Kanzi
+    traits: { sweetness: 3, tartness: 4, crispness: 4, juiciness: 4 }
+    overallScore: { source: 85, model: 80 }
+    bestUses: [Snacking, salads]
+    label: Kanzi
+    sources: [applerankings-kanzi, orangepippin-kanzi, kanzi-apple]
+  - id: snapdragon
+    name: SnapDragon
+    traits: { sweetness: 4, tartness: 1, crispness: 5, juiciness: 5 }
+    overallScore: { source: 77, model: 84 }
+    bestUses: [Snacking]
+    label: SnapDragon
+    sources: [applerankings-snapdragon, orangepippin-snapdragon, cornell-tree-fruits]
 status: draft

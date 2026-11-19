@@ -10,7 +10,7 @@
     basis: Eating raw
     source: applerankings
     model: claude-opus-5-5-2026-11-19
-    tiers: { amazing: 90, great: 75, fine: 60 }
+    tiers: { amazing: 85, great: 75, fine: 60 }
   status: reviewed
   reviewer: Jared
   reviewedOn: 2026-11-18
