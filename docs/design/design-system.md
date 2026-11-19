@@ -204,7 +204,7 @@ Keep semantic values centralized. Avoid a token for every incidental measurement
 
 ### Mobile Today
 
-Order: compact brand and date → short seasonal summary → produce sections → freshness information. The page title is for screen readers only, so the best items show on the first screen. Category filters sit in one row under Good buys and scroll sideways rather than wrap. Collapsed Skip for now and Limited evidence sections list their item names, so a shopper sees what to pass over without opening them. Search and primary navigation remain within thumb reach.
+Order: compact brand and date → short seasonal summary → produce sections → freshness information. The page title is for screen readers only, so the best items show on the first screen. Category filters sit in one row under Good buys and scroll sideways rather than wrap. Search and primary navigation remain within thumb reach.
 
 Keep decorative header art secondary. It may occupy a small upper-right area but never sit behind text. Aim for a compact header rather than an oversized introduction. Reflow the date onto its own line when necessary.
 

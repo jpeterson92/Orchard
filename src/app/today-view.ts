@@ -43,8 +43,6 @@ export interface Card {
 export interface TodayView {
   best: Card[];
   good: Card[];
-  skip: Card[];
-  limited: Card[];
 }
 
 export const MONTHS = [
@@ -114,6 +112,8 @@ export function reasonText(verdict: Verdict, reasons: readonly Reason[], markers
   if (verdict === "good") return GENERIC_REASON.good;
   if (verdict === "skip") {
     const improves = markers.find((m) => m.kind === "improves");
+    if (reasons.some((r) => r.code === "out-of-season"))
+      return improves ? `Usually back in ${windowPhrase(improves.window)}.` : "Out of season now.";
     return improves ? `Usually improves in ${windowPhrase(improves.window)}.` : "Not at its best now.";
   }
   for (const r of reasons) {
@@ -121,6 +121,11 @@ export function reasonText(verdict: Verdict, reasons: readonly Reason[], markers
     if (text) return text;
   }
   return "Not enough evidence to call it now.";
+}
+
+/** "California", "California and Mexico", "California, Georgia and Mexico". */
+export function listNames(names: readonly string[]): string {
+  return names.length < 2 ? (names[0] ?? "") : `${names.slice(0, -1).join(", ")} and ${names.at(-1)}`;
 }
 
 /** The card's second line: what to look for (P16), or the varieties holding the verdict (P13). */
@@ -150,12 +155,14 @@ export function cardOrigin(
   return top ?? null;
 }
 
-export function tags(item: AppItem, markers: readonly Marker[]): string[] {
+/** `today`: Today's cards leave out Reliable year-round, since only such an item's Peak reaches Today. */
+export function tags(item: AppItem, markers: readonly Marker[], { today = false } = {}): string[] {
   const out: string[] = [];
   if (item.inputs.alwaysGood) out.push("Always good");
   for (const m of markers) {
     if (m.kind === "last-call") out.push("Last call");
-    else if (m.kind === "reliable-year-round" && !item.inputs.alwaysGood) out.push("Reliable year-round");
+    else if (m.kind === "reliable-year-round" && !item.inputs.alwaysGood && !today)
+      out.push("Reliable year-round");
     else if (m.kind === "check-label") out.push("Check the label");
   }
   return out;
@@ -177,7 +184,7 @@ export function todayView(data: AppData, date: PlainDate, mode: "today" | "typic
       verdict: result.verdict,
       reason: isGeneric(reason) ? null : atDate(reason, mode),
       origin: origin === null ? null : originName(origin, data),
-      tags: tags(item, result.markers),
+      tags: tags(item, result.markers, { today: true }),
       group: item.group,
       pick: item.cardLine,
       storage: storageLine(item.store),
@@ -188,6 +195,7 @@ export function todayView(data: AppData, date: PlainDate, mode: "today" | "typic
       id: item.inputs.id,
       purchaseRank: item.purchaseRank,
       alwaysGood: item.inputs.alwaysGood,
+      reliableYearRound: result.markers.some((m) => m.kind === "reliable-year-round"),
       verdict: result.verdict,
       confidence: result.confidence,
       peakWindows: typicalOutlook(item.inputs, data.env, date.year).filter((v) => v === "peak").length,
@@ -195,12 +203,7 @@ export function todayView(data: AppData, date: PlainDate, mode: "today" | "typic
   });
   const groups = groupToday(entries);
   const pick = (ids: string[]) => ids.flatMap((id) => cards.get(id) ?? []);
-  return {
-    best: pick(groups.best),
-    good: pick(groups.good),
-    skip: pick(groups.skip),
-    limited: pick(groups.limited),
-  };
+  return { best: pick(groups.best), good: pick(groups.good) };
 }
 
 /** A YYYY-MM-DD string as a plain date. */

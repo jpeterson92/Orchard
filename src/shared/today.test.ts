@@ -1,11 +1,12 @@
 import fc from "fast-check";
 import { describe, expect, it } from "vitest";
-import { BEST_NOW_MAX, groupToday, type TodayEntry } from "./today";
+import { BEST_NOW_MAX, groupToday, onToday, type TodayEntry } from "./today";
 
 const entry = (id: string, over: Partial<TodayEntry> = {}): TodayEntry => ({
   id,
   purchaseRank: 10,
   alwaysGood: false,
+  reliableYearRound: false,
   verdict: "peak",
   confidence: "high",
   peakWindows: 6,
@@ -42,16 +43,21 @@ describe("groupToday", () => {
 
   it("is never padded with Good items", () => {
     const g = groupToday([entry("a"), entry("b", { verdict: "good" })]);
-    expect(g).toEqual({ best: ["a"], good: ["b"], skip: [], limited: [] });
+    expect(g).toEqual({ best: ["a"], good: ["b"] });
   });
 
-  it("Skip and Limited evidence are ordered by purchase rank", () => {
+  it("leaves out Skip and Limited evidence", () => {
+    const g = groupToday([entry("s", { verdict: "skip" }), entry("l", { verdict: "limited" }), entry("p")]);
+    expect(g).toEqual({ best: ["p"], good: [] });
+  });
+
+  it("leaves out reliable year-round items while they're Good, and keeps them when Peak", () => {
     const g = groupToday([
-      entry("s2", { verdict: "skip", purchaseRank: 2, confidence: "low" }),
-      entry("s1", { verdict: "skip", purchaseRank: 1 }),
-      entry("l1", { verdict: "limited", purchaseRank: 3 }),
+      entry("steady-good", { verdict: "good", reliableYearRound: true }),
+      entry("steady-peak", { reliableYearRound: true }),
+      entry("seasonal", { verdict: "good" }),
     ]);
-    expect([g.skip, g.limited]).toEqual([["s1", "s2"], ["l1"]]);
+    expect(g).toEqual({ best: ["steady-peak"], good: ["seasonal"] });
   });
 
   it("leaves always-good items out", () => {
@@ -59,7 +65,7 @@ describe("groupToday", () => {
       entry("steady", { alwaysGood: true, verdict: "good" }),
       entry("seasonal", { verdict: "good" }),
     ]);
-    expect(g).toEqual({ best: [], good: ["seasonal"], skip: [], limited: [] });
+    expect(g).toEqual({ best: [], good: ["seasonal"] });
   });
 });
 
@@ -69,6 +75,7 @@ const entries = fc.uniqueArray(
     id: fc.string({ minLength: 1, maxLength: 4 }),
     purchaseRank: fc.integer({ min: 1, max: 100 }),
     alwaysGood: fc.boolean(),
+    reliableYearRound: fc.boolean(),
     verdict,
     confidence: fc.constantFrom("high" as const, "medium" as const, "low" as const),
     peakWindows: fc.integer({ min: 0, max: 24 }),
@@ -81,14 +88,26 @@ describe("groupToday invariants", () => {
     fc.assert(
       fc.property(entries, (list) => {
         const g = groupToday(list);
-        const placed = [...g.best, ...g.good, ...g.skip, ...g.limited];
-        const shown = list.filter((e) => !e.alwaysGood);
+        const placed = [...g.best, ...g.good];
+        const shown = list.filter(onToday);
         expect([...placed].sort()).toEqual(shown.map((e) => e.id).sort());
         const byId = new Map(list.map((e) => [e.id, e]));
         for (const id of g.best) expect(byId.get(id)?.verdict).toBe("peak");
         for (const id of g.good) expect(["peak", "good"]).toContain(byId.get(id)?.verdict);
-        for (const id of g.skip) expect(byId.get(id)?.verdict).toBe("skip");
-        for (const id of g.limited) expect(byId.get(id)?.verdict).toBe("limited");
+      }),
+    ));
+
+  it("shows every Peak item that isn't always good, and no item a shopper shouldn't consider", () =>
+    fc.assert(
+      fc.property(entries, (list) => {
+        const g = groupToday(list);
+        const placed = new Set([...g.best, ...g.good]);
+        for (const e of list) {
+          if (e.verdict === "peak" && !e.alwaysGood) expect(placed.has(e.id)).toBe(true);
+          if (e.verdict === "skip" || e.verdict === "limited" || e.alwaysGood)
+            expect(placed.has(e.id)).toBe(false);
+          if (e.verdict === "good" && e.reliableYearRound) expect(placed.has(e.id)).toBe(false);
+        }
       }),
     ));
 

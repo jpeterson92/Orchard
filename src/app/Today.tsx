@@ -73,9 +73,6 @@ export function Today() {
             )}
           </Section>
         )}
-
-        {view.skip.length > 0 && <Collapsed title="Skip for now" cards={view.skip} />}
-        {view.limited.length > 0 && <Collapsed title="Limited evidence" cards={view.limited} />}
       </main>
     </div>
   );
@@ -100,28 +97,6 @@ function Section({ title, children }: { title: string; children: React.ReactNode
       </h2>
       {children}
     </section>
-  );
-}
-
-/** Collapsed by default, but the names show, so a shopper sees what to pass over without opening it. */
-function Collapsed({ title, cards }: { title: string; cards: Card[] }) {
-  return (
-    <details className="group mt-8">
-      <summary className="cursor-pointer list-none rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent">
-        <span className="flex min-h-11 items-center gap-4 font-editorial text-2xl font-bold">
-          {title}
-          <span className="font-sans text-base font-normal text-ink-secondary">({cards.length})</span>
-          <span aria-hidden className="h-px flex-1 bg-olive/60" />
-          <span aria-hidden className="text-olive transition-transform group-open:rotate-180">
-            ▾
-          </span>
-        </span>
-        <span className="block text-ink-secondary group-open:hidden">
-          {cards.map((c) => c.name).join(", ")}
-        </span>
-      </summary>
-      <Rows cards={cards} />
-    </details>
   );
 }
 

@@ -151,9 +151,9 @@ Today leads with up to six strong recommendations, and every seasonal item appea
 2. **One-line summary** of what's typically happening this time of year. It is edited by hand for each of the 24 half-month windows, nationally.
 3. **Search field**, visible without scrolling.
 4. **Best right now:** up to 6 Peak items, the shortest Peak of the year first (a 4-week strawberry peak before a 4-month one, because it won't last), then highest confidence, then the most commonly bought. If fewer than 6 items are Peak, it shows fewer; it is never padded with Good items.
-5. **Good buys:** every other Peak and Good item except always-good items, with filter chips (All · Fruit · Vegetables · Herbs & mushrooms).
-6. **Skip for now** (collapsed): each item says when it usually improves ("Usually improves in early December").
-7. **Limited evidence** (collapsed): items the site can't call today, each with the reason ("Supply this month is mostly from origins we haven't assessed").
+5. **Good buys:** every other Peak item, then the seasonal Good items, with filter chips (All · Fruit · Vegetables · Herbs & mushrooms).
+
+Today lists only what a shopper should consider buying now. Skip and Limited evidence items stay off it, and so do Always good items and Reliable year-round items while they are only Good: a Reliable year-round item appears on Today only when it is Peak, and its card there leaves out the Reliable year-round marker. Browse, Calendar, search and the item page show every item with its verdict, including when a Skip item is usually back or improves.
 
 An item that is both Peak and Last call appears once, under Best right now, carrying a Last call marker.
 

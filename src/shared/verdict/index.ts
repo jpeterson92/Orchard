@@ -113,7 +113,8 @@ export type Marker =
 
 export interface VerdictResult extends CoreResult {
   markers: Marker[];
-  /** "Depends on the label": the typical origins this window include a poor one and a better one (P9). */
+  /** "Depends on the label": the typical origins this window include a poor one and a better one (P9), the item is
+   * Peak from mixed supply (P17), or a selection makes it Peak (P16). */
   labelNote: boolean;
   byOrigin: Record<OriginId, CoreResult>;
   byVariety: Record<VarietyId, CoreResult & { inStore: boolean }>;

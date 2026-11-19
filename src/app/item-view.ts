@@ -15,6 +15,7 @@ import {
 import {
   atDate,
   GENERIC_REASON,
+  listNames,
   MONTHS,
   originName,
   reasonText,
@@ -110,7 +111,10 @@ function reasonLines(item: AppItem, data: AppData, reasons: readonly Reason[]): 
     else if (r.code === "selection") {
       const label = item.selections.find((s) => s.id === r.selection)?.label ?? r.selection;
       out.push(`${label.charAt(0).toUpperCase()}${label.slice(1)} is at its best now; most supply isn't.`);
-    }
+    } else if (r.code === "main-peak")
+      out.push(
+        `Its Peak season is ${r.from === r.to ? windowPhrase(r.from) : `${windowPhrase(r.from)} to ${windowPhrase(r.to)}`}.`,
+      );
   }
   return out;
 }
@@ -192,7 +196,7 @@ export function itemView(
   const generic = headline === GENERIC_REASON.peak || headline === GENERIC_REASON.good;
   if (severalVarieties && result.varietyLine) {
     const names = result.varietyLine.map((v) => item.varieties.find((x) => x.id === v)?.name ?? v);
-    const list = `${names.slice(0, -1).join(", ")} and ${names.at(-1)}`;
+    const list = listNames(names);
     lines.unshift(`${list} are ${result.verdict === "peak" ? "at their best" : "eating well"} now.`);
   }
   const reasons = (generic && lines.length > 0 ? lines : [headline, ...lines]).slice(0, 3);
@@ -200,11 +204,15 @@ export function itemView(
   const notes: string[] = [];
   const selection = item.selections.find((s) => s.id === result.selection);
   if (selection) notes.push(`How to find it: ${selection.cue}`);
-  const poor = result.reasons.find((r) => r.code === "typical-origin-poor");
-  if (poor?.code === "typical-origin-poor")
-    notes.push(
-      `Depends on the label: ${item.name} from ${originName(poor.origin, data)} often disappoint now.`,
-    );
+  // P9, P17: which origins are at their best, and which often disappoint.
+  const label: string[] = [];
+  for (const r of result.reasons) {
+    if (r.code === "peak-origins")
+      label.push(`best now from ${listNames(r.origins.map((o) => originName(o, data)))}`);
+    if (r.code === "typical-origin-poor")
+      label.push(`often disappointing from ${originName(r.origin, data)}`);
+  }
+  if (label.length > 0) notes.push(`Depends on the label: ${label.join("; ")}.`);
 
   const rated = new Set(item.inputs.varieties.map((v) => v.id));
   const varieties: VarietyRow[] = item.inputs.varieties
