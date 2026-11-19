@@ -60,6 +60,21 @@ items:
     - gold nugget
     - nuggets
     - cuties
+  tomatoes:
+    [
+      tomato,
+      tomatoes,
+      roma,
+      romas,
+      cherry tomato,
+      cherry tomatoes,
+      grape tomato,
+      grape tomatoes,
+      plum tomato,
+      plum tomatoes,
+    ]
+  sweet-corn: [sweet corn, corn, sweetcorn]
+  okra: [okra]
 
 pages:
   - source: msstate-fruits-vegetables-in-season
@@ -607,3 +622,143 @@ pages:
     kind: item-page
     origin: us-fl
     items: [oranges]
+  - source: producebusiness-florida-tomatoes
+    url: https://producebusiness.com/florida-tomatoes-flavor-and-freshness/
+    kind: item-page
+    origin: us-fl
+    items: [tomatoes]
+  - source: ers-greenhouse-tomatoes-2005
+    url: https://ers.usda.gov/amber-waves/2005/april/north-american-greenhouse-tomatoes-emerge-as-a-major-market-force
+    kind: item-page
+    origin: us
+    items: [tomatoes]
+  - source: hortidaily-mexico-greenhouse-tomatoes
+    url: https://hortidaily.com/article/6037921/mexico-year-round-demand-fuels-greenhouse-tomato-market
+    kind: item-page
+    origin: mx
+    items: [tomatoes]
+  - source: hortidaily-oceanside-pole-vine-ripe
+    url: https://www.hortidaily.com/article/6009896/us-ca-oceanside-pole-vine-ripe-season-starts-strong/
+    kind: item-page
+    origin: us-ca
+    items: [tomatoes]
+  - source: freshplaza-california-vine-ripe-tomatoes
+    url: https://www.freshplaza.com/north-america/article/9539376/gearing-up-for-california-vine-ripened-tomatoes/
+    kind: item-page
+    origin: us-ca
+    items: [tomatoes]
+  - source: cbs-tomatoes-fridge
+    url: https://www.cbsnews.com/news/heres-why-you-dont-put-tomatoes-in-the-fridge
+    kind: item-page
+    origin: us
+    items: [tomatoes]
+  - source: foxnews-tomatoes-fridge-study
+    url: https://www.foxnews.com/food-drink/science-says-you-shouldnt-keep-tomatoes-in-the-fridge-for-too-long
+    kind: item-page
+    origin: us
+    items: [tomatoes]
+  - source: uga-shipper-sweet-corn
+    url: https://fieldreport.caes.uga.edu/publications/B1549/shipper-sweet-corn-in-southern-georgia/
+    kind: item-page
+    origin: us-ga
+    items: [sweet-corn]
+  - source: freshplaza-georgia-corn-weather
+    url: https://www.freshplaza.com/north-america/article/9156591/favorable-weather-for-georgia-corn-season/
+    kind: item-page
+    origin: us-ga
+    items: [sweet-corn]
+  - source: freshplaza-florida-sweet-corn-window
+    url: https://www.freshplaza.com/north-america/article/2174172/florida-has-good-window-of-sweet-corn-production
+    kind: item-page
+    origin: us-fl
+    items: [sweet-corn]
+  - source: freshplaza-california-sweet-corn-central-valley
+    url: https://www.freshplaza.com/north-america/article/9117190/california-sweet-corn-production-moves-into-central-valley
+    kind: item-page
+    origin: us-ca
+    items: [sweet-corn]
+  - source: californiagrown-five-crowns
+    url: https://californiagrown.org/blog/five-crowns/
+    kind: item-page
+    origin: us-ca
+    items: [sweet-corn]
+  - source: csu-sweet-corn
+    url: https://www.chhs.colostate.edu/fsi/food-articles/produce/sweet-corn/
+    kind: item-page
+    origin: us
+    items: [sweet-corn]
+  - source: freshplaza-sweet-corn-tray-packs
+    url: https://www.freshplaza.com/north-america/article/9741327/tough-market-for-sweet-corn-despite-growing-demand-for-tray-packs/
+    kind: item-page
+    origin: us
+    items: [sweet-corn]
+  - source: freshplaza-mexico-sweet-corn-added
+    url: https://www.freshplaza.com/article/9866105/the-addition-of-sweet-corn-expands-the-range-of-fresh-produce-offered-to-the-u-s-market/
+    kind: item-page
+    origin: mx
+    items: [sweet-corn]
+  - source: freshplaza-chilly-corn-both-coasts
+    url: https://www.freshplaza.com/europe/article/9502723/chilly-temperatures-on-both-coasts-impact-corn-production
+    kind: item-page
+    origin: us
+    items: [sweet-corn]
+  - source: usu-sweet-corn
+    url: https://extension.usu.edu/nutrition/research/corn
+    kind: item-page
+    origin: us
+    items: [sweet-corn]
+  - source: freshplaza-domestic-okra-ends
+    url: https://www.freshplaza.com/north-america/article/9034148/domestic-okra-ends-even-season/
+    kind: item-page
+    origin: us
+    items: [okra]
+  - source: freshplaza-florida-okra-start
+    url: https://www.freshplaza.com/north-america/article/2160455/strong-start-to-okra-season-in-florida
+    kind: item-page
+    origin: us-fl
+    items: [okra]
+  - source: freshplaza-indian-okra-honduras
+    url: https://www.freshplaza.com/article/9235663/building-year-round-availability-for-indian-okra-and-culantro/
+    kind: item-page
+    origin: hn
+    items: [okra]
+  - source: uga-commercial-okra
+    url: https://fieldreport.caes.uga.edu/publications/C627/commercial-okra-production/
+    kind: item-page
+    origin: us-ga
+    items: [okra]
+  - source: umd-okra
+    url: https://extension.umd.edu/resource/okra
+    kind: item-page
+    origin: us
+    items: [okra]
+  - source: iastate-harvest-okra
+    url: https://yardandgarden.extension.iastate.edu/faq/when-should-i-harvest-okra
+    kind: item-page
+    origin: us
+    items: [okra]
+  - source: harvesttotable-okra
+    url: https://harvesttotable.com/harvest-store-okra/
+    kind: item-page
+    origin: us
+    items: [okra]
+  - source: hortidaily-florida-indian-okra
+    url: https://hortidaily.com/article/9105032/florida-growers-see-increased-demand-for-indian-okra
+    kind: item-page
+    origin: us-fl
+    items: [okra]
+  - source: ucdavis-postharvest-okra
+    url: https://postharvest.ucdavis.edu/node/8116
+    kind: item-page
+    origin: us
+    items: [okra]
+  - source: freshplaza-honduras-okra-prices
+    url: https://www.freshplaza.com/north-america/article/2003501/honduras-okra-prices-stable/
+    kind: item-page
+    origin: hn
+    items: [okra]
+  - source: tridge-okra-honduras
+    url: https://www.tridge.com/market-overview/fresh-okra/HN
+    kind: item-page
+    origin: hn
+    items: [okra]

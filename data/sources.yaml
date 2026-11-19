@@ -720,3 +720,172 @@
   accessed: 2026-11-18
   tier: mainstream
   basedOn: halegroves-florida-oranges
+- id: producebusiness-florida-tomatoes
+  title: "Florida Tomatoes: Flavor and Freshness"
+  publisher: Produce Business
+  url: https://producebusiness.com/florida-tomatoes-flavor-and-freshness/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: ers-greenhouse-tomatoes-2005
+  title: "North American Greenhouse Tomatoes Emerge as a Major Market Force"
+  publisher: USDA Economic Research Service
+  url: https://ers.usda.gov/amber-waves/2005/april/north-american-greenhouse-tomatoes-emerge-as-a-major-market-force
+  accessed: 2026-11-18
+  tier: authoritative
+- id: hortidaily-mexico-greenhouse-tomatoes
+  title: "Mexico: Year-round demand fuels greenhouse tomato market"
+  publisher: HortiDaily
+  url: https://hortidaily.com/article/6037921/mexico-year-round-demand-fuels-greenhouse-tomato-market
+  accessed: 2026-11-18
+  tier: mainstream
+- id: hortidaily-oceanside-pole-vine-ripe
+  title: "US (CA): Oceanside Pole vine-ripe season starts strong"
+  publisher: HortiDaily
+  url: https://www.hortidaily.com/article/6009896/us-ca-oceanside-pole-vine-ripe-season-starts-strong/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: freshplaza-california-vine-ripe-tomatoes
+  title: "Gearing up for California vine-ripened tomatoes"
+  publisher: FreshPlaza
+  url: https://www.freshplaza.com/north-america/article/9539376/gearing-up-for-california-vine-ripened-tomatoes/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: cbs-tomatoes-fridge
+  title: "Finally, science explains why you shouldn't put tomatoes in the fridge"
+  publisher: CBS News
+  url: https://www.cbsnews.com/news/heres-why-you-dont-put-tomatoes-in-the-fridge
+  accessed: 2026-11-18
+  tier: mainstream
+- id: foxnews-tomatoes-fridge-study
+  title: "Science says you shouldn't keep tomatoes in the fridge for too long"
+  publisher: Fox News
+  url: https://www.foxnews.com/food-drink/science-says-you-shouldnt-keep-tomatoes-in-the-fridge-for-too-long
+  accessed: 2026-11-18
+  tier: mainstream
+- id: uga-shipper-sweet-corn
+  title: "Shipper Sweet Corn in Southern Georgia"
+  publisher: University of Georgia Extension
+  url: https://fieldreport.caes.uga.edu/publications/B1549/shipper-sweet-corn-in-southern-georgia/
+  accessed: 2026-11-18
+  tier: authoritative
+- id: freshplaza-georgia-corn-weather
+  title: "Favorable weather for Georgia corn season"
+  publisher: FreshPlaza
+  url: https://www.freshplaza.com/north-america/article/9156591/favorable-weather-for-georgia-corn-season/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: freshplaza-florida-sweet-corn-window
+  title: "Florida has good window of sweet corn production"
+  publisher: FreshPlaza
+  url: https://www.freshplaza.com/north-america/article/2174172/florida-has-good-window-of-sweet-corn-production
+  accessed: 2026-11-18
+  tier: mainstream
+- id: freshplaza-california-sweet-corn-central-valley
+  title: "California sweet corn production moves into Central Valley"
+  publisher: FreshPlaza
+  url: https://www.freshplaza.com/north-america/article/9117190/california-sweet-corn-production-moves-into-central-valley
+  accessed: 2026-11-18
+  tier: mainstream
+- id: californiagrown-five-crowns
+  title: "Five Crowns: Sweet Corn & Melons from Imperial Valley"
+  publisher: California Grown
+  url: https://californiagrown.org/blog/five-crowns/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: csu-sweet-corn
+  title: "Sweet Corn (Food Source Information)"
+  publisher: Colorado State University Extension
+  url: https://www.chhs.colostate.edu/fsi/food-articles/produce/sweet-corn/
+  accessed: 2026-11-18
+  tier: authoritative
+- id: freshplaza-sweet-corn-tray-packs
+  title: "Tough market for sweet corn despite growing demand for tray packs"
+  publisher: FreshPlaza
+  url: https://www.freshplaza.com/north-america/article/9741327/tough-market-for-sweet-corn-despite-growing-demand-for-tray-packs/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: freshplaza-mexico-sweet-corn-added
+  title: "The addition of sweet corn expands the range of fresh produce offered to the U.S. market"
+  publisher: FreshPlaza
+  url: https://www.freshplaza.com/article/9866105/the-addition-of-sweet-corn-expands-the-range-of-fresh-produce-offered-to-the-u-s-market/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: freshplaza-chilly-corn-both-coasts
+  title: "Chilly temperatures on both coasts impact corn production"
+  publisher: FreshPlaza
+  url: https://www.freshplaza.com/europe/article/9502723/chilly-temperatures-on-both-coasts-impact-corn-production
+  accessed: 2026-11-18
+  tier: mainstream
+- id: usu-sweet-corn
+  title: "Fruit and Vegetable Guide Series: Corn"
+  publisher: Utah State University Extension
+  url: https://extension.usu.edu/nutrition/research/corn
+  accessed: 2026-11-18
+  tier: authoritative
+- id: freshplaza-domestic-okra-ends
+  title: "Domestic okra ends even season"
+  publisher: FreshPlaza
+  url: https://www.freshplaza.com/north-america/article/9034148/domestic-okra-ends-even-season/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: freshplaza-florida-okra-start
+  title: "Strong start to okra season in Florida"
+  publisher: FreshPlaza
+  url: https://www.freshplaza.com/north-america/article/2160455/strong-start-to-okra-season-in-florida
+  accessed: 2026-11-18
+  tier: mainstream
+- id: freshplaza-indian-okra-honduras
+  title: "Building year-round availability for Indian Okra and Culantro"
+  publisher: FreshPlaza
+  url: https://www.freshplaza.com/article/9235663/building-year-round-availability-for-indian-okra-and-culantro/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: uga-commercial-okra
+  title: "Commercial Okra Production"
+  publisher: University of Georgia Extension
+  url: https://fieldreport.caes.uga.edu/publications/C627/commercial-okra-production/
+  accessed: 2026-11-18
+  tier: authoritative
+- id: umd-okra
+  title: "Growing Okra in a Home Garden"
+  publisher: University of Maryland Extension
+  url: https://extension.umd.edu/resource/okra
+  accessed: 2026-11-18
+  tier: authoritative
+- id: iastate-harvest-okra
+  title: "When should I harvest okra?"
+  publisher: Iowa State University Extension
+  url: https://yardandgarden.extension.iastate.edu/faq/when-should-i-harvest-okra
+  accessed: 2026-11-18
+  tier: authoritative
+- id: harvesttotable-okra
+  title: "When and How to Harvest Okra for Best Flavor"
+  publisher: Harvest to Table
+  url: https://harvesttotable.com/harvest-store-okra/
+  accessed: 2026-11-18
+  tier: mainstream
+
+- id: hortidaily-florida-indian-okra
+  title: "Florida growers see increased demand for Indian okra"
+  publisher: HortiDaily
+  url: https://hortidaily.com/article/9105032/florida-growers-see-increased-demand-for-indian-okra
+  accessed: 2026-11-18
+  tier: mainstream
+- id: ucdavis-postharvest-okra
+  title: "Okra: Recommendations for Maintaining Postharvest Quality"
+  publisher: UC Davis Postharvest Research and Extension Center
+  url: https://postharvest.ucdavis.edu/node/8116
+  accessed: 2026-11-18
+  tier: authoritative
+- id: freshplaza-honduras-okra-prices
+  title: "Honduras: Okra prices stable"
+  publisher: FreshPlaza
+  url: https://www.freshplaza.com/north-america/article/2003501/honduras-okra-prices-stable/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: tridge-okra-honduras
+  title: "Fresh Okra Honduras: Market Overview"
+  publisher: Tridge
+  url: https://www.tridge.com/market-overview/fresh-okra/HN
+  accessed: 2026-11-18
+  tier: mainstream

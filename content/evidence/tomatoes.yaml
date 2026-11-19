@@ -1,0 +1,48 @@
+item: tomatoes
+status: draft
+claims:
+  - source: msstate-fruits-vegetables-in-season
+    origin: us-ms
+    windows:
+      - { from: jun-1, to: oct-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Mississippi harvest chart lists tomatoes in season Jun to Oct.
+  - source: psu-harvest-calendar
+    origin: us-pa
+    windows:
+      - { from: jul-1, to: oct-2, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: Pennsylvania harvest chart lists tomatoes in season Jul to Oct.
+  # Florida: field tomatoes October to June, mostly picked mature-green.
+  - source: producebusiness-florida-tomatoes
+    origin: us-fl
+    windows:
+      - { from: oct-1, to: jun-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Florida harvests its tomatoes, from cherry and grape to rounds, from October to June.
+  # Canada: greenhouse supply March to December.
+  - source: ers-greenhouse-tomatoes-2005
+    origin: ca
+    windows:
+      - { from: mar-1, to: dec-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Canadian greenhouse tomatoes are a major supply from March to December, with little in winter.
+  # California: summer and fall, including pole-grown vine-ripes.
+  - source: hortidaily-oceanside-pole-vine-ripe
+    origin: us-ca
+    windows:
+      - { from: jun-2, to: nov-2, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: A Southern California pole-grown vine-ripe harvest starts in late June and lasts into November.
+  - source: freshplaza-california-vine-ripe-tomatoes
+    origin: us-ca
+    windows:
+      - { from: jun-2, to: oct-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: California vine-ripe and Roma harvests start in late June and peak from late August through October.

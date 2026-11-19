@@ -1,0 +1,85 @@
+id: tomatoes
+name: Tomatoes
+synonyms:
+  [
+    tomato,
+    roma,
+    romas,
+    plum tomatoes,
+    cherry tomatoes,
+    grape tomatoes,
+    vine-ripe tomatoes,
+    tomatoes on the vine,
+    beefsteak,
+  ]
+misspellings: [tomatos, tomatoe, tomattoes, tamatoes]
+category: tomatoes-peppers
+types:
+  - id: round
+    name: Round
+    note: Field rounds are often picked mature-green and ripened with ethylene, so winter rounds tend to be firm and mild. Vine-ripe and on-the-vine rounds, mostly greenhouse-grown, taste fuller. Summer field rounds from nearby farms are the ones worth seeking.
+  - id: plum
+    name: Plum (Roma)
+    note: Meaty and less juicy, best for sauce and roasting. Greenhouse Romas keep them steady year-round.
+  - id: cherry
+    name: Cherry
+    note: The sweetest type. Greenhouse supply keeps them good all year, so they're the most dependable winter choice.
+  - id: grape
+    name: Grape
+    note: Firmer and less juicy than cherries, and they keep longest. A dependable choice in winter.
+purchaseRank: 4
+alwaysGood: false
+shipsWell:
+  value: true
+  sources: [ers-greenhouse-tomatoes-2005, hortidaily-mexico-greenhouse-tomatoes]
+  note: Greenhouse and vine-ripe fruit is picked showing color; most winter supply is Mexican greenhouse fruit.
+peakWorthSeeking:
+  value: true
+  sources: [producebusiness-florida-tomatoes, hortidaily-oceanside-pole-vine-ripe]
+  note: Summer field tomatoes picked ripe taste far better, though greenhouse supply flattens the swing in stores.
+storesWell:
+  value: false
+  sources: [cbs-tomatoes-fridge, foxnews-tomatoes-fridge-study]
+  note: Keeps days, not weeks, and cold storage dulls flavor.
+evidenceBasis: supply+assessment
+cardLine: Heavy, fragrant and evenly colored; never from a cold case.
+pick:
+  - Heavy for its size
+  - Deep, even color for its type
+  - Gives slightly to gentle pressure
+  - Smells sweet and earthy at the stem
+avoid:
+  - Soft spots, wrinkles or deep cracks
+  - Fruit kept in a refrigerated case
+store:
+  temperature: room
+  ethylene: both
+  life: { min: 2, max: 5, unit: days }
+  text: Keep ripe tomatoes on the counter, stem side down and out of the sun; they typically keep 2–5 days. Cold below about 55°F dulls flavor for good. Refrigerate only very ripe ones you can't use in time, and let them warm before eating.
+  sources: [cbs-tomatoes-fridge, foxnews-tomatoes-fridge-study]
+ripen:
+  text: Pale or pink tomatoes keep ripening on the counter, typically in 2–5 days; a paper bag speeds it. They gain color and soften, but flavor depends on how ripe they were picked.
+  sources: [ers-greenhouse-tomatoes-2005, producebusiness-florida-tomatoes]
+prep: Rinse just before using and core the stem scar. Slice with a serrated or very sharp knife; salt brings out flavor.
+origins:
+  - origin: mx
+    windows:
+      - { from: jan-1, to: dec-2, rating: fair }
+  - origin: us-fl
+    windows:
+      - { from: jan-1, to: jun-1, rating: poor }
+      - { from: oct-2, to: dec-2, rating: poor }
+  - origin: ca
+    windows:
+      - { from: mar-1, to: nov-2, rating: fair }
+  - origin: us-ca
+    windows:
+      - { from: jan-1, to: may-2, rating: poor }
+      - { from: jun-1, to: jun-1, rating: fair }
+      - { from: jun-2, to: nov-1, rating: prime }
+      - from: nov-2
+        to: nov-2
+        rating: fair
+        reason: The model panel has no rating here, and the cited sources disagree; together they read fair.
+      - { from: dec-1, to: dec-2, rating: poor }
+status: draft
