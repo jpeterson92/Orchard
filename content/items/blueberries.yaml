@@ -3,7 +3,7 @@ name: Blueberries
 synonyms: [blueberry]
 misspellings: [bluberries, blueberrys, blueberies, bluebery]
 category: berries
-purchaseRank: 7
+purchaseRank: 8
 alwaysGood: false
 shipsWell:
   value: true

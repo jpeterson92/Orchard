@@ -3,7 +3,7 @@ name: Blackberries
 synonyms: [blackberry]
 misspellings: [blackberrys, blackberies, blackbery, blakberries]
 category: berries
-purchaseRank: 16
+purchaseRank: 17
 alwaysGood: false
 shipsWell:
   value: true

@@ -10,7 +10,7 @@ types:
   - id: hachiya
     name: Hachiya
     note: Acorn-shaped; bitter until it is jelly-soft all the way through.
-purchaseRank: 30
+purchaseRank: 31
 alwaysGood: false
 shipsWell:
   value: true

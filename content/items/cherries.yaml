@@ -3,7 +3,7 @@ name: Cherries
 synonyms: [cherry, sweet cherries, bing, bing cherries, rainier, rainier cherries, dark sweet cherries]
 misspellings: [cherrys, cheries, cherrie, bing cherrys, ranier]
 category: stone-fruit
-purchaseRank: 13
+purchaseRank: 14
 alwaysGood: false
 types:
   - id: dark-sweet

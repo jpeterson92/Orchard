@@ -3,7 +3,7 @@ name: Oranges
 synonyms: [orange, navel, navels, valencia, valencias, cara cara, blood orange, blood oranges, moro, tarocco]
 misspellings: [ornage, orang, oragne, oranges', navals, valencias']
 category: citrus
-purchaseRank: 5
+purchaseRank: 6
 alwaysGood: false
 shipsWell:
   value: true

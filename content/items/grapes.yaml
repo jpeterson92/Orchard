@@ -3,7 +3,7 @@ name: Grapes
 synonyms: [grape, table grapes, seedless grapes]
 misspellings: [grapse, graps, greapes]
 category: grapes
-purchaseRank: 4
+purchaseRank: 5
 alwaysGood: false
 shipsWell:
   value: true

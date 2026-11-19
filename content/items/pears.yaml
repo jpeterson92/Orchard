@@ -3,7 +3,7 @@ name: Pears
 synonyms: [pear, anjou, d'anjou, bartlett, williams, bosc, comice, seckel, starkrimson]
 misspellings: [pare, paers, pearz, barlett, d anjou]
 category: apples-pears
-purchaseRank: 10
+purchaseRank: 12
 alwaysGood: false
 shipsWell:
   value: true

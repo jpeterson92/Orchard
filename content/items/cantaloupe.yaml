@@ -3,7 +3,7 @@ name: Cantaloupe
 synonyms: [cantaloupes, muskmelon, muskmelons, rockmelon]
 misspellings: [cantelope, cantaloup, canteloupe, cantalope]
 category: melons
-purchaseRank: 9
+purchaseRank: 10
 alwaysGood: false
 shipsWell:
   value: false

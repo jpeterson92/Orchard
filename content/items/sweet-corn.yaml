@@ -3,7 +3,7 @@ name: Sweet corn
 synonyms: [corn, corn on the cob, sweetcorn, elote, bicolor corn, white corn, yellow corn]
 misspellings: [swet corn, sweet coen, corn on cob, sweetcorns]
 category: beans-peas-corn
-purchaseRank: 12
+purchaseRank: 13
 alwaysGood: false
 shipsWell:
   value: true
