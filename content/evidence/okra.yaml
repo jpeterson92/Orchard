@@ -1,0 +1,55 @@
+item: okra
+status: draft
+claims:
+  - source: msstate-fruits-vegetables-in-season
+    origin: us-ms
+    windows:
+      - { from: jun-1, to: oct-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Mississippi harvest chart lists okra in season Jun to Oct.
+  # US-grown: summer into late fall.
+  - source: umd-okra
+    windows:
+      - { from: jul-1, to: nov-1, rating: prime }
+    specificity: season
+    directness: availability
+    paraphrase: Okra plants yield pods from the height of summer until late fall.
+  # Florida: spring through fall, with summer supply alongside Honduras.
+  - source: freshplaza-florida-okra-start
+    origin: us-fl
+    windows:
+      - { from: jun-1, to: aug-2, rating: prime }
+    specificity: season
+    directness: availability
+    paraphrase: Summer okra comes from Florida and Honduras.
+  # California: early summer to late October.
+  - source: freshplaza-domestic-okra-ends
+    origin: us-ca
+    windows:
+      - { from: jun-1, to: oct-2, rating: prime }
+    specificity: season
+    directness: availability
+    paraphrase: A Los Angeles grower picks California okra from just before summer to late October, when imports take over.
+  # Honduras: main season November to May.
+  - source: freshplaza-florida-okra-start
+    origin: hn
+    windows:
+      - { from: nov-1, to: may-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: An importer's Honduran okra from Choluteca peaks in volume from November to May.
+  - source: tridge-okra-honduras
+    origin: hn
+    windows:
+      - { from: nov-1, to: may-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Honduran growers describe a main okra season from November to May, with smaller volumes the rest of the year.
+  - source: hortidaily-florida-indian-okra
+    origin: hn
+    windows:
+      - { from: mar-1, to: mar-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Honduran okra imports were still arriving when Florida's harvest began in March.
