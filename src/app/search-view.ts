@@ -120,7 +120,7 @@ function result(data: AppData, key: string, date: PlainDate): SearchResult | nul
     ...common,
     label: null,
     title: item.name,
-    subtitle: varietyLine(item, r.varietyLine, r.verdict),
+    subtitle: varietyLine(item, r),
     art: item.art,
     verdict: r.verdict,
     tags: tags(item, r.markers),

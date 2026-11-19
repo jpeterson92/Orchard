@@ -34,6 +34,8 @@ export interface AppItem {
   /** Type notes, shown with the pick cues where the type changes the advice. */
   types: { name: string; note: string | null }[];
   varieties: AppVariety[];
+  /** P16: what to look for when a selection makes the item Peak. */
+  selections: { id: string; label: string; cue: string }[];
   /** Asset id of the item's thumbnail, or null: the placeholder shows (dev and preview only). */
   art: string | null;
   status: Item["status"];
@@ -97,6 +99,7 @@ export function appData(data: Dataset, builtOn: string, art: ArtMap, about: Abou
         bestUses: v.bestUses,
         art: art.varieties[`${item.id}/${v.id}`] ?? null,
       })),
+      selections: item.selections.map((s) => ({ id: s.id, label: s.label, cue: s.cue })),
       art: art.items[item.id] ?? null,
       status: item.status,
       reviewedOn: item.reviewedOn ?? null,

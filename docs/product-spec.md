@@ -132,7 +132,7 @@ Today leads with up to six strong recommendations, and every seasonal item appea
 
 | Kind | Values | Meaning |
 | --- | --- | --- |
-| **Verdict** (exactly one per item) | Peak · Good · Skip · Limited evidence | Expected eating quality of typical US supermarket supply right now (rules in section 7) |
+| **Verdict** (exactly one per item) | Peak · Good · Skip · Limited evidence | Expected eating quality of typical US supermarket supply right now, or Peak when a selection shoppers can pick out is at its best (rules in section 7) |
 | **Markers** (zero or more, shown on the card) | Last call · Reliable year-round · Check the label · Good value (v1.1) | Extra facts that never move the item to a different section |
 | **Always good** (an item class) | An editorial call, written in the item file. The usual evidence is a typical outlook of Good in all 24 windows, never Peak and never Skip; the data build flags any item where the two disagree, and an editor decides | Shown as "Always good" wherever they appear, in place of the Reliable year-round marker. They never appear on Today |
 
@@ -141,7 +141,9 @@ Today leads with up to six strong recommendations, and every seasonal item appea
 - Each variety gets its own verdict for the window. The item's verdict is the best verdict among the rated varieties typically in stores then, so a shopper who picks the named variety gets what the badge says. If none of its rated varieties is typically in stores, the item is Limited evidence.
 - **The card says which variety the verdict means**, in a smaller secondary line under the item name ("Mangoes" over "Ataulfo"), and shows that variety's illustration.
 - When two varieties share the best verdict, the line names both and the card shows the first one's illustration. When more do (apples in October), the line gives the count ("6 varieties at their best"), the card shows the item's own illustration, and the item page lists them.
-- **At launch:** apples, pears, mandarins, oranges and mangoes. Their varieties differ in season and are named on signs and labels. The rated varieties are those that make up most of each item's supermarket supply and eat well at their best, chosen with the content. A variety that isn't particularly good even at its peak (Red Delicious, Golden Delicious) is never rated or featured: the guide names produce that will be great. In each window the item takes the best rated variety in stores in enough volume. Where a variety's rating is marginal, it rates down. Avocados are rated as one item, since Hass is steady most of the year and makes up most supply. Later candidates, once evidence supports them: tomatoes (heirloom), onions (sweet onions), lemons (Meyer) and winter squash (delicata).
+- **At launch:** apples, pears, mandarins, oranges and mangoes. Their varieties differ in season and are named on signs and labels. The rated varieties are those that make up most of each item's supermarket supply and eat well at their best, chosen with the content. A variety widely considered not a particularly good cultivar, even at its peak (Red Delicious, Golden Delicious, Tommy Atkins and Haden mangoes), is never rated or featured, even where it makes up most supply: the guide names produce that will be great. In each window the item takes the best rated variety in stores in enough volume. Where a variety's rating is marginal, it rates down. Avocados are rated as one item, since Hass is steady most of the year and makes up most supply. Later candidates, once evidence supports them: tomatoes (heirloom), onions (sweet onions), lemons (Meyer) and winter squash (delicata).
+
+**Selections.** Where most of an item's supply is only Good but some that shoppers can pick out by the sign or label is at its best (ripe local field tomatoes in August), the item is Peak, and the card says what to look for in the same secondary line ("Look for local field-grown"). It keeps "Check the label", since most of the bin isn't at its best, and the item page says how to find it.
 
 ### Today (home)
 
@@ -275,20 +277,24 @@ So an expensive item can still be Peak, and a heavily advertised item can't beco
 
 1. **Limited evidence:** the reviewed quality assessment doesn't cover the origins that typically supply supermarkets in this window. Missing information never defaults to Good or Skip.
 2. **Skip:** the deciding origin is rated *poor* this window.
-3. **Peak:** the top typical origin is rated *prime* this window and no other typical origin is rated *poor* (what a shopper picks up should reliably eat well), that origin's supply index isn't thin, and the item is one whose Peak is worth seeking: buying it in its best season makes a difference a shopper can taste. Peak means "try to buy it now". An item that tastes much the same in and out of its best harvest weeks (lettuce, for one) is Good in those weeks, and may be Always good.
-4. **Good:** everything else, meaning the top origin is *prime* but supply is thin, another typical origin is *poor*, or the item's Peak isn't worth seeking, or it is rated *fair*.
+3. **Peak:** the top typical origin is rated *prime* this window and no other typical origin is rated *poor* (what a shopper picks up should reliably eat well), that origin's supply index isn't thin, it is grown in the US, Mexico or Canada, and the item is one whose Peak is worth seeking: buying it in its best season makes a difference a shopper can taste. Peak means "try to buy it now". An item that tastes much the same in and out of its best harvest weeks (lettuce, for one) is Good in those weeks, and may be Always good.
+4. **Good:** everything else, meaning the top origin is *prime* but supply is thin, another typical origin is *poor*, the origin is shipped from further away, or the item's Peak isn't worth seeking, or it is rated *fair*.
+
+**Distance cap.** Only produce grown in the US, Mexico or Canada can make an item Peak. Produce shipped from further away (Central and South America, Africa, Oceania, Europe, Asia) reads Good at most in the item verdict, because produce that travels far is less reliably at its best on arrival. Its own rating still shows in "What does the label say?".
 
 **The deciding origin** is the top typical origin, unless it is rated poor and the second typical origin is rated better on evidence that isn't Low confidence. Then the second origin decides, so the headline shows that a good buy is commonly on the shelf (winter tomatoes: Good, from Mexico, while Florida field tomatoes are poor), and the item is never Peak. A Low-confidence rating never lifts a Skip. Only the second typical origin can take over, and only when it supplies at least 25% of the month's reported volume, so a minor origin never sets the headline. The share is used internally, never shown.
 
 **Check the label.** Whenever the typical origins this window include one rated poor and one rated better, the card shows a small "Check the label" marker, the item page's "Depends on the label" note names the poor origin, and confidence loses a level on agreement. On a card, Check the label comes before the other markers, since it helps a shopper avoid a bad buy.
 
-**Items rated by variety** run rules 1–4 once per rated variety typically in stores, with the variety's quality windows in place of the origins'. Supply is the item's. The item takes the best result.
+**Items rated by variety** run rules 1–4 once per rated variety typically in stores, with the variety's quality windows in place of the origins'. Supply, and the distance cap, follow the item's top typical origin. The item takes the best result.
 
-**This rule set is complete for the MVP.** It needs no price or promotion data, and imported or national supply can reach Peak as easily as local harvest (Chilean cherries in late December, for example).
+**Peak when shoppers can find it.** An item not rated by variety can list *selections*: what a shopper can pick out by the sign or label, such as local field tomatoes. A selection groups rated US, Mexican or Canadian origins (several states, for "local"), and its rating in a window is the best of theirs. Where the rules give the item less than Peak, a selection is common enough in stores that month, and its best origin, run through rules 2–4, is Peak, the item is Peak through that selection: the card names it, Check the label shows, and confidence loses a level on agreement. Common enough means its origins hold at least 10% of the month's reported volume, or cited sources show mainstream supermarkets carry it then, where USDA undercounts it (local summer produce mostly isn't in USDA's shipment reports). With several, the first listed wins. Varieties already work this way for items rated by variety.
+
+**This rule set is complete for the MVP.** It needs no price or promotion data.
 
 ### Label-based advice
 
-"What does the label say?" re-runs rules 1–4 for the origin or variety the shopper picks, using that origin's or variety's own quality windows. A shopper who never touches the control still gets the default verdict.
+"What does the label say?" re-runs rules 1–4 for the origin or variety the shopper picks, using that origin's or variety's own quality windows, without the distance cap: a far origin's own Peak shows here. A shopper who never touches the control still gets the default verdict.
 
 ### Confidence
 
@@ -325,6 +331,7 @@ An item launches only once its evidence passes review. Editors write content onc
 | Quality window | Item × major origin (or rated variety) × 24 windows: prime / fair / poor, with citations | Written + reviewed | \~220 origin profiles (\~3 per seasonal item; always-good items need one year-round rating per origin), plus \~30 variety profiles | Grows with items |
 | Variety | Group-specific traits on anchored 1–5 scales, best uses, label/PLU text, quality windows where evidence exists | Written | \~40 (the 3 guides, plus mango varieties) | Driven by what shoppers meet |
 | Type note | Short distinction where type changes the advice | Written | \~10 items | As needed |
+| Selection | What to look for (card line), how to find it, the rated origins it groups, cited months in stores | Written + reviewed | A few items (tomatoes, sweet corn, okra) | As evidence supports |
 | Category | Name, group, icon | Written | 16 | 16 |
 | Verdict | Item × window (national): verdict, markers, confidence, reason codes | Computed | \~720 (30 × 24) at first release | Grows with items |
 | Supply profile | Item × month: typical origins (ranked); item × origin × month: supply index | Derived from USDA on demand, then reviewed | \~360 (30 × 12) at first release | Grows with items |

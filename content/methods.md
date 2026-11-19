@@ -5,7 +5,7 @@ Orchard says which produce is likely to eat well in US supermarkets right now. H
 
 ## The verdicts
 
-- **Peak:** at its best this time of year, and worth seeking out. What you'll typically find on the shelf should eat well.
+- **Peak:** at its best this time of year, and worth seeking out. What you'll typically find on the shelf should eat well, or the card says what to look for ("Look for local field-grown").
 - **Good:** eats well, but isn't at its best, or its best season makes little difference you can taste.
 - **Skip:** what's typically on the shelf now usually disappoints, for example fruit out of long storage.
 - **Limited evidence:** we don't have reviewed evidence for where stores usually get it now. We never fill the gap with a guess.
@@ -29,10 +29,14 @@ The rules run in order, and the first that applies decides:
 
 1. **Limited evidence** when our ratings don't cover the regions that typically supply stores now.
 2. **Skip** when the main region is rated poor.
-3. **Peak** when the top region is rated prime, its supply isn't thin, no other common region is rated poor, and the item's best season is one you can taste.
+3. **Peak** when the top region is rated prime, its supply isn't thin, no other common region is rated poor, the region is in the US, Mexico or Canada, and the item's best season is one you can taste.
 4. **Good** otherwise.
 
 When the top region is rated poor but the next one is rated better and supplies at least {{decidingOriginShare}} of the month's volume, the next region decides. The verdict then shows that a good buy is commonly on the shelf, and it is never Peak. For items rated by variety, each variety typically in stores gets its own verdict, and the item shows the best.
+
+Produce shipped from further away than Mexico or Canada is Good at most, because produce that travels far is less reliably at its best when it arrives. "What does the label say?" still shows its own rating.
+
+Some produce you can pick out by the sign or label is at its best even when most of the bin isn't, such as ripe local field tomatoes in summer. When it is common in stores, the item is Peak, the card says what to look for, and Check the label shows.
 
 Future dates show the typical seasonal outlook: what is normally good around that time, never a current assessment.
 

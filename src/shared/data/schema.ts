@@ -67,6 +67,8 @@ export const rulesSchema = z.strictObject({
     .refine((s) => s.thin < s.strong, "thin must be below strong"),
   /** P13: a variety is in stores in a month when quoted on at least this share of the item's market-days. */
   varietyInStoreShare: z.number().gt(0).lte(1),
+  /** P16: only origins in these countries (ISO alpha-2; `us` covers every US state) can make the item verdict Peak. */
+  peakCountries: z.array(z.string().regex(/^[a-z]{2}$/, "use a 2-letter country code")).min(1),
   reliableYearRoundWindows: z.int().min(1).max(24),
   snapshotMaxAgeMonths: z.int().positive(),
   lastCallWindows: z.int().positive(),
@@ -133,6 +135,27 @@ export const varietySchema = z.strictObject({
   quotedAs: z.array(id).min(1).optional(),
 });
 
+/** P16: what a shopper can pick out by the sign or label, e.g. local field tomatoes, grouping rated origins. */
+export const selectionSchema = z.strictObject({
+  id,
+  /** Follows "Look for" on the card: "local field-grown". */
+  label: words(6),
+  /** How to find it and tell it apart in the store, on the item page. */
+  cue: words(SECTION_WORDS),
+  /** Rated origins of the item it groups, in rules.peakCountries; its rating in a window is the best of theirs. */
+  origins: z.array(originId).min(1),
+  /** Months mainstream supermarkets typically carry it, cited, where USDA volume undercounts it. */
+  inStores: z
+    .array(
+      z.strictObject({
+        from: z.string().regex(MONTH_LABEL, 'use a month label such as "jun"'),
+        to: z.string().regex(MONTH_LABEL, 'use a month label such as "jun"'),
+        sources: sourceIds(1),
+      }),
+    )
+    .default([]),
+});
+
 export const itemSchema = z
   .strictObject({
     id,
@@ -166,6 +189,8 @@ export const itemSchema = z
     /** Optional for items rated by variety, where origin windows serve only label advice. */
     origins: z.array(itemOriginSchema).default([]),
     varieties: z.array(varietySchema).default([]),
+    /** P16: not on items rated by variety, whose varieties already name what to pick. */
+    selections: z.array(selectionSchema).default([]),
     /** Only on assessment-only items, which USDA can't rank; data-build refuses them beside USDA rows. */
     typicalOrigins: z.array(editorialTypicalOriginsSchema).default([]),
     ...review,
@@ -177,6 +202,10 @@ export const itemSchema = z
   .refine((i) => i.origins.length > 0 || i.varieties.some((v) => v.windows), {
     message: "rate at least one origin or variety",
     path: ["origins"],
+  })
+  .refine((i) => i.selections.length === 0 || !i.varieties.some((v) => v.windows), {
+    message: "selections are for items not rated by variety",
+    path: ["selections"],
   })
   .refine((i) => wordCount([...i.pick, ...i.avoid].join(" ")) <= SECTION_WORDS, {
     message: `pick and avoid cues together are at most ${SECTION_WORDS} words`,

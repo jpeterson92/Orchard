@@ -11,6 +11,12 @@ import {
 } from "./index";
 import { ENV } from "./test-helpers";
 
+/** P16: grown in a country that can make the item verdict Peak. */
+const near = (o: string | undefined) => o === undefined || ENV.rules.peakCountries.includes(o.slice(0, 2));
+/** The same rules with every country able to make Peak: no distance cap. */
+const OPEN = { ...ENV, rules: { ...ENV.rules, peakCountries: ["us", "mx", "ca", "cl"] } };
+const noSelections = (item: ItemInputs): ItemInputs => ({ ...item, selections: [] });
+
 const ORIGINS = ["us-ca", "us-wa", "mx", "cl"] as const;
 const rating = fc.constantFrom<Rating | null>("prime", "fair", "poor", null);
 const confidence = fc.constantFrom("high" as const, "medium" as const, "low" as const, null);
@@ -39,6 +45,14 @@ const itemArb: fc.Arbitrary<ItemInputs> = fc
     evidenceBasis: fc.constantFrom("supply+assessment" as const, "assessment-only" as const),
     alwaysGood: fc.boolean(),
     peakWorthSeeking: fc.boolean(),
+    // P16: groups of the near origins, for items not rated by variety.
+    selections: fc.array(
+      fc.record({
+        origins: fc.subarray(["us-ca", "us-wa", "mx"], { minLength: 1 }),
+        inStore: months(fc.boolean()),
+      }),
+      { maxLength: 2 },
+    ),
   })
   .map((r) => ({
     id: "prop-item",
@@ -47,6 +61,7 @@ const itemArb: fc.Arbitrary<ItemInputs> = fc
     peakWorthSeeking: r.peakWorthSeeking,
     origins: Object.fromEntries(r.rated.map((o, i) => [o, r.seriesList[i] ?? { windows: [] }])),
     varieties: r.varieties.map((v, i) => ({ id: `v${i}`, ...v.s, inStore: v.inStore })),
+    selections: r.varieties.length > 0 ? [] : r.selections.map((s, i) => ({ id: `s${i}`, ...s })),
     typicalOrigins: r.typical,
     typicalShares: r.typical.map((os, m) =>
       [...(r.shares[m] ?? [])]
@@ -88,6 +103,7 @@ describe("verdict engine invariants", () => {
     fc.assert(
       fc.property(itemArb, ctxArb, (item, ctx) => {
         const r = evaluate(item, ctx, ENV);
+        if (r.selection !== null) return; // the selection's origin decides (P16; table-tested)
         const month = ctx.date.month - 1;
         const w = windowIndex(ctx.date.month, ctx.date.day);
         // An item rated by variety takes its supply from the top typical origin, rated or not.
@@ -114,8 +130,9 @@ describe("verdict engine invariants", () => {
   it("an item whose Peak isn't worth seeking differs only by Peak becoming Good", () =>
     fc.assert(
       fc.property(itemArb, ctxArb, (item, ctx) => {
-        const seek = evaluate({ ...item, peakWorthSeeking: true }, ctx, ENV);
-        const not = evaluate({ ...item, peakWorthSeeking: false }, ctx, ENV);
+        const plain = noSelections(item);
+        const seek = evaluate({ ...plain, peakWorthSeeking: true }, ctx, ENV);
+        const not = evaluate({ ...plain, peakWorthSeeking: false }, ctx, ENV);
         expect(not.verdict).toBe(seek.verdict === "peak" ? "good" : seek.verdict);
       }),
       RUNS,
@@ -128,7 +145,9 @@ describe("verdict engine invariants", () => {
         const r = evaluate(item, { date: ctx.date }, ENV);
         const w = windowIndex(ctx.date.month, ctx.date.day);
         const typical = item.typicalOrigins[ctx.date.month - 1] ?? [];
-        if (typical.some((o) => item.origins[o]?.windows[w] === "poor")) expect(r.verdict).not.toBe("peak");
+        // A selection the shopper can pick out may still make it Peak (P16), with Check the label.
+        if (typical.some((o) => item.origins[o]?.windows[w] === "poor") && r.selection === null)
+          expect(r.verdict).not.toBe("peak");
       }),
       RUNS,
     ));
@@ -141,7 +160,8 @@ describe("verdict engine invariants", () => {
         if (r.verdict === "limited") return;
         const w = windowIndex(ctx.date.month, ctx.date.day);
         const ratings = ratedTypical(item, ctx.date.month - 1, w).map((o) => item.origins[o]?.windows[w]);
-        expect(r.labelNote).toBe(ratings.includes("poor") && ratings.some((x) => x !== "poor"));
+        const mixed = ratings.includes("poor") && ratings.some((x) => x !== "poor");
+        expect(r.labelNote).toBe(r.selection !== null || mixed);
         for (const o of Object.keys(item.origins))
           expect(evaluate(item, { date: ctx.date, labelOrigin: o }, ENV).labelNote).toBe(false);
       }),
@@ -189,11 +209,68 @@ describe("verdict engine invariants", () => {
       fc.property(itemArb, ctxArb, (item, ctx) => {
         if (item.varieties.length === 0) return;
         const r = evaluate(item, ctx, ENV);
+        // byVariety is label advice, so a far top origin caps only the item verdict (P16).
+        const capped = !near(item.typicalOrigins[ctx.date.month - 1]?.[0]);
+        const asItem = (v: CoreResult["verdict"]) => (capped && v === "peak" ? "good" : v);
         const inStore = Object.values(r.byVariety).filter((v) => v.inStore);
-        const best = Math.max(-1, ...inStore.map((v) => verdictRank(v.verdict)));
+        const best = Math.max(-1, ...inStore.map((v) => verdictRank(asItem(v.verdict))));
         if (inStore.length === 0) expect(r.verdict).toBe("limited");
         else expect(verdictRank(r.verdict)).toBe(best);
-        for (const id of r.varietyLine ?? []) expect(r.byVariety[id]?.verdict).toBe(r.verdict);
+        for (const id of r.varietyLine ?? [])
+          expect(asItem(r.byVariety[id]?.verdict ?? "limited")).toBe(r.verdict);
+      }),
+      RUNS,
+    ));
+
+  it("P16: the distance cap only turns item Peak into Good, and never touches label advice", () =>
+    fc.assert(
+      fc.property(itemArb, ctxArb, (item, ctx) => {
+        const plain = noSelections(item);
+        const capped = evaluate(plain, ctx, ENV);
+        const open = evaluate(plain, ctx, OPEN);
+        expect(capped.verdict).toBe(
+          open.verdict === "peak" && capped.verdict !== "peak" ? "good" : open.verdict,
+        );
+        expect(capped.byOrigin).toEqual(open.byOrigin);
+        expect(capped.byVariety).toEqual(open.byVariety);
+      }),
+      RUNS,
+    ));
+
+  it("P16: an item verdict of Peak comes from an origin in a Peak country", () =>
+    fc.assert(
+      fc.property(itemArb, ctxArb, (item, ctx) => {
+        const r = evaluate(item, { date: ctx.date }, ENV);
+        if (r.verdict !== "peak") return;
+        if (item.varieties.length > 0) expect(near(item.typicalOrigins[ctx.date.month - 1]?.[0])).toBe(true);
+        else {
+          const deciding = r.selection
+            ? Object.entries(r.byOrigin).find(([o, x]) => x.verdict === "peak" && near(o))?.[0]
+            : r.reasons.find((x) => x.code === "rated")?.origin;
+          expect(near(deciding)).toBe(true);
+        }
+      }),
+      RUNS,
+    ));
+
+  it("P16: a selection only lifts the item to Peak, with Check the label, from a prime in-store origin", () =>
+    fc.assert(
+      fc.property(itemArb, ctxArb, (item, ctx) => {
+        if (item.varieties.length > 0) return;
+        const r = evaluate(item, { date: ctx.date }, ENV);
+        const without = evaluate(noSelections(item), { date: ctx.date }, ENV);
+        if (r.selection === null) {
+          expect(r.verdict).toBe(without.verdict);
+          return;
+        }
+        expect(without.verdict).not.toBe("peak");
+        expect(r.verdict).toBe("peak");
+        expect(r.markers.some((m) => m.kind === "check-label")).toBe(true);
+        expect(r.weakProperties).toContain("agreement");
+        const w = windowIndex(ctx.date.month, ctx.date.day);
+        const s = item.selections.find((x) => x.id === r.selection);
+        expect(s?.inStore[ctx.date.month - 1]).toBe(true);
+        expect(s?.origins.some((o) => item.origins[o]?.windows[w] === "prime")).toBe(true);
       }),
       RUNS,
     ));

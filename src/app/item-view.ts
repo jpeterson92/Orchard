@@ -105,6 +105,12 @@ function reasonLines(item: AppItem, data: AppData, reasons: readonly Reason[]): 
     } else if (r.code === "supply-thin") out.push("Supply is typically thin now.");
     else if (r.code === "peak-not-worth-seeking")
       out.push("Tastes much the same in and out of season, so never rated Peak.");
+    else if (r.code === "far-origin")
+      out.push(`Shipped from ${originName(r.origin, data)}, so rated Good at most.`);
+    else if (r.code === "selection") {
+      const label = item.selections.find((s) => s.id === r.selection)?.label ?? r.selection;
+      out.push(`${label.charAt(0).toUpperCase()}${label.slice(1)} is at its best now; most supply isn't.`);
+    }
   }
   return out;
 }
@@ -192,6 +198,8 @@ export function itemView(
   const reasons = (generic && lines.length > 0 ? lines : [headline, ...lines]).slice(0, 3);
 
   const notes: string[] = [];
+  const selection = item.selections.find((s) => s.id === result.selection);
+  if (selection) notes.push(`How to find it: ${selection.cue}`);
   const poor = result.reasons.find((r) => r.code === "typical-origin-poor");
   if (poor?.code === "typical-origin-poor")
     notes.push(
@@ -237,7 +245,7 @@ export function itemView(
     id: item.inputs.id,
     name: item.name,
     art: item.art,
-    varietyLine: varietyLine(item, result.varietyLine, result.verdict),
+    varietyLine: varietyLine(item, result),
     verdict: result.verdict,
     tags: tags(item, result.markers),
     reasons: reasons.map((r) => atDate(r, mode)),

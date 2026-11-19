@@ -187,6 +187,17 @@ export function validate(raw: RawInputs, opts: { production: boolean }): Result 
     for (const v of item.varieties)
       if (v.storesWell) checkSources(v.storesWell.sources, `${at} variety ${v.id} storesWell`);
     for (const o of item.origins) checkOrigin(o.origin, at);
+    unique(item.selections, (s) => `${item.id}/${s.id}`, "selection");
+    for (const s of item.selections) {
+      const where = `${at} selection ${s.id}`;
+      for (const o of s.origins) {
+        if (!item.origins.some((x) => x.origin === o))
+          errors.push(`${where}: ${o} is not a rated origin of the item`);
+        if (rules && !rules.peakCountries.includes(o.slice(0, 2)))
+          errors.push(`${where}: ${o} is outside rules.peakCountries, so it could never make the item Peak`);
+      }
+      for (const r of s.inStores) checkSources(r.sources, where);
+    }
     const typicalMonths = new Set<number>();
     for (const t of item.typicalOrigins) {
       const where = `${at} typical origins ${t.from}..${t.to}`;

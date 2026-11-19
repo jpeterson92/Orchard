@@ -38,6 +38,25 @@ items:
     ]
   strawberries: [strawberry, strawberries]
   broccoli: [broccoli]
+  mangoes:
+    [
+      mango,
+      mangoes,
+      mangos,
+      ataulfo,
+      ataulfos,
+      honey mango,
+      honey mangos,
+      champagne mango,
+      kent,
+      kents,
+      keitt,
+      keitts,
+      tommy atkins,
+      haden,
+      hadens,
+      francis,
+    ]
   mandarins:
     - mandarin
     - mandarins
@@ -762,3 +781,60 @@ pages:
     kind: item-page
     origin: hn
     items: [okra]
+  - source: nmb-when-in-season
+    url: https://www.mango.org/blog/when-are-mangos-in-season
+    kind: item-page
+    items: [mangoes]
+  - source: nmb-varieties
+    url: https://www.mango.org/mango-varieties-availability/
+    kind: item-page
+    items: [mangoes]
+  - source: foodnetwork-mangoes
+    url: https://www.foodnetwork.com/how-to/packages/food-network-essentials/when-are-mangoes-in-season
+    kind: item-page
+    items: [mangoes]
+  - source: foodandwine-mango-types
+    url: https://www.aol.com/6-types-mangoes-ll-season-152700896.html
+    kind: item-page
+    items: [mangoes]
+  - source: theproducemoms-mangos
+    url: https://www.theproducemoms.com/produce/mangos/
+    kind: item-page
+    items: [mangoes]
+  - source: producebusiness-mexican-mango-mania
+    url: https://producebusiness.com/mexican-mango-mania/
+    kind: item-page
+    origin: mx
+    items: [mangoes]
+  - source: producebusiness-mexican-mangos-delight
+    url: https://producebusiness.com/mexican-mangos-delight-consumers/
+    kind: item-page
+    origin: mx
+    items: [mangoes]
+  - source: producebusiness-mexican-mangos-make-the-most
+    url: https://producebusiness.com/make-the-most-of-this-years-mexican-mangos/
+    kind: item-page
+    origin: mx
+    items: [mangoes]
+  - source: producebusiness-mangos-sage
+    url: https://producebusiness.com/?p=3940
+    kind: item-page
+    items: [mangoes]
+  - source: freshplaza-mexico-ramps-up-peru-winds-down
+    url: https://www.freshplaza.com/article/9818249/mexican-mango-season-ramps-up-as-peru-winds-down
+    kind: item-page
+    origin: mx
+    items: [mangoes]
+  - source: freshplaza-south-america-mango-volumes
+    url: https://www.freshplaza.com/north-america/article/9493659/south-america-ships-larger-mango-volumes-to-the-us-this-season/
+    kind: item-page
+    origin: pe
+    items: [mangoes]
+  - source: nmb-choose-a-mango
+    url: https://www.mango.org/choose-a-mango/
+    kind: item-page
+    items: [mangoes]
+  - source: nmb-ripening-storing
+    url: https://www.mango.org/ripening-and-storing-mangos/
+    kind: item-page
+    items: [mangoes]

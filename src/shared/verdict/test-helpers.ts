@@ -10,6 +10,7 @@ export const RULES: Rules = {
   ratedTypicalShare: 0.75,
   supplyIndex: { thin: 0.8, strong: 1.2 },
   varietyInStoreShare: 0.1,
+  peakCountries: ["us", "mx", "ca"],
   reliableYearRoundWindows: 20,
   snapshotMaxAgeMonths: 15,
   lastCallWindows: 2,
@@ -46,6 +47,7 @@ export function item(overrides: Partial<ItemInputs> = {}): ItemInputs {
     peakWorthSeeking: true,
     origins: { "us-ca": rated("prime") },
     varieties: [],
+    selections: [],
     typicalOrigins,
     // Unless a test sets them: the typical origins split 80% of the month's volume evenly.
     typicalShares: typicalOrigins.map((os) => os.map(() => 0.8 / os.length)),
