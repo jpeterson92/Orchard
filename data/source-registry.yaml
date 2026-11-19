@@ -736,3 +736,38 @@ pages:
     kind: item-page
     origin: us-ca
     items: [nectarines, plums]
+  - source: eatlikenoone-plum-season
+    url: https://www.eatlikenoone.com/when-does-plum-season-begin-and-end.htm
+    kind: item-page
+    origin: us-ca
+    items: [plums]
+  - source: eatlikenoone-pluot-season
+    url: https://www.eatlikenoone.com/when-does-pluot-season-being-and-end.htm
+    kind: item-page
+    origin: us-ca
+    items: [plums]
+  - source: freshplaza-ca-pluot-peak
+    url: https://www.freshplaza.com/north-america/article/2196518/california-pluot-growers-preparing-for-peak-season/
+    kind: item-page
+    origin: us-ca
+    items: [plums]
+  - source: freshplaza-ca-plum-varieties
+    url: https://www.freshplaza.com/north-america/article/9136354/california-plums-see-more-work-in-variety-development/
+    kind: item-page
+    origin: us-ca
+    items: [plums]
+  - source: freshfruitportal-chilean-plums-quality
+    url: https://www.freshfruitportal.com/news/2022/03/08/agronometrics-in-charts-superior-quality-chilean-plums-en-route-to-the-u-s/
+    kind: item-page
+    origin: cl
+    items: [plums]
+  - source: freshplaza-chile-plums-remaining
+    url: https://www.freshplaza.com/article/9405133/us-importers-make-the-most-of-the-remaining-chilean-plum-season
+    kind: item-page
+    origin: cl
+    items: [plums]
+  - source: purdue-foodlink-plum
+    url: https://www.extension.purdue.edu/foodlink/food.php?food=plum
+    kind: item-page
+    origin: us-in
+    items: [plums]

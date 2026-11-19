@@ -1,0 +1,55 @@
+id: plums
+name: Plums
+synonyms: [plum, pluot, pluots, plumcot, plumcots, black plum, black plums, red plum, red plums, dinosaur egg]
+misspellings: [plumbs, plumb, ploums, pluts]
+category: stone-fruit
+purchaseRank: 18
+alwaysGood: false
+shipsWell:
+  value: false
+  sources: [ucdavis-postharvest-plum, eatlikenoone-plum-season]
+  note: They bruise less than peaches, but long cold shipping can leave them mealy or bland.
+peakWorthSeeking:
+  value: true
+  sources: [eatlikenoone-pluot-season, freshplaza-ca-pluot-peak]
+  note: Summer California plums and pluots are the real season, with clearly better months.
+storesWell:
+  value: false
+  sources: [ucdavis-postharvest-plum, udel-stone-fruit-cold-storage]
+  note: Market life is weeks at most, and cold storage risks mealy, browned flesh.
+evidenceBasis: supply+assessment
+cardLine: Heavy, fragrant and giving slightly at the tip.
+pick:
+  - Heavy for its size
+  - Gives slightly at the end opposite the stem
+  - Full, even color for its variety
+  - A light dusty bloom on the skin is natural
+avoid:
+  - Rock-hard fruit; it may never ripen well
+  - Shriveled skin or soft, leaking spots
+store:
+  temperature: cold
+  ethylene: producer
+  life: { min: 3, max: 5, unit: days }
+  text: Once ripe, refrigerate and eat within a few days. Don't chill hard plums; cold before ripening can turn them mealy and bland.
+  sources: [ucdavis-postharvest-plum, udel-stone-fruit-cold-storage]
+ripen:
+  text: Ripen firm plums at room temperature for a day or two until they give slightly.
+  sources: [ucdavis-postharvest-plum, udel-stone-fruit-cold-storage]
+prep: Rinse just before eating. The skin is edible; cut around the pit to slice.
+origins:
+  - origin: us-ca
+    windows:
+      - { from: jan-1, to: may-1, rating: poor }
+      - from: may-2
+        to: may-2
+        rating: fair
+        reason: The model panel has no rating here, and the cited sources disagree; together they read fair.
+      - { from: jun-1, to: jun-1, rating: fair }
+      - { from: jun-2, to: sep-1, rating: prime }
+      - { from: sep-2, to: oct-1, rating: fair }
+      - { from: oct-2, to: dec-2, rating: poor }
+  - origin: cl
+    windows:
+      - { from: jan-1, to: dec-2, rating: poor }
+status: draft

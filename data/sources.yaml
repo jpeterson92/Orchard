@@ -879,3 +879,53 @@
   url: https://www.freshplaza.com/north-america/article/9624483/kicking-off-california-s-stone-fruit-season
   accessed: 2026-11-18
   tier: mainstream
+- id: eatlikenoone-plum-season
+  title: "When does plum season begin and end"
+  publisher: Eat Like No One Else
+  url: https://www.eatlikenoone.com/when-does-plum-season-begin-and-end.htm
+  accessed: 2026-11-18
+  tier: mainstream
+  basedOn: eatlikenoone-apples-at-their-peak
+- id: eatlikenoone-pluot-season
+  title: "When does pluot season begin and end"
+  publisher: Eat Like No One Else
+  url: https://www.eatlikenoone.com/when-does-pluot-season-being-and-end.htm
+  accessed: 2026-11-18
+  tier: mainstream
+  basedOn: eatlikenoone-apples-at-their-peak
+- id: freshplaza-ca-pluot-peak
+  title: "California pluot growers preparing for peak season"
+  publisher: FreshPlaza
+  url: https://www.freshplaza.com/north-america/article/2196518/california-pluot-growers-preparing-for-peak-season/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: freshplaza-ca-plum-varieties
+  title: "California plums see more work in variety development"
+  publisher: FreshPlaza
+  url: https://www.freshplaza.com/north-america/article/9136354/california-plums-see-more-work-in-variety-development/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: freshfruitportal-chilean-plums-quality
+  title: "Agronometrics in Charts: Superior quality Chilean plums en route to the U.S."
+  publisher: Fresh Fruit Portal
+  url: https://www.freshfruitportal.com/news/2022/03/08/agronometrics-in-charts-superior-quality-chilean-plums-en-route-to-the-u-s/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: freshplaza-chile-plums-remaining
+  title: "US importers make the most of the remaining Chilean plum season"
+  publisher: FreshPlaza
+  url: https://www.freshplaza.com/article/9405133/us-importers-make-the-most-of-the-remaining-chilean-plum-season
+  accessed: 2026-11-18
+  tier: mainstream
+- id: purdue-foodlink-plum
+  title: "FoodLink: Plum"
+  publisher: Purdue Extension
+  url: https://www.extension.purdue.edu/foodlink/food.php?food=plum
+  accessed: 2026-11-18
+  tier: authoritative
+- id: ucdavis-postharvest-plum
+  title: "Plum: Recommendations for Maintaining Postharvest Quality"
+  publisher: UC Davis Postharvest Research and Extension Center
+  url: https://postharvest.ucdavis.edu/produce-facts-sheets/plum
+  accessed: 2026-11-18
+  tier: authoritative
