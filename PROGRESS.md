@@ -1,17 +1,17 @@
 # PROGRESS
 
-Updated: 2026-11-19 · Phase: build · Live: https://orchard.jpeterson92.workers.dev (M0 placeholder) · 59 commits unsynced
+Updated: 2026-11-19 · Phase: build · Live: https://orchard.jpeterson92.workers.dev (M0 placeholder) · 62 commits unsynced
 
 ## Milestones
 
-- **Done:** M0 scaffold and deploy · M1 USDA probe · M2 schemas, verdict engine (P9–P19), evidence pipeline, `usda:derive`, `content:report` · model panel run `claude-opus-5-5-2026-11-17` (89 items, prompt v2; P15 panel-first) · M4 offline · M5 planning date and shared dates · M6 navigation, Browse, Calendar, search, Methods and Privacy pages · M8 measurement (web vitals and daily event counts in D1; shopper feedback removed by Jared).
+- **Done:** M0 scaffold and deploy · M1 USDA probe · M2 schemas, verdict engine (P1, P10–P20), evidence pipeline, `usda:derive`, `content:report` · model panel run `claude-opus-5-5-2026-11-17` (89 items, prompt v2; P15 panel-first) · M4 offline · M5 planning date and shared dates · M6 navigation, Browse, Calendar, search, Methods and Privacy pages · M8 measurement (web vitals and daily event counts in D1; shopper feedback removed by Jared).
 - **M3:** built; closes with Jared's phone review, which needs a preview deploy.
 - **M9:** slices 1–2 done (security headers, axe in light and dark, WebKit e2e, page titles). The rest waits on content, art, devices, the domain and the independent reviewer; check the security headers on the live URL (`curl -I`) after the next deploy.
-- **M7 (variety guides): not started; after the verdict rethink.** Scales for apples, pears and citrus are approved; traits for 33 varieties are drafted. Fold unrated varieties (Red Delicious, Golden Delicious and the rest) out of the item page's "Varieties now" list into the guide, where they belong; today they make nine "Not rated" rows on the apples page.
+- **M7 (variety guides): not started; after the re-rating.** Scales for apples, pears and citrus are approved; traits for 33 varieties are drafted. Fold unrated varieties (Red Delicious, Golden Delicious and the rest) out of the item page's "Varieties now" list into the guide, where they belong; today they make nine "Not rated" rows on the apples page.
 
 ## Next concrete action
 
-Implement Jared's answers to the verdict and Today rethink (`.cache/today-review-2026-11-19.md`): engine, Today and card "Look for" line first, then the four-level re-rating. Then build M7. Still missing in the app: the item page's variety guide link (M7), the "Typical supermarket supply: favorable" note, Today's one-line summary (24 summaries, content), green onions and cilantro (item files), PLU text (waits for a licence).
+Re-rate on the higher bar for Good (Jared, 2026-11-19): *fair* now means "you'll be happy with it", and merely fine half-months drop to *poor*. Update `content/panel/PROMPT.md` to the new definitions, re-run the panel for the 28 items, rebuild proposals, recheck the windows with reasons, and restate the evidence-reading defaults (harvest-chart edges, stored produce, imports in their own season read fair) on the new bar. Where round tomatoes fall to Skip in winter, a cherry-and-grape selection lifting to Good may be needed. Then M7.
 
 ## Content
 
@@ -27,13 +27,13 @@ When Jared's batch 1 masters land in `art/masters/`, run `npm run art:process`, 
 
 ## Blocking (needs Jared)
 
-- The verdict and Today rethink: four questions (what Good means, half-the-supply for origins, when the card names the pick, Best right now uncapped). Review in `.cache/today-review-2026-11-19.md`.
+None.
 
 ## For Jared (non-blocking)
 
-Applied 2026-11-19 (Jared's decisions): Peak when prime origins hold half the supply, with Check the label (P17); out of season reads Skip, "Usually back in …" (P18); one Peak season a year (P19); Today shows only Peak and seasonal Good items. All 28 drafted items now have a Peak season. Content fixes: Valencia oranges prime May–July, five one-window spikes and dips, mandarin prep.
+Applied 2026-11-19 (Jared's decisions): a level counts when origins at it are reasonably likely on the shelf, about a third of typical supply or cited as commonly in stores (P20, replacing P9 and P17); the card names what to look for only when at most three quarters qualifies (the Check the label tag is gone); Best right now lists every Peak item, soonest-ending first, and Good buys only Good items. Earlier: out of season reads Skip (P18), one Peak season a year (P19), Today shows only Peak and seasonal Good items.
 
-- Worth a glance: late-November Today now holds 6 Peak and 6 Good items (was 4 and 17). Brussels sprouts are Peak with Check the label (Mexico, 18%, rated poor). June honeydew stays Good: Mexico (34%) is poor and California's supply is thin then, so only Arizona's third counts.
+- Worth a glance: late-November Today holds 8 Peak and 4 Good items. Apples and pears name their varieties; Brussels sprouts drop the caveat (Mexico 17%); cantaloupe reads Good with "Look for ones from Arizona"; sweet corn "Look for ones from Florida and Georgia". Early July lists 16 Peak items. Raspberries gain June Peak and cantaloupe May Good under the one-third rule.
 - Earlier questions still open: (1) P14 reads one shipper's or state's chart as the whole origin's, so its other months read poor where other sources say supply continues (Mexican watermelon, Honduran okra, Georgia's fall okra); (2) the panel's low-confidence ranges are dropped, which leaves Mexico (sweet corn, okra) and Florida (okra) unrated; (3) `purchaseRank`: one pass over all 30 from one source would settle it, say which source; (4) P1 at 75%: revisit as more items are drafted.
 
 To do when convenient:
