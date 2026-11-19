@@ -60,6 +60,10 @@ items:
     - gold nugget
     - nuggets
     - cuties
+  grapefruit: [grapefruit, grapefruits, rio red, ruby red, star ruby, oro blanco]
+  pomegranates: [pomegranate, pomegranates, wonderful pomegranate, arils]
+  persimmons: [persimmon, persimmons, fuyu, fuyus, hachiya, hachiyas, sharon fruit]
+  figs: [fig, figs, black mission, brown turkey, calimyrna, kadota, tiger fig]
 
 pages:
   - source: msstate-fruits-vegetables-in-season
@@ -607,3 +611,247 @@ pages:
     kind: item-page
     origin: us-fl
     items: [oranges]
+  # grapefruit
+  - source: wintersweetz-grapefruit-season
+    url: https://wintersweetz.com/when-are-grapefruits-in-season-learn-from-texas-red-grapefruit-growers/
+    kind: item-page
+    origin: us-tx
+    items: [grapefruit]
+  - source: texascitrus-red-grapefruit
+    url: https://texascitrusindustry.com/2016/05/17/famous-red-grapefruit/
+    kind: item-page
+    origin: us-tx
+    items: [grapefruit]
+  - source: freshplaza-texas-sweetest-grapefruit
+    url: https://www.freshplaza.com/north-america/article/9371894/texas-is-known-for-producing-one-of-the-sweetest-grapefruit-varieties/
+    kind: item-page
+    origin: us-tx
+    items: [grapefruit]
+  - source: freshplaza-texas-grapefruit-2025
+    url: https://www.freshplaza.com/europe/article/9780622/texas-kicks-off-grapefruit-season-with-strong-quality-on-2025-2026-crop
+    kind: item-page
+    origin: us-tx
+    items: [grapefruit]
+  - source: growingproduce-extend-grapefruit-season
+    url: https://www.growingproduce.com/?p=5141
+    kind: item-page
+    origin: us-fl
+    items: [grapefruit]
+  - source: freshplaza-florida-grapefruit-2019
+    url: https://www.freshplaza.com/north-america/article/9078552/solid-florida-grapefruit-season-runs-longer-in-2019/
+    kind: item-page
+    origin: us-fl
+    items: [grapefruit]
+  - source: ufl-crec-picking-fruit
+    url: https://crec.ifas.ufl.edu/home-citrus/picking-fruit
+    kind: item-page
+    origin: us-fl
+    items: [grapefruit]
+  - source: sunkist-fs-grapefruit
+    url: https://foodservice.sunkist.com/citrus-info/grapefruit
+    kind: item-page
+    origin: us-ca
+    items: [grapefruit]
+  - source: freshplaza-ca-star-ruby-return
+    url: https://www.freshplaza.com/north-america/article/9621170/the-return-of-california-star-ruby-grapefruit/
+    kind: item-page
+    origin: us-ca
+    items: [grapefruit]
+  - source: sunkist-summer-grapefruit-2025
+    url: https://sunkist.com/en-us/press-room/sunkist-summer-citrus-is-in-full-bloom-grapefruit-season-shines-with-new-combo-bag-launch
+    kind: item-page
+    origin: us-ca
+    items: [grapefruit]
+  - source: freshplaza-sa-complement-us-citrus
+    url: https://www.freshplaza.com/north-america/article/9715177/south-africa-aims-to-complement-local-u-s-citrus-production/
+    kind: item-page
+    origin: za
+    items: [grapefruit]
+  - source: perishablenews-sa-summer-citrus
+    url: https://perishablenews.com/produce/south-african-summer-citrus-shipments-jump-24-percent/
+    kind: item-page
+    origin: za
+    items: [grapefruit]
+  - source: askthefoodgeek-grapefruit
+    url: https://askthefoodgeek.com/grapefruit/
+    kind: item-page
+    origin: us
+    items: [grapefruit]
+  - source: illinois-extension-winter-citrus
+    url: https://extension.illinois.edu/blogs/live-well-eat-well/2024-01-24-eat-all-varieties-winter-citrus
+    kind: item-page
+    origin: us
+    items: [grapefruit]
+  # pomegranates
+  - source: freshplaza-ca-pomegranates-late-start
+    url: https://www.freshplaza.com/north-america/article/9569460/slightly-late-start-for-california-pomegranates/
+    kind: item-page
+    origin: us-ca
+    items: [pomegranates]
+  - source: freshplaza-ca-pomegranates-demand
+    url: https://www.freshplaza.com/europe/article/9662278/california-pomegranates-are-available-and-in-high-demand
+    kind: item-page
+    origin: us-ca
+    items: [pomegranates]
+  - source: producebusiness-ca-fall-fruit
+    url: https://producebusiness.com/california-fall-fruit-comes-to-the-fore/
+    kind: item-page
+    origin: us-ca
+    items: [pomegranates]
+  - source: msu-pomegranate-autumn
+    url: https://www.canr.msu.edu/news/pomegranate_autumns_nutritional_super_food
+    kind: item-page
+    origin: us
+    items: [pomegranates]
+  - source: pom-season-returns-2015
+    url: https://www.globenewswire.com/news-release/2015/10/28/1036186/0/en/it-s-back-pomegranate-season-returns.html
+    kind: item-page
+    origin: us-ca
+    items: [pomegranates]
+  - source: foodwise-fall-fruit
+    url: https://foodwise.org/articles/farmers-market-guide-to-fall-fruit/
+    kind: item-page
+    origin: us-ca
+    items: [pomegranates]
+  - source: askthefoodgeek-pomegranates
+    url: https://askthefoodgeek.com/pomegranates/
+    kind: item-page
+    origin: us
+    items: [pomegranates]
+  - source: freshplaza-chile-pomegranates
+    url: https://www.freshplaza.com/north-america/article/9420512/slightly-less-but-better-moving-pomegranates-from-chile/
+    kind: item-page
+    origin: cl
+    items: [pomegranates]
+  - source: freshplaza-ca-season-ends-chile
+    url: https://www.freshplaza.com/north-america/article/9142029/if-the-californian-season-ends-early-we-can-enter-a-clean-market/
+    kind: item-page
+    origin: cl
+    items: [pomegranates]
+  - source: freshplaza-peru-figs-pomegranates-spring
+    url: https://www.freshplaza.com/europe/article/9519448/mid-atlantic-importer-bridges-seasonal-spring-gap-with-peruvian-figs-and-pomegranates
+    kind: item-page
+    origin: pe
+    items: [pomegranates]
+  # persimmons
+  - source: freshplaza-ca-persimmons-larger
+    url: https://www.freshplaza.com/europe/article/9573233/larger-and-more-persimmons-expected-from-california
+    kind: item-page
+    origin: us-ca
+    items: [persimmons]
+  - source: freshplaza-persimmons-domestic-import
+    url: https://www.freshplaza.com/north-america/article/9270006/strong-demand-for-domestic-and-import-persimmons/
+    kind: item-page
+    origin: us-ca
+    items: [persimmons]
+  - source: freshplaza-ca-fall-exotics
+    url: https://www.freshplaza.com/north-america/article/9260670/california-s-fall-exotics-season-underway/
+    kind: item-page
+    origin: us-ca
+    items: [persimmons]
+  - source: freshplaza-peak-ca-persimmons
+    url: https://www.freshplaza.com/north-america/article/9038750/peak-season-now-for-california-persimmons
+    kind: item-page
+    origin: us-ca
+    items: [persimmons]
+  - source: freshplaza-one-month-left-persimmons
+    url: https://www.freshplaza.com/north-america/article/2166676/one-month-left-for-california-persimmon-season/
+    kind: item-page
+    origin: us-ca
+    items: [persimmons]
+  - source: freshplaza-persimmons-cooler-nights
+    url: https://www.freshplaza.com/north-america/article/2199596/california-persimmon-growers-waiting-for-cooler-nights/
+    kind: item-page
+    origin: us-ca
+    items: [persimmons]
+  - source: agalert-persimmon-grower
+    url: https://www.agalert.com/california-ag-news/archives/november-4-2015/persimmon-grower-cultivates-specialized-market/
+    kind: item-page
+    origin: us-ca
+    items: [persimmons]
+  - source: freshfruitportal-persimmon-season-late
+    url: https://www.freshfruitportal.com/archive/2025/11/24/persimmon-season-late/
+    kind: item-page
+    origin: us-ca
+    items: [persimmons]
+  - source: freshplaza-spanish-persimmons-us
+    url: https://www.freshplaza.com/north-america/article/9489655/spanish-persimmons-on-their-way-to-the-us/
+    kind: item-page
+    origin: es
+    items: [persimmons]
+  - source: freshplaza-spanish-persimmons-volume
+    url: https://www.freshplaza.com/north-america/article/9585733/larger-volume-of-spanish-persimmons-shipped-to-the-us-this-season/
+    kind: item-page
+    origin: es
+    items: [persimmons]
+  - source: freshplaza-israel-persimmons-november
+    url: https://www.freshplaza.com/north-america/article/2183964/persimmons-from-israel-to-enter-north-america-by-mid-november
+    kind: item-page
+    origin: il
+    items: [persimmons]
+  - source: foodwise-fall-fruit
+    url: https://foodwise.org/articles/farmers-market-guide-to-fall-fruit/
+    kind: item-page
+    origin: us-ca
+    items: [persimmons]
+  - source: producebusiness-ca-fall-fruit
+    url: https://producebusiness.com/california-fall-fruit-comes-to-the-fore/
+    kind: item-page
+    origin: us-ca
+    items: [persimmons]
+  # figs
+  - source: freshplaza-ca-fig-season-here
+    url: https://www.freshplaza.com/north-america/article/9449430/california-fresh-fig-season-is-here/
+    kind: item-page
+    origin: us-ca
+    items: [figs]
+  - source: freshplaza-ca-figs-2024-early
+    url: https://www.freshplaza.com/north-america/article/9646276/2024-california-fresh-fig-season-gets-early-start/
+    kind: item-page
+    origin: us-ca
+    items: [figs]
+  - source: freshplaza-ca-figs-similar-crop
+    url: https://www.freshplaza.com/asia/article/9858348/california-expects-fresh-fig-crop-similar-to-last-year/
+    kind: item-page
+    origin: us-ca
+    items: [figs]
+  - source: thepacker-ca-figs-early-start
+    url: https://www.thepacker.com/news/produce-crops/early-start-california-fresh-figs
+    kind: item-page
+    origin: us-ca
+    items: [figs]
+  - source: thepacker-ca-fig-season-arrives
+    url: https://www.thepacker.com/news/produce-crops/california-fresh-fig-season-arrives
+    kind: item-page
+    origin: us-ca
+    items: [figs]
+  - source: foodwise-what-the-fig
+    url: https://foodwise.org/articles/what-the-fig
+    kind: item-page
+    origin: us-ca
+    items: [figs]
+  - source: askthefoodgeek-figs
+    url: https://askthefoodgeek.com/figs/
+    kind: item-page
+    origin: us
+    items: [figs]
+  - source: freshplaza-mexican-figs-boost
+    url: https://www.freshplaza.com/north-america/article/9489566/more-growers-and-maturing-trees-means-a-boost-in-mexican-fig-production/
+    kind: item-page
+    origin: mx
+    items: [figs]
+  - source: freshplaza-mexican-figs-peak
+    url: https://www.freshplaza.com/north-america/article/9061495/mexican-figs-about-to-hit-peak/
+    kind: item-page
+    origin: mx
+    items: [figs]
+  - source: freshplaza-peru-figs-pomegranates-spring
+    url: https://www.freshplaza.com/europe/article/9519448/mid-atlantic-importer-bridges-seasonal-spring-gap-with-peruvian-figs-and-pomegranates
+    kind: item-page
+    origin: pe
+    items: [figs]
+  - source: producebusiness-figs-profitability
+    url: https://producebusiness.com/?p=1848
+    kind: item-page
+    origin: us
+    items: [figs]

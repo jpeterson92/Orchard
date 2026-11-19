@@ -1,0 +1,85 @@
+item: grapefruit
+status: draft
+claims:
+  # Texas: Rio Red, October to April, sweetest in winter.
+  - source: wintersweetz-grapefruit-season
+    origin: us-tx
+    windows:
+      - { from: oct-1, to: apr-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: The Texas red grapefruit season usually runs October to April, with the ripest fruit in December.
+  - source: freshplaza-texas-sweetest-grapefruit
+    origin: us-tx
+    windows:
+      - { from: dec-1, to: feb-2, rating: prime }
+    specificity: season
+    directness: eating-quality
+    paraphrase: Texas Rio Reds ripen on the tree into winter, when they reach their best flavor and are sweeter.
+  - source: askthefoodgeek-grapefruit
+    origin: us-tx
+    windows:
+      - { from: nov-1, to: may-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: The Texas and Florida grapefruit season starts in November and lasts until May.
+  # Florida: fall to spring.
+  - source: askthefoodgeek-grapefruit
+    origin: us-fl
+    windows:
+      - { from: nov-1, to: may-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: The Texas and Florida grapefruit season starts in November and lasts until May.
+  - source: wintersweetz-grapefruit-season
+    origin: us-fl
+    windows:
+      - { from: sep-1, to: jun-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Florida grapefruit run from September through the following June, off only in high summer.
+  - source: ufl-crec-picking-fruit
+    origin: us-fl
+    windows:
+      - { from: sep-1, to: jun-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Florida's fresh grapefruit season usually runs September through June.
+  # US-wide: sweeter later in the season.
+  - source: askthefoodgeek-grapefruit
+    origin: us
+    windows:
+      - { from: dec-1, to: apr-2, rating: prime }
+    specificity: month
+    directness: eating-quality
+    paraphrase: Every variety tastes sweeter and less acidic later in the season; the peak runs about December to April.
+  # California: the spring and summer grapefruit.
+  - source: askthefoodgeek-grapefruit
+    origin: us-ca
+    windows:
+      - { from: jan-1, to: jun-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: California grapefruit cover the summer gap in Texas and Florida supply, available January through June.
+  - source: wintersweetz-grapefruit-season
+    origin: us-ca
+    windows:
+      - { from: jan-1, to: aug-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: California harvests grapefruit from January to August, mostly in its desert regions and valleys.
+  - source: freshplaza-ca-star-ruby-return
+    origin: us-ca
+    windows:
+      - { from: mar-1, to: aug-2, rating: prime }
+    specificity: season
+    directness: availability
+    paraphrase: California Star Ruby grapefruit arrive in spring and last through the summer.
+  # South Africa: summer imports.
+  - source: perishablenews-sa-summer-citrus
+    origin: za
+    windows:
+      - { from: may-1, to: oct-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: South African citrus, grapefruit among it, shipped to the US from May through October.

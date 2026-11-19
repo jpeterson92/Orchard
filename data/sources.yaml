@@ -720,3 +720,277 @@
   accessed: 2026-11-18
   tier: mainstream
   basedOn: halegroves-florida-oranges
+# grapefruit
+- id: wintersweetz-grapefruit-season
+  title: "When Are Grapefruits in Season? Learn From Texas Red Grapefruit Growers"
+  publisher: Winter Sweetz
+  url: https://wintersweetz.com/when-are-grapefruits-in-season-learn-from-texas-red-grapefruit-growers/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: texascitrus-red-grapefruit
+  title: "Texas Red Grapefruit"
+  publisher: Texas Citrus Industry
+  url: https://texascitrusindustry.com/2016/05/17/famous-red-grapefruit/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: freshplaza-texas-sweetest-grapefruit
+  title: "Texas is known for producing one of the sweetest grapefruit varieties"
+  publisher: FreshPlaza
+  url: https://www.freshplaza.com/north-america/article/9371894/texas-is-known-for-producing-one-of-the-sweetest-grapefruit-varieties/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: freshplaza-texas-grapefruit-2025
+  title: "Texas kicks off grapefruit season with strong quality on 2025-2026 crop"
+  publisher: FreshPlaza
+  url: https://www.freshplaza.com/europe/article/9780622/texas-kicks-off-grapefruit-season-with-strong-quality-on-2025-2026-crop
+  accessed: 2026-11-18
+  tier: mainstream
+- id: growingproduce-extend-grapefruit-season
+  title: "Learn How To Extend The Grapefruit Season"
+  publisher: Growing Produce
+  url: https://www.growingproduce.com/?p=5141
+  accessed: 2026-11-18
+  tier: mainstream
+- id: freshplaza-florida-grapefruit-2019
+  title: "Solid Florida grapefruit season runs longer in 2019"
+  publisher: FreshPlaza
+  url: https://www.freshplaza.com/north-america/article/9078552/solid-florida-grapefruit-season-runs-longer-in-2019/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: ufl-crec-picking-fruit
+  title: "Picking Fruit"
+  publisher: UF/IFAS Citrus Research and Education Center
+  url: https://crec.ifas.ufl.edu/home-citrus/picking-fruit
+  accessed: 2026-11-18
+  tier: authoritative
+- id: sunkist-fs-grapefruit
+  title: "Grapefruit"
+  publisher: Sunkist Growers
+  url: https://foodservice.sunkist.com/citrus-info/grapefruit
+  accessed: 2026-11-18
+  tier: mainstream
+- id: freshplaza-ca-star-ruby-return
+  title: "The return of California Star Ruby grapefruit"
+  publisher: FreshPlaza
+  url: https://www.freshplaza.com/north-america/article/9621170/the-return-of-california-star-ruby-grapefruit/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: sunkist-summer-grapefruit-2025
+  title: "Sunkist Summer Citrus is in Full Bloom: Grapefruit Season Shines with New Combo Bag Launch"
+  publisher: Sunkist Growers
+  url: https://sunkist.com/en-us/press-room/sunkist-summer-citrus-is-in-full-bloom-grapefruit-season-shines-with-new-combo-bag-launch
+  accessed: 2026-11-18
+  tier: mainstream
+- id: freshplaza-sa-complement-us-citrus
+  title: "South Africa aims to complement local U.S. citrus production"
+  publisher: FreshPlaza
+  url: https://www.freshplaza.com/north-america/article/9715177/south-africa-aims-to-complement-local-u-s-citrus-production/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: perishablenews-sa-summer-citrus
+  title: "South African Summer Citrus Shipments Jump 24 Percent"
+  publisher: Perishable News
+  url: https://perishablenews.com/produce/south-african-summer-citrus-shipments-jump-24-percent/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: askthefoodgeek-grapefruit
+  title: "Grapefruit"
+  publisher: Ask The Food Geek
+  url: https://askthefoodgeek.com/grapefruit/
+  accessed: 2026-11-18
+  tier: mainstream
+# pomegranates
+- id: freshplaza-ca-pomegranates-late-start
+  title: "Slightly late start for California pomegranates"
+  publisher: FreshPlaza
+  url: https://www.freshplaza.com/north-america/article/9569460/slightly-late-start-for-california-pomegranates/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: freshplaza-ca-pomegranates-demand
+  title: "California pomegranates are available and in high demand"
+  publisher: FreshPlaza
+  url: https://www.freshplaza.com/europe/article/9662278/california-pomegranates-are-available-and-in-high-demand
+  accessed: 2026-11-18
+  tier: mainstream
+- id: producebusiness-ca-fall-fruit
+  title: "California Fall Fruit Comes To The Fore"
+  publisher: Produce Business
+  url: https://producebusiness.com/california-fall-fruit-comes-to-the-fore/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: msu-pomegranate-autumn
+  title: "Pomegranate: Autumn's nutritional super food"
+  publisher: Michigan State University Extension
+  url: https://www.canr.msu.edu/news/pomegranate_autumns_nutritional_super_food
+  accessed: 2026-11-18
+  tier: authoritative
+- id: pom-season-returns-2015
+  title: "It's Back! Pomegranate Season Returns"
+  publisher: POM Wonderful (GlobeNewswire)
+  url: https://www.globenewswire.com/news-release/2015/10/28/1036186/0/en/it-s-back-pomegranate-season-returns.html
+  accessed: 2026-11-18
+  tier: mainstream
+- id: foodwise-fall-fruit
+  title: "Apples, Pomegranates, and More: A Farmers Market Guide to Fall Fruit"
+  publisher: Foodwise
+  url: https://foodwise.org/articles/farmers-market-guide-to-fall-fruit/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: askthefoodgeek-pomegranates
+  title: "Pomegranates"
+  publisher: Ask The Food Geek
+  url: https://askthefoodgeek.com/pomegranates/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: freshplaza-chile-pomegranates
+  title: "Slightly less but better moving pomegranates from Chile"
+  publisher: FreshPlaza
+  url: https://www.freshplaza.com/north-america/article/9420512/slightly-less-but-better-moving-pomegranates-from-chile/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: freshplaza-ca-season-ends-chile
+  title: "If the Californian season ends early we can enter a clean market"
+  publisher: FreshPlaza
+  url: https://www.freshplaza.com/north-america/article/9142029/if-the-californian-season-ends-early-we-can-enter-a-clean-market/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: freshplaza-peru-figs-pomegranates-spring
+  title: "Mid-Atlantic importer bridges seasonal spring gap with Peruvian figs and pomegranates"
+  publisher: FreshPlaza
+  url: https://www.freshplaza.com/europe/article/9519448/mid-atlantic-importer-bridges-seasonal-spring-gap-with-peruvian-figs-and-pomegranates
+  accessed: 2026-11-18
+  tier: mainstream
+# persimmons
+- id: freshplaza-ca-persimmons-larger
+  title: "Larger and more persimmons expected from California"
+  publisher: FreshPlaza
+  url: https://www.freshplaza.com/europe/article/9573233/larger-and-more-persimmons-expected-from-california
+  accessed: 2026-11-18
+  tier: mainstream
+- id: freshplaza-persimmons-domestic-import
+  title: "Strong demand for domestic and import persimmons"
+  publisher: FreshPlaza
+  url: https://www.freshplaza.com/north-america/article/9270006/strong-demand-for-domestic-and-import-persimmons/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: freshplaza-ca-fall-exotics
+  title: "California's fall exotics season underway"
+  publisher: FreshPlaza
+  url: https://www.freshplaza.com/north-america/article/9260670/california-s-fall-exotics-season-underway/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: freshplaza-peak-ca-persimmons
+  title: "Peak season now for California persimmons"
+  publisher: FreshPlaza
+  url: https://www.freshplaza.com/north-america/article/9038750/peak-season-now-for-california-persimmons
+  accessed: 2026-11-18
+  tier: mainstream
+- id: freshplaza-one-month-left-persimmons
+  title: "One month left for California persimmon season"
+  publisher: FreshPlaza
+  url: https://www.freshplaza.com/north-america/article/2166676/one-month-left-for-california-persimmon-season/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: freshplaza-persimmons-cooler-nights
+  title: "California persimmon growers waiting for cooler nights"
+  publisher: FreshPlaza
+  url: https://www.freshplaza.com/north-america/article/2199596/california-persimmon-growers-waiting-for-cooler-nights/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: agalert-persimmon-grower
+  title: "Persimmon grower cultivates specialized market"
+  publisher: California Farm Bureau (Ag Alert)
+  url: https://www.agalert.com/california-ag-news/archives/november-4-2015/persimmon-grower-cultivates-specialized-market/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: freshfruitportal-persimmon-season-late
+  title: "Persimmon season starts late, but marketing muscle keeps retailers in the game"
+  publisher: FreshFruitPortal
+  url: https://www.freshfruitportal.com/archive/2025/11/24/persimmon-season-late/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: freshplaza-spanish-persimmons-us
+  title: "Spanish persimmons on their way to the US"
+  publisher: FreshPlaza
+  url: https://www.freshplaza.com/north-america/article/9489655/spanish-persimmons-on-their-way-to-the-us/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: freshplaza-spanish-persimmons-volume
+  title: "Larger volume of Spanish persimmons shipped to the US this season"
+  publisher: FreshPlaza
+  url: https://www.freshplaza.com/north-america/article/9585733/larger-volume-of-spanish-persimmons-shipped-to-the-us-this-season/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: freshplaza-israel-persimmons-november
+  title: "Persimmons from Israel to enter North America by mid November"
+  publisher: FreshPlaza
+  url: https://www.freshplaza.com/north-america/article/2183964/persimmons-from-israel-to-enter-north-america-by-mid-november
+  accessed: 2026-11-18
+  tier: mainstream
+# figs
+- id: freshplaza-ca-fig-season-here
+  title: "California fresh fig season is here"
+  publisher: FreshPlaza
+  url: https://www.freshplaza.com/north-america/article/9449430/california-fresh-fig-season-is-here/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: freshplaza-ca-figs-2024-early
+  title: "2024 California fresh fig season gets early start"
+  publisher: FreshPlaza
+  url: https://www.freshplaza.com/north-america/article/9646276/2024-california-fresh-fig-season-gets-early-start/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: freshplaza-ca-figs-similar-crop
+  title: "California expects fresh fig crop similar to last year"
+  publisher: FreshPlaza
+  url: https://www.freshplaza.com/asia/article/9858348/california-expects-fresh-fig-crop-similar-to-last-year/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: thepacker-ca-figs-early-start
+  title: "Early start for California fresh figs"
+  publisher: The Packer
+  url: https://www.thepacker.com/news/produce-crops/early-start-california-fresh-figs
+  accessed: 2026-11-18
+  tier: mainstream
+- id: thepacker-ca-fig-season-arrives
+  title: "California fresh fig season arrives"
+  publisher: The Packer
+  url: https://www.thepacker.com/news/produce-crops/california-fresh-fig-season-arrives
+  accessed: 2026-11-18
+  tier: mainstream
+- id: foodwise-what-the-fig
+  title: "What the Fig? Why Figs Have Two Seasons"
+  publisher: Foodwise
+  url: https://foodwise.org/articles/what-the-fig
+  accessed: 2026-11-18
+  tier: mainstream
+- id: askthefoodgeek-figs
+  title: "Figs"
+  publisher: Ask The Food Geek
+  url: https://askthefoodgeek.com/figs/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: freshplaza-mexican-figs-boost
+  title: "More growers and maturing trees means a boost in Mexican fig production"
+  publisher: FreshPlaza
+  url: https://www.freshplaza.com/north-america/article/9489566/more-growers-and-maturing-trees-means-a-boost-in-mexican-fig-production/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: freshplaza-mexican-figs-peak
+  title: "Mexican figs about to hit peak"
+  publisher: FreshPlaza
+  url: https://www.freshplaza.com/north-america/article/9061495/mexican-figs-about-to-hit-peak/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: producebusiness-figs-profitability
+  title: "Figs Gain Profitability"
+  publisher: Produce Business
+  url: https://producebusiness.com/?p=1848
+  accessed: 2026-11-18
+  tier: mainstream
+- id: ucdavis-postharvest-grapefruit
+  title: "Grapefruit: Recommendations for Maintaining Postharvest Quality"
+  publisher: UC Davis Postharvest Research and Extension Center
+  url: https://postharvest.ucdavis.edu/produce-facts-sheets/grapefruit
+  accessed: 2026-11-18
+  tier: authoritative
