@@ -1,0 +1,72 @@
+id: apricots
+name: Apricots
+synonyms: [apricot, fresh apricots, blenheim, patterson]
+misspellings: [apricott, apricoats, aprocot, appricot]
+category: stone-fruit
+purchaseRank: 27
+alwaysGood: false
+shipsWell:
+  value: false
+  sources: [ucdavis-postharvest-apricot, chefscornerstore-fresh-apricots]
+  note: They bruise when soft, so stores get fruit picked firm, before it's fully ripe.
+peakWorthSeeking:
+  value: true
+  sources: [askthefoodgeek-apricots, grocerycoop-apricots]
+  note: Flavor comes from ripening on the tree, so a short summer season matters.
+storesWell:
+  value: false
+  sources: [ucdavis-postharvest-apricot]
+  note: Soften fast and lose flavor in storage; market life is short.
+evidenceBasis: assessment-only
+cardLine: Golden-orange with no green, and a sweet smell.
+pick:
+  - Even golden-orange color, with no green
+  - Plump and fairly firm, just giving to gentle pressure
+  - A sweet, floral smell
+avoid:
+  - Greenish-yellow fruit; it won't ripen well
+  - Bruised, mushy or shriveled fruit
+store:
+  temperature: cold
+  ethylene: producer
+  life: { min: 3, max: 5, unit: days }
+  text: Once soft, refrigerate and eat within a few days; typically keeps 4–5 days.
+  sources: [askthefoodgeek-apricots, foodnetwork-apricots-in-season, ucdavis-postharvest-apricot]
+ripen:
+  text: Firm apricots soften on the counter in a day or two, but they won't get much sweeter.
+  sources: [askthefoodgeek-apricots, grocerycoop-apricots, ucdavis-postharvest-apricot]
+prep: Rinse just before eating. Halve along the seam and twist; the pit lifts out. Skin is fine to eat.
+origins:
+  - origin: us-ca
+    windows:
+      - { from: may-1, to: may-1, rating: fair }
+      - { from: may-2, to: jun-2, rating: prime }
+      - from: jul-1
+        to: jul-1
+        rating: fair
+        reason: The panel rates early-July California fruit fair as the harvest winds down; the cited sources speak only to availability.
+      - from: jul-2
+        to: jul-2
+        rating: fair
+        reason: The panel has no rating here; California's crop wraps up in late July, so it reads fair like early July.
+  - origin: us-wa
+    windows:
+      - { from: jun-2, to: jul-2, rating: prime }
+      - from: aug-1
+        to: aug-2
+        rating: fair
+        reason: The panel has no rating here; the sources agree Washington picking runs into August, past its early-July peak, and together read fair.
+typicalOrigins:
+  - from: may
+    to: jun
+    origins: [{ origin: us-ca, major: true }]
+    sources: [eatlikenoone-apricot-season, wholefoods-peak-pick-apricots, askthefoodgeek-apricots]
+  - from: jul
+    to: jul
+    origins: [{ origin: us-wa, major: true }, { origin: us-ca, major: true }]
+    sources: [grocerycoop-apricots, freshplaza-washington-apricots-later, eatlikenoone-apricot-season]
+  - from: aug
+    to: aug
+    origins: [{ origin: us-wa, major: true }]
+    sources: [eatlikenoone-apricot-season, grocerycoop-apricots]
+status: draft
