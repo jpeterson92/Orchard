@@ -29,7 +29,7 @@ export interface Card {
   verdict: Verdict;
   /** One short factual reason, or null when it would only repeat the section ("At its best this time of year"). */
   reason: string | null;
-  /** The month's top typical origin, named. */
+  /** The origin the verdict rests on (see `cardOrigin`), named. */
   origin: string | null;
   tags: string[];
   group: FilterGroup;
@@ -89,7 +89,7 @@ export function storageLine(store: AppItem["store"]): string {
 }
 
 const LIMITED_REASONS: Partial<Record<Reason["code"], string>> = {
-  "no-typical-origins": "Not enough supply data to call it now.",
+  "no-typical-origins": "Rarely in stores now.",
   "origin-unrated": "Supply now is mostly from origins we haven't assessed.",
   "no-variety-in-stores": "None of its rated varieties is usually in stores now.",
   "variety-unrated": "The varieties in stores now aren't rated yet.",
@@ -137,6 +137,19 @@ export function varietyLine(
   return verdict === "peak" ? `${names.length} varieties at their best` : `${names.length} varieties`;
 }
 
+/** The card's origin: the one the verdict rests on, so a card never names a poor origin beside a better verdict
+ * (P9: when the second typical origin decides, it is the one named). A selection's Peak names none, since its line
+ * says what to look for (P16). Items rated by variety, and Limited evidence, name the month's top typical origin. */
+export function cardOrigin(
+  { reasons, selection }: Pick<VerdictResult, "reasons" | "selection">,
+  top: string | undefined,
+): string | null {
+  if (selection !== null) return null;
+  const rated = reasons.find((r) => r.code === "rated");
+  if (rated && "origin" in rated && rated.origin) return rated.origin;
+  return top ?? null;
+}
+
 export function tags(item: AppItem, markers: readonly Marker[]): string[] {
   const out: string[] = [];
   if (item.inputs.alwaysGood) out.push("Always good");
@@ -154,7 +167,7 @@ export function todayView(data: AppData, date: PlainDate, mode: "today" | "typic
   const cards = new Map<string, Card>();
   const entries: TodayEntry[] = data.items.map((item) => {
     const result = evaluate(item.inputs, { date }, data.env);
-    const top = item.inputs.typicalOrigins[Math.floor(window / 2)]?.[0];
+    const origin = cardOrigin(result, item.inputs.typicalOrigins[Math.floor(window / 2)]?.[0]);
     const reason = reasonText(result.verdict, result.reasons, result.markers);
     cards.set(item.inputs.id, {
       id: item.inputs.id,
@@ -163,7 +176,7 @@ export function todayView(data: AppData, date: PlainDate, mode: "today" | "typic
       varietyLine: varietyLine(item, result),
       verdict: result.verdict,
       reason: isGeneric(reason) ? null : atDate(reason, mode),
-      origin: top === undefined ? null : originName(top, data),
+      origin: origin === null ? null : originName(origin, data),
       tags: tags(item, result.markers),
       group: item.group,
       pick: item.cardLine,
