@@ -9,7 +9,7 @@ types:
     note: Squat and tomato-shaped; eat it crisp like an apple, or soft.
   - id: hachiya
     name: Hachiya
-    note: Acorn-shaped; bitter until it is jelly-soft all the way through.
+    note: Acorn-shaped; mouth-puckering until it is jelly-soft all the way through.
 purchaseRank: 31
 alwaysGood: false
 shipsWell:
@@ -36,10 +36,10 @@ store:
   temperature: room
   ethylene: sensitive
   life: { min: 3, max: 14, unit: days }
-  text: Ripen on the counter away from bananas and apples, then chill ripe fruit for a few days.
+  text: Keep firm Fuyus on the counter, away from bananas and apples, which soften them. Chill ripe fruit and eat it within a few days.
   sources: [ucdavis-postharvest-persimmon]
 ripen:
-  text: Hachiyas stay astringent until jelly-soft; ripening near ethylene speeds softening.
+  text: Hachiyas stay astringent until jelly-soft, which can take a week or more on the counter. A paper bag with a banana or apple speeds it up.
   sources: [ucdavis-postharvest-persimmon]
 prep: Rinse and slice a Fuyu, skin and all. Halve a soft Hachiya and scoop out the pulp.
 origins:

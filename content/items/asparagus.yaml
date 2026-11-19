@@ -78,4 +78,9 @@ origins:
       - { from: may-1, to: jun-2, rating: prime }
       - { from: jul-1, to: jul-1, rating: fair }
       - { from: jul-2, to: dec-2, rating: poor }
+selections:
+  - id: us-spring
+    label: US-grown spring asparagus
+    cue: From April to June, look for Michigan, Washington or California on the band, label or sign; most asparagus sold year-round comes from Mexico or Peru. Pick firm spears with tight tips and moist cut ends, and cook them within a day or two.
+    origins: [us-mi, us-wa, us-ca]
 status: draft
