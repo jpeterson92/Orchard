@@ -60,6 +60,23 @@ items:
     - gold nugget
     - nuggets
     - cuties
+  asparagus: [asparagus, spears]
+  artichokes: [artichoke, artichokes]
+  brussels-sprouts: [brussels sprouts, brussel sprouts, sprouts]
+  collard-greens: [collard, collards, collard greens]
+  winter-squash:
+    [
+      winter squash,
+      butternut,
+      acorn squash,
+      spaghetti squash,
+      kabocha,
+      delicata,
+      pie pumpkin,
+      pie pumpkins,
+      sugar pumpkin,
+      squash,
+    ]
 
 pages:
   - source: msstate-fruits-vegetables-in-season
@@ -607,3 +624,88 @@ pages:
     kind: item-page
     origin: us-fl
     items: [oranges]
+  - source: michigan-asparagus-board
+    url: https://michiganasparagus.org/
+    kind: item-page
+    origin: us-mi
+    items: [asparagus]
+  - source: washington-asparagus-commission
+    url: https://waasparagus.com/
+    kind: item-page
+    origin: us-wa
+    items: [asparagus]
+  - source: freshplaza-michigan-asparagus-sweet-spot
+    url: https://www.freshplaza.com/north-america/article/2174625/mid-may-to-mid-june-is-sweet-spot-for-michigan-asparagus
+    kind: item-page
+    origin: us-mi
+    items: [asparagus]
+  - source: freshplaza-washington-asparagus-early
+    url: https://www.freshplaza.com/north-america/article/2108181/us-wa-asparagus-season-gets-an-early-start/
+    kind: item-page
+    origin: us-wa
+    items: [asparagus]
+  - source: umn-asparagus
+    url: https://reallifegoodfood.umn.edu/vegetables/asparagus
+    kind: item-page
+    origin: us
+    items: [asparagus]
+  - source: kitchn-asparagus-guide
+    url: https://www.thekitchn.com/how-to-cook-asparagus-the-complete-guide-from-kitchn-242640
+    kind: item-page
+    origin: us
+    items: [asparagus]
+  - source: healthyfamily-asparagus
+    url: https://www.healthyfamilyproject.com/produce-tips/asparagus
+    kind: item-page
+    origin: us
+    items: [asparagus]
+  - source: metropolitan-market-asparagus
+    url: https://www.metropolitan-market.com/learn/asparagus-101
+    kind: item-page
+    origin: us
+    items: [asparagus]
+  - source: freshplaza-peru-asparagus-volume
+    url: https://www.freshplaza.com/north-america/article/2186868/white-and-green-asparagus-from-peru-has-good-volume/
+    kind: item-page
+    origin: pe
+    items: [asparagus]
+  - source: freshplaza-peru-mexico-asparagus-on-time
+    url: https://www.freshplaza.com/europe/article/9650141/peru-and-mexico-asparagus-seasons-back-to-starting-on-time/
+    kind: item-page
+    origin: mx
+    items: [asparagus]
+  - source: osu-ohioline-asparagus
+    url: https://ohioline.osu.edu/factsheet/hyg-5508
+    kind: item-page
+    origin: us
+    items: [asparagus]
+  - source: tastingtable-out-of-season-asparagus
+    url: https://www.tastingtable.com/2051452/vegetable-dont-buy-out-of-season-asapragus
+    kind: item-page
+    origin: us
+    items: [asparagus]
+  - source: freshplaza-caborca-asparagus
+    url: https://www.freshplaza.com/north-america/article/9706491/abundant-asparagus-supply-from-caborca-mexico-expected/
+    kind: item-page
+    origin: mx
+    items: [asparagus]
+  - source: freshplaza-asparagus-regional-diversification
+    url: https://www.freshplaza.com/north-america/article/9831640/regional-diversification-has-been-essential-in-maintaining-reliable-asparagus-supply/
+    kind: item-page
+    origin: mx
+    items: [asparagus]
+  - source: usda-hb66-asparagus
+    url: https://webarchive.library.unt.edu/eot2008/20090305020046/http:/www.ba.ars.usda.gov/hb66/032asparagus.pdf
+    kind: item-page
+    origin: us
+    items: [asparagus]
+  - source: freshplaza-asparagus-year-round-mexico-peru
+    url: https://www.freshplaza.com/north-america/article/9714826/asparagus-expansion-into-mexico-and-peru-enables-year-round-supply/
+    kind: item-page
+    origin: mx
+    items: [asparagus]
+  - source: freshplaza-asparagus-crossover-season
+    url: https://www.freshplaza.com/north-america/article/9104809/asparagus-supplies-in-crossover-season/
+    kind: item-page
+    origin: mx
+    items: [asparagus]

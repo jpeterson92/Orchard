@@ -720,3 +720,105 @@
   accessed: 2026-11-18
   tier: mainstream
   basedOn: halegroves-florida-oranges
+- id: michigan-asparagus-board
+  title: "Michigan Asparagus"
+  publisher: Michigan Asparagus Advisory Board
+  url: https://michiganasparagus.org/
+  accessed: 2026-11-18
+  tier: authoritative
+- id: washington-asparagus-commission
+  title: "Washington Asparagus"
+  publisher: Washington Asparagus Commission
+  url: https://waasparagus.com/
+  accessed: 2026-11-18
+  tier: authoritative
+- id: freshplaza-michigan-asparagus-sweet-spot
+  title: "Mid-May to mid-June is sweet spot for Michigan asparagus"
+  publisher: FreshPlaza
+  url: https://www.freshplaza.com/north-america/article/2174625/mid-may-to-mid-june-is-sweet-spot-for-michigan-asparagus
+  accessed: 2026-11-18
+  tier: mainstream
+- id: freshplaza-washington-asparagus-early
+  title: "US (WA): Asparagus season gets an early start"
+  publisher: FreshPlaza
+  url: https://www.freshplaza.com/north-america/article/2108181/us-wa-asparagus-season-gets-an-early-start/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: umn-asparagus
+  title: "Asparagus"
+  publisher: University of Minnesota Extension
+  url: https://reallifegoodfood.umn.edu/vegetables/asparagus
+  accessed: 2026-11-18
+  tier: authoritative
+- id: kitchn-asparagus-guide
+  title: "How to Buy, Store, Prep, and Cook Asparagus"
+  publisher: The Kitchn
+  url: https://www.thekitchn.com/how-to-cook-asparagus-the-complete-guide-from-kitchn-242640
+  accessed: 2026-11-18
+  tier: mainstream
+- id: healthyfamily-asparagus
+  title: "Asparagus"
+  publisher: Healthy Family Project
+  url: https://www.healthyfamilyproject.com/produce-tips/asparagus
+  accessed: 2026-11-18
+  tier: mainstream
+- id: metropolitan-market-asparagus
+  title: "Asparagus 101"
+  publisher: Metropolitan Market
+  url: https://www.metropolitan-market.com/learn/asparagus-101
+  accessed: 2026-11-18
+  tier: mainstream
+- id: freshplaza-peru-asparagus-volume
+  title: "White and green asparagus from Peru has good volume"
+  publisher: FreshPlaza
+  url: https://www.freshplaza.com/north-america/article/2186868/white-and-green-asparagus-from-peru-has-good-volume/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: freshplaza-peru-mexico-asparagus-on-time
+  title: "Peru and Mexico asparagus seasons back to starting on time"
+  publisher: FreshPlaza
+  url: https://www.freshplaza.com/europe/article/9650141/peru-and-mexico-asparagus-seasons-back-to-starting-on-time/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: osu-ohioline-asparagus
+  title: "Selecting, Storing and Serving Ohio Asparagus"
+  publisher: Ohio State University Extension
+  url: https://ohioline.osu.edu/factsheet/hyg-5508
+  accessed: 2026-11-18
+  tier: authoritative
+- id: tastingtable-out-of-season-asparagus
+  title: "Why You Should Think Twice Before Buying Out-Of-Season Asparagus"
+  publisher: Tasting Table
+  url: https://www.tastingtable.com/2051452/vegetable-dont-buy-out-of-season-asapragus
+  accessed: 2026-11-18
+  tier: mainstream
+- id: freshplaza-caborca-asparagus
+  title: "Abundant asparagus supply from Caborca, Mexico expected"
+  publisher: FreshPlaza
+  url: https://www.freshplaza.com/north-america/article/9706491/abundant-asparagus-supply-from-caborca-mexico-expected/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: freshplaza-asparagus-regional-diversification
+  title: "Regional diversification has been essential in maintaining reliable asparagus supply"
+  publisher: FreshPlaza
+  url: https://www.freshplaza.com/north-america/article/9831640/regional-diversification-has-been-essential-in-maintaining-reliable-asparagus-supply/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: usda-hb66-asparagus
+  title: "Asparagus (Agriculture Handbook 66: The Commercial Storage of Fruits, Vegetables, and Florist and Nursery Stocks)"
+  publisher: USDA Agricultural Research Service
+  url: https://webarchive.library.unt.edu/eot2008/20090305020046/http:/www.ba.ars.usda.gov/hb66/032asparagus.pdf
+  accessed: 2026-11-18
+  tier: authoritative
+- id: freshplaza-asparagus-year-round-mexico-peru
+  title: "Asparagus expansion into Mexico and Peru enables year-round supply"
+  publisher: FreshPlaza
+  url: https://www.freshplaza.com/north-america/article/9714826/asparagus-expansion-into-mexico-and-peru-enables-year-round-supply/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: freshplaza-asparagus-crossover-season
+  title: "Asparagus supplies in crossover season"
+  publisher: FreshPlaza
+  url: https://www.freshplaza.com/north-america/article/9104809/asparagus-supplies-in-crossover-season/
+  accessed: 2026-11-18
+  tier: mainstream
