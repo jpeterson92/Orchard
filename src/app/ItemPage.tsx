@@ -1,7 +1,6 @@
 // Item page (product spec §4 "Item page order", §5 "Item page"). One readable column in the spec's order, the
 // in-store answer first: the verdict and why, then varieties, how to pick and store. What the verdict rests on is one
 // tap away under "About this verdict". On wide screens the artwork takes a column of its own.
-// Not yet here: the variety guide link (M7).
 import { useState } from "react";
 import { Link, useLocation, useParams } from "react-router";
 import appJson from "../generated/app.json";
@@ -195,6 +194,15 @@ function Item({ view, mode }: { view: ItemView; mode: Mode }) {
           ))}
         </dl>
       </Section>
+
+      {view.guide && (
+        <Section title="Variety guide">
+          <p>Every variety side by side, including ones not rated here: traits and best uses.</p>
+          <Link to={`/guides/${view.guide}`} className={linkClass}>
+            Open the variety guide <span aria-hidden>→</span>
+          </Link>
+        </Section>
+      )}
 
       <Section title="Prep and use">
         <p>{view.prep}</p>

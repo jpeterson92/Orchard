@@ -175,8 +175,8 @@ An item that is both Peak and Last call appears once, under Best right now, carr
 - **How to pick:** 3–5 cues (look, feel, smell, weight), 1–2 "avoid" cues, and a type note where the type changes the advice.
 - **Store and ripen:** typical ranges, never guarantees, each with its ripeness assumption. For example: "Firm Hass: 3–5 days on the counter to ripen. Ripe: 2–3 days in the fridge."
 - **Typical seasonal outlook:** 24 half-month cells, with today marked. A band underneath shows the typical main supply origins by month.
-- **Varieties now** (items rated by variety): each variety's verdict for today and its quality across the year as a 24-window strip, best right now first, each with its confidence. A variety without variety-specific evidence is listed without a rating, never ranked.
-- **Variety guide** (where one exists): a link to the item's guide.
+- **Varieties now** (items rated by variety): each variety's verdict for today and its quality across the year as a 24-window strip, best right now first, each with its confidence. Only rated varieties appear here; the variety guide lists the rest, without a rating and never ranked.
+- **Variety guide** (where one exists): a link to the item's guide (`/guides/<id>`).
 - **Value note** (v1.1): e.g. "Advertised more than usual nationally this week." It never changes the verdict.
 - **Prep and use:** 2–4 lines.
 
@@ -196,6 +196,7 @@ An item that is both Peak and Last call appears once, under Best right now, carr
 | Chiles & peppers | Heat range, sweetness, wall thickness |
 | Winter squash | Sweetness, dry ↔ moist flesh, ease of peeling |
 
+- **Every variety** of the guide's items: its scores as five dots with the number, best uses, its ripe cue (pears) and, where rated, today's verdict. Rated varieties in stores come first, best first; unrated ones follow, A to Z. The scales' anchors close the page.
 - **Finder:** filter by use and by the group's traits. Results update instantly.
 - **Phone:** variety cards. **Tablet and desktop:** a sortable comparison table.
 - **Variety page:** traits, best uses, its quality across the year (only where evidence exists), what the label or price-lookup (PLU) sticker typically says, and "can't find it? try…". The label is the authority on identity. Pictures are decorative, and pages don't claim shoppers can tell similar varieties apart by sight.

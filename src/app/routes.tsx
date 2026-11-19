@@ -4,6 +4,7 @@ import type { AppData } from "../shared/app-data";
 import { Methods, Privacy } from "./About";
 import { Browse, BrowseCategory } from "./Browse";
 import { Calendar } from "./Calendar";
+import { Guide } from "./Guide";
 import { ItemPage } from "./ItemPage";
 import { TabBar } from "./Nav";
 import { SearchProvider } from "./Search";
@@ -50,14 +51,15 @@ export const routes: RouteObject[] = [
       { path: "/browse/:category", element: <BrowseCategory /> },
       { path: "/calendar", element: <Calendar /> },
       { path: "/items/:id", element: <ItemPage /> },
+      { path: "/guides/:id", element: <Guide /> },
       { path: "/methods", element: <Methods /> },
       { path: "/privacy", element: <Privacy /> },
     ],
   },
 ];
 
-// Routes written to static HTML at build time: Today, Browse and each category, Calendar, Methods, Privacy, and one
-// page per bundled item.
+// Routes written to static HTML at build time: Today, Browse and each category, Calendar, Methods, Privacy, one page per
+// bundled item, and one per variety guide.
 export const prerenderPaths = [
   "/",
   "/browse",
@@ -66,4 +68,5 @@ export const prerenderPaths = [
   "/methods",
   "/privacy",
   ...data.items.map((i) => `/items/${i.inputs.id}`),
+  ...data.guides.map((g) => `/guides/${g.id}`),
 ];

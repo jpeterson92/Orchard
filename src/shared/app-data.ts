@@ -16,6 +16,19 @@ export interface AppVariety {
   cue: string | null;
   /** Asset id of the variety's own painting (src/shared/art.ts), or null: the placeholder shows. */
   art: string | null;
+  /** Its value on each of its guide's 1–5 scales; a trait no source places it on is absent. */
+  traits: Record<string, number>;
+  /** How to tell when it's ripe, on guides with ripe cues (pears). */
+  ripeCue: string | null;
+}
+
+/** A variety guide (product spec §5 "Variety guide"): its items and its anchored 1–5 scales. */
+export interface AppGuide {
+  id: string;
+  name: string;
+  items: string[];
+  ripeCues: boolean;
+  traits: { id: string; name: string; anchors: Record<1 | 3 | 5, { text: string; varieties: string[] }> }[];
 }
 
 export interface AppItem {
@@ -36,6 +49,8 @@ export interface AppItem {
   /** Type notes, shown with the pick cues where the type changes the advice. */
   types: { name: string; note: string | null }[];
   varieties: AppVariety[];
+  /** The id of the variety guide covering it, or null. */
+  guide: string | null;
   /** P16: what to look for when a selection makes the item Peak. */
   selections: { id: string; label: string; cue: string }[];
   /** Asset id of the item's thumbnail, or null: the placeholder shows (dev and preview only). */
@@ -55,6 +70,7 @@ export interface AppCategory {
 export interface AppData {
   env: Env;
   items: AppItem[];
+  guides: AppGuide[];
   categories: AppCategory[];
   /** US state origins (`us-wa`) to names; countries are named with Intl.DisplayNames. */
   stateNames: Record<string, string>;
@@ -101,12 +117,22 @@ export function appData(data: Dataset, builtOn: string, art: ArtMap, about: Abou
         bestUses: v.bestUses,
         cue: v.cue ?? null,
         art: art.varieties[`${item.id}/${v.id}`] ?? null,
+        traits: v.traits,
+        ripeCue: v.ripeCue ?? null,
       })),
+      guide: data.guides.find((g) => g.items.includes(item.id))?.id ?? null,
       selections: item.selections.map((s) => ({ id: s.id, label: s.label, cue: s.cue })),
       art: art.items[item.id] ?? null,
       status: item.status,
       reviewedOn: item.reviewedOn ?? null,
       synthetic: item.synthetic === true,
+    })),
+    guides: data.guides.map((g) => ({
+      id: g.id,
+      name: g.name,
+      items: g.items,
+      ripeCues: g.ripeCues,
+      traits: g.traits.map((t) => ({ id: t.id, name: t.name, anchors: t.anchors })),
     })),
     categories: data.categories
       .filter((c) => data.items.some((i) => i.category === c.id))

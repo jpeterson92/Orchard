@@ -49,7 +49,6 @@ export interface VarietyRow {
   name: string;
   /** The variety's own painting, or null for the placeholder (never its item's art). */
   art: string | null;
-  /** Null for a variety without variety-specific evidence: listed, never ranked. */
   verdict: Verdict | null;
   confidence: Confidence | null;
   inStore: boolean;
@@ -81,7 +80,10 @@ export interface ItemView {
   /** The "Depends on the label" note applies: the label control then sits just below the notes. */
   labelNote: boolean;
   labelChoices: LabelChoices;
+  /** Rated varieties only. */
   varieties: VarietyRow[];
+  /** The id of the item's variety guide, or null. */
+  guide: string | null;
   /** Items rated by variety: where each rated variety falls today, for a quick check at the top of the page. */
   varietySummary: VarietyGroup[];
   pick: string[];
@@ -238,7 +240,7 @@ export function itemView(
       label.push(`often disappointing from ${originName(r.origin, data)}`);
   if (label.length > 0) notes.push(`Depends on the label: ${label.join("; ")}.`);
 
-  const rated = new Set(item.inputs.varieties.map((v) => v.id));
+  // Rated varieties only: the variety guide lists the rest (product spec §5).
   const varieties: VarietyRow[] = item.inputs.varieties
     .map((v) => {
       const r = result.byVariety[v.id];
@@ -259,17 +261,6 @@ export function itemView(
         verdictRank(b.verdict ?? "limited") - verdictRank(a.verdict ?? "limited") ||
         confidenceRank(b.confidence ?? "low") - confidenceRank(a.confidence ?? "low"),
     );
-  for (const v of item.varieties)
-    if (!rated.has(v.id))
-      varieties.push({
-        id: v.id,
-        name: v.name,
-        art: v.art,
-        verdict: null,
-        confidence: null,
-        inStore: false,
-        outlook: null,
-      });
 
   const supplyBacked = item.inputs.evidenceBasis === "supply+assessment";
   const reviewed = item.status === "reviewed";
@@ -295,6 +286,7 @@ export function itemView(
     labelNote: result.labelNote,
     labelChoices: labelChoices(item, data, window),
     varieties,
+    guide: item.guide,
     varietySummary: varietySummary(varieties),
     pick: item.pick,
     avoid: item.avoid,

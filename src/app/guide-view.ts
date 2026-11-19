@@ -1,0 +1,81 @@
+// A variety guide for a date (product spec §5 "Variety guide"): every variety of its items with its traits, uses and,
+// where it is rated, today's verdict. Unrated varieties live here rather than on the item page.
+import type { AppData, AppGuide } from "../shared/app-data";
+import { evaluate, type PlainDate, type Verdict, verdictRank } from "../shared/verdict";
+
+export interface GuideRow {
+  /** `item/variety`: unique across a guide's items. */
+  key: string;
+  item: string;
+  itemName: string;
+  name: string;
+  art: string | null;
+  /** Null for a variety without variety-specific evidence: never ranked. */
+  verdict: Verdict | null;
+  inStore: boolean;
+  bestUses: string[];
+  traits: Record<string, number>;
+  ripeCue: string | null;
+}
+
+export interface GuideView {
+  guide: AppGuide;
+  /** Variety names by id, for the anchors' reference varieties. */
+  names: Record<string, string>;
+  /** Shown when the guide covers more than one item (mandarins & oranges). */
+  multiItem: boolean;
+  rows: GuideRow[];
+}
+
+/** What a column sorts by: today's verdict, the name, or a trait id. */
+export type SortKey = "now" | "name" | (string & {});
+
+export function guideView(data: AppData, id: string, date: PlainDate): GuideView | null {
+  const guide = data.guides.find((g) => g.id === id);
+  if (!guide) return null;
+  const names: Record<string, string> = {};
+  const rows: GuideRow[] = [];
+  for (const itemId of guide.items) {
+    const item = data.items.find((i) => i.inputs.id === itemId);
+    if (!item) continue;
+    const rated = new Set(item.inputs.varieties.map((v) => v.id));
+    const result = rated.size > 0 ? evaluate(item.inputs, { date }, data.env) : null;
+    for (const v of item.varieties) {
+      names[v.id] = v.name;
+      const r = rated.has(v.id) ? result?.byVariety[v.id] : undefined;
+      rows.push({
+        key: `${itemId}/${v.id}`,
+        item: itemId,
+        itemName: item.name,
+        name: v.name,
+        art: v.art,
+        verdict: r?.verdict ?? null,
+        inStore: r?.inStore ?? false,
+        bestUses: v.bestUses,
+        traits: v.traits,
+        ripeCue: v.ripeCue,
+      });
+    }
+  }
+  return { guide, names, multiItem: guide.items.length > 1, rows: sortRows(rows, "now") };
+}
+
+/** Rank for "now": rated and in stores by verdict, then rated but out of stores; unrated has none. */
+function nowRank(r: GuideRow): number | undefined {
+  if (r.verdict === null) return undefined;
+  return r.inStore ? verdictRank(r.verdict) : -1;
+}
+
+/** Rows sorted by a column. "now" and traits default to best or most first; a variety with no value (unrated, or no
+ * source for the trait) always sorts last. Ties keep A to Z. */
+export function sortRows(rows: readonly GuideRow[], key: SortKey, descending = key !== "name"): GuideRow[] {
+  const byName = [...rows].sort((a, b) => a.name.localeCompare(b.name, "en"));
+  if (key === "name") return descending ? byName.reverse() : byName;
+  const value = (r: GuideRow) => (key === "now" ? nowRank(r) : r.traits[key]);
+  return byName.sort((a, b) => {
+    const x = value(a);
+    const y = value(b);
+    if (x === undefined || y === undefined) return x === undefined ? (y === undefined ? 0 : 1) : -1;
+    return descending ? y - x : x - y;
+  });
+}
