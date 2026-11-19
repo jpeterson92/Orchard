@@ -206,12 +206,12 @@ export function itemView(
   if (selection) notes.push(`How to find it: ${selection.cue}`);
   // P9, P17: which origins are at their best, and which often disappoint.
   const label: string[] = [];
-  for (const r of result.reasons) {
+  for (const r of result.reasons)
     if (r.code === "peak-origins")
       label.push(`best now from ${listNames(r.origins.map((o) => originName(o, data)))}`);
+  for (const r of result.reasons)
     if (r.code === "typical-origin-poor")
       label.push(`often disappointing from ${originName(r.origin, data)}`);
-  }
   if (label.length > 0) notes.push(`Depends on the label: ${label.join("; ")}.`);
 
   const rated = new Set(item.inputs.varieties.map((v) => v.id));
