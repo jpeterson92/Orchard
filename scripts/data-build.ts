@@ -64,6 +64,7 @@ const raw: RawInputs = {
   categories: yaml("data/categories.yaml"),
   states,
   items: [...yamlFiles("content/items"), ...(fixtures ? yamlFiles(`${fixtures}/items`) : [])],
+  guides: yaml("content/guides.yaml"),
   evidence: [...yamlFiles("content/evidence"), ...(fixtures ? yamlFiles(`${fixtures}/evidence`) : [])],
   typicalOrigins: csv("data/usda/typical-origins.csv", ["item", "month", "rank", "origin", "major", "share"]),
   supplyIndex: csv("data/usda/supply-index.csv", ["item", "month", "origin", "value", "reason"]),

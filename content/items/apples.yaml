@@ -37,9 +37,10 @@ prep: Rinse just before eating, not before storing. Cut apples brown quickly; a 
 varieties:
   - id: honeycrisp
     name: Honeycrisp
-    traits: {}
+    traits: { sweetness: 4, tartness: 3, crispness: 5, juiciness: 5, holds-shape: 4 }
     bestUses: [Snacking, salads]
     label: Honeycrisp
+    sources: [usapple-honeycrisp, veritable-apple-guide, atk-apples-for-cooking, umd-apple-cultivars]
     storesWell:
       value: false
       sources: [eatlikenoone-honeycrisp-fall, producebusiness-apples-winter]
@@ -52,9 +53,10 @@ varieties:
     quotedAs: [honeycrisp]
   - id: gala
     name: Gala
-    traits: {}
+    traits: { sweetness: 4, tartness: 2, crispness: 3, juiciness: 3, holds-shape: 3 }
     bestUses: [Snacking, lunch boxes]
     label: Gala or Royal Gala
+    sources: [usapple-gala, veritable-apple-guide, atk-apples-for-cooking, rutgers-apple-varieties]
     windows:
       - { from: jan-1, to: jul-1, rating: fair }
       - { from: aug-2, to: nov-2, rating: prime }
@@ -62,26 +64,30 @@ varieties:
     quotedAs: [gala, royal-gala]
   - id: fuji
     name: Fuji
-    traits: {}
+    traits: { sweetness: 5, tartness: 1, crispness: 4, juiciness: 4, holds-shape: 4 }
     bestUses: [Snacking, salads]
     label: Fuji
+    sources: [usapple-fuji, veritable-apple-guide, fruitguys-sweetest-apples]
     windows:
       - { from: jan-1, to: sep-2, rating: fair }
       - { from: oct-1, to: dec-2, rating: prime }
     quotedAs: [fuji]
   - id: granny-smith
     name: Granny Smith
-    traits: {}
+    traits: { sweetness: 1, tartness: 5, crispness: 4, juiciness: 3, holds-shape: 5 }
     bestUses: [Baking, pies, salads]
     label: Granny Smith
+    sources: [usapple-granny-smith, veritable-apple-guide, atk-apples-for-cooking, umd-apple-cultivars]
     windows:
       - { from: jan-1, to: dec-2, rating: fair }
     quotedAs: [granny-smith]
   - id: pink-lady
     name: Pink Lady
-    traits: {}
+    traits: { sweetness: 3, tartness: 4, crispness: 4, juiciness: 4, holds-shape: 5 }
     bestUses: [Snacking, baking]
     label: Pink Lady or Cripps Pink
+    sources:
+      [veritable-apple-guide, atk-apples-for-cooking, rutgers-apple-varieties, almanac-best-apples-baking]
     windows:
       - { from: jan-1, to: jan-2, rating: prime }
       - { from: feb-1, to: sep-2, rating: fair }
@@ -91,9 +97,10 @@ varieties:
     quotedAs: [pink-lady-cripps-pink]
   - id: cosmic-crisp
     name: Cosmic Crisp
-    traits: {}
-    bestUses: [Snacking, salads, baking]
+    traits: { sweetness: 3, tartness: 3, crispness: 5, juiciness: 4 }
+    bestUses: [Snacking, salads, slicing ahead]
     label: Cosmic Crisp
+    sources: [veritable-apple-guide, fruitguys-sweetest-apples, theproducemoms-apples-sweet-to-tart]
     windows:
       - { from: jan-1, to: oct-2, rating: fair }
       - from: nov-1
@@ -102,4 +109,40 @@ varieties:
         reason: Washington State University CAHNRS rates eating quality prime here, outweighing the model panel's fair.
       - { from: dec-1, to: dec-2, rating: fair }
     quotedAs: [cosmic-crisp]
+  - id: red-delicious
+    name: Red Delicious
+    traits: { sweetness: 4, tartness: 1, crispness: 3, juiciness: 3, holds-shape: 1 }
+    bestUses: [Eating fresh, salads]
+    label: Red Delicious
+    sources: [usapple-red-delicious, atk-apples-for-cooking, theproducemoms-apples-sweet-to-tart]
+  - id: golden-delicious
+    name: Golden Delicious
+    traits: { sweetness: 4, tartness: 2, crispness: 3, juiciness: 2, holds-shape: 2 }
+    bestUses: [Applesauce, pies mixed with a tart apple]
+    label: Golden Delicious
+    sources: [usapple-golden-delicious, umd-apple-cultivars, atk-apples-for-cooking, veritable-apple-guide]
+  - id: ambrosia
+    name: Ambrosia
+    traits: { sweetness: 5, tartness: 1, crispness: 4, juiciness: 4, holds-shape: 4 }
+    bestUses: [Snacking, salads, baked apples]
+    label: Ambrosia
+    sources: [veritable-apple-guide, theproducemoms-apples-sweet-to-tart]
+  - id: mcintosh
+    name: McIntosh
+    traits: { sweetness: 2, tartness: 4, crispness: 1, juiciness: 5, holds-shape: 1 }
+    bestUses: [Applesauce, snacking]
+    label: McIntosh
+    sources: [usapple-mcintosh, veritable-apple-guide, atk-apples-for-cooking]
+  - id: braeburn
+    name: Braeburn
+    traits: { sweetness: 3, tartness: 3, crispness: 4, juiciness: 4, holds-shape: 5 }
+    bestUses: [Snacking, pies and crisps]
+    label: Braeburn
+    sources: [veritable-apple-guide, fruitguys-sweetest-apples, atk-apples-for-cooking, umd-apple-cultivars]
+  - id: jazz
+    name: Jazz
+    traits: { sweetness: 3, tartness: 3, crispness: 4, holds-shape: 4 }
+    bestUses: [Snacking, pies]
+    label: Jazz or Scifresh
+    sources: [veritable-apple-guide, almanac-best-apples-baking]
 status: draft

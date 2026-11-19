@@ -1,5 +1,6 @@
-# Variety guide trait scales (product spec §5 Variety guide). DRAFT, not yet read by data:build:
-# the schema (guideSchema) and its checks are the next step. Anchors at 1, 3 and 5 name reference varieties.
+# The variety guides (product spec §5 Variety guide): each guide's items and its 1–5 trait scales.
+# Anchors at 1, 3 and 5 name reference varieties, which carry that value; [] where no guide variety sits there.
+# Each variety's traits, cited, are in its item file. Checked by data:build.
 - id: apples
   name: Apples
   items: [apples]
@@ -8,33 +9,33 @@
     - id: sweetness
       name: Sweetness
       anchors:
-        1: { text: Barely sweet; sharp, varieties: [granny-smith] }
-        3: { text: Moderately sweet, varieties: [braeburn] }
-        5: { text: Very sweet, little acid to balance it, varieties: [fuji] }
+        1: { text: "Barely sweet; sharp", varieties: [granny-smith] }
+        3: { text: "Moderately sweet", varieties: [braeburn] }
+        5: { text: "Very sweet, little acid to balance it", varieties: [fuji] }
     - id: tartness
       name: Tartness
       anchors:
-        1: { text: Barely tart, varieties: [fuji] }
-        3: { text: Balanced sweet and tart, varieties: [honeycrisp] }
-        5: { text: Very tart, varieties: [granny-smith] }
+        1: { text: "Barely tart", varieties: [fuji] }
+        3: { text: "Balanced sweet and tart", varieties: [honeycrisp] }
+        5: { text: "Very tart", varieties: [granny-smith] }
     - id: crispness
       name: Crispness when raw
       anchors:
-        1: { text: Tender, soft bite, varieties: [mcintosh] }
-        3: { text: Firm but not snappy, varieties: [gala] }
-        5: { text: Explosively crisp, varieties: [honeycrisp] }
+        1: { text: "Tender, soft bite", varieties: [mcintosh] }
+        3: { text: "Firm but not snappy", varieties: [gala] }
+        5: { text: "Explosively crisp", varieties: [honeycrisp] }
     - id: juiciness
       name: Juiciness
       anchors:
-        1: { text: Fairly dry flesh, varieties: [red-delicious] }
-        3: { text: Moderately juicy, varieties: [gala] }
-        5: { text: Very juicy, varieties: [honeycrisp] }
+        1: { text: "Dry, mealy flesh", varieties: [] }
+        3: { text: "Moderately juicy", varieties: [gala] }
+        5: { text: "Very juicy", varieties: [honeycrisp] }
     - id: holds-shape
       name: Holds shape when baked
       anchors:
-        1: { text: Cooks down to sauce, varieties: [mcintosh] }
-        3: { text: Softens; mix with a firmer apple, varieties: [gala] }
-        5: { text: Slices stay intact in a pie, varieties: [granny-smith] }
+        1: { text: "Cooks down to sauce", varieties: [mcintosh] }
+        3: { text: "Softens; mix with a firmer apple", varieties: [gala] }
+        5: { text: "Slices stay intact in a pie", varieties: [granny-smith] }
 - id: pears
   name: Pears
   items: [pears]
@@ -43,27 +44,27 @@
     - id: sweetness
       name: Sweetness when ripe
       anchors:
-        1: { text: Mildly sweet, varieties: [starkrimson] }
-        3: { text: Sweet with a light tang, varieties: [anjou] }
-        5: { text: Very sweet, varieties: [comice] }
+        1: { text: "Barely sweet", varieties: [] }
+        3: { text: "Mildly sweet", varieties: [anjou, starkrimson] }
+        5: { text: "Very sweet", varieties: [comice] }
     - id: texture
       name: Texture when ripe
       anchors:
-        1: { text: Soft, buttery and melting, varieties: [comice] }
-        3: { text: Smooth but holds together, varieties: [anjou] }
-        5: { text: Crisp and dense even when ripe, varieties: [concorde] }
+        1: { text: "Soft, buttery and melting", varieties: [comice] }
+        3: { text: "Smooth but holds together", varieties: [anjou] }
+        5: { text: "Crisp and dense even when ripe", varieties: [concorde] }
     - id: juiciness
       name: Juiciness
       anchors:
-        1: { text: Dense, modest juice, varieties: [bosc] }
-        3: { text: Juicy, varieties: [anjou] }
-        5: { text: Drips when cut, varieties: [comice] }
+        1: { text: "Dry, modest juice", varieties: [] }
+        3: { text: "Juicy but dense", varieties: [anjou, bosc] }
+        5: { text: "Drips when cut", varieties: [comice] }
     - id: holds-shape
       name: Holds shape when baked
       anchors:
-        1: { text: Too soft and juicy to cook, varieties: [comice] }
-        3: { text: Bakes well if still firm, varieties: [bartlett] }
-        5: { text: Stays whole when poached or roasted, varieties: [bosc] }
+        1: { text: "Too soft and juicy to cook", varieties: [comice] }
+        3: { text: "Bakes well if still firm", varieties: [bartlett] }
+        5: { text: "Stays whole when poached or roasted", varieties: [bosc] }
 - id: citrus
   name: Mandarins & oranges
   items: [mandarins, oranges]
@@ -72,30 +73,30 @@
     - id: sweetness
       name: Sweetness
       anchors:
-        1: { text: Tangy more than sweet, varieties: [minneola] }
-        3: { text: Sweet with a balancing tang, varieties: [navel] }
-        5: { text: Very sweet, varieties: [sumo] }
+        1: { text: "Tangy more than sweet", varieties: [minneola] }
+        3: { text: "Sweet with a balancing tang", varieties: [navel] }
+        5: { text: "Very sweet", varieties: [sumo] }
     - id: acidity
       name: Acidity
       anchors:
-        1: { text: Low acid, mellow, varieties: [cara-cara] }
-        3: { text: Balanced, varieties: [navel] }
-        5: { text: Bold, tangy bite, varieties: [minneola] }
+        1: { text: "Low acid, mellow", varieties: [cara-cara] }
+        3: { text: "Balanced", varieties: [navel] }
+        5: { text: "Bold, tangy bite", varieties: [minneola] }
     - id: ease-of-peeling
       name: Ease of peeling
       anchors:
-        1: { text: Peel clings; easier to cut, varieties: [valencia] }
-        3: { text: Peels with some effort, varieties: [minneola] }
-        5: { text: Loose skin slips off, varieties: [satsuma] }
+        1: { text: "Peel clings; easier to cut into wedges", varieties: [] }
+        3: { text: "Peels with some effort", varieties: [minneola] }
+        5: { text: "Loose skin slips off", varieties: [satsuma] }
     - id: seeds
       name: Seeds
       anchors:
-        1: { text: Seedless, varieties: [navel] }
-        3: { text: Usually seedless; a few possible, varieties: [w-murcott] }
-        5: { text: Expect seeds, varieties: [minneola] }
+        1: { text: "Seedless", varieties: [navel] }
+        3: { text: "Few seeds; more when cross-pollinated", varieties: [w-murcott, minneola] }
+        5: { text: "Expect several seeds", varieties: [] }
     - id: juiciness
       name: Juiciness
       anchors:
-        1: { text: Firm, modest juice, varieties: [navel] }
-        3: { text: Juicy, varieties: [clementine] }
-        5: { text: Very juicy; the juicing orange, varieties: [valencia] }
+        1: { text: "Firm flesh, modest juice", varieties: [] }
+        3: { text: "Juicy", varieties: [clementine] }
+        5: { text: "Very juicy; the juicing orange", varieties: [valencia] }

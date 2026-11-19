@@ -94,6 +94,7 @@ function base(): RawInputs {
       { state: "WA", name: "Washington" },
     ]),
     items: [{ file: "content/items/test-fruit.yaml", data: item("test-fruit", 1) }],
+    guides: [],
     evidence: [{ file: "content/evidence/test-fruit.yaml", data: evidence("test-fruit") }],
     typicalOrigins: csv("data/usda/typical-origins.csv", [
       { item: "test-fruit", month: "5", rank: "1", origin: "us-ca", major: "true", share: "0.6" },
@@ -158,7 +159,52 @@ const rateByVariety = (r: RawInputs) => {
   claims(r).push(claim("s1", SUMMER, { variety: "gala" }), claim("s2", SUMMER, { variety: "gala" }));
 };
 
+/** A guide for test-fruit with one scale; gala and fuji are its reference varieties at 5 and 1. */
+const anchor = (varieties: string[]) => ({ text: "An anchor", varieties });
+const withGuide = (r: RawInputs) => {
+  firstItem(r).varieties = [
+    { ...gala(), traits: { sweetness: 5 }, sources: ["s1"] },
+    { ...gala(), id: "fuji", name: "Fuji", label: "Fuji", traits: { sweetness: 1 }, sources: ["s2"] },
+    { ...gala(), id: "envy", name: "Envy", label: "Envy", traits: { sweetness: 3 }, sources: ["s2"] },
+  ];
+  r.guides = [
+    {
+      id: "test-guide",
+      name: "Test fruit",
+      items: ["test-fruit"],
+      traits: [
+        {
+          id: "sweetness",
+          name: "Sweetness",
+          anchors: { 1: anchor(["fuji"]), 3: anchor(["envy"]), 5: anchor(["gala"]) },
+        },
+      ],
+      status: "draft",
+      synthetic: true,
+    },
+  ];
+};
+const guide = (r: RawInputs): Any => (r.guides as Any[])[0];
+
 describe("validate: a valid dataset", () => {
+  it("accepts a variety guide whose varieties sit on its scales", () => {
+    const raw = structuredClone(base());
+    withGuide(raw);
+    const { errors, dataset } = validate(raw, { production: false });
+    expect(errors).toEqual([]);
+    expect(dataset?.guides[0]?.traits[0]?.anchors[5].varieties).toEqual(["gala"]);
+  });
+
+  it("warns about a guide trait a variety doesn't rate yet, and allows an anchor with no reference", () => {
+    const raw = structuredClone(base());
+    withGuide(raw);
+    firstItem(raw).varieties[2].traits = {};
+    guide(raw).traits[0].anchors[3].varieties = [];
+    const { errors, warnings } = validate(raw, { production: false });
+    expect(errors).toEqual([]);
+    expect(warnings).toEqual(["item test-fruit variety envy: no sweetness rating yet"]);
+  });
+
   it("passes and normalizes defaults", () => {
     const { errors, warnings, dataset } = validate(base(), { production: false });
     expect(errors).toEqual([]);
@@ -259,6 +305,84 @@ describe("validate: a valid dataset", () => {
 
 // One broken input per check: [description, mutation, expected error fragment].
 const broken: [string, (r: RawInputs) => void, string][] = [
+  // Variety guides
+  [
+    "guide for an unknown item",
+    (r) => {
+      withGuide(r);
+      guide(r).items.push("kiwi");
+    },
+    "guide test-guide: unknown item kiwi",
+  ],
+  [
+    "item in two guides",
+    (r) => {
+      withGuide(r);
+      (r.guides as Any[]).push({ ...structuredClone(guide(r)), id: "other" });
+    },
+    "guide other: item test-fruit is already in guide test-guide",
+  ],
+  [
+    "unknown reference variety",
+    (r) => {
+      withGuide(r);
+      guide(r).traits[0].anchors[3].varieties = ["kiku"];
+    },
+    "guide test-guide sweetness 3: unknown reference variety kiku",
+  ],
+  [
+    "reference variety off its anchor",
+    (r) => {
+      withGuide(r);
+      firstItem(r).varieties[1].traits.sweetness = 2;
+    },
+    "guide test-guide sweetness 1: reference variety fuji is rated 2",
+  ],
+  [
+    "variety trait not on the guide",
+    (r) => {
+      withGuide(r);
+      firstItem(r).varieties[2].traits.crunch = 4;
+    },
+    "item test-fruit variety envy: trait crunch isn't on guide test-guide",
+  ],
+  [
+    "traits without a citation",
+    (r) => {
+      withGuide(r);
+      firstItem(r).varieties[2].sources = [];
+    },
+    "item test-fruit variety envy: cite a source for its traits and uses",
+  ],
+  [
+    "traits on an item with no guide",
+    (r) => (firstItem(r).varieties = [{ ...gala(), traits: { sweetness: 3 } }]),
+    "item test-fruit variety gala: traits need a guide for test-fruit",
+  ],
+  [
+    "trait value off the 1–5 scale",
+    (r) => {
+      withGuide(r);
+      firstItem(r).varieties[2].traits.sweetness = 6;
+    },
+    "varieties.2.traits.sweetness",
+  ],
+  [
+    "anchor missing its middle level",
+    (r) => {
+      withGuide(r);
+      delete guide(r).traits[0].anchors[3];
+    },
+    "content/guides.yaml[0]: traits.0.anchors.3",
+  ],
+  [
+    "anchor text over 12 words",
+    (r) => {
+      withGuide(r);
+      guide(r).traits[0].anchors[5].text = Array(13).fill("w").join(" ");
+    },
+    "at most 12 words",
+  ],
   // Schema errors
   ["missing required field", (r) => delete firstItem(r).cardLine, "cardLine"],
   ["misspelled field", (r) => (firstItem(r).cardline = "x"), 'Unrecognized key: "cardline"'],
@@ -725,6 +849,14 @@ describe("validate: production builds", () => {
     expect(errors).toContain("test-fruit: synthetic records can't ship (production build)");
     expect(errors).toContain("evidence test-fruit: draft records can't ship (production build)");
     expect(errors).toContain("evidence test-fruit: synthetic records can't ship (production build)");
+  });
+
+  it("refuse a draft guide", () => {
+    const raw = structuredClone(base());
+    withGuide(raw);
+    expect(validate(raw, { production: true }).errors).toContain(
+      "guide test-guide: draft records can't ship (production build)",
+    );
   });
 
   it("refuse synthetic sources", () => {

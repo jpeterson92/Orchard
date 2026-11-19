@@ -178,11 +178,12 @@ An item that is both Peak and Last call appears once, under Best right now, carr
 ### Variety guide (launch: apples, mandarins & oranges, pears)
 
 - **What matters:** a short lead on what actually differs between varieties of this item.
-- **Traits fit the produce group.** Each trait uses a 1–5 scale with written anchors and reference varieties. For example, apple tartness: 1 = barely tart (Fuji), 3 = balanced (Honeycrisp), 5 = very tart (Granny Smith). Chile heat is shown as a range, never a single number.
+- **Traits fit the produce group.** Each trait uses a 1–5 scale with written anchors at 1, 3 and 5 and reference varieties (`content/guides.yaml`). A variety no source places on a scale shows no value for that trait. For example, apple tartness: 1 = barely tart (Fuji), 3 = balanced (Honeycrisp), 5 = very tart (Granny Smith). Chile heat is shown as a range, never a single number.
 
 | Group | Traits compared |
 | --- | --- |
-| Apples & pears | Sweetness, tartness, crispness when raw, holds shape when baked, juiciness; for pears, how to tell when ripe |
+| Apples | Sweetness, tartness, crispness when raw, juiciness, holds shape when baked |
+| Pears | Sweetness when ripe, texture when ripe (buttery ↔ crisp), juiciness, holds shape when baked; how to tell when ripe |
 | Citrus | Sweetness, acidity, ease of peeling, seeds, juiciness |
 | Stone fruit | Sweetness, firm vs melting flesh, freestone vs clingstone |
 | Tomatoes | Sweetness, acidity, juiciness, best raw or cooked |

@@ -37,9 +37,10 @@ prep: Rinse before peeling or cutting. Navels peel easily by hand; Valencias are
 varieties:
   - id: navel
     name: Navel
-    traits: {}
+    traits: { sweetness: 3, acidity: 3, ease-of-peeling: 4, seeds: 1, juiciness: 2 }
     bestUses: [Snacking, salads]
     label: Navel
+    sources: [ucr-washington-navel, sunkist-fs-oranges, sunkist-oranges, halegroves-valencia-sweet]
     windows:
       - { from: jan-1, to: mar-2, rating: prime }
       - { from: apr-1, to: nov-2, rating: fair }
@@ -47,9 +48,10 @@ varieties:
     quotedAs: [oranges-navel, oranges-late-navel, oranges-navelinas]
   - id: valencia
     name: Valencia
-    traits: {}
+    traits: { sweetness: 3, acidity: 4, seeds: 3, juiciness: 5 }
     bestUses: [Juice, snacking]
     label: Valencia
+    sources: [sunkist-fs-oranges, sunkist-oranges, halegroves-valencia-sweet]
     windows:
       - { from: jan-1, to: jan-1, rating: poor }
       - { from: jan-2, to: jan-2, rating: fair }
@@ -67,9 +69,10 @@ varieties:
     quotedAs: [oranges-valencia, oranges-late-valencia, oranges-valencia-seedless]
   - id: blood
     name: Blood orange
-    traits: {}
+    traits: { sweetness: 3, acidity: 4, ease-of-peeling: 3, seeds: 2, juiciness: 3 }
     bestUses: [Salads, juice, desserts]
     label: Blood orange, such as Moro or Tarocco
+    sources: [ucr-moro, sunkist-fs-oranges, eatlikenoone-cara-cara]
     windows:
       - { from: jan-1, to: mar-2, rating: prime }
       - { from: apr-1, to: apr-2, rating: fair }
@@ -88,6 +91,12 @@ varieties:
         blood-orange-tarocco,
         blood-orange-unspecified,
       ]
+  - id: cara-cara
+    name: Cara Cara
+    traits: { sweetness: 5, acidity: 1, ease-of-peeling: 4, seeds: 1, juiciness: 2 }
+    bestUses: [Snacking, salads]
+    label: Cara Cara navel
+    sources: [ucr-cara-cara, sunkist-fs-oranges, eatlikenoone-cara-cara]
 typicalOrigins:
   - from: nov
     to: nov

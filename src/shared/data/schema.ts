@@ -133,6 +133,31 @@ export const varietySchema = z.strictObject({
   quotedAs: z.array(id).min(1).optional(),
 });
 
+const anchor = z.strictObject({
+  text: words(CARD_WORDS),
+  /** Reference varieties: each carries this value on the trait. Empty where no guide variety sits there. */
+  varieties: z.array(id).default([]),
+});
+
+/** A variety guide (product spec §5): the items it covers and its anchored 1–5 trait scales. */
+export const guideSchema = z
+  .strictObject({
+    id,
+    name: text,
+    items: z.array(id).min(1),
+    traits: z
+      .array(
+        z.strictObject({
+          id,
+          name: text,
+          anchors: z.strictObject({ 1: anchor, 3: anchor, 5: anchor }),
+        }),
+      )
+      .min(1),
+    ...review,
+  })
+  .refine(reviewComplete, reviewMessage);
+
 export const itemSchema = z
   .strictObject({
     id,
@@ -253,6 +278,7 @@ export type Category = z.infer<typeof categorySchema>;
 export type State = z.infer<typeof stateSchema>;
 export type Rules = z.infer<typeof rulesSchema>;
 export type Item = z.infer<typeof itemSchema>;
+export type Guide = z.infer<typeof guideSchema>;
 export type QualityWindow = z.infer<typeof qualityWindowSchema>;
 export type EvidenceClaim = z.infer<typeof evidenceClaimSchema>;
 export type EvidenceFile = z.infer<typeof evidenceFileSchema>;
@@ -277,6 +303,7 @@ export interface Dataset {
   categories: Category[];
   states: State[];
   items: Item[];
+  guides: Guide[];
   evidence: EvidenceFile[];
   snapshot: Snapshot | null;
   typicalOrigins: TypicalOriginRow[];
