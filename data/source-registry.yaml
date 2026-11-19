@@ -60,6 +60,8 @@ items:
     - gold nugget
     - nuggets
     - cuties
+  cherries: [cherry, cherries, bing, bings, rainier, rainiers, coral champagne, sweetheart, skeena, lapins]
+  apricots: [apricot, apricots, blenheim, patterson, tomcot]
 
 pages:
   - source: msstate-fruits-vegetables-in-season
@@ -607,3 +609,150 @@ pages:
     kind: item-page
     origin: us-fl
     items: [oranges]
+  # cherries
+  - source: nwcherries-about-cherries
+    url: https://www.nwcherries.com/about-cherries/
+    kind: item-page
+    origin: us-wa
+    items: [cherries]
+  - source: stemilt-world-famous-cherries
+    url: https://www.stemilt.com/fruit/world-famous-cherries/
+    kind: item-page
+    origin: us-wa
+    items: [cherries]
+  - source: calcherry-facts
+    url: https://calcherry.com/facts/
+    kind: item-page
+    origin: us-ca
+    items: [cherries]
+  - source: freshplaza-bing-peaking-california
+    url: https://www.freshplaza.com/north-america/article/2176453/bing-cherries-peaking-in-california-s-san-joaquin-valley
+    kind: item-page
+    origin: us-ca
+    items: [cherries]
+  - source: fruitgrowersnews-california-cherries-2023
+    url: https://fruitgrowersnews.com/news/california-cherries-to-miss-memorial-day-promo-push/
+    kind: item-page
+    origin: us-ca
+    items: [cherries]
+  - source: halegroves-bing-cherries
+    url: https://www.halegroves.com/blog/?p=34781
+    kind: item-page
+    origin: us
+    items: [cherries]
+  - source: askthefoodgeek-cherries
+    url: https://askthefoodgeek.com/?p=3191
+    kind: item-page
+    origin: us
+    items: [cherries]
+  - source: freshplaza-more-chilean-cherries
+    url: https://www.freshplaza.com/north-america/article/9790215/more-chilean-cherries-expected-in-u-s-market-this-season/
+    kind: item-page
+    origin: cl
+    items: [cherries]
+  - source: freshfruitportal-first-chilean-cherries-2024
+    url: https://www.freshfruitportal.com/news/2024/10/22/first-chilean-cherries-of-the-season-land-in-the-us/
+    kind: item-page
+    origin: cl
+    items: [cherries]
+  - source: stemilt-when-cherries-in-season
+    url: https://www.stemilt.com/when-cherries-are-in-season-and-other-tips/
+    kind: item-page
+    origin: us-wa
+    items: [cherries]
+  - source: perishablenews-stemilt-august-cherries
+    url: https://perishablenews.com/?p=153198
+    kind: item-page
+    origin: us-wa
+    items: [cherries]
+  - source: osu-sweet-cherry-cultivars
+    url: https://extension.oregonstate.edu/catalog/pub/pnw-604-sweet-cherry-cultivars-fresh-market
+    kind: item-page
+    origin: us-or
+    items: [cherries]
+  - source: freshplaza-chilean-cherries-up-140
+    url: https://www.freshplaza.com/north-america/article/9273527/supplies-of-chilean-cherries-to-us-increase-by-140-compared-to-same-time-last-year/
+    kind: item-page
+    origin: cl
+    items: [cherries]
+  - source: freshplaza-bc-cherries-into-september
+    url: https://www.freshplaza.com/north-america/article/9333723/long-british-columbia-cherry-season-provides-taste-of-summer-into-september
+    kind: item-page
+    origin: ca
+    items: [cherries]
+  - source: freshplaza-canada-late-cherries
+    url: https://www.freshplaza.com/north-america/article/2177361/we-like-to-be-late-as-canada-is-known-for-late-cherries/
+    kind: item-page
+    origin: ca
+    items: [cherries]
+  - source: freshplaza-bc-cherries-global-demand
+    url: https://www.freshplaza.com/north-america/article/9841157/strong-global-demand-expected-for-british-columbia-cherries/
+    kind: item-page
+    origin: ca
+    items: [cherries]
+  # apricots
+  - source: askthefoodgeek-apricots
+    url: https://askthefoodgeek.com/apricots/
+    kind: item-page
+    origin: us-ca
+    items: [apricots]
+  - source: eatlikenoone-apricot-season
+    url: https://www.eatlikenoone.com/when-does-apricot-season-begin-and-end.htm
+    kind: item-page
+    origin: us
+    items: [apricots]
+  - source: wholefoods-peak-pick-apricots
+    url: https://www.wholefoodsmarket.com/blog/whole-story/peak-pick-apricots
+    kind: item-page
+    origin: us
+    items: [apricots]
+  - source: foodnetwork-apricots-in-season
+    url: https://www.foodnetwork.com/how-to/packages/food-network-essentials/when-are-apricots-in-season
+    kind: item-page
+    origin: us-ca
+    items: [apricots]
+  - source: grocerycoop-apricots
+    url: https://www.grocery.coop/fresh-from-the-source/apricots
+    kind: item-page
+    origin: us
+    items: [apricots]
+  - source: freshplaza-washington-apricot-season-begins
+    url: https://www.freshplaza.com/north-america/article/2160116/washington-apricot-season-begins/
+    kind: item-page
+    origin: us-wa
+    items: [apricots]
+  - source: freshplaza-washington-apricots-later
+    url: https://www.freshplaza.com/north-america/article/2174909/washington-apricot-season-runs-a-little-later-than-normal
+    kind: item-page
+    origin: us-wa
+    items: [apricots]
+  - source: nwpb-northwest-apricots-2022
+    url: https://www.nwpb.org/2022/07/06/northwest-apricots-are-bigger-and-better-this-season/
+    kind: item-page
+    origin: us-wa
+    items: [apricots]
+  - source: pickyourown-apricot-tips
+    url: https://pickyourown.org/apricotpickingtips.php
+    kind: item-page
+    origin: us
+    items: [apricots]
+  - source: veritable-sweet-season-apricots
+    url: https://veritablevegetable.com/the-sweet-season-of-apricots/
+    kind: item-page
+    origin: us-ca
+    items: [apricots]
+  - source: californiabountiful-elevating-apricots
+    url: https://www.californiabountiful.com/magazine-features/magazine-issues/spring-2025/elevating-apricots/
+    kind: item-page
+    origin: us-ca
+    items: [apricots]
+  - source: freshplaza-nz-apricots-oppenheimer
+    url: https://www.freshplaza.com/north-america/article/2092124/new-zealand-apricots-available-from-oppenheimer/
+    kind: item-page
+    origin: nz
+    items: [apricots]
+  - source: chefscornerstore-fresh-apricots
+    url: https://chefscornerstore.com/blog/fresh-apricots/
+    kind: item-page
+    origin: us
+    items: [apricots]

@@ -720,3 +720,186 @@
   accessed: 2026-11-18
   tier: mainstream
   basedOn: halegroves-florida-oranges
+# cherries
+- id: nwcherries-about-cherries
+  title: About Cherries
+  publisher: Northwest Cherry Growers
+  url: https://www.nwcherries.com/about-cherries/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: stemilt-world-famous-cherries
+  title: World Famous Cherries
+  publisher: Stemilt Growers
+  url: https://www.stemilt.com/fruit/world-famous-cherries/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: calcherry-facts
+  title: Cherry Facts
+  publisher: California Cherry Board
+  url: https://calcherry.com/facts/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: freshplaza-bing-peaking-california
+  title: "Bing cherries peaking in California's San Joaquin Valley"
+  publisher: FreshPlaza
+  url: https://www.freshplaza.com/north-america/article/2176453/bing-cherries-peaking-in-california-s-san-joaquin-valley
+  accessed: 2026-11-18
+  tier: mainstream
+- id: fruitgrowersnews-california-cherries-2023
+  title: California cherries to miss Memorial Day promo push
+  publisher: Fruit Growers News
+  url: https://fruitgrowersnews.com/news/california-cherries-to-miss-memorial-day-promo-push/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: halegroves-bing-cherries
+  title: When Are Bing Cherries in Season?
+  publisher: Hale Groves
+  url: https://www.halegroves.com/blog/?p=34781
+  accessed: 2026-11-18
+  tier: mainstream
+- id: askthefoodgeek-cherries
+  title: Cherries
+  publisher: Ask The Food Geek
+  url: https://askthefoodgeek.com/?p=3191
+  accessed: 2026-11-18
+  tier: mainstream
+- id: freshplaza-more-chilean-cherries
+  title: More Chilean cherries expected in U.S. market this season
+  publisher: FreshPlaza
+  url: https://www.freshplaza.com/north-america/article/9790215/more-chilean-cherries-expected-in-u-s-market-this-season/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: freshfruitportal-first-chilean-cherries-2024
+  title: First Chilean cherries of the season land in the US
+  publisher: FreshFruitPortal
+  url: https://www.freshfruitportal.com/news/2024/10/22/first-chilean-cherries-of-the-season-land-in-the-us/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: stemilt-when-cherries-in-season
+  title: "When are Cherries in Season (and Other Tips)"
+  publisher: Stemilt Growers
+  url: https://www.stemilt.com/when-cherries-are-in-season-and-other-tips/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: perishablenews-stemilt-august-cherries
+  title: "August Cherries Set To Shine With Stemilt's A Half Mile Closer To The Moon Program"
+  publisher: Perishable News
+  url: https://perishablenews.com/?p=153198
+  accessed: 2026-11-18
+  tier: mainstream
+  basedOn: stemilt-when-cherries-in-season
+- id: osu-sweet-cherry-cultivars
+  title: "Sweet Cherry Cultivars for the Fresh Market (PNW 604)"
+  publisher: Oregon State University Extension
+  url: https://extension.oregonstate.edu/catalog/pub/pnw-604-sweet-cherry-cultivars-fresh-market
+  accessed: 2026-11-18
+  tier: authoritative
+- id: freshplaza-chilean-cherries-up-140
+  title: "Supplies of Chilean cherries to US increase by 140% compared to same time last year"
+  publisher: FreshPlaza
+  url: https://www.freshplaza.com/north-america/article/9273527/supplies-of-chilean-cherries-to-us-increase-by-140-compared-to-same-time-last-year/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: freshplaza-bc-cherries-into-september
+  title: "Long British Columbia cherry season provides taste of summer into September"
+  publisher: FreshPlaza
+  url: https://www.freshplaza.com/north-america/article/9333723/long-british-columbia-cherry-season-provides-taste-of-summer-into-september
+  accessed: 2026-11-18
+  tier: mainstream
+- id: freshplaza-canada-late-cherries
+  title: "We like to be late, as Canada is known for late cherries"
+  publisher: FreshPlaza
+  url: https://www.freshplaza.com/north-america/article/2177361/we-like-to-be-late-as-canada-is-known-for-late-cherries/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: freshplaza-bc-cherries-global-demand
+  title: "Strong global demand expected for British Columbia cherries"
+  publisher: FreshPlaza
+  url: https://www.freshplaza.com/north-america/article/9841157/strong-global-demand-expected-for-british-columbia-cherries/
+  accessed: 2026-11-18
+  tier: mainstream
+# apricots
+- id: askthefoodgeek-apricots
+  title: Apricots
+  publisher: Ask The Food Geek
+  url: https://askthefoodgeek.com/apricots/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: eatlikenoone-apricot-season
+  title: When Does Apricot Season Begin and End?
+  publisher: Eat Like No One Else
+  url: https://www.eatlikenoone.com/when-does-apricot-season-begin-and-end.htm
+  accessed: 2026-11-18
+  tier: mainstream
+- id: wholefoods-peak-pick-apricots
+  title: "Peak Pick: Apricots"
+  publisher: Whole Foods Market
+  url: https://www.wholefoodsmarket.com/blog/whole-story/peak-pick-apricots
+  accessed: 2026-11-18
+  tier: mainstream
+- id: foodnetwork-apricots-in-season
+  title: Everything to Know About Apricots
+  publisher: Food Network
+  url: https://www.foodnetwork.com/how-to/packages/food-network-essentials/when-are-apricots-in-season
+  accessed: 2026-11-18
+  tier: mainstream
+- id: grocerycoop-apricots
+  title: "Fresh from the Source: Apricots"
+  publisher: Grocery.coop (National Co+op Grocers)
+  url: https://www.grocery.coop/fresh-from-the-source/apricots
+  accessed: 2026-11-18
+  tier: mainstream
+- id: freshplaza-washington-apricot-season-begins
+  title: Washington apricot season begins
+  publisher: FreshPlaza
+  url: https://www.freshplaza.com/north-america/article/2160116/washington-apricot-season-begins/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: freshplaza-washington-apricots-later
+  title: Washington apricot season runs a little later than normal
+  publisher: FreshPlaza
+  url: https://www.freshplaza.com/north-america/article/2174909/washington-apricot-season-runs-a-little-later-than-normal
+  accessed: 2026-11-18
+  tier: mainstream
+- id: nwpb-northwest-apricots-2022
+  title: Northwest apricots are bigger and better this season
+  publisher: Northwest Public Broadcasting
+  url: https://www.nwpb.org/2022/07/06/northwest-apricots-are-bigger-and-better-this-season/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: pickyourown-apricot-tips
+  title: Apricot facts and picking tips
+  publisher: PickYourOwn.org
+  url: https://pickyourown.org/apricotpickingtips.php
+  accessed: 2026-11-18
+  tier: mainstream
+- id: veritable-sweet-season-apricots
+  title: The Sweet Season of Apricots
+  publisher: Veritable Vegetable
+  url: https://veritablevegetable.com/the-sweet-season-of-apricots/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: californiabountiful-elevating-apricots
+  title: Elevating apricots
+  publisher: California Bountiful (California Farm Bureau)
+  url: https://www.californiabountiful.com/magazine-features/magazine-issues/spring-2025/elevating-apricots/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: freshplaza-nz-apricots-oppenheimer
+  title: New Zealand apricots available from Oppenheimer
+  publisher: FreshPlaza
+  url: https://www.freshplaza.com/north-america/article/2092124/new-zealand-apricots-available-from-oppenheimer/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: chefscornerstore-fresh-apricots
+  title: "Fresh Apricots: Get 'Em Before They're Gone"
+  publisher: Chef's Corner Store
+  url: https://chefscornerstore.com/blog/fresh-apricots/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: ucdavis-postharvest-cherry
+  title: "Cherry: Recommendations for Maintaining Postharvest Quality"
+  publisher: UC Davis Postharvest Research and Extension Center
+  url: https://postharvest.ucdavis.edu/produce-facts-sheets/cherry
+  accessed: 2026-11-18
+  tier: authoritative

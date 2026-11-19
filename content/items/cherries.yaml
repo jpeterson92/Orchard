@@ -1,0 +1,71 @@
+id: cherries
+name: Cherries
+synonyms: [cherry, sweet cherries, bing, bing cherries, rainier, rainier cherries, dark sweet cherries]
+misspellings: [cherrys, cheries, cherrie, bing cherrys, ranier]
+category: stone-fruit
+purchaseRank: 13
+alwaysGood: false
+types:
+  - id: dark-sweet
+    name: Dark sweet
+    note: Bing, Coral, Skeena and Sweetheart. The darker the red for its variety, the more flavor.
+  - id: rainier
+    name: Rainier
+    note: Yellow with a red blush; mild, low in acid and very sweet. Bruises easily.
+shipsWell:
+  value: true
+  sources: [ucdavis-postharvest-cherry, osu-sweet-cherry-cultivars]
+  note: Cold chain and modified-atmosphere boxes carry them well; Chile fills winter shelves.
+peakWorthSeeking:
+  value: true
+  sources: [askthefoodgeek-cherries, stemilt-when-cherries-in-season]
+  note: Cherries only ripen on the tree, and summer Northwest fruit is the clear peak.
+storesWell:
+  value: false
+  sources: [ucdavis-postharvest-cherry, askthefoodgeek-cherries]
+  note: Sweetness and flavor fade within weeks of harvest, even in controlled storage.
+evidenceBasis: supply+assessment
+cardLine: Firm, glossy and plump, with bright green stems.
+pick:
+  - Firm, plump and glossy
+  - Bright green, flexible stems
+  - The darkest color for the variety; Rainiers golden with a red blush
+avoid:
+  - Soft, wrinkled or split fruit
+  - Dry, brown stems; they were picked long ago
+store:
+  temperature: cold
+  ethylene: neither
+  life: { min: 5, max: 7, unit: days }
+  text: Refrigerate unwashed in a bag or breathable container, away from onions. Typically keeps about a week.
+  sources: [askthefoodgeek-cherries, stemilt-world-famous-cherries, ucdavis-postharvest-cherry]
+ripen:
+  text: They don't ripen or sweeten after picking, so buy them ready to eat.
+  sources: [ucdavis-postharvest-cherry, askthefoodgeek-cherries]
+prep: Rinse just before eating. Pit with a cherry pitter, or a straw pushed through the stem end.
+origins:
+  - origin: us-ca
+    windows:
+      - from: apr-2
+        to: apr-2
+        rating: fair
+        reason: The first California cherries of mid-April are early varieties; the panel rates them fair, and the harvest is only starting.
+      - { from: may-1, to: jun-1, rating: prime }
+  - origin: us-wa
+    windows:
+      - { from: jun-1, to: aug-1, rating: prime }
+      - from: aug-2
+        to: aug-2
+        rating: fair
+        reason: The panel rates late-August Washington fruit fair; the prime claims are one grower marketing its high-orchard cherries.
+  - origin: ca
+    windows:
+      - { from: jul-1, to: sep-1, rating: fair }
+  - origin: cl
+    windows:
+      - from: nov-1
+        to: nov-2
+        rating: fair
+        reason: The panel has no rating here; an importer calls the first air-freighted Chilean fruit very nice, so it reads fair like December.
+      - { from: dec-1, to: jan-2, rating: fair }
+status: draft

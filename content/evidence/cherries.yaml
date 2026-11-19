@@ -1,0 +1,133 @@
+item: cherries
+status: draft
+claims:
+  # California: mid-April to mid-June.
+  - source: calcherry-facts
+    origin: us-ca
+    windows:
+      - { from: apr-2, to: jun-1, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: California's cherry harvest begins in mid-April and ends in early to mid-June.
+  - source: freshplaza-bing-peaking-california
+    origin: us-ca
+    windows:
+      - { from: apr-1, to: jun-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: California's cherries are harvested between April and June.
+  - source: askthefoodgeek-cherries
+    origin: us-ca
+    windows:
+      - { from: apr-2, to: jun-2, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: California's cherry season starts as early as mid-April and peaks in June.
+  - source: halegroves-bing-cherries
+    origin: us
+    windows:
+      - { from: may-1, to: jul-1, rating: prime }
+    specificity: half-month
+    directness: eating-quality
+    paraphrase: Bing cherries are at their sweetest and most flavorful from May to early July.
+  - source: fruitgrowersnews-california-cherries-2023
+    origin: us-ca
+    windows:
+      - { from: jun-1, to: jun-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: After a cool spring, California Bing cherries were not expected in grocery stores until June.
+  - source: stemilt-when-cherries-in-season
+    origin: us-ca
+    windows:
+      - { from: may-2, to: jun-1, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: A grower's California Delta cherries open its season from late May to mid-June.
+  # Washington and the Northwest: June to late August, the best late fruit from high orchards.
+  - source: nwcherries-about-cherries
+    origin: us-wa
+    windows:
+      - { from: jun-1, to: aug-2, rating: prime }
+    specificity: season
+    directness: availability
+    paraphrase: Northwest dark sweet and yellow cherries run from June through the summer.
+  - source: stemilt-when-cherries-in-season
+    origin: us-wa
+    windows:
+      - { from: jun-2, to: jul-2, rating: prime }
+    specificity: half-month
+    directness: eating-quality
+    paraphrase: A grower's sweetest Rainier-type cherries are available from mid-June to late July.
+  - source: stemilt-when-cherries-in-season
+    origin: us-wa
+    windows:
+      - { from: jul-1, to: aug-2, rating: prime }
+    specificity: half-month
+    directness: eating-quality
+    paraphrase: From early July through August the grower packs its juiciest, sweetest dark cherries.
+  - source: perishablenews-stemilt-august-cherries
+    origin: us-wa
+    windows:
+      - { from: aug-1, to: aug-2, rating: prime }
+    specificity: month
+    directness: eating-quality
+    paraphrase: High-elevation Wenatchee cherries harvested in August stay cool at night, which helps their quality.
+  - source: psu-harvest-calendar
+    origin: us-pa
+    windows:
+      - { from: jun-1, to: jul-2, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: Pennsylvania harvest chart lists cherries in season Jun to Jul.
+  # British Columbia: late June to early September, most volume after August 1.
+  - source: freshplaza-bc-cherries-into-september
+    origin: ca
+    windows:
+      - { from: jun-2, to: sep-1, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: The British Columbia season starts in the third week of June and finishes in early September.
+  - source: freshplaza-canada-late-cherries
+    origin: ca
+    windows:
+      - { from: jun-2, to: sep-1, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: Harvest starts in late June in the south Okanagan and wraps up by early September.
+  - source: freshplaza-bc-cherries-global-demand
+    origin: ca
+    windows:
+      - { from: jul-2, to: aug-2, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: Peak British Columbia production comes from mid-July through August.
+  # Chile: first air shipments in November, ocean fruit December to February.
+  - source: freshplaza-more-chilean-cherries
+    origin: cl
+    windows:
+      - { from: nov-1, to: dec-2, rating: prime }
+    specificity: half-month
+    directness: eating-quality
+    paraphrase: An importer called its early Chilean arrivals, by air from November and by sea from mid-December, very nice quality.
+  - source: freshplaza-chilean-cherries-up-140
+    origin: cl
+    windows:
+      - { from: dec-1, to: feb-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Ocean-freight Chilean cherries arrive from early December and the season runs through February.
+  - source: freshplaza-chilean-cherries-up-140
+    origin: cl
+    windows:
+      - { from: dec-2, to: jan-1, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: Chilean supply peaks between the last week of December and the second week of January.
+  - source: askthefoodgeek-cherries
+    origin: cl
+    windows:
+      - { from: dec-1, to: feb-2, rating: poor }
+    specificity: season
+    directness: eating-quality
+    paraphrase: Imported Chilean cherries one winter were wrinkled and soft, like the poor domestic crops of bad-weather years.
