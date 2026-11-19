@@ -1,6 +1,6 @@
 # PROGRESS
 
-Updated: 2026-11-19 · Phase: build · Live: https://orchard.jpeterson92.workers.dev (M0 placeholder) · 65 commits unsynced
+Updated: 2026-11-19 · Phase: build · Live: https://orchard.jpeterson92.workers.dev (M0 placeholder) · 67 commits unsynced
 
 ## Milestones
 
@@ -11,7 +11,7 @@ Updated: 2026-11-19 · Phase: build · Live: https://orchard.jpeterson92.workers
 
 ## Next concrete action
 
-M7 (variety guides), after Jared answers the two re-rating questions below; if tomatoes get a Good-lifting selection, build that first (engine rule, tests, cited cherry and grape `inStores`). Rerunning the re-rating: `.cache/panel-rerate.mjs` writes the v3 run, `.cache/apply-proposals.ts all` makes item windows follow the proposals (keeps written reasons), `.cache/verdict-diff.mjs` compares verdict strips with HEAD.
+Rate tomatoes by type, so the item reads as its best type in stores (Jared, 2026-11-19: an item's level is the best of its constituents commonly in stores). Slice 1: varieties may carry cited `inStores` months, joined with the USDA terminal share, since USDA's cached terminal data has no tomato types (schema, `inputs.ts`, tests). Slice 2: tomatoes rated by variety: `cherry-grape` (year-round) and `local-field` (replacing the selection; cited July to September), with the panel rating both (scope plus the v3 run), checked citations for quality and supermarket months, and the item page's variety summary; round and Roma tomatoes stay unrated. Then M7. Rerunning the re-rating: `.cache/panel-rerate.mjs` writes the v3 run, `.cache/apply-proposals.ts all` makes item windows follow the proposals (keeps written reasons), `.cache/verdict-diff.mjs` compares verdict strips with HEAD.
 
 ## Content
 
@@ -31,10 +31,9 @@ None.
 
 ## For Jared (non-blocking)
 
-Re-rated on the higher bar (2026-11-19): prompt v3 says fair means "you'll be happy with it" and "just fine" is poor; the 28 items' panel ratings, five cited claims that say "disappointing" in so many words, and the item windows follow. Review it in the diff of `generated/assessments/`. Now Skip: tomatoes late September to May; strawberries September to January; watermelon October to mid-April; pears May to early July; peaches and nectarines in May; asparagus and artichokes in January; Brussels sprouts June to August; sweet corn in November; blackberries October to December.
+Re-rated on the higher bar (2026-11-19, Jared's decision): prompt v3 says fair means "you'll be happy with it" and "just fine" is poor; the 28 items' panel ratings, five cited claims that say "disappointing" in so many words, and the item windows follow. Review it in the diff of `generated/assessments/`. Now Skip: tomatoes late September to May; strawberries September to January; watermelon October to mid-April; pears May to early July; peaches and nectarines in May; asparagus and artichokes in January; Brussels sprouts June to August; sweet corn in November; blackberries October to December.
 
-- Question 1: tomatoes are Skip for eight months, since round tomatoes from Mexico and Florida now read poor. Should cherry and grape tomatoes be able to lift the item to Good? Today a selection can only lift an item to Peak. Recommended: yes, as a Good-level selection.
-- Question 2: where the panel has no rating, evidence still reads a harvest chart's edges, stored produce and in-season imports that ship well as fair. Keep that on the new bar? Recommended: keep it. The panel now rates nearly every window, so these defaults rarely decide.
+- Applied: an item takes the best level among its constituents in stores; a selection now lifts to Good as well as Peak. Harvest-chart edges, stored produce and in-season imports that ship well keep reading fair where the panel has no rating.
 
 Applied 2026-11-19 (Jared's decisions): a level counts when origins at it are reasonably likely on the shelf, about a third of typical supply or cited as commonly in stores (P20, replacing P9 and P17); the card names what to look for only when at most three quarters qualifies (the Check the label tag is gone); Best right now lists every Peak item, soonest-ending first, and Good buys only Good items. Earlier: out of season reads Skip (P18), one Peak season a year (P19), Today shows only Peak and seasonal Good items.
 
