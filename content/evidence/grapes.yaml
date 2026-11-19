@@ -1,0 +1,75 @@
+item: grapes
+status: draft
+claims:
+  - source: msstate-fruits-vegetables-in-season
+    origin: us-ms
+    windows:
+      - { from: jul-1, to: oct-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Mississippi harvest chart lists grapes in season Jul to Oct.
+  - source: psu-harvest-calendar
+    origin: us-pa
+    windows:
+      - { from: aug-2, to: oct-2, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: Pennsylvania harvest chart lists grapes in season mid-Aug to Oct.
+  # California: Coachella in late spring, then the San Joaquin Valley.
+  - source: grapesfromcalifornia-explore
+    origin: us-ca
+    windows:
+      - { from: may-1, to: jan-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: California table grapes are in season from May to January.
+  - source: californiagrown-grapes
+    origin: us-ca
+    windows:
+      - { from: may-1, to: jan-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: California grapes start in the Coachella Valley in late spring and move to the Central Valley by midsummer, May through January.
+  - source: tastingtable-california-grapes-months
+    origin: us-ca
+    windows:
+      - { from: may-2, to: dec-2, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: California's grape season runs from mid-May into December, with the San Joaquin Valley from July.
+  # Imports.
+  - source: ffp-chilean-grapes-volumes-2022
+    origin: pe
+    windows:
+      - { from: dec-1, to: jan-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Peruvian grapes typically lead the US import market in December and January.
+  - source: ffp-chilean-grapes-volumes-2022
+    origin: cl
+    windows:
+      - { from: jan-2, to: apr-2, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: Chilean grapes take over from mid-January, with late varieties extending supply into spring.
+  - source: ffp-peruvian-seedless-2018
+    origin: pe
+    windows:
+      - { from: dec-1, to: jan-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: An importer says Peruvian grapes sold well in December and January but should be off the market by February.
+  - source: ffp-peruvian-seedless-2018
+    origin: cl
+    windows:
+      - { from: feb-1, to: feb-2, rating: prime }
+    specificity: month
+    directness: eating-quality
+    paraphrase: An importer says better quality fruit arrived from Chile's central regions in February.
+  - source: freshplaza-sonora-sjv-transition
+    origin: mx
+    windows:
+      - { from: jun-1, to: jul-1, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: Sonora's grape season wraps up in late June, with the last shipments tailing into July.

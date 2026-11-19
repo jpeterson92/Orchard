@@ -894,3 +894,51 @@
   url: https://www.cde.ca.gov/ls/nu/fd/blackberries.asp
   accessed: 2026-11-18
   tier: authoritative
+- id: grapesfromcalifornia-explore
+  title: "A little bit of California in every grape"
+  publisher: California Table Grape Commission
+  url: https://www.grapesfromcalifornia.com/explore-california/
+  accessed: 2026-11-18
+  tier: authoritative
+- id: californiagrown-grapes
+  title: "How are Grapes Grown in California?"
+  publisher: California Grown
+  url: https://californiagrown.org/blog/how-are-grapes-grown/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: tastingtable-california-grapes-months
+  title: "These Are The Months You're Waiting For If You're A Fan Of California Grapes"
+  publisher: Tasting Table
+  url: https://www.tastingtable.com/1914025/california-grapes-months-in-season-local
+  accessed: 2026-11-18
+  tier: mainstream
+- id: ffp-chilean-grapes-volumes-2022
+  title: "Agronometrics in Charts: Growing volumes of Chilean grapes entering the U.S. market"
+  publisher: FreshFruitPortal
+  url: https://www.freshfruitportal.com/archive/2022/04/05/agronometrics-in-charts-growing-volumes-of-chilean-grapes-entering-the-u-s-market/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: ffp-peruvian-seedless-2018
+  title: "U.S. importer shocked to still be selling Peruvian seedless grapes"
+  publisher: FreshFruitPortal
+  url: https://www.freshfruitportal.com/news/2018/03/23/u-s-importer-shocked-to-still-be-selling-peruvian-seedless-grapes/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: freshplaza-sonora-sjv-transition
+  title: "Smooth table grape transition from Sonora to San Joaquin Valley expected"
+  publisher: FreshPlaza
+  url: https://www.freshplaza.com/north-america/article/9638697/smooth-table-grape-transition-from-sonora-to-san-joaquin-valley-expected/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: ucdavis-postharvest-grape
+  title: "Grape: Produce Facts"
+  publisher: UC Davis Postharvest Research and Extension Center
+  url: https://postharvest.ucdavis.edu/produce-facts-sheets/grape
+  accessed: 2026-11-18
+  tier: authoritative
+- id: msstate-happyhealthy-grapes
+  title: "HappyHealthy Newsletter: Grapes"
+  publisher: Mississippi State University Extension
+  url: https://extension.msstate.edu/publications/happyhealthy-fact-sheet-grapes
+  accessed: 2026-11-18
+  tier: authoritative

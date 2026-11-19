@@ -726,3 +726,33 @@ pages:
     kind: item-page
     origin: us-ca
     items: [blackberries]
+  - source: grapesfromcalifornia-explore
+    url: https://www.grapesfromcalifornia.com/explore-california/
+    kind: item-page
+    origin: us-ca
+    items: [grapes]
+  - source: californiagrown-grapes
+    url: https://californiagrown.org/blog/how-are-grapes-grown/
+    kind: item-page
+    origin: us-ca
+    items: [grapes]
+  - source: tastingtable-california-grapes-months
+    url: https://www.tastingtable.com/1914025/california-grapes-months-in-season-local
+    kind: item-page
+    origin: us-ca
+    items: [grapes]
+  - source: ffp-chilean-grapes-volumes-2022
+    url: https://www.freshfruitportal.com/archive/2022/04/05/agronometrics-in-charts-growing-volumes-of-chilean-grapes-entering-the-u-s-market/
+    kind: item-page
+    origin: cl
+    items: [grapes]
+  - source: ffp-peruvian-seedless-2018
+    url: https://www.freshfruitportal.com/news/2018/03/23/u-s-importer-shocked-to-still-be-selling-peruvian-seedless-grapes/
+    kind: item-page
+    origin: pe
+    items: [grapes]
+  - source: freshplaza-sonora-sjv-transition
+    url: https://www.freshplaza.com/north-america/article/9638697/smooth-table-grape-transition-from-sonora-to-san-joaquin-valley-expected/
+    kind: item-page
+    origin: mx
+    items: [grapes]

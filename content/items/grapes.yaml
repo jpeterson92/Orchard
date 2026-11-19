@@ -1,0 +1,71 @@
+id: grapes
+name: Grapes
+synonyms: [grape, table grapes, seedless grapes]
+misspellings: [grapse, graps, greapes]
+category: grapes
+purchaseRank: 4
+alwaysGood: false
+shipsWell:
+  value: true
+  sources: [ucdavis-postharvest-grape, ffp-peruvian-seedless-2018]
+  note: Picked ripe and held near freezing; Southern Hemisphere fruit arrives sound, though quality varies.
+peakWorthSeeking:
+  value: true
+  sources: [ucdavis-postharvest-grape, ffp-peruvian-seedless-2018]
+  note: They never sweeten after picking, and late-season or long-stored fruit loosens and softens.
+storesWell:
+  value: false
+  sources: [msstate-happyhealthy-grapes, ucdavis-postharvest-grape]
+  note: Keeps one to two weeks at home; berries loosen from the stem the longer they're held.
+evidenceBasis: supply+assessment
+cardLine: Plump, firm grapes on green, flexible stems.
+pick:
+  - Firm, plump grapes still attached to the stem
+  - Green, flexible stems, not brown or brittle
+  - Full color for the variety
+avoid:
+  - Loose grapes in the bag, or shriveled or split ones
+  - Soft, leaky or moldy grapes
+store:
+  temperature: cold
+  ethylene: neither
+  life: { min: 7, max: 14, unit: days }
+  text: Refrigerate unwashed in the vented bag, in the produce drawer. Typically keeps 1–2 weeks.
+  sources: [msstate-happyhealthy-grapes, ucdavis-postharvest-grape]
+ripen:
+  text: They won't ripen or sweeten after picking, so taste one if you can.
+  sources: [msstate-happyhealthy-grapes, ucdavis-postharvest-grape]
+prep: Rinse just before eating, then pull from the stem.
+origins:
+  - {
+      origin: us-ca,
+      windows:
+        [
+          { from: jan-1, to: jan-1, rating: prime },
+          {
+            from: jan-2,
+            to: jan-2,
+            rating: prime,
+            reason: "The model panel has no rating here, and the cited sources disagree; together they read prime.",
+          },
+          { from: feb-1, to: feb-1, rating: fair },
+          { from: feb-2, to: apr-1, rating: poor },
+          { from: apr-2, to: apr-2, rating: fair },
+          { from: may-1, to: may-2, rating: prime },
+          { from: jun-1, to: jul-1, rating: fair },
+          { from: jul-2, to: oct-2, rating: prime },
+          { from: nov-1, to: dec-2, rating: fair },
+        ],
+    }
+  - { origin: mx, windows: [{ from: may-2, to: jul-1, rating: fair }] }
+  - { origin: cl, windows: [{ from: jan-1, to: apr-2, rating: fair }] }
+  - {
+      origin: pe,
+      windows:
+        [
+          { from: jan-1, to: feb-2, rating: fair },
+          { from: mar-1, to: nov-1, rating: poor },
+          { from: nov-2, to: dec-2, rating: fair },
+        ],
+    }
+status: draft
