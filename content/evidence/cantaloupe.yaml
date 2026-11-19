@@ -1,0 +1,82 @@
+item: cantaloupe
+status: draft
+claims:
+  # Domestic summer: Arizona and the California desert from May, the Central Valley through early fall.
+  - source: chowhound-choose-cantaloupe
+    origin: us
+    windows:
+      - { from: jun-1, to: aug-2, rating: prime }
+    specificity: month
+    directness: eating-quality
+    paraphrase: Cantaloupes are at their best June through August; summer local melons are sweetest.
+  - source: thetakeout-flavorless-cantaloupe
+    origin: us
+    windows:
+      - { from: jun-1, to: aug-2, rating: prime }
+    specificity: month
+    directness: eating-quality
+    paraphrase: Cantaloupe's peak is June through August; melons picked too early never reach full sweetness.
+  - source: usu-extension-cantaloupe
+    origin: us
+    windows:
+      - { from: may-1, to: sep-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Cantaloupes are in most stores May through September; imports come from Central America.
+  - source: californiagrown-cantaloupes
+    origin: us-ca
+    windows:
+      - { from: apr-1, to: oct-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: California's cantaloupe harvest runs from April in the warm south through October in the north.
+  - source: californiagrown-cantaloupes
+    origin: us-ca
+    windows:
+      - { from: jun-2, to: sep-1, rating: prime }
+    specificity: season
+    directness: eating-quality
+    paraphrase: Sweet, ripe California cantaloupe is a summer treat.
+  - source: producebusiness-western-melons
+    origin: us-ca
+    windows:
+      - { from: may-2, to: nov-1, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: Central Valley melons are harvested from mid-May into November for some varieties.
+  - source: freshplaza-yuma-fall-melons
+    origin: us-az
+    windows:
+      - { from: sep-2, to: nov-2, rating: prime }
+    specificity: season
+    directness: availability
+    paraphrase: Fall cantaloupe harvests move from northern California to Yuma, Arizona.
+  # Winter imports: Guatemala and Honduras.
+  - source: freshplaza-domestic-cantaloupe-flavor
+    origin: gt
+    windows:
+      - { from: nov-2, to: may-1, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: The offshore cantaloupe import season runs from mid-November to mid-May.
+  - source: freshplaza-central-american-melon-start
+    origin: hn
+    windows:
+      - { from: dec-2, to: apr-2, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: Central American melons arrive from late December and continue until Arizona starts in April.
+  - source: freshplaza-central-american-melon-start
+    origin: gt
+    windows:
+      - { from: dec-1, to: feb-2, rating: prime }
+    specificity: season
+    directness: availability
+    paraphrase: In winter, retailers source cantaloupe almost only from Central America.
+  - source: freshplaza-melons-back-to-arizona
+    origin: us-az
+    windows:
+      - { from: sep-2, to: nov-2, rating: prime }
+    specificity: season
+    directness: availability
+    paraphrase: Melon growing returns to Arizona for the fall, with supply a little lighter than in past years.
