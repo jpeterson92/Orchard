@@ -1,0 +1,76 @@
+item: raspberries
+status: draft
+claims:
+  - source: msstate-fruits-vegetables-in-season
+    origin: us-ms
+    windows:
+      - { from: jun-1, to: jul-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Mississippi harvest chart lists raspberries in season Jun to Jul.
+  - source: psu-harvest-calendar
+    origin: us-pa
+    windows:
+      - { from: jul-1, to: jul-2, rating: prime }
+      - { from: sep-1, to: oct-2, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: Pennsylvania harvest chart lists raspberries in July and again from September to late October.
+  # Mexico: the fall-to-spring supplier.
+  - source: producepay-mexican-raspberries
+    origin: mx
+    windows:
+      - { from: dec-1, to: dec-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Mexico's raspberry volume is highest in December and lowest from July to September.
+  - source: freshplaza-raspberry-supply-mexico-traction
+    origin: mx
+    windows:
+      - { from: oct-1, to: dec-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Mexican supply builds into fall and winter, peaking at the end of October, with good volume through December.
+  - source: freshplaza-watsonville-raspberry-supply
+    origin: mx
+    windows:
+      - { from: aug-2, to: jun-1, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: Central Mexico's raspberry harvest runs from late August to mid-June.
+  - source: freshplaza-raspberry-supply-mexico-traction
+    origin: mx
+    windows:
+      - { from: jun-2, to: aug-2, rating: prime }
+    specificity: season
+    directness: eating-quality
+    paraphrase: A grower's new summer varieties, Amalia among them in Mexico, show excellent quality and summer-sweet flavor.
+  # California: Watsonville summer and fall.
+  - source: freshplaza-raspberry-supply-mexico-traction
+    origin: us-ca
+    windows:
+      - { from: jun-2, to: aug-2, rating: prime }
+    specificity: season
+    directness: eating-quality
+    paraphrase: A Watsonville grower says new summer raspberry varieties have excellent quality and summer-sweet flavor.
+  - source: freshplaza-raspberry-supply-mexico-traction
+    origin: us-ca
+    windows:
+      - { from: jul-1, to: oct-1, rating: prime }
+    specificity: season
+    directness: availability
+    paraphrase: Watsonville harvests its peak summer volume for weeks before declining from mid-October.
+  - source: freshplaza-watsonville-raspberry-supply
+    origin: us-ca
+    windows:
+      - { from: jun-1, to: oct-2, rating: prime }
+    specificity: season
+    directness: availability
+    paraphrase: Watsonville takes the lead in volume in early summer and harvests through October.
+  - source: ffp-california-berry-harvest-2026
+    origin: us-ca
+    windows:
+      - { from: nov-1, to: nov-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: The Watsonville raspberry season runs through November before supply moves back to Mexico.

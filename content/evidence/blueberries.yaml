@@ -1,0 +1,152 @@
+item: blueberries
+status: draft
+claims:
+  - source: msstate-fruits-vegetables-in-season
+    origin: us-ms
+    windows:
+      - { from: may-1, to: jul-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Mississippi harvest chart lists blueberries in season May to Jul.
+  - source: psu-harvest-calendar
+    origin: us-pa
+    windows:
+      - { from: jul-2, to: sep-2, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: Pennsylvania harvest chart lists blueberries in season late Jul to Sep.
+  # Imports: Peru, Chile, Mexico.
+  - source: freshplaza-latam-blueberry-overlap
+    origin: pe
+    windows:
+      - { from: aug-1, to: dec-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Peru ships almost all year, concentrated August to December and peaking in October.
+  - source: freshplaza-us-blueberry-imports
+    origin: pe
+    windows:
+      - { from: oct-1, to: dec-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Peru's harvest peaks between October and December.
+  - source: freshplaza-latam-blueberry-overlap
+    origin: cl
+    windows:
+      - { from: oct-1, to: mar-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Chile typically markets blueberries from October to March, peaking in the southern summer.
+  - source: freshplaza-us-blueberry-imports
+    origin: cl
+    windows:
+      - { from: dec-1, to: feb-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Chile ships blueberries to the US from December to February.
+  - source: freshplaza-latam-blueberry-overlap
+    origin: mx
+    windows:
+      - { from: feb-1, to: may-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Mexico increases US shipments from February and continues through May.
+  - source: freshplaza-us-blueberry-imports
+    origin: mx
+    windows:
+      - { from: sep-1, to: may-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Mexico supplies the US with blueberries from September to May.
+  # Domestic: south to north.
+  - source: ufifas-florida-blueberry-season-2022
+    origin: us-fl
+    windows:
+      - { from: mar-1, to: may-1, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: Florida harvest begins in March and typically ends by early May.
+  - source: wgcu-florida-blueberries-2026
+    origin: us-fl
+    windows:
+      - { from: mar-1, to: may-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Florida's blueberry season runs from March through May.
+  - source: uga-extension-blueberries
+    origin: us-ga
+    windows:
+      - { from: may-2, to: jul-1, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: Georgia harvests blueberries from late May through mid-July.
+  - source: uga-blueberry-harvest-forecast
+    origin: us-ga
+    windows:
+      - { from: may-1, to: jun-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Georgia's main, second blueberry harvest is typically in May and June.
+  - source: ncsu-meteoric-rise-blueberries
+    origin: us-nc
+    windows:
+      - { from: may-1, to: jul-1, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: North Carolina's season starts in early to mid-May, peaks mid-June and runs into July.
+  - source: ncsu-cals-blueberries
+    origin: us-nc
+    windows:
+      - { from: may-2, to: jul-2, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: Blueberries are in season in North Carolina from mid-May through July.
+  - source: ncsu-forsyth-blueberry-season
+    origin: us-nc
+    windows:
+      - { from: jun-2, to: aug-1, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: Piedmont rabbiteyes start ripening in late June and are available through mid-August.
+  - source: njda-blueberries-2024
+    origin: us-nj
+    windows:
+      - { from: jul-1, to: jul-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: New Jersey's blueberry season lasts through the end of July.
+  - source: ffp-california-blueberries-record-2024
+    origin: us-ca
+    windows:
+      - { from: jun-1, to: jun-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: San Joaquin Valley growers, most of California's crop, peak in mid-June and harvest through June.
+  - source: pnwag-blueberry-season
+    origin: us-or
+    windows:
+      - { from: jul-1, to: jul-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: July is Oregon's blueberry month, with fresh berries at their peak.
+  - source: fruitandveggie-bc-blueberry-early-july
+    origin: ca
+    windows:
+      - { from: jul-1, to: sep-1, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: British Columbia's harvest starts around the first week of July and runs to mid-September.
+  - source: ffp-bc-blueberry-harvest-2017
+    origin: ca
+    windows:
+      - { from: jul-1, to: jul-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: The BC harvest kicked off at the beginning of July in the Fraser Valley.
+  - source: bc-blueberry-whats-in-season
+    origin: ca
+    windows:
+      - { from: jun-2, to: aug-2, rating: prime }
+    specificity: season
+    directness: eating-quality
+    paraphrase: BC blueberries reach peak freshness in the summer months.
