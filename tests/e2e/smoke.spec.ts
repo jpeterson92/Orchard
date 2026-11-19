@@ -134,7 +134,7 @@ test("a link shared for a date pins it; Switch to today drops it", async ({ page
   await expect(page).toHaveURL(/\/items\/strawberries$/);
 });
 
-test("search from the pinned field: a misspelled variety opens its item at that variety", async ({
+test("search from the pinned field: a misspelled guide variety opens its page; another variety its item at that variety", async ({
   page,
 }) => {
   await page.setViewportSize({ width: 375, height: 812 });
@@ -146,8 +146,13 @@ test("search from the pinned field: a misspelled variety opens its item at that 
   const axe = await new AxeBuilder({ page }).include("dialog").analyze();
   expect(axe.violations).toEqual([]);
   await page.keyboard.press("Enter");
-  await expect(page.getByRole("heading", { level: 1, name: "Apples" })).toBeVisible();
-  await expect(page.locator("#label select")).toHaveValue("v:honeycrisp");
+  await expect(page.getByRole("heading", { level: 1, name: "Honeycrisp" })).toBeVisible();
+  await page.getByRole("button", { name: "Search produce" }).last().click();
+  await dialog.getByRole("searchbox").fill("ataulfo");
+  await expect(dialog.getByRole("link", { name: /^Ataulfo/ })).toBeVisible();
+  await page.keyboard.press("Enter");
+  await expect(page.getByRole("heading", { level: 1, name: "Mangoes" })).toBeVisible();
+  await expect(page.locator("#label select")).toHaveValue("v:ataulfo");
   await page.getByRole("button", { name: "Search produce" }).last().click();
   await dialog.getByRole("searchbox").fill("rhubarb");
   await expect(dialog.getByText("We don't cover this yet", { exact: true }).first()).toBeVisible();
@@ -224,6 +229,8 @@ for (const colorScheme of ["light", "dark"] as const) {
     await check("Today, a card open");
     for (const [url, heading] of [
       ["/items/apples", "Apples"],
+      ["/guides/apples", "Apples by variety"],
+      ["/items/pears/anjou", "Anjou"],
       ["/browse", "Browse"],
       ["/browse/citrus", "Citrus"],
       ["/calendar", "Typical seasonal outlook"],
