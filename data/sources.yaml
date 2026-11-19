@@ -842,3 +842,40 @@
   accessed: 2026-11-18
   tier: mainstream
   basedOn: eatlikenoone-apples-at-their-peak
+- id: eatlikenoone-nectarine-season
+  title: "When does nectarine season begin and end"
+  publisher: Eat Like No One Else
+  url: https://www.eatlikenoone.com/when-does-nectarine-season-begin-and-end.htm
+  accessed: 2026-11-18
+  tier: mainstream
+  basedOn: eatlikenoone-apples-at-their-peak
+- id: pittmandavis-nectarines
+  title: "When are nectarines in season?"
+  publisher: Pittman & Davis
+  url: https://blog2.pittmandavis.com/?p=3735
+  accessed: 2026-11-18
+  tier: mainstream
+- id: njmonthly-produce-pete-nectarines
+  title: "Produce Pete: Nectarines"
+  publisher: New Jersey Monthly
+  url: https://njmonthly.com/articles/eat-drink/table-hopping/produce-pete-nectarines/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: purdue-foodlink-nectarine
+  title: "FoodLink: Nectarine"
+  publisher: Purdue Extension
+  url: https://www.extension.purdue.edu/foodlink/food.php?food=nectarine
+  accessed: 2026-11-18
+  tier: authoritative
+- id: freshplaza-ca-peach-nectarine-peaking
+  title: "Peach and nectarine seasons peaking in California"
+  publisher: FreshPlaza
+  url: https://www.freshplaza.com/north-america/article/2198775/peach-and-nectarine-seasons-peaking-in-california
+  accessed: 2026-11-18
+  tier: mainstream
+- id: freshplaza-ca-stone-fruit-kickoff
+  title: "Kicking off California's stone fruit season"
+  publisher: FreshPlaza
+  url: https://www.freshplaza.com/north-america/article/9624483/kicking-off-california-s-stone-fruit-season
+  accessed: 2026-11-18
+  tier: mainstream

@@ -706,3 +706,33 @@ pages:
     kind: item-page
     origin: us
     items: [peaches]
+  - source: eatlikenoone-nectarine-season
+    url: https://www.eatlikenoone.com/when-does-nectarine-season-begin-and-end.htm
+    kind: item-page
+    origin: us-ca
+    items: [nectarines]
+  - source: pittmandavis-nectarines
+    url: https://blog2.pittmandavis.com/?p=3735
+    kind: item-page
+    origin: us
+    items: [nectarines]
+  - source: njmonthly-produce-pete-nectarines
+    url: https://njmonthly.com/articles/eat-drink/table-hopping/produce-pete-nectarines/
+    kind: item-page
+    origin: us
+    items: [nectarines]
+  - source: purdue-foodlink-nectarine
+    url: https://www.extension.purdue.edu/foodlink/food.php?food=nectarine
+    kind: item-page
+    origin: us-in
+    items: [nectarines]
+  - source: freshplaza-ca-peach-nectarine-peaking
+    url: https://www.freshplaza.com/north-america/article/2198775/peach-and-nectarine-seasons-peaking-in-california
+    kind: item-page
+    origin: us-ca
+    items: [peaches, nectarines]
+  - source: freshplaza-ca-stone-fruit-kickoff
+    url: https://www.freshplaza.com/north-america/article/9624483/kicking-off-california-s-stone-fruit-season
+    kind: item-page
+    origin: us-ca
+    items: [nectarines, plums]
