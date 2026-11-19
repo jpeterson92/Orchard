@@ -88,11 +88,32 @@ origins:
   - origin: us-tn
     windows:
       - { from: jun-2, to: aug-2, rating: prime }
-selections:
+varieties:
+  - id: cherry-grape
+    name: Cherry or grape
+    traits: {}
+    bestUses: [Snacking, salads, roasting]
+    label: Cherry or grape tomatoes
+    windows:
+      - { from: jan-1, to: dec-2, rating: fair }
+    inStores:
+      - from: jan
+        to: dec
+        sources:
+          [
+            hortidaily-mexico-greenhouse-tomatoes,
+            ers-greenhouse-tomatoes-2019,
+            producebusiness-florida-tomatoes,
+          ]
   - id: local-field
-    label: local field-grown tomatoes
-    cue: In summer, look for a state or "local" sign, or a farm name on the label. Pick fruit that is deep red to the shoulders, heavy, fragrant at the stem and never chilled. Uneven shapes and small cracks near the stem are fine.
-    origins: [us-nj, us-tn]
+    name: Local field-grown
+    traits: {}
+    bestUses: [Slicing, salads, sandwiches]
+    label: Local or state-grown, in summer
+    cue: Look for a state or "local" sign, or a farm name on the label. Pick fruit that is deep red to the shoulders, heavy, fragrant at the stem and never chilled. Uneven shapes and small cracks near the stem are fine.
+    windows:
+      - { from: jul-1, to: sep-1, rating: prime }
+      - { from: sep-2, to: sep-2, rating: fair }
     inStores:
       - from: jul
         to: sep

@@ -732,6 +732,30 @@
   url: https://ers.usda.gov/amber-waves/2005/april/north-american-greenhouse-tomatoes-emerge-as-a-major-market-force
   accessed: 2026-11-18
   tier: authoritative
+- id: ers-greenhouse-tomatoes-2019
+  title: "Imported Greenhouse Tomatoes From Mexico Illustrate the Growing Diversity in Fresh-Market Tomatoes"
+  publisher: USDA Economic Research Service
+  url: https://ers.usda.gov/amber-waves/2019/may/imported-greenhouse-tomatoes-from-mexico-illustrate-the-growing-diversity-in-fresh-market-tomatoes
+  accessed: 2026-11-19
+  tier: authoritative
+- id: chowhound-winter-tomatoes
+  title: The Only Tomatoes You Should Buy During The Winter
+  publisher: Chowhound
+  url: https://www.chowhound.com/1772342/which-tomatoes-buy-winter/
+  accessed: 2026-11-19
+  tier: mainstream
+- id: cspi-november-tomatoes
+  title: Which tomatoes still taste decent in November?
+  publisher: Nutrition Action (CSPI)
+  url: https://www.cspi.org/daily/healthy-recipes/which-tomatoes-still-taste-decent-in-november
+  accessed: 2026-11-19
+  tier: mainstream
+- id: umass-tomatoes-spotlight
+  title: "Produce Spotlight: Tomatoes"
+  publisher: UMass Amherst
+  url: https://www.umass.edu/agriculture-food-environment/nutrition/publications-resources/produce-spotlight/tomatoes-0
+  accessed: 2026-11-19
+  tier: authoritative
 - id: hortidaily-mexico-greenhouse-tomatoes
   title: "Mexico: Year-round demand fuels greenhouse tomato market"
   publisher: HortiDaily

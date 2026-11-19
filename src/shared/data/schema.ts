@@ -147,6 +147,9 @@ export const varietySchema = z.strictObject({
   label: words(CARD_WORDS),
   /** How to tell when it's ripe, on guides with `ripeCues` (e.g. a Bartlett turns yellow). */
   ripeCue: words(CARD_WORDS).optional(),
+  /** How to find it and tell it apart in the store, on the item page, where its name alone doesn't (local field
+   * tomatoes). */
+  cue: words(SECTION_WORDS).optional(),
   /** Citations for the traits, uses and ripe cue. */
   sources: z.array(id).default([]),
   /** Overrides the item's `storesWell` (P14), e.g. a long-keeping apple. */

@@ -46,3 +46,32 @@ claims:
     specificity: month
     directness: availability
     paraphrase: California vine-ripe and Roma harvests start in late June and peak from late August through October.
+  # Types: cherry and grape hold up out of season; local field tomatoes are the summer peak.
+  - source: chowhound-winter-tomatoes
+    variety: cherry-grape
+    windows:
+      - { from: dec-1, to: feb-2, rating: fair }
+    specificity: season
+    directness: eating-quality
+    paraphrase: In winter, cherry and grape tomatoes are the go-to choice; big slicers taste watery and pale.
+  - source: cspi-november-tomatoes
+    variety: cherry-grape
+    windows:
+      - { from: nov-1, to: nov-2, rating: fair }
+    specificity: month
+    directness: eating-quality
+    paraphrase: Past summer, cherry and grape tomatoes, sold ripe, are the ones that still taste decent.
+  - source: cspi-november-tomatoes
+    variety: local-field
+    windows:
+      - { from: jun-1, to: sep-2, rating: prime }
+    specificity: month
+    directness: eating-quality
+    paraphrase: June through September is peak tomato season; after it, quality is a gamble.
+  - source: umass-tomatoes-spotlight
+    origin: us-ma
+    windows:
+      - { from: jul-1, to: sep-1, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: New England's tomato peak season runs from July to mid-September.

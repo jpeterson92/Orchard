@@ -29,4 +29,24 @@ items:
       - origin: us-nj
         windows:
           - [jul-2, sep-1, prime, medium]
+    varieties:
+      - variety: round
+        windows:
+          - [jan-1, jun-2, poor, medium]
+          - [jul-1, sep-1, fair, low]
+          - [sep-2, dec-2, poor, medium]
+        note: Supermarket rounds are mostly picked mature-green; even summer ones are often shipped from far away.
+      - variety: roma
+        windows:
+          - [jan-1, dec-2, poor, medium]
+        note: Firm and mild as sold; fine for cooking, rarely good raw.
+      - variety: cherry-grape
+        windows:
+          - [jan-1, dec-2, fair, medium]
+        note: Picked riper and sweeter than rounds, from greenhouses and Florida; the dependable choice all year.
+      - variety: local-field
+        windows:
+          - [jul-1, sep-1, prime, medium]
+          - [sep-2, sep-2, fair, medium]
+        note: Picked ripe near the store in summer; the best tomatoes most shoppers can buy.
     note: Summer field tomatoes are far better; most winter rounds disappoint, though cherry and grape tomatoes hold up.

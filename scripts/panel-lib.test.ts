@@ -234,6 +234,15 @@ describe("panelCurves (P15)", () => {
     expect(r.errors.some((e) => e.startsWith("panel x/run.yaml"))).toBe(true);
     expect(r.errors.some((e) => e.includes("doesn't match the folder"))).toBe(true);
   });
+  it("checks only runs on the current prompt version against the scope", () => {
+    const stale = {
+      ...run("old", "A", "2026-01-01", "prime", 1),
+      files: [file([{ ...peaches, item: "kumquats" }])],
+    };
+    const r = panelCurves([stale, run("new", "A", "2026-02-01", "fair")], 2, scope, states);
+    expect(r.errors).toEqual([]);
+    expect(r.counted).toEqual(["new"]);
+  });
   it("keeps origins and varieties as separate targets", () => {
     const apples = {
       item: "apples",

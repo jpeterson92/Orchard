@@ -222,6 +222,10 @@ export function itemView(
   const notes: string[] = [];
   const selection = item.selections.find((s) => s.id === result.selection);
   if (selection) notes.push(`How to find it: ${selection.cue}`);
+  for (const id of result.varietyLine ?? []) {
+    const cue = item.varieties.find((v) => v.id === id)?.cue;
+    if (cue) notes.push(`How to find it: ${cue}`);
+  }
   // P20: which origins hold the verdict, and which often disappoint.
   const label: string[] = [];
   for (const r of result.reasons)

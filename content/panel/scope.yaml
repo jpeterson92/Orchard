@@ -120,7 +120,13 @@
     name: "Winter squash [butternut, acorn, spaghetti, kabocha, delicata, pie pumpkin]",
     category: squash,
   }
-- { item: tomatoes, name: "Tomatoes [round, plum, cherry, grape]", category: tomatoes-peppers }
+- {
+    item: tomatoes,
+    name: "Tomatoes [round, Roma, cherry and grape, local field-grown in summer]",
+    category: tomatoes-peppers,
+    ratedBy: variety,
+    varieties: [round, roma, cherry-grape, local-field],
+  }
 - { item: bell-peppers, name: Bell peppers, category: tomatoes-peppers }
 - { item: mini-sweet-peppers, name: Mini sweet peppers, category: tomatoes-peppers }
 - {

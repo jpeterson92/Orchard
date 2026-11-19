@@ -176,8 +176,9 @@ export function promptVersion(prompt: string): number | null {
 }
 
 /**
- * The model panel as `data:build` reads it (P15): every run must pass `checkRun`; of those on the current prompt
- * version, each provider's latest counts (by date, then run id). Per item and target (an origin or a variety),
+ * The model panel as `data:build` reads it (P15): every run needs valid run metadata; runs on the current prompt
+ * version must also pass `checkRun` against today's scope (older runs are superseded, and the scope may have moved
+ * on since, e.g. an item now rated by variety). Of those, each provider's latest counts (by date, then run id). Per item and target (an origin or a variety),
  * the counted runs' ranges combine into one curve with `panelValues`.
  */
 export function panelCurves(
@@ -197,6 +198,7 @@ export function panelCurves(
     }
     if (meta.data.run !== r.dir)
       errors.push(`panel ${r.dir}/run.yaml: run ${meta.data.run} doesn't match the folder`);
+    if (meta.data.promptVersion !== version) continue;
     const report = checkRun(r.files, scope, states);
     for (const e of report.errors) errors.push(`panel ${r.dir}/${e}`);
     if (report.errors.length > 0) continue;

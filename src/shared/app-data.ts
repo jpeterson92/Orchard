@@ -12,6 +12,8 @@ export interface AppVariety {
   name: string;
   label: string;
   bestUses: string[];
+  /** How to find it in the store, or null where the name says enough. */
+  cue: string | null;
   /** Asset id of the variety's own painting (src/shared/art.ts), or null: the placeholder shows. */
   art: string | null;
 }
@@ -97,6 +99,7 @@ export function appData(data: Dataset, builtOn: string, art: ArtMap, about: Abou
         name: v.name,
         label: v.label,
         bestUses: v.bestUses,
+        cue: v.cue ?? null,
         art: art.varieties[`${item.id}/${v.id}`] ?? null,
       })),
       selections: item.selections.map((s) => ({ id: s.id, label: s.label, cue: s.cue })),
