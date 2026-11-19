@@ -55,6 +55,7 @@ export function ruleValues(rules: Dataset["rules"]): Record<string, string> {
   return {
     typicalOriginShare: percent(rules.typicalOriginShare),
     decidingOriginShare: percent(rules.decidingOriginShare),
+    peakShare: percent(rules.peakShare),
     supplyThin: String(rules.supplyIndex.thin),
     supplyStrong: String(rules.supplyIndex.strong),
     reliableYearRoundWindows: String(rules.reliableYearRoundWindows),

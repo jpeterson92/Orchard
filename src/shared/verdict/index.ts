@@ -88,7 +88,13 @@ export type Reason =
   /** P16: rated prime, but shipped from outside rules.peakCountries, so the item verdict is Good at most. */
   | { code: "far-origin"; origin: OriginId }
   /** P16: Peak because a selection the shopper can pick out is prime and common enough; typical supply is worse. */
-  | { code: "selection"; selection: string };
+  | { code: "selection"; selection: string }
+  /** P17: Peak from mixed supply: the typical origins at their best (top first, at most 3); pick by the label. */
+  | { code: "peak-origins"; origins: OriginId[] }
+  /** P18: no origin typically supplies it this month. */
+  | { code: "out-of-season" }
+  /** P19: rated Peak here, but Peak is kept for the item's main season, windows `from` to `to`. */
+  | { code: "main-peak"; from: number; to: number };
 
 export interface CoreResult {
   verdict: Verdict;
@@ -135,19 +141,42 @@ const monthOf = (window: number): number => Math.floor(window / 2);
 /** P16: grown in a country that can make the item verdict Peak. */
 const near = (origin: OriginId, env: Env): boolean => env.rules.peakCountries.includes(origin.slice(0, 2));
 
-type Core = CoreResult & { labelNote?: boolean; selection?: string };
+/** `notPeak`: what a Peak window reads if P19 takes its Peak away (the Good call, or the typical result under a
+ * selection's Peak). */
+type Core = CoreResult & { labelNote?: boolean; selection?: string; notPeak?: Core };
 
 function evaluateCore(item: ItemInputs, basis: Basis, window: number, ctx: EvalContext, env: Env): Core {
-  if (basis.kind === "typical" && item.varieties.length > 0) return bestVariety(item, window, ctx, env).core;
-
   const month = monthOf(window);
   const typical = item.typicalOrigins[month] ?? [];
+  // P18: no origin typically supplies it this month, though some do in others: out of season, so Skip.
+  if (basis.kind === "typical" && typical.length === 0 && item.typicalOrigins.some((os) => os.length > 0))
+    return decide(
+      item,
+      {
+        rating: null,
+        decider: undefined,
+        missing: [],
+        labelNote: false,
+        supplyOrigin: undefined,
+        basis,
+        window,
+        capped: true,
+        outOfSeason: true,
+      },
+      ctx,
+      env,
+    );
+  if (basis.kind === "typical" && item.varieties.length > 0) return bestVariety(item, window, ctx, env).core;
+
   const missing: Reason[] = [];
   let rating: Rating | null = null;
   let decider: RatedSeries | undefined;
   let supplyOrigin: OriginId | undefined;
   let labelNote = false;
   let poorOrigin: OriginId | undefined;
+  let peakOrigins: OriginId[] = [];
+  let peakAllowed = true;
+  let mixed = false;
 
   if (basis.kind === "typical") {
     const ratingOf = (o: OriginId) => item.origins[o]?.windows[window] ?? null;
@@ -170,7 +199,7 @@ function evaluateCore(item: ItemInputs, basis: Basis, window: number, ctx: EvalC
       const [top, second] = ratedTypical as [OriginId, ...OriginId[]];
       // P9: the verdict follows the top origin, unless it's poor and the second origin, a major one, is rated
       // better on evidence that isn't Low, so one weak call or a small origin never lifts a Skip.
-      const lead =
+      let lead =
         ratingOf(top) === "poor" &&
         second !== undefined &&
         !item.minorOrigins[month]?.includes(second) &&
@@ -178,6 +207,26 @@ function evaluateCore(item: ItemInputs, basis: Basis, window: number, ctx: EvalC
         item.origins[second]?.evidence?.[window] !== "low"
           ? second
           : top;
+      // P17: Peak when a shopper has a good chance of finding it at its best: the top origin can make it Peak,
+      // or such origins hold rules.peakShare of the month's volume (editorial origins: an equal share per
+      // major origin). Any typical origin below prime then means picking by the label.
+      const thinAt = (o: OriginId) => {
+        const s = item.supply[o]?.[month];
+        return s != null && s < env.rules.supplyIndex.thin;
+      };
+      peakOrigins = ratedTypical.filter((o) => ratingOf(o) === "prime" && near(o, env) && !thinAt(o));
+      const weight = (o: OriginId) =>
+        known
+          ? ((shares[typical.indexOf(o)] as number | null) ?? 0)
+          : item.minorOrigins[month]?.includes(o)
+            ? 0
+            : 1;
+      const total = known ? 1 : typical.reduce((sum, o) => sum + weight(o), 0);
+      const share = total > 0 ? peakOrigins.reduce((sum, o) => sum + weight(o), 0) / total : 0;
+      const topCan = lead === top && peakOrigins.includes(top);
+      peakAllowed = topCan || share >= env.rules.peakShare - 1e-9;
+      if (!topCan && peakAllowed) lead = peakOrigins[0] as OriginId;
+      mixed = ratedTypical.some((o) => ratingOf(o) !== "prime");
       decider = item.origins[lead];
       rating = ratingOf(lead);
       supplyOrigin = lead;
@@ -201,7 +250,20 @@ function evaluateCore(item: ItemInputs, basis: Basis, window: number, ctx: EvalC
   const capped = basis.kind === "typical" || (basis.kind === "variety" && basis.item === true);
   const result = decide(
     item,
-    { rating, decider, missing, labelNote, poorOrigin, supplyOrigin, basis, window, capped },
+    {
+      rating,
+      decider,
+      missing,
+      labelNote,
+      poorOrigin,
+      supplyOrigin,
+      basis,
+      window,
+      capped,
+      peakAllowed,
+      mixed,
+      peakOrigins,
+    },
     ctx,
     env,
   );
@@ -248,7 +310,12 @@ function selectionPeak(
       env,
     );
     if (r.verdict === "peak")
-      return { ...r, reasons: [{ code: "selection", selection: s.id }, ...typical.reasons], selection: s.id };
+      return {
+        ...r,
+        reasons: [{ code: "selection", selection: s.id }, ...typical.reasons],
+        selection: s.id,
+        notPeak: typical,
+      };
   }
   return null;
 }
@@ -266,6 +333,14 @@ interface Decision {
   window: number;
   /** P16: Peak needs the deciding origin in rules.peakCountries. */
   capped: boolean;
+  /** P18: no origin typically supplies the item this month. */
+  outOfSeason?: boolean;
+  /** Typical basis, P17: the top origin can make it Peak, or Peak-capable origins hold rules.peakShare. */
+  peakAllowed?: boolean;
+  /** Typical basis, P17: a typical origin is rated below prime, so a Peak means picking by the label. */
+  mixed?: boolean;
+  /** Typical basis, P17: the prime typical origins that can make it Peak, top first. */
+  peakOrigins?: OriginId[];
 }
 
 function decide(
@@ -273,7 +348,7 @@ function decide(
   d: Decision,
   ctx: EvalContext,
   env: Env,
-): CoreResult & { labelNote: boolean } {
+): CoreResult & { labelNote: boolean; notPeak?: Core } {
   const supply =
     (d.supplyOrigin === undefined ? null : item.supply[d.supplyOrigin]?.[monthOf(d.window)]) ?? null;
   const thin = supply !== null && supply < env.rules.supplyIndex.thin;
@@ -282,8 +357,13 @@ function decide(
   const reasons: Reason[] = [];
   let verdict: Verdict;
   let ruleFired: CoreResult["ruleFired"];
+  let labelNote = d.labelNote;
 
-  if (d.rating === null) {
+  if (d.outOfSeason) {
+    verdict = "skip";
+    ruleFired = 2;
+    reasons.push({ code: "out-of-season" });
+  } else if (d.rating === null) {
     verdict = "limited";
     ruleFired = 1;
     reasons.push(...d.missing);
@@ -303,26 +383,47 @@ function decide(
       reasons.push({ code: "typical-origin-poor", origin: d.poorOrigin });
 
     if (d.rating === "poor") [verdict, ruleFired] = ["skip", 2];
-    else if (d.rating === "prime" && !thin && item.peakWorthSeeking && !d.poorOrigin && !far)
+    else if (d.rating === "prime" && !thin && item.peakWorthSeeking && !far && d.peakAllowed !== false)
       [verdict, ruleFired] = ["peak", 3];
     else [verdict, ruleFired] = ["good", 4];
+    // P17: a Peak from mixed supply names the origins at their best, and the shopper picks by the label.
+    if (verdict === "peak" && d.mixed) {
+      labelNote = true;
+      reasons.push({ code: "peak-origins", origins: (d.peakOrigins ?? []).slice(0, 3) });
+    }
   }
 
-  const weak: WeakProperty[] = [];
-  if (verdict === "limited" || d.decider?.evidence?.[d.window] === "low") weak.push("coverage");
-  if (item.evidenceBasis === "assessment-only") weak.push("relevance");
-  if (staleSnapshot(item, ctx.date, env)) weak.push("freshness");
-  if ((d.rating === "prime" && thin) || (d.rating === "poor" && strong) || d.labelNote)
-    weak.push("agreement");
-
-  return {
-    verdict,
-    ruleFired,
-    reasons,
-    confidence: weak.length === 0 ? "high" : weak.length === 1 ? "medium" : "low",
-    weakProperties: weak,
-    labelNote: d.labelNote,
+  const finish = (
+    verdict: Verdict,
+    ruleFired: CoreResult["ruleFired"],
+    reasons: Reason[],
+    labelNote: boolean,
+  ) => {
+    const weak: WeakProperty[] = [];
+    if (verdict === "limited" || d.decider?.evidence?.[d.window] === "low") weak.push("coverage");
+    if (item.evidenceBasis === "assessment-only") weak.push("relevance");
+    if (staleSnapshot(item, ctx.date, env)) weak.push("freshness");
+    if ((d.rating === "prime" && thin) || (d.rating === "poor" && strong) || labelNote)
+      weak.push("agreement");
+    return {
+      verdict,
+      ruleFired,
+      reasons,
+      confidence:
+        weak.length === 0 ? ("high" as const) : weak.length === 1 ? ("medium" as const) : ("low" as const),
+      weakProperties: weak,
+      labelNote,
+    };
   };
+  const result = finish(verdict, ruleFired, reasons, labelNote);
+  if (verdict !== "peak") return result;
+  const good = finish(
+    "good",
+    4,
+    reasons.filter((r) => r.code !== "peak-origins"),
+    d.labelNote,
+  );
+  return { ...result, notPeak: good };
 }
 
 function staleSnapshot(item: ItemInputs, date: PlainDate, env: Env): boolean {
@@ -370,7 +471,7 @@ function bestVariety(item: ItemInputs, window: number, ctx: EvalContext, env: En
 }
 
 function stripNote(r: Core): CoreResult {
-  const { labelNote: _, selection: __, ...core } = r;
+  const { labelNote: _, selection: __, notPeak: ___, ...core } = r;
   return core;
 }
 
@@ -383,12 +484,14 @@ export function evaluate(item: ItemInputs, ctx: EvalContext, env: Env): VerdictR
         ? { kind: "origin", origin: ctx.labelOrigin }
         : { kind: "typical" };
 
-  const head = evaluateCore(item, basis, window, ctx, env);
+  const raw = Array.from({ length: WINDOW_COUNT }, (_, w) => evaluateCore(item, basis, w, ctx, env));
+  const year = basis.kind === "typical" ? mainPeakOnly(raw) : raw;
+  const head = year[window] as Core;
   const labelNote = head.labelNote === true;
   const selection = head.selection ?? null;
   const core = stripNote(head);
 
-  const outlook = (w: number) => evaluateCore(item, basis, w % WINDOW_COUNT, ctx, env).verdict;
+  const outlook = (w: number) => (year[w % WINDOW_COUNT] as Core).verdict;
   const markers: Marker[] = [];
 
   if (core.verdict === "peak" || core.verdict === "good") {
@@ -436,10 +539,47 @@ export function evaluate(item: ItemInputs, ctx: EvalContext, env: Env): VerdictR
  * variety's as if the label named it (the item page's variety strips). */
 export function typicalOutlook(item: ItemInputs, env: Env, year: number, variety?: VarietyId): Verdict[] {
   const basis: Basis = variety === undefined ? { kind: "typical" } : { kind: "variety", variety };
-  return Array.from({ length: WINDOW_COUNT }, (_, w) => {
+  const cores = Array.from({ length: WINDOW_COUNT }, (_, w) => {
     const date = { year, month: monthOf(w) + 1, day: w % 2 === 0 ? 1 : 16 };
     const ctx: EvalContext = { date, ...(variety === undefined ? {} : { labelVariety: variety }) };
-    return evaluateCore(item, basis, w, ctx, env).verdict;
+    return evaluateCore(item, basis, w, ctx, env);
+  });
+  return (variety === undefined ? mainPeakOnly(cores) : cores).map((c) => c.verdict);
+}
+
+/** P19: an item is Peak at most once a year. With several Peak runs in its year (read around the year end),
+ * only the longest stays Peak, the earliest-starting on a tie. The others read as they would without Peak (Good,
+ * or the typical result under a selection's Peak) with a `main-peak` reason. Label advice and variety strips keep
+ * every Peak. */
+function mainPeakOnly<C extends Core>(year: readonly C[]): C[] {
+  const n = year.length;
+  const peak = year.map((c) => c.verdict === "peak");
+  const runs: { from: number; length: number }[] = [];
+  for (let w = 0; w < n; w++) {
+    if (!peak[w] || peak[(w + n - 1) % n]) continue;
+    let length = 0;
+    while (length < n && peak[(w + length) % n]) length++;
+    runs.push({ from: w, length });
+  }
+  const main = runs.reduce<(typeof runs)[number] | undefined>(
+    (best, r) => (best === undefined || r.length > best.length ? r : best),
+    undefined,
+  );
+  if (main === undefined || runs.length < 2) return [...year];
+  const to = (main.from + main.length - 1) % n;
+  return year.map((c, w) => {
+    if (c.verdict !== "peak" || (w - main.from + n) % n < main.length) return c;
+    // Variety-rated cores carry no `notPeak`: their Good call changes nothing else.
+    const {
+      selection: _,
+      notPeak: __,
+      ...rest
+    } = c.notPeak ?? {
+      ...c,
+      verdict: "good" as const,
+      ruleFired: 4 as const,
+    };
+    return { ...rest, reasons: [...rest.reasons, { code: "main-peak", from: main.from, to }] } as C;
   });
 }
 

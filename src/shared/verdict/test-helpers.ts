@@ -7,6 +7,7 @@ export const RULES: Rules = {
   version: 1,
   typicalOriginShare: 0.7,
   decidingOriginShare: 0.25,
+  peakShare: 0.5,
   ratedTypicalShare: 0.75,
   supplyIndex: { thin: 0.8, strong: 1.2 },
   varietyInStoreShare: 0.1,

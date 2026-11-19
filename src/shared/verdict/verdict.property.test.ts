@@ -7,6 +7,8 @@ import {
   evaluate,
   type ItemInputs,
   type Rating,
+  typicalOutlook,
+  type VerdictResult,
   verdictRank,
 } from "./index";
 import { ENV } from "./test-helpers";
@@ -88,6 +90,20 @@ const RUNS = { numRuns: 500 };
 /** Typical origins rated for the window: unrated ones are passed over (P1) and the rated ones decide (P9). */
 const ratedTypical = (item: ItemInputs, month: number, window: number): string[] =>
   (item.typicalOrigins[month] ?? []).filter((o) => (item.origins[o]?.windows[window] ?? null) !== null);
+/** P18: no typical origin this month, though some in other months. */
+const outOfSeason = (item: ItemInputs, month: number) =>
+  (item.typicalOrigins[month] ?? []).length === 0 && item.typicalOrigins.some((os) => os.length > 0);
+/** P19: this window's Peak was taken away because another Peak run is the item's main one. */
+const demoted = (r: Pick<VerdictResult, "reasons">) => r.reasons.some((x) => x.code === "main-peak");
+const thinAt = (item: ItemInputs, o: string, month: number) => {
+  const s = item.supply[o]?.[month];
+  return s != null && s < ENV.rules.supplyIndex.thin;
+};
+/** The origin a `rated` reason names, if any. */
+const ratedOrigin = (r: Pick<VerdictResult, "reasons">): string | undefined => {
+  const rated = r.reasons.find((x) => x.code === "rated");
+  return rated && "origin" in rated ? rated.origin : undefined;
+};
 
 describe("verdict engine invariants", () => {
   it("Limited evidence exactly when rule 1 fires", () =>
@@ -105,11 +121,10 @@ describe("verdict engine invariants", () => {
         const r = evaluate(item, ctx, ENV);
         if (r.selection !== null) return; // the selection's origin decides (P16; table-tested)
         const month = ctx.date.month - 1;
-        const w = windowIndex(ctx.date.month, ctx.date.day);
-        // An item rated by variety takes its supply from the top typical origin, rated or not.
+        // An item rated by variety takes its supply from the top typical origin, rated or not; otherwise the
+        // origin the verdict rests on decides (P9, P17).
         const decider =
-          ctx.labelOrigin ??
-          (item.varieties.length > 0 ? item.typicalOrigins[month]?.[0] : ratedTypical(item, month, w)[0]);
+          ctx.labelOrigin ?? (item.varieties.length > 0 ? item.typicalOrigins[month]?.[0] : ratedOrigin(r));
         const supply = (decider === undefined ? null : item.supply[decider]?.[month]) ?? null;
         if (supply !== null && supply < ENV.rules.supplyIndex.thin) expect(r.verdict).not.toBe("peak");
       }),
@@ -138,21 +153,44 @@ describe("verdict engine invariants", () => {
       RUNS,
     ));
 
-  it("no default Peak while any typical origin is rated poor", () =>
+  it("P17: a default Peak rests on a prime, near typical origin whose supply isn't thin", () =>
     fc.assert(
       fc.property(itemArb, ctxArb, (item, ctx) => {
         if (item.varieties.length > 0) return;
         const r = evaluate(item, { date: ctx.date }, ENV);
+        if (r.verdict !== "peak" || r.selection !== null) return;
+        const month = ctx.date.month - 1;
         const w = windowIndex(ctx.date.month, ctx.date.day);
-        const typical = item.typicalOrigins[ctx.date.month - 1] ?? [];
-        // A selection the shopper can pick out may still make it Peak (P16), with Check the label.
-        if (typical.some((o) => item.origins[o]?.windows[w] === "poor") && r.selection === null)
-          expect(r.verdict).not.toBe("peak");
+        const origin = ratedOrigin(r) ?? "";
+        expect(ratedTypical(item, month, w)).toContain(origin);
+        expect(item.origins[origin]?.windows[w]).toBe("prime");
+        expect(near(origin)).toBe(true);
+        expect(thinAt(item, origin, month)).toBe(false);
       }),
       RUNS,
     ));
 
-  it("P9: the label note shows exactly when typical origins mix poor with better, and never on label advice", () =>
+  it("P17: a Peak-capable top origin makes the item Peak, unless another Peak season is its main one", () =>
+    fc.assert(
+      fc.property(itemArb, ctxArb, (item, ctx) => {
+        if (item.varieties.length > 0 || !item.peakWorthSeeking) return;
+        const r = evaluate(item, { date: ctx.date }, ENV);
+        if (r.verdict === "limited") return; // P1: too little of the volume is rated
+        const month = ctx.date.month - 1;
+        const w = windowIndex(ctx.date.month, ctx.date.day);
+        const [top] = ratedTypical(item, month, w);
+        if (
+          top !== undefined &&
+          item.origins[top]?.windows[w] === "prime" &&
+          near(top) &&
+          !thinAt(item, top, month)
+        )
+          expect(r.verdict === "peak" || demoted(r)).toBe(true);
+      }),
+      RUNS,
+    ));
+
+  it("P9, P17: the label note shows exactly when origins mix poor with better or a Peak mixes prime with less", () =>
     fc.assert(
       fc.property(itemArb, ctxArb, (item, ctx) => {
         if (item.varieties.length > 0) return;
@@ -161,7 +199,9 @@ describe("verdict engine invariants", () => {
         const w = windowIndex(ctx.date.month, ctx.date.day);
         const ratings = ratedTypical(item, ctx.date.month - 1, w).map((o) => item.origins[o]?.windows[w]);
         const mixed = ratings.includes("poor") && ratings.some((x) => x !== "poor");
-        expect(r.labelNote).toBe(r.selection !== null || mixed);
+        // P17: a Peak from supply with any origin below prime means picking by the label.
+        const mixedPeak = r.verdict === "peak" && ratings.some((x) => x !== "prime");
+        expect(r.labelNote).toBe(r.selection !== null || mixed || mixedPeak);
         for (const o of Object.keys(item.origins))
           expect(evaluate(item, { date: ctx.date, labelOrigin: o }, ENV).labelNote).toBe(false);
       }),
@@ -174,6 +214,10 @@ describe("verdict engine invariants", () => {
         if (item.varieties.length > 0) return;
         const r = evaluate(item, { date: ctx.date }, ENV);
         if (r.ruleFired !== 2) return;
+        if (r.reasons.some((x) => x.code === "out-of-season")) {
+          expect(outOfSeason(item, ctx.date.month - 1)).toBe(true);
+          return;
+        }
         const w = windowIndex(ctx.date.month, ctx.date.day);
         const [top, second] = ratedTypical(item, ctx.date.month - 1, w);
         expect(item.origins[top as string]?.windows[w]).toBe("poor");
@@ -212,12 +256,18 @@ describe("verdict engine invariants", () => {
         // byVariety is label advice, so a far top origin caps only the item verdict (P16).
         const capped = !near(item.typicalOrigins[ctx.date.month - 1]?.[0]);
         const asItem = (v: CoreResult["verdict"]) => (capped && v === "peak" ? "good" : v);
+        if (outOfSeason(item, ctx.date.month - 1)) {
+          expect(r.verdict).toBe("skip");
+          return;
+        }
         const inStore = Object.values(r.byVariety).filter((v) => v.inStore);
         const best = Math.max(-1, ...inStore.map((v) => verdictRank(asItem(v.verdict))));
+        // P19: a Peak outside the item's main Peak season reads Good; its line still names the best varieties.
+        const held = demoted(r) ? "peak" : r.verdict;
         if (inStore.length === 0) expect(r.verdict).toBe("limited");
-        else expect(verdictRank(r.verdict)).toBe(best);
+        else expect(verdictRank(held)).toBe(best);
         for (const id of r.varietyLine ?? [])
-          expect(asItem(r.byVariety[id]?.verdict ?? "limited")).toBe(r.verdict);
+          expect(asItem(r.byVariety[id]?.verdict ?? "limited")).toBe(held);
       }),
       RUNS,
     ));
@@ -228,9 +278,12 @@ describe("verdict engine invariants", () => {
         const plain = noSelections(item);
         const capped = evaluate(plain, ctx, ENV);
         const open = evaluate(plain, ctx, OPEN);
-        expect(capped.verdict).toBe(
-          open.verdict === "peak" && capped.verdict !== "peak" ? "good" : open.verdict,
-        );
+        // P19: with fewer Peak windows, a run demoted in the open year can become the capped item's main Peak.
+        if (demoted(open)) expect(["peak", "good"]).toContain(capped.verdict);
+        else
+          expect(capped.verdict).toBe(
+            open.verdict === "peak" && capped.verdict !== "peak" ? "good" : open.verdict,
+          );
         expect(capped.byOrigin).toEqual(open.byOrigin);
         expect(capped.byVariety).toEqual(open.byVariety);
       }),
@@ -260,7 +313,8 @@ describe("verdict engine invariants", () => {
         const r = evaluate(item, { date: ctx.date }, ENV);
         const without = evaluate(noSelections(item), { date: ctx.date }, ENV);
         if (r.selection === null) {
-          expect(r.verdict).toBe(without.verdict);
+          // P19: a selection's Peak season can become the item's main one, or stop being it.
+          if (!demoted(r) && !demoted(without)) expect(r.verdict).toBe(without.verdict);
           return;
         }
         expect(without.verdict).not.toBe("peak");
@@ -301,6 +355,52 @@ describe("verdict engine invariants", () => {
           }
           if (m.kind === "reliable-year-round") expect(item.alwaysGood).toBe(false);
         }
+      }),
+      RUNS,
+    ));
+
+  it("P18: out of season reads Skip, with no label note", () =>
+    fc.assert(
+      fc.property(itemArb, ctxArb, (item, ctx) => {
+        const r = evaluate(item, { date: ctx.date }, ENV);
+        const out = outOfSeason(item, ctx.date.month - 1);
+        expect(r.reasons.some((x) => x.code === "out-of-season")).toBe(out);
+        if (out) {
+          expect(r.verdict).toBe("skip");
+          expect(r.labelNote).toBe(false);
+        }
+      }),
+      RUNS,
+    ));
+
+  it("P19: the item's year has at most one Peak run, and the verdict matches the outlook", () =>
+    fc.assert(
+      fc.property(itemArb, ctxArb, (item, ctx) => {
+        const outlook = typicalOutlook(item, ENV, ctx.date.year);
+        const starts = outlook.filter(
+          (v, w) => v === "peak" && outlook[(w + WINDOW_COUNT - 1) % WINDOW_COUNT] !== "peak",
+        );
+        expect(starts.length).toBeLessThanOrEqual(1);
+        const w = windowIndex(ctx.date.month, ctx.date.day);
+        expect(evaluate(item, { date: ctx.date }, ENV).verdict).toBe(outlook[w]);
+      }),
+      RUNS,
+    ));
+
+  it("P19: a window that loses Peak names the main Peak run, which it lies outside", () =>
+    fc.assert(
+      fc.property(itemArb, ctxArb, (item, ctx) => {
+        const r = evaluate(item, { date: ctx.date }, ENV);
+        const main = r.reasons.find((x) => x.code === "main-peak");
+        if (main === undefined || main.code !== "main-peak") return;
+        const outlook = typicalOutlook(item, ENV, ctx.date.year);
+        const w = windowIndex(ctx.date.month, ctx.date.day);
+        expect(outlook[main.from]).toBe("peak");
+        expect(outlook[main.to]).toBe("peak");
+        expect(r.verdict).not.toBe("peak");
+        expect((w - main.from + WINDOW_COUNT) % WINDOW_COUNT).toBeGreaterThan(
+          (main.to - main.from + WINDOW_COUNT) % WINDOW_COUNT,
+        );
       }),
       RUNS,
     ));

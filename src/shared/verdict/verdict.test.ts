@@ -34,8 +34,8 @@ const two = { "us-ca": rated("prime"), mx: rated("prime") };
 const cases: Case[] = [
   // Rule 1: Limited evidence
   {
-    name: "1: no typical origins this month",
-    item: item({ typicalOrigins: inNov(["us-ca"], []) }),
+    name: "1: no typical origins in any month",
+    item: item({ typicalOrigins: allMonths([]) }),
     verdict: "limited",
     rule: 1,
     weak: ["coverage"],
@@ -102,6 +102,19 @@ const cases: Case[] = [
     rule: 1,
   },
   // Rule 2: Skip
+  {
+    name: "2: no typical origins this month, though some in others: out of season (P18)",
+    item: item({ typicalOrigins: inNov(["us-ca"], []) }),
+    verdict: "skip",
+    rule: 2,
+    weak: [],
+  },
+  {
+    name: "2: out of season even when Peak isn't worth seeking (P18)",
+    item: item({ peakWorthSeeking: false, typicalOrigins: inNov(["us-ca"], []) }),
+    verdict: "skip",
+    rule: 2,
+  },
   {
     name: "2: top origin poor",
     item: item({ origins: { "us-ca": rated("poor") } }),
@@ -206,7 +219,7 @@ const cases: Case[] = [
   },
   {
     name: "1: Limited evidence stays when Peak isn't worth seeking",
-    item: item({ peakWorthSeeking: false, typicalOrigins: inNov(["us-ca"], []) }),
+    item: item({ peakWorthSeeking: false, typicalOrigins: allMonths(["cl"]) }),
     verdict: "limited",
     rule: 1,
   },
@@ -227,13 +240,13 @@ const cases: Case[] = [
     rule: 4,
   },
   {
-    name: "P9: November's ranking applies in November (prime top, poor second: Good)",
+    name: "P9: November's ranking applies in November (prime top, poor second: Peak by the label, P17)",
     item: item({
       origins: { "us-ca": rated("poor"), mx: rated("prime") },
       typicalOrigins: inNov(["us-ca", "mx"], ["mx", "us-ca"]),
     }),
-    verdict: "good",
-    rule: 4,
+    verdict: "peak",
+    rule: 3,
     weak: ["agreement"],
   },
   // The deciding origin's own supply (P11)
@@ -278,15 +291,16 @@ const cases: Case[] = [
     verdict: "good",
     rule: 4,
   },
-  // Rule 3 needs no typical origin rated poor
+  // P17: a poor typical origin doesn't hold the top origin's Peak; the shopper picks by the label
   {
-    name: "4 held at 5: prime top origin, poor third",
+    name: "3: prime top origin, poor third",
     item: item({
       origins: { "us-ca": rated("prime"), mx: rated("fair"), cl: rated("poor") },
       typicalOrigins: allMonths(["us-ca", "mx", "cl"]),
     }),
-    verdict: "good",
-    rule: 4,
+    verdict: "peak",
+    rule: 3,
+    weak: ["agreement"],
   },
   {
     name: "3: prime top origin, fair others",
@@ -361,8 +375,8 @@ describe("origins that disagree (P9)", () => {
   it.each([
     // [ratings by rank, verdict, label note, deciding origin, poor origin named]
     [["prime", "prime"], "peak", false, "us-ca", undefined],
-    [["prime", "fair"], "peak", false, "us-ca", undefined],
-    [["prime", "poor"], "good", true, "us-ca", "mx"],
+    [["prime", "fair"], "peak", true, "us-ca", undefined],
+    [["prime", "poor"], "peak", true, "us-ca", "mx"],
     [["fair", "prime"], "good", false, "us-ca", undefined],
     [["fair", "fair"], "good", false, "us-ca", undefined],
     [["fair", "poor"], "good", true, "us-ca", "mx"],
@@ -370,7 +384,7 @@ describe("origins that disagree (P9)", () => {
     [["poor", "fair"], "good", true, "mx", "us-ca"],
     [["poor", "poor"], "skip", false, "us-ca", undefined],
     [["poor"], "skip", false, "us-ca", undefined],
-    [["prime", "fair", "poor"], "good", true, "us-ca", "cl"],
+    [["prime", "fair", "poor"], "peak", true, "us-ca", "cl"],
     [["poor", "poor", "fair"], "skip", true, "us-ca", undefined],
     [["poor", "fair", "poor"], "good", true, "mx", "us-ca"],
   ] as const)("%j → %s, note %s, decided by %s", (ratings, verdict, note, decider, poor) => {
@@ -821,4 +835,183 @@ describe("selections (P16)", () => {
     ));
   it("label advice is never lifted", () =>
     expect(evaluate(local(), { ...today, labelOrigin: "mx" }, ENV).verdict).toBe("good"));
+});
+
+describe("Peak from half the supply (P17)", () => {
+  // Three typical origins with explicit shares of the month's volume, supply normal everywhere.
+  const three = (
+    ratings: Record<string, "prime" | "fair" | "poor">,
+    shares: number[],
+    overrides: Partial<ItemInputs> = {},
+  ) => {
+    const ids = Object.keys(ratings);
+    return item({
+      origins: Object.fromEntries(ids.map((o) => [o, rated(ratings[o] ?? null)])),
+      typicalOrigins: allMonths(ids),
+      typicalShares: allMonths(shares),
+      supply: Object.fromEntries(ids.map((o) => [o, allMonths(1)])),
+      ...overrides,
+    });
+  };
+  const decidedBy = (r: VerdictResult) => r.reasons.find((x) => x.code === "rated");
+  const peakOrigins = (r: VerdictResult) => r.reasons.find((x) => x.code === "peak-origins");
+
+  it("prime origins holding half the volume make it Peak behind a fair top origin, by the label", () => {
+    const r = evaluate(
+      three({ "us-ca": "fair", "us-ga": "prime", mx: "prime" }, [0.45, 0.3, 0.2]),
+      today,
+      ENV,
+    );
+    expect([r.verdict, r.ruleFired, r.labelNote]).toEqual(["peak", 3, true]);
+    expect(decidedBy(r)).toMatchObject({ rating: "prime", origin: "us-ga" });
+    expect(peakOrigins(r)).toEqual({ code: "peak-origins", origins: ["us-ga", "mx"] });
+    expect(r.markers).toContainEqual({ kind: "check-label" });
+    expect(r.weakProperties).toContain("agreement");
+  });
+  it("just under half stays Good, decided by the top origin", () => {
+    const r = evaluate(
+      three({ "us-ca": "fair", "us-ga": "prime", mx: "prime" }, [0.45, 0.3, 0.19]),
+      today,
+      ENV,
+    );
+    expect([r.verdict, r.labelNote]).toEqual(["good", false]);
+    expect(decidedBy(r)).toMatchObject({ origin: "us-ca" });
+  });
+  it("far prime origins don't count toward the half (P16)", () =>
+    expect(
+      evaluate(three({ "us-ca": "fair", pe: "prime", mx: "prime" }, [0.4, 0.35, 0.2]), today, ENV).verdict,
+    ).toBe("good"));
+  it("thin prime origins don't count toward the half", () => {
+    const base = three({ "us-ca": "fair", "us-ga": "prime", mx: "prime" }, [0.4, 0.35, 0.2]);
+    expect(evaluate(base, today, ENV).verdict).toBe("peak");
+    const thin = { ...base, supply: { ...base.supply, "us-ga": allMonths(0.5) } };
+    expect(evaluate(thin, today, ENV).verdict).toBe("good");
+  });
+  it("lifts past a poor top origin when prime origins hold half, naming the poor one", () => {
+    const r = evaluate(
+      three({ "us-ca": "poor", "us-ga": "prime", mx: "prime" }, [0.4, 0.35, 0.2]),
+      today,
+      ENV,
+    );
+    expect([r.verdict, r.labelNote]).toEqual(["peak", true]);
+    expect(r.reasons).toContainEqual({ code: "typical-origin-poor", origin: "us-ca" });
+  });
+  it("a prime second origin that takes over from a poor top one is Good under half (P9)", () =>
+    expect(
+      evaluate(three({ "us-ca": "poor", "us-ga": "prime", mx: "fair" }, [0.4, 0.35, 0.2]), today, ENV)
+        .verdict,
+    ).toBe("good"));
+  it("never Peak when Peak isn't worth seeking", () =>
+    expect(
+      evaluate(
+        three({ "us-ca": "fair", "us-ga": "prime", mx: "prime" }, [0.4, 0.35, 0.2], {
+          peakWorthSeeking: false,
+        }),
+        today,
+        ENV,
+      ).verdict,
+    ).toBe("good"));
+  it("all origins prime: Peak with no label note and no origin list", () => {
+    const r = evaluate(three({ "us-ca": "prime", "us-ga": "prime" }, [0.5, 0.3]), today, ENV);
+    expect([r.verdict, r.labelNote, peakOrigins(r)]).toEqual(["peak", false, undefined]);
+  });
+  it("editorial origins count each major origin equally, and minor ones not at all", () => {
+    const editorial = (minor: string[]) =>
+      three({ "us-ca": "fair", "us-ga": "prime", mx: "fair" }, [null, null, null] as unknown as number[], {
+        minorOrigins: allMonths(minor),
+      });
+    expect(evaluate(editorial([]), today, ENV).verdict).toBe("good"); // 1 of 3 major
+    expect(evaluate(editorial(["mx"]), today, ENV).verdict).toBe("peak"); // 1 of 2 major
+    expect(evaluate(editorial(["us-ga"]), today, ENV).verdict).toBe("good"); // minor prime counts for nothing
+  });
+});
+
+describe("one Peak season a year (P19)", () => {
+  const w = windowFromLabel;
+  // Prime in two runs, fair otherwise.
+  const twoRuns = (main: Record<string, "prime">, other: Record<string, "prime">) =>
+    item({ origins: { "us-ca": rated("fair", { ...main, ...other }) } });
+  const spring = { "mar-1": "prime", "mar-2": "prime", "apr-1": "prime", "apr-2": "prime" } as const;
+  const fall = { "oct-1": "prime", "oct-2": "prime" } as const;
+  const runsOf = (outlook: string[]) =>
+    outlook.filter((v, i) => v === "peak" && outlook[(i + outlook.length - 1) % outlook.length] !== "peak")
+      .length;
+
+  it("keeps only the longest Peak run; the other reads Good with the main season named", () => {
+    const i = twoRuns(spring, fall);
+    const outlook = typicalOutlook(i, ENV, 2026);
+    expect(outlook[w("apr-1")]).toBe("peak");
+    expect(outlook[w("oct-1")]).toBe("good");
+    expect(runsOf(outlook)).toBe(1);
+    const r = evaluate(i, { date: { year: 2026, month: 10, day: 5 } }, ENV);
+    expect([r.verdict, r.ruleFired]).toEqual(["good", 4]);
+    expect(r.reasons).toContainEqual({ code: "main-peak", from: w("mar-1"), to: w("apr-2") });
+  });
+  it("on a tie keeps the earlier run", () => {
+    const outlook = typicalOutlook(twoRuns({ "mar-1": "prime", "mar-2": "prime" }, fall), ENV, 2026);
+    expect([outlook[w("mar-1")], outlook[w("oct-1")]]).toEqual(["peak", "good"]);
+  });
+  it("reads a run across the year end as one", () => {
+    const summer = { "jun-1": "prime", "jun-2": "prime" } as const;
+    const winter = {
+      "nov-1": "prime",
+      "nov-2": "prime",
+      "dec-1": "prime",
+      "dec-2": "prime",
+      "jan-1": "prime",
+    };
+    const outlook = typicalOutlook(twoRuns(winter as Record<string, "prime">, summer), ENV, 2026);
+    expect([outlook[w("jan-1")], outlook[w("nov-1")], outlook[w("jun-1")]]).toEqual(["peak", "peak", "good"]);
+    const r = evaluate(
+      twoRuns(winter as Record<string, "prime">, summer),
+      { date: { year: 2026, month: 6, day: 5 } },
+      ENV,
+    );
+    expect(r.reasons).toContainEqual({ code: "main-peak", from: w("nov-1"), to: w("jan-1") });
+  });
+  it("feeds the markers: the main run's last window is Last call", () => {
+    const r = evaluate(twoRuns(spring, fall), { date: { year: 2026, month: 4, day: 20 } }, ENV);
+    expect(r.markers).toContainEqual({ kind: "last-call", fadesBy: w("may-1") });
+  });
+  it("label advice keeps every Peak", () =>
+    expect(
+      evaluate(twoRuns(spring, fall), { date: { year: 2026, month: 10, day: 5 }, labelOrigin: "us-ca" }, ENV)
+        .verdict,
+    ).toBe("peak"));
+  it("a selection's Peak outside the main season reads Good and drops the selection", () => {
+    const i = item({
+      origins: { mx: rated("fair", spring), "us-nj": rated("fair", fall) },
+      typicalOrigins: allMonths(["mx"]),
+      supply: { mx: allMonths(1), "us-nj": allMonths(1) },
+      selections: [{ id: "local", origins: ["us-nj"], inStore: allMonths(true) }],
+    });
+    const r = evaluate(i, { date: { year: 2026, month: 10, day: 5 } }, ENV);
+    expect([r.verdict, r.selection]).toEqual(["good", null]);
+    expect(r.reasons.some((x) => x.code === "selection")).toBe(false);
+  });
+  it("a selection's Peak outside the main season reads as the typical supply does, here Skip", () => {
+    const i = item({
+      origins: { mx: rated("poor", spring), "us-nj": rated("fair", fall) },
+      typicalOrigins: allMonths(["mx"]),
+      supply: { mx: allMonths(1), "us-nj": allMonths(1) },
+      selections: [{ id: "local", origins: ["us-nj"], inStore: allMonths(true) }],
+    });
+    const r = evaluate(i, { date: { year: 2026, month: 10, day: 5 } }, ENV);
+    expect([r.verdict, r.ruleFired, r.selection, r.labelNote]).toEqual(["skip", 2, null, false]);
+    expect(r.reasons).toContainEqual({ code: "main-peak", from: w("mar-1"), to: w("apr-2") });
+  });
+  it("a mixed-supply Peak outside the main season drops the Peak's label note and origins", () => {
+    // Fall: prime California at 60% beside fair Mexico, a P17 Peak with Check the label; spring is longer.
+    const i = item({
+      origins: { "us-ca": rated("fair", { ...spring, ...fall }), mx: rated("fair") },
+      typicalOrigins: allMonths(["us-ca", "mx"]),
+      typicalShares: allMonths([0.6, 0.4]),
+      supply: { "us-ca": allMonths(1), mx: allMonths(1) },
+    });
+    const peak = evaluate(i, { date: { year: 2026, month: 3, day: 5 } }, ENV);
+    expect([peak.verdict, peak.labelNote]).toEqual(["peak", true]);
+    const r = evaluate(i, { date: { year: 2026, month: 10, day: 5 } }, ENV);
+    expect([r.verdict, r.labelNote]).toEqual(["good", false]);
+    expect(r.reasons.some((x) => x.code === "peak-origins")).toBe(false);
+  });
 });

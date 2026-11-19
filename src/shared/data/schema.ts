@@ -60,6 +60,8 @@ export const rulesSchema = z.strictObject({
   typicalOriginShare: z.number().gt(0).lte(1),
   /** P9: a typical origin below this share of the month's volume never takes over from the top one. */
   decidingOriginShare: z.number().gt(0).lte(1),
+  /** P17: Peak-capable prime origins holding at least this share of the month's volume make the item Peak. */
+  peakShare: z.number().gt(0).lte(1),
   /** P1: rule 1 passes when the rated typical origins hold at least this share of the typical origins' volume. */
   ratedTypicalShare: z.number().gt(0).lte(1),
   supplyIndex: z
