@@ -72,4 +72,13 @@ origins:
   - origin: us-ny
     windows:
       - { from: jul-2, to: sep-2, rating: prime }
+selections:
+  - id: local-summer
+    label: local summer corn
+    cue: From July to September, look for a "local" sign or a nearby state on the bin, often in big summer displays. Pick ears with snug, bright green husks and moist silk, and buy it the day you'll cook it.
+    origins: [us-ny]
+    inStores:
+      - from: jul
+        to: sep
+        sources: [producebusiness-corn-sales-sweeter, freshplaza-sweet-corn-tray-packs]
 status: draft
