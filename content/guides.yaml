@@ -4,7 +4,9 @@
 - id: apples
   name: Apples
   items: [apples]
-  status: draft
+  status: reviewed
+  reviewer: Jared
+  reviewedOn: 2026-11-18
   traits:
     - id: sweetness
       name: Sweetness
@@ -39,7 +41,10 @@
 - id: pears
   name: Pears
   items: [pears]
-  status: draft
+  ripeCues: true
+  status: reviewed
+  reviewer: Jared
+  reviewedOn: 2026-11-18
   traits:
     - id: sweetness
       name: Sweetness when ripe
@@ -68,7 +73,9 @@
 - id: citrus
   name: Mandarins & oranges
   items: [mandarins, oranges]
-  status: draft
+  status: reviewed
+  reviewer: Jared
+  reviewedOn: 2026-11-18
   traits:
     - id: sweetness
       name: Sweetness

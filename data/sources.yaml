@@ -854,3 +854,27 @@
   url: https://www.specialtyproduce.com/produce/sumo_8292.php
   accessed: 2026-11-18
   tier: mainstream
+- id: umn-sweetango
+  title: SweeTango
+  publisher: University of Minnesota Fruit Breeding (MN Hardy)
+  url: https://mnhardy.umn.edu/sweetango
+  accessed: 2026-11-18
+  tier: authoritative
+- id: specialtyproduce-envy
+  title: Envy Apples Information and Facts
+  publisher: Specialty Produce
+  url: https://specialtyproduce.com/produce/apple/envy_9142.php
+  accessed: 2026-11-18
+  tier: mainstream
+- id: specialtyproduce-sugarbee
+  title: SugarBee Apples Information and Facts
+  publisher: Specialty Produce
+  url: https://specialtyproduce.com/produce/apple/sugarbee_18673.php
+  accessed: 2026-11-18
+  tier: mainstream
+- id: eatlikenoone-sugarbee
+  title: What Is a Sugar Bee Apple?
+  publisher: Eat Like No One Else
+  url: https://www.eatlikenoone.com/what-is-a-sugar-bee-apple-2.htm
+  accessed: 2026-11-18
+  tier: mainstream

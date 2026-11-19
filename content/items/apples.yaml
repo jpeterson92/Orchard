@@ -145,4 +145,22 @@ varieties:
     bestUses: [Snacking, pies]
     label: Jazz or Scifresh
     sources: [veritable-apple-guide, almanac-best-apples-baking]
+  - id: envy
+    name: Envy
+    traits: { sweetness: 4, tartness: 2, crispness: 4, juiciness: 4 }
+    bestUses: [Snacking, slicing ahead]
+    label: Envy
+    sources: [veritable-apple-guide, specialtyproduce-envy]
+  - id: sweetango
+    name: SweeTango
+    traits: { sweetness: 4, tartness: 3, crispness: 5, juiciness: 4 }
+    bestUses: [Snacking, salads]
+    label: SweeTango
+    sources: [umn-sweetango, fruitguys-sweetest-apples]
+  - id: sugarbee
+    name: SugarBee
+    traits: { sweetness: 5, tartness: 2, crispness: 4, juiciness: 4, holds-shape: 4 }
+    bestUses: [Snacking, tarts and pies]
+    label: SugarBee
+    sources: [specialtyproduce-sugarbee, fruitguys-sweetest-apples, eatlikenoone-sugarbee]
 status: draft

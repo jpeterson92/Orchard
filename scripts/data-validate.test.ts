@@ -205,6 +205,17 @@ describe("validate: a valid dataset", () => {
     expect(warnings).toEqual(["item test-fruit variety envy: no sweetness rating yet"]);
   });
 
+  it("asks for a ripe cue on every variety of a guide with ripeCues", () => {
+    const raw = structuredClone(base());
+    withGuide(raw);
+    guide(raw).ripeCues = true;
+    firstItem(raw).varieties[0].ripeCue = "Turns yellow when ripe";
+    firstItem(raw).varieties[1].ripeCue = "Gives at the neck";
+    const { errors, warnings } = validate(raw, { production: false });
+    expect(errors).toEqual([]);
+    expect(warnings).toEqual(["item test-fruit variety envy: no ripe cue yet"]);
+  });
+
   it("passes and normalizes defaults", () => {
     const { errors, warnings, dataset } = validate(base(), { production: false });
     expect(errors).toEqual([]);
@@ -353,6 +364,23 @@ const broken: [string, (r: RawInputs) => void, string][] = [
       firstItem(r).varieties[2].sources = [];
     },
     "item test-fruit variety envy: cite a source for its traits and uses",
+  ],
+  [
+    "ripe cue on a guide without ripeCues",
+    (r) => {
+      withGuide(r);
+      firstItem(r).varieties[0].ripeCue = "Turns yellow when ripe";
+    },
+    "item test-fruit variety gala: a ripe cue needs a guide with ripeCues",
+  ],
+  [
+    "ripe cue over 12 words",
+    (r) => {
+      withGuide(r);
+      guide(r).ripeCues = true;
+      firstItem(r).varieties[0].ripeCue = Array(13).fill("w").join(" ");
+    },
+    "varieties.0.ripeCue: at most 12 words",
   ],
   [
     "traits on an item with no guide",

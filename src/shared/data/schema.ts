@@ -123,7 +123,9 @@ export const varietySchema = z.strictObject({
   traits: z.record(id, z.int().min(1).max(5)),
   bestUses: z.array(words(CARD_WORDS)).min(1),
   label: words(CARD_WORDS),
-  /** Citations for the traits and uses. */
+  /** How to tell when it's ripe, on guides with `ripeCues` (e.g. a Bartlett turns yellow). */
+  ripeCue: words(CARD_WORDS).optional(),
+  /** Citations for the traits, uses and ripe cue. */
   sources: z.array(id).default([]),
   /** Overrides the item's `storesWell` (P14), e.g. a long-keeping apple. */
   storesWell: trait.optional(),
@@ -145,6 +147,8 @@ export const guideSchema = z
     id,
     name: text,
     items: z.array(id).min(1),
+    /** Each variety gives a short cue for telling when it's ripe (pears). */
+    ripeCues: z.boolean().default(false),
     traits: z
       .array(
         z.strictObject({

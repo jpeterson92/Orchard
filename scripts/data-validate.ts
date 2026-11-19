@@ -249,10 +249,13 @@ export function validate(raw: RawInputs, opts: { production: boolean }): Result 
       const at = `item ${item.id} variety ${v.id}`;
       const g = guideOf.get(item.id);
       const keys = Object.keys(v.traits);
+      if (v.ripeCue !== undefined && !g?.ripeCues)
+        errors.push(`${at}: a ripe cue needs a guide with ripeCues`);
       if (!g) {
         if (keys.length > 0) errors.push(`${at}: traits need a guide for ${item.id}`);
         continue;
       }
+      if (g.ripeCues && v.ripeCue === undefined) warnings.push(`${at}: no ripe cue yet`);
       for (const k of keys)
         if (!g.traits.some((t) => t.id === k)) errors.push(`${at}: trait ${k} isn't on guide ${g.id}`);
       for (const t of g.traits) if (!(t.id in v.traits)) warnings.push(`${at}: no ${t.id} rating yet`);
