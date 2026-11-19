@@ -1,0 +1,54 @@
+id: artichokes
+name: Artichokes
+synonyms: [artichoke, globe artichoke, globe artichokes, purple artichokes]
+misspellings: [artichoks, artichockes, artichokees, artechokes, artichoak]
+category: beans-peas-corn
+purchaseRank: 60
+alwaysGood: false
+shipsWell:
+  value: true
+  sources: [usda-ams-fv-movement]
+  note: Nearly all US supply is Californian; imports are a small share.
+peakWorthSeeking:
+  value: true
+  sources: [instacart-artichoke-season, iastate-answerline-artichokes]
+  note: The spring crop is the one sources say to seek out for flavor.
+storesWell:
+  value: false
+  sources: [umn-artichokes, instacart-artichoke-season]
+  note: Best cooked within about a week of purchase.
+evidenceBasis: assessment-only
+cardLine: Heavy for its size, with tight leaves that squeak.
+pick:
+  - Heavy for its size
+  - Tight, compact leaves that squeak when squeezed
+  - Fresh-looking stem end, not dry or split
+  - Bronze, blistered winter skin is frost and eats fine
+avoid:
+  - Loose, spreading or dry, brown leaves
+  - A sour or fermented smell
+store:
+  temperature: cold
+  ethylene: neither
+  life: { min: 5, max: 7, unit: days }
+  text: Trim a thin slice off the stem, sprinkle with water and refrigerate in a sealed bag. Typically best cooked within 5–7 days.
+  sources: [umn-artichokes, instacart-artichoke-season]
+prep: Rinse well, snip the leaf tips and trim the stem. Rub cut surfaces with lemon so they don't brown; scoop out the fuzzy choke before eating the heart.
+origins:
+  - origin: us-ca
+    windows:
+      - { from: jan-1, to: feb-2, rating: fair }
+      - { from: mar-1, to: may-2, rating: prime }
+      - { from: jun-1, to: aug-2, rating: fair }
+      - from: sep-1
+        to: sep-2
+        rating: fair
+        reason: One extension blog puts the fall crop in September and October; Melissa's and Farmers Market Online date its peak to October, so September stays with the panel at fair.
+      - { from: oct-1, to: oct-2, rating: prime }
+      - { from: nov-1, to: dec-2, rating: fair }
+typicalOrigins:
+  - from: jan
+    to: dec
+    origins: [{ origin: us-ca, major: true }]
+    sources: [usda-ams-fv-movement, melissas-artichoke-facts]
+status: draft

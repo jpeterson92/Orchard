@@ -1,0 +1,35 @@
+item: artichokes
+status: draft
+claims:
+  # California grows nearly all US artichokes: a big spring crop and a smaller fall one.
+  - source: melissas-artichoke-facts
+    origin: us-ca
+    windows:
+      - { from: mar-1, to: may-2, rating: prime }
+      - { from: oct-1, to: oct-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Artichokes are harvested all year, but over half the crop comes March to May, with another rise in October as the fall harvest peaks.
+  - source: farmersmarketonline-artichoke
+    origin: us-ca
+    windows:
+      - { from: mar-1, to: may-2, rating: prime }
+      - { from: oct-1, to: oct-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Sold most of the year, artichokes peak March to May, with a smaller crop in October.
+  - source: iastate-answerline-artichokes
+    origin: us
+    windows:
+      - { from: mar-1, to: may-2, rating: prime }
+      - { from: sep-1, to: oct-2, rating: prime }
+    specificity: month
+    directness: eating-quality
+    paraphrase: Artichokes are best at two times of year, the spring season from March to May and the fall season in September and October.
+  - source: instacart-artichoke-season
+    origin: us
+    windows:
+      - { from: mar-1, to: may-2, rating: prime }
+    specificity: month
+    directness: eating-quality
+    paraphrase: Buy artichokes in their March-to-May spring season for the best flavor; good ones turn up the rest of the year too.

@@ -1,0 +1,81 @@
+id: asparagus
+name: Asparagus
+synonyms: [asparagus spears, green asparagus, sparrowgrass]
+misspellings: [asparagas, asparagis, aspargus, asperagus]
+category: beans-peas-corn
+purchaseRank: 30
+alwaysGood: false
+shipsWell:
+  value: true
+  sources: [usda-hb66-asparagus, freshplaza-caborca-asparagus]
+  note: Keeps two to three weeks near freezing, so Mexican and Peruvian spears arrive sound, if older.
+peakWorthSeeking:
+  value: true
+  sources: [tastingtable-out-of-season-asparagus, metropolitan-market-asparagus]
+  note: Sugars fade within days of cutting, so fresh spring spears taste sweeter and more tender.
+storesWell:
+  value: false
+  sources: [usda-hb66-asparagus, osu-ohioline-asparagus]
+  note: Keeps weeks at best in commercial cold storage, days at home.
+evidenceBasis: supply+assessment
+cardLine: Firm, straight spears with tight, closed tips.
+pick:
+  - Tips tight and closed, not spreading or seeding
+  - Stalks firm and straight; they snap rather than bend
+  - Cut ends moist, not dry, split or woody
+  - Thick or thin both eat well; pick one size so they cook evenly
+avoid:
+  - Limp, wrinkled or slimy spears
+  - Mushy or dark tips
+store:
+  temperature: cold
+  ethylene: sensitive
+  life: { min: 2, max: 4, unit: days }
+  text: Trim the ends and stand the spears in an inch of water, or wrap the ends in a damp paper towel, loosely bagged in the fridge. Typically keeps 2–4 days; flavor fades sooner.
+  sources: [osu-ohioline-asparagus, usda-hb66-asparagus]
+prep: Rinse well, especially the tips, where grit hides. Snap or trim the woody ends; peel thick stalks if the skin is tough.
+origins:
+  - origin: pe
+    windows:
+      - { from: jan-1, to: dec-2, rating: fair }
+  - origin: mx
+    windows:
+      - { from: jan-1, to: apr-2, rating: fair }
+      - from: may-1
+        to: may-2
+        rating: fair
+        reason: Baja's harvest follows Caborca from April; the second source names only the winter and summer regions, so its silence in May isn't a poor reading.
+      - { from: jun-1, to: aug-2, rating: fair }
+      - from: sep-1
+        to: dec-2
+        rating: fair
+        reason: Baja and Sonora keep Mexico harvesting through the fall; the second source names only the winter and summer regions, so its silence in fall isn't a poor reading.
+  - origin: us-ca
+    windows:
+      - { from: jan-2, to: jan-2, rating: fair }
+      - from: feb-1
+        to: feb-2
+        rating: fair
+        reason: California's harvest is only starting; the panel calls late February fair at low confidence, and the prime reading comes from national claims.
+      - { from: mar-1, to: may-2, rating: prime }
+  - origin: us-wa
+    windows:
+      - { from: jan-1, to: jan-2, rating: poor }
+      - from: feb-1
+        to: mar-2
+        rating: poor
+        reason: Washington's own sources start the harvest in April; the February claims describe California and the South.
+      - { from: apr-1, to: jun-2, rating: prime }
+      - { from: jul-1, to: jul-1, rating: fair }
+      - { from: jul-2, to: dec-2, rating: poor }
+  - origin: us-mi
+    windows:
+      - { from: jan-1, to: jan-2, rating: poor }
+      - from: feb-1
+        to: apr-2
+        rating: poor
+        reason: Michigan's own sources start the harvest in early May; the earlier claims describe California and the South.
+      - { from: may-1, to: jun-2, rating: prime }
+      - { from: jul-1, to: jul-1, rating: fair }
+      - { from: jul-2, to: dec-2, rating: poor }
+status: draft

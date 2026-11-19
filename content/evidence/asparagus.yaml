@@ -1,0 +1,111 @@
+item: asparagus
+status: draft
+claims:
+  # US spring harvest: California and the South first, then Washington and Michigan.
+  - source: msstate-fruits-vegetables-in-season
+    origin: us-ms
+    windows:
+      - { from: mar-1, to: jun-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Mississippi harvest chart lists asparagus in season March to June.
+  - source: psu-harvest-calendar
+    origin: us-pa
+    windows:
+      - { from: may-1, to: jun-1, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: Pennsylvania harvest chart lists asparagus in season May to early June.
+  - source: osu-ohioline-asparagus
+    origin: us-oh
+    windows:
+      - { from: apr-1, to: jun-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Ohio asparagus is in season April through June.
+  - source: tastingtable-out-of-season-asparagus
+    origin: us
+    windows:
+      - { from: apr-1, to: may-2, rating: prime }
+    specificity: month
+    directness: eating-quality
+    paraphrase: A late-spring vegetable, asparagus is at its best in most regions in April and May; California's can be fresh from February.
+  - source: kitchn-asparagus-guide
+    origin: us
+    windows:
+      - { from: feb-1, to: jun-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Field asparagus is a spring crop sold February to June; other supply fills the rest of the year.
+  - source: healthyfamily-asparagus
+    origin: us
+    windows:
+      - { from: feb-1, to: jun-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Sold all year, with its peak season February to June.
+  - source: washington-asparagus-commission
+    origin: us-wa
+    windows:
+      - { from: apr-1, to: jun-2, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: Washington farms hand-harvest asparagus from early April into the third week of June in a typical year.
+  - source: freshplaza-washington-asparagus-early
+    origin: us-wa
+    windows:
+      - { from: apr-1, to: jun-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Washington's season opens in early April and runs through June.
+  - source: metropolitan-market-asparagus
+    origin: us-wa
+    windows:
+      - { from: apr-2, to: jun-1, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: A Seattle grocer puts Washington's season at mid-April to mid-June, and says flavor fades quickly after harvest.
+  - source: michigan-asparagus-board
+    origin: us-mi
+    windows:
+      - { from: may-1, to: jun-2, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: Michigan's season starts in early May and ends in mid to late June.
+  - source: freshplaza-michigan-asparagus-sweet-spot
+    origin: us-mi
+    windows:
+      - { from: may-1, to: jun-2, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: Michigan's main area starts the first week of May and its season lasts about seven weeks.
+  # Imports: Mexico (Caborca in winter, then Baja and other regions) and Peru all year.
+  - source: freshplaza-asparagus-regional-diversification
+    origin: mx
+    windows:
+      - { from: jan-2, to: jan-1, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Caborca covers January to April, then Baja and other Mexican regions keep the harvest going from April through January.
+  - source: freshplaza-asparagus-year-round-mexico-peru
+    origin: mx
+    windows:
+      - { from: jan-2, to: apr-1, rating: prime }
+      - { from: jun-1, to: aug-2, rating: prime }
+    specificity: season
+    directness: availability
+    paraphrase: A grower runs Caborca from late January to mid-April and expects strong summer production from central Mexico.
+  - source: freshplaza-caborca-asparagus
+    origin: pe
+    windows:
+      - { from: jan-1, to: dec-2, rating: prime }
+    specificity: season
+    directness: availability
+    paraphrase: Peru supplies the US all year, with its heaviest volume in October and November.
+  - source: freshplaza-peru-asparagus-volume
+    origin: pe
+    windows:
+      - { from: apr-1, to: jan-1, rating: prime }
+    specificity: season
+    directness: availability
+    paraphrase: An importer says Peru's green asparagus winds down in early January and returns in spring, as Mexico's volume builds.
