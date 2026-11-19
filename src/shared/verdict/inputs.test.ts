@@ -29,6 +29,7 @@ const item = {
     { id: "rated", windows: SUMMER, quotedAs: ["rated-usda", "rated-alt"] },
     { id: "unrated", windows: undefined },
   ],
+  selections: [],
   typicalOrigins: [],
 } as unknown as Item;
 
@@ -124,6 +125,22 @@ describe("itemInputs", () => {
     const noCalendar = itemInputs(item, { ...data, varietyCalendar: [] });
     expect(noCalendar.varieties[0]?.inStore.some(Boolean)).toBe(false);
     expect(evaluate(noCalendar, may, env).verdict).toBe("limited");
+  });
+
+  it("P16: a selection is in stores in cited months, or where its origins hold the variety share of volume", () => {
+    const withSel = {
+      ...item,
+      origins: [...item.origins, { origin: "mx", windows: SUMMER }],
+      varieties: [],
+      selections: [
+        { id: "cited", origins: ["us-ca"], inStores: [{ from: "nov", to: "jan", sources: ["a"] }] },
+        { id: "volume", origins: ["mx"], inStores: [] },
+      ],
+    } as unknown as Item;
+    const [cited, volume] = itemInputs(withSel, data).selections;
+    // us-ca is typical in May (0.8) and June (0.6); mx holds 0.15 in June only.
+    expect(cited?.inStore.map((x, m) => (x ? m + 1 : 0)).filter(Boolean)).toEqual([1, 5, 6, 11, 12]);
+    expect(volume?.inStore.map((x, m) => (x ? m + 1 : 0)).filter(Boolean)).toEqual([6]);
   });
 
   it("gives an item without an evidence file no confidence anywhere", () => {

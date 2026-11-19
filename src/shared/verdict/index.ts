@@ -29,6 +29,15 @@ export interface RatedVariety extends RatedSeries {
   inStore: readonly boolean[];
 }
 
+/** P16: what a shopper can pick out by the sign or label (local field tomatoes), grouping rated origins. */
+export interface Selection {
+  id: string;
+  /** Rated origins of the item; the selection's rating in a window is the best of theirs. */
+  origins: readonly OriginId[];
+  /** Indexed by month 0–11: common enough in mainstream supermarkets (cited, or USDA volume). */
+  inStore: readonly boolean[];
+}
+
 export interface ItemInputs {
   id: string;
   evidenceBasis: "supply+assessment" | "assessment-only";
@@ -38,6 +47,8 @@ export interface ItemInputs {
   origins: Readonly<Record<OriginId, RatedSeries>>;
   /** Rated varieties in file order; empty unless the item is rated by variety. */
   varieties: readonly RatedVariety[];
+  /** P16, in file order; empty on items rated by variety. */
+  selections: readonly Selection[];
   /** Indexed by month 0–11: typical origins, top-ranked first. */
   typicalOrigins: readonly (readonly OriginId[])[];
   /** Indexed by month 0–11, in typicalOrigins' order: each one's share of the month's volume (P1). Null for
@@ -73,7 +84,11 @@ export type Reason =
   /** Rated prime, but the item tastes much the same in and out of its best season: Good, not Peak. */
   | { code: "peak-not-worth-seeking" }
   /** Another typical origin this window is poor: never Peak, and the label note names it (P9). */
-  | { code: "typical-origin-poor"; origin: OriginId };
+  | { code: "typical-origin-poor"; origin: OriginId }
+  /** P16: rated prime, but shipped from outside rules.peakCountries, so the item verdict is Good at most. */
+  | { code: "far-origin"; origin: OriginId }
+  /** P16: Peak because a selection the shopper can pick out is prime and common enough; typical supply is worse. */
+  | { code: "selection"; selection: string };
 
 export interface CoreResult {
   verdict: Verdict;
@@ -98,12 +113,15 @@ export interface VerdictResult extends CoreResult {
   byVariety: Record<VarietyId, CoreResult & { inStore: boolean }>;
   /** Items rated by variety: the in-store varieties holding the item verdict, in card order (P13). */
   varietyLine: VarietyId[] | null;
+  /** P16: the selection that makes the item Peak, when typical supply alone doesn't. */
+  selection: string | null;
 }
 
 type Basis =
   | { kind: "typical" }
   | { kind: "origin"; origin: OriginId }
-  | { kind: "variety"; variety: VarietyId };
+  /** `item`: evaluated for the item verdict (P13), so the distance cap applies (P16). */
+  | { kind: "variety"; variety: VarietyId; item?: true };
 
 /** Best first: Peak, Good, Skip, then Limited evidence (an unknown never outranks a call). */
 const VERDICT_RANK: Record<Verdict, number> = { peak: 3, good: 2, skip: 1, limited: 0 };
@@ -114,13 +132,12 @@ export const confidenceRank = (c: Confidence): number => CONFIDENCE_RANK[c];
 
 const monthOf = (window: number): number => Math.floor(window / 2);
 
-function evaluateCore(
-  item: ItemInputs,
-  basis: Basis,
-  window: number,
-  ctx: EvalContext,
-  env: Env,
-): CoreResult & { labelNote?: boolean } {
+/** P16: grown in a country that can make the item verdict Peak. */
+const near = (origin: OriginId, env: Env): boolean => env.rules.peakCountries.includes(origin.slice(0, 2));
+
+type Core = CoreResult & { labelNote?: boolean; selection?: string };
+
+function evaluateCore(item: ItemInputs, basis: Basis, window: number, ctx: EvalContext, env: Env): Core {
   if (basis.kind === "typical" && item.varieties.length > 0) return bestVariety(item, window, ctx, env).core;
 
   const month = monthOf(window);
@@ -180,12 +197,60 @@ function evaluateCore(
     if (rating === null) missing.push({ code: "variety-unrated", variety: basis.variety });
   }
 
-  return decide(
+  // P16: the distance cap applies to the item verdict, never to label advice.
+  const capped = basis.kind === "typical" || (basis.kind === "variety" && basis.item === true);
+  const result = decide(
     item,
-    { rating, decider, missing, labelNote, poorOrigin, supplyOrigin, basis, window },
+    { rating, decider, missing, labelNote, poorOrigin, supplyOrigin, basis, window, capped },
     ctx,
     env,
   );
+  if (basis.kind === "typical" && result.verdict !== "peak") {
+    const lifted = selectionPeak(item, window, result, ctx, env);
+    if (lifted) return lifted;
+  }
+  return result;
+}
+
+/** P16: the first selection (file order) in stores this month whose best origin, rated prime, runs rules 2–4 to
+ * Peak. Typical supply is worse, so the label note and Check the label apply. */
+function selectionPeak(
+  item: ItemInputs,
+  window: number,
+  typical: Core,
+  ctx: EvalContext,
+  env: Env,
+): Core | null {
+  const rank: Record<Rating, number> = { prime: 2, fair: 1, poor: 0 };
+  for (const s of item.selections) {
+    if (s.inStore[monthOf(window)] !== true) continue;
+    let best: OriginId | undefined;
+    for (const o of s.origins) {
+      const r = item.origins[o]?.windows[window];
+      if (!near(o, env) || r == null) continue;
+      const b = best === undefined ? null : item.origins[best]?.windows[window];
+      if (b == null || rank[r] > rank[b]) best = o;
+    }
+    if (best === undefined || item.origins[best]?.windows[window] !== "prime") continue;
+    const r = decide(
+      item,
+      {
+        rating: "prime",
+        decider: item.origins[best],
+        missing: [],
+        labelNote: true,
+        supplyOrigin: best,
+        basis: { kind: "origin", origin: best },
+        window,
+        capped: true,
+      },
+      ctx,
+      env,
+    );
+    if (r.verdict === "peak")
+      return { ...r, reasons: [{ code: "selection", selection: s.id }, ...typical.reasons], selection: s.id };
+  }
+  return null;
 }
 
 interface Decision {
@@ -199,6 +264,8 @@ interface Decision {
   supplyOrigin: OriginId | undefined;
   basis: Basis;
   window: number;
+  /** P16: Peak needs the deciding origin in rules.peakCountries. */
+  capped: boolean;
 }
 
 function decide(
@@ -211,6 +278,7 @@ function decide(
     (d.supplyOrigin === undefined ? null : item.supply[d.supplyOrigin]?.[monthOf(d.window)]) ?? null;
   const thin = supply !== null && supply < env.rules.supplyIndex.thin;
   const strong = supply !== null && supply >= env.rules.supplyIndex.strong;
+  const far = d.capped && d.supplyOrigin !== undefined && !near(d.supplyOrigin, env);
   const reasons: Reason[] = [];
   let verdict: Verdict;
   let ruleFired: CoreResult["ruleFired"];
@@ -229,11 +297,13 @@ function decide(
     reasons.push({ code: "rated", rating: d.rating, ...by });
     if (d.rating === "prime" && thin) reasons.push({ code: "supply-thin" });
     if (d.rating === "prime" && !item.peakWorthSeeking) reasons.push({ code: "peak-not-worth-seeking" });
+    if (d.rating === "prime" && far && d.supplyOrigin !== undefined)
+      reasons.push({ code: "far-origin", origin: d.supplyOrigin });
     if (d.rating !== "poor" && d.poorOrigin)
       reasons.push({ code: "typical-origin-poor", origin: d.poorOrigin });
 
     if (d.rating === "poor") [verdict, ruleFired] = ["skip", 2];
-    else if (d.rating === "prime" && !thin && item.peakWorthSeeking && !d.poorOrigin)
+    else if (d.rating === "prime" && !thin && item.peakWorthSeeking && !d.poorOrigin && !far)
       [verdict, ruleFired] = ["peak", 3];
     else [verdict, ruleFired] = ["good", 4];
   }
@@ -270,7 +340,7 @@ function bestVariety(item: ItemInputs, window: number, ctx: EvalContext, env: En
     .map((v, order) => ({
       id: v.id,
       order,
-      core: stripNote(evaluateCore(item, { kind: "variety", variety: v.id }, window, ctx, env)),
+      core: stripNote(evaluateCore(item, { kind: "variety", variety: v.id, item: true }, window, ctx, env)),
     }))
     .sort(
       (a, b) =>
@@ -288,6 +358,7 @@ function bestVariety(item: ItemInputs, window: number, ctx: EvalContext, env: En
       supplyOrigin: undefined,
       basis: { kind: "typical" },
       window,
+      capped: true,
     };
     return { core: stripNote(decide(item, none, ctx, env)), line: null };
   }
@@ -298,8 +369,8 @@ function bestVariety(item: ItemInputs, window: number, ctx: EvalContext, env: En
   return { core: best.core, line };
 }
 
-function stripNote(r: CoreResult & { labelNote?: boolean }): CoreResult {
-  const { labelNote: _, ...core } = r;
+function stripNote(r: Core): CoreResult {
+  const { labelNote: _, selection: __, ...core } = r;
   return core;
 }
 
@@ -314,6 +385,7 @@ export function evaluate(item: ItemInputs, ctx: EvalContext, env: Env): VerdictR
 
   const head = evaluateCore(item, basis, window, ctx, env);
   const labelNote = head.labelNote === true;
+  const selection = head.selection ?? null;
   const core = stripNote(head);
 
   const outlook = (w: number) => evaluateCore(item, basis, w % WINDOW_COUNT, ctx, env).verdict;
@@ -357,7 +429,7 @@ export function evaluate(item: ItemInputs, ctx: EvalContext, env: Env): VerdictR
   const varietyLine =
     basis.kind === "typical" && item.varieties.length > 0 ? bestVariety(item, window, ctx, env).line : null;
 
-  return { ...core, markers, labelNote, byOrigin, byVariety, varietyLine };
+  return { ...core, markers, labelNote, byOrigin, byVariety, varietyLine, selection };
 }
 
 /** The typical-outlook verdict in each of the 24 windows: the item's, or one rated

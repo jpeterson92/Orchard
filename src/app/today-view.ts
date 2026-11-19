@@ -9,6 +9,7 @@ import {
   type Reason,
   typicalOutlook,
   type Verdict,
+  type VerdictResult,
 } from "../shared/verdict";
 
 export const VERDICT_WORD: Record<Verdict, string> = {
@@ -122,7 +123,13 @@ export function reasonText(verdict: Verdict, reasons: readonly Reason[], markers
   return "Not enough evidence to call it now.";
 }
 
-export function varietyLine(item: AppItem, ids: readonly string[] | null, verdict: Verdict): string | null {
+/** The card's second line: what to look for (P16), or the varieties holding the verdict (P13). */
+export function varietyLine(
+  item: AppItem,
+  { varietyLine: ids, verdict, selection }: Pick<VerdictResult, "varietyLine" | "verdict" | "selection">,
+): string | null {
+  const s = item.selections.find((x) => x.id === selection);
+  if (s) return `Look for ${s.label}`;
   if (!ids || ids.length === 0) return null;
   const names = ids.map((id) => item.varieties.find((v) => v.id === id)?.name ?? id);
   if (names.length === 1) return names[0] ?? null;
@@ -153,7 +160,7 @@ export function todayView(data: AppData, date: PlainDate, mode: "today" | "typic
       id: item.inputs.id,
       name: item.name,
       art: item.art,
-      varietyLine: varietyLine(item, result.varietyLine, result.verdict),
+      varietyLine: varietyLine(item, result),
       verdict: result.verdict,
       reason: isGeneric(reason) ? null : atDate(reason, mode),
       origin: top === undefined ? null : originName(top, data),

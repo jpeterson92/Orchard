@@ -2,7 +2,7 @@
 import type { Dataset, Item, TypicalOriginRow } from "../data/schema";
 import { type Claim, type EvidenceSource, panelFor, propose, type Target, traitsFor } from "../evidence";
 import { monthRange, WINDOW_COUNT, windowRange } from "../time";
-import type { Env, ItemInputs, RatedSeries, RatedVariety, Rating } from "./index";
+import type { Env, ItemInputs, RatedSeries, RatedVariety, Rating, Selection } from "./index";
 
 const MONTHS = 12;
 
@@ -14,6 +14,25 @@ function inStore(item: Item, quotedAs: readonly string[], data: Dataset): boolea
     if (r.item === item.id && quotedAs.includes(r.variety))
       share[r.month - 1] = (share[r.month - 1] ?? 0) + r.share;
   return share.map((s) => Math.min(1, s) >= data.rules.varietyInStoreShare);
+}
+
+/** P16: per month, whether a selection is common enough: cited supermarket months, or its origins together
+ * holding rules.varietyInStoreShare of the month's reported volume. */
+function selectionInStore(
+  s: Item["selections"][number],
+  typicalOrigins: readonly (readonly string[])[],
+  typicalShares: readonly (readonly (number | null)[])[],
+  share: number,
+): boolean[] {
+  const cited = new Set(s.inStores.flatMap((r) => monthRange(r.from, r.to)));
+  return Array.from({ length: MONTHS }, (_, m) => {
+    if (cited.has(m + 1)) return true;
+    const volume = (typicalOrigins[m] ?? []).reduce(
+      (sum, o, i) => sum + (s.origins.includes(o) ? (typicalShares[m]?.[i] ?? 0) : 0),
+      0,
+    );
+    return volume >= share - 1e-9;
+  });
 }
 
 function series(
@@ -83,6 +102,13 @@ export function itemInputs(item: Item, data: Dataset): ItemInputs {
         ]
       : [],
   );
+  const selections = item.selections.map(
+    (s): Selection => ({
+      id: s.id,
+      origins: s.origins,
+      inStore: selectionInStore(s, typicalOrigins, typicalShares, data.rules.varietyInStoreShare),
+    }),
+  );
   return {
     id: item.id,
     evidenceBasis: item.evidenceBasis,
@@ -95,6 +121,7 @@ export function itemInputs(item: Item, data: Dataset): ItemInputs {
       ]),
     ),
     varieties,
+    selections,
     typicalOrigins,
     typicalShares,
     minorOrigins,

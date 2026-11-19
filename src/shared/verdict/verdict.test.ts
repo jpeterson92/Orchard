@@ -260,9 +260,9 @@ const cases: Case[] = [
   {
     name: "3: an import in a normal month of its own season, with no US supply that month",
     item: item({
-      origins: { cl: rated("prime") },
-      typicalOrigins: allMonths(["cl"]),
-      supply: { cl: allMonths(1.1) },
+      origins: { mx: rated("prime") },
+      typicalOrigins: allMonths(["mx"]),
+      supply: { mx: allMonths(1.1) },
     }),
     verdict: "peak",
     rule: 3,
@@ -673,4 +673,152 @@ describe("Peak worth seeking", () => {
     );
     expect(r.verdict).toBe("good");
   });
+});
+
+describe("distance cap (P16)", () => {
+  const far = item({
+    origins: { cl: rated("prime") },
+    typicalOrigins: allMonths(["cl"]),
+    supply: { cl: allMonths(1) },
+  });
+  it("a prime origin from outside the Peak countries holds the item at Good", () => {
+    const r = evaluate(far, today, ENV);
+    expect([r.verdict, r.ruleFired]).toEqual(["good", 4]);
+    expect(r.reasons).toContainEqual({ code: "far-origin", origin: "cl" });
+  });
+  it("label advice keeps that origin's own Peak", () => {
+    expect(evaluate(far, { ...today, labelOrigin: "cl" }, ENV).verdict).toBe("peak");
+    expect(evaluate(far, today, ENV).byOrigin.cl?.verdict).toBe("peak");
+  });
+  it.each([
+    ["us-ca", "peak"],
+    ["mx", "peak"],
+    ["ca", "peak"],
+    ["pe", "good"],
+    ["nz", "good"],
+  ] as const)("deciding origin %s → %s", (o, verdict) =>
+    expect(
+      evaluate(
+        item({ origins: { [o]: rated("prime") }, typicalOrigins: allMonths([o]), supply: {} }),
+        today,
+        ENV,
+      ).verdict,
+    ).toBe(verdict),
+  );
+  it("a fair far origin is Good with no far-origin reason", () =>
+    expect(
+      evaluate(item({ origins: { cl: rated("fair") }, typicalOrigins: allMonths(["cl"]) }), today, ENV)
+        .reasons,
+    ).not.toContainEqual({ code: "far-origin", origin: "cl" }));
+  it("a far poor top origin with a near prime second is Good (P9 never makes Peak)", () =>
+    expect(
+      evaluate(
+        item({ origins: { cl: rated("poor"), mx: rated("prime") }, typicalOrigins: allMonths(["cl", "mx"]) }),
+        today,
+        ENV,
+      ).verdict,
+    ).toBe("good"));
+
+  const byVariety = item({
+    origins: {},
+    varieties: [variety("v1", rated("prime"))],
+    typicalOrigins: allMonths(["pe"]),
+    supply: {},
+  });
+  it("an item rated by variety caps at Good when its top typical origin is far", () => {
+    const r = evaluate(byVariety, today, ENV);
+    expect([r.verdict, r.varietyLine]).toEqual(["good", ["v1"]]);
+    expect(r.reasons).toContainEqual({ code: "far-origin", origin: "pe" });
+  });
+  it("its varieties keep their own Peak as label advice", () => {
+    expect(evaluate(byVariety, { ...today, labelVariety: "v1" }, ENV).verdict).toBe("peak");
+    expect(evaluate(byVariety, today, ENV).byVariety.v1?.verdict).toBe("peak");
+    expect(typicalOutlook(byVariety, ENV, 2026, "v1")[windowFromLabel("nov-2")]).toBe("peak");
+    expect(typicalOutlook(byVariety, ENV, 2026)[windowFromLabel("nov-2")]).toBe("good");
+  });
+});
+
+describe("selections (P16)", () => {
+  // Typical supply is Mexico, rated fair; a local selection groups two US states.
+  const local = (overrides: Partial<Parameters<typeof item>[0]> = {}, inStore = allMonths(true)) =>
+    item({
+      origins: { mx: rated("fair"), "us-nj": rated("prime"), "us-tn": rated("fair") },
+      typicalOrigins: allMonths(["mx"]),
+      supply: { mx: allMonths(1) },
+      selections: [{ id: "local", origins: ["us-nj", "us-tn"], inStore }],
+      ...overrides,
+    });
+  it("lifts a Good item to Peak, naming the selection, with Check the label", () => {
+    const r = evaluate(local(), today, ENV);
+    expect([r.verdict, r.ruleFired, r.selection, r.labelNote]).toEqual(["peak", 3, "local", true]);
+    expect(r.reasons[0]).toEqual({ code: "selection", selection: "local" });
+    expect(r.reasons).toContainEqual({ code: "rated", rating: "fair", origin: "mx" });
+    expect(r.markers).toContainEqual({ kind: "check-label" });
+    expect([r.confidence, r.weakProperties]).toEqual(["medium", ["agreement"]]);
+  });
+  it("lifts Skip", () =>
+    expect(
+      evaluate(local({ origins: { mx: rated("poor"), "us-nj": rated("prime") } }), today, ENV).verdict,
+    ).toBe("peak"));
+  it("lifts Limited evidence where typical supply is unrated", () =>
+    expect(
+      evaluate(local({ origins: { mx: rated(null), "us-nj": rated("prime") } }), today, ENV).verdict,
+    ).toBe("peak"));
+  it("never applies when typical supply is already Peak", () => {
+    const r = evaluate(local({ origins: { mx: rated("prime"), "us-nj": rated("prime") } }), today, ENV);
+    expect([r.verdict, r.selection, r.labelNote]).toEqual(["peak", null, false]);
+  });
+  it("needs the selection in stores this month", () => {
+    const r = evaluate(local({}, inNov(true, false)), today, ENV);
+    expect([r.verdict, r.selection]).toEqual(["good", null]);
+  });
+  it("needs one of its origins rated prime", () =>
+    expect(
+      evaluate(local({ origins: { mx: rated("fair"), "us-nj": rated("fair") } }), today, ENV).selection,
+    ).toBe(null));
+  it("needs the item's Peak worth seeking", () =>
+    expect(evaluate(local({ peakWorthSeeking: false }), today, ENV).verdict).toBe("good"));
+  it("never on its origin's thin supply", () =>
+    expect(
+      evaluate(local({ supply: { mx: allMonths(1), "us-nj": allMonths(0.5) } }), today, ENV).verdict,
+    ).toBe("good"));
+  it("ignores an origin outside the Peak countries", () =>
+    expect(
+      evaluate(
+        local({
+          origins: { mx: rated("fair"), cl: rated("prime") },
+          selections: [{ id: "far", origins: ["cl"], inStore: allMonths(true) }],
+        }),
+        today,
+        ENV,
+      ).verdict,
+    ).toBe("good"));
+  it("takes the first qualifying selection in file order", () =>
+    expect(
+      evaluate(
+        local({
+          selections: [
+            { id: "off", origins: ["us-nj"], inStore: allMonths(false) },
+            { id: "a", origins: ["us-nj"], inStore: allMonths(true) },
+            { id: "b", origins: ["us-nj"], inStore: allMonths(true) },
+          ],
+        }),
+        today,
+        ENV,
+      ).selection,
+    ).toBe("a"));
+  it("carries Low evidence on its best origin into coverage", () =>
+    expect(
+      evaluate(
+        local({ origins: { mx: rated("fair"), "us-nj": rated("prime", {}, { "nov-2": "low" }) } }),
+        today,
+        ENV,
+      ).confidence,
+    ).toBe("low"));
+  it("feeds the outlook, so Peak from a selection shows in the typical outlook", () =>
+    expect(typicalOutlook(local({}, inNov(false, true)), ENV, 2026).filter((v) => v === "peak")).toHaveLength(
+      2,
+    ));
+  it("label advice is never lifted", () =>
+    expect(evaluate(local(), { ...today, labelOrigin: "mx" }, ENV).verdict).toBe("good"));
 });

@@ -83,6 +83,7 @@ function base(): RawInputs {
       ratedTypicalShare: 0.75,
       supplyIndex: { thin: 0.8, strong: 1.2 },
       varietyInStoreShare: 0.1,
+      peakCountries: ["us", "mx", "ca"],
       reliableYearRoundWindows: 20,
       snapshotMaxAgeMonths: 15,
       lastCallWindows: 2,
@@ -249,6 +250,19 @@ describe("validate: a valid dataset", () => {
     const { errors, dataset } = validate(raw, { production: false });
     expect(errors).toEqual([]);
     expect(dataset?.items[0]?.typicalOrigins[1]?.origins.map((o) => o.origin)).toEqual(["mx", "us-ca"]);
+  });
+
+  it("accepts a selection of rated near origins with cited in-store months (P16)", () => {
+    const raw = base();
+    firstItem(raw).selections = [
+      {
+        ...{ id: "local", label: "local field-grown", cue: "Look for a local sign.", origins: ["us-ca"] },
+        inStores: [{ from: "jul", to: "sep", sources: ["s1"] }],
+      },
+    ];
+    const { errors, dataset } = validate(raw, { production: false });
+    expect(errors).toEqual([]);
+    expect(dataset?.items[0]?.selections[0]?.inStores[0]?.to).toBe("sep");
   });
 
   it("works without any USDA snapshot", () => {
@@ -670,6 +684,82 @@ const broken: [string, (r: RawInputs) => void, string][] = [
       delete firstItem(r).typicalOrigins[0].origins[0].major;
     },
     "major",
+  ],
+  // Selections (P16)
+  [
+    "selection origin the item doesn't rate",
+    (r) =>
+      (firstItem(r).selections = [
+        {
+          ...{ id: "local", label: "local field-grown", cue: "Look for a local sign.", origins: ["us-ca"] },
+          origins: ["us-nj"],
+        },
+      ]),
+    "selection local: us-nj is not a rated origin of the item",
+  ],
+  [
+    "selection origin outside the Peak countries",
+    (r) => {
+      firstItem(r).origins.push({ origin: "cl", windows: structuredClone(WINTER) });
+      firstItem(r).selections = [
+        {
+          ...{ id: "local", label: "local field-grown", cue: "Look for a local sign.", origins: ["us-ca"] },
+          origins: ["cl"],
+        },
+      ];
+    },
+    "cl is outside rules.peakCountries",
+  ],
+  [
+    "selection in-store months citing an unknown source",
+    (r) =>
+      (firstItem(r).selections = [
+        {
+          ...{ id: "local", label: "local field-grown", cue: "Look for a local sign.", origins: ["us-ca"] },
+          inStores: [{ from: "jul", to: "sep", sources: ["nope"] }],
+        },
+      ]),
+    "selection local: unknown source nope",
+  ],
+  [
+    "duplicate selection",
+    (r) =>
+      (firstItem(r).selections = [
+        { id: "local", label: "local field-grown", cue: "Look for a local sign.", origins: ["us-ca"] },
+        { id: "local", label: "local field-grown", cue: "Look for a local sign.", origins: ["us-ca"] },
+      ]),
+    "duplicate selection",
+  ],
+  [
+    "selection label over 6 words",
+    (r) =>
+      (firstItem(r).selections = [
+        {
+          ...{ id: "local", label: "local field-grown", cue: "Look for a local sign.", origins: ["us-ca"] },
+          label: "a b c d e f g",
+        },
+      ]),
+    "at most 6 words",
+  ],
+  [
+    "selection on an item rated by variety",
+    (r) => {
+      firstItem(r).varieties = [
+        {
+          id: "v",
+          name: "V",
+          traits: {},
+          bestUses: ["Eating"],
+          label: "V",
+          windows: structuredClone(SUMMER),
+          quotedAs: ["v"],
+        },
+      ];
+      firstItem(r).selections = [
+        { id: "local", label: "local field-grown", cue: "Look for a local sign.", origins: ["us-ca"] },
+      ];
+    },
+    "selections are for items not rated by variety",
   ],
 ];
 
