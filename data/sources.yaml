@@ -818,6 +818,12 @@
   url: https://www.freshplaza.com/north-america/article/9841157/strong-global-demand-expected-for-british-columbia-cherries/
   accessed: 2026-11-18
   tier: mainstream
+- id: freshplaza-chilean-cherries-logistics-quality
+  title: "Strong movement of Chilean cherries in the U.S. due to improved logistics and quality"
+  publisher: FreshPlaza
+  url: https://www.freshplaza.com/north-america/article/9799257/strong-movement-of-chilean-cherries-in-the-u-s-due-to-improved-logistics-and-quality/
+  accessed: 2026-11-18
+  tier: mainstream
 # apricots
 - id: askthefoodgeek-apricots
   title: Apricots
@@ -909,3 +915,27 @@
   url: https://postharvest.ucdavis.edu/produce-facts-sheets/apricot
   accessed: 2026-11-18
   tier: authoritative
+- id: usda-ams-terminal-markets
+  title: Fruit and Vegetable Market News (city terminal market price reports)
+  publisher: USDA Agricultural Marketing Service
+  url: https://www.ams.usda.gov/market-news/fruits-vegetables
+  accessed: 2026-11-18
+  tier: authoritative
+- id: freshplaza-chile-apricot-quality-cool-weather
+  title: "Cool weather in Chile benefits fresh apricot quality"
+  publisher: FreshPlaza
+  url: https://www.freshplaza.com/north-america/article/2186968/cool-weather-in-chile-benefits-fresh-apricot-quality
+  accessed: 2026-11-18
+  tier: mainstream
+- id: freshplaza-wilmington-december-shipment
+  title: "US: Largest shipment in December arrived at Port of Wilmington"
+  publisher: FreshPlaza
+  url: https://www.freshplaza.com/article/9057205/us-largest-shipment-in-december-arrived-at-port-of-wilmington
+  accessed: 2026-11-18
+  tier: mainstream
+- id: freshplaza-chilean-stone-fruit-challenging-season
+  title: "Finishing a challenging season on Chilean stone fruit"
+  publisher: FreshPlaza
+  url: https://www.freshplaza.com/north-america/article/9715897/finishing-a-challenging-season-on-chilean-stone-fruit/
+  accessed: 2026-11-18
+  tier: mainstream

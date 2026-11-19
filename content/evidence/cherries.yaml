@@ -131,3 +131,10 @@ claims:
     specificity: season
     directness: eating-quality
     paraphrase: Imported Chilean cherries one winter were wrinkled and soft, like the poor domestic crops of bad-weather years.
+  - source: freshplaza-chilean-cherries-logistics-quality
+    origin: cl
+    windows:
+      - { from: jan-1, to: jan-2, rating: prime }
+    specificity: month
+    directness: eating-quality
+    paraphrase: Importers called one season's Chilean cherries high quality; shorter transits brought better condition, and January ads kept them moving.

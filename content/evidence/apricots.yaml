@@ -87,3 +87,25 @@ claims:
     specificity: half-month
     directness: availability
     paraphrase: The Washington season's peak was expected around the end of the first week of July.
+  # Chile: air shipments from late November, ocean fruit from late December into January.
+  - source: freshplaza-chilean-stone-fruit-challenging-season
+    origin: cl
+    windows:
+      - { from: nov-2, to: nov-2, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: The first Chilean apricots arrive by air at the end of November.
+  - source: freshplaza-chile-apricot-quality-cool-weather
+    origin: cl
+    windows:
+      - { from: dec-1, to: dec-2, rating: prime }
+    specificity: month
+    directness: eating-quality
+    paraphrase: Suppliers called the short Chilean season good quality, with containers arriving in December after early air fruit.
+  - source: freshplaza-wilmington-december-shipment
+    origin: cl
+    windows:
+      - { from: dec-2, to: dec-2, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: A late-December ship brought Chilean apricots, with other stone fruit, to the Port of Wilmington.

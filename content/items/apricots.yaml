@@ -56,7 +56,22 @@ origins:
         to: aug-2
         rating: fair
         reason: The panel has no rating here; the sources agree Washington picking runs into August, past its early-July peak, and together read fair.
+  - origin: cl
+    windows:
+      - from: dec-1
+        to: dec-2
+        rating: fair
+        reason: Suppliers call the fruit good, but it is picked firm and shipped by sea for weeks, so it reads fair, never prime.
 typicalOrigins:
+  - from: dec
+    to: jan
+    origins: [{ origin: cl, major: true }]
+    sources:
+      [
+        usda-ams-terminal-markets,
+        freshplaza-chilean-stone-fruit-challenging-season,
+        freshplaza-chile-apricot-quality-cool-weather,
+      ]
   - from: may
     to: jun
     origins: [{ origin: us-ca, major: true }]
