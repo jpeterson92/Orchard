@@ -1,0 +1,60 @@
+id: honeydew
+name: Honeydew
+synonyms: [honeydews, honeydew melon, honey dew]
+misspellings: [honeydue, honydew, honey due]
+category: melons
+purchaseRank: 19
+alwaysGood: false
+shipsWell:
+  value: false
+  sources: [ucdavis-postharvest-honeydew, freshplaza-arizona-honeydew-late]
+  note: Ripeness is hard to judge at harvest, and immature melons never develop flavor.
+peakWorthSeeking:
+  value: true
+  sources: [grocery-coop-honeydew, theproducemoms-honeydew]
+  note: Summer and early-fall melons are sweetest; sources name July and August.
+storesWell:
+  value: false
+  sources: [ucdavis-postharvest-honeydew]
+  note: Keeps about two weeks in ideal storage and is chill-sensitive.
+evidenceBasis: supply+assessment
+cardLine: Creamy, waxy skin that's heavy for its size.
+pick:
+  - Creamy white to pale yellow skin
+  - Waxy, slightly tacky skin, not fuzzy
+  - Heavy for its size, with a sweet smell
+  - The blossom end gives slightly
+avoid:
+  - Green-tinged or fuzzy skin; it's immature
+store:
+  temperature: cool
+  ethylene: both
+  life: { min: 4, max: 7, unit: days }
+  text: Keep a firm melon on the counter, then refrigerate once ripe and eat within about a week. Wrap cut melon; it picks up fridge odors.
+  sources: [ucdavis-postharvest-honeydew]
+ripen:
+  text: A mature, cream-colored melon softens and turns fragrant on the counter in a few days; a green, fuzzy one won't.
+  sources: [ucdavis-postharvest-honeydew]
+prep: Scrub the rind under running water before cutting.
+origins:
+  - origin: us-ca
+    windows:
+      - { from: apr-2, to: apr-2, rating: poor }
+      - { from: may-1, to: may-2, rating: prime }
+      - { from: jun-1, to: jun-2, rating: fair }
+      - { from: jul-1, to: nov-1, rating: prime }
+  - origin: us-az
+    windows:
+      - { from: apr-2, to: apr-2, rating: fair }
+      - { from: may-1, to: nov-1, rating: prime }
+  - origin: mx
+    windows:
+      - { from: jan-1, to: dec-2, rating: poor }
+  - origin: gt
+    windows:
+      - { from: jan-1, to: apr-2, rating: poor }
+      - { from: dec-1, to: dec-2, rating: poor }
+  - origin: hn
+    windows:
+      - { from: jan-1, to: dec-2, rating: poor }
+status: draft

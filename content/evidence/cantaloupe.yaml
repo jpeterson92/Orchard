@@ -80,3 +80,10 @@ claims:
     specificity: season
     directness: availability
     paraphrase: Melon growing returns to Arizona for the fall, with supply a little lighter than in past years.
+  - source: fruitnet-honduran-melon-exports-2024
+    origin: hn
+    windows:
+      - { from: dec-1, to: jun-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Honduras grows cantaloupe, Galia and honeydew melons, exporting them from December to June.

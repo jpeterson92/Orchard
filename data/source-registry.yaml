@@ -62,7 +62,7 @@ items:
     - cuties
   watermelon: [watermelon, watermelons]
   cantaloupe: [cantaloupe, cantaloupes, muskmelon, muskmelons]
-  honeydew: [honeydew, honeydews]
+  honeydew: [honeydew, honeydews, honey dew]
 
 pages:
   - source: msstate-fruits-vegetables-in-season
@@ -806,3 +806,8 @@ pages:
     kind: item-page
     origin: mx
     items: [watermelon, cantaloupe, honeydew]
+  - source: fruitnet-honduran-melon-exports-2024
+    url: https://www.fruitnet.com/eurofruit/honduran-melon-exports-to-contract-in-2024/25/266340.article
+    kind: item-page
+    origin: hn
+    items: [cantaloupe, honeydew]
