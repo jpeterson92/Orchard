@@ -7,11 +7,11 @@ Updated: 2026-11-19 · Phase: build · Live: https://orchard.jpeterson92.workers
 - **Done:** M0 scaffold and deploy · M1 USDA probe · M2 schemas, verdict engine (P9–P19), evidence pipeline, `usda:derive`, `content:report` · model panel run `claude-opus-5-5-2026-11-17` (89 items, prompt v2; P15 panel-first) · M4 offline · M5 planning date and shared dates · M6 navigation, Browse, Calendar, search, Methods and Privacy pages · M8 measurement (web vitals and daily event counts in D1; shopper feedback removed by Jared).
 - **M3:** built; closes with Jared's phone review, which needs a preview deploy.
 - **M9:** slices 1–2 done (security headers, axe in light and dark, WebKit e2e, page titles). The rest waits on content, art, devices, the domain and the independent reviewer; check the security headers on the live URL (`curl -I`) after the next deploy.
-- **M7 (variety guides): not started, next.** Scales for apples, pears and citrus are approved; traits for 33 varieties are drafted. Fold unrated varieties (Red Delicious, Golden Delicious and the rest) out of the item page's "Varieties now" list into the guide, where they belong; today they make nine "Not rated" rows on the apples page.
+- **M7 (variety guides): not started; after the verdict rethink.** Scales for apples, pears and citrus are approved; traits for 33 varieties are drafted. Fold unrated varieties (Red Delicious, Golden Delicious and the rest) out of the item page's "Varieties now" list into the guide, where they belong; today they make nine "Not rated" rows on the apples page.
 
 ## Next concrete action
 
-Build M7. Still missing in the app: the item page's variety guide link (M7), the "Typical supermarket supply: favorable" note, Today's one-line summary (24 summaries, content), green onions and cilantro (item files), PLU text (waits for a licence).
+Implement Jared's answers to the verdict and Today rethink (`.cache/today-review-2026-11-19.md`): engine, Today and card "Look for" line first, then the four-level re-rating. Then build M7. Still missing in the app: the item page's variety guide link (M7), the "Typical supermarket supply: favorable" note, Today's one-line summary (24 summaries, content), green onions and cilantro (item files), PLU text (waits for a licence).
 
 ## Content
 
@@ -27,7 +27,7 @@ When Jared's batch 1 masters land in `art/masters/`, run `npm run art:process`, 
 
 ## Blocking (needs Jared)
 
-None.
+- The verdict and Today rethink: four questions (what Good means, half-the-supply for origins, when the card names the pick, Best right now uncapped). Review in `.cache/today-review-2026-11-19.md`.
 
 ## For Jared (non-blocking)
 
