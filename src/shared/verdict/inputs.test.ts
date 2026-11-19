@@ -26,8 +26,8 @@ const item = {
   storesWell: { value: false, sources: ["a"] },
   origins: [{ origin: "us-ca", windows: SUMMER, inStores: [] }],
   varieties: [
-    { id: "rated", windows: SUMMER, quotedAs: ["rated-usda", "rated-alt"] },
-    { id: "unrated", windows: undefined },
+    { id: "rated", windows: SUMMER, quotedAs: ["rated-usda", "rated-alt"], inStores: [] },
+    { id: "unrated", windows: undefined, inStores: [] },
   ],
   selections: [],
   typicalOrigins: [],
@@ -116,6 +116,22 @@ describe("itemInputs", () => {
   it("counts a variety in stores where its calendar names together reach the P13 share", () => {
     const expected = [false, false, false, false, true, true, false, true, false, false, false, false];
     expect(inputs.varieties[0]?.inStore).toEqual(expected);
+  });
+
+  it("also counts a variety in stores in its cited months, with or without calendar names", () => {
+    const cited = [{ from: "nov", to: "jan", sources: ["a"] }];
+    const months = (inStore: readonly boolean[] | undefined) =>
+      inStore?.map((x, m) => (x ? m + 1 : 0)).filter(Boolean);
+    const joined = itemInputs(
+      { ...item, varieties: [{ ...item.varieties[0], inStores: cited }] } as Item,
+      data,
+    );
+    expect(months(joined.varieties[0]?.inStore)).toEqual([1, 5, 6, 8, 11, 12]);
+    const citedOnly = itemInputs(
+      { ...item, varieties: [{ id: "cited", windows: SUMMER, inStores: cited }] } as unknown as Item,
+      data,
+    );
+    expect(months(citedOnly.varieties[0]?.inStore)).toEqual([1, 11, 12]);
   });
 
   it("an item rated by variety is Limited evidence when no rated variety is in stores", () => {

@@ -6,14 +6,17 @@ import type { Env, ItemInputs, RatedSeries, RatedVariety, Rating, Selection } fr
 
 const MONTHS = 12;
 
-/** P13: per month, whether the variety is typically in stores: its calendar names' combined share of the item's
- * market-days (capped at 1; a day quoting two of its names counts twice) reaches rules.varietyInStoreShare. */
-function inStore(item: Item, quotedAs: readonly string[], data: Dataset): boolean[] {
+/** P13: per month, whether the variety is typically in stores: a cited supermarket month, or its calendar names'
+ * combined share of the item's market-days (capped at 1; a day quoting two of its names counts twice) reaching
+ * rules.varietyInStoreShare. */
+function inStore(item: Item, v: Item["varieties"][number], data: Dataset): boolean[] {
+  const quotedAs = v.quotedAs ?? [];
+  const cited = new Set(v.inStores.flatMap((r) => monthRange(r.from, r.to)));
   const share: number[] = Array(MONTHS).fill(0);
   for (const r of data.varietyCalendar)
     if (r.item === item.id && quotedAs.includes(r.variety))
       share[r.month - 1] = (share[r.month - 1] ?? 0) + r.share;
-  return share.map((s) => Math.min(1, s) >= data.rules.varietyInStoreShare);
+  return share.map((s, m) => cited.has(m + 1) || Math.min(1, s) >= data.rules.varietyInStoreShare);
 }
 
 /** P16: per month, whether a selection is common enough: cited supermarket months, or its origins together
@@ -97,7 +100,7 @@ export function itemInputs(item: Item, data: Dataset): ItemInputs {
           {
             id: v.id,
             ...series(v.windows, claims, sources, { variety: v.id }, item, data),
-            inStore: inStore(item, v.quotedAs ?? [], data),
+            inStore: inStore(item, v, data),
           },
         ]
       : [],

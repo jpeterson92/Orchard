@@ -153,8 +153,11 @@ export const varietySchema = z.strictObject({
   storesWell: trait.optional(),
   /** Present on a rated variety: the item is then rated by variety (P13). As typically sold, whatever the origin. */
   windows: qualityWindows.optional(),
-  /** The variety calendar's names for it (slugs of USDA's terminal-market names). Required on a rated variety. */
+  /** The variety calendar's names for it (slugs of USDA's terminal-market names). A rated variety needs these or
+   * `inStores`. */
   quotedAs: z.array(id).min(1).optional(),
+  /** P13: cited months it is commonly in supermarkets, where USDA's terminal reports don't name it. */
+  inStores,
 });
 
 /** P16: what a shopper can pick out by the sign or label, e.g. local field tomatoes, grouping rated origins. */

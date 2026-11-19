@@ -189,8 +189,10 @@ export function validate(raw: RawInputs, opts: { production: boolean }): Result 
     for (const v of item.varieties) checkSources(v.sources, `${at} variety ${v.id}`);
     for (const t of ["shipsWell", "storesWell", "peakWorthSeeking"] as const)
       checkSources(item[t].sources, `${at} ${t}`);
-    for (const v of item.varieties)
+    for (const v of item.varieties) {
       if (v.storesWell) checkSources(v.storesWell.sources, `${at} variety ${v.id} storesWell`);
+      for (const r of v.inStores) checkSources(r.sources, `${at} variety ${v.id} inStores`);
+    }
     for (const o of item.origins) {
       checkOrigin(o.origin, at);
       for (const r of o.inStores) checkSources(r.sources, `${at} origin ${o.origin} inStores`);
@@ -410,7 +412,8 @@ export function validate(raw: RawInputs, opts: { production: boolean }): Result 
   for (const item of items)
     for (const v of item.varieties) {
       const at = `item ${item.id} variety ${v.id}`;
-      if (v.windows && !v.quotedAs) errors.push(`${at}: a rated variety needs quotedAs (P13)`);
+      if (v.windows && !v.quotedAs && v.inStores.length === 0)
+        errors.push(`${at}: a rated variety needs quotedAs or inStores (P13)`);
       for (const q of v.quotedAs ?? [])
         if (raw.varietyCalendar && !varietyCalendar.some((r) => r.item === item.id && r.variety === q))
           errors.push(`${at}: quotedAs ${q} isn't in the variety calendar`);

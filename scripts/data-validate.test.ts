@@ -257,6 +257,17 @@ describe("validate: a valid dataset", () => {
     expect(dataset?.items[0]?.varieties[0]?.windows).toHaveLength(2);
   });
 
+  it("accepts a rated variety with cited in-store months in place of quotedAs (P13)", () => {
+    const raw = structuredClone(base());
+    rateByVariety(raw);
+    const v = firstItem(raw).varieties[0];
+    delete v.quotedAs;
+    v.inStores = [{ from: "jan", to: "dec", sources: ["s1"] }];
+    const { errors, dataset } = validate(raw, { production: false });
+    expect(errors).toEqual([]);
+    expect(dataset?.items[0]?.varieties[0]?.inStores[0]?.to).toBe("dec");
+  });
+
   it("accepts a rating that departs from the evidence when it gives a reason", () => {
     const raw = structuredClone(base());
     Object.assign(firstItem(raw).origins[0].windows[1], {
@@ -504,6 +515,12 @@ const broken: [string, (r: RawInputs) => void, string][] = [
   ["unknown store source", (r) => (firstItem(r).store.sources = ["s9"]), "store: unknown source s9"],
   ["unknown trait source", (r) => (firstItem(r).shipsWell.sources = ["s9"]), "shipsWell: unknown source s9"],
   [
+    "variety in-store months citing an unknown source",
+    (r) =>
+      (firstItem(r).varieties = [{ ...gala(), inStores: [{ from: "jul", to: "sep", sources: ["s9"] }] }]),
+    "variety gala inStores: unknown source s9",
+  ],
+  [
     "unknown variety storesWell source",
     (r) => (firstItem(r).varieties = [{ ...gala(), storesWell: { value: true, sources: ["s9"] } }]),
     "variety gala storesWell: unknown source s9",
@@ -691,7 +708,7 @@ const broken: [string, (r: RawInputs) => void, string][] = [
       rateByVariety(r);
       delete firstItem(r).varieties[0].quotedAs;
     },
-    "variety gala: a rated variety needs quotedAs",
+    "variety gala: a rated variety needs quotedAs or inStores",
   ],
   [
     "quotedAs not in the calendar",
