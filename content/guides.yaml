@@ -4,12 +4,11 @@
 - id: apples
   name: Apples
   items: [apples]
-  # Overall: the mean of Apple Rankings' 0-100 score (each apple as a fresh "munching" apple) and the model's own
-  # score on the same scale, sorted into tiers by these floors.
+  # Overall: the mean of Apple Rankings' 0-100 score (each apple as a fresh "munching" apple) and Orchard's
+  # editorial score on the same scale (Claude's, adjusted by Jared), sorted into tiers by these floors.
   overall:
     basis: Eating raw
     source: applerankings
-    model: claude-opus-5-5-2026-11-19
     tiers: { amazing: 85, great: 75, fine: 60 }
   status: reviewed
   reviewer: Jared

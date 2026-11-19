@@ -38,7 +38,7 @@ varieties:
   - id: honeycrisp
     name: Honeycrisp
     traits: { sweetness: 4, tartness: 3, crispness: 5, juiciness: 5, holds-shape: 4 }
-    overallScore: { source: 83, model: 88 }
+    overallScore: { source: 83, editorial: 78 }
     bestUses: [Snacking, salads]
     label: Honeycrisp
     sources: [usapple-honeycrisp, veritable-apple-guide, atk-apples-for-cooking, umd-apple-cultivars]
@@ -55,7 +55,7 @@ varieties:
   - id: gala
     name: Gala
     traits: { sweetness: 4, tartness: 2, crispness: 3, juiciness: 3, holds-shape: 3 }
-    overallScore: { source: 68, model: 72 }
+    overallScore: { source: 68, editorial: 72 }
     bestUses: [Snacking, lunch boxes]
     label: Gala or Royal Gala
     sources: [usapple-gala, veritable-apple-guide, atk-apples-for-cooking, rutgers-apple-varieties]
@@ -67,7 +67,7 @@ varieties:
   - id: fuji
     name: Fuji
     traits: { sweetness: 5, tartness: 1, crispness: 4, juiciness: 4, holds-shape: 4 }
-    overallScore: { source: 56, model: 76 }
+    overallScore: { source: 56, editorial: 76 }
     bestUses: [Snacking, salads]
     label: Fuji
     sources: [usapple-fuji, veritable-apple-guide, fruitguys-sweetest-apples]
@@ -78,7 +78,7 @@ varieties:
   - id: granny-smith
     name: Granny Smith
     traits: { sweetness: 1, tartness: 5, crispness: 4, juiciness: 3, holds-shape: 5 }
-    overallScore: { source: 57, model: 66 }
+    overallScore: { source: 57, editorial: 66 }
     bestUses: [Baking, pies, salads]
     label: Granny Smith
     sources: [usapple-granny-smith, veritable-apple-guide, atk-apples-for-cooking, umd-apple-cultivars]
@@ -88,7 +88,7 @@ varieties:
   - id: pink-lady
     name: Pink Lady
     traits: { sweetness: 3, tartness: 4, crispness: 4, juiciness: 4, holds-shape: 5 }
-    overallScore: { source: 90, model: 82 }
+    overallScore: { source: 90, editorial: 72 }
     bestUses: [Snacking, baking]
     label: Pink Lady
     sources:
@@ -105,7 +105,7 @@ varieties:
   - id: cosmic-crisp
     name: Cosmic Crisp
     traits: { sweetness: 3, tartness: 3, crispness: 5, juiciness: 4 }
-    overallScore: { source: 88, model: 82 }
+    overallScore: { source: 88, editorial: 100 }
     bestUses: [Snacking, salads, slicing ahead]
     label: Cosmic Crisp
     sources: [veritable-apple-guide, fruitguys-sweetest-apples, theproducemoms-apples-sweet-to-tart]
@@ -120,77 +120,77 @@ varieties:
   - id: red-delicious
     name: Red Delicious
     traits: { sweetness: 4, tartness: 1, crispness: 3, juiciness: 3, holds-shape: 1 }
-    overallScore: { source: 25, model: 35 }
+    overallScore: { source: 25, editorial: 35 }
     bestUses: [Eating fresh, salads]
     label: Red Delicious
     sources: [usapple-red-delicious, atk-apples-for-cooking, theproducemoms-apples-sweet-to-tart]
   - id: golden-delicious
     name: Golden Delicious
     traits: { sweetness: 4, tartness: 2, crispness: 3, juiciness: 2, holds-shape: 2 }
-    overallScore: { source: 56, model: 60 }
+    overallScore: { source: 56, editorial: 60 }
     bestUses: [Applesauce, pies mixed with a tart apple]
     label: Golden Delicious
     sources: [usapple-golden-delicious, umd-apple-cultivars, atk-apples-for-cooking, veritable-apple-guide]
   - id: ambrosia
     name: Ambrosia
     traits: { sweetness: 5, tartness: 1, crispness: 4, juiciness: 4, holds-shape: 4 }
-    overallScore: { source: 70, model: 78 }
+    overallScore: { source: 70, editorial: 78 }
     bestUses: [Snacking, salads, baked apples]
     label: Ambrosia
     sources: [veritable-apple-guide, theproducemoms-apples-sweet-to-tart]
   - id: mcintosh
     name: McIntosh
     traits: { sweetness: 2, tartness: 4, crispness: 1, juiciness: 5, holds-shape: 1 }
-    overallScore: { source: 47, model: 62 }
+    overallScore: { source: 47, editorial: 62 }
     bestUses: [Applesauce, snacking]
     label: McIntosh
     sources: [usapple-mcintosh, veritable-apple-guide, atk-apples-for-cooking]
   - id: braeburn
     name: Braeburn
     traits: { sweetness: 3, tartness: 3, crispness: 4, juiciness: 4, holds-shape: 5 }
-    overallScore: { source: 71, model: 74 }
+    overallScore: { source: 71, editorial: 74 }
     bestUses: [Snacking, pies and crisps]
     label: Braeburn
     sources: [veritable-apple-guide, fruitguys-sweetest-apples, atk-apples-for-cooking, umd-apple-cultivars]
   - id: jazz
     name: Jazz
     traits: { sweetness: 3, tartness: 3, crispness: 4, holds-shape: 4 }
-    overallScore: { source: 69, model: 76 }
+    overallScore: { source: 69, editorial: 76 }
     bestUses: [Snacking, pies]
     label: Jazz or Scifresh
     sources: [veritable-apple-guide, almanac-best-apples-baking]
   - id: envy
     name: Envy
     traits: { sweetness: 4, tartness: 2, crispness: 4, juiciness: 4 }
-    overallScore: { source: 82, model: 80 }
+    overallScore: { source: 82, editorial: 86 }
     bestUses: [Snacking, slicing ahead]
     label: Envy
     sources: [veritable-apple-guide, specialtyproduce-envy]
   - id: sweetango
     name: SweeTango
     traits: { sweetness: 4, tartness: 3, crispness: 5, juiciness: 4 }
-    overallScore: { source: 95, model: 90 }
+    overallScore: { source: 95, editorial: 85 }
     bestUses: [Snacking, salads]
     label: SweeTango
     sources: [umn-sweetango, fruitguys-sweetest-apples]
   - id: sugarbee
     name: SugarBee
     traits: { sweetness: 5, tartness: 2, crispness: 4, juiciness: 4, holds-shape: 4 }
-    overallScore: { source: 90, model: 84 }
+    overallScore: { source: 90, editorial: 96 }
     bestUses: [Snacking, tarts and pies]
     label: SugarBee
     sources: [specialtyproduce-sugarbee, fruitguys-sweetest-apples, eatlikenoone-sugarbee]
   - id: kanzi
     name: Kanzi
     traits: { sweetness: 3, tartness: 4, crispness: 4, juiciness: 4 }
-    overallScore: { source: 85, model: 80 }
+    overallScore: { source: 85, editorial: 80 }
     bestUses: [Snacking, salads]
     label: Kanzi
     sources: [applerankings-kanzi, orangepippin-kanzi, kanzi-apple]
   - id: snapdragon
     name: SnapDragon
     traits: { sweetness: 4, tartness: 1, crispness: 5, juiciness: 5 }
-    overallScore: { source: 77, model: 84 }
+    overallScore: { source: 77, editorial: 84 }
     bestUses: [Snacking]
     label: SnapDragon
     sources: [applerankings-snapdragon, orangepippin-snapdragon, cornell-tree-fruits]

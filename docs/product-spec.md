@@ -196,7 +196,7 @@ An item that is both Peak and Last call appears once, under Best right now, carr
 | Chiles & peppers | Heat range, sweetness, wall thickness |
 | Winter squash | Sweetness, dry ↔ moist flesh, ease of peeling |
 
-- **Overall rating** (apples only): each variety as bad, fine, great or amazing for eating raw, the page says so at the top. Its score is the mean of the 0–100 score at applerankings.com and the model's own on the same scale (amazing 85 and up, great 75–84, fine 60–74, bad below 60). The apples guide opens sorted by it, best first.
+- **Overall rating** (apples only): each variety as bad, fine, great or amazing for eating raw, the page says so at the top. Its score is the mean of the 0–100 score at applerankings.com and Orchard's editorial score on the same scale (amazing 85 and up, great 75–84, fine 60–74, bad below 60). The apples guide opens sorted by it, best first.
 - **Every variety** of the guide's items: its scores as five dots with the number, best uses, its ripe cue (pears) and, where rated, today's verdict. Without an overall rating, rated varieties in stores come first, best first; unrated ones follow, A to Z. The scales' anchors close the page.
 - **Finder:** filter by use and by the group's traits. Results update instantly.
 - **Phone:** variety cards. **Tablet and desktop:** a sortable comparison table.
