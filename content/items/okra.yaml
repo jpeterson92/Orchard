@@ -1,0 +1,67 @@
+id: okra
+name: Okra
+synonyms: [okras, lady fingers, ladies fingers, bhindi, gumbo]
+misspellings: [okara, okkra, ocra, okrah]
+category: beans-peas-corn
+purchaseRank: 28
+alwaysGood: false
+shipsWell:
+  value: true
+  sources: [ucdavis-postharvest-okra, freshplaza-indian-okra-honduras]
+  note: Keeps about a week or more when held cool, and Honduran okra makes a short trip.
+peakWorthSeeking:
+  value: true
+  sources: [umd-okra, harvesttotable-okra]
+  note: Small pods picked often in summer are the most tender; older pods turn stringy.
+storesWell:
+  value: false
+  sources: [ucdavis-postharvest-okra, harvesttotable-okra]
+  note: Bruises darken within hours and pods keep days, not weeks.
+evidenceBasis: assessment-only
+cardLine: Small, bright green pods that snap cleanly; under 4 inches.
+pick:
+  - Bright green and evenly colored
+  - Pods 2–4 inches long
+  - Firm enough to snap, not bend
+  - No dark spots or bruises
+avoid:
+  - Long, woody pods; they're stringy
+  - Slimy, limp or blackened pods
+store:
+  temperature: cool
+  ethylene: neither
+  life: { min: 2, max: 4, unit: days }
+  text: Keep dry and unwashed in a paper or perforated bag in the warmest part of the fridge; typically 2–4 days. Below about 45°F pods pit and darken.
+  sources: [ucdavis-postharvest-okra, harvesttotable-okra]
+prep: Rinse and dry just before cooking, then trim the stem caps. Cooking whole, or fast and hot by roasting or frying, keeps sliminess down.
+origins:
+  - origin: hn
+    windows:
+      - { from: nov-1, to: may-2, rating: fair }
+  - origin: us-ga
+    windows:
+      - { from: jun-2, to: sep-2, rating: prime }
+typicalOrigins:
+  - from: dec
+    to: feb
+    origins: [{ origin: hn, major: true }, { origin: us-fl, major: true }]
+    sources: [usda-ams-fv-movement, freshplaza-florida-okra-start]
+  - from: mar
+    to: may
+    origins: [{ origin: hn, major: true }]
+    sources: [usda-ams-fv-movement, hortidaily-florida-indian-okra]
+  - from: jun
+    to: sep
+    origins:
+      [
+        { origin: hn, major: true },
+        { origin: us-fl, major: true },
+        { origin: us-ca, major: false },
+        { origin: us-ga, major: false },
+      ]
+    sources: [usda-ams-fv-movement, freshplaza-florida-okra-start, freshplaza-domestic-okra-ends]
+  - from: oct
+    to: nov
+    origins: [{ origin: hn, major: true }, { origin: us-fl, major: true }]
+    sources: [usda-ams-fv-movement, tridge-okra-honduras]
+status: draft

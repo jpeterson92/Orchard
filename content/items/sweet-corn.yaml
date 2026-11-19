@@ -1,0 +1,84 @@
+id: sweet-corn
+name: Sweet corn
+synonyms: [corn, corn on the cob, sweetcorn, elote, bicolor corn, white corn, yellow corn]
+misspellings: [swet corn, sweet coen, corn on cob, sweetcorns]
+category: beans-peas-corn
+purchaseRank: 12
+alwaysGood: false
+shipsWell:
+  value: true
+  sources: [csu-sweet-corn, uga-shipper-sweet-corn]
+  note: Today's supersweet types hold their sugar for days when kept cold, so shipped corn stays sweet.
+peakWorthSeeking:
+  value: true
+  sources: [usu-sweet-corn, californiagrown-five-crowns]
+  note: Fresh-picked summer corn tastes clearly sweeter, and sources name best months.
+storesWell:
+  value: false
+  sources: [csu-sweet-corn, usu-sweet-corn]
+  note: Sugar turns to starch after picking; it keeps days, not weeks.
+evidenceBasis: supply+assessment
+cardLine: Snug green husks, moist silk and plump kernels to the tip.
+pick:
+  - Bright green husks wrapped snugly around the ear
+  - Pale, moist silk; brown tips are fine
+  - Plump kernels you can feel to the tip through the husk
+  - Heavy, with a fresh, pale stem end
+avoid:
+  - Dry, yellowing husks or a browned stem end
+  - Dented or shriveled kernels
+store:
+  temperature: cold
+  ethylene: neither
+  life: { min: 1, max: 3, unit: days }
+  text: Refrigerate in the husk right away, loosely wrapped, and typically use within 1–3 days. It loses sweetness as it sits, slower in supersweet types.
+  sources: [csu-sweet-corn, usu-sweet-corn]
+ripen:
+  text: Corn doesn't ripen or sweeten after picking; it only loses sugar, so cook it soon.
+  sources: [csu-sweet-corn, uga-shipper-sweet-corn]
+prep: Husk and pull off the silk just before cooking. Boil 3–5 minutes, or grill in or out of the husk.
+origins:
+  - origin: us-fl
+    windows:
+      - { from: jan-1, to: mar-2, rating: fair }
+      - { from: apr-1, to: jun-1, rating: prime }
+      - { from: jun-2, to: sep-2, rating: poor }
+      - { from: oct-1, to: dec-2, rating: fair }
+  - origin: us-ga
+    windows:
+      - { from: jan-1, to: may-1, rating: poor }
+      - { from: may-2, to: jul-1, rating: prime }
+      - from: jul-2
+        to: jul-2
+        rating: fair
+        reason: The model panel has no rating here, and the cited sources disagree; together they read fair.
+      - { from: aug-1, to: sep-1, rating: poor }
+      - { from: sep-2, to: sep-2, rating: fair }
+      - from: oct-1
+        to: nov-2
+        rating: fair
+        reason: The model panel has no rating here, and the cited sources disagree; together they read fair.
+      - { from: dec-1, to: dec-2, rating: poor }
+  - origin: us-ca
+    windows:
+      - { from: jan-1, to: mar-1, rating: poor }
+      - { from: mar-2, to: apr-1, rating: fair }
+      - { from: apr-2, to: sep-2, rating: prime }
+      - from: oct-1
+        to: oct-2
+        rating: fair
+        reason: The model panel has no rating here, and the cited sources disagree; together they read fair.
+      - { from: nov-1, to: dec-2, rating: poor }
+  - origin: us-ny
+    windows:
+      - { from: jul-2, to: sep-2, rating: prime }
+selections:
+  - id: local-summer
+    label: local summer corn
+    cue: From July to September, look for a "local" sign or a nearby state on the bin, often in big summer displays. Pick ears with snug, bright green husks and moist silk, and buy it the day you'll cook it.
+    origins: [us-ny]
+    inStores:
+      - from: jul
+        to: sep
+        sources: [producebusiness-corn-sales-sweeter, freshplaza-sweet-corn-tray-packs]
+status: draft
