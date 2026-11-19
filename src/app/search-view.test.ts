@@ -67,6 +67,16 @@ describe("search", () => {
     expect(first?.tags).not.toContain("Check the label");
   });
 
+  it("opens a guide variety on its own page, and any other variety on its item page at that variety", () => {
+    const honeycrisp = run("Honeycrisp");
+    const ataulfo = run("Ataulfo");
+    if (honeycrisp.kind !== "results" || ataulfo.kind !== "results") throw new Error("no results");
+    expect(honeycrisp.results[0]?.to).toBe("/items/apples/honeycrisp");
+    expect(ataulfo.results[0]).toMatchObject({ key: "mangoes/ataulfo", to: "/items/mangoes#label" });
+    const apples = run("Apples");
+    expect(apples.kind === "results" && apples.results[0]?.to).toBe("/items/apples");
+  });
+
   it("matches every word of a multi-word query", () => {
     expect(keys("granny smith")[0]).toBe("apples/granny-smith");
     expect(keys("green onions")[0]).toBe("green-onions");

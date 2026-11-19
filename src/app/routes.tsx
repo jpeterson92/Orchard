@@ -9,6 +9,8 @@ import { ItemPage } from "./ItemPage";
 import { TabBar } from "./Nav";
 import { SearchProvider } from "./Search";
 import { Today } from "./Today";
+import { VarietyPage } from "./VarietyPage";
+import { hasVarietyPage, varietyPath } from "./variety-view";
 
 const data = appJson as unknown as AppData;
 
@@ -51,6 +53,7 @@ export const routes: RouteObject[] = [
       { path: "/browse/:category", element: <BrowseCategory /> },
       { path: "/calendar", element: <Calendar /> },
       { path: "/items/:id", element: <ItemPage /> },
+      { path: "/items/:id/:variety", element: <VarietyPage /> },
       { path: "/guides/:id", element: <Guide /> },
       { path: "/methods", element: <Methods /> },
       { path: "/privacy", element: <Privacy /> },
@@ -59,7 +62,7 @@ export const routes: RouteObject[] = [
 ];
 
 // Routes written to static HTML at build time: Today, Browse and each category, Calendar, Methods, Privacy, one page per
-// bundled item, and one per variety guide.
+// bundled item, one per variety guide, and one per guide variety.
 export const prerenderPaths = [
   "/",
   "/browse",
@@ -69,4 +72,5 @@ export const prerenderPaths = [
   "/privacy",
   ...data.items.map((i) => `/items/${i.inputs.id}`),
   ...data.guides.map((g) => `/guides/${g.id}`),
+  ...data.items.filter(hasVarietyPage).flatMap((i) => i.varieties.map((v) => varietyPath(i.inputs.id, v.id))),
 ];

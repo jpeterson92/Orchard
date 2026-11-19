@@ -7,6 +7,7 @@ export interface GuideRow {
   /** `item/variety`: unique across a guide's items. */
   key: string;
   item: string;
+  variety: string;
   itemName: string;
   name: string;
   art: string | null;
@@ -51,6 +52,7 @@ export function guideView(data: AppData, id: string, date: PlainDate): GuideView
       rows.push({
         key: `${itemId}/${v.id}`,
         item: itemId,
+        variety: v.id,
         itemName: item.name,
         name: v.name,
         art: v.art,

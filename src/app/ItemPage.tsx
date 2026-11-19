@@ -14,6 +14,7 @@ import { Masthead, PageTitle, PreviewNotice } from "./Masthead";
 import { useCount, useVerdictVisible } from "./measure";
 import { MonthAxis, SeasonStrip, StripLegend } from "./SeasonStrip";
 import { atDate, listNames, plainDate, VERDICT_WORD } from "./today-view";
+import { varietyPath } from "./variety-view";
 
 const data = appJson as unknown as AppData;
 
@@ -150,7 +151,20 @@ function Item({ view, mode }: { view: ItemView; mode: Mode }) {
           </div>
           <ul>
             {view.varieties.map((v) => (
-              <Variety key={v.id} row={v} today={view.window} mode={mode} />
+              <Variety
+                key={v.id}
+                row={v}
+                today={view.window}
+                mode={mode}
+                page={
+                  view.guide
+                    ? {
+                        path: varietyPath(view.id, v.id),
+                        back: { to: `/items/${view.id}`, label: view.name },
+                      }
+                    : null
+                }
+              />
             ))}
           </ul>
         </Section>
@@ -279,14 +293,33 @@ function LabelCheck({
   );
 }
 
-function Variety({ row, today, mode }: { row: VarietyRow; today: number; mode: Mode }) {
+/** `page`: where a guide variety's own page is, and where its Back link returns. */
+function Variety({
+  row,
+  today,
+  mode,
+  page,
+}: {
+  row: VarietyRow;
+  today: number;
+  mode: Mode;
+  page: { path: string; back: BackTo } | null;
+}) {
   return (
     <li className="border-b border-rule py-3 last:border-b-0">
       <div className="flex items-center gap-3">
         <Art id={row.art} sizes="48px" className="size-12 shrink-0" />
         <div className="min-w-0 flex-1">
           <div className="flex flex-wrap items-baseline justify-between gap-x-4">
-            <h3 className="font-editorial text-lg font-bold">{row.name}</h3>
+            <h3 className="font-editorial text-lg font-bold">
+              {page ? (
+                <Link to={page.path} state={{ back: page.back }} className={`${linkClass} font-bold`}>
+                  {row.name} <span aria-hidden>→</span>
+                </Link>
+              ) : (
+                row.name
+              )}
+            </h3>
             {row.verdict ? (
               <VerdictMark verdict={row.verdict} />
             ) : (

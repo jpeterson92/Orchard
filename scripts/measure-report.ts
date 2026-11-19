@@ -66,6 +66,7 @@ const share = visits === 0 ? "" : ` (${Math.round((100 * total("return14")) / vi
 console.log("\nDiagnostic events (no targets)\n");
 for (const [label, value] of [
   ["Item page opens", `${total("item")}`],
+  ["Variety page opens", `${total("variety")}`],
   ["Today card expansions", `${total("expand")}`],
   ["Searches with no match", `${total("nomatch")}`],
   ["Visit days", `${visits}`],

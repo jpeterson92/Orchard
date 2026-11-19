@@ -1,6 +1,6 @@
 // Variety guide (product spec §5 "Variety guide", §6 layouts): every variety of the guide's items, its traits on the
 // guide's 1–5 scales, best uses and, where rated, today's verdict. Phone: cards. Wider screens: a sortable table.
-// The finder above both narrows them by use and by trait. Not yet here: variety pages.
+// The finder above both narrows them by use and by trait. Each variety links to its own page.
 import { useEffect, useMemo, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router";
 import appJson from "../generated/app.json";
@@ -25,6 +25,7 @@ import {
 import { VerdictMark } from "./icons";
 import { Masthead, PageTitle, PreviewNotice } from "./Masthead";
 import { atDate, listNames, plainDate } from "./today-view";
+import { varietyPath } from "./variety-view";
 
 const data = appJson as unknown as AppData;
 
@@ -143,7 +144,12 @@ function GuideBody({ view, mode }: { view: GuideView; mode: "today" | "typical" 
                   <span className="flex items-center gap-2">
                     <Art id={r.art} sizes="32px" className="size-8 shrink-0" />
                     <span>
-                      <span className="font-editorial text-lg font-bold">{r.name}</span>
+                      <Link
+                        to={varietyPath(r.item, r.variety)}
+                        className={`font-editorial text-lg font-bold text-olive underline-offset-4 hover:underline ${focus}`}
+                      >
+                        {r.name}
+                      </Link>
                       {view.multiItem && (
                         <span className="block text-sm font-normal text-ink-secondary">{r.itemName}</span>
                       )}
@@ -173,7 +179,7 @@ function GuideBody({ view, mode }: { view: GuideView; mode: "today" | "typical" 
         </table>
       </div>
 
-      <section className="mt-8 border-t border-olive/60 pt-4">
+      <section id="scores" className="mt-8 scroll-mt-4 border-t border-olive/60 pt-4">
         <h2 className="font-editorial text-2xl font-bold">How to read the scores</h2>
         <dl className="mt-2 space-y-3">
           {view.guide.traits.map((t) => (
@@ -293,7 +299,14 @@ function Card({ row, view, mode }: { row: GuideRow; view: GuideView; mode: "toda
         <Art id={row.art} sizes="48px" className="size-12 shrink-0" />
         <div className="min-w-0 flex-1">
           <div className="flex flex-wrap items-baseline justify-between gap-x-4">
-            <h2 className="font-editorial text-xl font-bold">{row.name}</h2>
+            <h2 className="font-editorial text-xl font-bold">
+              <Link
+                to={varietyPath(row.item, row.variety)}
+                className={`inline-flex min-h-11 items-center text-olive underline-offset-4 hover:underline ${focus}`}
+              >
+                {row.name} <span aria-hidden>&nbsp;→</span>
+              </Link>
+            </h2>
             <Now row={row} mode={mode} />
           </div>
           {view.guide.overall && (
@@ -338,7 +351,7 @@ const TIER_WORD = { amazing: "Amazing", great: "Great", fine: "Fine", bad: "Bad"
 const TIER_LEVEL = { amazing: 4, great: 3, fine: 2, bad: 1 } as const;
 
 /** The overall tier as a four-step bar and its word; a dash where the source has no score. */
-function Overall({ value }: { value: GuideRow["overall"] }) {
+export function Overall({ value }: { value: GuideRow["overall"] }) {
   if (value === null)
     return (
       <span className="text-ink-secondary">
@@ -363,7 +376,7 @@ function Overall({ value }: { value: GuideRow["overall"] }) {
 }
 
 /** A 1–5 score as five dots with the number for screen readers; a dash where no source gives one. */
-function Score({ value }: { value: number | undefined }) {
+export function Score({ value }: { value: number | undefined }) {
   if (value === undefined)
     return (
       <span className="text-ink-secondary">

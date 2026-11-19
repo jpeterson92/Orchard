@@ -5,6 +5,7 @@ import MiniSearch from "minisearch";
 import type { AppData } from "../shared/app-data";
 import { evaluate, type PlainDate, type Verdict } from "../shared/verdict";
 import { tags, varietyLine } from "./today-view";
+import { varietyPath } from "./variety-view";
 
 interface Doc {
   key: string;
@@ -20,6 +21,8 @@ export interface SearchResult {
   key: string;
   /** The item page this opens. */
   item: string;
+  /** Where a tap goes: a guide variety's own page, else the item page (at the variety's label check). */
+  to: string;
   /** "v:honeycrisp" on a variety: the item page opens with that variety picked in the label check. */
   label: string | null;
   title: string;
@@ -109,6 +112,7 @@ function result(data: AppData, key: string, date: PlainDate): SearchResult | nul
   if (variety)
     return {
       ...common,
+      to: item.guide ? varietyPath(item.inputs.id, variety.id) : `/items/${item.inputs.id}#label`,
       label: `v:${variety.id}`,
       title: variety.name,
       subtitle: item.name,
@@ -118,6 +122,7 @@ function result(data: AppData, key: string, date: PlainDate): SearchResult | nul
     };
   return {
     ...common,
+    to: `/items/${item.inputs.id}`,
     label: null,
     title: item.name,
     subtitle: varietyLine(item, r, data),

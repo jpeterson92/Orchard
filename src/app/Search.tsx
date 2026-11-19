@@ -111,7 +111,7 @@ function SearchDialog({
               const first = shown[0];
               if (outcome.kind === "results" && first) {
                 close();
-                navigate(`/items/${first.item}${first.label ? "#label" : ""}`, {
+                navigate(first.to, {
                   state: { label: first.label },
                 });
               }
@@ -205,7 +205,7 @@ function ResultRow({ result: r, onOpen }: { result: SearchResult; onOpen: () => 
   return (
     <li className="border-b border-rule">
       <Link
-        to={`/items/${r.item}${r.label ? "#label" : ""}`}
+        to={r.to}
         state={{ label: r.label }}
         onClick={onOpen}
         className={`flex items-center gap-3 rounded-sm py-2.5 ${focus}`}

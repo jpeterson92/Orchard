@@ -25,11 +25,11 @@ export function bucketOf(metric: Metric, value: number): number {
 }
 
 /**
- * Diagnostic events (product spec §2), counted per UTC day with nothing else attached: an item page opened, a Today
- * card expanded, a search closed with no match, the phone's first visit of its local day, and that visit coming 1 to
+ * Diagnostic events (product spec §2), counted per UTC day with nothing else attached: an item page opened, a variety
+ * page opened, a Today card expanded, a search closed with no match, the phone's first visit of its local day, and that visit coming 1 to
  * 14 days after the previous one (the phone keeps only its last visit date and never sends it).
  */
-export const EVENTS = ["item", "expand", "nomatch", "visit", "return14"] as const;
+export const EVENTS = ["item", "variety", "expand", "nomatch", "visit", "return14"] as const;
 export type Event = (typeof EVENTS)[number];
 
 /** Most of one event a single beacon may carry; the phone sends at most this many and drops the rest. */
