@@ -175,11 +175,13 @@ const withGuide = (r: RawInputs) => {
       id: "test-guide",
       name: "Test fruit",
       items: ["test-fruit"],
+      uses: [{ id: "eating", name: "Eating", match: ["eat"] }],
       traits: [
         {
           id: "sweetness",
           name: "Sweetness",
           anchors: { 1: anchor(["fuji"]), 3: anchor(["envy"]), 5: anchor(["gala"]) },
+          filters: { high: "Sweet" },
         },
       ],
       status: "draft",
@@ -410,6 +412,46 @@ const broken: [string, (r: RawInputs) => void, string][] = [
       firstItem(r).varieties[2].sources = [];
     },
     "item test-fruit variety envy: cite a source for its traits and uses",
+  ],
+  [
+    "best use under none of the guide's uses",
+    (r) => {
+      withGuide(r);
+      firstItem(r).varieties[2].bestUses = ["Eating", "Juicing"];
+    },
+    `guide test-guide: variety envy's use "Juicing" matches none of the guide's uses`,
+  ],
+  [
+    "use chip that finds no variety",
+    (r) => {
+      withGuide(r);
+      guide(r).uses.push({ id: "baking", name: "Baking", match: ["bak"] });
+    },
+    "guide test-guide: use baking matches no variety",
+  ],
+  [
+    "duplicate use chip",
+    (r) => {
+      withGuide(r);
+      guide(r).uses.push({ id: "eating", name: "Eating again", match: ["eat"] });
+    },
+    "duplicate use test-guide/eating",
+  ],
+  [
+    "trait chip label too long",
+    (r) => {
+      withGuide(r);
+      guide(r).traits[0].filters = { high: "Very very sweet indeed" };
+    },
+    "at most 3 words",
+  ],
+  [
+    "guide without use chips",
+    (r) => {
+      withGuide(r);
+      guide(r).uses = [];
+    },
+    "content/guides.yaml",
   ],
   [
     "ripe cue on a guide without ripeCues",

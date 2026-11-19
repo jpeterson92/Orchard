@@ -1,13 +1,27 @@
 // Variety guide (product spec §5 "Variety guide", §6 layouts): every variety of the guide's items, its traits on the
 // guide's 1–5 scales, best uses and, where rated, today's verdict. Phone: cards. Wider screens: a sortable table.
-// Not yet here: the finder (filters by use and trait) and variety pages.
-import { useState } from "react";
-import { Link, useParams } from "react-router";
+// The finder above both narrows them by use and by trait. Not yet here: variety pages.
+import { useEffect, useMemo, useState } from "react";
+import { Link, useNavigate, useParams } from "react-router";
 import appJson from "../generated/app.json";
 import type { AppData } from "../shared/app-data";
 import { Art } from "./Art";
 import { useAppDate } from "./date";
-import { type GuideRow, type GuideView, guideView, type SortKey, sortRows } from "./guide-view";
+import {
+  type Finder,
+  filterRows,
+  finderParams,
+  type GuideRow,
+  type GuideView,
+  guideView,
+  NO_FILTER,
+  parseFinder,
+  type SortKey,
+  sortRows,
+  type TraitChip,
+  toggleTrait,
+  traitChips,
+} from "./guide-view";
 import { VerdictMark } from "./icons";
 import { Masthead, PageTitle, PreviewNotice } from "./Masthead";
 import { atDate, listNames, plainDate } from "./today-view";
@@ -52,7 +66,23 @@ function GuideBody({ view, mode }: { view: GuideView; mode: "today" | "typical" 
     descending: true,
   });
   const overall = view.guide.overall;
-  const rows = sortRows(view.rows, sort.key, sort.descending);
+  const chips = useMemo(() => traitChips(view.guide), [view.guide]);
+  // The finder is copied to the address, so Back returns to it. Taps update state first (the router's navigation
+  // lags a quick second tap); the address is read once after hydrating, since the prerendered page has no query.
+  const [picked, setPicked] = useState<Finder | null>(null);
+  const navigate = useNavigate();
+  useEffect(() => {
+    setPicked(parseFinder(new URLSearchParams(window.location.search), view.guide, chips));
+  }, [view.guide, chips]);
+  useEffect(() => {
+    if (picked === null) return;
+    const search = finderParams(new URLSearchParams(window.location.search), picked).toString();
+    if (search !== window.location.search.slice(1))
+      navigate({ search: search && `?${search}` }, { replace: true, preventScrollReset: true });
+  }, [picked, navigate]);
+  const finder = picked ?? NO_FILTER;
+  const cards = filterRows(view.rows, finder, chips);
+  const rows = filterRows(sortRows(view.rows, sort.key, sort.descending), finder, chips);
   const choose = (key: SortKey) =>
     setSort((s) => ({ key, descending: s.key === key ? !s.descending : key !== "name" }));
   return (
@@ -75,15 +105,23 @@ function GuideBody({ view, mode }: { view: GuideView; mode: "today" | "typical" 
         </p>
       )}
 
+      <FinderControls
+        view={view}
+        chips={chips}
+        finder={finder}
+        shown={cards.length}
+        onChange={(change) => setPicked((f) => change(f ?? NO_FILTER))}
+      />
+
       {/* Phone: one card per variety, in the default order (overall rating, or best right now). */}
-      <ul className="mt-4 sm:hidden">
-        {view.rows.map((r) => (
+      <ul className="mt-2 sm:hidden">
+        {cards.map((r) => (
           <Card key={r.key} row={r} view={view} mode={mode} />
         ))}
       </ul>
 
       {/* Wider screens: the same rows as a table, sorted by any column. */}
-      <div className="mt-4 hidden overflow-x-auto sm:block">
+      <div className={`mt-2 hidden overflow-x-auto ${rows.length > 0 ? "sm:block" : ""}`}>
         <table className="w-full border-collapse text-left">
           <thead>
             <tr className="border-b border-olive/60 align-bottom">
@@ -159,6 +197,92 @@ function GuideBody({ view, mode }: { view: GuideView; mode: "today" | "typical" 
         </p>
       </section>
     </main>
+  );
+}
+
+const chipClass = (on: boolean) =>
+  `min-h-11 rounded-full border px-4 text-sm font-medium whitespace-nowrap ${focus} ${
+    on ? "border-accent bg-accent text-white dark:text-canvas" : "border-olive text-ink"
+  }`;
+
+/** The finder (product spec §5): one use at a time, and trait chips that must all hold. Results update as you tap. */
+function FinderControls({
+  view,
+  chips,
+  finder,
+  shown,
+  onChange,
+}: {
+  view: GuideView;
+  chips: TraitChip[];
+  finder: Finder;
+  shown: number;
+  /** Each tap passes how it changes the finder, so taps in quick succession all count. */
+  onChange: (change: (f: Finder) => Finder) => void;
+}) {
+  const filtered = finder.use !== null || finder.traits.length > 0;
+  return (
+    <div className="mt-5 space-y-3 border-t border-olive/60 pt-4">
+      <fieldset>
+        <legend className="mb-1.5 font-semibold">Use</legend>
+        <div className="flex flex-wrap gap-2">
+          <button
+            type="button"
+            aria-pressed={finder.use === null}
+            onClick={() => onChange((f) => ({ ...f, use: null }))}
+            className={chipClass(finder.use === null)}
+          >
+            Any use
+          </button>
+          {view.guide.uses.map((u) => (
+            <button
+              key={u.id}
+              type="button"
+              aria-pressed={finder.use === u.id}
+              onClick={() => onChange((f) => ({ ...f, use: f.use === u.id ? null : u.id }))}
+              className={chipClass(finder.use === u.id)}
+            >
+              {u.name}
+            </button>
+          ))}
+        </div>
+      </fieldset>
+      {chips.length > 0 && (
+        <fieldset>
+          <legend className="mb-1.5 font-semibold">Traits</legend>
+          <div className="flex flex-wrap gap-2">
+            {chips.map((c) => {
+              const on = finder.traits.includes(c.key);
+              return (
+                <button
+                  key={c.key}
+                  type="button"
+                  aria-pressed={on}
+                  onClick={() => onChange((f) => toggleTrait(f, c))}
+                  className={chipClass(on)}
+                >
+                  {c.label}
+                </button>
+              );
+            })}
+          </div>
+        </fieldset>
+      )}
+      <div className="flex min-h-11 flex-wrap items-center justify-between gap-x-4">
+        <p aria-live="polite" className="text-ink-secondary">
+          {!filtered
+            ? `All ${view.rows.length} varieties`
+            : shown === 0
+              ? "No variety has all of these."
+              : `${shown} of ${view.rows.length} varieties`}
+        </p>
+        {filtered && (
+          <button type="button" onClick={() => onChange(() => NO_FILTER)} className={linkClass}>
+            Clear filters
+          </button>
+        )}
+      </div>
+    </div>
   );
 }
 

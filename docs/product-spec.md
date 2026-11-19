@@ -198,7 +198,7 @@ An item that is both Peak and Last call appears once, under Best right now, carr
 
 - **Overall rating** (apples only): each variety as bad, fine, great or amazing for eating raw, the page says so at the top. Its score is the mean of the 0–100 score at applerankings.com and Orchard's editorial score on the same scale (amazing 85 and up, great 75–84, fine 60–74, bad below 60). The apples guide opens sorted by it, best first.
 - **Every variety** of the guide's items: its scores as five dots with the number, best uses, its ripe cue (pears) and, where rated, today's verdict. Without an overall rating, rated varieties in stores come first, best first; unrated ones follow, A to Z. The scales' anchors close the page.
-- **Finder:** filter by use and by the group's traits. Results update instantly.
+- **Finder:** chips for one use at a time (each guide groups its varieties' best uses into a few, such as Snacking or Baking) and for traits, each naming one end of a scale (Tart is 4–5 on tartness; Buttery is 1–2 on pear texture). Picked traits must all hold, and a variety with no value for a picked trait drops out. Results and a count ("4 of 10 varieties") update instantly; with none left, "No variety has all of these" and Clear filters. The picks stay in the address, so Back and shared links keep them.
 - **Phone:** variety cards. **Tablet and desktop:** a sortable comparison table.
 - **Variety page:** traits, best uses, its quality across the year (only where evidence exists), what the label or price-lookup (PLU) sticker typically says, and "can't find it? try…". The label is the authority on identity. Pictures are decorative, and pages don't claim shoppers can tell similar varieties apart by sight.
 

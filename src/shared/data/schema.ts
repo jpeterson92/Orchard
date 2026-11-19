@@ -18,6 +18,8 @@ const sourceIds = (min: number) => z.array(id).min(min, `cite at least ${min} so
 
 /** Product spec §8 writing standards. */
 export const CARD_WORDS = 12;
+/** A finder chip's label. */
+export const FILTER_WORDS = 3;
 export const SECTION_WORDS = 60;
 
 const review = {
@@ -213,9 +215,16 @@ export const guideSchema = z
           id,
           name: text,
           anchors: z.strictObject({ 1: anchor, 3: anchor, 5: anchor }),
+          /** Finder chips for this trait: `low` picks varieties scored 1–2, `high` those scored 4–5. */
+          filters: z
+            .strictObject({ low: words(FILTER_WORDS).optional(), high: words(FILTER_WORDS).optional() })
+            .optional(),
         }),
       )
       .min(1),
+    /** The finder's use chips. A variety has a use when one of its best uses contains one of `match`, ignoring
+     * case; every best use must fall under some chip. */
+    uses: z.array(z.strictObject({ id, name: words(FILTER_WORDS), match: z.array(text).min(1) })).min(1),
     ...review,
   })
   .refine(reviewComplete, reviewMessage);

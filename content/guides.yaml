@@ -1,6 +1,8 @@
 # The variety guides (product spec §5 Variety guide): each guide's items and its 1–5 trait scales.
 # Anchors at 1, 3 and 5 name reference varieties, which carry that value; [] where no guide variety sits there.
 # Each variety's traits, cited, are in its item file. Checked by data:build.
+# The finder: `uses` groups the varieties' best uses into chips (every best use must fall under one), and a trait's
+# `filters` name its chips, low for scores 1-2 and high for 4-5.
 - id: apples
   name: Apples
   items: [apples]
@@ -13,33 +15,43 @@
   status: reviewed
   reviewer: Jared
   reviewedOn: 2026-11-18
+  uses:
+    - { id: snacking, name: "Snacking", match: ["snack", "eating fresh", "lunch box"] }
+    - { id: salads, name: "Salads", match: ["salad", "slicing ahead"] }
+    - { id: baking, name: "Baking", match: ["bak", "pie"] }
+    - { id: sauce, name: "Applesauce", match: ["sauce"] }
   traits:
     - id: sweetness
       name: Sweetness
+      filters: { high: "Sweet" }
       anchors:
         1: { text: "Barely sweet; sharp", varieties: [granny-smith] }
         3: { text: "Moderately sweet", varieties: [braeburn] }
         5: { text: "Very sweet, little acid to balance it", varieties: [fuji] }
     - id: tartness
       name: Tartness
+      filters: { high: "Tart" }
       anchors:
         1: { text: "Barely tart", varieties: [fuji] }
         3: { text: "Balanced sweet and tart", varieties: [honeycrisp] }
         5: { text: "Very tart", varieties: [granny-smith] }
     - id: crispness
       name: Crispness when raw
+      filters: { low: "Tender", high: "Crisp" }
       anchors:
         1: { text: "Tender, soft bite", varieties: [mcintosh] }
         3: { text: "Firm but not snappy", varieties: [gala] }
         5: { text: "Explosively crisp", varieties: [honeycrisp] }
     - id: juiciness
       name: Juiciness
+      filters: { high: "Juicy" }
       anchors:
         1: { text: "Dry, mealy flesh", varieties: [] }
         3: { text: "Moderately juicy", varieties: [gala] }
         5: { text: "Very juicy", varieties: [honeycrisp] }
     - id: holds-shape
       name: Holds shape when baked
+      filters: { high: "Holds shape baked" }
       anchors:
         1: { text: "Cooks down to sauce", varieties: [mcintosh] }
         3: { text: "Softens; mix with a firmer apple", varieties: [gala] }
@@ -51,27 +63,35 @@
   status: reviewed
   reviewer: Jared
   reviewedOn: 2026-11-18
+  uses:
+    - { id: snacking, name: "Snacking", match: ["snack", "lunch box"] }
+    - { id: salads, name: "Salads & cheese", match: ["salad", "cheese"] }
+    - { id: cooking, name: "Baking & poaching", match: ["bak", "poach", "roast", "canning"] }
   traits:
     - id: sweetness
       name: Sweetness when ripe
+      filters: { high: "Sweet" }
       anchors:
         1: { text: "Barely sweet", varieties: [] }
         3: { text: "Mildly sweet", varieties: [anjou, starkrimson] }
         5: { text: "Very sweet", varieties: [comice] }
     - id: texture
       name: Texture when ripe
+      filters: { low: "Buttery", high: "Crisp" }
       anchors:
         1: { text: "Soft, buttery and melting", varieties: [comice] }
         3: { text: "Smooth but holds together", varieties: [anjou] }
         5: { text: "Crisp and dense even when ripe", varieties: [concorde] }
     - id: juiciness
       name: Juiciness
+      filters: { high: "Juicy" }
       anchors:
         1: { text: "Dry, modest juice", varieties: [] }
         3: { text: "Juicy but dense", varieties: [anjou, bosc] }
         5: { text: "Drips when cut", varieties: [comice] }
     - id: holds-shape
       name: Holds shape when baked
+      filters: { high: "Holds shape baked" }
       anchors:
         1: { text: "Too soft and juicy to cook", varieties: [comice] }
         3: { text: "Bakes well if still firm", varieties: [bartlett] }
@@ -82,33 +102,42 @@
   status: reviewed
   reviewer: Jared
   reviewedOn: 2026-11-18
+  uses:
+    - { id: snacking, name: "Snacking", match: ["snack", "lunch box"] }
+    - { id: juice, name: "Juice", match: ["juic"] }
+    - { id: salads, name: "Salads & desserts", match: ["salad", "dessert"] }
   traits:
     - id: sweetness
       name: Sweetness
+      filters: { high: "Sweet" }
       anchors:
         1: { text: "Tangy more than sweet", varieties: [minneola] }
         3: { text: "Sweet with a balancing tang", varieties: [navel] }
         5: { text: "Very sweet", varieties: [sumo] }
     - id: acidity
       name: Acidity
+      filters: { low: "Mellow", high: "Tangy" }
       anchors:
         1: { text: "Low acid, mellow", varieties: [cara-cara] }
         3: { text: "Balanced", varieties: [navel] }
         5: { text: "Bold, tangy bite", varieties: [minneola] }
     - id: ease-of-peeling
       name: Ease of peeling
+      filters: { high: "Easy to peel" }
       anchors:
         1: { text: "Peel clings; easier to cut into wedges", varieties: [] }
         3: { text: "Peels with some effort", varieties: [minneola] }
         5: { text: "Loose skin slips off", varieties: [satsuma] }
     - id: seeds
       name: Seeds
+      filters: { low: "Nearly seedless" }
       anchors:
         1: { text: "Seedless", varieties: [navel] }
         3: { text: "Few seeds; more when cross-pollinated", varieties: [w-murcott, minneola] }
         5: { text: "Expect several seeds", varieties: [] }
     - id: juiciness
       name: Juiciness
+      filters: { high: "Juicy" }
       anchors:
         1: { text: "Firm flesh, modest juice", varieties: [] }
         3: { text: "Juicy", varieties: [clementine] }

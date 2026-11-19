@@ -1,6 +1,7 @@
 // Pure validation behind `npm run data:build` (engineering plan §4.1): schema checks, then cross-file checks.
 // Takes already-parsed inputs so tests can feed broken fixtures without touching the disk.
 import type { z } from "zod";
+import { usesOf } from "../src/shared/app-data";
 import {
   type Category,
   categorySchema,
@@ -238,6 +239,7 @@ export function validate(raw: RawInputs, opts: { production: boolean }): Result 
     const at = `guide ${g.id}`;
     if (g.overall) checkSources([g.overall.source], `${at} overall`);
     unique(g.traits, (t) => `${g.id}/${t.id}`, "trait");
+    unique(g.uses, (u) => `${g.id}/${u.id}`, "use");
     const varieties = new Map<string, Item["varieties"][number]>();
     for (const id of g.items) {
       const item = items.find((i) => i.id === id);
@@ -260,6 +262,15 @@ export function validate(raw: RawInputs, opts: { production: boolean }): Result 
           else if (v.traits[t.id] !== undefined && v.traits[t.id] !== Number(level))
             errors.push(`${at} ${t.id} ${level}: reference variety ${ref} is rated ${v.traits[t.id]}`);
         }
+    // The finder's use chips: every best use falls under one, and every chip finds a variety.
+    const found = new Set<string>();
+    for (const v of varieties.values()) {
+      for (const use of v.bestUses)
+        if (usesOf([use], g.uses).length === 0)
+          errors.push(`${at}: variety ${v.id}'s use "${use}" matches none of the guide's uses`);
+      for (const u of usesOf(v.bestUses, g.uses)) found.add(u);
+    }
+    for (const u of g.uses) if (!found.has(u.id)) errors.push(`${at}: use ${u.id} matches no variety`);
   }
   for (const item of items)
     for (const v of item.varieties) {

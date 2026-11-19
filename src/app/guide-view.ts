@@ -14,6 +14,8 @@ export interface GuideRow {
   verdict: Verdict | null;
   inStore: boolean;
   bestUses: string[];
+  /** The guide's use chips its best uses fall under. */
+  uses: string[];
   traits: Record<string, number>;
   ripeCue: string | null;
   overall: AppVariety["overall"];
@@ -55,6 +57,7 @@ export function guideView(data: AppData, id: string, date: PlainDate): GuideView
         verdict: r?.verdict ?? null,
         inStore: r?.inStore ?? false,
         bestUses: v.bestUses,
+        uses: v.uses,
         traits: v.traits,
         ripeCue: v.ripeCue,
         overall: v.overall,
@@ -84,4 +87,74 @@ export function sortRows(rows: readonly GuideRow[], key: SortKey, descending = k
     if (x === undefined || y === undefined) return x === undefined ? (y === undefined ? 0 : 1) : -1;
     return descending ? y - x : x - y;
   });
+}
+
+/** A finder chip for one end of a trait's scale: `low` finds scores 1–2, `high` 4–5. */
+export interface TraitChip {
+  /** `trait-low` or `trait-high`: unique within a guide, and how the address names it. */
+  key: string;
+  trait: string;
+  pole: "low" | "high";
+  label: string;
+}
+
+/** What the finder has picked: one use (or any), and trait chips that must all hold. */
+export interface Finder {
+  use: string | null;
+  traits: string[];
+}
+
+export const NO_FILTER: Finder = { use: null, traits: [] };
+
+/** The guide's trait chips, in scale order, low end first. */
+export function traitChips(guide: AppGuide): TraitChip[] {
+  return guide.traits.flatMap((t) =>
+    (["low", "high"] as const).flatMap((pole) => {
+      const label = t.filters[pole];
+      return label === null ? [] : [{ key: `${t.id}-${pole}`, trait: t.id, pole, label }];
+    }),
+  );
+}
+
+/** The rows the finder keeps, in their order. A variety no source places on a picked trait's scale doesn't match. */
+export function filterRows(
+  rows: readonly GuideRow[],
+  finder: Finder,
+  chips: readonly TraitChip[],
+): GuideRow[] {
+  const picked = chips.filter((c) => finder.traits.includes(c.key));
+  return rows.filter((r) => {
+    if (finder.use !== null && !r.uses.includes(finder.use)) return false;
+    return picked.every((c) => {
+      const v = r.traits[c.trait];
+      return v !== undefined && (c.pole === "low" ? v <= 2 : v >= 4);
+    });
+  });
+}
+
+/** Tapping a trait chip: on picks it and drops the other end of the same scale; off unpicks it. */
+export function toggleTrait(finder: Finder, chip: TraitChip): Finder {
+  if (finder.traits.includes(chip.key))
+    return { ...finder, traits: finder.traits.filter((k) => k !== chip.key) };
+  const sameScale = [`${chip.trait}-low`, `${chip.trait}-high`];
+  return { ...finder, traits: [...finder.traits.filter((k) => !sameScale.includes(k)), chip.key] };
+}
+
+/** The finder kept in the address (`?use=baking&want=tartness-high`), so Back returns to it. Unknown values drop. */
+export function parseFinder(params: URLSearchParams, guide: AppGuide, chips: readonly TraitChip[]): Finder {
+  const use = params.get("use");
+  const want = (params.get("want") ?? "").split(",");
+  return {
+    use: guide.uses.some((u) => u.id === use) ? use : null,
+    traits: chips.filter((c) => want.includes(c.key)).map((c) => c.key),
+  };
+}
+
+export function finderParams(params: URLSearchParams, finder: Finder): URLSearchParams {
+  const next = new URLSearchParams(params);
+  if (finder.use === null) next.delete("use");
+  else next.set("use", finder.use);
+  if (finder.traits.length === 0) next.delete("want");
+  else next.set("want", finder.traits.join(","));
+  return next;
 }

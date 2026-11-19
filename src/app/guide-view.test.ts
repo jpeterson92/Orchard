@@ -1,7 +1,17 @@
 import { describe, expect, it } from "vitest";
 import appJson from "../generated/app.json";
 import { type AppData, overallTier } from "../shared/app-data";
-import { guideView, sortRows } from "./guide-view";
+import {
+  filterRows,
+  finderParams,
+  type GuideRow,
+  guideView,
+  NO_FILTER,
+  parseFinder,
+  sortRows,
+  toggleTrait,
+  traitChips,
+} from "./guide-view";
 import { itemView } from "./item-view";
 
 const data = appJson as unknown as AppData;
@@ -79,5 +89,88 @@ describe("Variety guide", () => {
 
   it("returns null for an unknown guide", () => {
     expect(guideView(data, "no-such-guide", date)).toBeNull();
+  });
+});
+
+describe("Variety guide finder", () => {
+  const view = guideView(data, "apples", date);
+  if (!view) throw new Error("no apples guide");
+  const chips = traitChips(view.guide);
+  const chip = (key: string) => {
+    const c = chips.find((x) => x.key === key);
+    if (!c) throw new Error(key);
+    return c;
+  };
+  const names = (rows: GuideRow[]) => rows.map((r) => r.name).sort();
+
+  it("puts every variety of every guide under at least one use chip", () => {
+    for (const g of data.guides)
+      for (const r of guideView(data, g.id, date)?.rows ?? [])
+        expect(r.uses.length, r.key).toBeGreaterThan(0);
+  });
+
+  it("keeps every row, in order, with nothing picked", () => {
+    expect(filterRows(view.rows, NO_FILTER, chips)).toEqual(view.rows);
+  });
+
+  it("keeps a variety for a use only when one of its best uses falls under it", () => {
+    const baking = filterRows(view.rows, { use: "baking", traits: [] }, chips);
+    expect(names(baking)).toContain("Granny Smith");
+    expect(names(baking)).not.toContain("Gala");
+    expect(baking.every((r) => r.bestUses.some((u) => /bak|pie/i.test(u)))).toBe(true);
+  });
+
+  it.each([
+    ["tartness-high", (v: number) => v >= 4],
+    ["crispness-low", (v: number) => v <= 2],
+    ["crispness-high", (v: number) => v >= 4],
+  ])("keeps only varieties scored at that end of the scale for %s", (key, holds) => {
+    const c = chip(key);
+    const kept = filterRows(view.rows, { use: null, traits: [key] }, chips);
+    const expected = view.rows.filter(
+      (r) => r.traits[c.trait] !== undefined && holds(r.traits[c.trait] ?? 0),
+    );
+    expect(kept).toEqual(expected);
+    expect(kept.length).toBeGreaterThan(0);
+  });
+
+  it("drops a variety no source places on a picked scale", () => {
+    const kept = filterRows(view.rows, { use: null, traits: ["holds-shape-high"] }, chips);
+    expect(kept.every((r) => r.traits["holds-shape"] !== undefined)).toBe(true);
+    expect(names(kept)).not.toContain("Envy");
+  });
+
+  it("needs every picked trait and the use at once, so more picks never add rows", () => {
+    const one = filterRows(view.rows, { use: null, traits: ["sweetness-high"] }, chips);
+    const two = filterRows(view.rows, { use: null, traits: ["sweetness-high", "crispness-high"] }, chips);
+    const three = filterRows(
+      view.rows,
+      { use: "salads", traits: ["sweetness-high", "crispness-high"] },
+      chips,
+    );
+    expect(two.every((r) => one.includes(r))).toBe(true);
+    expect(three.every((r) => two.includes(r))).toBe(true);
+    expect(names(three)).toEqual(["Ambrosia", "Envy", "Fuji", "Honeycrisp", "SweeTango"]);
+  });
+
+  it("picks one end of a scale at a time, and unpicks on a second tap", () => {
+    let f = toggleTrait(NO_FILTER, chip("crispness-low"));
+    f = toggleTrait(f, chip("sweetness-high"));
+    f = toggleTrait(f, chip("crispness-high"));
+    expect(f.traits).toEqual(["sweetness-high", "crispness-high"]);
+    expect(toggleTrait(f, chip("sweetness-high")).traits).toEqual(["crispness-high"]);
+  });
+
+  it("round-trips through the address and drops what the guide doesn't have", () => {
+    const f = { use: "sauce", traits: ["tartness-high", "crispness-low"] };
+    const params = finderParams(new URLSearchParams("date=2026-12-20"), f);
+    expect(params.get("date")).toBe("2026-12-20");
+    expect(parseFinder(params, view.guide, chips)).toEqual({
+      use: "sauce",
+      traits: ["tartness-high", "crispness-low"],
+    });
+    const junk = new URLSearchParams("use=juice&want=seeds-low,tartness-high,nonsense");
+    expect(parseFinder(junk, view.guide, chips)).toEqual({ use: null, traits: ["tartness-high"] });
+    expect(finderParams(params, NO_FILTER).toString()).toBe("date=2026-12-20");
   });
 });

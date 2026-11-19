@@ -12,6 +12,8 @@ export interface AppVariety {
   name: string;
   label: string;
   bestUses: string[];
+  /** Its guide's use chips (ids) that its best uses fall under; empty without a guide. */
+  uses: string[];
   /** How to find it in the store, or null where the name says enough. */
   cue: string | null;
   /** Asset id of the variety's own painting (src/shared/art.ts), or null: the placeholder shows. */
@@ -23,6 +25,15 @@ export interface AppVariety {
   /** On guides with an overall rating (apples): the mean of the source's and the editorial 0–100 scores, and its
    * tier. */
   overall: { score: number; tier: OverallTier } | null;
+}
+
+/** The guide's use chips a variety's best uses fall under: a best use containing a chip's match text, ignoring
+ * case. Shared by data:build's check and the app's finder. */
+export function usesOf(bestUses: readonly string[], uses: Guide["uses"]): string[] {
+  const lower = bestUses.map((u) => u.toLowerCase());
+  return uses
+    .filter((u) => u.match.some((m) => lower.some((b) => b.includes(m.toLowerCase()))))
+    .map((u) => u.id);
 }
 
 export type OverallTier = "amazing" | "great" | "fine" | "bad";
@@ -45,7 +56,15 @@ export interface AppGuide {
   ripeCues: boolean;
   /** What the overall rating judges (e.g. eating raw) and whose scores it uses, or null where there is none. */
   overall: { basis: string; source: Pick<Source, "title" | "publisher" | "url"> } | null;
-  traits: { id: string; name: string; anchors: Record<1 | 3 | 5, { text: string; varieties: string[] }> }[];
+  traits: {
+    id: string;
+    name: string;
+    anchors: Record<1 | 3 | 5, { text: string; varieties: string[] }>;
+    /** Finder chip labels: low picks scores 1–2, high 4–5. */
+    filters: { low: string | null; high: string | null };
+  }[];
+  /** The finder's use chips. */
+  uses: { id: string; name: string }[];
 }
 
 export interface AppItem {
@@ -145,6 +164,7 @@ export function appData(data: Dataset, builtOn: string, art: ArtMap, about: Abou
         name: v.name,
         label: v.label,
         bestUses: v.bestUses,
+        uses: usesOf(v.bestUses, guideFor(item.id)?.uses ?? []),
         cue: v.cue ?? null,
         art: art.varieties[`${item.id}/${v.id}`] ?? null,
         traits: v.traits,
@@ -164,7 +184,13 @@ export function appData(data: Dataset, builtOn: string, art: ArtMap, about: Abou
       items: g.items,
       ripeCues: g.ripeCues,
       overall: g.overall ? { basis: g.overall.basis, source: sourceRef(g.overall.source) } : null,
-      traits: g.traits.map((t) => ({ id: t.id, name: t.name, anchors: t.anchors })),
+      traits: g.traits.map((t) => ({
+        id: t.id,
+        name: t.name,
+        anchors: t.anchors,
+        filters: { low: t.filters?.low ?? null, high: t.filters?.high ?? null },
+      })),
+      uses: g.uses.map((u) => ({ id: u.id, name: u.name })),
     })),
     categories: data.categories
       .filter((c) => data.items.some((i) => i.category === c.id))
