@@ -1,0 +1,72 @@
+id: raspberries
+name: Raspberries
+synonyms: [raspberry]
+misspellings: [rasberries, raspberrys, rasberry, raspberies]
+category: berries
+purchaseRank: 15
+alwaysGood: false
+shipsWell:
+  value: true
+  sources: [ucdavis-postharvest-bushberry, freshplaza-raspberry-supply-mexico-traction]
+  note: Fragile, but cold chains and modified-atmosphere packs carry Mexican winter berries well.
+peakWorthSeeking:
+  value: true
+  sources: [freshplaza-raspberry-supply-mexico-traction, ucdavis-postharvest-bushberry]
+  note: Picked ripe and never sweeter afterward; growers prize the summer berries' flavor.
+storesWell:
+  value: false
+  sources: [driscolls-store-raspberries, osu-ohioline-berries]
+  note: Best within one or two days, even cold.
+evidenceBasis: supply+assessment
+cardLine: Bright, plump and dry, with no juice in the pack.
+pick:
+  - Bright, even color with a slight sheen
+  - Plump, firm berries holding their shape
+  - A dry pack bottom, with no stains
+avoid:
+  - Leaky, mushy or moldy berries
+  - Dull or darkened fruit; it's past its best
+store:
+  temperature: cold
+  ethylene: neither
+  life: { min: 1, max: 2, unit: days }
+  text: Refrigerate unwashed in the vented original pack, not airtight. Typically keeps 1–2 days; sort out soft berries first.
+  sources: [driscolls-store-raspberries, osu-ohioline-berries, ucdavis-postharvest-bushberry]
+ripen:
+  text: They won't ripen after picking. Let them come to room temperature before serving for fuller flavor.
+  sources: [ucdavis-postharvest-bushberry, driscolls-store-raspberries]
+prep: Rinse gently in cool water just before eating, then drain. Never soak them.
+origins:
+  - {
+      origin: mx,
+      windows:
+        [
+          { from: jan-1, to: jun-1, rating: fair },
+          {
+            from: jun-2,
+            to: aug-2,
+            rating: fair,
+            reason: "The model panel has no rating here, and the cited sources disagree; together they read fair.",
+          },
+          { from: sep-1, to: sep-1, rating: fair },
+          { from: sep-2, to: sep-2, rating: poor },
+          { from: oct-1, to: dec-2, rating: fair },
+        ],
+    }
+  - {
+      origin: us-ca,
+      windows:
+        [
+          { from: jan-1, to: may-2, rating: poor },
+          { from: jun-1, to: sep-1, rating: prime },
+          { from: sep-2, to: oct-2, rating: fair },
+          {
+            from: nov-1,
+            to: nov-2,
+            rating: fair,
+            reason: "The model panel has no rating here, and the cited sources disagree; together they read fair.",
+          },
+          { from: dec-1, to: dec-2, rating: poor },
+        ],
+    }
+status: draft

@@ -686,3 +686,48 @@ pages:
     kind: item-page
     origin: ca
     items: [blueberries]
+  - source: producepay-mexican-raspberries
+    url: https://producepay.com/blog/mexican-raspberry-production-and-exports/
+    kind: item-page
+    origin: mx
+    items: [raspberries]
+  - source: freshplaza-raspberry-supply-mexico-traction
+    url: https://www.freshplaza.com/europe/article/9755657/increased-raspberry-supply-ahead-as-mexico-gains-traction
+    kind: item-page
+    origin: mx
+    items: [raspberries]
+  - source: freshplaza-watsonville-raspberry-supply
+    url: https://www.freshplaza.com/north-america/article/9837117/raspberry-supply-picking-up-out-of-watsonville-california/
+    kind: item-page
+    origin: us-ca
+    items: [raspberries]
+  - source: ffp-california-berry-harvest-2026
+    url: https://www.freshfruitportal.com/news/2026/07/28/cali-berry/
+    kind: item-page
+    origin: us-ca
+    items: [raspberries]
+  - source: calgiant-crop-update-2026-06-08
+    url: https://www.calgiant.com/crop-updates/june-8-2026/
+    kind: item-page
+    origin: us-ca
+    items: [raspberries]
+  - source: freshplaza-early-blackberry-raspberry-seasons
+    url: https://www.freshplaza.com/north-america/article/9844772/early-start-for-blackberry-and-raspberry-seasons/
+    kind: item-page
+    origin: us-ca
+    items: [raspberries, blackberries]
+  - source: freshplaza-mexico-berry-exports-grow
+    url: https://www.freshplaza.com/north-america/article/9866174/mexico-s-berry-exports-grow-2-as-pricing-and-financing-pressures-persist/
+    kind: item-page
+    origin: mx
+    items: [blackberries]
+  - source: freshplaza-central-valley-blackberries
+    url: https://www.freshplaza.com/north-america/article/9737619/conventional-blackberry-supply-new-for-california-s-central-valley-this-season/
+    kind: item-page
+    origin: us-ca
+    items: [blackberries]
+  - source: freshplaza-organic-blackberries-california
+    url: https://www.freshplaza.com/north-america/article/2182281/organic-blackberries-enjoy-lengthy-season-in-california
+    kind: item-page
+    origin: us-ca
+    items: [blackberries]
