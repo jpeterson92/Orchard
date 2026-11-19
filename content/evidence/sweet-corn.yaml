@@ -1,0 +1,107 @@
+item: sweet-corn
+status: draft
+claims:
+  - source: msstate-fruits-vegetables-in-season
+    origin: us-ms
+    windows:
+      - { from: may-1, to: sep-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Mississippi harvest chart lists sweet corn in season May to Sep.
+  - source: psu-harvest-calendar
+    origin: us-pa
+    windows:
+      - { from: jul-2, to: oct-1, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: Pennsylvania harvest chart lists sweet corn in season late Jul to mid-Oct.
+  # Utah: best flavor in late summer.
+  - source: usu-sweet-corn
+    origin: us-ut
+    windows:
+      - { from: aug-1, to: sep-2, rating: prime }
+    specificity: month
+    directness: eating-quality
+    paraphrase: Utah fresh corn is at its best flavor and price in August and September.
+  # Florida: winter and spring, finishing by Memorial Day.
+  - source: csu-sweet-corn
+    origin: us-fl
+    windows:
+      - { from: dec-1, to: may-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Florida sweet corn is available from December through May.
+  - source: uga-shipper-sweet-corn
+    origin: us-fl
+    windows:
+      - { from: apr-1, to: may-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Florida's spring sweet corn harvest starts in April and pushes to finish by Memorial Day.
+  - source: freshplaza-florida-sweet-corn-window
+    origin: us-fl
+    windows:
+      - { from: mar-2, to: may-2, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: A Florida spring sweet corn deal ran from late March through the end of May.
+  # Georgia: a spring crop in June and a fall crop into November.
+  - source: uga-shipper-sweet-corn
+    origin: us-ga
+    windows:
+      - { from: jun-1, to: jun-2, rating: prime }
+      - { from: oct-1, to: nov-2, rating: prime }
+    specificity: season
+    directness: availability
+    paraphrase: Georgia's main spring harvest runs through June to finish before July 4, and production returns to Georgia in the fall.
+  - source: freshplaza-georgia-corn-weather
+    origin: us-ga
+    windows:
+      - { from: oct-1, to: nov-1, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Southwest Georgia's fall corn, of good quality, runs into November before supply moves to Florida.
+  - source: freshplaza-sweet-corn-tray-packs
+    origin: us-ga
+    windows:
+      - { from: may-2, to: jul-2, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: A Georgia grower's sweet corn season ran from mid-May to about July 20.
+  - source: freshplaza-florida-sweet-corn-window
+    origin: us-ga
+    windows:
+      - { from: may-2, to: jul-1, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: After Florida finishes at the end of May, harvest moves to Georgia and Alabama until about July 10.
+  # California: Imperial Valley from April, then the Central Valley into the fall.
+  - source: freshplaza-california-sweet-corn-central-valley
+    origin: us-ca
+    windows:
+      - { from: apr-1, to: oct-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: California corn starts in the Imperial Valley in April and moves to the Central Valley until September or October.
+  - source: californiagrown-five-crowns
+    origin: us-ca
+    windows:
+      - { from: apr-1, to: jun-1, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: A California grower's Imperial Valley corn harvest runs from April through mid-June.
+  - source: californiagrown-five-crowns
+    origin: us-ca
+    windows:
+      - { from: apr-2, to: may-2, rating: prime }
+    specificity: season
+    directness: eating-quality
+    paraphrase: The grower says the taste difference is clearest in late spring, when Imperial Valley corn is fresh.
+  # Mexico: winter imports.
+  - source: freshplaza-mexico-sweet-corn-added
+    origin: mx
+    windows:
+      - { from: nov-1, to: apr-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: A Mexican shipper's Sonora and Sinaloa sweet corn ships from November to April, a period Florida once served.
