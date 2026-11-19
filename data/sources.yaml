@@ -2625,3 +2625,15 @@
   url: https://www.eatlikenoone.com/what-is-a-sugar-bee-apple-2.htm
   accessed: 2026-11-18
   tier: mainstream
+- id: heb-texas-roots-okra
+  title: H-E-B Texas Roots Fresh Okra
+  publisher: H-E-B
+  url: https://www.heb.com/product-detail/h-e-b-texas-roots-fresh-okra/319092
+  accessed: 2026-11-19
+  tier: mainstream
+- id: uga-fare-produce-guide
+  title: Georgia's Month-by-Month Produce Guide
+  publisher: University of Georgia Extension
+  url: https://site.extension.uga.edu/aaecext/2025/12/georgias-month-by-month-produce-guide/
+  accessed: 2026-11-19
+  tier: authoritative

@@ -64,4 +64,13 @@ typicalOrigins:
     to: nov
     origins: [{ origin: hn, major: true }, { origin: us-fl, major: true }]
     sources: [usda-ams-fv-movement, tridge-okra-honduras]
+selections:
+  - id: local-southern
+    label: local Southern okra
+    cue: From June to September, look for a state or "local" sign, or a Texas or Georgia farm label. Pick small, bright green pods under 4 inches that snap cleanly, and cook them within two days.
+    origins: [us-ga]
+    inStores:
+      - from: jun
+        to: sep
+        sources: [heb-texas-roots-okra, uga-fare-produce-guide, freshplaza-indian-okra-honduras]
 status: draft
