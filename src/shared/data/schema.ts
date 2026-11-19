@@ -138,6 +138,8 @@ export const editorialTypicalOriginsSchema = z.strictObject({
   sources: sourceIds(1),
 });
 
+const score100 = z.int().min(0).max(100);
+
 export const varietySchema = z.strictObject({
   id,
   name: text,
@@ -150,8 +152,8 @@ export const varietySchema = z.strictObject({
   /** How to find it and tell it apart in the store, on the item page, where its name alone doesn't (local field
    * tomatoes). */
   cue: words(SECTION_WORDS).optional(),
-  /** Its 0–100 score from the guide's `overall` source, on guides that have one (apples). */
-  overallScore: z.int().min(0).max(100).optional(),
+  /** On guides with an overall rating (apples): its 0–100 score from the guide's source and from the model. */
+  overallScore: z.strictObject({ source: score100, model: score100 }).optional(),
   /** Citations for the traits, uses and ripe cue. */
   sources: z.array(id).default([]),
   /** Overrides the item's `storesWell` (P14), e.g. a long-keeping apple. */
@@ -191,12 +193,14 @@ export const guideSchema = z
     items: z.array(id).min(1),
     /** Each variety gives a short cue for telling when it's ripe (pears). */
     ripeCues: z.boolean().default(false),
-    /** An overall rating per variety (product spec §5): one source's 0–100 scores, sorted into tiers by these
-     * floors (a score below `fine` is bad). `basis` says what the scores judge, e.g. eating raw. */
+    /** An overall rating per variety (product spec §5): the mean of one source's 0–100 score and the model's own
+     * (`model`: its run id), sorted into tiers by these floors (below `fine` is bad). `basis` says what the scores
+     * judge, e.g. eating raw. */
     overall: z
       .strictObject({
         basis: text,
         source: id,
+        model: id,
         tiers: z.strictObject({ amazing: z.int(), great: z.int(), fine: z.int() }),
       })
       .refine((o) => o.tiers.amazing > o.tiers.great && o.tiers.great > o.tiers.fine && o.tiers.fine > 0, {

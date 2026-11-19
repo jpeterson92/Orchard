@@ -190,7 +190,7 @@ const withGuide = (r: RawInputs) => {
 const guide = (r: RawInputs): Any => (r.guides as Any[])[0];
 const withOverall = (r: RawInputs, tiers = { amazing: 90, great: 75, fine: 65 }, source = "s1") => {
   withGuide(r);
-  guide(r).overall = { basis: "Eating raw", source, tiers };
+  guide(r).overall = { basis: "Eating raw", source, model: "test-model", tiers };
 };
 
 describe("validate: a valid dataset", () => {
@@ -226,9 +226,14 @@ describe("validate: a valid dataset", () => {
   it("asks for an overall score on every variety of a guide with an overall rating", () => {
     const raw = structuredClone(base());
     withGuide(raw);
-    guide(raw).overall = { basis: "Eating raw", source: "s1", tiers: { amazing: 90, great: 75, fine: 65 } };
-    firstItem(raw).varieties[0].overallScore = 95;
-    firstItem(raw).varieties[1].overallScore = 0;
+    guide(raw).overall = {
+      basis: "Eating raw",
+      source: "s1",
+      model: "test-model",
+      tiers: { amazing: 90, great: 75, fine: 65 },
+    };
+    firstItem(raw).varieties[0].overallScore = { source: 95, model: 90 };
+    firstItem(raw).varieties[1].overallScore = { source: 0, model: 0 };
     const { errors, warnings } = validate(raw, { production: false });
     expect(errors).toEqual([]);
     expect(warnings).toEqual(["item test-fruit variety envy: no overall score yet"]);
@@ -419,7 +424,7 @@ const broken: [string, (r: RawInputs) => void, string][] = [
     "overall score without an overall rating",
     (r) => {
       withGuide(r);
-      firstItem(r).varieties[0].overallScore = 80;
+      firstItem(r).varieties[0].overallScore = { source: 80, model: 80 };
     },
     "item test-fruit variety gala: an overall score needs a guide with an overall rating",
   ],
@@ -427,9 +432,9 @@ const broken: [string, (r: RawInputs) => void, string][] = [
     "overall score above 100",
     (r) => {
       withOverall(r);
-      firstItem(r).varieties[0].overallScore = 101;
+      firstItem(r).varieties[0].overallScore = { source: 80, model: 101 };
     },
-    "content/items/test-fruit.yaml: varieties.0.overallScore",
+    "content/items/test-fruit.yaml: varieties.0.overallScore.model",
   ],
   [
     "overall rating from an unknown source",

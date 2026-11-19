@@ -4,8 +4,13 @@
 - id: apples
   name: Apples
   items: [apples]
-  # Overall: Apple Rankings' 0-100 scores judge each apple as a fresh "munching" apple; tiers by these floors.
-  overall: { basis: Eating raw, source: applerankings, tiers: { amazing: 90, great: 75, fine: 65 } }
+  # Overall: the mean of Apple Rankings' 0-100 score (each apple as a fresh "munching" apple) and the model's own
+  # score on the same scale, sorted into tiers by these floors.
+  overall:
+    basis: Eating raw
+    source: applerankings
+    model: claude-opus-5-5-2026-11-19
+    tiers: { amazing: 90, great: 75, fine: 60 }
   status: reviewed
   reviewer: Jared
   reviewedOn: 2026-11-18

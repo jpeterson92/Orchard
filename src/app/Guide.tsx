@@ -67,11 +67,11 @@ function GuideBody({ view, mode }: { view: GuideView; mode: "today" | "typical" 
       {overall && (
         <p className="mt-2">
           <span className="font-semibold">Overall</span> rates each variety for {overall.basis.toLowerCase()}:
-          bad, fine, great or amazing, from the 100-point scores at{" "}
+          bad, fine, great or amazing. It averages the 100-point scores at{" "}
           <a href={overall.source.url} className="text-olive underline underline-offset-4" rel="noopener">
             {overall.source.publisher}
-          </a>
-          .
+          </a>{" "}
+          with Orchard's own.
         </p>
       )}
 

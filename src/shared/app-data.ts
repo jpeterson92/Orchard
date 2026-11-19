@@ -20,7 +20,8 @@ export interface AppVariety {
   traits: Record<string, number>;
   /** How to tell when it's ripe, on guides with ripe cues (pears). */
   ripeCue: string | null;
-  /** On guides with an overall rating (apples): its source's 0–100 score and the tier it falls in. */
+  /** On guides with an overall rating (apples): the mean of the source's and the model's 0–100 scores, and its
+   * tier. */
   overall: { score: number; tier: OverallTier } | null;
 }
 
@@ -110,8 +111,11 @@ export interface About {
 export function appData(data: Dataset, builtOn: string, art: ArtMap, about: About): AppData {
   const groups = new Map(data.categories.map((c) => [c.id, c.group]));
   const guideFor = (itemId: string) => data.guides.find((g) => g.items.includes(itemId));
-  const overallOf = (score: number | undefined, overall: Guide["overall"]) =>
-    score !== undefined && overall ? { score, tier: overallTier(score, overall.tiers) } : null;
+  const overallOf = (scores: { source: number; model: number } | undefined, overall: Guide["overall"]) => {
+    if (!scores || !overall) return null;
+    const score = (scores.source + scores.model) / 2;
+    return { score, tier: overallTier(score, overall.tiers) };
+  };
   const sourceRef = (id: string) => {
     const s = data.sources.find((x) => x.id === id);
     return { title: s?.title ?? id, publisher: s?.publisher ?? id, url: s?.url ?? "" };
