@@ -13,4 +13,4 @@ Follow CLAUDE.md throughout. Keep chat output to one or two lines.
    - `prompt`: "Run the /next increment: read `.claude/skills/next/SKILL.md` and follow it exactly."
    - `background`: "Orchard (see CLAUDE.md and PROGRESS.md). The previous session ended so this one starts with a small context; PROGRESS.md holds the next concrete action."
 3. **Detach it** with `mcp__ccd_session_mgmt__detach_session` and the new session's id, so archiving this session doesn't archive it too.
-4. **Hand off:** write one line linking the new session ([Next increment](#local_<id>)) and saying this session is being archived. Then call `mcp__ccd_session_mgmt__archive_session` with `session_id: "self"`. If the app refuses (for example because the session is open on screen), say Jared can archive it from the sidebar.
+4. **Hand off:** write one line linking the new session ([Next increment](#local_<id>)) and saying this session is being archived. Then call `mcp__ccd_session_mgmt__archive_session` with `session_id: "self"`. The app often refuses (the session is open on screen, or Remote Control counts as live work); then say in one line that Jared can archive it from the sidebar.
