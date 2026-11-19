@@ -33,7 +33,7 @@ When documents conflict: Jared's latest instruction > product spec for behavior 
 - **Prefer mature, widely used libraries** over the newest release. Pin exact versions. A new direct dependency gets a row or line in the engineering plan's stack table (§2).
 - **No speculative work:** no config options, abstractions, extension points or fallbacks without a current need. No new docs beyond `PROGRESS.md` unless asked.
 - Use subagents only for wide searches or research that would otherwise flood the context. Give mechanical work (extraction, wide reads) to a Haiku subagent; keep Opus for engine logic and editorial judgment.
-- Jared is on a usage-limited plan. Prefer a script over model work for anything mechanical, keep chat output short, put long material in generated reports, and suggest a fresh session once a conversation gets long.
+- Jared is on a usage-limited plan. Prefer a script over model work for anything mechanical, keep chat output short, put long material in generated reports, and once a conversation gets long, end the reply with "Run /nextnew?" (on yes, run the `nextnew` skill: it starts `/next` in a fresh session and archives this one).
 
 ## Verification, in proportion
 
