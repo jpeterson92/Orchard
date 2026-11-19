@@ -789,3 +789,53 @@ pages:
     kind: item-page
     origin: mx
     items: [brussels-sprouts]
+  - source: oceanmist-spring-artichokes-wrap
+    url: https://www.oceanmist.com/press-releases/ocean-mist-farms-wrapping-up-successful-spring-artichoke-season/
+    kind: item-page
+    origin: us-ca
+    items: [artichokes]
+  - source: oceanmist-spring-artichokes-kickoff
+    url: https://www.oceanmist.com/press-releases/ocean-mist-farms-kicks-off-spring-season-with-artichokes/
+    kind: item-page
+    origin: us-ca
+    items: [artichokes]
+  - source: freshplaza-california-artichoke-spring
+    url: https://www.freshplaza.com/north-america/article/9720629/spring-kicks-off-with-california-artichoke-season
+    kind: item-page
+    origin: us-ca
+    items: [artichokes]
+  - source: freshfruitportal-artichokes-may
+    url: https://www.freshfruitportal.com/archive/2023/05/09/artichokes-to-enjoy-promotable-volumes-through-may/
+    kind: item-page
+    origin: us-ca
+    items: [artichokes]
+  - source: umn-artichokes
+    url: https://reallifegoodfood.umn.edu/vegetables/artichokes
+    kind: item-page
+    origin: us
+    items: [artichokes]
+  - source: healthyfamily-artichokes
+    url: https://www.healthyfamilyproject.com/produce-tips/artichokes
+    kind: item-page
+    origin: us
+    items: [artichokes]
+  - source: melissas-artichoke-facts
+    url: https://www.melissas.com/blogs/fresh-stuff/tagged/artichokes
+    kind: item-page
+    origin: us-ca
+    items: [artichokes]
+  - source: iastate-answerline-artichokes
+    url: https://blogs.extension.iastate.edu/answerline/tag/artichokes
+    kind: item-page
+    origin: us
+    items: [artichokes]
+  - source: instacart-artichoke-season
+    url: https://company.instacart.com/ideas/artichoke-season
+    kind: item-page
+    origin: us
+    items: [artichokes]
+  - source: farmersmarketonline-artichoke
+    url: https://farmersmarketonline.com/guides/artichoke
+    kind: item-page
+    origin: us-ca
+    items: [artichokes]

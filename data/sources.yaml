@@ -920,3 +920,66 @@
   url: https://www.freshplaza.com/north-america/article/9811609/prices-coming-down-as-brussels-sprouts-pipeline-refills/
   accessed: 2026-11-18
   tier: mainstream
+- id: oceanmist-spring-artichokes-wrap
+  title: "Ocean Mist Farms Wrapping up Successful Spring Artichoke Season"
+  publisher: Ocean Mist Farms
+  url: https://www.oceanmist.com/press-releases/ocean-mist-farms-wrapping-up-successful-spring-artichoke-season/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: oceanmist-spring-artichokes-kickoff
+  title: "Ocean Mist Farms Kicks Off Spring Season with Beautiful Quality Artichokes"
+  publisher: Ocean Mist Farms
+  url: https://www.oceanmist.com/press-releases/ocean-mist-farms-kicks-off-spring-season-with-artichokes/
+  accessed: 2026-11-18
+  tier: mainstream
+  basedOn: oceanmist-spring-artichokes-wrap
+- id: freshplaza-california-artichoke-spring
+  title: "Spring kicks off with California artichoke season"
+  publisher: FreshPlaza
+  url: https://www.freshplaza.com/north-america/article/9720629/spring-kicks-off-with-california-artichoke-season
+  accessed: 2026-11-18
+  tier: mainstream
+  basedOn: oceanmist-spring-artichokes-wrap
+- id: freshfruitportal-artichokes-may
+  title: "Artichokes to enjoy promotable volumes through May"
+  publisher: Fresh Fruit Portal
+  url: https://www.freshfruitportal.com/archive/2023/05/09/artichokes-to-enjoy-promotable-volumes-through-may/
+  accessed: 2026-11-18
+  tier: mainstream
+  basedOn: oceanmist-spring-artichokes-wrap
+- id: umn-artichokes
+  title: "Artichokes"
+  publisher: University of Minnesota Extension
+  url: https://reallifegoodfood.umn.edu/vegetables/artichokes
+  accessed: 2026-11-18
+  tier: authoritative
+- id: healthyfamily-artichokes
+  title: "Artichokes"
+  publisher: Healthy Family Project
+  url: https://www.healthyfamilyproject.com/produce-tips/artichokes
+  accessed: 2026-11-18
+  tier: mainstream
+- id: melissas-artichoke-facts
+  title: "The Artichoke: Facts, Fictions & a Recipe"
+  publisher: Melissa's Produce
+  url: https://www.melissas.com/blogs/fresh-stuff/tagged/artichokes
+  accessed: 2026-11-18
+  tier: mainstream
+- id: iastate-answerline-artichokes
+  title: "AnswerLine: artichokes"
+  publisher: Iowa State University Extension and Outreach
+  url: https://blogs.extension.iastate.edu/answerline/tag/artichokes
+  accessed: 2026-11-18
+  tier: authoritative
+- id: instacart-artichoke-season
+  title: "When Is Artichoke Season?"
+  publisher: Instacart
+  url: https://company.instacart.com/ideas/artichoke-season
+  accessed: 2026-11-18
+  tier: mainstream
+- id: farmersmarketonline-artichoke
+  title: "Artichoke"
+  publisher: Farmers Market Online
+  url: https://farmersmarketonline.com/guides/artichoke
+  accessed: 2026-11-18
+  tier: mainstream
