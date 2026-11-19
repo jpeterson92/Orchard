@@ -1,17 +1,17 @@
 # PROGRESS
 
-Updated: 2026-11-19 · Phase: build · Live: https://orchard.jpeterson92.workers.dev (M0 placeholder) · 80 commits unsynced
+Updated: 2026-11-19 · Phase: build · Live: https://orchard.jpeterson92.workers.dev (M0 placeholder) · 84 commits unsynced
 
 ## Milestones
 
 - **Done:** M0 scaffold and deploy · M1 USDA probe · M2 schemas, verdict engine (P1, P10–P20), evidence pipeline, `usda:derive`, `content:report` · precalculated assessments in `generated/assessments/` (committed; `npm run check` and CI fail on drift) · model panel run `claude-opus-5-5-2026-11-19` (prompt v3, the higher bar for fair; the 28 drafted items, re-rated from the 89-item v2 run of 2026-11-17) · M4 offline · M5 planning date and shared dates · M6 navigation, Browse, Calendar, search, Methods and Privacy pages · M8 measurement (web vitals and daily event counts in D1; shopper feedback removed by Jared).
 - **M3:** built; closes with Jared's phone review, which needs a preview deploy.
 - **M9:** slices 1–2 done (security headers, axe in light and dark, WebKit e2e, page titles). The rest waits on content, art, devices, the domain and the independent reviewer; check the security headers on the live URL (`curl -I`) after the next deploy.
-- **M7 (variety guides): slice 1 done.** Guide screen at `/guides/<id>` for all three guides (phone cards, sortable table from 600 px, anchors), linked from the item page; unrated varieties left the item page's "Varieties now" list for the guide. Apples carry an overall rating for eating raw (bad, fine, great, amazing): the mean of applerankings.com's score and Orchard's editorial score (Claude's, with Jared's overrides so Cosmic Crisp, SugarBee, SweeTango, Envy, Kanzi lead in that order; amazing from 85, fine from 60); Kanzi and SnapDragon added, unrated, with no holds-shape source yet; the apples guide opens sorted by it. Scales approved; traits for 33 varieties drafted.
+- **M7 (variety guides): slices 1–2 done.** Slice 2 is the finder: use chips (one at a time) and trait chips (one end of a scale; all must hold) over the cards and the table, with a count, Clear filters, and the picks kept in the address. Guide screen at `/guides/<id>` for all three guides (phone cards, sortable table from 600 px, anchors), linked from the item page; unrated varieties left the item page's "Varieties now" list for the guide. Apples carry an overall rating for eating raw (bad, fine, great, amazing): the mean of applerankings.com's score and Orchard's editorial score (Claude's, with Jared's overrides so Cosmic Crisp, SugarBee, SweeTango, Envy, Kanzi lead in that order; amazing from 85, fine from 60); Kanzi and SnapDragon added, unrated, with no holds-shape source yet; the apples guide opens sorted by it. Scales approved; traits for 33 varieties drafted.
 
 ## Next concrete action
 
-M7 slice 2: the finder on the guide (filter chips by use and by trait, results update instantly), then slice 3: variety pages (and count their opens, engineering plan §2 Measurement). Each guide's "What matters" lead (spec §5) needs Jared's copy or approval of a draft. Rerunning the re-rating: `.cache/panel-rerate.mjs` writes the v3 run, `.cache/apply-proposals.ts all` makes item windows follow the proposals (keeps written reasons), `.cache/verdict-diff.mjs` compares verdict strips with HEAD.
+M7 slice 3: variety pages (spec §5 "Variety page"; count their opens, engineering plan §2 Measurement), linked from the guide's cards and table rows. Each guide's "What matters" lead (spec §5) needs Jared's copy or approval of a draft. Rerunning the re-rating: `.cache/panel-rerate.mjs` writes the v3 run, `.cache/apply-proposals.ts all` makes item windows follow the proposals (keeps written reasons), `.cache/verdict-diff.mjs` compares verdict strips with HEAD.
 
 ## Content
 
@@ -30,6 +30,8 @@ When Jared's batch 1 masters land in `art/masters/`, run `npm run art:process`, 
 None.
 
 ## For Jared (non-blocking)
+
+- Finder chip names (in `content/guides.yaml`, added to the reviewed guides; say if any should read differently): uses Snacking, Salads, Baking, Applesauce (apples); Snacking, Salads & cheese, Baking & poaching (pears); Snacking, Juice, Salads & desserts (citrus). Traits Sweet, Tart, Tender, Crisp, Juicy, Holds shape baked (apples); Sweet, Buttery, Crisp, Juicy, Holds shape baked (pears); Sweet, Mellow, Tangy, Easy to peel, Nearly seedless, Juicy (citrus). "Slicing ahead" counts as Salads.
 
 Re-rated on the higher bar (2026-11-19, Jared's decision): prompt v3 says fair means "you'll be happy with it" and "just fine" is poor; the 28 items' panel ratings, five cited claims that say "disappointing" in so many words, and the item windows follow. Review it in the diff of `generated/assessments/`. Now Skip: strawberries September to January; watermelon October to mid-April; pears May to early July; peaches and nectarines in May; asparagus and artichokes in January; Brussels sprouts June to August; sweet corn in November; blackberries October to December.
 
