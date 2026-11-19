@@ -1,17 +1,17 @@
 # PROGRESS
 
-Updated: 2026-11-19 · Phase: build · Live: https://orchard.jpeterson92.workers.dev (M0 placeholder) · 84 commits unsynced
+Updated: 2026-11-19 · Phase: build · Live: https://orchard.jpeterson92.workers.dev (M0 placeholder) · 86 commits unsynced
 
 ## Milestones
 
 - **Done:** M0 scaffold and deploy · M1 USDA probe · M2 schemas, verdict engine (P1, P10–P20), evidence pipeline, `usda:derive`, `content:report` · precalculated assessments in `generated/assessments/` (committed; `npm run check` and CI fail on drift) · model panel run `claude-opus-5-5-2026-11-19` (prompt v3, the higher bar for fair; the 28 drafted items, re-rated from the 89-item v2 run of 2026-11-17) · M4 offline · M5 planning date and shared dates · M6 navigation, Browse, Calendar, search, Methods and Privacy pages · M8 measurement (web vitals and daily event counts in D1; shopper feedback removed by Jared).
 - **M3:** built; closes with Jared's phone review, which needs a preview deploy.
 - **M9:** slices 1–2 done (security headers, axe in light and dark, WebKit e2e, page titles). The rest waits on content, art, devices, the domain and the independent reviewer; check the security headers on the live URL (`curl -I`) after the next deploy.
-- **M7 (variety guides): slices 1–2 done.** Slice 2 is the finder: use chips (one at a time) and trait chips (one end of a scale; all must hold) over the cards and the table, with a count, Clear filters, and the picks kept in the address. Guide screen at `/guides/<id>` for all three guides (phone cards, sortable table from 600 px, anchors), linked from the item page; unrated varieties left the item page's "Varieties now" list for the guide. Apples carry an overall rating for eating raw (bad, fine, great, amazing): the mean of applerankings.com's score and Orchard's editorial score (Claude's, with Jared's overrides so Cosmic Crisp, SugarBee, SweeTango, Envy, Kanzi lead in that order; amazing from 85, fine from 60); Kanzi and SnapDragon added, unrated, with no holds-shape source yet; the apples guide opens sorted by it. Scales approved; traits for 33 varieties drafted.
+- **M7 (variety guides): slices 1–3 done.** Slice 3: a page per guide variety (`/items/<item>/<variety>`: verdict and outlook where rated, label text, traits, best uses, "Can't find it? Try…" by trait distance), opened from guide cards and rows, the item page's varieties and search; opens counted. Slice 2 is the finder: use chips (one at a time) and trait chips (one end of a scale; all must hold) over the cards and the table, with a count, Clear filters, and the picks kept in the address. Guide screen at `/guides/<id>` for all three guides (phone cards, sortable table from 600 px, anchors), linked from the item page; unrated varieties left the item page's "Varieties now" list for the guide. Apples carry an overall rating for eating raw (bad, fine, great, amazing): the mean of applerankings.com's score and Orchard's editorial score (Claude's, with Jared's overrides so Cosmic Crisp, SugarBee, SweeTango, Envy, Kanzi lead in that order; amazing from 85, fine from 60); Kanzi and SnapDragon added, unrated, with no holds-shape source yet; the apples guide opens sorted by it. Scales approved; traits for 33 varieties drafted.
 
 ## Next concrete action
 
-M7 slice 3: variety pages (spec §5 "Variety page"; count their opens, engineering plan §2 Measurement), linked from the guide's cards and table rows. Each guide's "What matters" lead (spec §5) needs Jared's copy or approval of a draft. Rerunning the re-rating: `.cache/panel-rerate.mjs` writes the v3 run, `.cache/apply-proposals.ts all` makes item windows follow the proposals (keeps written reasons), `.cache/verdict-diff.mjs` compares verdict strips with HEAD.
+M7 slice 4: PLU sticker numbers on variety pages (spec §5 "Variety page"): add an optional `plu` list to the variety schema, fill it from the IFPS PLU database with a checked citation per variety, show it under "On the label". Each guide's "What matters" lead (spec §5) needs Jared's copy or approval of a draft. Rerunning the re-rating: `.cache/panel-rerate.mjs` writes the v3 run, `.cache/apply-proposals.ts all` makes item windows follow the proposals (keeps written reasons), `.cache/verdict-diff.mjs` compares verdict strips with HEAD.
 
 ## Content
 
@@ -30,6 +30,8 @@ When Jared's batch 1 masters land in `art/masters/`, run `npm run art:process`, 
 None.
 
 ## For Jared (non-blocking)
+
+- Variety pages: "Can't find it? Try…" picks up to two varieties of the same item closest on the trait scores (within one point on average, sharing a use, not Skip or out of stores). Examples: Honeycrisp → SweeTango, Jazz; Anjou → Red Anjou, Forelle; Clementine → Pixie, Satsuma. Golden Delicious, McIntosh, Minneola and Comice get none. Say if you'd rather curate these by hand.
 
 - Finder chip names (in `content/guides.yaml`, added to the reviewed guides; say if any should read differently): uses Snacking, Salads, Baking, Applesauce (apples); Snacking, Salads & cheese, Baking & poaching (pears); Snacking, Juice, Salads & desserts (citrus). Traits Sweet, Tart, Tender, Crisp, Juicy, Holds shape baked (apples); Sweet, Buttery, Crisp, Juicy, Holds shape baked (pears); Sweet, Mellow, Tangy, Easy to peel, Nearly seedless, Juicy (citrus). "Slicing ahead" counts as Salads.
 
