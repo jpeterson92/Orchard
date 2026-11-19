@@ -1,0 +1,76 @@
+id: cantaloupe
+name: Cantaloupe
+synonyms: [cantaloupes, muskmelon, muskmelons, rockmelon]
+misspellings: [cantelope, cantaloup, canteloupe, cantalope]
+category: melons
+purchaseRank: 9
+alwaysGood: false
+shipsWell:
+  value: false
+  sources: [ucdavis-postharvest-cantaloupe, thetakeout-flavorless-cantaloupe]
+  note: Doesn't gain sugar after picking, and melons cut early for the trip stay bland.
+peakWorthSeeking:
+  value: true
+  sources: [chowhound-choose-cantaloupe, thetakeout-flavorless-cantaloupe]
+  note: Summer melons are clearly sweeter; sources name June to August.
+storesWell:
+  value: false
+  sources: [ucdavis-postharvest-cantaloupe, californiagrown-cantaloupes]
+  note: Keeps about two weeks even under ideal cold storage.
+evidenceBasis: supply+assessment
+cardLine: Heavy, with raised netting and a sweet smell.
+pick:
+  - Heavy for its size
+  - Raised, well-rounded netting, ideally growing up the stem
+  - A slight green cast is fine on newer varieties
+avoid:
+  - Soft spots, bruises or a sloshing center
+store:
+  temperature: cold
+  ethylene: both
+  life: { min: 4, max: 7, unit: days }
+  text: Refrigerate a ripe melon and use it within about a week; keep it away from greens, since it gives off ethylene. Wrap cut melon and eat it within a few days.
+  sources: [ucdavis-postharvest-cantaloupe]
+ripen:
+  text: A firm melon softens and gets more fragrant on the counter in a day or two, but it won't get sweeter.
+  sources: [ucdavis-postharvest-cantaloupe, thetakeout-flavorless-cantaloupe]
+prep: Scrub the rind under running water before cutting, since the netting can hold dirt and germs.
+origins:
+  - origin: us-ca
+    windows:
+      - { from: jan-1, to: mar-2, rating: poor }
+      - from: apr-1
+        to: apr-2
+        rating: fair
+        reason: The model panel has no rating here, and the cited sources disagree; together they read fair.
+      - { from: may-1, to: may-2, rating: prime }
+      - from: jun-1
+        to: jun-1
+        rating: prime
+        reason: California Grown and Chowhound and The Takeout rate eating quality prime here, outweighing the model panel's fair.
+      - { from: jun-2, to: sep-2, rating: prime }
+      - { from: oct-1, to: oct-2, rating: fair }
+      - { from: nov-1, to: nov-1, rating: prime }
+      - { from: nov-2, to: dec-2, rating: poor }
+  - origin: us-az
+    windows:
+      - { from: jan-1, to: apr-2, rating: poor }
+      - { from: may-1, to: may-2, rating: fair }
+      - from: jun-1
+        to: jun-1
+        rating: prime
+        reason: Chowhound and The Takeout rate eating quality prime here, outweighing the model panel's fair.
+      - from: jun-2
+        to: aug-2
+        rating: fair
+        reason: The model panel has no rating here, and the cited sources disagree; together they read fair.
+      - { from: sep-1, to: nov-2, rating: prime }
+      - { from: dec-1, to: dec-1, rating: fair }
+      - { from: dec-2, to: dec-2, rating: poor }
+  - origin: gt
+    windows:
+      - { from: jan-1, to: dec-2, rating: poor }
+  - origin: hn
+    windows:
+      - { from: jan-1, to: dec-2, rating: poor }
+status: draft

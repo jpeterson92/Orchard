@@ -1,0 +1,96 @@
+item: honeydew
+status: draft
+claims:
+  # Domestic summer and fall: Arizona, then California's Central Valley.
+  - source: grocery-coop-honeydew
+    origin: us
+    windows:
+      - { from: jul-1, to: aug-2, rating: prime }
+    specificity: month
+    directness: eating-quality
+    paraphrase: Honeydews peak in July and August.
+  - source: grocery-coop-honeydew
+    origin: us
+    windows:
+      - { from: may-1, to: oct-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: US honeydews are usually available May through October.
+  - source: theproducemoms-honeydew
+    origin: us
+    windows:
+      - { from: jun-1, to: aug-2, rating: prime }
+    specificity: month
+    directness: eating-quality
+    paraphrase: Honeydew is freshest and most flavorful in summer, June to August.
+  - source: healthyfamilyproject-honeydew
+    origin: us
+    windows:
+      - { from: aug-1, to: oct-2, rating: prime }
+    specificity: month
+    directness: eating-quality
+    paraphrase: Honeydew's peak season runs August to October.
+  - source: publix-honeydew
+    origin: us-ca
+    windows:
+      - { from: aug-1, to: aug-2, rating: prime }
+    specificity: month
+    directness: eating-quality
+    paraphrase: A grocer calls August the best time to buy its western honeydews.
+  - source: producebusiness-western-melons
+    origin: us-ca
+    windows:
+      - { from: may-2, to: nov-1, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: Central Valley melons are harvested from mid-May into November for some varieties.
+  - source: freshplaza-arizona-honeydew-late
+    origin: us-az
+    windows:
+      - { from: may-1, to: nov-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: An Arizona grower's honeydew season spans May to November.
+  - source: freshplaza-arizona-honeydew-late
+    origin: mx
+    windows:
+      - { from: may-1, to: may-2, rating: fair }
+    specificity: month
+    directness: eating-quality
+    paraphrase: As Arizona's May season starts, Mexican honeydews are cheaper but only fair in quality.
+  # Imports: Mexico from fall through spring, Central America in winter.
+  - source: freshplaza-fall-mexico-melons
+    origin: mx
+    windows:
+      - { from: oct-1, to: dec-1, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: Sonoran honeydews are in supply from early October until early December.
+  - source: freshfruitportal-mexican-melons-late-fall
+    origin: mx
+    windows:
+      - { from: oct-1, to: apr-1, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: One importer ships Sonoran honeydews from early October, then Colima and Nayarit fruit from January to early April.
+  - source: freshplaza-central-american-melon-start
+    origin: hn
+    windows:
+      - { from: dec-2, to: apr-2, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: Central American melons arrive from late December and continue until Arizona starts in April.
+  - source: freshplaza-central-american-melon-start
+    origin: gt
+    windows:
+      - { from: dec-1, to: feb-2, rating: prime }
+    specificity: season
+    directness: availability
+    paraphrase: In winter, retailers source honeydews from both Mexico and Central America.
+  - source: fruitnet-honduran-melon-exports-2024
+    origin: hn
+    windows:
+      - { from: dec-1, to: jun-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Honduras grows cantaloupe, Galia and honeydew melons, exporting them from December to June.
