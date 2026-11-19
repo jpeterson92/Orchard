@@ -716,11 +716,6 @@ pages:
     kind: item-page
     origin: us-ca
     items: [raspberries, blackberries]
-  - source: freshplaza-mexico-berry-exports-grow
-    url: https://www.freshplaza.com/north-america/article/9866174/mexico-s-berry-exports-grow-2-as-pricing-and-financing-pressures-persist/
-    kind: item-page
-    origin: mx
-    items: [blackberries]
   - source: freshplaza-central-valley-blackberries
     url: https://www.freshplaza.com/north-america/article/9737619/conventional-blackberry-supply-new-for-california-s-central-valley-this-season/
     kind: item-page

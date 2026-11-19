@@ -1,0 +1,38 @@
+item: blackberries
+status: draft
+claims:
+  - source: msstate-fruits-vegetables-in-season
+    origin: us-ms
+    windows:
+      - { from: may-1, to: jul-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Mississippi harvest chart lists blackberries in season May to Jul.
+  - source: freshplaza-central-valley-blackberries
+    origin: mx
+    windows:
+      - { from: jun-1, to: sep-2, rating: prime }
+    specificity: season
+    directness: availability
+    paraphrase: Mexico's conventional blackberries are in a peak window in June, with steady volume into the fall.
+  - source: freshplaza-central-valley-blackberries
+    origin: us-ca
+    windows:
+      - { from: jun-1, to: jul-2, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: Watsonville organic blackberries start in early June; Central Valley fruit runs mid-June to the end of July.
+  - source: freshplaza-early-blackberry-raspberry-seasons
+    origin: us-ca
+    windows:
+      - { from: jul-2, to: jul-2, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: California blackberry volume ramps up toward a late-July peak.
+  - source: freshplaza-organic-blackberries-california
+    origin: us-ca
+    windows:
+      - { from: apr-2, to: nov-2, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: An organic grower's Santa Maria blackberry season runs from mid-April through November.
