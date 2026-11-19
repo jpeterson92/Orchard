@@ -951,7 +951,7 @@ describe("selections (P16)", () => {
   it("lifts a Good item to Peak, naming the selection, with the label note", () => {
     const r = evaluate(local(), today, ENV);
     expect([r.verdict, r.ruleFired, r.selection, r.labelNote]).toEqual(["peak", 3, "local", true]);
-    expect(r.reasons[0]).toEqual({ code: "selection", selection: "local" });
+    expect(r.reasons[0]).toEqual({ code: "selection", selection: "local", level: "peak" });
     expect(r.reasons).toContainEqual({ code: "rated", rating: "fair", origin: "mx" });
     expect(r.markers).toContainEqual({ kind: "check-label" });
     expect([r.confidence, r.weakProperties]).toEqual(["medium", ["agreement"]]);
@@ -972,10 +972,46 @@ describe("selections (P16)", () => {
     const r = evaluate(local({}, inNov(true, false)), today, ENV);
     expect([r.verdict, r.selection]).toEqual(["good", null]);
   });
-  it("needs one of its origins rated prime", () =>
+  it("lifts Skip to Good from an origin rated fair, naming the selection, with the label note", () => {
+    const r = evaluate(local({ origins: { mx: rated("poor"), "us-nj": rated("fair") } }), today, ENV);
+    expect([r.verdict, r.ruleFired, r.selection, r.labelNote]).toEqual(["good", 4, "local", true]);
+    expect(r.reasons[0]).toEqual({ code: "selection", selection: "local", level: "good" });
+    expect(r.reasons).toContainEqual({ code: "rated", rating: "poor", origin: "mx" });
+  });
+  it("lifts Limited evidence to Good", () =>
     expect(
-      evaluate(local({ origins: { mx: rated("fair"), "us-nj": rated("fair") } }), today, ENV).selection,
-    ).toBe(null));
+      evaluate(local({ origins: { mx: rated(null), "us-nj": rated("fair") } }), today, ENV).verdict,
+    ).toBe("good"));
+  it("never applies when it reads no better than typical supply", () => {
+    const r = evaluate(local({ origins: { mx: rated("fair"), "us-nj": rated("fair") } }), today, ENV);
+    expect([r.verdict, r.selection, r.labelNote]).toEqual(["good", null, false]);
+  });
+  it("never lifts from an origin rated poor", () => {
+    const r = evaluate(local({ origins: { mx: rated(null), "us-nj": rated("poor") } }), today, ENV);
+    expect([r.verdict, r.selection]).toEqual(["limited", null]);
+  });
+  it("takes the best level among the selections in stores", () =>
+    expect(
+      evaluate(
+        local({
+          origins: { mx: rated("poor"), "us-nj": rated("prime"), "us-tn": rated("fair") },
+          selections: [
+            { id: "good", origins: ["us-tn"], inStore: allMonths(true) },
+            { id: "peak", origins: ["us-nj"], inStore: allMonths(true) },
+          ],
+        }),
+        today,
+        ENV,
+      ).selection,
+    ).toBe("peak"));
+  it("its Good level lifts where its prime origin can't be Peak (Peak not worth seeking)", () => {
+    const r = evaluate(
+      local({ origins: { mx: rated("poor"), "us-nj": rated("prime") }, peakWorthSeeking: false }),
+      today,
+      ENV,
+    );
+    expect([r.verdict, r.selection]).toEqual(["good", "local"]);
+  });
   it("needs the item's Peak worth seeking", () =>
     expect(evaluate(local({ peakWorthSeeking: false }), today, ENV).verdict).toBe("good"));
   it("never on its origin's thin supply", () =>
@@ -993,7 +1029,7 @@ describe("selections (P16)", () => {
         ENV,
       ).verdict,
     ).toBe("good"));
-  it("takes the first qualifying selection in file order", () =>
+  it("takes the first selection in file order on a tie", () =>
     expect(
       evaluate(
         local({
@@ -1086,7 +1122,7 @@ describe("one Peak season a year (P19)", () => {
     expect([r.verdict, r.selection]).toEqual(["good", null]);
     expect(r.reasons.some((x) => x.code === "selection")).toBe(false);
   });
-  it("a selection's Peak outside the main season reads as the typical supply does, here Skip", () => {
+  it("a selection's Peak outside the main season reads as the selection at Good where typical supply is worse", () => {
     const i = item({
       origins: { mx: rated("poor", spring), "us-nj": rated("fair", fall) },
       typicalOrigins: allMonths(["mx"]),
@@ -1094,7 +1130,8 @@ describe("one Peak season a year (P19)", () => {
       selections: [{ id: "local", origins: ["us-nj"], inStore: allMonths(true) }],
     });
     const r = evaluate(i, { date: { year: 2026, month: 10, day: 5 } }, ENV);
-    expect([r.verdict, r.ruleFired, r.selection, r.labelNote]).toEqual(["skip", 2, null, false]);
+    expect([r.verdict, r.ruleFired, r.selection, r.labelNote]).toEqual(["good", 4, "local", true]);
+    expect(r.reasons[0]).toEqual({ code: "selection", selection: "local", level: "good" });
     expect(r.reasons).toContainEqual({ code: "main-peak", from: w("mar-1"), to: w("apr-2") });
   });
   it("a mixed-supply Peak outside the main season reads as its Good level, here with nothing to pick", () => {

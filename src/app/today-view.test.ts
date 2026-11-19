@@ -66,9 +66,9 @@ describe("cardOrigin", () => {
     expect(cardOrigin({ reasons, selection: null }, "us-ca")).toBeNull();
   });
 
-  it("names no origin when a selection makes the item Peak (P16)", () => {
+  it("names no origin when a selection lifts the item (P16)", () => {
     const reasons = [
-      { code: "selection", selection: "local-field" },
+      { code: "selection", selection: "local-field", level: "peak" },
       { code: "rated", rating: "fair", origin: "mx" },
     ] as const;
     expect(cardOrigin({ reasons: [...reasons], selection: "local-field" }, "mx")).toBeNull();

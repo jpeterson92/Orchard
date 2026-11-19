@@ -88,8 +88,9 @@ export type Reason =
   | { code: "typical-origin-poor"; origin: OriginId }
   /** P16: rated prime, but shipped from outside rules.peakCountries, so the item verdict is Good at most. */
   | { code: "far-origin"; origin: OriginId }
-  /** P16: Peak because a selection the shopper can pick out is prime and common enough; typical supply is worse. */
-  | { code: "selection"; selection: string }
+  /** P16: a selection the shopper can pick out is common enough and reads better than typical supply: the item
+   * takes its level. */
+  | { code: "selection"; selection: string; level: "peak" | "good" }
   /** P20: at most rules.lookForShare of the typical supply is at the verdict's level: the origins that are (top
    * first, at most 3), so the shopper picks by the label. */
   | { code: "look-for"; origins: OriginId[] }
@@ -116,13 +117,13 @@ export type Marker =
 export interface VerdictResult extends CoreResult {
   markers: Marker[];
   /** "Depends on the label": the verdict holds only for origins the shopper picks by the label (P20), or a
-   * selection makes it Peak (P16). */
+   * selection lifts it (P16). */
   labelNote: boolean;
   byOrigin: Record<OriginId, CoreResult>;
   byVariety: Record<VarietyId, CoreResult & { inStore: boolean }>;
   /** Items rated by variety: the in-store varieties holding the item verdict, in card order (P13). */
   varietyLine: VarietyId[] | null;
-  /** P16: the selection that makes the item Peak, when typical supply alone doesn't. */
+  /** P16: the selection that lifts the item above typical supply. */
   selection: string | null;
 }
 
@@ -179,8 +180,8 @@ export interface Levels {
   good: LevelSet;
 }
 
-/** `notPeak`: what a Peak window reads if P19 takes its Peak away (the Good call, or the typical result under a
- * selection's Peak). */
+/** `notPeak`: what a Peak window reads if P19 takes its Peak away (the Good call; under a selection's Peak, the
+ * better of typical supply and the selection at Good). */
 type Core = CoreResult & { labelNote?: boolean; selection?: string; notPeak?: Core; levels?: Levels };
 
 function evaluateCore(item: ItemInputs, basis: Basis, window: number, ctx: EvalContext, env: Env): Core {
@@ -358,15 +359,16 @@ function evaluateCore(item: ItemInputs, basis: Basis, window: number, ctx: EvalC
     result.notPeak = asGood;
   }
   if (basis.kind === "typical" && result.verdict !== "peak") {
-    const lifted = selectionPeak(item, window, result, ctx, env);
+    const lifted = selectionLift(item, window, result, ctx, env);
     if (lifted) return lifted;
   }
   return result;
 }
 
-/** P16: the first selection (file order) in stores this month whose best origin, rated prime, runs rules 2–4 to
- * Peak. Typical supply is worse, so the label note applies. */
-function selectionPeak(
+/** P16: the item takes the best level among its selections in stores this month (file order on a tie) when it
+ * beats typical supply: a selection's best near origin, rated prime or fair, run through rules 2–4. Typical
+ * supply is worse, so the label note applies. */
+function selectionLift(
   item: ItemInputs,
   window: number,
   typical: Core,
@@ -374,41 +376,48 @@ function selectionPeak(
   env: Env,
 ): Core | null {
   const rank: Record<Rating, number> = { prime: 2, fair: 1, poor: 0 };
+  let best: Core | null = null;
   for (const s of item.selections) {
     if (s.inStore[monthOf(window)] !== true) continue;
-    let best: OriginId | undefined;
+    let origin: OriginId | undefined;
     for (const o of s.origins) {
       const r = item.origins[o]?.windows[window];
       if (!near(o, env) || r == null) continue;
-      const b = best === undefined ? null : item.origins[best]?.windows[window];
-      if (b == null || rank[r] > rank[b]) best = o;
+      const b = origin === undefined ? null : item.origins[origin]?.windows[window];
+      if (b == null || rank[r] > rank[b]) origin = o;
     }
-    if (best === undefined || item.origins[best]?.windows[window] !== "prime") continue;
+    const rating = origin === undefined ? null : item.origins[origin]?.windows[window];
+    if (origin === undefined || rating == null || rating === "poor") continue;
     const r = decide(
       item,
       {
-        rating: "prime",
-        decider: item.origins[best],
+        rating,
+        decider: item.origins[origin],
         missing: [],
         labelNote: true,
-        supplyOrigin: best,
-        basis: { kind: "origin", origin: best },
+        supplyOrigin: origin,
+        basis: { kind: "origin", origin },
         window,
         capped: true,
       },
       ctx,
       env,
     );
-    if (r.verdict === "peak")
-      return {
-        ...r,
-        reasons: [{ code: "selection", selection: s.id }, ...typical.reasons],
-        selection: s.id,
-        notPeak: typical,
-        ...(typical.levels ? { levels: typical.levels } : {}),
-      };
+    if (r.verdict !== "peak" && r.verdict !== "good") continue;
+    const level = r.verdict;
+    if (VERDICT_RANK[level] <= VERDICT_RANK[best?.verdict ?? typical.verdict]) continue;
+    const lift = (c: Core, at: "peak" | "good"): Core => ({
+      ...c,
+      reasons: [{ code: "selection", selection: s.id, level: at }, ...typical.reasons],
+      selection: s.id,
+      ...(typical.levels ? { levels: typical.levels } : {}),
+    });
+    const { notPeak, ...core } = r;
+    best = lift(core, level);
+    if (level === "peak" && notPeak)
+      best.notPeak = VERDICT_RANK[typical.verdict] >= VERDICT_RANK.good ? typical : lift(notPeak, "good");
   }
-  return null;
+  return best;
 }
 
 interface Decision {
@@ -638,7 +647,7 @@ export function typicalOutlook(item: ItemInputs, env: Env, year: number, variety
 
 /** P19: an item is Peak at most once a year. With several Peak runs in its year (read around the year end),
  * only the longest stays Peak, the earliest-starting on a tie. The others read as they would without Peak (Good,
- * or the typical result under a selection's Peak) with a `main-peak` reason. Label advice and variety strips keep
+ * or what the item reads under a selection's Peak without it) with a `main-peak` reason. Label advice and variety strips keep
  * every Peak. */
 function mainPeakOnly<C extends Core>(year: readonly C[]): C[] {
   const n = year.length;
@@ -659,11 +668,7 @@ function mainPeakOnly<C extends Core>(year: readonly C[]): C[] {
   return year.map((c, w) => {
     if (c.verdict !== "peak" || (w - main.from + n) % n < main.length) return c;
     // Variety-rated cores carry no `notPeak`: their Good call changes nothing else.
-    const {
-      selection: _,
-      notPeak: __,
-      ...rest
-    } = c.notPeak ?? {
+    const { notPeak: _, ...rest } = c.notPeak ?? {
       ...c,
       verdict: "good" as const,
       ruleFired: 4 as const,

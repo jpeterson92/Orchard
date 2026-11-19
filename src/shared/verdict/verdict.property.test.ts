@@ -340,7 +340,7 @@ describe("verdict engine invariants", () => {
       RUNS,
     ));
 
-  it("P16: a selection only lifts the item to Peak, with the label note, from a prime in-store origin", () =>
+  it("P16: a selection only lifts the item above typical supply, with the label note, from an in-store origin at its level", () =>
     fc.assert(
       fc.property(itemArb, ctxArb, (item, ctx) => {
         if (item.varieties.length > 0) return;
@@ -351,14 +351,16 @@ describe("verdict engine invariants", () => {
           if (!demoted(r) && !demoted(without)) expect(r.verdict).toBe(without.verdict);
           return;
         }
-        expect(without.verdict).not.toBe("peak");
-        expect(r.verdict).toBe("peak");
+        expect(["peak", "good"]).toContain(r.verdict);
+        if (!demoted(r) && !demoted(without))
+          expect(verdictRank(r.verdict)).toBeGreaterThan(verdictRank(without.verdict));
         expect(r.markers.some((m) => m.kind === "check-label")).toBe(true);
         expect(r.weakProperties).toContain("agreement");
         const w = windowIndex(ctx.date.month, ctx.date.day);
         const s = item.selections.find((x) => x.id === r.selection);
         expect(s?.inStore[ctx.date.month - 1]).toBe(true);
-        expect(s?.origins.some((o) => item.origins[o]?.windows[w] === "prime")).toBe(true);
+        const level = r.verdict === "peak" && !demoted(r) ? ["prime"] : ["prime", "fair"];
+        expect(s?.origins.some((o) => level.includes(item.origins[o]?.windows[w] ?? ""))).toBe(true);
       }),
       RUNS,
     ));

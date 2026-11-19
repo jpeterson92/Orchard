@@ -132,7 +132,8 @@ function reasonLines(item: AppItem, data: AppData, reasons: readonly Reason[]): 
       out.push(`Shipped from ${originName(r.origin, data)}, so rated Good at most.`);
     else if (r.code === "selection") {
       const label = item.selections.find((s) => s.id === r.selection)?.label ?? r.selection;
-      out.push(`${label.charAt(0).toUpperCase()}${label.slice(1)} is at its best now; most supply isn't.`);
+      const now = r.level === "peak" ? "is at its best now" : "is good now";
+      out.push(`${label.charAt(0).toUpperCase()}${label.slice(1)} ${now}; most supply isn't.`);
     } else if (r.code === "main-peak")
       out.push(
         `Its Peak season is ${r.from === r.to ? windowPhrase(r.from) : `${windowPhrase(r.from)} to ${windowPhrase(r.to)}`}.`,
