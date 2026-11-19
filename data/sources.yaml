@@ -1903,6 +1903,8 @@
   title: "Honduran melon exports to contract in 2024/25"
   publisher: Fruitnet
   url: https://www.fruitnet.com/eurofruit/honduran-melon-exports-to-contract-in-2024/25/266340.article
+  accessed: 2026-11-18
+  tier: mainstream
 # grapefruit
 - id: wintersweetz-grapefruit-season
   title: "When Are Grapefruits in Season? Learn From Texas Red Grapefruit Growers"
@@ -2200,6 +2202,8 @@
   title: "Israeli pomegranates now in markets"
   publisher: FreshPlaza
   url: https://www.freshplaza.com/article/2128673/israeli-pomegranates-now-in-markets/
+  accessed: 2026-11-18
+  tier: mainstream
 - id: michigan-asparagus-board
   title: "Michigan Asparagus"
   publisher: Michigan Asparagus Advisory Board
@@ -2461,5 +2465,163 @@
   title: "Artichoke"
   publisher: Farmers Market Online
   url: https://farmersmarketonline.com/guides/artichoke
+  accessed: 2026-11-18
+  tier: mainstream
+
+# Variety guide traits and uses (content/guides.yaml).
+- id: usapple-gala
+  title: Gala
+  publisher: USApple
+  url: https://usapple.org/apple-variety/gala
+  accessed: 2026-11-18
+  tier: authoritative
+- id: usapple-fuji
+  title: Fuji
+  publisher: USApple
+  url: https://usapple.org/apple-variety/fuji-3
+  accessed: 2026-11-18
+  tier: authoritative
+- id: usapple-golden-delicious
+  title: Golden Delicious
+  publisher: USApple
+  url: https://usapple.org/apple-variety/golden-delicious
+  accessed: 2026-11-18
+  tier: authoritative
+- id: usapple-granny-smith
+  title: Granny Smith
+  publisher: USApple
+  url: https://usapple.org/apple-variety/granny-smith
+  accessed: 2026-11-18
+  tier: authoritative
+- id: usapple-honeycrisp
+  title: Honeycrisp
+  publisher: USApple
+  url: https://usapple.org/apple-variety/honeycrisp
+  accessed: 2026-11-18
+  tier: authoritative
+- id: usapple-mcintosh
+  title: Mcintosh
+  publisher: USApple
+  url: https://usapple.org/apple-variety/mcintosh
+  accessed: 2026-11-18
+  tier: authoritative
+- id: usapple-red-delicious
+  title: Red Delicious
+  publisher: USApple
+  url: https://usapple.org/apple-variety/red-delicious
+  accessed: 2026-11-18
+  tier: authoritative
+- id: veritable-apple-guide
+  title: Apple Variety Guide
+  publisher: Veritable Vegetable
+  url: https://veritablevegetable.com/apple-variety-guide/
+  accessed: 2026-11-18
+  tier: authoritative
+- id: atk-apples-for-cooking
+  title: How to Choose the Best Apples for Cooking
+  publisher: "America's Test Kitchen, in Science Friday"
+  url: https://www.sciencefriday.com/articles/how-to-choose-the-best-apples-for-cooking/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: almanac-best-apples-baking
+  title: "Best Apples for Baking, Pies, Sauces, Cider & More"
+  publisher: "The Old Farmer's Almanac"
+  url: https://www.almanac.com/content/best-apples-baking
+  accessed: 2026-11-18
+  tier: mainstream
+- id: fruitguys-sweetest-apples
+  title: "What Are the Sweetest Apples? Check Our Flavor Chart & Guide"
+  publisher: The FruitGuys
+  url: https://fruitguys.com/blog/what-are-the-sweetest-apples-check-our-apple-flavor-chart/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: theproducemoms-apples-sweet-to-tart
+  title: "Different Types of Apples: From Sweet to Tart"
+  publisher: The Produce Moms
+  url: https://www.theproducemoms.com/types-of-apples-sweet-to-tart/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: ucr-pixie
+  title: Pixie mandarin
+  publisher: Givaudan Citrus Variety Collection at UC Riverside
+  url: https://citrusvariety.ucr.edu/citrus/pixie.html
+  accessed: 2026-11-18
+  tier: authoritative
+- id: ucr-w-murcott
+  title: W. Murcott Afourer
+  publisher: Givaudan Citrus Variety Collection at UC Riverside
+  url: https://citrusvariety.ucr.edu/citrus/wmurcott.html
+  accessed: 2026-11-18
+  tier: authoritative
+- id: ucr-minneola
+  title: Minneola tangelo
+  publisher: Givaudan Citrus Variety Collection at UC Riverside
+  url: https://citrusvariety.ucr.edu/citrus/minneola.html
+  accessed: 2026-11-18
+  tier: authoritative
+- id: ucr-gold-nugget
+  title: Gold Nugget mandarin
+  publisher: Givaudan Citrus Variety Collection at UC Riverside
+  url: https://citrusvariety.ucr.edu/citrus/goldnugget.html
+  accessed: 2026-11-18
+  tier: authoritative
+- id: ucr-washington-navel
+  title: Washington navel orange
+  publisher: Givaudan Citrus Variety Collection at UC Riverside
+  url: https://citrusvariety.ucr.edu/citrus/washington.html
+  accessed: 2026-11-18
+  tier: authoritative
+- id: ucr-moro
+  title: Moro blood orange
+  publisher: Givaudan Citrus Variety Collection at UC Riverside
+  url: https://citrusvariety.ucr.edu/citrus/moro.html
+  accessed: 2026-11-18
+  tier: authoritative
+- id: ucr-cara-cara
+  title: Cara Cara navel orange
+  publisher: Givaudan Citrus Variety Collection at UC Riverside
+  url: https://citrusvariety.ucr.edu/citrus/caracara.html
+  accessed: 2026-11-18
+  tier: authoritative
+- id: ufifas-satsuma-mandarin
+  title: The Satsuma Mandarin (HS195)
+  publisher: University of Florida IFAS Extension
+  url: https://site.extension.uga.edu/worthag/files/2019/05/The-Satsuma-Mandarin-UFext-1.pdf
+  accessed: 2026-11-18
+  tier: authoritative
+- id: sumocitrus-101
+  title: "Sumo Citrus 101: The Guide to the World's Most Loved Fruit"
+  publisher: Sumo Citrus
+  url: https://sumocitrus.com/sumo-citrus-101-the-guide-to-the-worlds-most-loved-fruit/
+  accessed: 2026-11-18
+  tier: mainstream
+- id: specialtyproduce-sumo
+  title: Sumo Citrus Information and Facts
+  publisher: Specialty Produce
+  url: https://www.specialtyproduce.com/produce/sumo_8292.php
+  accessed: 2026-11-18
+  tier: mainstream
+- id: umn-sweetango
+  title: SweeTango
+  publisher: University of Minnesota Fruit Breeding (MN Hardy)
+  url: https://mnhardy.umn.edu/sweetango
+  accessed: 2026-11-18
+  tier: authoritative
+- id: specialtyproduce-envy
+  title: Envy Apples Information and Facts
+  publisher: Specialty Produce
+  url: https://specialtyproduce.com/produce/apple/envy_9142.php
+  accessed: 2026-11-18
+  tier: mainstream
+- id: specialtyproduce-sugarbee
+  title: SugarBee Apples Information and Facts
+  publisher: Specialty Produce
+  url: https://specialtyproduce.com/produce/apple/sugarbee_18673.php
+  accessed: 2026-11-18
+  tier: mainstream
+- id: eatlikenoone-sugarbee
+  title: What Is a Sugar Bee Apple?
+  publisher: Eat Like No One Else
+  url: https://www.eatlikenoone.com/what-is-a-sugar-bee-apple-2.htm
   accessed: 2026-11-18
   tier: mainstream

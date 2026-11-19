@@ -51,9 +51,10 @@ prep: Rinse, then peel by hand from the stem end. The white pith is edible. Peel
 varieties:
   - id: clementine
     name: Clementine
-    traits: {}
+    traits: { sweetness: 4, ease-of-peeling: 5, seeds: 1, juiciness: 3 }
     bestUses: [Snacking and lunch boxes]
     label: Clementine; often sold as Cuties or Halos in winter
+    sources: [sunkist-foodservice-mandarins, eatlikenoone-california-mandarins]
     windows:
       - { from: jan-1, to: jan-2, rating: prime }
       - { from: feb-1, to: feb-2, rating: fair }
@@ -63,9 +64,10 @@ varieties:
     quotedAs: [clementines-unspecified]
   - id: w-murcott
     name: W. Murcott and Tango
-    traits: {}
+    traits: { sweetness: 4, ease-of-peeling: 5, seeds: 3, juiciness: 3 }
     bestUses: [Snacking and lunch boxes]
     label: W. Murcott, Tango, Afourer or Nadorcott; late-season Cuties and Halos
+    sources: [ucr-w-murcott, sunkist-foodservice-mandarins]
     windows:
       - { from: jan-1, to: apr-2, rating: prime }
       - { from: may-1, to: oct-2, rating: fair }
@@ -73,9 +75,10 @@ varieties:
     quotedAs: [tangerines-w-murcott-afourer, tangerines-tango, tangerines-nadorcott]
   - id: minneola
     name: Minneola tangelo
-    traits: {}
+    traits: { sweetness: 1, acidity: 5, ease-of-peeling: 3, seeds: 3, juiciness: 5 }
     bestUses: [Snacking, juicing]
     label: Minneola or Honeybell tangelo
+    sources: [ucr-minneola, sunkist-foodservice-tangerines-tangelos]
     windows:
       - { from: jan-1, to: apr-2, rating: prime }
       - { from: may-1, to: may-1, rating: fair }
@@ -85,13 +88,32 @@ varieties:
     quotedAs: [tangelos-minneola]
   - id: gold-nugget
     name: Gold Nugget
-    traits: {}
+    traits: { sweetness: 4, ease-of-peeling: 4, seeds: 1 }
     bestUses: [Snacking]
     label: Gold Nugget mandarin
+    sources: [ucr-gold-nugget, eatlikenoone-california-mandarins]
     windows:
       - { from: feb-1, to: feb-2, rating: fair }
       - { from: may-1, to: may-2, rating: prime }
     quotedAs: [tangerines-golden-nugget]
+  - id: satsuma
+    name: Satsuma
+    traits: { sweetness: 4, acidity: 2, ease-of-peeling: 5, seeds: 1, juiciness: 4 }
+    bestUses: [Snacking, lunch boxes]
+    label: Satsuma or satsuma mandarin
+    sources: [ufifas-satsuma-mandarin, eatlikenoone-california-mandarins]
+  - id: sumo
+    name: Sumo
+    traits: { sweetness: 5, acidity: 2, ease-of-peeling: 5, seeds: 1, juiciness: 4 }
+    bestUses: [Snacking]
+    label: Sumo Citrus, a dekopon with a top knot
+    sources: [sumocitrus-101, specialtyproduce-sumo, eatlikenoone-california-mandarins]
+  - id: pixie
+    name: Pixie
+    traits: { sweetness: 4, acidity: 2, ease-of-peeling: 5, seeds: 1, juiciness: 3 }
+    bestUses: [Snacking, lunch boxes]
+    label: Pixie tangerine, often Ojai Pixie
+    sources: [ucr-pixie, sunkist-foodservice-tangerines-tangelos]
 typicalOrigins:
   - from: oct
     to: oct

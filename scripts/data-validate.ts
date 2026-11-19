@@ -7,6 +7,8 @@ import {
   type Dataset,
   type EvidenceFile,
   evidenceFileSchema,
+  type Guide,
+  guideSchema,
   type Item,
   itemSchema,
   type PanelCurve,
@@ -41,6 +43,8 @@ export interface RawInputs {
   categories: unknown;
   states: Csv;
   items: { file: string; data: unknown }[];
+  /** content/guides.yaml: the variety guides and their trait scales. */
+  guides: unknown;
   evidence: { file: string; data: unknown }[];
   typicalOrigins: Csv | null;
   supplyIndex: Csv | null;
@@ -136,6 +140,7 @@ export function validate(raw: RawInputs, opts: { production: boolean }): Result 
     if (baseName(file) !== item.id) errors.push(`${file}: file name must match id "${item.id}"`);
     return [item];
   });
+  const guides: Guide[] = list(guideSchema, raw.guides, "content/guides.yaml");
   const evidence: EvidenceFile[] = raw.evidence.flatMap(({ file, data }) => {
     const ev = parse(evidenceFileSchema, data, file);
     if (ev === null) return [];
@@ -219,6 +224,54 @@ export function validate(raw: RawInputs, opts: { production: boolean }): Result 
       }
     }
   }
+
+  // Variety guides: a guide item's varieties use only the guide's scales, with a citation, and each anchor's
+  // reference varieties carry that anchor's value. A trait no source covers yet stays unrated (a warning).
+  unique(guides, (g) => g.id, "guide");
+  const guideOf = new Map<string, Guide>();
+  for (const g of guides) {
+    const at = `guide ${g.id}`;
+    unique(g.traits, (t) => `${g.id}/${t.id}`, "trait");
+    const varieties = new Map<string, Item["varieties"][number]>();
+    for (const id of g.items) {
+      const item = items.find((i) => i.id === id);
+      if (!item) {
+        errors.push(`${at}: unknown item ${id}`);
+        continue;
+      }
+      if (guideOf.has(id)) errors.push(`${at}: item ${id} is already in guide ${guideOf.get(id)?.id}`);
+      guideOf.set(id, g);
+      for (const v of item.varieties) {
+        if (varieties.has(v.id)) errors.push(`${at}: variety id ${v.id} appears in two of its items`);
+        varieties.set(v.id, v);
+      }
+    }
+    for (const t of g.traits)
+      for (const [level, a] of Object.entries(t.anchors))
+        for (const ref of a.varieties) {
+          const v = varieties.get(ref);
+          if (!v) errors.push(`${at} ${t.id} ${level}: unknown reference variety ${ref}`);
+          else if (v.traits[t.id] !== undefined && v.traits[t.id] !== Number(level))
+            errors.push(`${at} ${t.id} ${level}: reference variety ${ref} is rated ${v.traits[t.id]}`);
+        }
+  }
+  for (const item of items)
+    for (const v of item.varieties) {
+      const at = `item ${item.id} variety ${v.id}`;
+      const g = guideOf.get(item.id);
+      const keys = Object.keys(v.traits);
+      if (v.ripeCue !== undefined && !g?.ripeCues)
+        errors.push(`${at}: a ripe cue needs a guide with ripeCues`);
+      if (!g) {
+        if (keys.length > 0) errors.push(`${at}: traits need a guide for ${item.id}`);
+        continue;
+      }
+      if (g.ripeCues && v.ripeCue === undefined) warnings.push(`${at}: no ripe cue yet`);
+      for (const k of keys)
+        if (!g.traits.some((t) => t.id === k)) errors.push(`${at}: trait ${k} isn't on guide ${g.id}`);
+      for (const t of g.traits) if (!(t.id in v.traits)) warnings.push(`${at}: no ${t.id} rating yet`);
+      if (v.sources.length === 0) errors.push(`${at}: cite a source for its traits and uses`);
+    }
 
   const sourcesById = new Map(sources.map((s) => [s.id, s]));
   for (const s of sources) {
@@ -368,7 +421,11 @@ export function validate(raw: RawInputs, opts: { production: boolean }): Result 
   }
 
   if (opts.production) {
-    const records = [...items, ...evidence.map((e) => ({ ...e, id: `evidence ${e.item}` }))];
+    const records = [
+      ...items,
+      ...guides.map((g) => ({ ...g, id: `guide ${g.id}` })),
+      ...evidence.map((e) => ({ ...e, id: `evidence ${e.item}` })),
+    ];
     for (const s of sources)
       if (s.synthetic) errors.push(`source ${s.id}: synthetic records can't ship (production build)`);
     for (const r of records) {
@@ -388,6 +445,7 @@ export function validate(raw: RawInputs, opts: { production: boolean }): Result 
       categories,
       states,
       items: byId(items),
+      guides,
       evidence: [...evidence].sort((a, b) => a.item.localeCompare(b.item)),
       snapshot,
       typicalOrigins,
