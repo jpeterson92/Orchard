@@ -1,6 +1,6 @@
 # PROGRESS
 
-Updated: 2026-11-19 · Phase: build · Live: https://orchard.jpeterson92.workers.dev (M0 placeholder) · 67 commits unsynced
+Updated: 2026-11-19 · Phase: build · Live: https://orchard.jpeterson92.workers.dev (M0 placeholder) · 69 commits unsynced
 
 ## Milestones
 
@@ -11,7 +11,7 @@ Updated: 2026-11-19 · Phase: build · Live: https://orchard.jpeterson92.workers
 
 ## Next concrete action
 
-Rate tomatoes by type, so the item reads as its best type in stores (Jared, 2026-11-19: an item's level is the best of its constituents commonly in stores). Slice 1: varieties may carry cited `inStores` months, joined with the USDA terminal share, since USDA's cached terminal data has no tomato types (schema, `inputs.ts`, tests). Slice 2: tomatoes rated by variety: `cherry-grape` (year-round) and `local-field` (replacing the selection; cited July to September), with the panel rating both (scope plus the v3 run), checked citations for quality and supermarket months, and the item page's variety summary; round and Roma tomatoes stay unrated. Then M7. Rerunning the re-rating: `.cache/panel-rerate.mjs` writes the v3 run, `.cache/apply-proposals.ts all` makes item windows follow the proposals (keeps written reasons), `.cache/verdict-diff.mjs` compares verdict strips with HEAD.
+Rate tomatoes by type, so the item reads as its best type in stores (Jared, 2026-11-19: an item's level is the best of its constituents commonly in stores). Slice 1 (varieties may carry cited `inStores` months) is done. Next, tomatoes rated by variety: `cherry-grape` (year-round) and `local-field` (replacing the selection; cited July to September), with the panel rating both (scope plus the v3 run), checked citations for quality and supermarket months, and the item page's variety summary; round and Roma tomatoes stay unrated. Then M7. Rerunning the re-rating: `.cache/panel-rerate.mjs` writes the v3 run, `.cache/apply-proposals.ts all` makes item windows follow the proposals (keeps written reasons), `.cache/verdict-diff.mjs` compares verdict strips with HEAD.
 
 ## Content
 
