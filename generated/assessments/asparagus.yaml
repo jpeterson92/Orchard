@@ -6,61 +6,61 @@ status: draft
 rated by: origin
 peak worth seeking: true
 always good: false
-outlook: "GGGGGGGGPPGGGGGGGGGGGGGG (Jan to Dec, two windows a month: P Peak, G Good, S Skip, · Limited evidence)"
+outlook: "SSGGGGGGPPGGGGGGGGGGGGGG (Jan to Dec, two windows a month: P Peak, G Good, S Skip, · Limited evidence)"
 windows:
   jan-1:
     when: early January (from 2026-01-01)
-    verdict: good
-    rule: 4
+    verdict: skip
+    rule: 2
     basis: typical
     decided:
       origin: pe
-      rating: fair
+      rating: poor
       evidence: medium
     weights: volume
-    typical: [pe fair 67.1% (supply 1.70), "mx fair 32.9% (supply 0.45, thin)"]
+    typical: [pe poor 67.1% (supply 1.70), "mx poor 32.9% (supply 0.45, thin)"]
     peak:
       share: 0.0%
       available: "no: no origin at this level"
       whole bin: no (≤ 75.0%)
       origins: []
     good:
-      share: 100.0%
-      available: "yes: counted share 100.0% ≥ 33.0%"
-      whole bin: yes (> 75.0%)
-      origins: [pe fair 67.1%, mx fair 32.9%]
+      share: 0.0%
+      available: "no: no origin at this level"
+      whole bin: no (≤ 75.0%)
+      origins: []
     look for: []
     label note: false
-    reasons: [rated fair (origin pe)]
-    confidence: high
-    markers: [reliable-year-round]
+    reasons: [rated poor (origin pe)]
+    confidence: medium (agreement)
+    markers: [reliable-year-round, improves (feb-1)]
     today: not on Today
   jan-2:
     when: late January (from 2026-01-16)
-    verdict: good
-    rule: 4
+    verdict: skip
+    rule: 2
     basis: typical
     decided:
       origin: pe
-      rating: fair
+      rating: poor
       evidence: medium
     weights: volume
-    typical: [pe fair 67.1% (supply 1.70), "mx fair 32.9% (supply 0.45, thin)"]
+    typical: [pe poor 67.1% (supply 1.70), "mx fair 32.9% (supply 0.45, thin)"]
     peak:
       share: 0.0%
       available: "no: no origin at this level"
       whole bin: no (≤ 75.0%)
       origins: []
     good:
-      share: 100.0%
-      available: "yes: counted share 100.0% ≥ 33.0%"
-      whole bin: yes (> 75.0%)
-      origins: [pe fair 67.1%, mx fair 32.9%]
+      share: 32.9%
+      available: "no: counted share 32.9% < 33.0%, none cited in stores"
+      whole bin: no (≤ 75.0%)
+      origins: [mx fair 32.9%]
     look for: []
     label note: false
-    reasons: [rated fair (origin pe)]
-    confidence: high
-    markers: [reliable-year-round]
+    reasons: [rated poor (origin pe)]
+    confidence: medium (agreement)
+    markers: [reliable-year-round, improves (feb-1)]
     today: not on Today
   feb-1:
     when: early February (from 2026-02-01)
@@ -231,24 +231,24 @@ windows:
     basis: selection
     selection: us-spring
     decided:
-      origin: pe
+      origin: mx
       rating: fair
       evidence: medium
     weights: volume
-    typical: [pe fair 43.7% (supply 1.00), "mx fair 37.4% (supply 0.48, thin)", us-mi prime 18.9% (supply 2.30)]
+    typical: [pe poor 43.7% (supply 1.00), "mx fair 37.4% (supply 0.48, thin)", us-mi prime 18.9% (supply 2.30)]
     peak:
       share: 18.9%
       available: "no: counted share 18.9% < 33.0%, none cited in stores"
       whole bin: no (≤ 75.0%)
       origins: [us-mi prime 18.9%]
     good:
-      share: 100.0%
-      available: "yes: counted share 100.0% ≥ 33.0%"
-      whole bin: yes (> 75.0%)
-      origins: [pe fair 43.7%, mx fair 37.4%, us-mi prime 18.9%]
-    look for: []
+      share: 56.3%
+      available: "yes: counted share 56.3% ≥ 33.0%"
+      whole bin: no (≤ 75.0%)
+      origins: [mx fair 37.4%, us-mi prime 18.9%]
+    look for: [mx, us-mi]
     label note: true
-    reasons: [selection us-spring, rated fair (origin pe)]
+    reasons: [selection us-spring, rated fair (origin mx), typical-origin-poor pe, "look-for mx, us-mi"]
     confidence: medium (agreement)
     markers: [last-call (fades by jun-1), reliable-year-round, check-label]
     today:
@@ -256,7 +256,7 @@ windows:
       line: Look for US-grown spring asparagus
       reason: Fades by early June.
       origin: none
-      avoid: none
+      avoid: Asparagus from Peru often disappoint now.
       tags: [Last call]
   may-2:
     when: late May (from 2026-05-16)
@@ -265,24 +265,24 @@ windows:
     basis: selection
     selection: us-spring
     decided:
-      origin: pe
+      origin: mx
       rating: fair
       evidence: medium
     weights: volume
-    typical: [pe fair 43.7% (supply 1.00), "mx fair 37.4% (supply 0.48, thin)", us-mi prime 18.9% (supply 2.30)]
+    typical: [pe poor 43.7% (supply 1.00), "mx fair 37.4% (supply 0.48, thin)", us-mi prime 18.9% (supply 2.30)]
     peak:
       share: 18.9%
       available: "no: counted share 18.9% < 33.0%, none cited in stores"
       whole bin: no (≤ 75.0%)
       origins: [us-mi prime 18.9%]
     good:
-      share: 100.0%
-      available: "yes: counted share 100.0% ≥ 33.0%"
-      whole bin: yes (> 75.0%)
-      origins: [pe fair 43.7%, mx fair 37.4%, us-mi prime 18.9%]
-    look for: []
+      share: 56.3%
+      available: "yes: counted share 56.3% ≥ 33.0%"
+      whole bin: no (≤ 75.0%)
+      origins: [mx fair 37.4%, us-mi prime 18.9%]
+    look for: [mx, us-mi]
     label note: true
-    reasons: [selection us-spring, rated fair (origin pe)]
+    reasons: [selection us-spring, rated fair (origin mx), typical-origin-poor pe, "look-for mx, us-mi"]
     confidence: medium (agreement)
     markers: [last-call (fades by jun-1), reliable-year-round, check-label]
     today:
@@ -290,7 +290,7 @@ windows:
       line: Look for US-grown spring asparagus
       reason: Fades by early June.
       origin: none
-      avoid: none
+      avoid: Asparagus from Peru often disappoint now.
       tags: [Last call]
   jun-1:
     when: early June (from 2026-06-01)
@@ -302,22 +302,22 @@ windows:
       rating: fair
       evidence: medium
     weights: volume
-    typical: ["mx fair 64.3% (supply 0.62, thin)", "pe fair 35.7% (supply 0.64, thin)"]
+    typical: ["mx fair 64.3% (supply 0.62, thin)", "pe poor 35.7% (supply 0.64, thin)"]
     peak:
       share: 0.0%
       available: "no: no origin at this level"
       whole bin: no (≤ 75.0%)
       origins: []
     good:
-      share: 100.0%
-      available: "yes: counted share 100.0% ≥ 33.0%"
-      whole bin: yes (> 75.0%)
-      origins: [mx fair 64.3%, pe fair 35.7%]
-    look for: []
-    label note: false
-    reasons: [rated fair (origin mx)]
-    confidence: high
-    markers: [reliable-year-round]
+      share: 64.3%
+      available: "yes: counted share 64.3% ≥ 33.0%"
+      whole bin: no (≤ 75.0%)
+      origins: [mx fair 64.3%]
+    look for: [mx]
+    label note: true
+    reasons: [rated fair (origin mx), typical-origin-poor pe, look-for mx]
+    confidence: medium (agreement)
+    markers: [reliable-year-round, check-label]
     today: not on Today
   jun-2:
     when: late June (from 2026-06-16)
@@ -329,22 +329,22 @@ windows:
       rating: fair
       evidence: medium
     weights: volume
-    typical: ["mx fair 64.3% (supply 0.62, thin)", "pe fair 35.7% (supply 0.64, thin)"]
+    typical: ["mx fair 64.3% (supply 0.62, thin)", "pe poor 35.7% (supply 0.64, thin)"]
     peak:
       share: 0.0%
       available: "no: no origin at this level"
       whole bin: no (≤ 75.0%)
       origins: []
     good:
-      share: 100.0%
-      available: "yes: counted share 100.0% ≥ 33.0%"
-      whole bin: yes (> 75.0%)
-      origins: [mx fair 64.3%, pe fair 35.7%]
-    look for: []
-    label note: false
-    reasons: [rated fair (origin mx)]
-    confidence: high
-    markers: [reliable-year-round]
+      share: 64.3%
+      available: "yes: counted share 64.3% ≥ 33.0%"
+      whole bin: no (≤ 75.0%)
+      origins: [mx fair 64.3%]
+    look for: [mx]
+    label note: true
+    reasons: [rated fair (origin mx), typical-origin-poor pe, look-for mx]
+    confidence: medium (agreement)
+    markers: [reliable-year-round, check-label]
     today: not on Today
   jul-1:
     when: early July (from 2026-07-01)
@@ -356,22 +356,22 @@ windows:
       rating: fair
       evidence: medium
     weights: volume
-    typical: [mx fair 59.2% (supply 0.92), pe fair 40.8% (supply 1.20)]
+    typical: [mx fair 59.2% (supply 0.92), pe poor 40.8% (supply 1.20)]
     peak:
       share: 0.0%
       available: "no: no origin at this level"
       whole bin: no (≤ 75.0%)
       origins: []
     good:
-      share: 100.0%
-      available: "yes: counted share 100.0% ≥ 33.0%"
-      whole bin: yes (> 75.0%)
-      origins: [mx fair 59.2%, pe fair 40.8%]
-    look for: []
-    label note: false
-    reasons: [rated fair (origin mx)]
-    confidence: high
-    markers: [reliable-year-round]
+      share: 59.2%
+      available: "yes: counted share 59.2% ≥ 33.0%"
+      whole bin: no (≤ 75.0%)
+      origins: [mx fair 59.2%]
+    look for: [mx]
+    label note: true
+    reasons: [rated fair (origin mx), typical-origin-poor pe, look-for mx]
+    confidence: medium (agreement)
+    markers: [reliable-year-round, check-label]
     today: not on Today
   jul-2:
     when: late July (from 2026-07-16)
@@ -383,22 +383,22 @@ windows:
       rating: fair
       evidence: medium
     weights: volume
-    typical: [mx fair 59.2% (supply 0.92), pe fair 40.8% (supply 1.20)]
+    typical: [mx fair 59.2% (supply 0.92), pe poor 40.8% (supply 1.20)]
     peak:
       share: 0.0%
       available: "no: no origin at this level"
       whole bin: no (≤ 75.0%)
       origins: []
     good:
-      share: 100.0%
-      available: "yes: counted share 100.0% ≥ 33.0%"
-      whole bin: yes (> 75.0%)
-      origins: [mx fair 59.2%, pe fair 40.8%]
-    look for: []
-    label note: false
-    reasons: [rated fair (origin mx)]
-    confidence: high
-    markers: [reliable-year-round]
+      share: 59.2%
+      available: "yes: counted share 59.2% ≥ 33.0%"
+      whole bin: no (≤ 75.0%)
+      origins: [mx fair 59.2%]
+    look for: [mx]
+    label note: true
+    reasons: [rated fair (origin mx), typical-origin-poor pe, look-for mx]
+    confidence: medium (agreement)
+    markers: [reliable-year-round, check-label]
     today: not on Today
   aug-1:
     when: early August (from 2026-08-01)
@@ -410,22 +410,22 @@ windows:
       rating: fair
       evidence: medium
     weights: volume
-    typical: ["mx fair 55.8% (supply 0.71, thin)", pe fair 44.2% (supply 1.00)]
+    typical: ["mx fair 55.8% (supply 0.71, thin)", pe poor 44.2% (supply 1.00)]
     peak:
       share: 0.0%
       available: "no: no origin at this level"
       whole bin: no (≤ 75.0%)
       origins: []
     good:
-      share: 100.0%
-      available: "yes: counted share 100.0% ≥ 33.0%"
-      whole bin: yes (> 75.0%)
-      origins: [mx fair 55.8%, pe fair 44.2%]
-    look for: []
-    label note: false
-    reasons: [rated fair (origin mx)]
-    confidence: high
-    markers: [reliable-year-round]
+      share: 55.8%
+      available: "yes: counted share 55.8% ≥ 33.0%"
+      whole bin: no (≤ 75.0%)
+      origins: [mx fair 55.8%]
+    look for: [mx]
+    label note: true
+    reasons: [rated fair (origin mx), typical-origin-poor pe, look-for mx]
+    confidence: medium (agreement)
+    markers: [reliable-year-round, check-label]
     today: not on Today
   aug-2:
     when: late August (from 2026-08-16)
@@ -437,22 +437,22 @@ windows:
       rating: fair
       evidence: medium
     weights: volume
-    typical: ["mx fair 55.8% (supply 0.71, thin)", pe fair 44.2% (supply 1.00)]
+    typical: ["mx fair 55.8% (supply 0.71, thin)", pe poor 44.2% (supply 1.00)]
     peak:
       share: 0.0%
       available: "no: no origin at this level"
       whole bin: no (≤ 75.0%)
       origins: []
     good:
-      share: 100.0%
-      available: "yes: counted share 100.0% ≥ 33.0%"
-      whole bin: yes (> 75.0%)
-      origins: [mx fair 55.8%, pe fair 44.2%]
-    look for: []
-    label note: false
-    reasons: [rated fair (origin mx)]
-    confidence: high
-    markers: [reliable-year-round]
+      share: 55.8%
+      available: "yes: counted share 55.8% ≥ 33.0%"
+      whole bin: no (≤ 75.0%)
+      origins: [mx fair 55.8%]
+    look for: [mx]
+    label note: true
+    reasons: [rated fair (origin mx), typical-origin-poor pe, look-for mx]
+    confidence: medium (agreement)
+    markers: [reliable-year-round, check-label]
     today: not on Today
   sep-1:
     when: early September (from 2026-09-01)
@@ -464,22 +464,22 @@ windows:
       rating: fair
       evidence: medium
     weights: volume
-    typical: ["mx fair 51.0% (supply 0.65, thin)", pe fair 49.0% (supply 1.20)]
+    typical: ["mx fair 51.0% (supply 0.65, thin)", pe poor 49.0% (supply 1.20)]
     peak:
       share: 0.0%
       available: "no: no origin at this level"
       whole bin: no (≤ 75.0%)
       origins: []
     good:
-      share: 100.0%
-      available: "yes: counted share 100.0% ≥ 33.0%"
-      whole bin: yes (> 75.0%)
-      origins: [mx fair 51.0%, pe fair 49.0%]
-    look for: []
-    label note: false
-    reasons: [rated fair (origin mx)]
-    confidence: high
-    markers: [reliable-year-round]
+      share: 51.0%
+      available: "yes: counted share 51.0% ≥ 33.0%"
+      whole bin: no (≤ 75.0%)
+      origins: [mx fair 51.0%]
+    look for: [mx]
+    label note: true
+    reasons: [rated fair (origin mx), typical-origin-poor pe, look-for mx]
+    confidence: medium (agreement)
+    markers: [reliable-year-round, check-label]
     today: not on Today
   sep-2:
     when: late September (from 2026-09-16)
@@ -491,22 +491,22 @@ windows:
       rating: fair
       evidence: medium
     weights: volume
-    typical: ["mx fair 51.0% (supply 0.65, thin)", pe fair 49.0% (supply 1.20)]
+    typical: ["mx fair 51.0% (supply 0.65, thin)", pe poor 49.0% (supply 1.20)]
     peak:
       share: 0.0%
       available: "no: no origin at this level"
       whole bin: no (≤ 75.0%)
       origins: []
     good:
-      share: 100.0%
-      available: "yes: counted share 100.0% ≥ 33.0%"
-      whole bin: yes (> 75.0%)
-      origins: [mx fair 51.0%, pe fair 49.0%]
-    look for: []
-    label note: false
-    reasons: [rated fair (origin mx)]
-    confidence: high
-    markers: [reliable-year-round]
+      share: 51.0%
+      available: "yes: counted share 51.0% ≥ 33.0%"
+      whole bin: no (≤ 75.0%)
+      origins: [mx fair 51.0%]
+    look for: [mx]
+    label note: true
+    reasons: [rated fair (origin mx), typical-origin-poor pe, look-for mx]
+    confidence: medium (agreement)
+    markers: [reliable-year-round, check-label]
     today: not on Today
   oct-1:
     when: early October (from 2026-10-01)
@@ -514,26 +514,26 @@ windows:
     rule: 4
     basis: typical
     decided:
-      origin: pe
+      origin: mx
       rating: fair
       evidence: medium
     weights: volume
-    typical: [pe fair 51.3% (supply 1.30), "mx fair 48.7% (supply 0.68, thin)"]
+    typical: [pe poor 51.3% (supply 1.30), "mx fair 48.7% (supply 0.68, thin)"]
     peak:
       share: 0.0%
       available: "no: no origin at this level"
       whole bin: no (≤ 75.0%)
       origins: []
     good:
-      share: 100.0%
-      available: "yes: counted share 100.0% ≥ 33.0%"
-      whole bin: yes (> 75.0%)
-      origins: [pe fair 51.3%, mx fair 48.7%]
-    look for: []
-    label note: false
-    reasons: [rated fair (origin pe)]
-    confidence: high
-    markers: [reliable-year-round]
+      share: 48.7%
+      available: "yes: counted share 48.7% ≥ 33.0%"
+      whole bin: no (≤ 75.0%)
+      origins: [mx fair 48.7%]
+    look for: [mx]
+    label note: true
+    reasons: [rated fair (origin mx), typical-origin-poor pe, look-for mx]
+    confidence: medium (agreement)
+    markers: [reliable-year-round, check-label]
     today: not on Today
   oct-2:
     when: late October (from 2026-10-16)
@@ -541,26 +541,26 @@ windows:
     rule: 4
     basis: typical
     decided:
-      origin: pe
+      origin: mx
       rating: fair
       evidence: medium
     weights: volume
-    typical: [pe fair 51.3% (supply 1.30), "mx fair 48.7% (supply 0.68, thin)"]
+    typical: [pe poor 51.3% (supply 1.30), "mx fair 48.7% (supply 0.68, thin)"]
     peak:
       share: 0.0%
       available: "no: no origin at this level"
       whole bin: no (≤ 75.0%)
       origins: []
     good:
-      share: 100.0%
-      available: "yes: counted share 100.0% ≥ 33.0%"
-      whole bin: yes (> 75.0%)
-      origins: [pe fair 51.3%, mx fair 48.7%]
-    look for: []
-    label note: false
-    reasons: [rated fair (origin pe)]
-    confidence: high
-    markers: [reliable-year-round]
+      share: 48.7%
+      available: "yes: counted share 48.7% ≥ 33.0%"
+      whole bin: no (≤ 75.0%)
+      origins: [mx fair 48.7%]
+    look for: [mx]
+    label note: true
+    reasons: [rated fair (origin mx), typical-origin-poor pe, look-for mx]
+    confidence: medium (agreement)
+    markers: [reliable-year-round, check-label]
     today: not on Today
   nov-1:
     when: early November (from 2026-11-01)
@@ -568,26 +568,26 @@ windows:
     rule: 4
     basis: typical
     decided:
-      origin: pe
+      origin: mx
       rating: fair
       evidence: medium
     weights: volume
-    typical: [pe fair 52.2% (supply 1.50), "mx fair 47.8% (supply 0.74, thin)"]
+    typical: [pe poor 52.2% (supply 1.50), "mx fair 47.8% (supply 0.74, thin)"]
     peak:
       share: 0.0%
       available: "no: no origin at this level"
       whole bin: no (≤ 75.0%)
       origins: []
     good:
-      share: 100.0%
-      available: "yes: counted share 100.0% ≥ 33.0%"
-      whole bin: yes (> 75.0%)
-      origins: [pe fair 52.2%, mx fair 47.8%]
-    look for: []
-    label note: false
-    reasons: [rated fair (origin pe)]
-    confidence: high
-    markers: [reliable-year-round]
+      share: 47.8%
+      available: "yes: counted share 47.8% ≥ 33.0%"
+      whole bin: no (≤ 75.0%)
+      origins: [mx fair 47.8%]
+    look for: [mx]
+    label note: true
+    reasons: [rated fair (origin mx), typical-origin-poor pe, look-for mx]
+    confidence: medium (agreement)
+    markers: [reliable-year-round, check-label]
     today: not on Today
   nov-2:
     when: late November (from 2026-11-16)
@@ -595,26 +595,26 @@ windows:
     rule: 4
     basis: typical
     decided:
-      origin: pe
+      origin: mx
       rating: fair
       evidence: medium
     weights: volume
-    typical: [pe fair 52.2% (supply 1.50), "mx fair 47.8% (supply 0.74, thin)"]
+    typical: [pe poor 52.2% (supply 1.50), "mx fair 47.8% (supply 0.74, thin)"]
     peak:
       share: 0.0%
       available: "no: no origin at this level"
       whole bin: no (≤ 75.0%)
       origins: []
     good:
-      share: 100.0%
-      available: "yes: counted share 100.0% ≥ 33.0%"
-      whole bin: yes (> 75.0%)
-      origins: [pe fair 52.2%, mx fair 47.8%]
-    look for: []
-    label note: false
-    reasons: [rated fair (origin pe)]
-    confidence: high
-    markers: [reliable-year-round]
+      share: 47.8%
+      available: "yes: counted share 47.8% ≥ 33.0%"
+      whole bin: no (≤ 75.0%)
+      origins: [mx fair 47.8%]
+    look for: [mx]
+    label note: true
+    reasons: [rated fair (origin mx), typical-origin-poor pe, look-for mx]
+    confidence: medium (agreement)
+    markers: [reliable-year-round, check-label]
     today: not on Today
   dec-1:
     when: early December (from 2026-12-01)
@@ -622,26 +622,26 @@ windows:
     rule: 4
     basis: typical
     decided:
-      origin: pe
+      origin: mx
       rating: fair
       evidence: medium
     weights: volume
-    typical: [pe fair 54.6% (supply 1.40), "mx fair 45.4% (supply 0.63, thin)"]
+    typical: [pe poor 54.6% (supply 1.40), "mx fair 45.4% (supply 0.63, thin)"]
     peak:
       share: 0.0%
       available: "no: no origin at this level"
       whole bin: no (≤ 75.0%)
       origins: []
     good:
-      share: 100.0%
-      available: "yes: counted share 100.0% ≥ 33.0%"
-      whole bin: yes (> 75.0%)
-      origins: [pe fair 54.6%, mx fair 45.4%]
-    look for: []
-    label note: false
-    reasons: [rated fair (origin pe)]
-    confidence: high
-    markers: [reliable-year-round]
+      share: 45.4%
+      available: "yes: counted share 45.4% ≥ 33.0%"
+      whole bin: no (≤ 75.0%)
+      origins: [mx fair 45.4%]
+    look for: [mx]
+    label note: true
+    reasons: [rated fair (origin mx), typical-origin-poor pe, look-for mx]
+    confidence: medium (agreement)
+    markers: [last-call (fades by jan-1), reliable-year-round, check-label]
     today: not on Today
   dec-2:
     when: late December (from 2026-12-16)
@@ -649,24 +649,24 @@ windows:
     rule: 4
     basis: typical
     decided:
-      origin: pe
+      origin: mx
       rating: fair
       evidence: medium
     weights: volume
-    typical: [pe fair 54.6% (supply 1.40), "mx fair 45.4% (supply 0.63, thin)"]
+    typical: [pe poor 54.6% (supply 1.40), "mx fair 45.4% (supply 0.63, thin)"]
     peak:
       share: 0.0%
       available: "no: no origin at this level"
       whole bin: no (≤ 75.0%)
       origins: []
     good:
-      share: 100.0%
-      available: "yes: counted share 100.0% ≥ 33.0%"
-      whole bin: yes (> 75.0%)
-      origins: [pe fair 54.6%, mx fair 45.4%]
-    look for: []
-    label note: false
-    reasons: [rated fair (origin pe)]
-    confidence: high
-    markers: [reliable-year-round]
+      share: 45.4%
+      available: "yes: counted share 45.4% ≥ 33.0%"
+      whole bin: no (≤ 75.0%)
+      origins: [mx fair 45.4%]
+    look for: [mx]
+    label note: true
+    reasons: [rated fair (origin mx), typical-origin-poor pe, look-for mx]
+    confidence: medium (agreement)
+    markers: [last-call (fades by jan-1), reliable-year-round, check-label]
     today: not on Today

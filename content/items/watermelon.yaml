@@ -117,23 +117,13 @@ origins:
       - { from: sep-1, to: sep-2, rating: fair }
   - origin: mx
     windows:
-      - { from: jan-1, to: apr-1, rating: fair }
+      - { from: jan-1, to: apr-1, rating: poor }
       - from: apr-2
         to: may-2
         rating: fair
         reason: Mexican shippers run into April and May, when Mexico still supplies much of the market; winter-only programs read these weeks poor.
-      - { from: jun-1, to: sep-2, rating: poor }
-      - from: oct-1
-        to: nov-1
-        rating: fair
-        reason: Two importers ship Sonoran watermelons from early October, when Mexico supplies most of the market; winter-only programs read these weeks poor.
-      - { from: nov-2, to: dec-2, rating: fair }
+      - { from: jun-1, to: dec-2, rating: poor }
   - origin: gt
     windows:
-      - { from: jan-1, to: feb-2, rating: fair }
-      - from: mar-1
-        to: mar-2
-        rating: fair
-        reason: Guatemalan seedless watermelons ship through the end of March; the shorter winter claim reads March poor.
-      - { from: apr-1, to: dec-2, rating: poor }
+      - { from: jan-1, to: dec-2, rating: poor }
 status: draft

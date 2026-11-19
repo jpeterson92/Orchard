@@ -1,0 +1,113 @@
+category: stone-fruit
+items:
+  - item: peaches
+    traits:
+      {
+        shipsWell: [false, high],
+        storesWell: [false, high],
+        peakWorthSeeking: [true, high],
+        alwaysGood: [false, high],
+      }
+    origins:
+      - origin: us-ca
+        windows:
+          - [may-1, may-2, poor, medium]
+          - [jun-1, aug-2, prime, high]
+          - [sep-1, sep-2, fair, medium]
+      - origin: us-ga
+        windows:
+          - [may-2, may-2, fair, medium]
+          - [jun-1, jul-2, prime, high]
+          - [aug-1, aug-1, fair, medium]
+      - origin: us-sc
+        windows:
+          - [may-2, may-2, fair, medium]
+          - [jun-1, jul-2, prime, high]
+          - [aug-1, aug-2, fair, medium]
+      - origin: us-nj
+        windows:
+          - [jul-2, aug-2, prime, medium]
+          - [sep-1, sep-1, fair, medium]
+      - origin: cl
+        windows:
+          - [dec-1, mar-2, poor, high]
+        note: Long cold shipping often leaves them mealy or woolly.
+    note: Summer is the only time to buy; winter imports usually disappoint.
+  - item: nectarines
+    traits:
+      {
+        shipsWell: [false, high],
+        storesWell: [false, high],
+        peakWorthSeeking: [true, high],
+        alwaysGood: [false, high],
+      }
+    origins:
+      - origin: us-ca
+        windows:
+          - [may-1, may-2, poor, medium]
+          - [jun-1, aug-2, prime, high]
+          - [sep-1, sep-2, fair, medium]
+      - origin: cl
+        windows:
+          - [dec-1, mar-2, poor, medium]
+    note: Almost all California, June through August; Chilean winter fruit is often mealy.
+  - item: plums
+    traits:
+      {
+        shipsWell: [false, medium],
+        storesWell: [false, medium],
+        peakWorthSeeking: [true, high],
+        alwaysGood: [false, high],
+      }
+    origins:
+      - origin: us-ca
+        windows:
+          - [jun-1, jun-1, fair, medium]
+          - [jun-2, sep-1, prime, high]
+          - [sep-2, oct-1, fair, medium]
+      - origin: cl
+        windows:
+          - [jan-1, apr-1, poor, low]
+        note: Hold up better than Chilean peaches, but often tart or dry inside.
+    note: California summer plums and pluots are the real season; winter imports vary.
+  - item: cherries
+    traits:
+      {
+        shipsWell: [true, low],
+        storesWell: [false, high],
+        peakWorthSeeking: [true, high],
+        alwaysGood: [false, high],
+      }
+    origins:
+      - origin: us-wa
+        windows:
+          - [jun-2, aug-1, prime, high]
+          - [aug-2, aug-2, fair, medium]
+      - origin: us-ca
+        windows:
+          - [apr-2, apr-2, fair, low]
+          - [may-1, jun-1, prime, high]
+      - origin: us-or
+        windows:
+          - [jun-2, jul-2, prime, high]
+      - origin: cl
+        windows:
+          - [dec-1, jan-2, fair, medium]
+    note: Northwest cherries in July are the peak; Chilean holiday cherries are decent but pricey.
+  - item: apricots
+    traits:
+      {
+        shipsWell: [false, high],
+        storesWell: [false, high],
+        peakWorthSeeking: [true, medium],
+        alwaysGood: [false, high],
+      }
+    origins:
+      - origin: us-ca
+        windows:
+          - [may-2, jun-2, prime, medium]
+          - [jul-1, jul-1, fair, low]
+      - origin: us-wa
+        windows:
+          - [jun-2, jul-2, prime, medium]
+    note: Short early-summer season; supermarket apricots are often picked hard, so even peak fruit varies.

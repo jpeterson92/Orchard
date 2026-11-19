@@ -60,7 +60,7 @@ claims:
     origin: ma
     variety: clementine
     windows:
-      - { from: nov-1, to: dec-2, rating: fair }
+      - { from: nov-1, to: dec-2, rating: poor }
     specificity: month
     directness: eating-quality
     paraphrase: Moroccan clementines shipped to the US in November and December 2024 arrived soft and pale.
@@ -159,7 +159,7 @@ claims:
     origin: us-ca
     variety: gold-nugget
     windows:
-      - { from: feb-1, to: feb-2, rating: fair }
+      - { from: feb-1, to: feb-2, rating: poor }
       - { from: may-1, to: may-2, rating: prime }
     specificity: month
     directness: eating-quality

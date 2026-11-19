@@ -40,10 +40,13 @@ prep: Husk and pull off the silk just before cooking. Boil 3–5 minutes, or gri
 origins:
   - origin: us-fl
     windows:
-      - { from: jan-1, to: mar-2, rating: fair }
-      - { from: apr-1, to: jun-1, rating: prime }
-      - { from: jun-2, to: sep-2, rating: poor }
-      - { from: oct-1, to: dec-2, rating: fair }
+      - { from: jan-1, to: feb-2, rating: poor }
+      - from: mar-1
+        to: mar-1
+        rating: fair
+        reason: The model panel has no rating here, and the cited sources disagree; together they read fair.
+      - { from: mar-2, to: jun-1, rating: prime }
+      - { from: jun-2, to: dec-2, rating: poor }
   - origin: us-ga
     windows:
       - { from: jan-1, to: may-1, rating: poor }

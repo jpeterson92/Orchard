@@ -1,0 +1,114 @@
+category: tropical
+items:
+  - item: mangoes
+    traits:
+      {
+        shipsWell: [true, medium],
+        storesWell: [false, high],
+        peakWorthSeeking: [true, high],
+        alwaysGood: [false, high],
+      }
+    origins:
+      - origin: mx
+        windows:
+          - [mar-1, mar-2, fair, medium]
+          - [apr-1, jul-2, prime, medium]
+          - [aug-1, sep-2, fair, medium]
+      - origin: pe
+        windows:
+          - [jan-1, mar-2, fair, medium]
+      - origin: ec
+        windows:
+          - [oct-2, jan-1, poor, medium]
+      - origin: br
+        windows:
+          - [sep-1, nov-2, poor, low]
+      - origin: gt
+        windows:
+          - [feb-1, may-1, fair, low]
+    varieties:
+      - variety: ataulfo
+        windows:
+          - [feb-1, feb-2, fair, medium]
+          - [mar-1, jun-2, prime, high]
+          - [jul-1, aug-1, fair, medium]
+        note: Also sold as honey mango; buttery and fiberless when wrinkled-ripe.
+      - variety: tommy-atkins
+        windows:
+          - [jan-1, dec-2, poor, medium]
+        note: The most common red mango; ships well but is fibrous and mild, rarely worth seeking.
+      - variety: kent
+        windows:
+          - [nov-1, mar-2, fair, medium]
+          - [jun-1, aug-2, prime, medium]
+          - [sep-1, sep-2, fair, low]
+      - variety: keitt
+        windows:
+          - [aug-1, oct-1, prime, medium]
+      - variety: haden
+        windows:
+          - [mar-1, may-2, fair, medium]
+    note: Spring Ataulfos and summer Kents are the best mangoes; fall imports are mostly fibrous, mild Tommy Atkins.
+  - item: persimmons
+    traits:
+      {
+        shipsWell: [true, medium],
+        storesWell: [false, medium],
+        peakWorthSeeking: [true, medium],
+        alwaysGood: [false, high],
+      }
+    origins:
+      - origin: us-ca
+        windows:
+          - [sep-2, sep-2, fair, low]
+          - [oct-1, dec-2, prime, high]
+          - [jan-1, jan-2, fair, low]
+      - origin: es
+        windows:
+          - [nov-2, feb-2, fair, medium]
+      - origin: il
+        windows:
+          - [nov-1, feb-1, fair, medium]
+    note: A late-fall fruit; Fuyu eat crisp, Hachiya only when jelly-soft.
+  - item: pomegranates
+    traits:
+      {
+        shipsWell: [true, medium],
+        storesWell: [false, medium],
+        peakWorthSeeking: [true, low],
+        alwaysGood: [false, high],
+      }
+    origins:
+      - origin: us-ca
+        windows:
+          - [sep-2, sep-2, fair, medium]
+          - [oct-1, dec-2, prime, high]
+          - [jan-1, feb-1, fair, medium]
+      - origin: cl
+        windows:
+          - [mar-2, jun-1, fair, low]
+      - origin: pe
+        windows:
+          - [mar-1, may-2, fair, low]
+    note: California Wonderfuls from October through the holidays; spring imports are smaller and scarcer.
+  - item: figs
+    traits:
+      {
+        shipsWell: [false, high],
+        storesWell: [false, high],
+        peakWorthSeeking: [true, high],
+        alwaysGood: [false, high],
+      }
+    origins:
+      - origin: us-ca
+        windows:
+          - [jun-1, jun-2, fair, medium]
+          - [jul-1, sep-2, prime, medium]
+          - [oct-1, oct-2, fair, medium]
+      - origin: mx
+        windows:
+          - [nov-1, apr-2, poor, medium]
+      - origin: pe
+        windows:
+          - [jan-1, apr-1, poor, medium]
+    note: Fresh figs are a California late-summer fruit; imports are picked firm and rarely luscious.

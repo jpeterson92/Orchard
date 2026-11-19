@@ -6,7 +6,7 @@ status: draft
 rated by: origin
 peak worth seeking: true
 always good: false
-outlook: "SSSSSSSSGGGGPPPPPPGGGGSS (Jan to Dec, two windows a month: P Peak, G Good, S Skip, · Limited evidence)"
+outlook: "SSSSSSSSGGGGPPPPPPGSGGSS (Jan to Dec, two windows a month: P Peak, G Good, S Skip, · Limited evidence)"
 windows:
   jan-1:
     when: early January (from 2026-01-01)
@@ -580,47 +580,41 @@ windows:
     label note: false
     reasons: [rated fair (origin us-ca)]
     confidence: high
-    markers: []
+    markers: [last-call (fades by oct-2)]
     today:
       section: good buys
       line: none
-      reason: none
+      reason: Fades by late October.
       origin: California
       avoid: none
-      tags: []
+      tags: [Last call]
   oct-2:
     when: late October (from 2026-10-16)
-    verdict: good
-    rule: 4
+    verdict: skip
+    rule: 2
     basis: typical
     decided:
       origin: us-ca
-      rating: fair
+      rating: poor
       evidence: medium
     weights: volume
-    typical: [us-ca fair 70.3% (supply 1.10), us-az prime 29.7% (supply 0.87)]
+    typical: [us-ca poor 70.3% (supply 1.10), us-az prime 29.7% (supply 0.87)]
     peak:
       share: 29.7%
       available: "no: counted share 29.7% < 33.0%, none cited in stores"
       whole bin: no (≤ 75.0%)
       origins: [us-az prime 29.7%]
     good:
-      share: 100.0%
-      available: "yes: counted share 100.0% ≥ 33.0%"
-      whole bin: yes (> 75.0%)
-      origins: [us-ca fair 70.3%, us-az prime 29.7%]
+      share: 29.7%
+      available: "no: counted share 29.7% < 33.0%, none cited in stores"
+      whole bin: no (≤ 75.0%)
+      origins: [us-az prime 29.7%]
     look for: []
     label note: false
-    reasons: [rated fair (origin us-ca)]
+    reasons: [rated poor (origin us-ca)]
     confidence: high
-    markers: []
-    today:
-      section: good buys
-      line: none
-      reason: none
-      origin: California
-      avoid: none
-      tags: []
+    markers: [improves (nov-1)]
+    today: not on Today
   nov-1:
     when: early November (from 2026-11-01)
     verdict: good

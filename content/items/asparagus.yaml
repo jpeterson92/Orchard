@@ -37,10 +37,11 @@ prep: Rinse well, especially the tips, where grit hides. Snap or trim the woody 
 origins:
   - origin: pe
     windows:
-      - { from: jan-1, to: dec-2, rating: fair }
+      - { from: jan-1, to: dec-2, rating: poor }
   - origin: mx
     windows:
-      - { from: jan-1, to: apr-2, rating: fair }
+      - { from: jan-1, to: jan-1, rating: poor }
+      - { from: jan-2, to: apr-2, rating: fair }
       - from: may-1
         to: may-2
         rating: fair

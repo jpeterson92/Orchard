@@ -1,0 +1,88 @@
+category: melons
+items:
+  - item: watermelon
+    traits:
+      {
+        shipsWell: [true, medium],
+        storesWell: [false, high],
+        peakWorthSeeking: [true, high],
+        alwaysGood: [false, high],
+      }
+    origins:
+      - origin: us-fl
+        windows:
+          - [apr-1, apr-2, fair, medium]
+          - [may-1, jun-2, prime, medium]
+      - origin: us-ga
+        windows:
+          - [jun-1, aug-1, prime, high]
+      - origin: us-tx
+        windows:
+          - [jun-1, aug-1, prime, medium]
+      - origin: us-ca
+        windows:
+          - [jul-1, sep-1, prime, medium]
+          - [sep-2, sep-2, fair, medium]
+      - origin: us-in
+        windows:
+          - [jul-2, sep-1, prime, medium]
+      - origin: mx
+        windows:
+          - [oct-1, apr-2, poor, medium]
+      - origin: gt
+        windows:
+          - [dec-1, apr-2, poor, medium]
+    note: Summer melons are sweet and crisp; winter imports are usually pale and bland.
+  - item: cantaloupe
+    traits:
+      {
+        shipsWell: [false, high],
+        storesWell: [false, high],
+        peakWorthSeeking: [true, high],
+        alwaysGood: [false, high],
+      }
+    origins:
+      - origin: us-ca
+        windows:
+          - [jun-1, jun-1, fair, medium]
+          - [jun-2, sep-2, prime, high]
+          - [oct-1, oct-1, fair, medium]
+          - [oct-2, oct-2, poor, medium]
+      - origin: us-az
+        windows:
+          - [may-1, jun-1, fair, medium]
+          - [oct-2, nov-2, fair, low]
+      - origin: gt
+        windows:
+          - [dec-1, apr-2, poor, medium]
+      - origin: hn
+        windows:
+          - [dec-1, apr-2, poor, medium]
+      - origin: mx
+        windows:
+          - [mar-1, may-2, fair, low]
+    note: Central American winter melons are cut early and rarely sweeten; buy cantaloupe in summer.
+  - item: honeydew
+    traits:
+      {
+        shipsWell: [false, high],
+        storesWell: [false, high],
+        peakWorthSeeking: [true, high],
+        alwaysGood: [false, high],
+      }
+    origins:
+      - origin: us-ca
+        windows:
+          - [jun-1, jun-2, fair, medium]
+          - [jul-1, oct-1, prime, medium]
+          - [oct-2, nov-1, fair, low]
+      - origin: us-az
+        windows:
+          - [may-2, jun-2, fair, low]
+      - origin: gt
+        windows:
+          - [dec-1, apr-2, poor, medium]
+      - origin: mx
+        windows:
+          - [nov-1, may-2, poor, low]
+    note: Summer California honeydew is fragrant and sweet; winter fruit is often hard and flavorless.

@@ -1,0 +1,20 @@
+category: brassicas
+items:
+  - item: brussels-sprouts
+    traits:
+      {
+        shipsWell: [true, medium],
+        storesWell: [false, high],
+        peakWorthSeeking: [true, medium],
+        alwaysGood: [false, medium],
+      }
+    origins:
+      - origin: mx
+        windows:
+          - [jan-1, dec-2, fair, low]
+      - origin: us-ca
+        windows:
+          - [jun-1, aug-2, poor, medium]
+          - [sep-1, sep-2, fair, medium]
+          - [oct-1, dec-2, prime, medium]
+    note: Sweetest in fall and winter after cool nights; summer sprouts are looser and more bitter.

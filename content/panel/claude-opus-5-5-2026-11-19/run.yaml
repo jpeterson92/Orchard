@@ -1,0 +1,8 @@
+run: claude-opus-5-5-2026-11-19
+model: claude-opus-5-5
+provider: Anthropic
+date: 2026-11-19
+promptVersion: 3
+webAccess: false
+knowledgeCutoff: 2026-06
+note: Recall only. Re-rated the 28 drafted items on prompt v3's higher bar for fair, starting from the 2026-11-17 run, so not independent of it.

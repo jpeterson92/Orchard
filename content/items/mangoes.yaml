@@ -94,6 +94,5 @@ origins:
       - { from: dec-1, to: dec-2, rating: fair }
   - origin: ec
     windows:
-      - { from: jan-1, to: jan-1, rating: fair }
-      - { from: oct-2, to: dec-2, rating: fair }
+      - { from: oct-2, to: jan-1, rating: poor }
 status: draft

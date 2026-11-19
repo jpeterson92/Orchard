@@ -11,7 +11,7 @@ claims:
   - source: eatlikenoone-nectarine-season
     origin: us-ca
     windows:
-      - { from: sep-1, to: oct-2, rating: fair }
+      - { from: sep-1, to: oct-2, rating: poor }
     specificity: season
     directness: eating-quality
     paraphrase: Nectarines last into early fall in smaller supply, and many of them are too mealy to be worth it.

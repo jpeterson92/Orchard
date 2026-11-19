@@ -57,11 +57,15 @@ origins:
           },
           { from: jun-1, to: jul-1, rating: fair },
           { from: jul-2, to: oct-2, rating: prime },
-          { from: nov-1, to: dec-2, rating: fair },
+          { from: nov-1, to: nov-2, rating: fair },
+          { from: dec-1, to: dec-2, rating: poor },
         ],
     }
   - { origin: mx, windows: [{ from: may-2, to: jul-1, rating: fair }] }
-  - { origin: cl, windows: [{ from: jan-1, to: apr-2, rating: fair }] }
+  - {
+      origin: cl,
+      windows: [{ from: jan-1, to: mar-2, rating: fair }, { from: apr-1, to: apr-2, rating: poor }],
+    }
   - {
       origin: pe,
       windows:

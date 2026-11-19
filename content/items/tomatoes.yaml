@@ -64,7 +64,7 @@ prep: Rinse just before using and core the stem scar. Slice with a serrated or v
 origins:
   - origin: mx
     windows:
-      - { from: jan-1, to: dec-2, rating: fair }
+      - { from: jan-1, to: dec-2, rating: poor }
   - origin: us-fl
     windows:
       - { from: jan-1, to: jun-1, rating: poor }

@@ -96,158 +96,162 @@ windows:
     rule: 4
     basis: variety
     decided:
-      variety: honeycrisp
+      variety: gala
       rating: fair
       evidence: medium
     look for: []
     label note: false
-    reasons: [rated fair (variety honeycrisp)]
+    reasons: [rated fair (variety gala)]
     confidence: high
     markers: [reliable-year-round]
     today: not on Today
     varieties:
-      good: [Honeycrisp, Gala, Fuji, Granny Smith, Pink Lady, Cosmic Crisp]
+      good: [Gala, Fuji, Granny Smith, Pink Lady, Cosmic Crisp]
+      skip: [Honeycrisp]
   mar-2:
     when: late March (from 2026-03-16)
     verdict: good
     rule: 4
     basis: variety
     decided:
-      variety: honeycrisp
+      variety: gala
       rating: fair
       evidence: medium
     look for: []
     label note: false
-    reasons: [rated fair (variety honeycrisp)]
+    reasons: [rated fair (variety gala)]
     confidence: high
     markers: [reliable-year-round]
     today: not on Today
     varieties:
-      good: [Honeycrisp, Gala, Fuji, Granny Smith, Pink Lady, Cosmic Crisp]
+      good: [Gala, Fuji, Granny Smith, Pink Lady, Cosmic Crisp]
+      skip: [Honeycrisp]
   apr-1:
     when: early April (from 2026-04-01)
     verdict: good
     rule: 4
     basis: variety
     decided:
-      variety: honeycrisp
+      variety: gala
       rating: fair
       evidence: medium
     look for: []
     label note: false
-    reasons: [rated fair (variety honeycrisp)]
+    reasons: [rated fair (variety gala)]
     confidence: high
     markers: [reliable-year-round]
     today: not on Today
     varieties:
-      good: [Honeycrisp, Gala, Fuji, Granny Smith, Pink Lady, Cosmic Crisp]
+      good: [Gala, Fuji, Granny Smith, Pink Lady, Cosmic Crisp]
+      skip: [Honeycrisp]
   apr-2:
     when: late April (from 2026-04-16)
     verdict: good
     rule: 4
     basis: variety
     decided:
-      variety: honeycrisp
+      variety: gala
       rating: fair
       evidence: medium
     look for: []
     label note: false
-    reasons: [rated fair (variety honeycrisp)]
+    reasons: [rated fair (variety gala)]
     confidence: high
     markers: [reliable-year-round]
     today: not on Today
     varieties:
-      good: [Honeycrisp, Gala, Fuji, Granny Smith, Pink Lady, Cosmic Crisp]
+      good: [Gala, Fuji, Granny Smith, Pink Lady, Cosmic Crisp]
+      skip: [Honeycrisp]
   may-1:
     when: early May (from 2026-05-01)
     verdict: good
     rule: 4
     basis: variety
     decided:
-      variety: gala
+      variety: fuji
       rating: fair
       evidence: medium
     look for: []
     label note: false
-    reasons: [rated fair (variety gala)]
+    reasons: [rated fair (variety fuji)]
     confidence: high
     markers: [reliable-year-round]
     today: not on Today
     varieties:
-      good: [Gala, Fuji, Granny Smith, Pink Lady, Cosmic Crisp]
-      skip: [Honeycrisp]
+      good: [Fuji, Granny Smith, Pink Lady, Cosmic Crisp]
+      skip: [Honeycrisp, Gala]
   may-2:
     when: late May (from 2026-05-16)
     verdict: good
     rule: 4
     basis: variety
     decided:
-      variety: gala
+      variety: fuji
       rating: fair
       evidence: medium
     look for: []
     label note: false
-    reasons: [rated fair (variety gala)]
+    reasons: [rated fair (variety fuji)]
     confidence: high
     markers: [reliable-year-round]
     today: not on Today
     varieties:
-      good: [Gala, Fuji, Granny Smith, Pink Lady, Cosmic Crisp]
-      skip: [Honeycrisp]
+      good: [Fuji, Granny Smith, Pink Lady, Cosmic Crisp]
+      skip: [Honeycrisp, Gala]
   jun-1:
     when: early June (from 2026-06-01)
     verdict: good
     rule: 4
     basis: variety
     decided:
-      variety: gala
+      variety: fuji
       rating: fair
       evidence: medium
     look for: []
     label note: false
-    reasons: [rated fair (variety gala)]
+    reasons: [rated fair (variety fuji)]
     confidence: high
     markers: [reliable-year-round]
     today: not on Today
     varieties:
-      good: [Gala, Fuji, Granny Smith, Pink Lady, Cosmic Crisp]
-      skip: [Honeycrisp]
+      good: [Fuji, Granny Smith, Pink Lady, Cosmic Crisp]
+      skip: [Honeycrisp, Gala]
   jun-2:
     when: late June (from 2026-06-16)
     verdict: good
     rule: 4
     basis: variety
     decided:
-      variety: gala
+      variety: fuji
       rating: fair
       evidence: medium
     look for: []
     label note: false
-    reasons: [rated fair (variety gala)]
+    reasons: [rated fair (variety fuji)]
     confidence: high
     markers: [reliable-year-round]
     today: not on Today
     varieties:
-      good: [Gala, Fuji, Granny Smith, Pink Lady, Cosmic Crisp]
-      skip: [Honeycrisp]
+      good: [Fuji, Granny Smith, Pink Lady, Cosmic Crisp]
+      skip: [Honeycrisp, Gala]
   jul-1:
     when: early July (from 2026-07-01)
     verdict: good
     rule: 4
     basis: variety
     decided:
-      variety: gala
+      variety: fuji
       rating: fair
       evidence: medium
     look for: []
     label note: false
-    reasons: [rated fair (variety gala)]
+    reasons: [rated fair (variety fuji)]
     confidence: high
     markers: [reliable-year-round]
     today: not on Today
     varieties:
-      good: [Gala, Fuji, Granny Smith, Pink Lady, Cosmic Crisp]
-      skip: [Honeycrisp]
+      good: [Fuji, Granny Smith, Pink Lady, Cosmic Crisp]
+      skip: [Honeycrisp, Gala]
   jul-2:
     when: late July (from 2026-07-16)
     verdict: good
@@ -463,24 +467,24 @@ windows:
     rule: 3
     basis: variety
     decided:
-      variety: honeycrisp
+      variety: fuji
       rating: prime
       evidence: medium
     look for: []
     label note: false
-    reasons: [rated prime (variety honeycrisp)]
+    reasons: [rated prime (variety fuji)]
     confidence: high
     markers: [reliable-year-round]
     today:
       section: best right now
-      line: Honeycrisp, Fuji and Pink Lady
+      line: Fuji and Pink Lady
       reason: none
       origin: Washington
       avoid: none
       tags: []
     varieties:
-      peak: [Honeycrisp, Fuji, Pink Lady]
-      good: [Gala, Granny Smith, Cosmic Crisp]
+      peak: [Fuji, Pink Lady]
+      good: [Honeycrisp, Gala, Granny Smith, Cosmic Crisp]
   dec-2:
     when: late December (from 2026-12-16)
     verdict: peak

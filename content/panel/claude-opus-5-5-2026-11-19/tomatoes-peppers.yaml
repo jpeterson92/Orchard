@@ -1,0 +1,32 @@
+category: tomatoes-peppers
+items:
+  - item: tomatoes
+    traits:
+      {
+        shipsWell: [false, high],
+        storesWell: [false, high],
+        peakWorthSeeking: [true, high],
+        alwaysGood: [false, high],
+      }
+    origins:
+      - origin: mx
+        windows:
+          - [jan-1, dec-2, poor, medium]
+        note: Rounds and Romas are picked firm and usually bland; greenhouse cherry and grape tomatoes eat better.
+      - origin: us-fl
+        windows:
+          - [oct-2, jun-1, poor, medium]
+        note: Field rounds picked mature-green and ripened with ethylene; firm and usually bland.
+      - origin: ca
+        windows:
+          - [mar-1, nov-2, fair, medium]
+      - origin: us-ca
+        windows:
+          - [jul-1, oct-2, fair, low]
+      - origin: us-tn
+        windows:
+          - [jun-2, aug-2, prime, medium]
+      - origin: us-nj
+        windows:
+          - [jul-2, sep-1, prime, medium]
+    note: Summer field tomatoes are far better; most winter rounds disappoint, though cherry and grape tomatoes hold up.

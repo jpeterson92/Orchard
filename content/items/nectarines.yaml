@@ -40,11 +40,10 @@ prep: Rinse just before eating. No need to peel; the skin is smooth.
 origins:
   - origin: us-ca
     windows:
-      - { from: apr-2, to: apr-2, rating: poor }
-      - { from: may-1, to: may-2, rating: fair }
+      - { from: apr-2, to: may-2, rating: poor }
       - { from: jun-1, to: aug-2, rating: prime }
-      - { from: sep-1, to: oct-2, rating: fair }
-      - { from: nov-1, to: nov-1, rating: poor }
+      - { from: sep-1, to: sep-2, rating: fair }
+      - { from: oct-1, to: nov-1, rating: poor }
   - origin: cl
     windows:
       - { from: jan-1, to: mar-2, rating: poor }

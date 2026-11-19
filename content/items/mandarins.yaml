@@ -56,11 +56,11 @@ varieties:
     label: Clementine; often sold as Cuties or Halos in winter
     sources: [sunkist-foodservice-mandarins, eatlikenoone-california-mandarins]
     windows:
-      - { from: jan-1, to: jan-2, rating: prime }
-      - { from: feb-1, to: feb-2, rating: fair }
       - { from: may-2, to: jul-1, rating: poor }
       - { from: oct-2, to: oct-2, rating: fair }
-      - { from: nov-1, to: dec-2, rating: prime }
+      - { from: nov-1, to: jan-2, rating: prime }
+      - { from: feb-1, to: feb-1, rating: fair }
+      - { from: feb-2, to: feb-2, rating: poor }
     quotedAs: [clementines-unspecified]
   - id: w-murcott
     name: W. Murcott and Tango
@@ -70,7 +70,8 @@ varieties:
     sources: [ucr-w-murcott, sunkist-foodservice-mandarins]
     windows:
       - { from: jan-1, to: apr-2, rating: prime }
-      - { from: may-1, to: oct-2, rating: fair }
+      - { from: may-1, to: sep-2, rating: fair }
+      - { from: oct-1, to: oct-2, rating: poor }
       - { from: nov-2, to: dec-1, rating: poor }
     quotedAs: [tangerines-w-murcott-afourer, tangerines-tango, tangerines-nadorcott]
   - id: minneola
@@ -93,7 +94,7 @@ varieties:
     label: Gold Nugget mandarin
     sources: [ucr-gold-nugget, eatlikenoone-california-mandarins]
     windows:
-      - { from: feb-1, to: feb-2, rating: fair }
+      - { from: feb-1, to: feb-2, rating: poor }
       - { from: may-1, to: may-2, rating: prime }
     quotedAs: [tangerines-golden-nugget]
   - id: satsuma

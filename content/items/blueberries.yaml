@@ -50,8 +50,8 @@ origins:
       origin: cl,
       windows:
         [
-          { from: jan-1, to: mar-2, rating: fair },
-          { from: apr-1, to: nov-2, rating: poor },
+          { from: jan-1, to: feb-2, rating: fair },
+          { from: mar-1, to: nov-2, rating: poor },
           { from: dec-1, to: dec-2, rating: fair },
         ],
     }

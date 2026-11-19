@@ -1,0 +1,94 @@
+category: beans-peas-corn
+items:
+  - item: sweet-corn
+    traits:
+      {
+        shipsWell: [true, low],
+        storesWell: [false, high],
+        peakWorthSeeking: [true, high],
+        alwaysGood: [false, high],
+      }
+    origins:
+      - origin: us-fl
+        windows:
+          - [oct-1, nov-2, fair, low]
+          - [dec-1, feb-2, poor, medium]
+          - [mar-1, mar-2, fair, low]
+          - [apr-1, jun-1, prime, medium]
+      - origin: us-ga
+        windows:
+          - [may-2, jul-1, prime, medium]
+      - origin: us-ca
+        windows:
+          - [jun-1, sep-2, prime, medium]
+      - origin: us-ny
+        windows:
+          - [jul-2, sep-2, prime, medium]
+      - origin: mx
+        windows:
+          - [dec-1, apr-2, poor, medium]
+    note: Summer corn is clearly better; winter ears from Florida and Mexico are usually starchy or bland.
+  - item: asparagus
+    traits:
+      {
+        shipsWell: [true, medium],
+        storesWell: [false, high],
+        peakWorthSeeking: [true, high],
+        alwaysGood: [false, high],
+      }
+    origins:
+      - origin: pe
+        windows:
+          - [jan-1, dec-2, poor, medium]
+      - origin: mx
+        windows:
+          - [jan-1, jan-2, fair, low]
+          - [feb-1, apr-2, fair, medium]
+      - origin: us-ca
+        windows:
+          - [feb-2, feb-2, fair, low]
+          - [mar-1, may-1, prime, medium]
+      - origin: us-wa
+        windows:
+          - [apr-2, jun-2, prime, high]
+      - origin: us-mi
+        windows:
+          - [may-1, jun-2, prime, medium]
+    note: Spring spears from Mexico, California and the Northwest are sweetest; year-round Peruvian imports are older and thinner.
+  - item: okra
+    traits:
+      {
+        shipsWell: [true, low],
+        storesWell: [false, high],
+        peakWorthSeeking: [true, low],
+        alwaysGood: [false, low],
+      }
+    origins:
+      - origin: mx
+        windows:
+          - [jan-1, dec-2, fair, low]
+      - origin: us-ga
+        windows:
+          - [jun-2, sep-2, prime, medium]
+      - origin: us-fl
+        windows:
+          - [oct-1, may-2, fair, low]
+    note: A summer crop in the South; small, bright pods are best then, and imports cover the rest.
+  - item: artichokes
+    traits:
+      {
+        shipsWell: [true, medium],
+        storesWell: [false, high],
+        peakWorthSeeking: [true, medium],
+        alwaysGood: [false, medium],
+      }
+    origins:
+      - origin: us-ca
+        windows:
+          - [mar-1, may-2, prime, high]
+          - [jun-1, jul-2, fair, medium]
+          - [aug-1, sep-2, poor, medium]
+          - [oct-1, oct-2, prime, medium]
+          - [nov-1, dec-2, fair, medium]
+          - [jan-1, feb-2, fair, low]
+    note: Castroville artichokes peak in spring with a smaller fall flush; winter frost-kissed ones taste fine.

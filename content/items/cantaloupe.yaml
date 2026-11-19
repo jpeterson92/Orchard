@@ -50,7 +50,8 @@ origins:
         rating: prime
         reason: California Grown and Chowhound and The Takeout rate eating quality prime here, outweighing the model panel's fair.
       - { from: jun-2, to: sep-2, rating: prime }
-      - { from: oct-1, to: oct-2, rating: fair }
+      - { from: oct-1, to: oct-1, rating: fair }
+      - { from: oct-2, to: oct-2, rating: poor }
       - from: nov-1
         to: nov-1
         rating: fair

@@ -6,7 +6,7 @@ status: draft
 rated by: origin
 peak worth seeking: true
 always good: false
-outlook: "GGGGGGGG··GGGPPPPPPPGGGG (Jan to Dec, two windows a month: P Peak, G Good, S Skip, · Limited evidence)"
+outlook: "GGGGGGSS··GGGPPPPPPPGGGG (Jan to Dec, two windows a month: P Peak, G Good, S Skip, · Limited evidence)"
 windows:
   jan-1:
     when: early January (from 2026-01-01)
@@ -141,7 +141,7 @@ windows:
     label note: false
     reasons: [rated fair (origin cl)]
     confidence: high
-    markers: [reliable-year-round]
+    markers: [last-call (fades by apr-1), reliable-year-round]
     today: not on Today
   mar-2:
     when: late March (from 2026-03-16)
@@ -168,61 +168,61 @@ windows:
     label note: false
     reasons: [rated fair (origin cl)]
     confidence: high
-    markers: [reliable-year-round]
+    markers: [last-call (fades by apr-1), reliable-year-round]
     today: not on Today
   apr-1:
     when: early April (from 2026-04-01)
-    verdict: good
-    rule: 4
+    verdict: skip
+    rule: 2
     basis: typical
     decided:
       origin: cl
-      rating: fair
+      rating: poor
       evidence: medium
     weights: volume
-    typical: [cl fair 100.0% (supply 3.30)]
+    typical: [cl poor 100.0% (supply 3.30)]
     peak:
       share: 0.0%
       available: "no: no origin at this level"
       whole bin: no (≤ 75.0%)
       origins: []
     good:
-      share: 100.0%
-      available: "yes: counted share 100.0% ≥ 33.0%"
-      whole bin: yes (> 75.0%)
-      origins: [cl fair 100.0%]
+      share: 0.0%
+      available: "no: no origin at this level"
+      whole bin: no (≤ 75.0%)
+      origins: []
     look for: []
     label note: false
-    reasons: [rated fair (origin cl)]
-    confidence: high
-    markers: [reliable-year-round]
+    reasons: [rated poor (origin cl)]
+    confidence: medium (agreement)
+    markers: [reliable-year-round, improves (jun-1)]
     today: not on Today
   apr-2:
     when: late April (from 2026-04-16)
-    verdict: good
-    rule: 4
+    verdict: skip
+    rule: 2
     basis: typical
     decided:
       origin: cl
-      rating: fair
+      rating: poor
       evidence: medium
     weights: volume
-    typical: [cl fair 100.0% (supply 3.30)]
+    typical: [cl poor 100.0% (supply 3.30)]
     peak:
       share: 0.0%
       available: "no: no origin at this level"
       whole bin: no (≤ 75.0%)
       origins: []
     good:
-      share: 100.0%
-      available: "yes: counted share 100.0% ≥ 33.0%"
-      whole bin: yes (> 75.0%)
-      origins: [cl fair 100.0%]
+      share: 0.0%
+      available: "no: no origin at this level"
+      whole bin: no (≤ 75.0%)
+      origins: []
     look for: []
     label note: false
-    reasons: [rated fair (origin cl)]
-    confidence: high
-    markers: [reliable-year-round]
+    reasons: [rated poor (origin cl)]
+    confidence: medium (agreement)
+    markers: [reliable-year-round, improves (jun-1)]
     today: not on Today
   may-1:
     when: early May (from 2026-05-01)

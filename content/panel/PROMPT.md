@@ -1,6 +1,6 @@
 # Orchard model panel: prompt
 
-Prompt version: 2
+Prompt version: 3
 
 Give this file to any AI model; `content/panel/README.md` is the step-by-step for whoever runs it. A model that reads and writes files can be pointed at the project and told "Follow content/panel/PROMPT.md". A chat gets this file and `content/panel/scope.yaml` pasted in, and its replies are saved with `npm run panel:import`.
 
@@ -28,10 +28,10 @@ Judge by taste and how reliably good the item at the store will be. Don't prefer
 ## Ratings
 
 - **Windows** are half-months: `jan-1` is Jan 1–15, `jan-2` is Jan 16–end, through `dec-2`. A range runs from its first window to its last, and may wrap past December (`nov-1` to `feb-2`).
-- **prime:** typically eats at its best for this item. **fair:** acceptable, what you'd expect. **poor:** typically disappointing (end of long storage, picked too green, mealy, bland, woody).
+- **prime:** typically eats at its best for this item: a shopper should really get it now. **fair:** good: a shopper who wants it now will be happy with it. **poor:** mediocre or worse: a shopper would be happier waiting (end of long storage, picked too green, mealy, bland, woody). "Just fine" is poor, not fair.
 - Rate against the item itself. Prime bananas and prime peaches are each the best that item gets.
-- **Keep prime for a stretch that is clearly better than the rest of the year,** usually 1 to 4 months. A prime rating can put "buy it now" on a shopper's screen, so it has to mean something. If an item or variety eats about the same for most of the year (long storage, steady year-round imports), rate that stretch fair, and give prime only to weeks that are noticeably better, such as fresh harvest. Stored produce is prime only near its harvest. A variety that keeps well all year with no better stretch is fair throughout.
-- **Rate poor wherever a shopper would typically be disappointed,** even if the item is widely sold then. Don't soften a poor to fair because the item is common.
+- **Keep prime for a stretch that is clearly better than the rest of the year,** usually 1 to 4 months. A prime rating can put "buy it now" on a shopper's screen, so it has to mean something. If an item or variety eats well for most of the year (long storage, steady year-round imports), rate that stretch fair, and give prime only to weeks that are noticeably better, such as fresh harvest. Stored produce is prime only near its harvest, and fair only while it is still genuinely good; once it is merely passable, it is poor. A variety that keeps well all year with no better stretch is fair throughout.
+- **Fair is an approval, so rate poor wherever a shopper would typically be disappointed or merely unbothered,** even if the item is widely sold then. Don't soften a poor to fair because the item is common, because it is edible, or because it is the best on offer that month. The edges of a season, the long tail of storage and imports picked firm for the trip are poor unless they typically eat well.
 - One origin's (or variety's) windows must not overlap.
 - **Confidence** for each range: `high` (well established, you'd be surprised to be wrong), `medium` (likely, details may be off by a few weeks), `low` (an informed guess). Use `low` freely. A confident wrong answer is worse than an honest guess.
 
@@ -42,7 +42,7 @@ Each is `[true|false, confidence]`.
 - **shipsWell:** arrives from abroad eating well, without being picked underripe to survive the trip. (Bananas yes; peaches from Chile no.)
 - **storesWell:** eats well for months out of commercial storage, so months far from harvest can still be fair. (Storage apples, potatoes, onions yes; strawberries no.)
 - **peakWorthSeeking:** buying in season makes a difference a shopper can taste, so a Peak verdict is worth showing. (Tomatoes, peaches, sweet corn yes; bananas, mushrooms no.)
-- **alwaysGood:** fair in every window all year from its usual origins, with no prime and no poor stretch worth telling a shopper about. If true, rate every window `fair`.
+- **alwaysGood:** good (fair) in every window all year from its usual origins, with no prime and no poor stretch worth telling a shopper about. If true, rate every window `fair`.
 
 ## Output
 
@@ -55,7 +55,7 @@ run: claude-opus-5-5-2026-11-17
 model: claude-opus-5-5        # the exact model id, as the provider names it
 provider: Anthropic
 date: 2026-11-17
-promptVersion: 2              # the version at the top of this file
+promptVersion: 3              # the version at the top of this file
 webAccess: false
 knowledgeCutoff: 2026-06      # your training cutoff, YYYY-MM, if you know it
 note: Recall only, no files read beyond the prompt and scope.

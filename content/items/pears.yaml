@@ -47,7 +47,9 @@ varieties:
     sources: [usapears-green-anjou, veritable-pear-guide]
     windows:
       - { from: jan-1, to: jan-2, rating: prime }
-      - { from: feb-1, to: sep-1, rating: fair }
+      - { from: feb-1, to: apr-2, rating: fair }
+      - { from: may-1, to: jul-1, rating: poor }
+      - { from: jul-2, to: sep-1, rating: fair }
       - { from: sep-2, to: dec-2, rating: prime }
     quotedAs: [d-anjou]
   - id: bartlett
@@ -58,10 +60,10 @@ varieties:
     ripeCue: Turns from green to yellow; sweetest when golden
     sources: [usapears-bartlett, veritable-pear-guide]
     windows:
-      - { from: jan-1, to: apr-2, rating: fair }
       - { from: jul-2, to: jul-2, rating: fair }
       - { from: aug-1, to: oct-2, rating: prime }
-      - { from: nov-1, to: dec-2, rating: fair }
+      - { from: nov-1, to: nov-2, rating: fair }
+      - { from: dec-1, to: apr-2, rating: poor }
     quotedAs: [bartlett, williams, summer-bartlett, mountain-bartlett]
   - id: bosc
     name: Bosc

@@ -39,7 +39,12 @@ prep: Rinse gently in cool water just before eating, then drain. Never soak them
 origins:
   - {
       origin: mx,
-      windows: [{ from: jan-1, to: jun-1, rating: fair }, { from: oct-1, to: dec-2, rating: fair }],
+      windows:
+        [
+          { from: oct-1, to: dec-2, rating: poor },
+          { from: jan-1, to: apr-2, rating: fair },
+          { from: may-1, to: jun-1, rating: poor },
+        ],
     }
   - {
       origin: us-ca,

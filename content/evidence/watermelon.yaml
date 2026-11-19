@@ -57,7 +57,7 @@ claims:
   - source: thetakeout-watermelon-season
     origin: mx
     windows:
-      - { from: dec-1, to: feb-2, rating: fair }
+      - { from: dec-1, to: feb-2, rating: poor }
     specificity: season
     directness: eating-quality
     paraphrase: A midwinter watermelon tends to disappoint; imports rarely match summer melons for flavor.

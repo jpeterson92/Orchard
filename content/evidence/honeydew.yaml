@@ -54,7 +54,7 @@ claims:
   - source: freshplaza-arizona-honeydew-late
     origin: mx
     windows:
-      - { from: may-1, to: may-2, rating: fair }
+      - { from: may-1, to: may-2, rating: poor }
     specificity: month
     directness: eating-quality
     paraphrase: As Arizona's May season starts, Mexican honeydews are cheaper but only fair in quality.

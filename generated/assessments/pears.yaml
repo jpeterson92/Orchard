@@ -6,7 +6,7 @@ status: draft
 rated by: variety
 peak worth seeking: true
 always good: false
-outlook: "PPGGGGGGGGGGGGPPPPPPPPPP (Jan to Dec, two windows a month: P Peak, G Good, S Skip, · Limited evidence)"
+outlook: "PPGGGGGGSSSSSGPPPPPPPPPP (Jan to Dec, two windows a month: P Peak, G Good, S Skip, · Limited evidence)"
 windows:
   jan-1:
     when: early January (from 2026-01-01)
@@ -21,7 +21,7 @@ windows:
     label note: false
     reasons: [rated prime (variety anjou)]
     confidence: high
-    markers: [last-call (fades by feb-1), reliable-year-round]
+    markers: [last-call (fades by feb-1)]
     today:
       section: best right now
       line: Anjou and Comice
@@ -31,7 +31,8 @@ windows:
       tags: [Last call]
     varieties:
       peak: [Anjou, Comice]
-      good: [Bartlett, Bosc]
+      good: [Bosc]
+      skip: [Bartlett]
       limited: [Starkrimson]
       not in stores: [Seckel]
   jan-2:
@@ -47,7 +48,7 @@ windows:
     label note: false
     reasons: [rated prime (variety anjou)]
     confidence: high
-    markers: [last-call (fades by feb-1), reliable-year-round]
+    markers: [last-call (fades by feb-1)]
     today:
       section: best right now
       line: Anjou and Comice
@@ -57,7 +58,8 @@ windows:
       tags: [Last call]
     varieties:
       peak: [Anjou, Comice]
-      good: [Bartlett, Bosc]
+      good: [Bosc]
+      skip: [Bartlett]
       limited: [Starkrimson]
       not in stores: [Seckel]
   feb-1:
@@ -73,10 +75,17 @@ windows:
     label note: false
     reasons: [rated fair (variety anjou)]
     confidence: high
-    markers: [reliable-year-round]
-    today: not on Today
+    markers: []
+    today:
+      section: good buys
+      line: Anjou, Bosc and Comice
+      reason: none
+      origin: Washington
+      avoid: none
+      tags: []
     varieties:
-      good: [Anjou, Bartlett, Bosc, Comice]
+      good: [Anjou, Bosc, Comice]
+      skip: [Bartlett]
       limited: [Starkrimson]
       not in stores: [Seckel]
   feb-2:
@@ -92,10 +101,17 @@ windows:
     label note: false
     reasons: [rated fair (variety anjou)]
     confidence: high
-    markers: [reliable-year-round]
-    today: not on Today
+    markers: []
+    today:
+      section: good buys
+      line: Anjou, Bosc and Comice
+      reason: none
+      origin: Washington
+      avoid: none
+      tags: []
     varieties:
-      good: [Anjou, Bartlett, Bosc, Comice]
+      good: [Anjou, Bosc, Comice]
+      skip: [Bartlett]
       limited: [Starkrimson]
       not in stores: [Seckel]
   mar-1:
@@ -111,10 +127,17 @@ windows:
     label note: false
     reasons: [rated fair (variety anjou)]
     confidence: high
-    markers: [reliable-year-round]
-    today: not on Today
+    markers: []
+    today:
+      section: good buys
+      line: Anjou and Bosc
+      reason: none
+      origin: Washington
+      avoid: none
+      tags: []
     varieties:
-      good: [Anjou, Bartlett, Bosc]
+      good: [Anjou, Bosc]
+      skip: [Bartlett]
       limited: [Comice, Seckel, Starkrimson]
   mar-2:
     when: late March (from 2026-03-16)
@@ -129,10 +152,17 @@ windows:
     label note: false
     reasons: [rated fair (variety anjou)]
     confidence: high
-    markers: [reliable-year-round]
-    today: not on Today
+    markers: []
+    today:
+      section: good buys
+      line: Anjou and Bosc
+      reason: none
+      origin: Washington
+      avoid: none
+      tags: []
     varieties:
-      good: [Anjou, Bartlett, Bosc]
+      good: [Anjou, Bosc]
+      skip: [Bartlett]
       limited: [Comice, Seckel, Starkrimson]
   apr-1:
     when: early April (from 2026-04-01)
@@ -147,10 +177,17 @@ windows:
     label note: false
     reasons: [rated fair (variety anjou)]
     confidence: high
-    markers: [reliable-year-round]
-    today: not on Today
+    markers: [last-call (fades by may-1)]
+    today:
+      section: good buys
+      line: Anjou and Bosc
+      reason: Fades by early May.
+      origin: Argentina
+      avoid: none
+      tags: [Last call]
     varieties:
-      good: [Anjou, Bartlett, Bosc]
+      good: [Anjou, Bosc]
+      skip: [Bartlett]
       limited: [Comice]
       not in stores: [Seckel, Starkrimson]
   apr-2:
@@ -166,105 +203,112 @@ windows:
     label note: false
     reasons: [rated fair (variety anjou)]
     confidence: high
-    markers: [reliable-year-round]
-    today: not on Today
+    markers: [last-call (fades by may-1)]
+    today:
+      section: good buys
+      line: Anjou and Bosc
+      reason: Fades by early May.
+      origin: Argentina
+      avoid: none
+      tags: [Last call]
     varieties:
-      good: [Anjou, Bartlett, Bosc]
+      good: [Anjou, Bosc]
+      skip: [Bartlett]
       limited: [Comice]
       not in stores: [Seckel, Starkrimson]
   may-1:
     when: early May (from 2026-05-01)
-    verdict: good
-    rule: 4
+    verdict: skip
+    rule: 2
     basis: variety
     decided:
       variety: anjou
-      rating: fair
+      rating: poor
       evidence: medium
     look for: []
     label note: false
-    reasons: [rated fair (variety anjou)]
-    confidence: high
-    markers: [reliable-year-round]
+    reasons: [rated poor (variety anjou)]
+    confidence: medium (agreement)
+    markers: [improves (jul-2)]
     today: not on Today
     varieties:
-      good: [Anjou]
+      skip: [Anjou]
       limited: [Bartlett, Bosc, Comice]
       not in stores: [Seckel, Starkrimson]
   may-2:
     when: late May (from 2026-05-16)
-    verdict: good
-    rule: 4
+    verdict: skip
+    rule: 2
     basis: variety
     decided:
       variety: anjou
-      rating: fair
+      rating: poor
       evidence: medium
     look for: []
     label note: false
-    reasons: [rated fair (variety anjou)]
-    confidence: high
-    markers: [reliable-year-round]
+    reasons: [rated poor (variety anjou)]
+    confidence: medium (agreement)
+    markers: [improves (jul-2)]
     today: not on Today
     varieties:
-      good: [Anjou]
+      skip: [Anjou]
       limited: [Bartlett, Bosc, Comice]
       not in stores: [Seckel, Starkrimson]
   jun-1:
     when: early June (from 2026-06-01)
-    verdict: good
-    rule: 4
+    verdict: skip
+    rule: 2
     basis: variety
     decided:
       variety: anjou
-      rating: fair
+      rating: poor
       evidence: medium
     look for: []
     label note: false
-    reasons: [rated fair (variety anjou)]
-    confidence: high
-    markers: [reliable-year-round]
+    reasons: [rated poor (variety anjou)]
+    confidence: medium (agreement)
+    markers: [improves (jul-2)]
     today: not on Today
     varieties:
-      good: [Anjou]
+      skip: [Anjou]
       limited: [Bartlett, Bosc]
       not in stores: [Comice, Seckel, Starkrimson]
   jun-2:
     when: late June (from 2026-06-16)
-    verdict: good
-    rule: 4
+    verdict: skip
+    rule: 2
     basis: variety
     decided:
       variety: anjou
-      rating: fair
+      rating: poor
       evidence: medium
     look for: []
     label note: false
-    reasons: [rated fair (variety anjou)]
-    confidence: high
-    markers: [reliable-year-round]
+    reasons: [rated poor (variety anjou)]
+    confidence: medium (agreement)
+    markers: [improves (jul-2)]
     today: not on Today
     varieties:
-      good: [Anjou]
+      skip: [Anjou]
       limited: [Bartlett, Bosc]
       not in stores: [Comice, Seckel, Starkrimson]
   jul-1:
     when: early July (from 2026-07-01)
-    verdict: good
-    rule: 4
+    verdict: skip
+    rule: 2
     basis: variety
     decided:
       variety: anjou
-      rating: fair
+      rating: poor
       evidence: medium
     look for: []
     label note: false
-    reasons: [rated fair (variety anjou)]
-    confidence: high
-    markers: [reliable-year-round]
+    reasons: [rated poor (variety anjou)]
+    confidence: medium (agreement)
+    markers: [improves (jul-2)]
     today: not on Today
     varieties:
-      good: [Anjou]
+      skip: [Anjou]
       limited: [Bartlett, Bosc, Starkrimson]
       not in stores: [Comice, Seckel]
   jul-2:
@@ -280,8 +324,14 @@ windows:
     label note: false
     reasons: [rated fair (variety anjou)]
     confidence: high
-    markers: [reliable-year-round]
-    today: not on Today
+    markers: []
+    today:
+      section: good buys
+      line: Anjou and Bartlett
+      reason: none
+      origin: California
+      avoid: none
+      tags: []
     varieties:
       good: [Anjou, Bartlett]
       limited: [Bosc, Starkrimson]
@@ -299,7 +349,7 @@ windows:
     label note: false
     reasons: [rated prime (variety bartlett)]
     confidence: high
-    markers: [reliable-year-round]
+    markers: []
     today:
       section: best right now
       line: Bartlett and Starkrimson
@@ -325,7 +375,7 @@ windows:
     label note: false
     reasons: [rated prime (variety bartlett)]
     confidence: high
-    markers: [reliable-year-round]
+    markers: []
     today:
       section: best right now
       line: Bartlett and Starkrimson
@@ -351,7 +401,7 @@ windows:
     label note: false
     reasons: [rated prime (variety bartlett)]
     confidence: high
-    markers: [reliable-year-round]
+    markers: []
     today:
       section: best right now
       line: Bartlett and Starkrimson
@@ -377,7 +427,7 @@ windows:
     label note: false
     reasons: [rated prime (variety anjou)]
     confidence: high
-    markers: [reliable-year-round]
+    markers: []
     today:
       section: best right now
       line: Anjou, Bartlett, Bosc and Starkrimson
@@ -402,7 +452,7 @@ windows:
     label note: false
     reasons: [rated prime (variety anjou)]
     confidence: high
-    markers: [reliable-year-round]
+    markers: []
     today:
       section: best right now
       line: Anjou, Bartlett, Bosc and 2 more
@@ -426,7 +476,7 @@ windows:
     label note: false
     reasons: [rated prime (variety anjou)]
     confidence: high
-    markers: [reliable-year-round]
+    markers: []
     today:
       section: best right now
       line: Anjou, Bartlett, Bosc and 3 more
@@ -449,7 +499,7 @@ windows:
     label note: false
     reasons: [rated prime (variety anjou)]
     confidence: high
-    markers: [reliable-year-round]
+    markers: []
     today:
       section: best right now
       line: Anjou, Bosc and Comice
@@ -475,7 +525,7 @@ windows:
     label note: false
     reasons: [rated prime (variety anjou)]
     confidence: high
-    markers: [reliable-year-round]
+    markers: []
     today:
       section: best right now
       line: Anjou, Bosc and Comice
@@ -501,7 +551,7 @@ windows:
     label note: false
     reasons: [rated prime (variety anjou)]
     confidence: high
-    markers: [reliable-year-round]
+    markers: []
     today:
       section: best right now
       line: Anjou, Bosc, Comice and Seckel
@@ -511,7 +561,7 @@ windows:
       tags: []
     varieties:
       peak: [Anjou, Bosc, Comice, Seckel]
-      good: [Bartlett]
+      skip: [Bartlett]
       limited: [Starkrimson]
   dec-2:
     when: late December (from 2026-12-16)
@@ -526,7 +576,7 @@ windows:
     label note: false
     reasons: [rated prime (variety anjou)]
     confidence: high
-    markers: [reliable-year-round]
+    markers: []
     today:
       section: best right now
       line: Anjou, Bosc, Comice and Seckel
@@ -536,5 +586,5 @@ windows:
       tags: []
     varieties:
       peak: [Anjou, Bosc, Comice, Seckel]
-      good: [Bartlett]
+      skip: [Bartlett]
       limited: [Starkrimson]
