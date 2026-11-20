@@ -1113,6 +1113,11 @@ pages:
     kind: item-page
     origin: cl
     items: [cherries]
+  - source: ffp-late-chilean-cherries-2024
+    url: https://www.freshfruitportal.com/archive/2024/03/01/late-chilean-cherry-arrivals-to-u-s-extend-season-until-march/
+    kind: item-page
+    origin: cl
+    items: [cherries]
   # apricots
   - source: askthefoodgeek-apricots
     url: https://askthefoodgeek.com/apricots/
