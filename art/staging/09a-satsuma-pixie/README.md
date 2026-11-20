@@ -48,3 +48,11 @@ The original built-in output is a 1254 × 1254 RGBA PNG and passed `checkMaster`
 ```
 
 > Paint a new standalone Orchard Pixie mandarin variety thumbnail. References 1 (approved Clementine) and 2 (approved Gold Nugget) are style and scale guides: use their luminous botanical watercolor washes, soft granulation, subtle pigment pooling, selective detail, softly broken paint edges, gently elevated three-quarter view and diffuse upper-left light. Depict one small Ojai Pixie tangerine, nearly round to just slightly flattened, with a subtly irregular outline and a very low broad stem-end collar and a tiny clipped green-brown stem button. Rim and collar should flow into the shoulders without a protruding knob. Keep the rind bright yellow-orange with shallow, fine, irregular pebbles appreciably subtler than Gold Nugget. Keep the skin pattern quiet enough to read as one painted form. Use the stem button alone. Keep the fruit body about 54% of the square width, centered with clear margins, with the compact round outline and color readable at 48 px. Square PNG at least 1024 px per side, genuine transparent alpha, no foliage, cut pieces, paper or checkerboard, ground, cast shadow, border, text, hard outline, or photographic gloss.
+
+## Revision requested: mandarins-satsuma-thumbnail-v2 (Jared, 2026-11-19)
+
+The approved painting was 60% of the canvas wide against 68–73% for the round mandarins. Claude rescaled the master in `art/masters/` (×1.17 about the centre) to 70% so the app matches its family meanwhile. Paint `mandarins-satsuma-thumbnail-v3` with the same identifying traits at about 70% width (longer side 75–85% of the canvas), check it on the review sheet beside the family, and hand it off once Jared approves it.
+
+## Revision requested: mandarins-pixie-thumbnail-v1 (Jared, 2026-11-19)
+
+The approved painting was 50% of the canvas wide against 68–73% for the round mandarins. Claude rescaled the master in `art/masters/` (×1.36 about the centre) to 68% so the app matches its family meanwhile. Paint `mandarins-pixie-thumbnail-v2` with the same identifying traits at about 68% width (longer side 75–85% of the canvas), check it on the review sheet beside the family, and hand it off once Jared approves it.

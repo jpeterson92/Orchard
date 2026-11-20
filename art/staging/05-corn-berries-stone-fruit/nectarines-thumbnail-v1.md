@@ -37,3 +37,7 @@ Use Image 2 for stone-fruit viewpoint, scale and warm upper-left light. Paint on
 Passed `checkMaster` as a 1254 × 1254 RGBA PNG. Checked at 72, 112 and 320 px on ivory and warm charcoal. The clean contour and continuous shoulder highlight convey smoother skin than the staged peach, with broad crimson washes and a shallow seam. At 72 px the distinction relies mainly on the highlight and stronger red color.
 
 Touch-up if requested. Deepen the crimson over more of the golden side to make the two thumbnails easier to tell apart.
+
+## Revision requested: nectarines-thumbnail-v1 (Jared, 2026-11-19)
+
+The approved painting was 84% of the canvas wide against 70% for peaches and 78% for plums. Claude rescaled the master in `art/masters/` (×0.88 about the centre) to 74% so the app matches its family meanwhile. Paint `nectarines-thumbnail-v2` with the same identifying traits at about 74% width (longer side 75–85% of the canvas), check it on the review sheet beside the family, and hand it off once Jared approves it.
