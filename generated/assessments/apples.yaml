@@ -24,14 +24,15 @@ windows:
     markers: [last-call (fades by feb-1), reliable-year-round]
     today:
       section: best right now
-      line: Pink Lady
+      line: Pink Lady and Ambrosia
       reason: Fades by early February.
       origin: Washington
       avoid: none
       tags: [Last call]
     varieties:
-      peak: [Pink Lady]
+      peak: [Pink Lady, Ambrosia]
       good: [Honeycrisp, Gala, Fuji, Granny Smith, Cosmic Crisp]
+      skip: [McIntosh]
   jan-2:
     when: late January (from 2026-01-16)
     verdict: peak
@@ -48,14 +49,15 @@ windows:
     markers: [last-call (fades by feb-1), reliable-year-round]
     today:
       section: best right now
-      line: Pink Lady
+      line: Pink Lady and Ambrosia
       reason: Fades by early February.
       origin: Washington
       avoid: none
       tags: [Last call]
     varieties:
-      peak: [Pink Lady]
+      peak: [Pink Lady, Ambrosia]
       good: [Honeycrisp, Gala, Fuji, Granny Smith, Cosmic Crisp]
+      skip: [McIntosh]
   feb-1:
     when: early February (from 2026-02-01)
     verdict: good
@@ -72,7 +74,8 @@ windows:
     markers: [reliable-year-round]
     today: not on Today
     varieties:
-      good: [Honeycrisp, Gala, Fuji, Granny Smith, Pink Lady, Cosmic Crisp]
+      good: [Honeycrisp, Gala, Fuji, Granny Smith, Pink Lady, Cosmic Crisp, Ambrosia]
+      skip: [McIntosh]
   feb-2:
     when: late February (from 2026-02-16)
     verdict: good
@@ -89,7 +92,8 @@ windows:
     markers: [reliable-year-round]
     today: not on Today
     varieties:
-      good: [Honeycrisp, Gala, Fuji, Granny Smith, Pink Lady, Cosmic Crisp]
+      good: [Honeycrisp, Gala, Fuji, Granny Smith, Pink Lady, Cosmic Crisp, Ambrosia]
+      skip: [McIntosh]
   mar-1:
     when: early March (from 2026-03-01)
     verdict: good
@@ -106,8 +110,8 @@ windows:
     markers: [reliable-year-round]
     today: not on Today
     varieties:
-      good: [Gala, Fuji, Granny Smith, Pink Lady, Cosmic Crisp]
-      skip: [Honeycrisp]
+      good: [Gala, Fuji, Granny Smith, Pink Lady, Cosmic Crisp, Ambrosia]
+      skip: [Honeycrisp, McIntosh]
   mar-2:
     when: late March (from 2026-03-16)
     verdict: good
@@ -124,8 +128,8 @@ windows:
     markers: [reliable-year-round]
     today: not on Today
     varieties:
-      good: [Gala, Fuji, Granny Smith, Pink Lady, Cosmic Crisp]
-      skip: [Honeycrisp]
+      good: [Gala, Fuji, Granny Smith, Pink Lady, Cosmic Crisp, Ambrosia]
+      skip: [Honeycrisp, McIntosh]
   apr-1:
     when: early April (from 2026-04-01)
     verdict: good
@@ -142,8 +146,8 @@ windows:
     markers: [reliable-year-round]
     today: not on Today
     varieties:
-      good: [Gala, Fuji, Granny Smith, Pink Lady, Cosmic Crisp]
-      skip: [Honeycrisp]
+      good: [Gala, Fuji, Granny Smith, Pink Lady, Cosmic Crisp, Ambrosia]
+      skip: [Honeycrisp, McIntosh]
   apr-2:
     when: late April (from 2026-04-16)
     verdict: good
@@ -160,8 +164,8 @@ windows:
     markers: [reliable-year-round]
     today: not on Today
     varieties:
-      good: [Gala, Fuji, Granny Smith, Pink Lady, Cosmic Crisp]
-      skip: [Honeycrisp]
+      good: [Gala, Fuji, Granny Smith, Pink Lady, Cosmic Crisp, Ambrosia]
+      skip: [Honeycrisp, McIntosh]
   may-1:
     when: early May (from 2026-05-01)
     verdict: good
@@ -178,8 +182,9 @@ windows:
     markers: [reliable-year-round]
     today: not on Today
     varieties:
-      good: [Fuji, Granny Smith, Pink Lady, Cosmic Crisp]
+      good: [Fuji, Granny Smith, Pink Lady, Cosmic Crisp, Ambrosia]
       skip: [Honeycrisp, Gala]
+      limited: [McIntosh]
   may-2:
     when: late May (from 2026-05-16)
     verdict: good
@@ -196,8 +201,9 @@ windows:
     markers: [reliable-year-round]
     today: not on Today
     varieties:
-      good: [Fuji, Granny Smith, Pink Lady, Cosmic Crisp]
+      good: [Fuji, Granny Smith, Pink Lady, Cosmic Crisp, Ambrosia]
       skip: [Honeycrisp, Gala]
+      limited: [McIntosh]
   jun-1:
     when: early June (from 2026-06-01)
     verdict: good
@@ -216,6 +222,7 @@ windows:
     varieties:
       good: [Fuji, Granny Smith, Pink Lady, Cosmic Crisp]
       skip: [Honeycrisp, Gala]
+      limited: [Ambrosia, McIntosh]
   jun-2:
     when: late June (from 2026-06-16)
     verdict: good
@@ -234,6 +241,7 @@ windows:
     varieties:
       good: [Fuji, Granny Smith, Pink Lady, Cosmic Crisp]
       skip: [Honeycrisp, Gala]
+      limited: [Ambrosia, McIntosh]
   jul-1:
     when: early July (from 2026-07-01)
     verdict: good
@@ -252,6 +260,7 @@ windows:
     varieties:
       good: [Fuji, Granny Smith, Pink Lady, Cosmic Crisp]
       skip: [Honeycrisp, Gala]
+      limited: [Ambrosia, McIntosh]
   jul-2:
     when: late July (from 2026-07-16)
     verdict: good
@@ -270,6 +279,7 @@ windows:
     varieties:
       good: [Fuji, Granny Smith, Pink Lady, Cosmic Crisp]
       skip: [Honeycrisp, Gala]
+      limited: [Ambrosia, McIntosh]
   aug-1:
     when: early August (from 2026-08-01)
     verdict: good
@@ -288,6 +298,7 @@ windows:
     varieties:
       good: [Fuji, Granny Smith, Pink Lady, Cosmic Crisp]
       skip: [Honeycrisp, Gala]
+      limited: [Ambrosia, McIntosh]
   aug-2:
     when: late August (from 2026-08-16)
     verdict: peak
@@ -313,6 +324,7 @@ windows:
       peak: [Gala]
       good: [Fuji, Granny Smith, Pink Lady, Cosmic Crisp]
       skip: [Honeycrisp]
+      limited: [Ambrosia, McIntosh]
   sep-1:
     when: early September (from 2026-09-01)
     verdict: peak
@@ -329,14 +341,15 @@ windows:
     markers: [reliable-year-round]
     today:
       section: best right now
-      line: Honeycrisp and Gala
+      line: Honeycrisp, Gala and McIntosh
       reason: none
       origin: Washington
       avoid: none
       tags: []
     varieties:
-      peak: [Honeycrisp, Gala]
+      peak: [Honeycrisp, Gala, McIntosh]
       good: [Fuji, Granny Smith, Pink Lady, Cosmic Crisp]
+      limited: [Ambrosia]
   sep-2:
     when: late September (from 2026-09-16)
     verdict: peak
@@ -353,14 +366,14 @@ windows:
     markers: [reliable-year-round]
     today:
       section: best right now
-      line: Honeycrisp and Gala
+      line: Honeycrisp, Gala and McIntosh
       reason: none
       origin: Washington
       avoid: none
       tags: []
     varieties:
-      peak: [Honeycrisp, Gala]
-      good: [Fuji, Granny Smith, Pink Lady, Cosmic Crisp]
+      peak: [Honeycrisp, Gala, McIntosh]
+      good: [Fuji, Granny Smith, Pink Lady, Cosmic Crisp, Ambrosia]
   oct-1:
     when: early October (from 2026-10-01)
     verdict: peak
@@ -377,13 +390,13 @@ windows:
     markers: [reliable-year-round]
     today:
       section: best right now
-      line: Honeycrisp, Gala and Fuji
+      line: Honeycrisp, Gala, Fuji and 2 more
       reason: none
       origin: Washington
       avoid: none
       tags: []
     varieties:
-      peak: [Honeycrisp, Gala, Fuji]
+      peak: [Honeycrisp, Gala, Fuji, Ambrosia, McIntosh]
       good: [Granny Smith, Pink Lady, Cosmic Crisp]
   oct-2:
     when: late October (from 2026-10-16)
@@ -401,13 +414,13 @@ windows:
     markers: [reliable-year-round]
     today:
       section: best right now
-      line: Honeycrisp, Gala and Fuji
+      line: Honeycrisp, Gala, Fuji and 2 more
       reason: none
       origin: Washington
       avoid: none
       tags: []
     varieties:
-      peak: [Honeycrisp, Gala, Fuji]
+      peak: [Honeycrisp, Gala, Fuji, Ambrosia, McIntosh]
       good: [Granny Smith, Pink Lady, Cosmic Crisp]
   nov-1:
     when: early November (from 2026-11-01)
@@ -425,13 +438,13 @@ windows:
     markers: [reliable-year-round]
     today:
       section: best right now
-      line: Honeycrisp, Gala, Fuji and Pink Lady
+      line: Honeycrisp, Gala, Fuji and 3 more
       reason: none
       origin: Washington
       avoid: none
       tags: []
     varieties:
-      peak: [Honeycrisp, Gala, Fuji, Pink Lady]
+      peak: [Honeycrisp, Gala, Fuji, Pink Lady, Ambrosia, McIntosh]
       good: [Granny Smith]
       not in stores: [Cosmic Crisp]
   nov-2:
@@ -450,14 +463,14 @@ windows:
     markers: [reliable-year-round]
     today:
       section: best right now
-      line: Honeycrisp, Gala, Fuji and Pink Lady
+      line: Honeycrisp, Gala, Fuji and 2 more
       reason: none
       origin: Washington
       avoid: none
       tags: []
     varieties:
-      peak: [Honeycrisp, Gala, Fuji, Pink Lady]
-      good: [Granny Smith]
+      peak: [Honeycrisp, Gala, Fuji, Pink Lady, Ambrosia]
+      good: [Granny Smith, McIntosh]
       not in stores: [Cosmic Crisp]
   dec-1:
     when: early December (from 2026-12-01)
@@ -475,14 +488,14 @@ windows:
     markers: [reliable-year-round]
     today:
       section: best right now
-      line: Fuji and Pink Lady
+      line: Fuji, Pink Lady and Ambrosia
       reason: none
       origin: Washington
       avoid: none
       tags: []
     varieties:
-      peak: [Fuji, Pink Lady]
-      good: [Honeycrisp, Gala, Granny Smith, Cosmic Crisp]
+      peak: [Fuji, Pink Lady, Ambrosia]
+      good: [Honeycrisp, Gala, Granny Smith, Cosmic Crisp, McIntosh]
   dec-2:
     when: late December (from 2026-12-16)
     verdict: peak
@@ -499,11 +512,11 @@ windows:
     markers: [reliable-year-round]
     today:
       section: best right now
-      line: Fuji and Pink Lady
+      line: Fuji, Pink Lady and Ambrosia
       reason: none
       origin: Washington
       avoid: none
       tags: []
     varieties:
-      peak: [Fuji, Pink Lady]
-      good: [Honeycrisp, Gala, Granny Smith, Cosmic Crisp]
+      peak: [Fuji, Pink Lady, Ambrosia]
+      good: [Honeycrisp, Gala, Granny Smith, Cosmic Crisp, McIntosh]

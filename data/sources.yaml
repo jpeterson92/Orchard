@@ -2921,3 +2921,45 @@
   url: https://prnewswire.com/news-releases/grab-your-fresh-sweet-northwest-cherries-while-they-last-301606949.html
   accessed: 2026-11-19
   tier: mainstream
+- id: wsu-ambrosia
+  title: "Ambrosia"
+  publisher: "Washington State University Tree Fruit"
+  url: https://treefruit.wsu.edu/variety/ambrosia/
+  accessed: 2026-11-19
+  tier: authoritative
+- id: omafra-ambrosia
+  title: "Commercial production of Ambrosia apples in Ontario"
+  publisher: "Ontario Ministry of Agriculture, Food and Agribusiness"
+  url: https://www.ontario.ca/page/commercial-production-ambrosiatm-apples-ontario
+  accessed: 2026-11-19
+  tier: authoritative
+- id: msu-ambrosia-storage
+  title: "Disorders and storage of Ambrosia apples"
+  publisher: "Michigan State University Extension"
+  url: https://www.canr.msu.edu/resources/disorders-and-storage-of-ambrosia-apples
+  accessed: 2026-11-19
+  tier: authoritative
+- id: freshpoint-ambrosia
+  title: "Apples, Ambrosia"
+  publisher: "FreshPoint"
+  url: https://www.freshpoint.com/?p=4937
+  accessed: 2026-11-19
+  tier: mainstream
+- id: eathealthy365-ambrosia
+  title: "When to find a fresh Ambrosia apple"
+  publisher: "EatHealthy365"
+  url: https://eathealthy365.com/when-to-find-a-fresh-ambrosia-apple/
+  accessed: 2026-11-19
+  tier: mainstream
+- id: homefortheharvest-ambrosia
+  title: "Ambrosia apples"
+  publisher: "Home for the Harvest"
+  url: https://homefortheharvest.com/ambrosia-apples/
+  accessed: 2026-11-19
+  tier: mainstream
+- id: sprouts-peak-season-apples
+  title: "Pick the perfect peak-season apple"
+  publisher: "Sprouts Farmers Market"
+  url: https://www.sprouts.com/healthy-living/comparing-apples-to-apples/
+  accessed: 2026-11-19
+  tier: mainstream

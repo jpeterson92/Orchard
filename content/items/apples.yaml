@@ -147,6 +147,11 @@ varieties:
     label: Ambrosia
     plu: { codes: [3438, 3510], sources: [ifps-plu-codes] }
     sources: [veritable-apple-guide, theproducemoms-apples-sweet-to-tart]
+    windows:
+      - { from: sep-2, to: sep-2, rating: fair }
+      - { from: oct-1, to: jan-2, rating: prime }
+      - { from: feb-1, to: may-2, rating: fair }
+    quotedAs: [ambrosia]
   - id: mcintosh
     name: McIntosh
     traits: { sweetness: 2, tartness: 4, crispness: 1, juiciness: 5, holds-shape: 1 }
@@ -155,6 +160,11 @@ varieties:
     label: McIntosh
     plu: { codes: [4019, 4152, 4153, 4154], sources: [ifps-plu-codes] }
     sources: [usapple-mcintosh, veritable-apple-guide, atk-apples-for-cooking]
+    windows:
+      - { from: sep-1, to: nov-1, rating: prime }
+      - { from: nov-2, to: dec-2, rating: fair }
+      - { from: jan-1, to: apr-2, rating: poor }
+    quotedAs: [mcintosh]
   - id: braeburn
     name: Braeburn
     traits: { sweetness: 3, tartness: 3, crispness: 4, juiciness: 4, holds-shape: 5 }

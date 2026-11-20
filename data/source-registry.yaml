@@ -19,6 +19,8 @@ items:
       cosmic crisp,
       red delicious,
       golden delicious,
+      ambrosia,
+      mcintosh,
     ]
   pears:
     [pear, pears, anjou, bartlett, bartletts, bosc, comice, seckel, forelle, starkrimson, concorde, packham]
@@ -504,6 +506,41 @@ pages:
     url: https://perishablenews.com/?p=97599
     kind: item-page
     origin: us-wa
+    items: [apples]
+  - source: wsu-ambrosia
+    url: https://treefruit.wsu.edu/variety/ambrosia/
+    kind: item-page
+    origin: us-wa
+    items: [apples]
+  - source: omafra-ambrosia
+    url: https://www.ontario.ca/page/commercial-production-ambrosiatm-apples-ontario
+    kind: item-page
+    origin: ca
+    items: [apples]
+  - source: msu-ambrosia-storage
+    url: https://www.canr.msu.edu/resources/disorders-and-storage-of-ambrosia-apples
+    kind: item-page
+    origin: us
+    items: [apples]
+  - source: freshpoint-ambrosia
+    url: https://www.freshpoint.com/?p=4937
+    kind: item-page
+    origin: us
+    items: [apples]
+  - source: eathealthy365-ambrosia
+    url: https://eathealthy365.com/when-to-find-a-fresh-ambrosia-apple/
+    kind: item-page
+    origin: us
+    items: [apples]
+  - source: homefortheharvest-ambrosia
+    url: https://homefortheharvest.com/ambrosia-apples/
+    kind: item-page
+    origin: us
+    items: [apples]
+  - source: sprouts-peak-season-apples
+    url: https://www.sprouts.com/healthy-living/comparing-apples-to-apples/
+    kind: item-page
+    origin: us
     items: [apples]
   - source: usapears-green-anjou
     url: https://www.usapears.org/green-anjou/

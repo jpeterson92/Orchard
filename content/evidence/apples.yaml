@@ -215,3 +215,47 @@ claims:
     specificity: season
     directness: eating-quality
     paraphrase: Before September's harvest, stored Cosmic Crisp is still a solid, crisp choice.
+  # McIntosh
+  - source: eatlikenoone-apples-at-their-peak
+    origin: us
+    variety: mcintosh
+    windows:
+      - { from: sep-1, to: sep-2, rating: prime }
+    specificity: month
+    directness: eating-quality
+    paraphrase: McIntosh is a delight fresh in September; it stores poorly and turns soft and mellow after that.
+  # Ambrosia
+  - source: eathealthy365-ambrosia
+    origin: us
+    variety: ambrosia
+    windows:
+      - { from: sep-2, to: oct-2, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: Ambrosia is picked from late September through October.
+  - source: eathealthy365-ambrosia
+    origin: us
+    variety: ambrosia
+    windows:
+      - { from: oct-1, to: jan-2, rating: prime }
+      - { from: feb-1, to: may-2, rating: fair }
+    specificity: month
+    directness: eating-quality
+    paraphrase: Ambrosia is at its best October to January; North American fruit from controlled-atmosphere storage stays good February to May.
+  - source: homefortheharvest-ambrosia
+    origin: us
+    variety: ambrosia
+    windows:
+      - { from: sep-2, to: dec-2, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: Ambrosia is harvested from late September and is in season through December.
+  - source: homefortheharvest-ambrosia
+    origin: us
+    variety: ambrosia
+    windows:
+      - { from: oct-1, to: jan-2, rating: prime }
+      - { from: feb-1, to: may-2, rating: fair }
+    specificity: season
+    directness: eating-quality
+    paraphrase: Ambrosia is best bought in late fall or early winter after harvest; stored fruit stays good through winter into spring.
