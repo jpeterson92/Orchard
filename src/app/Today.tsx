@@ -79,7 +79,7 @@ export function Today() {
           </fieldset>
         )}
         {alwaysGood.length > 0 && (
-          <a href="#always-good" className={`mt-1 text-sm ${textLink}`}>
+          <a href="#always-good" className={`mt-1 items-center gap-1 text-sm ${textLink}`}>
             Always good <Chevron />
           </a>
         )}
@@ -134,7 +134,7 @@ function Section({ title, children, id }: { title: string; children: React.React
 }
 
 const textLink =
-  "inline-flex min-h-11 items-center gap-1 rounded-sm font-semibold text-olive underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
+  "inline-flex min-h-11 rounded-sm font-semibold text-olive underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
 
 function AlwaysGoodGrid({ rows }: { rows: AlwaysGoodRow[] }) {
   return (
@@ -169,28 +169,30 @@ function StapleCard({ row }: { row: AlwaysGoodRow }) {
         <span className="min-w-0 font-editorial leading-tight wrap-anywhere sm:text-lg">{row.name}</span>
       </Link>
       {row.varieties.length > 0 && (
-        <p
-          className={`flex flex-wrap items-center border-t border-rule text-xs leading-tight text-ink-secondary sm:px-3 sm:text-sm ${
-            except ? "gap-x-0.5 px-1 sm:gap-x-1.5" : "gap-x-2 px-2"
-          }`}
-        >
-          {except && <span>Except</span>}
-          {row.varieties.map((variety) => {
-            const { to, label } = varietyDestination(row.id, variety.id, row.hasGuide);
-            return (
-              <Link
-                key={variety.id}
-                to={to}
-                state={{ label }}
-                className={`${textLink} min-w-11 max-w-full wrap-anywhere underline ${
-                  except ? "basis-11 grow sm:basis-auto sm:grow-0" : ""
-                }`}
-              >
-                {variety.name}
-              </Link>
-            );
-          })}
-        </p>
+        <div className="border-t border-rule px-2 leading-tight text-ink-secondary sm:px-3">
+          {except && (
+            <p className="pt-2 text-[0.625rem] leading-none font-semibold tracking-wider uppercase">Except</p>
+          )}
+          <p
+            className={`flex flex-wrap gap-x-2 ${except ? "text-[0.6875rem] sm:text-xs" : "text-xs sm:text-sm"}`}
+          >
+            {row.varieties.map((variety) => {
+              const { to, label } = varietyDestination(row.id, variety.id, row.hasGuide);
+              return (
+                <Link
+                  key={variety.id}
+                  to={to}
+                  state={{ label }}
+                  className={`${textLink} min-w-11 max-w-full wrap-anywhere underline ${
+                    except ? "items-start pt-1.5" : "items-center"
+                  }`}
+                >
+                  {variety.name}
+                </Link>
+              );
+            })}
+          </p>
+        </div>
       )}
     </li>
   );
