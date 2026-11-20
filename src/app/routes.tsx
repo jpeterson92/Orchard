@@ -2,6 +2,7 @@ import { Link, Outlet, type RouteObject, ScrollRestoration, useLocation } from "
 import appJson from "../generated/app.json";
 import type { AppData } from "../shared/app-data";
 import { About, Methods, NotFound, Privacy } from "./About";
+import { AppUpdate } from "./AppUpdate";
 import { Browse, BrowseCategory } from "./Browse";
 import { Calendar } from "./Calendar";
 import { Guide } from "./Guide";
@@ -28,6 +29,7 @@ function Layout() {
       <div
         className={`sm:pb-0 ${compactSearch ? "pb-[calc(3.75rem+env(safe-area-inset-bottom))]" : "pb-[calc(7rem+env(safe-area-inset-bottom))]"}`}
       >
+        <AppUpdate />
         <Outlet />
         <footer className="mx-auto max-w-2xl border-t border-rule px-4 py-2 text-sm sm:px-6">
           <nav aria-label="About Orchard" className="flex flex-wrap gap-x-6">

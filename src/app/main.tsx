@@ -15,10 +15,6 @@ const app = (
   </StrictMode>
 );
 
-// The service worker's precache is the offline copy (scripts/sw-build.ts). Production builds only: dev has none.
-if (import.meta.env.PROD && "serviceWorker" in navigator)
-  window.addEventListener("load", () => void navigator.serviceWorker.register("/sw.js"));
-
 // The SPA and offline fallbacks may serve Today's HTML on a different path. Hydrate only the matching page.
 const prerendered = container.dataset.prerenderPath === window.location.pathname;
 // Real-user measurement (src/app/measure.ts), production builds only; started before the first render's effects run.

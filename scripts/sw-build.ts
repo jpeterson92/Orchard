@@ -1,7 +1,6 @@
 // Writes the service worker (dist/client/sw.js) after the prerender, so its precache holds every page the build
 // wrote: the app, its bundled data, the prerendered pages and the art. That precache is the offline copy
-// (engineering plan §1). Workbox's generateSW; no skipWaiting or clientsClaim, so a new version installs in
-// the background and takes over on the next launch, never mid-visit.
+// (engineering plan §1). A new release waits until open clients close or the user accepts the update.
 import { generateSW } from "workbox-build";
 
 // Pages are served at clean URLs (wrangler.jsonc `html_handling`): items/apples/index.html is /items/apples.
@@ -22,6 +21,7 @@ const { count, size, warnings } = await generateSW({
   navigateFallback: "/",
   navigateFallbackDenylist: [/^\/api\//],
   cleanupOutdatedCaches: true,
+  clientsClaim: true,
   inlineWorkboxRuntime: true,
   mode: "production",
   sourcemap: false,
