@@ -159,19 +159,24 @@ function AlwaysGoodGrid({ rows }: { rows: AlwaysGoodRow[] }) {
 
 function StapleCard({ row }: { row: AlwaysGoodRow }) {
   const except = row.listing === "except";
+  const surface = "border border-rule bg-surface/50";
   return (
-    <li className="min-w-0 rounded-md border border-rule bg-surface/50">
+    <li className={`min-w-0 ${except ? "" : `rounded-md ${surface}`}`}>
       <Link
         to={`/items/${row.id}`}
-        className="flex min-h-14 items-center gap-2 rounded-md px-2 py-1.5 font-semibold text-ink hover:bg-surface focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent sm:px-3"
+        className={`flex min-h-14 items-center gap-2 rounded-md px-2 py-1.5 font-semibold text-ink hover:bg-surface focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent sm:px-3 ${except ? surface : ""}`}
       >
         <Art id={row.art} sizes="(min-width: 640px) 40px, 32px" className="size-8 shrink-0 sm:size-10" />
         <span className="min-w-0 font-editorial leading-tight wrap-anywhere sm:text-lg">{row.name}</span>
       </Link>
       {row.varieties.length > 0 && (
-        <div className="border-t border-rule px-2 leading-tight text-ink-secondary sm:px-3">
+        <div
+          className={`px-2 leading-tight text-ink-secondary sm:px-3 ${except ? "relative" : "border-t border-rule"}`}
+        >
           {except && (
-            <p className="pt-2 text-[0.625rem] leading-none font-semibold tracking-wider uppercase">Except</p>
+            <p className="pointer-events-none absolute inset-x-2 top-2 text-[0.625rem] leading-none font-semibold tracking-wider uppercase sm:inset-x-3">
+              Except
+            </p>
           )}
           <p
             className={`flex flex-wrap gap-x-2 ${except ? "text-[0.6875rem] sm:text-xs" : "text-xs sm:text-sm"}`}
@@ -184,7 +189,7 @@ function StapleCard({ row }: { row: AlwaysGoodRow }) {
                   to={to}
                   state={{ label }}
                   className={`${textLink} min-w-11 max-w-full wrap-anywhere underline ${
-                    except ? "items-start pt-1.5" : "items-center"
+                    except ? "items-end pt-5 pb-1" : "items-center"
                   }`}
                 >
                   {variety.name}
