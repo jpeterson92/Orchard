@@ -1,6 +1,6 @@
 # PROGRESS
 
-Updated: 2026-11-20 · Phase: build · Live: https://orchard.jpeterson92.workers.dev (deployed 2026-11-20; the origin-wording changes, the new wordmark and the P14 and P15 re-rating aren't deployed yet) · 10 commits unsynced
+Updated: 2026-11-20 · Phase: build · Live: https://orchard.jpeterson92.workers.dev (build `5da4479`, deployed and smoke-tested 2026-11-20) · synced
 
 ## Milestones
 
