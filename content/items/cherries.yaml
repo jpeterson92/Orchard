@@ -46,6 +46,10 @@ prep: Rinse just before eating. Pit with a cherry pitter, or a straw pushed thro
 origins:
   - origin: us-ca
     windows:
+      - from: apr-1
+        to: apr-1
+        rating: poor
+        reason: Two half-month sources start California's harvest in mid-April and only a month-level one says April, so early April is the edge of the harvest and reads poor.
       - from: apr-2
         to: apr-2
         rating: fair
@@ -58,6 +62,7 @@ origins:
         to: aug-2
         rating: fair
         reason: The panel rates late-August Washington fruit fair; the prime claims are one grower marketing its high-orchard cherries.
+      - { from: oct-1, to: oct-2, rating: poor }
   - origin: ca
     windows:
       - { from: jul-1, to: sep-1, rating: fair }

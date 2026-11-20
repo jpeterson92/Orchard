@@ -2135,3 +2135,8 @@ pages:
     kind: item-page
     origin: us
     items: [winter-squash]
+  - source: prnewswire-nw-cherries-while-they-last
+    url: https://prnewswire.com/news-releases/grab-your-fresh-sweet-northwest-cherries-while-they-last-301606949.html
+    kind: item-page
+    origin: us-wa
+    items: [cherries]

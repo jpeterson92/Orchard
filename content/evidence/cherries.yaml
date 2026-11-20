@@ -52,6 +52,13 @@ claims:
     specificity: season
     directness: availability
     paraphrase: Northwest dark sweet and yellow cherries run from June through the summer.
+  - source: prnewswire-nw-cherries-while-they-last
+    origin: us-wa
+    windows:
+      - { from: jun-2, to: sep-1, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: Northwest growers supply almost all the cherries in stores from mid-June through early September.
   - source: stemilt-when-cherries-in-season
     origin: us-wa
     windows:

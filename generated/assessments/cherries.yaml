@@ -6,7 +6,7 @@ status: draft
 rated by: origin
 peak worth seeking: true
 always good: false
-outlook: "GGGGGS·GPPPPPPGGGS··GGGG (Jan to Dec, two windows a month: P Peak, G Good, S Skip, · Limited evidence)"
+outlook: "GGGGGSSGPPPPPPGGGSSSGGGG (Jan to Dec, two windows a month: P Peak, G Good, S Skip, · Limited evidence)"
 windows:
   jan-1:
     when: early January (from 2026-01-01)
@@ -202,15 +202,30 @@ windows:
     today: not on Today
   apr-1:
     when: early April (from 2026-04-01)
-    verdict: limited
-    rule: 1
+    verdict: skip
+    rule: 2
     basis: typical
-    decided: none
+    decided:
+      origin: us-ca
+      rating: poor
+      evidence: low
+    weights: volume
+    typical: ["us-ca poor 100.0% (supply 0.23, thin)"]
+    peak:
+      share: 0.0%
+      available: "no: no origin at this level"
+      whole bin: no (≤ 75.0%)
+      origins: []
+    good:
+      share: 0.0%
+      available: "no: no origin at this level"
+      whole bin: no (≤ 75.0%)
+      origins: []
     look for: []
     label note: false
-    reasons: [origin-unrated us-ca]
+    reasons: [rated poor (origin us-ca)]
     confidence: medium (coverage)
-    markers: []
+    markers: [improves (apr-2)]
     today: not on Today
   apr-2:
     when: late April (from 2026-04-16)
@@ -571,27 +586,57 @@ windows:
     today: not on Today
   oct-1:
     when: early October (from 2026-10-01)
-    verdict: limited
-    rule: 1
+    verdict: skip
+    rule: 2
     basis: typical
-    decided: none
+    decided:
+      origin: us-wa
+      rating: poor
+      evidence: medium
+    weights: volume
+    typical: ["us-wa poor 100.0% (supply 0.00, thin)"]
+    peak:
+      share: 0.0%
+      available: "no: no origin at this level"
+      whole bin: no (≤ 75.0%)
+      origins: []
+    good:
+      share: 0.0%
+      available: "no: no origin at this level"
+      whole bin: no (≤ 75.0%)
+      origins: []
     look for: []
     label note: false
-    reasons: [origin-unrated us-wa]
-    confidence: medium (coverage)
-    markers: []
+    reasons: [rated poor (origin us-wa)]
+    confidence: high
+    markers: [improves (nov-1)]
     today: not on Today
   oct-2:
     when: late October (from 2026-10-16)
-    verdict: limited
-    rule: 1
+    verdict: skip
+    rule: 2
     basis: typical
-    decided: none
+    decided:
+      origin: us-wa
+      rating: poor
+      evidence: medium
+    weights: volume
+    typical: ["us-wa poor 100.0% (supply 0.00, thin)"]
+    peak:
+      share: 0.0%
+      available: "no: no origin at this level"
+      whole bin: no (≤ 75.0%)
+      origins: []
+    good:
+      share: 0.0%
+      available: "no: no origin at this level"
+      whole bin: no (≤ 75.0%)
+      origins: []
     look for: []
     label note: false
-    reasons: [origin-unrated us-wa]
-    confidence: medium (coverage)
-    markers: []
+    reasons: [rated poor (origin us-wa)]
+    confidence: high
+    markers: [improves (nov-1)]
     today: not on Today
   nov-1:
     when: early November (from 2026-11-01)
