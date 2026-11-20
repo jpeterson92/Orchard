@@ -255,7 +255,6 @@ windows:
       section: best right now
       line: Look for US-grown spring asparagus
       reason: Fades by early June.
-      origin: none
       avoid: Asparagus from Peru often disappoint now.
       tags: [Last call]
   may-2:
@@ -289,7 +288,6 @@ windows:
       section: best right now
       line: Look for US-grown spring asparagus
       reason: Fades by early June.
-      origin: none
       avoid: Asparagus from Peru often disappoint now.
       tags: [Last call]
   jun-1:

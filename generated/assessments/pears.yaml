@@ -26,7 +26,6 @@ windows:
       section: best right now
       line: Anjou and Comice
       reason: Fades by early February.
-      origin: Washington
       avoid: none
       tags: [Last call]
     varieties:
@@ -53,7 +52,6 @@ windows:
       section: best right now
       line: Anjou and Comice
       reason: Fades by early February.
-      origin: Washington
       avoid: none
       tags: [Last call]
     varieties:
@@ -80,7 +78,6 @@ windows:
       section: good buys
       line: Anjou, Bosc and Comice
       reason: none
-      origin: Washington
       avoid: none
       tags: []
     varieties:
@@ -106,7 +103,6 @@ windows:
       section: good buys
       line: Anjou, Bosc and Comice
       reason: none
-      origin: Washington
       avoid: none
       tags: []
     varieties:
@@ -132,7 +128,6 @@ windows:
       section: good buys
       line: Anjou and Bosc
       reason: none
-      origin: Washington
       avoid: none
       tags: []
     varieties:
@@ -157,7 +152,6 @@ windows:
       section: good buys
       line: Anjou and Bosc
       reason: none
-      origin: Washington
       avoid: none
       tags: []
     varieties:
@@ -182,7 +176,6 @@ windows:
       section: good buys
       line: Anjou and Bosc
       reason: Fades by early May.
-      origin: Argentina
       avoid: none
       tags: [Last call]
     varieties:
@@ -208,7 +201,6 @@ windows:
       section: good buys
       line: Anjou and Bosc
       reason: Fades by early May.
-      origin: Argentina
       avoid: none
       tags: [Last call]
     varieties:
@@ -329,7 +321,6 @@ windows:
       section: good buys
       line: Anjou and Bartlett
       reason: none
-      origin: California
       avoid: none
       tags: []
     varieties:
@@ -354,7 +345,6 @@ windows:
       section: best right now
       line: Bartlett and Starkrimson
       reason: none
-      origin: California
       avoid: none
       tags: []
     varieties:
@@ -380,7 +370,6 @@ windows:
       section: best right now
       line: Bartlett and Starkrimson
       reason: none
-      origin: California
       avoid: none
       tags: []
     varieties:
@@ -406,7 +395,6 @@ windows:
       section: best right now
       line: Bartlett and Starkrimson
       reason: none
-      origin: Washington
       avoid: none
       tags: []
     varieties:
@@ -432,7 +420,6 @@ windows:
       section: best right now
       line: Anjou, Bartlett, Bosc and Starkrimson
       reason: none
-      origin: Washington
       avoid: none
       tags: []
     varieties:
@@ -457,7 +444,6 @@ windows:
       section: best right now
       line: Anjou, Bartlett, Bosc and 2 more
       reason: none
-      origin: Washington
       avoid: none
       tags: []
     varieties:
@@ -481,7 +467,6 @@ windows:
       section: best right now
       line: Anjou, Bartlett, Bosc and 3 more
       reason: none
-      origin: Washington
       avoid: none
       tags: []
     varieties:
@@ -504,7 +489,6 @@ windows:
       section: best right now
       line: Anjou, Bosc and Comice
       reason: none
-      origin: Washington
       avoid: none
       tags: []
     varieties:
@@ -530,7 +514,6 @@ windows:
       section: best right now
       line: Anjou, Bosc and Comice
       reason: none
-      origin: Washington
       avoid: none
       tags: []
     varieties:
@@ -556,7 +539,6 @@ windows:
       section: best right now
       line: Anjou, Bosc, Comice and Seckel
       reason: none
-      origin: Washington
       avoid: none
       tags: []
     varieties:
@@ -581,7 +563,6 @@ windows:
       section: best right now
       line: Anjou, Bosc, Comice and Seckel
       reason: none
-      origin: Washington
       avoid: none
       tags: []
     varieties:

@@ -38,7 +38,6 @@ windows:
       section: good buys
       line: none
       reason: none
-      origin: Mexico
       avoid: none
       tags: []
   jan-2:
@@ -71,7 +70,6 @@ windows:
       section: good buys
       line: none
       reason: none
-      origin: Mexico
       avoid: none
       tags: []
   feb-1:
@@ -104,7 +102,6 @@ windows:
       section: good buys
       line: none
       reason: none
-      origin: Mexico
       avoid: none
       tags: []
   feb-2:
@@ -137,7 +134,6 @@ windows:
       section: good buys
       line: none
       reason: none
-      origin: Mexico
       avoid: none
       tags: []
   mar-1:
@@ -170,7 +166,6 @@ windows:
       section: good buys
       line: none
       reason: none
-      origin: Mexico
       avoid: none
       tags: []
   mar-2:
@@ -203,7 +198,6 @@ windows:
       section: good buys
       line: none
       reason: none
-      origin: Mexico
       avoid: none
       tags: []
   apr-1:
@@ -236,7 +230,6 @@ windows:
       section: good buys
       line: none
       reason: Fades by early May.
-      origin: Mexico
       avoid: none
       tags: [Last call]
   apr-2:
@@ -269,7 +262,6 @@ windows:
       section: good buys
       line: none
       reason: Fades by early May.
-      origin: Mexico
       avoid: none
       tags: [Last call]
   may-1:
@@ -356,7 +348,6 @@ windows:
       section: good buys
       line: Look for ones from California
       reason: none
-      origin: none
       avoid: Blackberries from Mexico often disappoint now.
       tags: []
   jun-2:
@@ -389,7 +380,6 @@ windows:
       section: good buys
       line: none
       reason: none
-      origin: California
       avoid: none
       tags: []
   jul-1:
@@ -422,7 +412,6 @@ windows:
       section: best right now
       line: none
       reason: Fades by early August.
-      origin: California
       avoid: none
       tags: [Last call]
   jul-2:
@@ -455,7 +444,6 @@ windows:
       section: best right now
       line: none
       reason: Fades by early August.
-      origin: California
       avoid: none
       tags: [Last call]
   aug-1:
@@ -488,7 +476,6 @@ windows:
       section: good buys
       line: none
       reason: none
-      origin: California
       avoid: none
       tags: []
   aug-2:
@@ -521,7 +508,6 @@ windows:
       section: good buys
       line: none
       reason: none
-      origin: California
       avoid: none
       tags: []
   sep-1:
@@ -554,7 +540,6 @@ windows:
       section: good buys
       line: Look for ones from California
       reason: Fades by early October.
-      origin: none
       avoid: Blackberries from Mexico often disappoint now.
       tags: [Last call]
   sep-2:
@@ -587,7 +572,6 @@ windows:
       section: good buys
       line: Look for ones from California
       reason: Fades by early October.
-      origin: none
       avoid: Blackberries from Mexico often disappoint now.
       tags: [Last call]
   oct-1:

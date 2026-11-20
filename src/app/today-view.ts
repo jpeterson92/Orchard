@@ -30,13 +30,10 @@ export interface Card {
   verdict: Verdict;
   /** One short factual reason, or null when it would only repeat the section ("At its best this time of year"). */
   reason: string | null;
-  /** Expanded card only: the origin the verdict rests on (see `cardOrigin`), named. The collapsed card names an
-   * origin only when it decides the pick, in `varietyLine`. */
-  origin: string | null;
   tags: string[];
   group: FilterGroup;
   /** Expanded card: what to avoid when the shopper picks by the label ("Brussels sprouts from Mexico often
-   * disappoint now."), the pick cue, the typical storage range and the origin (product spec §5 "Card behavior"). */
+   * disappoint now."), the pick cue and the typical storage range (product spec §5 "Card behavior"). */
   avoid: string | null;
   pick: string;
   storage: string;
@@ -166,19 +163,6 @@ export function avoidLine(
   return `${item.name} from ${originName(poor.origin, data)} often disappoint now.`;
 }
 
-/** The card's origin: the one the verdict rests on, so a card never names a poor origin beside a better verdict.
- * None when the second line already says what to look for (P16, P20). Items rated by variety, and Limited
- * evidence, name the month's top typical origin. */
-export function cardOrigin(
-  { reasons, selection }: Pick<VerdictResult, "reasons" | "selection">,
-  top: string | undefined,
-): string | null {
-  if (selection !== null || reasons.some((r) => r.code === "look-for")) return null;
-  const rated = reasons.find((r) => r.code === "rated");
-  if (rated && "origin" in rated && rated.origin) return rated.origin;
-  return top ?? null;
-}
-
 /** `today`: Today's cards leave out Reliable year-round, since only such an item's Peak reaches Today. Check the
  * label is never a tag: the second line says what to look for. */
 export function tags(item: AppItem, markers: readonly Marker[], { today = false } = {}): string[] {
@@ -201,7 +185,6 @@ export function todayView(data: AppData, date: PlainDate, mode: "today" | "typic
     const outlook = typicalOutlook(item.inputs, data.env, date.year);
     let peakLeft = 0;
     while (peakLeft < outlook.length && outlook[(window + peakLeft) % outlook.length] === "peak") peakLeft++;
-    const origin = cardOrigin(result, item.inputs.typicalOrigins[Math.floor(window / 2)]?.[0]);
     const reason = reasonText(result.verdict, result.reasons, result.markers);
     cards.set(item.inputs.id, {
       id: item.inputs.id,
@@ -210,7 +193,6 @@ export function todayView(data: AppData, date: PlainDate, mode: "today" | "typic
       varietyLine: varietyLine(item, result, data),
       verdict: result.verdict,
       reason: isGeneric(reason) ? null : atDate(reason, mode),
-      origin: origin === null ? null : originName(origin, data),
       tags: tags(item, result.markers, { today: true }),
       group: item.group,
       avoid: (() => {

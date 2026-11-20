@@ -306,7 +306,6 @@ windows:
       section: best right now
       line: Look for local Southern okra
       reason: none
-      origin: none
       avoid: none
       tags: []
   jul-1:
@@ -325,7 +324,6 @@ windows:
       section: best right now
       line: Look for local Southern okra
       reason: none
-      origin: none
       avoid: none
       tags: []
   jul-2:
@@ -344,7 +342,6 @@ windows:
       section: best right now
       line: Look for local Southern okra
       reason: none
-      origin: none
       avoid: none
       tags: []
   aug-1:
@@ -363,7 +360,6 @@ windows:
       section: best right now
       line: Look for local Southern okra
       reason: none
-      origin: none
       avoid: none
       tags: []
   aug-2:
@@ -382,7 +378,6 @@ windows:
       section: best right now
       line: Look for local Southern okra
       reason: none
-      origin: none
       avoid: none
       tags: []
   sep-1:
@@ -401,7 +396,6 @@ windows:
       section: best right now
       line: Look for local Southern okra
       reason: none
-      origin: none
       avoid: none
       tags: []
   sep-2:
@@ -420,7 +414,6 @@ windows:
       section: best right now
       line: Look for local Southern okra
       reason: none
-      origin: none
       avoid: none
       tags: []
   oct-1:

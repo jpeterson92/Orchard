@@ -177,7 +177,6 @@ function assessItem(app: AppData, item: AppItem, today: Map<string, TodayCards>[
           section: t.section,
           line: t.card.varietyLine ?? "none",
           reason: t.card.reason ?? "none",
-          origin: t.card.origin ?? "none",
           avoid: t.card.avoid ?? "none",
           tags: t.card.tags,
         }

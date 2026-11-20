@@ -1,5 +1,5 @@
 // Today (product spec §5, design system §5–6). Built for scanning in a store aisle: compact rows carrying only what
-// a shopper needs to choose (the origin waits for the expanded card), a reason only when it says more than the
+// a shopper needs to choose (an origin only when it decides the pick), a reason only when it says more than the
 // section heading, two columns of rows on wide screens.
 import { useId, useState } from "react";
 import { Link } from "react-router";
@@ -181,11 +181,6 @@ function Row({ card }: { card: Card }) {
             <p>
               <span className="font-semibold">Store:</span> {card.storage}
             </p>
-            {card.origin && (
-              <p>
-                <span className="font-semibold">Origin:</span> {card.origin}
-              </p>
-            )}
             <Link
               to={`/items/${card.id}`}
               className="inline-flex min-h-11 items-center gap-1 font-semibold text-olive underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"

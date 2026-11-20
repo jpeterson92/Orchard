@@ -134,7 +134,6 @@ windows:
       section: good buys
       line: none
       reason: none
-      origin: California
       avoid: none
       tags: []
   may-2:
@@ -167,7 +166,6 @@ windows:
       section: best right now
       line: none
       reason: none
-      origin: California
       avoid: none
       tags: []
   jun-1:
@@ -200,7 +198,6 @@ windows:
       section: best right now
       line: none
       reason: none
-      origin: California
       avoid: none
       tags: []
   jun-2:
@@ -233,7 +230,6 @@ windows:
       section: best right now
       line: none
       reason: none
-      origin: California
       avoid: none
       tags: []
   jul-1:
@@ -266,7 +262,6 @@ windows:
       section: best right now
       line: Look for ones from Washington
       reason: Fades by early August.
-      origin: none
       avoid: none
       tags: [Last call]
   jul-2:
@@ -299,7 +294,6 @@ windows:
       section: best right now
       line: Look for ones from Washington
       reason: Fades by early August.
-      origin: none
       avoid: none
       tags: [Last call]
   aug-1:
@@ -332,7 +326,6 @@ windows:
       section: good buys
       line: none
       reason: Fades by early September.
-      origin: Washington
       avoid: none
       tags: [Last call]
   aug-2:
@@ -365,7 +358,6 @@ windows:
       section: good buys
       line: none
       reason: Fades by early September.
-      origin: Washington
       avoid: none
       tags: [Last call]
   sep-1:
@@ -470,7 +462,6 @@ windows:
       section: good buys
       line: none
       reason: none
-      origin: Chile
       avoid: none
       tags: []
   dec-2:
@@ -503,6 +494,5 @@ windows:
       section: good buys
       line: none
       reason: none
-      origin: Chile
       avoid: none
       tags: []

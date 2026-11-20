@@ -199,11 +199,13 @@ export function itemView(
   // The card's reason leads when it says something specific (Last call, when it improves, why it's unknown);
   // the generic "At its best this time of year" gives way to the rating behind it.
   const headline = reasonText(result.verdict, result.reasons, result.markers);
-  // Items rated by variety: the variety summary says which varieties hold the verdict, so the reasons don't repeat it.
+  // The rating behind the verdict isn't restated: the variety summary names the varieties holding it, and an origin
+  // is named only when the shopper must pick by the label (the "Depends on the label" note), never one origin of
+  // several at the same level (P20).
   const lines = reasonLines(
     item,
     data,
-    result.reasons.filter((r) => !(r.code === "rated" && r.variety)),
+    result.reasons.filter((r) => r.code !== "rated"),
   );
   const generic = headline === GENERIC_REASON.peak || headline === GENERIC_REASON.good;
   const reasons = (generic && lines.length > 0 ? lines : [headline, ...lines]).slice(0, 3);

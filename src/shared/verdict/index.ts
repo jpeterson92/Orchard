@@ -276,7 +276,7 @@ function evaluateCore(item: ItemInputs, basis: Basis, window: number, ctx: EvalC
           decider: item.origins[lead],
           supplyOrigin: lead,
           peakAllowed: peak,
-          lookFor: shareOf(os) > env.rules.lookForShare + 1e-9 ? [] : os.slice(0, 3),
+          lookFor: shareOf(os) > env.rules.lookForShare + 1e-9 ? [] : os,
           poorOrigin: ratedTypical.find((o) => o !== lead && ratingOf(o) === "poor"),
         };
       };

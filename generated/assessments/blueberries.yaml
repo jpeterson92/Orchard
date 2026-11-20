@@ -254,7 +254,6 @@ windows:
       section: best right now
       line: Look for ones from Georgia and California
       reason: none
-      origin: none
       avoid: none
       tags: []
   may-2:
@@ -287,7 +286,6 @@ windows:
       section: best right now
       line: Look for ones from Georgia and California
       reason: none
-      origin: none
       avoid: none
       tags: []
   jun-1:
@@ -320,7 +318,6 @@ windows:
       section: best right now
       line: Look for ones from North Carolina and California
       reason: none
-      origin: none
       avoid: Blueberries from Mexico often disappoint now.
       tags: []
   jun-2:
@@ -353,7 +350,6 @@ windows:
       section: best right now
       line: Look for ones from North Carolina, New Jersey and California
       reason: none
-      origin: none
       avoid: Blueberries from Mexico often disappoint now.
       tags: []
   jul-1:
@@ -386,7 +382,6 @@ windows:
       section: best right now
       line: none
       reason: Fades by early August.
-      origin: Oregon
       avoid: none
       tags: [Last call]
   jul-2:
@@ -419,7 +414,6 @@ windows:
       section: best right now
       line: none
       reason: Fades by early August.
-      origin: Oregon
       avoid: none
       tags: [Last call]
   aug-1:

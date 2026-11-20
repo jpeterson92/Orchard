@@ -38,7 +38,6 @@ windows:
       section: good buys
       line: none
       reason: none
-      origin: Mexico
       avoid: none
       tags: []
   jan-2:
@@ -71,7 +70,6 @@ windows:
       section: good buys
       line: none
       reason: none
-      origin: Mexico
       avoid: none
       tags: []
   feb-1:
@@ -104,7 +102,6 @@ windows:
       section: good buys
       line: none
       reason: none
-      origin: Mexico
       avoid: none
       tags: []
   feb-2:
@@ -137,7 +134,6 @@ windows:
       section: good buys
       line: none
       reason: none
-      origin: Mexico
       avoid: none
       tags: []
   mar-1:
@@ -170,7 +166,6 @@ windows:
       section: good buys
       line: none
       reason: none
-      origin: Mexico
       avoid: none
       tags: []
   mar-2:
@@ -203,7 +198,6 @@ windows:
       section: good buys
       line: none
       reason: none
-      origin: Mexico
       avoid: none
       tags: []
   apr-1:
@@ -236,7 +230,6 @@ windows:
       section: good buys
       line: none
       reason: Fades by early May.
-      origin: Mexico
       avoid: none
       tags: [Last call]
   apr-2:
@@ -269,7 +262,6 @@ windows:
       section: good buys
       line: none
       reason: Fades by early May.
-      origin: Mexico
       avoid: none
       tags: [Last call]
   may-1:
@@ -518,7 +510,6 @@ windows:
       section: good buys
       line: none
       reason: none
-      origin: United States
       avoid: none
       tags: []
   sep-2:
@@ -551,7 +542,6 @@ windows:
       section: best right now
       line: none
       reason: none
-      origin: United States
       avoid: none
       tags: []
   oct-1:
@@ -584,7 +574,6 @@ windows:
       section: best right now
       line: none
       reason: none
-      origin: United States
       avoid: none
       tags: []
   oct-2:
@@ -617,7 +606,6 @@ windows:
       section: best right now
       line: none
       reason: none
-      origin: United States
       avoid: none
       tags: []
   nov-1:
@@ -650,7 +638,6 @@ windows:
       section: best right now
       line: none
       reason: none
-      origin: United States
       avoid: none
       tags: []
   nov-2:
@@ -683,7 +670,6 @@ windows:
       section: best right now
       line: none
       reason: none
-      origin: United States
       avoid: none
       tags: []
   dec-1:
@@ -716,7 +702,6 @@ windows:
       section: best right now
       line: none
       reason: Fades by early January.
-      origin: United States
       avoid: none
       tags: [Last call]
   dec-2:
@@ -749,6 +734,5 @@ windows:
       section: best right now
       line: none
       reason: Fades by early January.
-      origin: United States
       avoid: none
       tags: [Last call]

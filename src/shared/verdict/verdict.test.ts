@@ -495,7 +495,7 @@ describe("a level reasonably likely on the shelf (P20)", () => {
     expect([r.verdict, r.labelNote]).toEqual(["peak", false]);
     expect(r.reasons).toContainEqual({ code: "typical-origin-poor", origin: "mx" });
   });
-  it("names at most three origins to look for, top first", () =>
+  it("names every origin to look for, top first", () =>
     expect(
       lookFor(
         at(
@@ -505,7 +505,7 @@ describe("a level reasonably likely on the shelf (P20)", () => {
           ),
         ),
       ),
-    ).toEqual(["mx", "us-ga", "us-fl"]));
+    ).toEqual(["mx", "us-ga", "us-fl", "us-tx"]));
   it("far and thin prime origins don't count toward Peak, but count toward Good", () => {
     const far = at(shares({ "us-ca": "poor", pe: "prime" }, [0.5, 0.4]));
     expect([far.verdict, decidedBy(far)?.origin]).toEqual(["good", "pe"]);

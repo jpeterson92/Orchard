@@ -173,7 +173,6 @@ windows:
       section: best right now
       line: Look for ones from Florida
       reason: none
-      origin: none
       avoid: Sweet corn from Mexico often disappoint now.
       tags: []
   apr-1:
@@ -206,7 +205,6 @@ windows:
       section: best right now
       line: Look for ones from Florida
       reason: none
-      origin: none
       avoid: none
       tags: []
   apr-2:
@@ -239,7 +237,6 @@ windows:
       section: best right now
       line: none
       reason: none
-      origin: Florida
       avoid: none
       tags: []
   may-1:
@@ -272,7 +269,6 @@ windows:
       section: best right now
       line: none
       reason: none
-      origin: Florida
       avoid: none
       tags: []
   may-2:
@@ -305,7 +301,6 @@ windows:
       section: best right now
       line: none
       reason: none
-      origin: Florida
       avoid: none
       tags: []
   jun-1:
@@ -338,7 +333,6 @@ windows:
       section: best right now
       line: none
       reason: none
-      origin: Georgia
       avoid: none
       tags: []
   jun-2:
@@ -371,7 +365,6 @@ windows:
       section: best right now
       line: none
       reason: none
-      origin: Georgia
       avoid: none
       tags: []
   jul-1:
@@ -404,7 +397,6 @@ windows:
       section: best right now
       line: Look for ones from California
       reason: none
-      origin: none
       avoid: none
       tags: []
   jul-2:
@@ -437,7 +429,6 @@ windows:
       section: best right now
       line: Look for ones from California
       reason: none
-      origin: none
       avoid: none
       tags: []
   aug-1:
@@ -456,7 +447,6 @@ windows:
       section: best right now
       line: Look for local summer corn
       reason: none
-      origin: none
       avoid: none
       tags: []
   aug-2:
@@ -475,7 +465,6 @@ windows:
       section: best right now
       line: Look for local summer corn
       reason: none
-      origin: none
       avoid: none
       tags: []
   sep-1:
@@ -494,7 +483,6 @@ windows:
       section: best right now
       line: Look for local summer corn
       reason: Fades by early October.
-      origin: none
       avoid: none
       tags: [Last call]
   sep-2:
@@ -513,7 +501,6 @@ windows:
       section: best right now
       line: Look for local summer corn
       reason: Fades by early October.
-      origin: none
       avoid: none
       tags: [Last call]
   oct-1:
@@ -546,7 +533,6 @@ windows:
       section: good buys
       line: none
       reason: Fades by early November.
-      origin: Georgia
       avoid: none
       tags: [Last call]
   oct-2:
@@ -579,7 +565,6 @@ windows:
       section: good buys
       line: none
       reason: Fades by early November.
-      origin: Georgia
       avoid: none
       tags: [Last call]
   nov-1:

@@ -254,7 +254,6 @@ windows:
       section: good buys
       line: Look for ones from Arizona and California
       reason: none
-      origin: none
       avoid: Cantaloupe from Guatemala often disappoint now.
       tags: []
   may-2:
@@ -287,7 +286,6 @@ windows:
       section: good buys
       line: Look for ones from Arizona and California
       reason: none
-      origin: none
       avoid: Cantaloupe from Guatemala often disappoint now.
       tags: []
   jun-1:
@@ -321,7 +319,6 @@ windows:
       section: good buys
       line: none
       reason: none
-      origin: Arizona
       avoid: none
       tags: []
   jun-2:
@@ -354,7 +351,6 @@ windows:
       section: good buys
       line: none
       reason: none
-      origin: Arizona
       avoid: none
       tags: []
   jul-1:
@@ -387,7 +383,6 @@ windows:
       section: best right now
       line: none
       reason: none
-      origin: California
       avoid: none
       tags: []
   jul-2:
@@ -420,7 +415,6 @@ windows:
       section: best right now
       line: none
       reason: none
-      origin: California
       avoid: none
       tags: []
   aug-1:
@@ -453,7 +447,6 @@ windows:
       section: best right now
       line: none
       reason: none
-      origin: California
       avoid: none
       tags: []
   aug-2:
@@ -486,7 +479,6 @@ windows:
       section: best right now
       line: none
       reason: none
-      origin: California
       avoid: none
       tags: []
   sep-1:
@@ -519,7 +511,6 @@ windows:
       section: best right now
       line: none
       reason: Fades by early October.
-      origin: California
       avoid: none
       tags: [Last call]
   sep-2:
@@ -552,7 +543,6 @@ windows:
       section: best right now
       line: none
       reason: Fades by early October.
-      origin: California
       avoid: none
       tags: [Last call]
   oct-1:
@@ -585,7 +575,6 @@ windows:
       section: good buys
       line: none
       reason: Fades by late October.
-      origin: California
       avoid: none
       tags: [Last call]
   oct-2:
@@ -645,7 +634,6 @@ windows:
       section: good buys
       line: Look for ones from Arizona
       reason: Fades by early December.
-      origin: none
       avoid: Cantaloupe from Guatemala often disappoint now.
       tags: [Last call]
   nov-2:
@@ -678,7 +666,6 @@ windows:
       section: good buys
       line: Look for ones from Arizona
       reason: Fades by early December.
-      origin: none
       avoid: Cantaloupe from Guatemala often disappoint now.
       tags: [Last call]
   dec-1:

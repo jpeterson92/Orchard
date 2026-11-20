@@ -38,7 +38,6 @@ windows:
       section: best right now
       line: none
       reason: none
-      origin: Texas
       avoid: none
       tags: []
   jan-2:
@@ -71,7 +70,6 @@ windows:
       section: best right now
       line: none
       reason: none
-      origin: Texas
       avoid: none
       tags: []
   feb-1:
@@ -104,7 +102,6 @@ windows:
       section: best right now
       line: none
       reason: none
-      origin: Texas
       avoid: none
       tags: []
   feb-2:
@@ -137,7 +134,6 @@ windows:
       section: best right now
       line: none
       reason: none
-      origin: Texas
       avoid: none
       tags: []
   mar-1:
@@ -170,7 +166,6 @@ windows:
       section: best right now
       line: none
       reason: Fades by early April.
-      origin: Texas
       avoid: none
       tags: [Last call]
   mar-2:
@@ -203,7 +198,6 @@ windows:
       section: best right now
       line: none
       reason: Fades by early April.
-      origin: Texas
       avoid: none
       tags: [Last call]
   apr-1:
@@ -668,7 +662,6 @@ windows:
       section: best right now
       line: none
       reason: none
-      origin: Texas
       avoid: none
       tags: []
   dec-2:
@@ -701,6 +694,5 @@ windows:
       section: best right now
       line: none
       reason: none
-      origin: Texas
       avoid: none
       tags: []

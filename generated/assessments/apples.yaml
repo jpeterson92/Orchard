@@ -26,7 +26,6 @@ windows:
       section: best right now
       line: Pink Lady and Ambrosia
       reason: Fades by early February.
-      origin: Washington
       avoid: none
       tags: [Last call]
     varieties:
@@ -51,7 +50,6 @@ windows:
       section: best right now
       line: Pink Lady and Ambrosia
       reason: Fades by early February.
-      origin: Washington
       avoid: none
       tags: [Last call]
     varieties:
@@ -317,7 +315,6 @@ windows:
       section: best right now
       line: Gala
       reason: none
-      origin: Washington
       avoid: none
       tags: []
     varieties:
@@ -343,7 +340,6 @@ windows:
       section: best right now
       line: Honeycrisp and Gala
       reason: none
-      origin: Washington
       avoid: none
       tags: []
     varieties:
@@ -368,7 +364,6 @@ windows:
       section: best right now
       line: Honeycrisp and Gala
       reason: none
-      origin: Washington
       avoid: none
       tags: []
     varieties:
@@ -392,7 +387,6 @@ windows:
       section: best right now
       line: Honeycrisp, Gala, Fuji and Ambrosia
       reason: none
-      origin: Washington
       avoid: none
       tags: []
     varieties:
@@ -416,7 +410,6 @@ windows:
       section: best right now
       line: Honeycrisp, Gala, Fuji and Ambrosia
       reason: none
-      origin: Washington
       avoid: none
       tags: []
     varieties:
@@ -440,7 +433,6 @@ windows:
       section: best right now
       line: Honeycrisp, Gala, Fuji and 2 more
       reason: none
-      origin: Washington
       avoid: none
       tags: []
     varieties:
@@ -465,7 +457,6 @@ windows:
       section: best right now
       line: Honeycrisp, Gala, Fuji and 2 more
       reason: none
-      origin: Washington
       avoid: none
       tags: []
     varieties:
@@ -490,7 +481,6 @@ windows:
       section: best right now
       line: Fuji, Pink Lady and Ambrosia
       reason: none
-      origin: Washington
       avoid: none
       tags: []
     varieties:
@@ -514,7 +504,6 @@ windows:
       section: best right now
       line: Fuji, Pink Lady and Ambrosia
       reason: none
-      origin: Washington
       avoid: none
       tags: []
     varieties:

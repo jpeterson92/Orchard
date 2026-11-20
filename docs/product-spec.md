@@ -161,8 +161,8 @@ An item that is both Peak and Last call appears once, under Best right now, carr
 
 ### Card behavior (the same everywhere)
 
-- **The collapsed card shows only what's needed to shop well:** the verdict, markers, and what to look for when the verdict holds for only part of the bin (a variety, an origin or a selection). Nice-to-know facts wait for the expanded card.
-- **Tapping a card expands it in place.** The expanded card shows how to pick, the typical storage range, the origin the verdict rests on (unless the card already says which origins to look for), and a clear **Details →** button that opens the item page.
+- **The collapsed card shows only what's needed to shop well:** the verdict, markers, and what to look for when the verdict holds for only part of the bin (a variety, an origin or a selection). Nice-to-know facts wait for the expanded card. No screen singles out one origin when others typically in stores are as good: a shopper holding one of those shouldn't put it back.
+- **Tapping a card expands it in place.** The expanded card shows how to pick, the typical storage range, and a clear **Details →** button that opens the item page.
 - **Tapping a list row** (search results, Browse lists) opens the page directly, because a row is a lookup. Rows still show the verdict badge, so the answer is often visible without a tap.
 
 ### Item page
@@ -287,7 +287,7 @@ So an expensive item can still be Peak, and a heavily advertised item can't beco
 
 **Distance cap.** Only produce grown in the US, Mexico or Canada can make an item Peak. Produce shipped from further away (Central and South America, Africa, Oceania, Europe, Asia) reads Good at most in the item verdict, because produce that travels far is less reliably at its best on arrival. Its own rating still shows in "What does the label say?".
 
-**Look for.** When at most three quarters of the typical supply is at the verdict's level (rules.yaml `lookForShare`), a shopper has a real chance of picking the wrong one, so the card's second line names the origins at that level ("Look for ones from California and Mexico", up to three), the expanded card names a poor origin to avoid, the item page's "Depends on the label" note names both, and confidence loses a level on agreement. Above three quarters the card adds nothing, so the shopper needn't think about it; the item page still names any poor typical origin. Items rated by variety always name their varieties, and selections always say what to look for.
+**Look for.** When at most three quarters of the typical supply is at the verdict's level (rules.yaml `lookForShare`), a shopper has a real chance of picking the wrong one, so the card's second line names every origin at that level ("Look for ones from California and Mexico"), so a shopper never puts back a good one, the expanded card names a poor origin to avoid, the item page's "Depends on the label" note names both, and confidence loses a level on agreement. Above three quarters no origin is named as the one to buy, on the card or the item page, so the shopper needn't think about it; the item page still names any poor typical origin. Items rated by variety always name their varieties, and selections always say what to look for.
 
 **Items rated by variety** run rules 1–4 once per rated variety typically in stores, with the variety's quality windows in place of the origins'. Supply, and the distance cap, follow the item's top typical origin. The item takes the best result. A variety that is widely sold but never worth seeking out (McIntosh) is marked not recommended: Today never names it and it is never offered as an alternative, but its own page and label advice still rate it.
 

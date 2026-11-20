@@ -389,7 +389,6 @@ windows:
       section: best right now
       line: none
       reason: none
-      origin: California
       avoid: none
       tags: []
   aug-1:
@@ -422,7 +421,6 @@ windows:
       section: best right now
       line: none
       reason: none
-      origin: California
       avoid: none
       tags: []
   aug-2:
@@ -455,7 +453,6 @@ windows:
       section: best right now
       line: none
       reason: none
-      origin: California
       avoid: none
       tags: []
   sep-1:
@@ -488,7 +485,6 @@ windows:
       section: best right now
       line: none
       reason: none
-      origin: California
       avoid: none
       tags: []
   sep-2:
@@ -521,7 +517,6 @@ windows:
       section: best right now
       line: none
       reason: none
-      origin: California
       avoid: none
       tags: []
   oct-1:
@@ -554,7 +549,6 @@ windows:
       section: best right now
       line: none
       reason: Fades by early November.
-      origin: California
       avoid: none
       tags: [Last call]
   oct-2:
@@ -587,7 +581,6 @@ windows:
       section: best right now
       line: none
       reason: Fades by early November.
-      origin: California
       avoid: none
       tags: [Last call]
   nov-1:

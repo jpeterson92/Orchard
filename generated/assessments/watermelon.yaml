@@ -227,7 +227,6 @@ windows:
       section: good buys
       line: none
       reason: none
-      origin: Mexico
       avoid: none
       tags: []
   may-1:
@@ -260,7 +259,6 @@ windows:
       section: best right now
       line: Look for ones from Florida
       reason: none
-      origin: none
       avoid: none
       tags: []
   may-2:
@@ -293,7 +291,6 @@ windows:
       section: best right now
       line: Look for ones from Florida
       reason: none
-      origin: none
       avoid: none
       tags: []
   jun-1:
@@ -326,7 +323,6 @@ windows:
       section: best right now
       line: none
       reason: none
-      origin: Georgia
       avoid: none
       tags: []
   jun-2:
@@ -359,7 +355,6 @@ windows:
       section: best right now
       line: none
       reason: none
-      origin: Georgia
       avoid: none
       tags: []
   jul-1:
@@ -392,7 +387,6 @@ windows:
       section: best right now
       line: none
       reason: none
-      origin: Georgia
       avoid: none
       tags: []
   jul-2:
@@ -425,7 +419,6 @@ windows:
       section: best right now
       line: none
       reason: none
-      origin: Georgia
       avoid: none
       tags: []
   aug-1:
@@ -458,7 +451,6 @@ windows:
       section: best right now
       line: none
       reason: none
-      origin: Indiana
       avoid: none
       tags: []
   aug-2:
@@ -491,7 +483,6 @@ windows:
       section: best right now
       line: none
       reason: Fades by late September.
-      origin: Indiana
       avoid: none
       tags: [Last call]
   sep-1:
@@ -524,7 +515,6 @@ windows:
       section: best right now
       line: Look for ones from California
       reason: Fades by late September.
-      origin: none
       avoid: none
       tags: [Last call]
   sep-2:
@@ -557,7 +547,6 @@ windows:
       section: good buys
       line: none
       reason: Fades by early October.
-      origin: California
       avoid: none
       tags: [Last call]
   oct-1:
