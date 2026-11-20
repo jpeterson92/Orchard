@@ -35,6 +35,12 @@ Jared:
 - Review the drafts in `content:report` (`npm run content:report > .cache/content-report.txt`) and the variety traits.
 - Optional: model panel runs from other providers (`content/panel/README.md`).
 
+**After v1 readiness is verified (M9 and Gate 1)**
+
+- **New item:** Prioritize broccolini. Check mainstream supermarket coverage for fresh English shelling peas and pomelo, and revisit radicchio and Belgian endive.
+- **First type notes:** Cover standard slicing, English/seedless, Persian/mini and pickling cucumbers. Cover russet, Yukon Gold/yellow, red and fingerling potatoes, plus orange-fleshed, Japanese and purple-fleshed sweet potatoes. Cover yellow, red, white and sweet onions (including Vidalia), and green vs. gold kiwifruit (including SunGold).
+- **More grocery labels:** White button, cremini/baby bella, portobello and shiitake mushrooms. Green, red and black seedless grapes and seasonal Cotton Candy. Heirloom tomatoes, shishito peppers and seasonal Hatch green chiles. Meyer lemons, Persian and Key limes, and fresh sage and oregano. Consider Cortland and Rome apples and short type notes for donut peaches and pluots.
+
 ## Open questions (Jared)
 
 1. P1 at 75%: revisit as more items are drafted.
