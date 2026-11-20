@@ -130,7 +130,7 @@ Staged PNG [`pomegranates-thumbnail-v1.png`](pomegranates-thumbnail-v1.png). Int
 }
 ```
 
-[USDA Wonderful accession](https://npgsweb.ars-grin.gov/gringlobal/accessiondetail?id=1549472), [UF/IFAS pomegranate description and cultivar photo](https://ask.ifas.ufl.edu/publication/mg056), and the [OECD Wonderful photo plate](https://www.oecd.org/content/dam/oecd/en/publications/reports/2014/03/pomegranate_g1g39429/9789264206700-en-fr.pdf) ground the crown, rind, and cut anatomy. The Orchard illustration-language study, [pear and pomegranate study](../../../docs/design/references/Pear%2C%20Pomegranate%2C%20and%20Apple%20Blossom%20Study-1.png), and [approved staged item pear](../04-pears/pears-thumbnail-v2.png) guided paint handling.
+[USDA Wonderful accession](https://npgsweb.ars-grin.gov/gringlobal/accessiondetail?id=1549472), [UF/IFAS pomegranate description and cultivar photo](https://ask.ifas.ufl.edu/publication/mg056), and the [OECD Wonderful photo plate](https://www.oecd.org/content/dam/oecd/en/publications/reports/2014/03/pomegranate_g1g39429/9789264206700-en-fr.pdf) ground the crown, rind, and cut anatomy. The Orchard illustration-language study, [pear and pomegranate study](../../../docs/design/references/10-botanical-study.png), and [approved staged item pear](../04-pears/pears-thumbnail-v2.png) guided paint handling.
 
 #### Generation prompt
 

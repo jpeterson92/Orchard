@@ -5,7 +5,7 @@ Pear item and rated varieties Anjou, Bartlett, Bosc, Comice, Seckel and Starkrim
 ## Shared production brief
 
 - Use a single whole pear as a 72 px list thumbnail and 320 px detail illustration, following [illustration guide §2 A](../../../docs/design/illustration-guide.md#a-isolated-produce-illustration).
-- Built-in image generation used [04 Illustration Language](../../../docs/design/references/04-illustration-language.png) and the left-hand pear in the [local pear study](../../../docs/design/references/Pear%2C%20Pomegranate%2C%20and%20Apple%20Blossom%20Study-1.png) for paint handling. The checked apple pilot was unavailable for the first step.
+- Built-in image generation used [04 Illustration Language](../../../docs/design/references/04-illustration-language.png) and the left-hand pear in the [local pear study](../../../docs/design/references/10-botanical-study.png) for paint handling. The checked apple pilot was unavailable for the first step.
 - The first three source paintings were centered on a 1440 × 1440 transparent RGBA PNG canvas without resampling, to align framing and give the stems crop safety. The staged PNGs each passed `checkMaster`. A visual check at 72 and 320 px on ivory and warm charcoal found clear silhouettes and no obvious pale halos.
 - Manifest fields below are proposed for integration. The canonical processor generates square 160, 320 and 640 px WebP derivatives at quality 82 and alpha quality 90. It moves integrated `requested` entries to `review` after processing. Jared makes review and approval decisions.
 
