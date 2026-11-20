@@ -43,6 +43,18 @@ origins:
         reason: Only availability claims speak here, and the model panel has no rating.
       - { from: sep-2, to: sep-2, rating: fair }
       - { from: oct-1, to: dec-2, rating: prime }
+  - origin: il
+    windows:
+      - { from: jan-1, to: mar-2, rating: fair }
+  - origin: cl
+    windows:
+      - { from: mar-1, to: jun-1, rating: fair }
+      - { from: jun-2, to: jun-2, rating: poor }
+  - origin: pe
+    windows:
+      - { from: mar-1, to: mar-2, rating: poor }
+      - { from: apr-1, to: may-2, rating: fair }
+      - { from: jun-1, to: aug-2, rating: poor }
 typicalOrigins:
   - from: sep
     to: dec

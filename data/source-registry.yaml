@@ -932,11 +932,6 @@ pages:
     kind: item-page
     origin: cl
     items: [peaches, nectarines, plums]
-  - source: freshplaza-chile-stone-fruit-2025
-    url: https://www.freshplaza.com/article/9715897/finishing-a-challenging-season-on-chilean-stone-fruit
-    kind: item-page
-    origin: cl
-    items: [peaches, nectarines, plums]
   - source: scripps-summer-fruit-months
     url: https://www.tmj4.com/these-are-the-months-each-summer-fruit-tastes-best
     kind: item-page
@@ -1792,6 +1787,21 @@ pages:
   # pomegranates
   - source: perishablenews-israeli-pomegranates-march
     url: https://perishablenews.com/?p=185404
+    kind: item-page
+    origin: il
+    items: [pomegranates]
+  - source: freshplaza-sa-pomegranates-strong-demand
+    url: https://www.freshplaza.com/north-america/article/9097766/strong-demand-for-south-american-pomegranates-in-us
+    kind: item-page
+    origin: pe
+    items: [pomegranates]
+  - source: freshplaza-peru-pomegranates-us-opportunities
+    url: https://www.freshplaza.com/article/164809/Peruvian-pomegranates-have-opportunities-in-the-US
+    kind: item-page
+    origin: pe
+    items: [pomegranates]
+  - source: freshplaza-jvi-israel-pomegranates
+    url: https://www.freshplaza.com/north-america/article/9476310/us-importer-expects-to-bring-in-strong-volumes-of-wonderful-pomegranates-from-israel/
     kind: item-page
     origin: il
     items: [pomegranates]

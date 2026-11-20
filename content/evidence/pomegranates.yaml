@@ -38,6 +38,28 @@ claims:
     specificity: season
     directness: availability
     paraphrase: Chile's pomegranate season starts in February and runs into spring, when US demand is lower.
+  - source: freshplaza-chile-pomegranates
+    origin: cl
+    windows:
+      - { from: mar-2, to: jun-2, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: Chilean pomegranates began arriving in late March and keep coming until the beginning of July.
+  - source: freshplaza-sa-pomegranates-strong-demand
+    origin: cl
+    windows:
+      - { from: mar-1, to: jun-1, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Chile's early varieties arrive in the first week of March, then Wonderful; imports run until June.
+  # Argentina: one importer since 2018.
+  - source: freshplaza-sa-pomegranates-strong-demand
+    origin: ar
+    windows:
+      - { from: apr-2, to: may-2, rating: fair }
+    specificity: season
+    directness: eating-quality
+    paraphrase: An importer finds late-April Argentine fruit large and very sweet, about 17 to 18 Brix, with little membrane.
   # Israel: Wonderful exports from late October through February, into March.
   - source: freshplaza-israeli-pomegranates-in-markets
     origin: il
@@ -49,7 +71,36 @@ claims:
   - source: perishablenews-israeli-pomegranates-march
     origin: il
     windows:
-      - { from: mar-1, to: mar-2, rating: prime }
+      - { from: jan-1, to: mar-2, rating: prime }
     specificity: month
     directness: availability
     paraphrase: Israeli pomegranates follow the holidays, with availability extending into March.
+  - source: freshplaza-jvi-israel-pomegranates
+    origin: il
+    windows:
+      - { from: dec-2, to: mar-2, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: An importer's first Israeli containers arrive in mid-December; Israel's season runs to March.
+  # Peru: harvest March to May, in US stores April into June.
+  - source: freshplaza-peru-pomegranates-us-opportunities
+    origin: pe
+    windows:
+      - { from: mar-1, to: may-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Peru's pomegranate harvest runs March to May, filling the gap before California's October start.
+  - source: freshplaza-peru-figs-pomegranates-spring
+    origin: pe
+    windows:
+      - { from: apr-1, to: may-2, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: An importer's first Peruvian pomegranates arrive in mid-April, after Israel's season, and last through May.
+  - source: freshplaza-jvi-israel-pomegranates
+    origin: pe
+    windows:
+      - { from: apr-1, to: jun-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: After Israel's season ends in March, Peruvian supply follows and could last into June or July.
