@@ -77,7 +77,7 @@ When documents conflict: Jared's latest instruction > product spec for behavior 
 - Work on `main` in small commits. Each message says what changed and how it was checked. Never mix refactors, upgrades or formatting with feature work.
 - Commit locally after each increment. **Sync to GitHub (push `origin`, a private repository) only when Jared asks**, and before a deploy. Say in the summary how many commits are unsynced.
 - For a sync without deployment, run `npm run check` and `npm run e2e` before pushing. GitHub CI runs `npm run check` and both browser projects in parallel jobs as a backstop. **Never wait on, poll or watch GitHub Actions after a push.**
-- Deploy only when Jared asks. `npm run deploy` stops if the previous CI run failed. Read the failed log (`gh run view <id> --log-failed`) before resolving it. The command checks the homepage and Worker health once after publication. Live URL: https://orchard.jpeterson92.workers.dev
+- Deploy only when Jared asks. Use the latest commit on `main` by default. Deploy an older commit or roll back only at Jared's explicit request. `npm run deploy` stops if the previous CI run failed. Read the failed log (`gh run view <id> --log-failed`) before resolving it. The command checks the homepage and Worker health once after publication. Live URL: https://orchard.jpeterson92.workers.dev
 - No secrets in git. `.env` and `.dev.vars` are ignored; `.env.example` lists variable names only.
 
 ## End of every session
