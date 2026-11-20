@@ -37,3 +37,7 @@ Use Image 2 for apparent scale and watercolor handling only. Paint two whole rip
 Passed `checkMaster` as a 1254 × 1254 RGBA PNG. Checked at 72, 112 and 320 px on ivory and warm charcoal. The closed, elongated berries and dark rounded drupelets read at card size, with enough violet in the contour to hold on charcoal. The fruit has a visibly different shape and surface from the red raspberry cluster.
 
 Touch-up if requested. Soften the repeated pale highlights on the drupelets while preserving the natural sheen.
+
+## Revision requested: blackberries-thumbnail-v1 (Jared, 2026-11-19)
+
+The berries are nearly black with little reflected light, so the silhouette disappears on warm charcoal at 40 and 72 px. Keep the deep purple-black, but give each drupelet a cooler blue-violet reflected rim and a few small, varied highlights so the outline and the drupelet clusters read on charcoal at card size. Keep the two-berry composition. Paint `blackberries-thumbnail-v2`, check it on the review sheet beside the family, and hand it off once Jared approves it. The approved v1 stays in the app until then.

@@ -74,3 +74,7 @@ Jared approved both staged v1 candidates in the batch review on November 19, 202
 - `pears-red-bartlett-thumbnail-v1`
 
 Use `approved` for both manifest records at integration. Canonical placement and the 160, 320, and 640 px WebP exports are ready for the shared art owner.
+
+## Revision requested: pears-red-bartlett-thumbnail-v1 (Jared, 2026-11-19)
+
+It is the same solid red as Starkrimson, so the two varieties can only be told apart by their labels. A Red Bartlett has the Bartlett bell shape with red striations and blush over a visible yellow or yellow-green ground, lighter near the neck and in streaks. Starkrimson is the solid, even crimson one. Paint the difference so the two read apart side by side at 72 px. Paint `pears-red-bartlett-thumbnail-v2`, check it on the review sheet beside the family, and hand it off once Jared approves it. The approved v1 stays in the app until then.
