@@ -562,7 +562,7 @@ const broken: [string, (r: RawInputs) => void, string][] = [
   [
     "card line over 12 words",
     (r) =>
-      (firstItem(r).cardLine = "one two three four five six seven eight nine ten eleven twelve thirteen"),
+      (firstItem(r).cardLine = "one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen"),
     "at most 12 words",
   ],
   [
@@ -681,11 +681,11 @@ const broken: [string, (r: RawInputs) => void, string][] = [
     "needs a summary for each of the 24 windows",
   ],
   [
-    "a Today summary over 12 words",
+    "a Today summary over 18 words",
     (r) =>
       ((r.summaries as Any).windows["jan-1"] =
-        "one two three four five six seven eight nine ten eleven twelve thirteen"),
-    "content/summaries.yaml: windows.jan-1: at most 12 words",
+        "one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen"),
+    "content/summaries.yaml: windows.jan-1: at most 18 words",
   ],
   [
     "a Today summary under an unknown window",

@@ -22,7 +22,7 @@ export const CARD_WORDS = 12;
 export const FILTER_WORDS = 3;
 export const SECTION_WORDS = 60;
 /** The one-line Today summary. */
-export const SUMMARY_WORDS = 12;
+export const SUMMARY_WORDS = 18;
 
 const review = {
   status: z.enum(["draft", "reviewed"]),

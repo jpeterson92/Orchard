@@ -374,7 +374,7 @@ An item that meets neither bar waits. It doesn't launch with a precise-looking b
 
 - Concrete, physical cues: "heavy for its size; gives slightly at the stem end," not "choose a good one."
 - Storage and ripening as typical ranges with their assumptions, never as guarantees.
-- Card text and the Today summary at most 12 words; item-page sections at most 60 words each.
+- Card text at most 12 words; the Today summary at most 18 words, in short sentences or fragments ended by periods (no colons or semicolons); item-page sections at most 60 words each.
 - Plain US units (°F, lb, days); Spanish-ready strings from day one.
 - Dates say exactly what happened: "Guidance reviewed Oct 2026" for editorial review, and "Supply data through Oct 2026" for data. Neither is ever worded to suggest someone has just checked the produce.
 

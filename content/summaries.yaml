@@ -1,30 +1,28 @@
-# The one-line Today summary for each half-month window, national (product spec §5). At most 12 words each.
-# Written from the verdicts in generated/assessments/; recheck them when ratings change.
-status: reviewed
-reviewer: Jared
-reviewedOn: 2026-11-19
+# The one-line Today summary for each half-month window, national (product spec §5). At most 18 words each,
+# periods only. Written from the verdicts in generated/assessments/; recheck them when ratings change.
+status: draft
 windows:
-  jan-1: Citrus season is in full swing, and collards are frost-sweet.
-  jan-2: "Deep winter: oranges, grapefruit and mandarins carry the produce aisle."
-  feb-1: Mandarins, navels and grapefruit lead; collards stay frost-sweet.
-  feb-2: Citrus holds strong while collards finish their frost-sweet winter run.
-  mar-1: Spring artichokes and Mexican mangoes join late-winter citrus.
-  mar-2: Artichokes and mangoes are peaking; navels and grapefruit wind down.
-  apr-1: Spring strawberries hit their stride as navels and grapefruit fade.
-  apr-2: Strawberries, artichokes and Ataulfo mangoes are the spring standouts.
-  may-1: Asparagus, early cherries and blueberries mark the turn toward summer.
-  may-2: First apricots arrive; asparagus and artichokes finish their spring run.
-  jun-1: "Stone fruit season begins: peaches and nectarines join early apricots."
-  jun-2: "Summer is here: berries, cherries and stone fruit are all peaking."
-  jul-1: "Peak summer: melons, tomatoes, sweet corn and stone fruit at their best."
-  jul-2: "The year's fullest stretch: grapes join melons, berries and stone fruit."
-  aug-1: Cherries and blueberries pass their peak; peaches, melons and tomatoes carry on.
-  aug-2: New-crop pears and the first apples arrive beside late-summer peaches.
-  sep-1: Peaches pass their peak; apples, pears and grapes lead into fall.
-  sep-2: "Fall arrives: winter squash and apples peak as tomatoes and watermelon fade."
-  oct-1: Pomegranates, persimmons and Brussels sprouts join the fall apple harvest.
-  oct-2: "Fall is at full strength: apples, pears, squash and pomegranates."
-  nov-1: Mandarins return and collards sweeten; apples and pears stay at their best.
-  nov-2: "Thanksgiving staples peak: winter squash, Brussels sprouts, apples and pears."
-  dec-1: Navels and grapefruit reach their peak; winter squash and pears still shine.
-  dec-2: Citrus takes over the aisle; persimmons and pomegranates finish their peak.
+  jan-1: Citrus season in full swing. Navels, grapefruit and mandarins lead, with frost-sweet collards alongside.
+  jan-2: Deep winter. Citrus carries the aisle, and well-stored apples and pears are still crisp and sweet.
+  feb-1: Citrus is still at its peak. Frost-sweet collards too, and the first strawberries and asparagus appear.
+  feb-2: Citrus holds strong as collards finish their winter run. Spring artichokes start to show up.
+  mar-1: Artichokes and Mexican mangoes hit their peak. Navels, grapefruit and mandarins are still going strong.
+  mar-2: Peak artichokes and mangoes, with late-winter citrus still at its best. Strawberries and asparagus are getting better.
+  apr-1: Strawberries hit their stride. Artichokes, mangoes, mandarins and early sweet corn are at their peak too.
+  apr-2: Spring standouts. Strawberries, artichokes, Ataulfo mangoes and early sweet corn. Navels and grapefruit are past their best.
+  may-1: The turn toward summer. Asparagus peaks alongside the first cherries, blueberries and watermelon, with strawberries still strong.
+  may-2: First apricots arrive. Cherries, blueberries and watermelon are peaking, and asparagus and artichokes finish their spring run.
+  jun-1: Stone fruit season begins. Peaches and nectarines join apricots, cherries, berries and sweet corn at their peak.
+  jun-2: Summer is here. Berries, cherries, stone fruit, watermelon and sweet corn are all peaking, with okra joining in.
+  jul-1: Peak summer. Melons, tomatoes, sweet corn, figs and stone fruit are all at their best.
+  jul-2: The year's fullest stretch. Grapes join melons, tomatoes, berries and stone fruit at their peak.
+  aug-1: Peaches, plums, melons, tomatoes and sweet corn at their best. Cherries and blueberries winding down.
+  aug-2: The first new-crop apples join pears. Peaches, melons, tomatoes and sweet corn are still at their peak.
+  sep-1: Apples, pears and grapes are at their best. Melons and tomatoes are still peaking, while peaches wind down.
+  sep-2: Fall arrives. Winter squash joins apples, pears and grapes at their peak, while tomatoes and watermelon fade.
+  oct-1: Pomegranates, persimmons and Brussels sprouts reach their peak alongside apples, pears, grapes and winter squash.
+  oct-2: Fall at full strength. Apples, pears, grapes, winter squash, pomegranates and persimmons are all at their best.
+  nov-1: Mandarins return and collards sweeten. Apples, pears, squash, pomegranates and persimmons are all still at their best.
+  nov-2: Thanksgiving staples at their peak. Winter squash, Brussels sprouts, collards, apples and pears, plus mandarins and pomegranates.
+  dec-1: Navels and grapefruit reach their peak. Winter squash, Brussels sprouts, apples and pears are still at their best.
+  dec-2: Citrus takes over the aisle. Persimmons and pomegranates finish their peak, and collards are at their frost-sweet best.
