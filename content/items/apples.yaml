@@ -129,12 +129,11 @@ varieties:
     plu: { codes: [3507], sources: [ifps-plu-codes] }
     sources: [veritable-apple-guide, fruitguys-sweetest-apples, theproducemoms-apples-sweet-to-tart]
     windows:
-      - { from: jan-1, to: oct-2, rating: fair }
-      - from: nov-1
-        to: nov-2
+      - { from: feb-1, to: nov-1, rating: fair }
+      - from: nov-2
+        to: jan-2
         rating: prime
-        reason: Washington State University CAHNRS rates eating quality prime here, outweighing the model panel's fair.
-      - { from: dec-1, to: dec-2, rating: fair }
+        reason: The Washington crop typically starts reaching shoppers in late November or early December. Breeder trials show little loss of crispness, sugar, or acidity after months of storage, supporting Peak through the end of January, when the overall apple Peak ends.
     quotedAs: [cosmic-crisp]
     inStores:
       - { from: jan, to: dec, sources: [cosmic-crisp-retail-faq, stemilt-cosmic-crisp] }

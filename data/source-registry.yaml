@@ -500,7 +500,22 @@ pages:
     origin: us-wa
     items: [apples]
   - source: wsu-cosmic-crisp-2021
-    url: https://news.cahnrs.wsu.edu/?p=42143
+    url: https://news.cahnrs.wsu.edu/article/gorgeous-2021-crop-of-wsus-cosmic-crisp-apples-will-hit-stores-early/
+    kind: item-page
+    origin: us-wa
+    items: [apples]
+  - source: fsproduce-cosmic-crisp-2026
+    url: https://www.fsproduce.com/wp-content/uploads/2026/10/Market-News-44-26.pdf
+    kind: item-page
+    origin: us-wa
+    items: [apples]
+  - source: wsu-cosmic-crisp-2022
+    url: https://news.wsu.edu/news/2022/11/18/fresh-harvest-of-wsus-research-boosting-apple-hits-stores-dec-1/
+    kind: item-page
+    origin: us-wa
+    items: [apples]
+  - source: wsu-wa38-patent
+    url: https://patents.google.com/patent/US20130227750P1/en
     kind: item-page
     origin: us-wa
     items: [apples]

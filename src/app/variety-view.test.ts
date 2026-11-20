@@ -87,17 +87,18 @@ describe("Can't find it? Try…", () => {
 });
 
 describe("Variety page", () => {
-  it("shows Cosmic Crisp in stores year-round and at Peak throughout November", () => {
+  it("shows Cosmic Crisp in stores year-round and at Peak from late November through the last apple Peak", () => {
     for (let month = 1; month <= 12; month++) {
       for (const day of [1, 16]) {
         const at = { ...date, month, day };
         const view = varietyView(data, "apples", "cosmic-crisp", at);
-        expect(view?.rating).toMatchObject({ inStore: true, verdict: month === 11 ? "peak" : "good" });
-        if (month === 11) {
-          const varieties = itemView(data, "apples", at)?.varieties ?? [];
-          const peak = varietySummary(varieties).find((group) => group.verdict === "peak");
-          expect(peak?.names).toContain("Cosmic Crisp");
-        }
+        const atPeak = month === 1 || month === 12 || (month === 11 && day === 16);
+        expect(view?.rating).toMatchObject({ inStore: true, verdict: atPeak ? "peak" : "good" });
+
+        const varieties = itemView(data, "apples", at)?.varieties ?? [];
+        const peak = varietySummary(varieties).find((group) => group.verdict === "peak");
+        if (atPeak) expect(peak?.names).toContain("Cosmic Crisp");
+        if (month >= 2 && month <= 7) expect(peak).toBeUndefined();
       }
     }
   });

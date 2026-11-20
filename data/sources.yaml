@@ -458,8 +458,26 @@
 - id: wsu-cosmic-crisp-2021
   title: "'Gorgeous' 2021 crop of WSU's Cosmic Crisp apples will hit stores early"
   publisher: Washington State University CAHNRS
-  url: https://news.cahnrs.wsu.edu/?p=42143
-  accessed: 2026-11-19
+  url: https://news.cahnrs.wsu.edu/article/gorgeous-2021-crop-of-wsus-cosmic-crisp-apples-will-hit-stores-early/
+  accessed: 2026-11-20
+  tier: authoritative
+- id: fsproduce-cosmic-crisp-2026
+  title: Organic Market News, October 30 to November 6, 2026
+  publisher: Four Seasons Produce
+  url: https://www.fsproduce.com/wp-content/uploads/2026/10/Market-News-44-26.pdf
+  accessed: 2026-11-20
+  tier: mainstream
+- id: wsu-cosmic-crisp-2022
+  title: Fresh harvest of Cosmic Crisp apples hit stores Dec. 1
+  publisher: Washington State University
+  url: https://news.wsu.edu/news/2022/11/18/fresh-harvest-of-wsus-research-boosting-apple-hits-stores-dec-1/
+  accessed: 2026-11-20
+  tier: authoritative
+- id: wsu-wa38-patent
+  title: Apple tree named WA 38
+  publisher: Washington State University Research Foundation
+  url: https://patents.google.com/patent/US20130227750P1/en
+  accessed: 2026-11-20
   tier: authoritative
 - id: usapple-rinse-refrigerate
   title: Rinse & Refrigerate

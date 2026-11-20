@@ -24,13 +24,13 @@ windows:
     markers: [last-call (fades by feb-1), reliable-year-round]
     today:
       section: best right now
-      line: Pink Lady and Ambrosia
+      line: Pink Lady, Cosmic Crisp and Ambrosia
       reason: Fades by early February.
       avoid: none
       tags: [Last call]
     varieties:
-      peak: [Pink Lady, Ambrosia]
-      good: [Honeycrisp, Gala, Fuji, Granny Smith, Cosmic Crisp, Braeburn, Jazz, Envy, SugarBee, Kanzi, SnapDragon]
+      peak: [Pink Lady, Cosmic Crisp, Ambrosia]
+      good: [Honeycrisp, Gala, Fuji, Granny Smith, Braeburn, Jazz, Envy, SugarBee, Kanzi, SnapDragon]
       skip: [McIntosh]
       not in stores: [SweeTango]
   jan-2:
@@ -49,13 +49,13 @@ windows:
     markers: [last-call (fades by feb-1), reliable-year-round]
     today:
       section: best right now
-      line: Pink Lady and Ambrosia
+      line: Pink Lady, Cosmic Crisp and Ambrosia
       reason: Fades by early February.
       avoid: none
       tags: [Last call]
     varieties:
-      peak: [Pink Lady, Ambrosia]
-      good: [Honeycrisp, Gala, Fuji, Granny Smith, Cosmic Crisp, Braeburn, Jazz, Envy, SugarBee, Kanzi, SnapDragon]
+      peak: [Pink Lady, Cosmic Crisp, Ambrosia]
+      good: [Honeycrisp, Gala, Fuji, Granny Smith, Braeburn, Jazz, Envy, SugarBee, Kanzi, SnapDragon]
       skip: [McIntosh]
       not in stores: [SweeTango]
   feb-1:
@@ -457,13 +457,13 @@ windows:
     markers: [reliable-year-round]
     today:
       section: best right now
-      line: Honeycrisp, Fuji, Pink Lady and 3 more
+      line: Honeycrisp, Fuji, Pink Lady and 2 more
       reason: none
       avoid: none
       tags: []
     varieties:
-      peak: [Honeycrisp, Fuji, Pink Lady, Ambrosia, Envy, Cosmic Crisp]
-      good: [Gala, Granny Smith, McIntosh, Braeburn, Jazz, SweeTango, SugarBee, Kanzi, SnapDragon]
+      peak: [Honeycrisp, Fuji, Pink Lady, Ambrosia, Envy]
+      good: [Gala, Granny Smith, Cosmic Crisp, McIntosh, Braeburn, Jazz, SweeTango, SugarBee, Kanzi, SnapDragon]
   nov-2:
     when: late November (from 2026-11-16)
     verdict: peak
@@ -503,13 +503,13 @@ windows:
     markers: [reliable-year-round]
     today:
       section: best right now
-      line: Fuji, Pink Lady and Ambrosia
+      line: Fuji, Pink Lady, Ambrosia and Cosmic Crisp
       reason: none
       avoid: none
       tags: []
     varieties:
-      peak: [Fuji, Pink Lady, Ambrosia]
-      good: [Honeycrisp, Gala, Granny Smith, Cosmic Crisp, McIntosh, Braeburn, Jazz, Envy, SugarBee, Kanzi, SnapDragon]
+      peak: [Fuji, Pink Lady, Ambrosia, Cosmic Crisp]
+      good: [Honeycrisp, Gala, Granny Smith, McIntosh, Braeburn, Jazz, Envy, SugarBee, Kanzi, SnapDragon]
       not in stores: [SweeTango]
   dec-2:
     when: late December (from 2026-12-16)
@@ -527,11 +527,11 @@ windows:
     markers: [reliable-year-round]
     today:
       section: best right now
-      line: Fuji, Pink Lady and Ambrosia
+      line: Fuji, Pink Lady, Ambrosia and Cosmic Crisp
       reason: none
       avoid: none
       tags: []
     varieties:
-      peak: [Fuji, Pink Lady, Ambrosia]
-      good: [Honeycrisp, Gala, Granny Smith, Cosmic Crisp, McIntosh, Braeburn, Jazz, Envy, SugarBee, Kanzi, SnapDragon]
+      peak: [Fuji, Pink Lady, Ambrosia, Cosmic Crisp]
+      good: [Honeycrisp, Gala, Granny Smith, McIntosh, Braeburn, Jazz, Envy, SugarBee, Kanzi, SnapDragon]
       not in stores: [SweeTango]

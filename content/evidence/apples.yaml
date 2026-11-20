@@ -195,10 +195,34 @@ claims:
     origin: us-wa
     variety: cosmic-crisp
     windows:
-      - { from: nov-1, to: nov-2, rating: prime }
+      - { from: nov-1, to: nov-2, rating: fair }
+    specificity: half-month
+    directness: availability
+    paraphrase: The 2021 crop's November 8 release was earlier than the first two releases. New-crop timing can vary with the harvest.
+  - source: fsproduce-cosmic-crisp-2026
+    origin: us-wa
+    variety: cosmic-crisp
+    windows:
+      - { from: nov-2, to: nov-2, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: The distributor expected new-crop organic Cosmic Crisp supply to begin in mid-November 2026 after a short gap in old-crop availability.
+  - source: wsu-cosmic-crisp-2022
+    origin: us-wa
+    variety: cosmic-crisp
+    windows:
+      - { from: dec-1, to: dec-1, rating: prime }
     specificity: half-month
     directness: eating-quality
-    paraphrase: Growers hold the new crop for a set November release so it reaches stores at peak sweetness and crispness.
+    paraphrase: A December 1 release for the 2022 crop was set to deliver the fruit at its best texture, juiciness, and flavor.
+  - source: wsu-wa38-patent
+    origin: us-wa
+    variety: cosmic-crisp
+    windows:
+      - { from: nov-2, to: jan-2, rating: prime }
+    specificity: half-month
+    directness: eating-quality
+    paraphrase: Breeder trials found little loss in crispness, sugar, or acid after five months in common storage. Retention of new-crop quality through January is an editorial inference for apples shipped after the fall harvest.
   - source: whatappletoeat-december
     origin: us
     variety: cosmic-crisp
