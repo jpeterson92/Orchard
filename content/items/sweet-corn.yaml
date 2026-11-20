@@ -75,6 +75,9 @@ origins:
   - origin: us-ny
     windows:
       - { from: jul-2, to: sep-2, rating: prime }
+  - origin: mx
+    windows:
+      - { from: dec-1, to: apr-2, rating: poor }
 selections:
   - id: local-summer
     label: local summer corn

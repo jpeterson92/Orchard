@@ -858,6 +858,12 @@
   url: https://www.freshplaza.com/north-america/article/2160455/strong-start-to-okra-season-in-florida
   accessed: 2026-11-19
   tier: mainstream
+- id: ufifas-okra-miami-dade
+  title: "Okra Production in Miami-Dade County, Florida"
+  publisher: UF/IFAS Extension
+  url: https://edis.ifas.ufl.edu/publication/TR009
+  accessed: 2026-11-19
+  tier: authoritative
 - id: freshplaza-indian-okra-honduras
   title: "Building year-round availability for Indian Okra and Culantro"
   publisher: FreshPlaza

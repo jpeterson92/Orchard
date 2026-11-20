@@ -41,6 +41,24 @@ origins:
   - origin: us-ga
     windows:
       - { from: jun-2, to: sep-2, rating: prime }
+  - origin: us-fl
+    windows:
+      - { from: jan-1, to: feb-1, rating: poor }
+      - { from: feb-2, to: feb-2, rating: fair }
+      - from: mar-1
+        to: may-1
+        rating: fair
+        reason: UF/IFAS puts Florida's okra harvest from early spring, but a trade report names only its summer supply; together they read fair.
+      - { from: may-2, to: sep-1, rating: prime }
+      - from: sep-2
+        to: nov-1
+        rating: prime
+        reason: UF/IFAS and a national harvest window run Florida's okra into late fall; only the trade report's summer-only window disagrees.
+      - from: nov-2
+        to: dec-1
+        rating: fair
+        reason: The end of Florida's harvest by UF/IFAS, with few growers in midwinter; read fair as the season closes.
+      - { from: dec-2, to: dec-2, rating: poor }
 typicalOrigins:
   - from: dec
     to: feb

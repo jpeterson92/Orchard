@@ -23,6 +23,13 @@ claims:
     specificity: season
     directness: availability
     paraphrase: Summer okra comes from Florida and Honduras.
+  - source: ufifas-okra-miami-dade
+    origin: us-fl
+    windows:
+      - { from: mar-1, to: nov-2, rating: prime }
+    specificity: season
+    directness: availability
+    paraphrase: Miami-Dade okra is picked from early spring to late fall; few growers grow it in midwinter.
   # California: early summer to late October.
   - source: freshplaza-domestic-okra-ends
     origin: us-ca
