@@ -39,16 +39,34 @@ origins:
   - origin: us-fl
     windows:
       - { from: apr-1, to: apr-2, rating: fair }
-      - { from: may-1, to: jun-2, rating: prime }
+      - { from: may-1, to: jun-1, rating: prime }
+      - { from: jun-2, to: jun-2, rating: fair }
   - origin: us-ga
     windows:
-      - { from: may-2, to: sep-1, rating: prime }
+      - { from: may-2, to: jun-1, rating: fair }
+      - { from: jun-2, to: jul-2, rating: prime }
+      - { from: aug-1, to: aug-1, rating: fair }
+      - { from: aug-2, to: sep-1, rating: prime }
   - origin: us-tx
     windows:
-      - { from: may-2, to: sep-1, rating: prime }
+      - from: may-2
+        to: may-2
+        rating: fair
+        reason: The panel's fair proposal rests on low-confidence votes.
+      - { from: jun-1, to: aug-1, rating: prime }
+      - from: aug-2
+        to: sep-1
+        rating: fair
+        reason: The panel's fair proposal rests on low-confidence votes.
   - origin: us-ca
     windows:
-      - { from: may-1, to: sep-1, rating: prime }
+      - { from: may-1, to: may-1, rating: prime }
+      - from: may-2
+        to: jun-1
+        rating: fair
+        reason: The panel's fair proposal rests on low-confidence votes.
+      - { from: jun-2, to: aug-2, rating: prime }
+      - { from: sep-1, to: sep-1, rating: fair }
       - { from: sep-2, to: oct-1, rating: fair }
   - origin: us-in
     windows:
@@ -82,7 +100,24 @@ origins:
       - { from: sep-1, to: sep-2, rating: fair }
   - origin: mx
     windows:
-      - { from: sep-2, to: apr-1, rating: poor }
+      - { from: sep-2, to: sep-2, rating: poor }
+      - from: oct-1
+        to: nov-1
+        rating: poor
+        reason: The panel splits between poor and fair here. Eating-quality evidence is too thin to recommend this window.
+      - from: nov-2
+        to: nov-2
+        rating: poor
+        reason: Cited eating-quality evidence from Produce Business, The Takeout outweighs the panel here and supports poor.
+      - { from: dec-1, to: feb-2, rating: poor }
+      - from: mar-1
+        to: mar-1
+        rating: poor
+        reason: Cited eating-quality evidence from Produce Business, The Takeout outweighs the panel here and supports poor.
+      - from: mar-2
+        to: apr-1
+        rating: poor
+        reason: The panel splits between poor and fair here. Eating-quality evidence is too thin to recommend this window.
       - from: apr-2
         to: may-1
         rating: fair

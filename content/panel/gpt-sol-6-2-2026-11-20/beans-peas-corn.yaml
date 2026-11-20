@@ -1,0 +1,216 @@
+category: beans-peas-corn
+items:
+  - item: sweet-corn
+    traits:
+      shipsWell: [false, medium]
+      storesWell: [false, high]
+      peakWorthSeeking: [true, high]
+      alwaysGood: [false, high]
+    origins:
+      - origin: us-fl
+        windows:
+          - [oct-2, dec-2, poor, low]
+          - [jan-1, mar-2, fair, medium]
+          - [apr-1, may-2, prime, medium]
+          - [jun-1, jun-1, fair, low]
+      - origin: us-ca
+        windows:
+          - [may-1, jun-1, fair, medium]
+          - [jun-2, aug-2, prime, medium]
+          - [sep-1, oct-1, fair, low]
+      - origin: us-ga
+        windows:
+          - [may-2, jun-1, fair, medium]
+          - [jun-2, jul-2, prime, medium]
+          - [sep-2, oct-2, fair, low]
+      - origin: us-ny
+        windows:
+          - [jul-2, aug-2, prime, medium]
+          - [sep-1, sep-2, fair, medium]
+      - origin: mx
+        windows:
+          - [nov-1, mar-2, poor, medium]
+          - [apr-1, apr-2, fair, low]
+    note:
+      Warm-season domestic harvests offer sweeter, juicier kernels, especially when the ears move quickly from
+      field to store.
+  - item: green-beans
+    traits:
+      shipsWell: [true, medium]
+      storesWell: [false, high]
+      peakWorthSeeking: [true, medium]
+      alwaysGood: [false, medium]
+    origins:
+      - origin: us-fl
+        windows:
+          - [nov-1, feb-2, fair, medium]
+          - [mar-1, apr-2, prime, low]
+          - [may-1, may-2, fair, medium]
+      - origin: us-ga
+        windows:
+          - [may-1, jun-2, fair, medium]
+          - [sep-2, nov-1, fair, low]
+      - origin: mx
+        windows:
+          - [nov-2, feb-2, fair, medium]
+          - [mar-1, apr-2, poor, low]
+      - origin: us-ca
+        windows:
+          - [may-1, jun-2, fair, low]
+          - [jul-1, sep-2, prime, medium]
+          - [oct-1, oct-2, fair, low]
+      - origin: gt
+        windows:
+          - [jan-1, dec-2, fair, low]
+    note:
+      Freshly picked pods are crisp and sweet, and imported French beans can hold their texture through a good
+      cold chain.
+  - item: snap-snow-peas
+    traits:
+      shipsWell: [true, medium]
+      storesWell: [false, high]
+      peakWorthSeeking: [true, medium]
+      alwaysGood: [false, medium]
+    origins:
+      - origin: gt
+        windows:
+          - [jan-1, dec-2, fair, medium]
+      - origin: us-ca
+        windows:
+          - [mar-1, mar-2, fair, low]
+          - [apr-1, jun-1, prime, low]
+          - [jun-2, oct-2, fair, low]
+      - origin: mx
+        windows:
+          - [nov-1, apr-2, fair, low]
+    note: Imported pods can stay crisp, while spring California snap peas can be noticeably sweeter and juicier.
+  - item: asparagus
+    traits:
+      shipsWell: [true, medium]
+      storesWell: [false, high]
+      peakWorthSeeking: [true, high]
+      alwaysGood: [false, high]
+    origins:
+      - origin: mx
+        windows:
+          - [jan-1, jan-2, fair, medium]
+          - [feb-1, apr-1, prime, medium]
+          - [apr-2, jun-2, fair, medium]
+          - [jul-1, sep-2, poor, low]
+          - [oct-1, dec-2, fair, low]
+      - origin: pe
+        windows:
+          - [jan-1, apr-2, poor, low]
+          - [may-1, aug-2, fair, medium]
+          - [sep-1, dec-2, fair, medium]
+      - origin: us-ca
+        windows:
+          - [feb-2, mar-1, fair, low]
+          - [mar-2, may-1, prime, medium]
+          - [may-2, jun-1, fair, low]
+      - origin: us-wa
+        windows:
+          - [apr-2, may-2, prime, medium]
+          - [jun-1, jun-2, fair, medium]
+      - origin: us-mi
+        windows:
+          - [may-1, jun-1, prime, medium]
+          - [jun-2, jun-2, fair, low]
+    note: Spring spears are usually sweeter and more tender, and older spears tend to dry out and turn fibrous.
+  - item: okra
+    traits:
+      shipsWell: [false, low]
+      storesWell: [false, high]
+      peakWorthSeeking: [true, medium]
+      alwaysGood: [false, medium]
+    origins:
+      - origin: us-fl
+        windows:
+          - [mar-2, apr-2, fair, low]
+          - [may-1, jul-1, prime, low]
+          - [jul-2, nov-1, fair, low]
+      - origin: mx
+        windows:
+          - [nov-1, feb-2, poor, medium]
+          - [mar-1, may-2, fair, low]
+      - origin: us-ga
+        windows:
+          - [jun-1, jun-2, fair, low]
+          - [jul-1, sep-1, prime, medium]
+          - [sep-2, oct-1, fair, low]
+    note: Fresh warm-season okra has tender pods, while aging or overly mature pods become tough and fibrous.
+  - item: artichokes
+    traits:
+      shipsWell: [false, low]
+      storesWell: [false, high]
+      peakWorthSeeking: [true, high]
+      alwaysGood: [false, high]
+    origins:
+      - origin: us-ca
+        windows:
+          - [jan-1, feb-2, fair, medium]
+          - [mar-1, may-2, prime, high]
+          - [jun-1, jul-2, fair, medium]
+          - [aug-1, sep-2, poor, low]
+          - [oct-1, dec-2, fair, medium]
+    note: California's spring flush typically brings tightly packed globes with meaty bracts and tender hearts.
+  - item: celery
+    traits:
+      shipsWell: [true, medium]
+      storesWell: [false, medium]
+      peakWorthSeeking: [false, medium]
+      alwaysGood: [true, medium]
+    origins:
+      - origin: us-ca
+        windows:
+          - [jan-1, dec-2, fair, high]
+      - origin: us-mi
+        windows:
+          - [jul-1, oct-2, fair, medium]
+      - origin: us-fl
+        windows:
+          - [dec-1, may-2, fair, medium]
+      - origin: mx
+        windows:
+          - [dec-1, apr-2, fair, low]
+    note:
+      Rotating growing regions and refrigeration keep mainstream celery crisp, with batch freshness mattering
+      more than the calendar.
+  - item: fennel
+    traits:
+      shipsWell: [true, low]
+      storesWell: [false, medium]
+      peakWorthSeeking: [true, medium]
+      alwaysGood: [false, medium]
+    origins:
+      - origin: us-ca
+        windows:
+          - [nov-1, feb-2, prime, medium]
+          - [mar-1, jun-2, fair, medium]
+          - [jul-1, sep-2, poor, low]
+          - [oct-1, oct-2, fair, low]
+    note:
+      Cool-weather bulbs are usually crisp and juicy, and summer supermarket bulbs are more prone to stringy
+      outer layers.
+  - item: rhubarb
+    traits:
+      shipsWell: [true, low]
+      storesWell: [false, high]
+      peakWorthSeeking: [true, high]
+      alwaysGood: [false, high]
+    origins:
+      - origin: us-wa
+        windows:
+          - [feb-1, apr-1, fair, low]
+          - [apr-2, jun-2, prime, medium]
+          - [jul-1, jul-2, fair, medium]
+      - origin: us-or
+        windows:
+          - [apr-2, jun-2, prime, medium]
+          - [jul-1, jul-2, fair, low]
+      - origin: us-mi
+        windows:
+          - [may-1, jun-2, prime, medium]
+          - [jul-1, jul-1, fair, low]
+    note: Spring field harvests supply firm, juicy stalks, and fresh supermarket rhubarb becomes much scarcer
+      after early summer.

@@ -1,0 +1,228 @@
+category: citrus
+items:
+  - item: mandarins
+    traits:
+      shipsWell: [true, medium]
+      storesWell: [false, medium]
+      peakWorthSeeking: [true, high]
+      alwaysGood: [false, high]
+    origins:
+      - origin: us-ca
+        windows:
+          - [oct-2, nov-2, fair, medium]
+          - [dec-1, mar-2, prime, high]
+          - [apr-1, may-2, fair, high]
+          - [jun-1, jun-2, poor, medium]
+      - origin: cl
+        windows:
+          - [jun-1, jul-1, fair, medium]
+          - [jul-2, sep-1, prime, medium]
+          - [sep-2, oct-2, fair, medium]
+          - [nov-1, nov-1, poor, low]
+      - origin: pe
+        windows:
+          - [may-1, jun-2, fair, medium]
+          - [jul-1, aug-2, prime, medium]
+          - [sep-1, sep-2, fair, medium]
+          - [oct-1, oct-2, poor, low]
+      - origin: za
+        windows:
+          - [jun-1, jul-2, fair, medium]
+          - [aug-1, sep-1, prime, medium]
+          - [sep-2, oct-2, fair, low]
+      - origin: mx
+        windows:
+          - [nov-1, dec-2, fair, low]
+          - [jan-1, feb-2, prime, low]
+          - [mar-1, apr-2, fair, low]
+    varieties:
+      - variety: clementine
+        windows:
+          - [oct-2, nov-2, fair, medium]
+          - [dec-1, jan-2, prime, high]
+          - [feb-1, feb-2, poor, medium]
+          - [may-2, jun-1, poor, low]
+          - [jun-2, aug-2, fair, medium]
+      - variety: satsuma
+        windows:
+          - [oct-2, nov-1, fair, medium]
+          - [nov-2, dec-2, prime, high]
+          - [jan-1, jan-2, fair, medium]
+      - variety: tango
+        windows:
+          - [jan-1, jan-2, fair, medium]
+          - [feb-1, mar-2, prime, high]
+          - [apr-1, may-2, fair, medium]
+          - [jul-2, oct-2, fair, low]
+      - variety: w-murcott
+        windows:
+          - [jan-2, feb-1, fair, medium]
+          - [feb-2, apr-1, prime, high]
+          - [apr-2, may-2, fair, medium]
+          - [jul-2, oct-2, fair, medium]
+      - variety: shiranui
+        windows:
+          - [jan-1, jan-2, fair, medium]
+          - [feb-1, mar-2, prime, high]
+          - [apr-1, apr-2, fair, medium]
+      - variety: minneola
+        windows:
+          - [dec-2, jan-1, fair, medium]
+          - [jan-2, mar-1, prime, medium]
+          - [mar-2, apr-2, fair, medium]
+      - variety: gold-nugget
+        windows:
+          - [feb-2, mar-1, fair, low]
+          - [mar-2, may-1, prime, medium]
+          - [may-2, jun-2, fair, medium]
+    note:
+      Sweetness varies with maturity and cultivar, with winter and early spring bags usually more reliable and
+      late fruit more prone to drying.
+  - item: oranges
+    traits:
+      shipsWell: [true, high]
+      storesWell: [false, medium]
+      peakWorthSeeking: [true, high]
+      alwaysGood: [false, high]
+    origins:
+      - origin: us-ca
+        windows:
+          - [nov-1, dec-1, fair, medium]
+          - [dec-2, mar-2, prime, high]
+          - [apr-1, aug-2, fair, medium]
+          - [sep-1, oct-2, poor, medium]
+      - origin: za
+        windows:
+          - [jun-2, jul-1, fair, medium]
+          - [jul-2, sep-1, prime, medium]
+          - [sep-2, oct-2, fair, medium]
+      - origin: cl
+        windows:
+          - [jun-2, jul-2, fair, medium]
+          - [aug-1, sep-2, prime, medium]
+          - [oct-1, oct-2, fair, medium]
+      - origin: us-fl
+        windows:
+          - [nov-1, dec-2, fair, medium]
+          - [jan-1, mar-2, prime, medium]
+          - [apr-1, may-2, fair, medium]
+          - [jun-1, jun-2, poor, low]
+      - origin: mx
+        windows:
+          - [nov-1, dec-2, fair, low]
+          - [jan-1, mar-2, fair, medium]
+          - [apr-1, may-2, poor, low]
+      - origin: au
+        windows:
+          - [jul-2, oct-2, fair, low]
+    varieties:
+      - variety: navel
+        windows:
+          - [nov-1, dec-1, fair, medium]
+          - [dec-2, mar-2, prime, high]
+          - [apr-1, may-1, fair, medium]
+          - [may-2, jun-2, poor, medium]
+          - [jul-1, oct-2, fair, medium]
+      - variety: valencia
+        windows:
+          - [mar-1, apr-2, fair, medium]
+          - [may-1, jul-2, prime, medium]
+          - [aug-1, sep-1, fair, medium]
+          - [sep-2, oct-2, poor, low]
+      - variety: cara-cara
+        windows:
+          - [dec-1, dec-2, fair, medium]
+          - [jan-1, mar-2, prime, high]
+          - [apr-1, may-1, fair, medium]
+          - [jul-2, sep-2, fair, low]
+      - variety: blood
+        windows:
+          - [dec-2, jan-1, fair, medium]
+          - [jan-2, mar-2, prime, high]
+          - [apr-1, apr-2, fair, medium]
+    note:
+      Midwinter navels are dependably sweet and juicy, and summer Valencias and imported navels help bridge
+      the seasons.
+  - item: lemons
+    traits:
+      shipsWell: [true, high]
+      storesWell: [true, medium]
+      peakWorthSeeking: [false, high]
+      alwaysGood: [true, medium]
+    origins:
+      - origin: us-ca
+        windows:
+          - [jan-1, dec-2, fair, high]
+      - origin: mx
+        windows:
+          - [jul-1, jan-2, fair, low]
+      - origin: us-az
+        windows:
+          - [oct-1, feb-2, fair, medium]
+      - origin: ar
+        windows:
+          - [may-1, sep-2, fair, medium]
+      - origin: cl
+        windows:
+          - [jun-1, oct-2, fair, medium]
+      - origin: za
+        windows:
+          - [jun-1, oct-1, fair, low]
+    note: Standard supermarket lemons supply consistently tart juice and fragrant zest through overlapping
+      harvests, imports and storage.
+  - item: limes
+    traits:
+      shipsWell: [true, high]
+      storesWell: [false, medium]
+      peakWorthSeeking: [false, medium]
+      alwaysGood: [false, medium]
+    origins:
+      - origin: mx
+        windows:
+          - [apr-2, feb-2, fair, medium]
+          - [mar-1, apr-1, poor, low]
+        note: Small limes during short spring supply can have noticeably less juice.
+      - origin: co
+        windows:
+          - [jan-1, dec-2, fair, low]
+      - origin: gt
+        windows:
+          - [jan-1, apr-2, fair, low]
+    note:
+      Mexican Persian limes provide useful tart juice year-round in most years, with a less reliable stretch
+      during the spring supply gap.
+  - item: grapefruit
+    traits:
+      shipsWell: [true, medium]
+      storesWell: [true, low]
+      peakWorthSeeking: [true, high]
+      alwaysGood: [false, high]
+    origins:
+      - origin: us-tx
+        windows:
+          - [oct-2, nov-2, fair, medium]
+          - [dec-1, mar-2, prime, high]
+          - [apr-1, may-1, fair, medium]
+          - [may-2, jun-1, poor, low]
+      - origin: us-ca
+        windows:
+          - [feb-1, mar-2, fair, low]
+          - [apr-1, jun-2, prime, medium]
+          - [jul-1, aug-2, fair, medium]
+          - [sep-1, oct-2, poor, low]
+      - origin: us-fl
+        windows:
+          - [oct-2, nov-2, fair, medium]
+          - [dec-1, mar-2, prime, high]
+          - [apr-1, may-2, fair, medium]
+      - origin: mx
+        windows:
+          - [aug-1, oct-2, fair, low]
+          - [nov-1, jan-2, fair, low]
+      - origin: za
+        windows:
+          - [jun-1, aug-2, fair, low]
+          - [sep-1, sep-2, poor, low]
+    note:
+      Ripe Texas and Florida grapefruit are sweetest in winter, while California carries much of the domestic
+      supply into summer.

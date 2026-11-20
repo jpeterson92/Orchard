@@ -1,0 +1,8 @@
+run: gpt-sol-6-2-2026-11-20
+model: gpt-6.2-sol
+provider: OpenAI
+date: 2026-11-20
+promptVersion: 3
+webAccess: false
+note: Recall only. Nine isolated Sol 6.2 threads at medium effort used the
+  shared prompt and scope. A separate session assembled and validated the YAML.

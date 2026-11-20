@@ -1,0 +1,200 @@
+category: apples-pears
+items:
+  - item: apples
+    traits:
+      shipsWell: [true, high]
+      storesWell: [true, high]
+      peakWorthSeeking: [true, high]
+      alwaysGood: [false, high]
+    origins:
+      - origin: us-wa
+        windows:
+          - [sep-1, sep-1, fair, medium]
+          - [sep-2, nov-2, prime, high]
+          - [dec-1, apr-2, fair, high]
+          - [may-1, aug-2, poor, medium]
+        note:
+          Controlled atmosphere keeps good apples on shelves well into spring, with considerable differences by
+          variety.
+      - origin: us-ny
+        windows:
+          - [sep-1, nov-2, prime, high]
+          - [dec-1, mar-2, fair, medium]
+          - [apr-1, jul-2, poor, low]
+      - origin: us-mi
+        windows:
+          - [sep-1, nov-2, prime, medium]
+          - [dec-1, mar-2, fair, medium]
+          - [apr-1, jul-2, poor, low]
+      - origin: nz
+        windows:
+          - [apr-1, may-1, fair, low]
+          - [may-2, jul-1, prime, medium]
+          - [jul-2, sep-1, fair, low]
+      - origin: cl
+        windows:
+          - [apr-1, jul-2, fair, medium]
+          - [aug-1, sep-1, poor, low]
+    varieties:
+      - variety: gala
+        windows:
+          - [aug-2, oct-2, prime, high]
+          - [nov-1, feb-2, fair, medium]
+          - [mar-1, aug-1, poor, medium]
+      - variety: honeycrisp
+        windows:
+          - [sep-1, nov-2, prime, high]
+          - [dec-1, mar-2, fair, high]
+          - [apr-1, aug-2, poor, medium]
+      - variety: fuji
+        windows:
+          - [oct-1, dec-2, prime, high]
+          - [jan-1, jun-2, fair, high]
+          - [jul-1, sep-2, poor, medium]
+      - variety: granny-smith
+        windows:
+          - [oct-1, dec-2, prime, medium]
+          - [jan-1, jun-2, fair, high]
+          - [jul-1, sep-2, poor, medium]
+      - variety: pink-lady
+        windows:
+          - [nov-1, jan-2, prime, medium]
+          - [feb-1, sep-2, fair, medium]
+          - [oct-1, oct-2, poor, low]
+      - variety: cosmic-crisp
+        windows:
+          - [dec-1, sep-1, fair, medium]
+        note: Long storage generally leaves this variety crisp, with little reliable reward for timing the purchase.
+      - variety: red-delicious
+        windows:
+          - [sep-2, nov-2, prime, medium]
+          - [dec-1, jan-2, fair, medium]
+          - [feb-1, sep-1, poor, high]
+      - variety: golden-delicious
+        windows:
+          - [sep-2, nov-2, prime, medium]
+          - [dec-1, feb-2, fair, medium]
+          - [mar-1, aug-2, poor, medium]
+      - variety: mcintosh
+        windows:
+          - [sep-1, oct-2, prime, high]
+          - [nov-1, dec-2, fair, medium]
+          - [jan-1, mar-2, poor, medium]
+      - variety: ambrosia
+        windows:
+          - [oct-1, dec-2, prime, medium]
+          - [jan-1, apr-2, fair, medium]
+          - [may-1, jun-2, poor, low]
+      - variety: sweetango
+        windows:
+          - [sep-1, oct-2, prime, high]
+          - [nov-1, dec-2, fair, medium]
+    note: Fall harvest delivers the most crunch and aroma, and spring quality depends strongly on variety and
+      storage.
+  - item: pears
+    traits:
+      shipsWell: [true, high]
+      storesWell: [true, high]
+      peakWorthSeeking: [true, high]
+      alwaysGood: [false, high]
+    origins:
+      - origin: us-wa
+        windows:
+          - [aug-2, sep-1, fair, medium]
+          - [sep-2, dec-2, prime, high]
+          - [jan-1, apr-2, fair, high]
+          - [may-1, jul-2, poor, medium]
+      - origin: us-or
+        windows:
+          - [aug-2, sep-1, fair, medium]
+          - [sep-2, dec-2, prime, high]
+          - [jan-1, apr-2, fair, medium]
+          - [may-1, jul-2, poor, medium]
+      - origin: us-ca
+        windows:
+          - [jul-1, jul-1, fair, medium]
+          - [jul-2, sep-1, prime, medium]
+          - [sep-2, oct-2, fair, medium]
+          - [nov-1, nov-2, poor, low]
+      - origin: ar
+        windows:
+          - [feb-2, mar-2, fair, medium]
+          - [apr-1, may-2, prime, medium]
+          - [jun-1, jul-1, fair, medium]
+          - [jul-2, aug-1, poor, low]
+      - origin: cl
+        windows:
+          - [mar-1, jun-2, fair, medium]
+          - [jul-1, aug-1, poor, low]
+    varieties:
+      - variety: bartlett
+        windows:
+          - [jul-1, jul-2, fair, medium]
+          - [aug-1, oct-2, prime, high]
+          - [nov-1, dec-2, fair, medium]
+          - [jan-1, feb-2, poor, low]
+          - [mar-1, jun-2, fair, medium]
+      - variety: anjou
+        windows:
+          - [sep-2, oct-2, fair, medium]
+          - [nov-1, jan-2, prime, medium]
+          - [feb-1, jun-2, fair, medium]
+          - [jul-1, sep-1, poor, low]
+      - variety: bosc
+        windows:
+          - [sep-2, oct-1, fair, medium]
+          - [oct-2, jan-2, prime, high]
+          - [feb-1, may-2, fair, medium]
+          - [jun-1, jul-2, poor, low]
+      - variety: red-anjou
+        windows:
+          - [oct-1, oct-2, fair, medium]
+          - [nov-1, jan-2, prime, medium]
+          - [feb-1, may-2, fair, medium]
+          - [jun-1, jul-2, poor, low]
+      - variety: red-bartlett
+        windows:
+          - [aug-1, oct-2, prime, medium]
+          - [nov-1, dec-2, fair, low]
+          - [mar-1, may-2, fair, low]
+      - variety: starkrimson
+        windows:
+          - [aug-2, oct-2, prime, medium]
+          - [nov-1, nov-2, fair, medium]
+      - variety: comice
+        windows:
+          - [oct-1, oct-2, fair, medium]
+          - [nov-1, dec-2, prime, high]
+          - [jan-1, feb-2, fair, medium]
+    note:
+      Fall Bartletts and cool-season winter pears ripen with the best texture, while late storage brings less
+      reliable softening and aroma.
+  - item: asian-pears
+    traits:
+      shipsWell: [true, medium]
+      storesWell: [true, medium]
+      peakWorthSeeking: [true, medium]
+      alwaysGood: [false, medium]
+    origins:
+      - origin: us-ca
+        windows:
+          - [jul-2, aug-1, fair, low]
+          - [aug-2, oct-2, prime, medium]
+          - [nov-1, jan-2, fair, medium]
+          - [feb-1, mar-2, poor, low]
+      - origin: kr
+        windows:
+          - [sep-2, dec-2, prime, medium]
+          - [jan-1, feb-2, fair, medium]
+          - [mar-1, apr-2, poor, low]
+      - origin: us-wa
+        windows:
+          - [sep-1, nov-2, prime, medium]
+          - [dec-1, jan-2, fair, low]
+      - origin: cn
+        windows:
+          - [oct-1, jan-2, fair, low]
+          - [feb-1, apr-2, poor, low]
+    note:
+      Fresh fall Asian pears are crisp and juicy, while long-stored fruit can retain its crunch after losing
+      much of its sweetness and fragrance.

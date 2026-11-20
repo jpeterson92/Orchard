@@ -16,7 +16,7 @@ windows:
     decided:
       origin: mx
       rating: fair
-      evidence: low
+      evidence: medium
     weights: volume
     typical: [mx fair 64.6% (supply 0.96), "us-ca fair 35.4% (supply 0.70, thin)"]
     peak:
@@ -26,13 +26,13 @@ windows:
       origins: []
     good:
       share: 100.0%
-      available: "yes: counted share 100.0% ≥ 33.0%"
+      available: "yes: counted share 64.6% ≥ 33.0%"
       whole bin: yes (> 75.0%)
-      origins: [mx fair 64.6%, us-ca fair 35.4%]
+      origins: [mx fair 64.6%, "us-ca fair 35.4% (low confidence, not counted)"]
     look for: []
     label note: false
     reasons: [rated fair (origin mx)]
-    confidence: medium (coverage)
+    confidence: high
     markers: [reliable-year-round]
     today: not on Today
   jan-2:
@@ -43,7 +43,7 @@ windows:
     decided:
       origin: mx
       rating: fair
-      evidence: low
+      evidence: medium
     weights: volume
     typical: [mx fair 64.6% (supply 0.96), "us-ca fair 35.4% (supply 0.70, thin)"]
     peak:
@@ -53,13 +53,13 @@ windows:
       origins: []
     good:
       share: 100.0%
-      available: "yes: counted share 100.0% ≥ 33.0%"
+      available: "yes: counted share 64.6% ≥ 33.0%"
       whole bin: yes (> 75.0%)
-      origins: [mx fair 64.6%, us-ca fair 35.4%]
+      origins: [mx fair 64.6%, "us-ca fair 35.4% (low confidence, not counted)"]
     look for: []
     label note: false
     reasons: [rated fair (origin mx)]
-    confidence: medium (coverage)
+    confidence: high
     markers: [reliable-year-round]
     today: not on Today
   feb-1:
@@ -70,7 +70,7 @@ windows:
     decided:
       origin: mx
       rating: fair
-      evidence: low
+      evidence: medium
     weights: volume
     typical: [mx fair 100.0% (supply 2.00)]
     peak:
@@ -86,7 +86,7 @@ windows:
     look for: []
     label note: false
     reasons: [rated fair (origin mx)]
-    confidence: medium (coverage)
+    confidence: high
     markers: [reliable-year-round]
     today: not on Today
   feb-2:
@@ -97,7 +97,7 @@ windows:
     decided:
       origin: mx
       rating: fair
-      evidence: low
+      evidence: medium
     weights: volume
     typical: [mx fair 100.0% (supply 2.00)]
     peak:
@@ -113,7 +113,7 @@ windows:
     look for: []
     label note: false
     reasons: [rated fair (origin mx)]
-    confidence: medium (coverage)
+    confidence: high
     markers: [reliable-year-round]
     today: not on Today
   mar-1:
@@ -124,7 +124,7 @@ windows:
     decided:
       origin: mx
       rating: fair
-      evidence: low
+      evidence: medium
     weights: volume
     typical: [mx fair 100.0% (supply 2.30)]
     peak:
@@ -140,7 +140,7 @@ windows:
     look for: []
     label note: false
     reasons: [rated fair (origin mx)]
-    confidence: medium (coverage)
+    confidence: high
     markers: [reliable-year-round]
     today: not on Today
   mar-2:
@@ -151,7 +151,7 @@ windows:
     decided:
       origin: mx
       rating: fair
-      evidence: low
+      evidence: medium
     weights: volume
     typical: [mx fair 100.0% (supply 2.30)]
     peak:
@@ -167,7 +167,7 @@ windows:
     look for: []
     label note: false
     reasons: [rated fair (origin mx)]
-    confidence: medium (coverage)
+    confidence: high
     markers: [reliable-year-round]
     today: not on Today
   apr-1:
@@ -178,7 +178,7 @@ windows:
     decided:
       origin: mx
       rating: fair
-      evidence: low
+      evidence: medium
     weights: volume
     typical: [mx fair 100.0% (supply 2.30)]
     peak:
@@ -194,7 +194,7 @@ windows:
     look for: []
     label note: false
     reasons: [rated fair (origin mx)]
-    confidence: medium (coverage)
+    confidence: high
     markers: [reliable-year-round]
     today: not on Today
   apr-2:
@@ -205,7 +205,7 @@ windows:
     decided:
       origin: mx
       rating: fair
-      evidence: low
+      evidence: medium
     weights: volume
     typical: [mx fair 100.0% (supply 2.30)]
     peak:
@@ -221,7 +221,7 @@ windows:
     look for: []
     label note: false
     reasons: [rated fair (origin mx)]
-    confidence: medium (coverage)
+    confidence: high
     markers: [reliable-year-round]
     today: not on Today
   may-1:
@@ -232,7 +232,7 @@ windows:
     decided:
       origin: mx
       rating: fair
-      evidence: low
+      evidence: medium
     weights: volume
     typical: [mx fair 100.0% (supply 1.80)]
     peak:
@@ -248,7 +248,7 @@ windows:
     look for: []
     label note: false
     reasons: [rated fair (origin mx)]
-    confidence: medium (coverage)
+    confidence: high
     markers: [reliable-year-round]
     today: not on Today
   may-2:
@@ -259,7 +259,7 @@ windows:
     decided:
       origin: mx
       rating: fair
-      evidence: low
+      evidence: medium
     weights: volume
     typical: [mx fair 100.0% (supply 1.80)]
     peak:
@@ -275,7 +275,7 @@ windows:
     look for: []
     label note: false
     reasons: [rated fair (origin mx)]
-    confidence: medium (coverage)
+    confidence: high
     markers: [reliable-year-round]
     today: not on Today
   jun-1:

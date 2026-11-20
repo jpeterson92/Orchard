@@ -45,7 +45,8 @@ origins:
         rating: poor
         reason: California's first nectarines are early varieties ahead of the May start; the panel rates May's fruit poor, so the edge of the harvest chart reads poor too.
       - { from: may-1, to: may-2, rating: poor }
-      - { from: jun-1, to: aug-2, rating: prime }
+      - { from: jun-1, to: jun-2, rating: fair }
+      - { from: jul-1, to: aug-2, rating: prime }
       - { from: sep-1, to: sep-2, rating: fair }
   - origin: cl
     windows:

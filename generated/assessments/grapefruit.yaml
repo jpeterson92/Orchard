@@ -538,9 +538,9 @@ windows:
       origins: []
     good:
       share: 100.0%
-      available: "yes: counted share 100.0% ≥ 33.0%"
+      available: "yes: counted share 50.0% ≥ 33.0%"
       whole bin: yes (> 75.0%)
-      origins: [za fair 50.0%, us-ca fair 50.0%]
+      origins: [za fair 50.0%, "us-ca fair 50.0% (low confidence, not counted)"]
     look for: []
     label note: false
     reasons: [rated fair (origin za)]

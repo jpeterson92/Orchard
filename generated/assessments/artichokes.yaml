@@ -16,7 +16,7 @@ windows:
     decided:
       origin: us-ca
       rating: fair
-      evidence: low
+      evidence: medium
     weights: volume
     typical: [us-ca fair 100.0% (supply 0.89)]
     peak:
@@ -32,7 +32,7 @@ windows:
     look for: []
     label note: false
     reasons: [rated fair (origin us-ca)]
-    confidence: medium (coverage)
+    confidence: high
     markers: [reliable-year-round]
     today: not on Today
   jan-2:
@@ -43,7 +43,7 @@ windows:
     decided:
       origin: us-ca
       rating: fair
-      evidence: low
+      evidence: medium
     weights: volume
     typical: [us-ca fair 100.0% (supply 0.89)]
     peak:
@@ -59,7 +59,7 @@ windows:
     look for: []
     label note: false
     reasons: [rated fair (origin us-ca)]
-    confidence: medium (coverage)
+    confidence: high
     markers: [reliable-year-round]
     today: not on Today
   feb-1:
@@ -70,7 +70,7 @@ windows:
     decided:
       origin: us-ca
       rating: fair
-      evidence: low
+      evidence: medium
     weights: volume
     typical: [us-ca fair 100.0% (supply 1.20)]
     peak:
@@ -86,7 +86,7 @@ windows:
     look for: []
     label note: false
     reasons: [rated fair (origin us-ca)]
-    confidence: medium (coverage)
+    confidence: high
     markers: [reliable-year-round]
     today: not on Today
   feb-2:
@@ -97,7 +97,7 @@ windows:
     decided:
       origin: us-ca
       rating: fair
-      evidence: low
+      evidence: medium
     weights: volume
     typical: [us-ca fair 100.0% (supply 1.20)]
     peak:
@@ -113,7 +113,7 @@ windows:
     look for: []
     label note: false
     reasons: [rated fair (origin us-ca)]
-    confidence: medium (coverage)
+    confidence: high
     markers: [reliable-year-round]
     today: not on Today
   mar-1:
@@ -532,7 +532,7 @@ windows:
     decided:
       origin: us-ca
       rating: prime
-      evidence: high
+      evidence: low
     weights: volume
     typical: [us-ca prime 100.0% (supply 0.84)]
     peak:
@@ -548,7 +548,7 @@ windows:
     look for: []
     label note: false
     reasons: [rated prime (origin us-ca), main-peak mar-1 to may-2]
-    confidence: high
+    confidence: medium (coverage)
     markers: [reliable-year-round]
     main peak: rated Peak here, but Peak is kept for mar-1 to may-2 (P19), so good
     today: not on Today
@@ -560,7 +560,7 @@ windows:
     decided:
       origin: us-ca
       rating: prime
-      evidence: high
+      evidence: low
     weights: volume
     typical: [us-ca prime 100.0% (supply 0.84)]
     peak:
@@ -576,7 +576,7 @@ windows:
     look for: []
     label note: false
     reasons: [rated prime (origin us-ca), main-peak mar-1 to may-2]
-    confidence: high
+    confidence: medium (coverage)
     markers: [reliable-year-round]
     main peak: rated Peak here, but Peak is kept for mar-1 to may-2 (P19), so good
     today: not on Today

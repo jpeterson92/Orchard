@@ -41,7 +41,8 @@ origins:
   - origin: us-ca
     windows:
       - { from: jun-1, to: jun-1, rating: fair }
-      - { from: jun-2, to: sep-1, rating: prime }
+      - { from: jun-2, to: jul-1, rating: fair }
+      - { from: jul-2, to: sep-1, rating: prime }
       - { from: sep-2, to: oct-1, rating: fair }
   - origin: cl
     windows:
@@ -49,10 +50,25 @@ origins:
       - { from: dec-1, to: dec-1, rating: fair }
       - { from: dec-2, to: dec-2, rating: poor }
       - from: jan-1
+        to: jan-2
+        rating: poor
+        reason: Only the model panel's low-confidence ranges rate this window; they read poor.
+      - from: feb-1
+        to: feb-2
+        rating: poor
+        reason: The panel splits at low confidence. The cited tasting example praises Chilean lemon plums, a narrower group than the supermarket plum supply.
+      - from: mar-1
+        to: mar-2
+        rating: poor
+        reason: The proposed upgrade has low confidence. Keep the existing poor rating for this window.
+      - from: apr-1
         to: apr-1
         rating: poor
         reason: Only the model panel's low-confidence ranges rate this window; they read poor.
-      - { from: apr-2, to: apr-2, rating: poor }
+      - from: apr-2
+        to: apr-2
+        rating: poor
+        reason: The panel's poor proposal rests on low-confidence votes.
   - origin: za
     windows:
       - from: mar-1

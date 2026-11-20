@@ -51,22 +51,24 @@ origins:
         to: may-1
         rating: fair
         reason: Only availability claims speak here, and the model panel has no rating.
-      - { from: may-2, to: may-2, rating: prime }
+      - { from: may-2, to: may-2, rating: fair }
       - { from: jun-1, to: jun-2, rating: fair }
-      - { from: jul-1, to: sep-2, rating: prime }
+      - { from: jul-1, to: jul-2, rating: fair }
+      - { from: aug-1, to: sep-2, rating: prime }
       - { from: oct-1, to: oct-2, rating: fair }
       - from: nov-1
         to: nov-1
         rating: fair
         reason: California's main fig crop ends in October, so early-November figs are the last of it, after a fair October.
-      - from: nov-2
-        to: nov-2
-        rating: fair
-        reason: Only availability claims speak here, and the model panel has no rating.
+      - { from: nov-2, to: nov-2, rating: poor }
       - { from: dec-1, to: dec-1, rating: fair }
   - origin: mx
     windows:
-      - { from: nov-1, to: may-2, rating: poor }
+      - { from: nov-1, to: apr-2, rating: poor }
+      - from: may-1
+        to: may-2
+        rating: poor
+        reason: The panel's poor proposal rests on low-confidence votes.
 typicalOrigins:
   - from: may
     to: may

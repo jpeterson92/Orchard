@@ -39,19 +39,28 @@ prep: Rinse just before eating. Halve along the seam and twist; the pit lifts ou
 origins:
   - origin: us-ca
     windows:
-      - { from: may-1, to: jun-2, rating: prime }
+      - from: may-1
+        to: may-1
+        rating: fair
+        reason: Several sources put the first California apricots in stores in early May. Sol's lone poor vote is low confidence, and the harvest reports establish when the crop starts.
+      - { from: may-2, to: may-2, rating: fair }
+      - { from: jun-1, to: jun-2, rating: prime }
       - from: jul-1
         to: jul-1
         rating: fair
-        reason: Only the model panel's low-confidence ranges rate this window; they read fair.
+        reason: The new prime proposal lacks agreement between the models or clear support from eating-quality sources.
       - from: jul-2
         to: jul-2
         rating: fair
-        reason: The panel has no rating here; California's crop wraps up in late July, so it reads fair like early July.
+        reason: California's crop wraps up in late July, so it reads fair like early July.
   - origin: us-wa
     windows:
       - { from: jun-2, to: jul-2, rating: prime }
       - from: aug-1
+        to: aug-1
+        rating: fair
+        reason: The sources agree Washington picking runs into August, past its early-July peak, and together read fair.
+      - from: aug-2
         to: aug-2
         rating: fair
         reason: The panel has no rating here; the sources agree Washington picking runs into August, past its early-July peak, and together read fair.

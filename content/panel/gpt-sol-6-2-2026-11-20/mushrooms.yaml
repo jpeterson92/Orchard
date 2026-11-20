@@ -1,0 +1,21 @@
+category: mushrooms
+items:
+  - item: mushrooms
+    traits:
+      shipsWell: [true, high]
+      storesWell: [false, high]
+      peakWorthSeeking: [false, high]
+      alwaysGood: [true, high]
+    origins:
+      - origin: us-pa
+        windows:
+          - [jan-1, dec-2, fair, high]
+      - origin: ca
+        windows:
+          - [jan-1, dec-2, fair, medium]
+      - origin: us-ca
+        windows:
+          - [jan-1, dec-2, fair, medium]
+    note:
+      Cultivated button mushrooms and creminis grow indoors year-round, so package freshness matters more than
+      harvest season.

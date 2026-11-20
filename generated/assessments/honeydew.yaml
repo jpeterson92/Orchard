@@ -6,7 +6,7 @@ status: draft
 rated by: origin
 peak worth seeking: true
 always good: false
-outlook: "SSSSSSSS····PPPPPPPGSSSS (Jan to Dec, two windows a month: P Peak, G Good, S Skip, · Limited evidence)"
+outlook: "SSSSSSSS····PPPPPPGGSSSS (Jan to Dec, two windows a month: P Peak, G Good, S Skip, · Limited evidence)"
 windows:
   jan-1:
     when: early January (from 2026-01-01)
@@ -280,7 +280,7 @@ windows:
     decided:
       origin: us-ca
       rating: prime
-      evidence: medium
+      evidence: low
     weights: volume
     typical: [us-ca prime 100.0% (supply 1.60)]
     peak:
@@ -296,7 +296,7 @@ windows:
     look for: []
     label note: false
     reasons: [rated prime (origin us-ca)]
-    confidence: high
+    confidence: medium (coverage)
     markers: []
     today:
       section: best right now
@@ -425,13 +425,13 @@ windows:
     label note: false
     reasons: [rated prime (origin us-ca)]
     confidence: high
-    markers: []
+    markers: [last-call (fades by oct-1)]
     today:
       section: best right now
       line: none
-      reason: none
+      reason: Fades by early October.
       avoid: none
-      tags: []
+      tags: [Last call]
   sep-2:
     when: late September (from 2026-09-16)
     verdict: peak
@@ -457,54 +457,22 @@ windows:
     label note: false
     reasons: [rated prime (origin us-ca)]
     confidence: high
-    markers: [last-call (fades by oct-2)]
+    markers: [last-call (fades by oct-1)]
     today:
       section: best right now
       line: none
-      reason: Fades by late October.
+      reason: Fades by early October.
       avoid: none
       tags: [Last call]
   oct-1:
     when: early October (from 2026-10-01)
-    verdict: peak
-    rule: 3
-    basis: typical
-    decided:
-      origin: us-ca
-      rating: prime
-      evidence: medium
-    weights: volume
-    typical: [us-ca prime 72.2% (supply 0.94), mx poor 27.8% (supply 0.93)]
-    peak:
-      share: 72.2%
-      available: "yes: counted share 72.2% ≥ 33.0%"
-      whole bin: no (≤ 75.0%)
-      origins: [us-ca prime 72.2%]
-    good:
-      share: 72.2%
-      available: "yes: counted share 72.2% ≥ 33.0%"
-      whole bin: no (≤ 75.0%)
-      origins: [us-ca prime 72.2%]
-    look for: [us-ca]
-    label note: true
-    reasons: [rated prime (origin us-ca), typical-origin-poor mx, look-for us-ca]
-    confidence: medium (agreement)
-    markers: [last-call (fades by oct-2), check-label]
-    today:
-      section: best right now
-      line: Look for ones from California
-      reason: Fades by late October.
-      avoid: Honeydew from Mexico often disappoint now.
-      tags: [Last call]
-  oct-2:
-    when: late October (from 2026-10-16)
     verdict: good
     rule: 4
     basis: typical
     decided:
       origin: us-ca
       rating: fair
-      evidence: low
+      evidence: medium
     weights: volume
     typical: [us-ca fair 72.2% (supply 0.94), mx poor 27.8% (supply 0.93)]
     peak:
@@ -520,7 +488,39 @@ windows:
     look for: [us-ca]
     label note: true
     reasons: [rated fair (origin us-ca), typical-origin-poor mx, look-for us-ca]
-    confidence: low (coverage, agreement)
+    confidence: medium (agreement)
+    markers: [last-call (fades by nov-1), check-label]
+    today:
+      section: good buys
+      line: Look for ones from California
+      reason: Fades by early November.
+      avoid: Honeydew from Mexico often disappoint now.
+      tags: [Last call]
+  oct-2:
+    when: late October (from 2026-10-16)
+    verdict: good
+    rule: 4
+    basis: typical
+    decided:
+      origin: us-ca
+      rating: fair
+      evidence: medium
+    weights: volume
+    typical: [us-ca fair 72.2% (supply 0.94), mx poor 27.8% (supply 0.93)]
+    peak:
+      share: 0.0%
+      available: "no: no origin at this level"
+      whole bin: no (≤ 75.0%)
+      origins: []
+    good:
+      share: 72.2%
+      available: "yes: counted share 72.2% ≥ 33.0%"
+      whole bin: no (≤ 75.0%)
+      origins: [us-ca fair 72.2%]
+    look for: [us-ca]
+    label note: true
+    reasons: [rated fair (origin us-ca), typical-origin-poor mx, look-for us-ca]
+    confidence: medium (agreement)
     markers: [last-call (fades by nov-1), check-label]
     today:
       section: good buys
@@ -536,7 +536,7 @@ windows:
     decided:
       origin: mx
       rating: poor
-      evidence: low
+      evidence: medium
     weights: volume
     typical: [mx poor 78.3% (supply 2.30), "gt unrated 21.7% (supply 0.42, thin)"]
     peak:
@@ -552,7 +552,7 @@ windows:
     look for: []
     label note: false
     reasons: [rated poor (origin mx)]
-    confidence: low (coverage, agreement)
+    confidence: medium (agreement)
     markers: [improves (jul-1)]
     today: not on Today
   nov-2:
@@ -563,7 +563,7 @@ windows:
     decided:
       origin: mx
       rating: poor
-      evidence: low
+      evidence: medium
     weights: volume
     typical: [mx poor 78.3% (supply 2.30), "gt unrated 21.7% (supply 0.42, thin)"]
     peak:
@@ -579,7 +579,7 @@ windows:
     look for: []
     label note: false
     reasons: [rated poor (origin mx)]
-    confidence: low (coverage, agreement)
+    confidence: medium (agreement)
     markers: [improves (jul-1)]
     today: not on Today
   dec-1:

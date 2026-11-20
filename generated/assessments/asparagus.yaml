@@ -26,9 +26,9 @@ windows:
       origins: []
     good:
       share: 32.9%
-      available: "no: counted share 0.0% < 33.0%, none cited in stores"
+      available: "no: counted share 32.9% < 33.0%, none cited in stores"
       whole bin: no (≤ 75.0%)
-      origins: ["mx fair 32.9% (low confidence, not counted)"]
+      origins: [mx fair 32.9%]
     look for: []
     label note: false
     reasons: [rated poor (origin pe)]
@@ -53,9 +53,9 @@ windows:
       origins: []
     good:
       share: 32.9%
-      available: "no: counted share 0.0% < 33.0%, none cited in stores"
+      available: "no: counted share 32.9% < 33.0%, none cited in stores"
       whole bin: no (≤ 75.0%)
-      origins: ["mx fair 32.9% (low confidence, not counted)"]
+      origins: [mx fair 32.9%]
     look for: []
     label note: false
     reasons: [rated poor (origin pe)]
@@ -377,7 +377,7 @@ windows:
     decided:
       origin: mx
       rating: fair
-      evidence: medium
+      evidence: low
     weights: volume
     typical: [mx fair 59.2% (supply 0.92), pe poor 40.8% (supply 1.20)]
     peak:
@@ -393,7 +393,7 @@ windows:
     look for: [mx]
     label note: true
     reasons: [rated fair (origin mx), typical-origin-poor pe, look-for mx]
-    confidence: medium (agreement)
+    confidence: low (coverage, agreement)
     markers: [check-label]
     today:
       section: good buys
@@ -409,7 +409,7 @@ windows:
     decided:
       origin: mx
       rating: fair
-      evidence: medium
+      evidence: low
     weights: volume
     typical: [mx fair 59.2% (supply 0.92), pe poor 40.8% (supply 1.20)]
     peak:
@@ -425,7 +425,7 @@ windows:
     look for: [mx]
     label note: true
     reasons: [rated fair (origin mx), typical-origin-poor pe, look-for mx]
-    confidence: medium (agreement)
+    confidence: low (coverage, agreement)
     markers: [check-label]
     today:
       section: good buys
@@ -441,7 +441,7 @@ windows:
     decided:
       origin: mx
       rating: fair
-      evidence: medium
+      evidence: low
     weights: volume
     typical: ["mx fair 55.8% (supply 0.71, thin)", pe poor 44.2% (supply 1.00)]
     peak:
@@ -457,7 +457,7 @@ windows:
     look for: [mx]
     label note: true
     reasons: [rated fair (origin mx), typical-origin-poor pe, look-for mx]
-    confidence: medium (agreement)
+    confidence: low (coverage, agreement)
     markers: [check-label]
     today:
       section: good buys
@@ -473,7 +473,7 @@ windows:
     decided:
       origin: mx
       rating: fair
-      evidence: medium
+      evidence: low
     weights: volume
     typical: ["mx fair 55.8% (supply 0.71, thin)", pe poor 44.2% (supply 1.00)]
     peak:
@@ -489,7 +489,7 @@ windows:
     look for: [mx]
     label note: true
     reasons: [rated fair (origin mx), typical-origin-poor pe, look-for mx]
-    confidence: medium (agreement)
+    confidence: low (coverage, agreement)
     markers: [check-label]
     today:
       section: good buys
@@ -505,7 +505,7 @@ windows:
     decided:
       origin: mx
       rating: fair
-      evidence: medium
+      evidence: low
     weights: volume
     typical: ["mx fair 51.0% (supply 0.65, thin)", pe poor 49.0% (supply 1.20)]
     peak:
@@ -521,7 +521,7 @@ windows:
     look for: [mx]
     label note: true
     reasons: [rated fair (origin mx), typical-origin-poor pe, look-for mx]
-    confidence: medium (agreement)
+    confidence: low (coverage, agreement)
     markers: [check-label]
     today:
       section: good buys

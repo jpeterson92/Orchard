@@ -67,11 +67,11 @@ origins:
   - origin: us-ca
     windows:
       - { from: dec-2, to: jul-2, rating: fair }
-      - from: aug-1
-        to: aug-2
+      - { from: aug-1, to: aug-2, rating: fair }
+      - from: sep-1
+        to: sep-1
         rating: fair
-        reason: Only availability claims speak here, and the model panel has no rating.
-      - { from: sep-1, to: sep-1, rating: fair }
+        reason: Keep the prior fair call from the cited evidence. The new poor proposal rests on low-confidence votes, with no direct eating-quality claim for poor.
   - origin: za
     windows:
       - { from: jun-1, to: sep-2, rating: fair }

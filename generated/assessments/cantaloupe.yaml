@@ -6,7 +6,7 @@ status: draft
 rated by: origin
 peak worth seeking: true
 always good: false
-outlook: "SSSSSSSS··PPPPPPPPGS·SSS (Jan to Dec, two windows a month: P Peak, G Good, S Skip, · Limited evidence)"
+outlook: "SSSSSSSS··PPPPPPPGGS·SSS (Jan to Dec, two windows a month: P Peak, G Good, S Skip, · Limited evidence)"
 windows:
   jan-1:
     when: early January (from 2026-01-01)
@@ -298,9 +298,9 @@ windows:
       origins: [us-az prime 64.9%]
     good:
       share: 100.0%
-      available: "yes: counted share 100.0% ≥ 33.0%"
+      available: "yes: counted share 64.9% ≥ 33.0%"
       whole bin: yes (> 75.0%)
-      origins: [us-az prime 64.9%, us-ca prime 35.1%]
+      origins: [us-az prime 64.9%, "us-ca prime 35.1% (low confidence, not counted)"]
     look for: [us-az]
     label note: true
     reasons: [rated prime (origin us-az), look-for us-az]
@@ -433,13 +433,13 @@ windows:
     label note: false
     reasons: [rated prime (origin us-ca)]
     confidence: high
-    markers: []
+    markers: [last-call (fades by sep-2)]
     today:
       section: best right now
       line: none
-      reason: none
+      reason: Fades by late September.
       avoid: none
-      tags: []
+      tags: [Last call]
   sep-1:
     when: early September (from 2026-09-01)
     verdict: peak
@@ -465,43 +465,43 @@ windows:
     label note: false
     reasons: [rated prime (origin us-ca)]
     confidence: high
-    markers: [last-call (fades by oct-1)]
+    markers: [last-call (fades by sep-2)]
     today:
       section: best right now
       line: none
-      reason: Fades by early October.
+      reason: Fades by late September.
       avoid: none
       tags: [Last call]
   sep-2:
     when: late September (from 2026-09-16)
-    verdict: peak
-    rule: 3
+    verdict: good
+    rule: 4
     basis: typical
     decided:
       origin: us-ca
-      rating: prime
+      rating: fair
       evidence: medium
     weights: volume
-    typical: [us-ca prime 100.0% (supply 2.00)]
+    typical: [us-ca fair 100.0% (supply 2.00)]
     peak:
-      share: 100.0%
-      available: "yes: counted share 100.0% ≥ 33.0%"
-      whole bin: yes (> 75.0%)
-      origins: [us-ca prime 100.0%]
+      share: 0.0%
+      available: "no: no origin at this level"
+      whole bin: no (≤ 75.0%)
+      origins: []
     good:
       share: 100.0%
       available: "yes: counted share 100.0% ≥ 33.0%"
       whole bin: yes (> 75.0%)
-      origins: [us-ca prime 100.0%]
+      origins: [us-ca fair 100.0%]
     look for: []
     label note: false
-    reasons: [rated prime (origin us-ca)]
+    reasons: [rated fair (origin us-ca)]
     confidence: high
-    markers: [last-call (fades by oct-1)]
+    markers: [last-call (fades by oct-2)]
     today:
-      section: best right now
+      section: good buys
       line: none
-      reason: Fades by early October.
+      reason: Fades by late October.
       avoid: none
       tags: [Last call]
   oct-1:
@@ -514,17 +514,17 @@ windows:
       rating: fair
       evidence: medium
     weights: volume
-    typical: [us-ca fair 70.3% (supply 1.10), us-az prime 29.7% (supply 0.87)]
+    typical: [us-ca fair 70.3% (supply 1.10), us-az fair 29.7% (supply 0.87)]
     peak:
-      share: 29.7%
-      available: "no: counted share 29.7% < 33.0%, none cited in stores"
+      share: 0.0%
+      available: "no: no origin at this level"
       whole bin: no (≤ 75.0%)
-      origins: [us-az prime 29.7%]
+      origins: []
     good:
       share: 100.0%
       available: "yes: counted share 100.0% ≥ 33.0%"
       whole bin: yes (> 75.0%)
-      origins: [us-ca fair 70.3%, us-az prime 29.7%]
+      origins: [us-ca fair 70.3%, us-az fair 29.7%]
     look for: []
     label note: false
     reasons: [rated fair (origin us-ca)]
@@ -554,9 +554,9 @@ windows:
       origins: []
     good:
       share: 29.7%
-      available: "no: counted share 0.0% < 33.0%, none cited in stores"
+      available: "no: counted share 29.7% < 33.0%, none cited in stores"
       whole bin: no (≤ 75.0%)
-      origins: ["us-az fair 29.7% (low confidence, not counted)"]
+      origins: [us-az fair 29.7%]
     look for: []
     label note: false
     reasons: [rated poor (origin us-ca)]

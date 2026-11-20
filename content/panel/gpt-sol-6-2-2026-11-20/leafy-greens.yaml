@@ -1,0 +1,203 @@
+category: leafy-greens
+items:
+  - item: romaine
+    traits:
+      shipsWell: [true, medium]
+      storesWell: [false, high]
+      peakWorthSeeking: [false, medium]
+      alwaysGood: [true, medium]
+    origins:
+      - origin: us-ca
+        windows:
+          - [jan-1, dec-2, fair, medium]
+      - origin: us-az
+        windows:
+          - [nov-1, apr-1, fair, high]
+      - origin: mx
+        windows:
+          - [nov-1, apr-2, fair, low]
+    note: California coastal fields and winter desert fields trade off, so crisp romaine hearts are usually
+      available through the year.
+  - item: iceberg
+    traits:
+      shipsWell: [true, medium]
+      storesWell: [false, high]
+      peakWorthSeeking: [false, high]
+      alwaysGood: [true, medium]
+    origins:
+      - origin: us-ca
+        windows:
+          - [jan-1, dec-2, fair, medium]
+      - origin: us-az
+        windows:
+          - [nov-1, apr-1, fair, high]
+      - origin: mx
+        windows:
+          - [dec-1, mar-2, fair, low]
+    note: Tight heads retain crunch in transit, and staggered coastal and desert harvests make iceberg fairly
+      consistent across the year.
+  - item: leaf-lettuce
+    traits:
+      shipsWell: [true, medium]
+      storesWell: [false, high]
+      peakWorthSeeking: [false, medium]
+      alwaysGood: [true, low]
+    origins:
+      - origin: us-ca
+        windows:
+          - [jan-1, dec-2, fair, medium]
+      - origin: us-az
+        windows:
+          - [nov-1, apr-1, fair, high]
+      - origin: mx
+        windows:
+          - [nov-1, apr-2, fair, low]
+    note:
+      Red and green leaf lettuces wilt readily once picked, but overlapping growing regions usually keep fresh
+      heads on the shelf.
+  - item: butter-lettuce
+    traits:
+      shipsWell: [false, low]
+      storesWell: [false, high]
+      peakWorthSeeking: [false, medium]
+      alwaysGood: [true, low]
+    origins:
+      - origin: us-ca
+        windows:
+          - [mar-2, nov-2, fair, low]
+      - origin: us-az
+        windows:
+          - [nov-2, apr-1, fair, low]
+    note: Regional handoffs and living lettuce packs keep sweet, tender heads available through the year.
+  - item: spring-mix
+    traits:
+      shipsWell: [false, medium]
+      storesWell: [false, high]
+      peakWorthSeeking: [false, medium]
+      alwaysGood: [true, medium]
+    origins:
+      - origin: us-ca
+        windows:
+          - [mar-2, nov-2, fair, medium]
+      - origin: us-az
+        windows:
+          - [nov-2, apr-1, fair, medium]
+    note:
+      With a steady rotation of growing regions, pack freshness matters more than the season for tender mixed
+      leaves.
+  - item: spinach
+    traits:
+      shipsWell: [false, low]
+      storesWell: [false, high]
+      peakWorthSeeking: [true, low]
+      alwaysGood: [false, medium]
+    origins:
+      - origin: us-ca
+        windows:
+          - [mar-1, mar-2, fair, medium]
+          - [apr-1, may-2, prime, low]
+          - [jun-1, nov-2, fair, medium]
+      - origin: us-az
+        windows:
+          - [nov-2, dec-2, fair, medium]
+          - [jan-1, feb-2, prime, low]
+          - [mar-1, mar-2, fair, medium]
+    note:
+      Fresh spinach is usually dependable, with especially tender and mildly sweet leaves during the cooler
+      parts of each growing season.
+  - item: kale
+    traits:
+      shipsWell: [true, medium]
+      storesWell: [false, high]
+      peakWorthSeeking: [true, medium]
+      alwaysGood: [false, medium]
+    origins:
+      - origin: us-ca
+        windows:
+          - [mar-1, sep-2, fair, medium]
+          - [oct-1, dec-2, prime, low]
+          - [jan-1, feb-2, fair, low]
+      - origin: us-az
+        windows:
+          - [nov-2, dec-2, fair, low]
+          - [jan-1, feb-2, prime, low]
+          - [mar-1, mar-2, fair, low]
+      - origin: mx
+        windows:
+          - [nov-1, apr-2, fair, low]
+    note: Kale holds its texture well in transit, and cool growing weather can give mature bunches a sweeter
+      flavor.
+  - item: arugula
+    traits:
+      shipsWell: [false, low]
+      storesWell: [false, high]
+      peakWorthSeeking: [false, low]
+      alwaysGood: [true, low]
+    origins:
+      - origin: us-ca
+        windows:
+          - [mar-2, nov-2, fair, low]
+      - origin: us-az
+        windows:
+          - [nov-2, apr-1, fair, low]
+    note: Packaged baby arugula is consistently peppery and tender when fresh, with more variation by pack age
+      than by month.
+  - item: collard-greens
+    traits:
+      shipsWell: [true, low]
+      storesWell: [false, high]
+      peakWorthSeeking: [true, medium]
+      alwaysGood: [false, high]
+    origins:
+      - origin: us-ga
+        windows:
+          - [sep-2, oct-2, fair, low]
+          - [nov-1, feb-2, prime, medium]
+          - [mar-1, may-2, fair, low]
+      - origin: us-nc
+        windows:
+          - [oct-1, oct-2, fair, low]
+          - [nov-1, jan-2, prime, low]
+          - [feb-1, may-2, fair, low]
+      - origin: us-ca
+        windows:
+          - [jan-1, may-2, fair, low]
+          - [jun-1, sep-2, fair, low]
+          - [oct-1, dec-2, prime, low]
+    note: Cool-weather collards tend to taste sweeter and cook up more tender than bunches grown through heat.
+  - item: swiss-chard
+    traits:
+      shipsWell: [false, low]
+      storesWell: [false, high]
+      peakWorthSeeking: [true, low]
+      alwaysGood: [false, low]
+    origins:
+      - origin: us-ca
+        windows:
+          - [jan-1, mar-2, fair, low]
+          - [apr-1, may-2, prime, low]
+          - [jun-1, dec-2, fair, low]
+      - origin: us-az
+        windows:
+          - [nov-2, mar-2, fair, low]
+    note:
+      Chard generally cooks well year-round, and spring bunches can have especially supple leaves and crisp,
+      juicy stems.
+  - item: mustard-greens
+    traits:
+      shipsWell: [false, low]
+      storesWell: [false, high]
+      peakWorthSeeking: [true, medium]
+      alwaysGood: [false, medium]
+    origins:
+      - origin: us-ga
+        windows:
+          - [oct-1, nov-1, fair, low]
+          - [nov-2, feb-2, prime, medium]
+          - [mar-1, may-2, fair, low]
+      - origin: us-ca
+        windows:
+          - [jan-1, mar-2, fair, low]
+          - [apr-1, may-2, prime, low]
+          - [jun-1, dec-2, fair, low]
+    note: Bunch mustard keeps its characteristic bite in cool weather while staying more tender and less harsh.

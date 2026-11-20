@@ -1,0 +1,110 @@
+category: melons
+items:
+  - item: watermelon
+    traits:
+      shipsWell: [true, medium]
+      storesWell: [false, high]
+      peakWorthSeeking: [true, high]
+      alwaysGood: [false, high]
+    origins:
+      - origin: mx
+        windows:
+          - [oct-1, nov-2, fair, medium]
+          - [dec-1, feb-2, poor, medium]
+          - [mar-1, apr-1, fair, medium]
+          - [apr-2, may-2, prime, medium]
+          - [jun-1, jun-2, fair, low]
+      - origin: us-fl
+        windows:
+          - [mar-2, apr-2, fair, medium]
+          - [may-1, jun-1, prime, medium]
+          - [jun-2, jul-1, fair, medium]
+      - origin: us-ga
+        windows:
+          - [may-2, jun-1, fair, medium]
+          - [jun-2, jul-2, prime, high]
+          - [aug-1, aug-1, fair, medium]
+      - origin: us-tx
+        windows:
+          - [apr-2, may-2, fair, low]
+          - [jun-1, aug-1, prime, medium]
+          - [aug-2, sep-2, fair, low]
+      - origin: us-ca
+        windows:
+          - [may-2, jun-1, fair, low]
+          - [jun-2, aug-2, prime, medium]
+          - [sep-1, oct-1, fair, medium]
+    note:
+      Watermelon gains little sweetness after picking, so properly mature spring and summer lots are a better
+      bet.
+  - item: cantaloupe
+    traits:
+      shipsWell: [false, medium]
+      storesWell: [false, high]
+      peakWorthSeeking: [true, high]
+      alwaysGood: [false, high]
+    origins:
+      - origin: us-ca
+        windows:
+          - [may-1, jun-2, fair, medium]
+          - [jul-1, sep-1, prime, high]
+          - [sep-2, oct-2, fair, medium]
+      - origin: gt
+        windows:
+          - [nov-2, jan-2, poor, medium]
+          - [feb-1, mar-2, fair, medium]
+          - [apr-1, may-1, poor, low]
+      - origin: mx
+        windows:
+          - [oct-1, nov-2, fair, medium]
+          - [dec-1, feb-2, poor, low]
+          - [mar-1, may-2, fair, medium]
+      - origin: us-az
+        windows:
+          - [may-1, may-2, fair, medium]
+          - [jun-1, jul-1, prime, medium]
+          - [sep-2, nov-1, fair, medium]
+      - origin: hn
+        windows:
+          - [dec-2, jan-2, poor, low]
+          - [feb-1, mar-2, fair, low]
+          - [apr-1, apr-2, poor, low]
+    note:
+      Summer cantaloupes tend to have deeper aroma and sweetness, while winter shipping melons are often firm
+      and bland.
+  - item: honeydew
+    traits:
+      shipsWell: [false, medium]
+      storesWell: [false, high]
+      peakWorthSeeking: [true, medium]
+      alwaysGood: [false, high]
+    origins:
+      - origin: mx
+        windows:
+          - [oct-1, nov-2, fair, medium]
+          - [dec-1, feb-2, poor, medium]
+          - [mar-1, may-2, fair, medium]
+          - [jun-1, jun-1, poor, low]
+      - origin: us-ca
+        windows:
+          - [may-2, jul-1, fair, medium]
+          - [jul-2, sep-2, prime, medium]
+          - [oct-1, oct-2, fair, medium]
+      - origin: gt
+        windows:
+          - [nov-2, jan-2, poor, medium]
+          - [feb-1, mar-2, fair, low]
+          - [apr-1, may-1, poor, low]
+      - origin: us-az
+        windows:
+          - [may-1, jun-2, fair, medium]
+          - [jul-1, jul-1, prime, low]
+          - [oct-1, nov-1, fair, low]
+      - origin: hn
+        windows:
+          - [dec-2, jan-2, poor, low]
+          - [feb-1, mar-2, fair, low]
+          - [apr-1, apr-2, poor, low]
+    note:
+      Ripe honeydew is fragrant and sweet, but fruit cut early often stays firm and tastes faint even after
+      softening.

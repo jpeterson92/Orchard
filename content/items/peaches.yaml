@@ -54,13 +54,18 @@ origins:
     windows:
       - { from: apr-2, to: apr-2, rating: fair }
       - { from: may-1, to: may-2, rating: poor }
-      - { from: jun-1, to: aug-2, rating: prime }
+      - { from: jun-1, to: jun-2, rating: fair }
+      - { from: jul-1, to: aug-2, rating: prime }
       - { from: sep-1, to: sep-2, rating: fair }
-      - { from: oct-1, to: oct-1, rating: prime }
+      - from: oct-1
+        to: oct-1
+        rating: fair
+        reason: The California season can run into October, after the best eating-quality stretch. The panel's only vote here is low confidence.
   - origin: us-ga
     windows:
       - { from: apr-2, to: may-2, rating: fair }
-      - { from: jun-1, to: jul-2, rating: prime }
+      - { from: jun-1, to: jun-1, rating: fair }
+      - { from: jun-2, to: jul-2, rating: prime }
       - { from: aug-1, to: aug-2, rating: fair }
       - from: sep-1
         to: sep-1
@@ -71,9 +76,14 @@ origins:
       - { from: apr-2, to: apr-2, rating: fair }
       - { from: may-1, to: may-1, rating: prime }
       - { from: may-2, to: may-2, rating: fair }
-      - { from: jun-1, to: jul-2, rating: prime }
+      - { from: jun-1, to: jun-1, rating: fair }
+      - { from: jun-2, to: jul-2, rating: prime }
       - { from: aug-1, to: aug-2, rating: fair }
       - from: sep-1
+        to: sep-1
+        rating: fair
+        reason: The season winds down in September; the charts reaching it mark availability only.
+      - from: sep-2
         to: sep-2
         rating: fair
         reason: The season winds down in September, after an August the model panel rates fair; the charts reaching it mark availability only.
@@ -81,7 +91,11 @@ origins:
   - origin: us-nj
     windows:
       - { from: jun-2, to: jun-2, rating: fair }
-      - { from: jul-1, to: aug-2, rating: prime }
+      - from: jul-1
+        to: jul-1
+        rating: fair
+        reason: The panel's fair proposal rests on low-confidence votes.
+      - { from: jul-2, to: aug-2, rating: prime }
       - { from: sep-1, to: sep-2, rating: fair }
   - origin: cl
     windows:

@@ -39,36 +39,74 @@ prep: Scrub the rind under running water before cutting.
 origins:
   - origin: us-ca
     windows:
-      - { from: may-1, to: may-2, rating: prime }
+      - { from: may-1, to: may-1, rating: prime }
+      - { from: may-2, to: may-2, rating: fair }
       - from: jun-1
         to: jun-2
         rating: prime
         reason: California's desert crop runs through June before the Central Valley crop begins in July, so June sits with the prime windows either side.
-      - { from: jul-1, to: oct-1, rating: prime }
-      - from: oct-2
+      - from: jul-1
+        to: jul-1
+        rating: prime
+        reason: Cited eating-quality evidence from Co+op (National Co+op Grocers), The Produce Moms outweighs the panel here and supports prime.
+      - { from: jul-2, to: sep-2, rating: prime }
+      - { from: oct-1, to: oct-1, rating: fair }
+      - { from: oct-2, to: oct-2, rating: fair }
+      - from: nov-1
         to: nov-1
         rating: fair
         reason: Only the model panel's low-confidence ranges rate this window; they read fair.
   - origin: us-az
     windows:
       - { from: apr-2, to: apr-2, rating: fair }
-      - { from: may-1, to: may-1, rating: prime }
-      - from: may-2
-        to: jun-2
+      - { from: may-1, to: may-1, rating: fair }
+      - { from: may-2, to: jun-2, rating: fair }
+      - from: jul-1
+        to: jul-1
+        rating: prime
+        reason: The panel's prime proposal rests on low-confidence votes.
+      - { from: jul-2, to: sep-2, rating: prime }
+      - from: oct-1
+        to: nov-1
         rating: fair
-        reason: Only the model panel's low-confidence ranges rate this window; they read fair.
-      - { from: jul-1, to: nov-1, rating: prime }
+        reason: The panel's fair proposal rests on low-confidence votes.
   - origin: mx
     windows:
-      - { from: sep-2, to: oct-2, rating: poor }
+      - { from: sep-2, to: sep-2, rating: poor }
+      - from: oct-1
+        to: oct-2
+        rating: poor
+        reason: The new fair proposal lacks agreement between the models or clear support from eating-quality sources.
       - from: nov-1
+        to: nov-2
+        rating: poor
+        reason: The new fair proposal lacks agreement between the models or clear support from eating-quality sources.
+      - { from: dec-1, to: feb-2, rating: poor }
+      - from: mar-1
+        to: apr-2
+        rating: poor
+        reason: The new fair proposal lacks agreement between the models or clear support from eating-quality sources.
+      - from: may-1
         to: may-2
         rating: poor
-        reason: Only the model panel's low-confidence ranges rate this window; they read poor.
+        reason: Keep poor here based on eating-quality evidence from FreshPlaza.
   - origin: gt
     windows:
       - { from: dec-1, to: apr-2, rating: poor }
   - origin: hn
     windows:
-      - { from: dec-1, to: may-1, rating: poor }
+      - { from: dec-1, to: dec-1, rating: poor }
+      - from: dec-2
+        to: jan-2
+        rating: poor
+        reason: The panel's poor proposal rests on low-confidence votes.
+      - from: feb-1
+        to: mar-2
+        rating: poor
+        reason: The proposed upgrade has low confidence. Keep the existing poor rating for this window.
+      - from: apr-1
+        to: apr-2
+        rating: poor
+        reason: The panel's poor proposal rests on low-confidence votes.
+      - { from: may-1, to: may-1, rating: poor }
 status: draft

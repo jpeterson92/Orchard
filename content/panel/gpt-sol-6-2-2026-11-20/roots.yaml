@@ -1,0 +1,224 @@
+category: roots
+items:
+  - item: potatoes
+    traits:
+      shipsWell: [true, high]
+      storesWell: [true, high]
+      peakWorthSeeking: [true, medium]
+      alwaysGood: [false, high]
+    origins:
+      - origin: us-id
+        windows:
+          - [sep-1, nov-2, prime, high]
+          - [dec-1, jun-2, fair, high]
+          - [jul-1, aug-2, poor, medium]
+      - origin: us-wa
+        windows:
+          - [aug-1, oct-2, prime, medium]
+          - [nov-1, jun-2, fair, medium]
+          - [jul-1, jul-2, poor, low]
+      - origin: us-co
+        windows:
+          - [sep-1, nov-2, prime, medium]
+          - [dec-1, may-2, fair, medium]
+          - [jun-1, aug-1, poor, low]
+      - origin: us-wi
+        windows:
+          - [aug-2, oct-2, prime, medium]
+          - [nov-1, may-2, fair, medium]
+          - [jun-1, jul-2, poor, low]
+    note:
+      Fresh fall potatoes have good texture and flavor, and months of sound storage follow before older stock
+      starts losing firmness.
+  - item: sweet-potatoes
+    traits:
+      shipsWell: [true, high]
+      storesWell: [true, high]
+      peakWorthSeeking: [true, medium]
+      alwaysGood: [false, medium]
+    origins:
+      - origin: us-nc
+        windows:
+          - [oct-2, jan-2, prime, high]
+          - [feb-1, jun-2, fair, medium]
+          - [jul-1, sep-2, poor, low]
+          - [oct-1, oct-1, fair, medium]
+      - origin: us-ca
+        windows:
+          - [oct-1, dec-2, prime, medium]
+          - [jan-1, jul-2, fair, medium]
+          - [aug-1, aug-2, poor, low]
+          - [sep-1, sep-2, fair, low]
+      - origin: us-ms
+        windows:
+          - [oct-2, jan-2, prime, medium]
+          - [feb-1, jun-2, fair, medium]
+          - [jul-1, aug-2, poor, low]
+      - origin: us-la
+        windows:
+          - [oct-2, jan-2, prime, medium]
+          - [feb-1, may-2, fair, medium]
+          - [jun-1, jul-2, poor, low]
+    note:
+      Sweet potatoes taste richest after the fall crop has cured, and older stock can dry out near the next
+      harvest.
+  - item: carrots
+    traits:
+      shipsWell: [true, high]
+      storesWell: [true, high]
+      peakWorthSeeking: [false, medium]
+      alwaysGood: [true, medium]
+    origins:
+      - origin: us-ca
+        windows:
+          - [jan-1, dec-2, fair, high]
+      - origin: mx
+        windows:
+          - [nov-1, may-2, fair, low]
+    note:
+      California growing districts rotate through the year, and bagged carrots usually retain their crunch and
+      sweetness through distribution.
+  - item: beets
+    traits:
+      shipsWell: [true, high]
+      storesWell: [true, high]
+      peakWorthSeeking: [true, medium]
+      alwaysGood: [false, medium]
+    origins:
+      - origin: us
+        windows:
+          - [jan-1, mar-2, fair, medium]
+          - [apr-1, may-2, poor, low]
+          - [jun-1, aug-2, fair, low]
+          - [sep-1, nov-2, prime, medium]
+          - [dec-1, dec-2, fair, medium]
+      - origin: mx
+        windows:
+          - [dec-1, apr-2, fair, low]
+    note: Fresh fall beets often roast up sweet and tender, while older roots can get dry and fibrous.
+  - item: radishes
+    traits:
+      shipsWell: [true, medium]
+      storesWell: [false, medium]
+      peakWorthSeeking: [true, medium]
+      alwaysGood: [false, medium]
+    origins:
+      - origin: us-fl
+        windows:
+          - [nov-1, dec-2, fair, low]
+          - [jan-1, mar-2, prime, low]
+          - [apr-1, may-2, fair, low]
+      - origin: us-ca
+        windows:
+          - [oct-1, feb-2, fair, low]
+          - [mar-1, may-2, prime, medium]
+          - [jun-1, jun-2, fair, low]
+          - [jul-1, sep-2, poor, low]
+      - origin: mx
+        windows:
+          - [nov-1, apr-2, fair, low]
+    note: Cool growing conditions give red radishes a crisp snap and balanced heat, while summer roots can be
+      pithy and harsh.
+  - item: turnips
+    traits:
+      shipsWell: [true, medium]
+      storesWell: [true, medium]
+      peakWorthSeeking: [true, medium]
+      alwaysGood: [false, medium]
+    origins:
+      - origin: us
+        windows:
+          - [oct-1, dec-2, prime, medium]
+          - [jan-1, may-2, fair, low]
+          - [jun-1, sep-2, poor, low]
+      - origin: ca
+        windows:
+          - [sep-2, nov-2, prime, low]
+          - [dec-1, mar-2, fair, low]
+          - [apr-1, may-2, poor, low]
+    note: Cool-weather turnips tend to be sweeter and more tender, while warm-season roots can be sharp and woody.
+  - item: parsnips
+    traits:
+      shipsWell: [true, medium]
+      storesWell: [true, high]
+      peakWorthSeeking: [true, medium]
+      alwaysGood: [false, medium]
+    origins:
+      - origin: us
+        windows:
+          - [oct-2, jan-2, prime, medium]
+          - [feb-1, apr-2, fair, low]
+          - [may-1, sep-2, poor, low]
+          - [oct-1, oct-1, fair, low]
+      - origin: ca
+        windows:
+          - [oct-2, dec-2, prime, medium]
+          - [jan-1, mar-2, fair, medium]
+          - [apr-1, jun-2, poor, low]
+    note: Cold weather brings out sweetness, and the roots can become dry and fibrous late in storage.
+  - item: rutabagas
+    traits:
+      shipsWell: [true, medium]
+      storesWell: [true, high]
+      peakWorthSeeking: [true, medium]
+      alwaysGood: [false, medium]
+    origins:
+      - origin: ca
+        windows:
+          - [sep-2, nov-2, prime, medium]
+          - [dec-1, apr-2, fair, medium]
+          - [may-1, aug-2, poor, low]
+      - origin: us
+        windows:
+          - [oct-1, dec-2, prime, medium]
+          - [jan-1, mar-2, fair, medium]
+          - [apr-1, may-2, poor, low]
+    note: Fall roots are sweet and firm, and waxing helps prevent moisture loss for months before long storage
+      dulls their texture.
+  - item: ginger
+    traits:
+      shipsWell: [true, high]
+      storesWell: [true, medium]
+      peakWorthSeeking: [false, medium]
+      alwaysGood: [true, low]
+    origins:
+      - origin: cn
+        windows:
+          - [jan-1, dec-2, fair, medium]
+      - origin: pe
+        windows:
+          - [jun-1, mar-2, fair, low]
+      - origin: br
+        windows:
+          - [jul-1, dec-2, fair, low]
+    note: Mature ginger travels well and retains enough fragrance and heat that shoppers rarely need to time
+      purchases to harvest.
+  - item: jicama
+    traits:
+      shipsWell: [true, high]
+      storesWell: [false, medium]
+      peakWorthSeeking: [false, medium]
+      alwaysGood: [true, medium]
+    origins:
+      - origin: mx
+        windows:
+          - [jan-1, dec-2, fair, medium]
+    note:
+      Whole Mexican jicama generally stays crisp and juicy in transit, and staggered harvests keep good roots
+      available year-round.
+  - item: yuca
+    traits:
+      shipsWell: [true, medium]
+      storesWell: [false, high]
+      peakWorthSeeking: [false, high]
+      alwaysGood: [true, low]
+    origins:
+      - origin: cr
+        windows:
+          - [jan-1, dec-2, fair, medium]
+      - origin: ni
+        windows:
+          - [jan-1, dec-2, fair, low]
+    note:
+      Waxed roots can reach stores in good cooking condition year-round, with quality largely determined by
+      time since harvest.

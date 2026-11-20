@@ -37,19 +37,24 @@ prep: Rinse well, especially the tips, where grit hides. Snap or trim the woody 
 origins:
   - origin: pe
     windows:
-      - { from: jan-1, to: dec-2, rating: poor }
+      - { from: jan-1, to: apr-2, rating: poor }
+      - from: may-1
+        to: dec-2
+        rating: poor
+        reason: The panel splits between poor and fair. The cited reports establish when Peru ships asparagus, and the evidence on eating quality is too thin to recommend it.
   - origin: mx
     windows:
-      - from: jan-1
-        to: jan-2
-        rating: fair
-        reason: Only the model panel's low-confidence ranges rate this window; they read fair.
+      - { from: jan-1, to: jan-2, rating: fair }
       - { from: feb-1, to: apr-2, rating: fair }
       - from: may-2
         to: may-2
         rating: fair
         reason: Baja's harvest follows Caborca from April; the second source names only the winter and summer regions, so its silence in May isn't a poor reading.
-      - { from: jun-1, to: aug-2, rating: fair }
+      - { from: jun-1, to: jun-2, rating: fair }
+      - from: jul-1
+        to: aug-2
+        rating: fair
+        reason: Keep the prior fair call from the cited evidence. The new poor proposal rests on low-confidence votes, with no direct eating-quality claim for poor.
       - from: sep-1
         to: sep-1
         rating: fair
@@ -65,7 +70,11 @@ origins:
         to: feb-2
         rating: fair
         reason: Only the model panel's low-confidence ranges rate this window; they read fair.
-      - { from: mar-1, to: may-2, rating: prime }
+      - { from: mar-1, to: may-1, rating: prime }
+      - from: may-2
+        to: may-2
+        rating: fair
+        reason: The panel's fair proposal rests on low-confidence votes.
   - origin: us-wa
     windows:
       - { from: jan-2, to: jan-2, rating: fair }
@@ -73,7 +82,8 @@ origins:
         to: mar-2
         rating: poor
         reason: Washington's own sources start the harvest in April; the February claims describe California and the South.
-      - { from: apr-1, to: jun-2, rating: prime }
+      - { from: apr-1, to: may-2, rating: prime }
+      - { from: jun-1, to: jun-2, rating: fair }
       - { from: jul-1, to: jul-1, rating: fair }
   - origin: us-mi
     windows:

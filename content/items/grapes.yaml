@@ -49,7 +49,8 @@ origins:
             reason: "California's first grapes come from the Coachella Valley from mid-May; early-season fruit is fair, and the San Joaquin Valley crop from July is the best.",
           },
           { from: jun-1, to: jul-1, rating: fair },
-          { from: jul-2, to: oct-2, rating: prime },
+          { from: jul-2, to: jul-2, rating: fair },
+          { from: aug-1, to: oct-2, rating: prime },
           { from: nov-1, to: nov-2, rating: fair },
           { from: dec-1, to: dec-2, rating: poor },
           {
@@ -63,7 +64,17 @@ origins:
   - { origin: mx, windows: [{ from: may-2, to: jul-1, rating: fair }] }
   - {
       origin: cl,
-      windows: [{ from: jan-1, to: mar-2, rating: fair }, { from: apr-1, to: may-1, rating: poor }],
+      windows:
+        [
+          { from: jan-1, to: mar-2, rating: fair },
+          {
+            from: apr-1,
+            to: apr-1,
+            rating: poor,
+            reason: The panel splits between poor and fair here. Eating-quality evidence is too thin to recommend this window.,
+          },
+          { from: apr-2, to: may-1, rating: poor },
+        ],
     }
   - { origin: pe, windows: [{ from: nov-2, to: feb-2, rating: fair }] }
 status: draft

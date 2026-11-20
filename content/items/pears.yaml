@@ -50,10 +50,18 @@ varieties:
     ripeCue: Stays green; ripe when the neck gives to gentle pressure
     sources: [usapears-green-anjou, veritable-pear-guide, pnw-pear-sensory-study]
     windows:
-      - { from: sep-1, to: sep-1, rating: fair }
-      - { from: sep-2, to: jan-2, rating: prime }
+      - from: sep-1
+        to: sep-1
+        rating: fair
+        reason: Keep the prior fair call from the cited evidence. The new poor proposal rests on low-confidence votes, with no direct eating-quality claim for poor.
+      - { from: sep-2, to: oct-2, rating: fair }
+      - { from: nov-1, to: jan-2, rating: prime }
       - { from: feb-1, to: apr-2, rating: fair }
-      - { from: may-1, to: jul-1, rating: poor }
+      - from: may-1
+        to: jun-2
+        rating: poor
+        reason: The panel splits between poor and fair here. Eating-quality evidence is too thin to recommend this window.
+      - { from: jul-1, to: jul-1, rating: poor }
     quotedAs: [d-anjou]
   - id: bartlett
     name: Bartlett
@@ -68,7 +76,23 @@ varieties:
       - { from: jul-2, to: jul-2, rating: fair }
       - { from: aug-1, to: oct-2, rating: prime }
       - { from: nov-1, to: nov-2, rating: fair }
-      - { from: dec-1, to: jul-1, rating: poor }
+      - from: dec-1
+        to: dec-2
+        rating: poor
+        reason: The panel splits between poor and fair here. Eating-quality evidence is too thin to recommend this window.
+      - { from: jan-1, to: feb-2, rating: poor }
+      - from: mar-1
+        to: apr-2
+        rating: poor
+        reason: The panel splits between poor and fair here. Eating-quality evidence is too thin to recommend this window.
+      - from: may-1
+        to: jun-2
+        rating: poor
+        reason: The California Pear Advisory Board reports that long-stored Argentine Bartletts sold in May and June often fail to ripen well.
+      - from: jul-1
+        to: jul-1
+        rating: poor
+        reason: The panel splits between poor and fair here. Eating-quality evidence is too thin to recommend this window.
     quotedAs: [bartlett, williams, summer-bartlett, mountain-bartlett]
   - id: bosc
     name: Bosc
@@ -81,7 +105,8 @@ varieties:
     sources: [usapears-bosc, veritable-pear-guide, pnw-pear-sensory-study]
     windows:
       - { from: jan-1, to: apr-2, rating: fair }
-      - { from: sep-2, to: dec-2, rating: prime }
+      - { from: sep-2, to: oct-1, rating: fair }
+      - { from: oct-2, to: dec-2, rating: prime }
     quotedAs: [bosc, beurre-bosc]
   - id: comice
     name: Comice
@@ -93,9 +118,10 @@ varieties:
     ripeCue: Ripe when the neck gives; don't rely on color
     sources: [usapears-comice, veritable-pear-guide, pnw-pear-sensory-study]
     windows:
-      - { from: jan-1, to: jan-2, rating: prime }
+      - { from: jan-1, to: jan-2, rating: fair }
       - { from: feb-1, to: feb-2, rating: fair }
-      - { from: oct-2, to: dec-2, rating: prime }
+      - { from: oct-2, to: oct-2, rating: fair }
+      - { from: nov-1, to: dec-2, rating: prime }
     quotedAs: [comice]
   - id: seckel
     name: Seckel

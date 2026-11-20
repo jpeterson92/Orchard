@@ -50,8 +50,10 @@ origins:
         to: sep-2
         rating: fair
         reason: Only the model panel's low-confidence ranges rate this window; they read fair.
-      - { from: oct-1, to: dec-2, rating: prime }
-      - from: jan-1
+      - { from: oct-1, to: dec-1, rating: prime }
+      - { from: dec-2, to: dec-2, rating: fair }
+      - { from: jan-1, to: jan-1, rating: fair }
+      - from: jan-2
         to: jan-2
         rating: fair
         reason: Only the model panel's low-confidence ranges rate this window; they read fair.
@@ -64,8 +66,15 @@ origins:
       - { from: nov-1, to: dec-2, rating: fair }
   - origin: cl
     windows:
-      - { from: apr-1, to: may-2, rating: fair }
-      - { from: jun-1, to: jun-1, rating: poor }
+      - { from: apr-1, to: apr-2, rating: fair }
+      - from: may-1
+        to: may-2
+        rating: fair
+        reason: The panel's fair proposal rests on low-confidence votes.
+      - from: jun-1
+        to: jun-1
+        rating: poor
+        reason: The proposed upgrade has low confidence. Keep the existing poor rating for this window.
 typicalOrigins:
   - from: sep
     to: nov

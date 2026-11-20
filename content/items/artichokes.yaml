@@ -37,10 +37,7 @@ prep: Rinse well, snip the leaf tips and trim the stem. Rub cut surfaces with le
 origins:
   - origin: us-ca
     windows:
-      - from: jan-1
-        to: feb-2
-        rating: fair
-        reason: Only the model panel's low-confidence ranges rate this window; they read fair.
+      - { from: jan-1, to: feb-2, rating: fair }
       - { from: mar-1, to: may-2, rating: prime }
       - { from: jun-1, to: jul-2, rating: fair }
       - { from: aug-1, to: aug-2, rating: poor }
@@ -48,6 +45,9 @@ origins:
         to: sep-2
         rating: fair
         reason: One extension blog puts the fall crop in September and October; Melissa's and Farmers Market Online date its peak to October, so September stays with the panel at fair.
-      - { from: oct-1, to: oct-2, rating: prime }
+      - from: oct-1
+        to: oct-2
+        rating: prime
+        reason: Cited eating-quality evidence from Iowa State University Extension and Outreach outweighs the panel here and supports prime.
       - { from: nov-1, to: dec-2, rating: fair }
 status: draft

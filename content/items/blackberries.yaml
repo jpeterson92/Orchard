@@ -41,24 +41,37 @@ origins:
       origin: mx,
       windows:
         [
-          { from: oct-1, to: dec-2, rating: poor },
+          { from: oct-1, to: oct-2, rating: poor },
+          {
+            from: nov-1,
+            to: dec-2,
+            rating: poor,
+            reason: The panel splits between poor and fair here. Eating-quality evidence is too thin to recommend this window.,
+          },
           { from: jan-1, to: apr-2, rating: fair },
           { from: may-1, to: jun-1, rating: poor },
           { from: jun-2, to: jun-2, rating: fair },
-          { from: sep-1, to: sep-2, rating: poor },
+          { from: sep-1, to: sep-1, rating: poor },
+          {
+            from: sep-2,
+            to: sep-2,
+            rating: poor,
+            reason: The panel's poor proposal rests on low-confidence votes.,
+          },
         ],
     }
   - {
       origin: us-ca,
       windows:
         [
-          { from: may-2, to: may-2, rating: prime },
           {
-            from: jun-1,
-            to: sep-2,
-            rating: prime,
-            reason: Only the model panel's low-confidence ranges rate this window; they read prime.,
+            from: may-2,
+            to: may-2,
+            rating: fair,
+            reason: The panel's fair proposal rests on low-confidence votes.,
           },
+          { from: jun-1, to: aug-1, rating: prime },
+          { from: aug-2, to: sep-2, rating: fair },
         ],
     }
 status: draft

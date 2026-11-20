@@ -41,27 +41,34 @@ prep: Rinse under cool water just before eating, then hull. Washing ahead speeds
 origins:
   - origin: us-ca
     windows:
-      - from: feb-1
-        to: feb-2
-        rating: fair
-        reason: Only the model panel's low-confidence ranges rate this window; they read fair.
-      - { from: mar-1, to: jun-2, rating: prime }
+      - { from: feb-1, to: feb-2, rating: poor }
+      - { from: mar-1, to: apr-1, rating: fair }
+      - { from: apr-2, to: jun-2, rating: prime }
       - { from: jul-1, to: aug-2, rating: fair }
-      - { from: sep-1, to: nov-2, rating: poor }
+      - from: sep-1
+        to: sep-2
+        rating: poor
+        reason: The panel splits between poor and fair here. Eating-quality evidence is too thin to recommend this window.
+      - { from: oct-1, to: nov-2, rating: poor }
   - origin: mx
     windows:
-      - { from: nov-1, to: jan-2, rating: poor }
+      - { from: nov-1, to: nov-2, rating: poor }
+      - from: dec-1
+        to: jan-2
+        rating: poor
+        reason: The panel splits between poor and fair here. Eating-quality evidence is too thin to recommend this window.
       - { from: feb-1, to: apr-2, rating: fair }
   - origin: us-fl
     windows:
-      - { from: nov-2, to: jan-2, rating: fair }
-      - from: feb-1
-        to: mar-1
-        rating: prime
-        reason: Only the model panel's low-confidence ranges rate this window; they read prime.
+      - { from: nov-2, to: nov-2, rating: poor }
+      - { from: dec-1, to: jan-2, rating: fair }
+      - { from: feb-1, to: mar-1, rating: prime }
       - from: mar-2
         to: mar-2
         rating: prime
         reason: Cited eating-quality sources outweigh the model panel here and read prime.
-      - { from: apr-1, to: apr-1, rating: fair }
+      - from: apr-1
+        to: apr-1
+        rating: fair
+        reason: Keep the prior fair call from the cited evidence. The new poor proposal rests on low-confidence votes, with no direct eating-quality claim for poor.
 status: draft

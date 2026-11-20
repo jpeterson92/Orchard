@@ -6,7 +6,7 @@ status: draft
 rated by: origin
 peak worth seeking: true
 always good: false
-outlook: "SSSSSSSS··GPPPPPPGG····· (Jan to Dec, two windows a month: P Peak, G Good, S Skip, · Limited evidence)"
+outlook: "SSSSSSSS··GGGPPPPGG····· (Jan to Dec, two windows a month: P Peak, G Good, S Skip, · Limited evidence)"
 windows:
   jan-1:
     when: early January (from 2026-01-01)
@@ -205,7 +205,7 @@ windows:
     decided:
       origin: cl
       rating: poor
-      evidence: medium
+      evidence: low
     weights: volume
     typical: [cl poor 69.8% (supply 2.00), za poor 30.2% (supply 2.20)]
     peak:
@@ -221,7 +221,7 @@ windows:
     look for: []
     label note: false
     reasons: [rated poor (origin cl)]
-    confidence: medium (agreement)
+    confidence: low (coverage, agreement)
     markers: [improves (jun-1)]
     today: not on Today
   may-1:
@@ -282,64 +282,64 @@ windows:
       tags: []
   jun-2:
     when: late June (from 2026-06-16)
-    verdict: peak
-    rule: 3
+    verdict: good
+    rule: 4
     basis: typical
     decided:
       origin: us-ca
-      rating: prime
+      rating: fair
       evidence: medium
     weights: volume
-    typical: [us-ca prime 100.0% (supply 1.60)]
+    typical: [us-ca fair 100.0% (supply 1.60)]
     peak:
-      share: 100.0%
-      available: "yes: counted share 100.0% ≥ 33.0%"
-      whole bin: yes (> 75.0%)
-      origins: [us-ca prime 100.0%]
+      share: 0.0%
+      available: "no: no origin at this level"
+      whole bin: no (≤ 75.0%)
+      origins: []
     good:
       share: 100.0%
       available: "yes: counted share 100.0% ≥ 33.0%"
       whole bin: yes (> 75.0%)
-      origins: [us-ca prime 100.0%]
+      origins: [us-ca fair 100.0%]
     look for: []
     label note: false
-    reasons: [rated prime (origin us-ca)]
+    reasons: [rated fair (origin us-ca)]
     confidence: high
     markers: []
     today:
-      section: best right now
+      section: good buys
       line: none
       reason: none
       avoid: none
       tags: []
   jul-1:
     when: early July (from 2026-07-01)
-    verdict: peak
-    rule: 3
+    verdict: good
+    rule: 4
     basis: typical
     decided:
       origin: us-ca
-      rating: prime
+      rating: fair
       evidence: medium
     weights: volume
-    typical: [us-ca prime 100.0% (supply 2.30)]
+    typical: [us-ca fair 100.0% (supply 2.30)]
     peak:
-      share: 100.0%
-      available: "yes: counted share 100.0% ≥ 33.0%"
-      whole bin: yes (> 75.0%)
-      origins: [us-ca prime 100.0%]
+      share: 0.0%
+      available: "no: no origin at this level"
+      whole bin: no (≤ 75.0%)
+      origins: []
     good:
       share: 100.0%
       available: "yes: counted share 100.0% ≥ 33.0%"
       whole bin: yes (> 75.0%)
-      origins: [us-ca prime 100.0%]
+      origins: [us-ca fair 100.0%]
     look for: []
     label note: false
-    reasons: [rated prime (origin us-ca)]
+    reasons: [rated fair (origin us-ca)]
     confidence: high
     markers: []
     today:
-      section: best right now
+      section: good buys
       line: none
       reason: none
       avoid: none

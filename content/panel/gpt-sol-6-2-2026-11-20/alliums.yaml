@@ -1,0 +1,113 @@
+category: alliums
+items:
+  - item: onions
+    traits:
+      shipsWell: [true, high]
+      storesWell: [true, high]
+      peakWorthSeeking: [true, medium]
+      alwaysGood: [false, high]
+    origins:
+      - origin: us-wa
+        windows:
+          - [aug-2, nov-2, prime, medium]
+          - [dec-1, mar-2, fair, medium]
+          - [apr-1, jun-2, poor, low]
+      - origin: us-ca
+        windows:
+          - [apr-2, jun-1, fair, medium]
+          - [jun-2, aug-2, prime, medium]
+          - [sep-1, dec-2, fair, low]
+      - origin: us-or
+        windows:
+          - [sep-1, nov-2, prime, medium]
+          - [dec-1, mar-2, fair, medium]
+          - [apr-1, may-2, poor, low]
+      - origin: us-id
+        windows:
+          - [sep-1, nov-2, prime, medium]
+          - [dec-1, mar-2, fair, medium]
+          - [apr-1, may-2, poor, low]
+      - origin: mx
+        windows:
+          - [jan-1, apr-2, fair, medium]
+      - origin: us-ga
+        windows:
+          - [apr-2, jun-2, prime, high]
+          - [jul-1, aug-2, fair, medium]
+      - origin: us-tx
+        windows:
+          - [mar-1, jun-1, fair, medium]
+    note:
+      Freshly cured storage onions have crisp layers, spring sweet onions are mild and juicy, and long-held
+      bulbs can lose firmness.
+  - item: green-onions
+    traits:
+      shipsWell: [true, high]
+      storesWell: [false, high]
+      peakWorthSeeking: [false, medium]
+      alwaysGood: [true, medium]
+    origins:
+      - origin: mx
+        windows:
+          - [jan-1, dec-2, fair, high]
+      - origin: us-ca
+        windows:
+          - [jan-1, dec-2, fair, medium]
+    note:
+      Green onions are harvested young year-round, and good refrigeration preserves their crisp tops and fresh
+      bite through the trip to stores.
+  - item: garlic
+    traits:
+      shipsWell: [true, high]
+      storesWell: [true, high]
+      peakWorthSeeking: [true, medium]
+      alwaysGood: [false, medium]
+    origins:
+      - origin: us-ca
+        windows:
+          - [jul-2, oct-2, prime, medium]
+          - [nov-1, mar-2, fair, medium]
+          - [apr-1, jul-1, poor, low]
+      - origin: cn
+        windows:
+          - [jul-1, mar-2, fair, medium]
+          - [apr-1, jun-2, poor, low]
+      - origin: es
+        windows:
+          - [jul-1, feb-2, fair, low]
+      - origin: ar
+        windows:
+          - [dec-1, may-2, fair, low]
+    note:
+      Newly cured bulbs are firm and pungent, while long storage can bring shriveled cloves and bitter green
+      sprouts.
+  - item: leeks
+    traits:
+      shipsWell: [true, medium]
+      storesWell: [false, medium]
+      peakWorthSeeking: [false, low]
+      alwaysGood: [true, low]
+    origins:
+      - origin: us-ca
+        windows:
+          - [jan-1, dec-2, fair, medium]
+      - origin: mx
+        windows:
+          - [nov-1, apr-2, fair, low]
+    note: Leeks from staggered harvests are generally mild and tender when the stalks arrive firm and fresh.
+  - item: shallots
+    traits:
+      shipsWell: [true, high]
+      storesWell: [true, high]
+      peakWorthSeeking: [false, medium]
+      alwaysGood: [true, low]
+    origins:
+      - origin: us
+        windows:
+          - [jan-1, dec-2, fair, medium]
+      - origin: fr
+        windows:
+          - [sep-1, apr-2, fair, low]
+    note:
+      Cured bulbs retain their firm texture and aromatic flavor through storage and shipping, so the harvest
+      date makes little difference at the store.

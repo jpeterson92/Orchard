@@ -1,0 +1,176 @@
+category: tomatoes-peppers
+items:
+  - item: tomatoes
+    traits:
+      shipsWell: [false, medium]
+      storesWell: [false, high]
+      peakWorthSeeking: [true, high]
+      alwaysGood: [false, high]
+    origins:
+      - origin: mx
+        windows:
+          - [nov-1, apr-2, fair, medium]
+          - [may-1, oct-2, fair, low]
+        note: Small greenhouse tomatoes can be sweet, while standard slicers and Romas are more variable.
+      - origin: us-fl
+        windows:
+          - [nov-1, may-2, poor, medium]
+        note: Field-grown slicers picked firm for distribution often have muted flavor.
+      - origin: us-ca
+        windows:
+          - [jun-1, jun-2, poor, low]
+          - [jul-1, sep-2, fair, medium]
+          - [oct-1, oct-2, poor, low]
+      - origin: ca
+        windows:
+          - [apr-1, nov-2, fair, medium]
+    varieties:
+      - variety: round
+        windows:
+          - [oct-1, jun-2, poor, medium]
+          - [jul-1, sep-2, fair, medium]
+      - variety: roma
+        windows:
+          - [nov-1, may-2, poor, medium]
+          - [jun-1, oct-2, fair, low]
+      - variety: cherry-grape
+        windows:
+          - [jan-1, dec-2, fair, high]
+      - variety: local-field
+        windows:
+          - [jun-1, jun-2, fair, low]
+          - [jul-1, sep-2, prime, high]
+          - [oct-1, oct-2, fair, low]
+    note: Ripe local field tomatoes make summer worthwhile, while small greenhouse types supply dependable
+      sweetness year-round and standard slicers often lack flavor.
+  - item: bell-peppers
+    traits:
+      shipsWell: [true, high]
+      storesWell: [false, high]
+      peakWorthSeeking: [true, medium]
+      alwaysGood: [false, medium]
+    origins:
+      - origin: mx
+        windows:
+          - [nov-1, apr-2, fair, high]
+          - [may-1, oct-2, fair, low]
+      - origin: us-ca
+        windows:
+          - [may-1, jun-2, fair, medium]
+          - [jul-1, sep-2, prime, medium]
+          - [oct-1, nov-2, fair, low]
+      - origin: us-fl
+        windows:
+          - [nov-1, may-2, fair, medium]
+      - origin: ca
+        windows:
+          - [apr-1, nov-2, fair, medium]
+    note:
+      Colored greenhouse peppers keep their sweetness in transit, and freshly harvested late-summer peppers
+      have the best crunch and aroma.
+  - item: mini-sweet-peppers
+    traits:
+      shipsWell: [true, high]
+      storesWell: [false, high]
+      peakWorthSeeking: [false, medium]
+      alwaysGood: [true, medium]
+    origins:
+      - origin: mx
+        windows:
+          - [jan-1, dec-2, fair, medium]
+      - origin: us-ca
+        windows:
+          - [may-1, oct-2, fair, low]
+      - origin: ca
+        windows:
+          - [apr-1, nov-2, fair, low]
+    note: Packaged mini peppers are usually harvested fully colored and stay sweet and crisp across the main
+      growing regions.
+  - item: hot-peppers
+    traits:
+      shipsWell: [true, high]
+      storesWell: [false, high]
+      peakWorthSeeking: [false, medium]
+      alwaysGood: [true, medium]
+    origins:
+      - origin: mx
+        windows:
+          - [jan-1, dec-2, fair, high]
+      - origin: us-ca
+        windows:
+          - [may-1, oct-2, fair, low]
+      - origin: us-nm
+        windows:
+          - [aug-1, oct-2, fair, medium]
+        note: Southwestern green chiles appear in seasonal promotions.
+    note:
+      Retail hot chiles travel well, and differences in variety, batch heat, and firmness usually matter more
+      than the calendar.
+  - item: cucumbers
+    traits:
+      shipsWell: [true, medium]
+      storesWell: [false, high]
+      peakWorthSeeking: [true, medium]
+      alwaysGood: [false, medium]
+    origins:
+      - origin: mx
+        windows:
+          - [oct-1, nov-1, fair, low]
+          - [nov-2, apr-2, fair, medium]
+          - [may-1, jun-2, fair, low]
+      - origin: us-fl
+        windows:
+          - [oct-1, may-2, fair, medium]
+      - origin: us-ga
+        windows:
+          - [may-1, jun-2, prime, medium]
+          - [sep-1, oct-2, fair, low]
+      - origin: ca
+        windows:
+          - [mar-1, nov-2, fair, medium]
+      - origin: us-mi
+        windows:
+          - [jul-1, aug-2, prime, low]
+          - [sep-1, sep-2, fair, low]
+    note: Field cucumbers have the brightest flavor and strongest crunch just after harvest, and greenhouse
+      English cucumbers are a dependable option across seasons.
+  - item: eggplant
+    traits:
+      shipsWell: [true, medium]
+      storesWell: [false, high]
+      peakWorthSeeking: [true, high]
+      alwaysGood: [false, high]
+    origins:
+      - origin: mx
+        windows:
+          - [nov-1, mar-2, fair, medium]
+          - [apr-1, may-2, poor, low]
+      - origin: us-fl
+        windows:
+          - [nov-1, may-2, fair, medium]
+      - origin: us-ca
+        windows:
+          - [may-1, jun-2, fair, low]
+          - [jul-1, sep-2, prime, medium]
+          - [oct-1, oct-2, fair, low]
+      - origin: us-nj
+        windows:
+          - [jul-1, sep-2, prime, medium]
+    note: Summer field eggplant tends to have firm, creamy flesh and small seeds, while older fruit can become
+      spongy and bitter.
+  - item: tomatillos
+    traits:
+      shipsWell: [true, high]
+      storesWell: [false, medium]
+      peakWorthSeeking: [false, medium]
+      alwaysGood: [true, medium]
+    origins:
+      - origin: mx
+        windows:
+          - [jan-1, dec-2, fair, medium]
+      - origin: us-ca
+        windows:
+          - [jun-1, oct-2, fair, low]
+    note:
+      Firm green tomatillos travel well in their husks and keep the bright tartness shoppers want for salsa
+      through the year.

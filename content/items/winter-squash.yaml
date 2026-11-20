@@ -52,7 +52,8 @@ origins:
     windows:
       - { from: aug-1, to: aug-2, rating: poor }
       - { from: sep-1, to: sep-1, rating: fair }
-      - { from: sep-2, to: dec-2, rating: prime }
+      - { from: sep-2, to: sep-2, rating: fair }
+      - { from: oct-1, to: dec-2, rating: prime }
       - { from: jan-1, to: feb-2, rating: fair }
       - { from: mar-1, to: jul-2, rating: poor }
   - origin: mx

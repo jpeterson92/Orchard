@@ -1,0 +1,132 @@
+category: brassicas
+items:
+  - item: broccoli
+    traits:
+      shipsWell: [true, high]
+      storesWell: [false, high]
+      peakWorthSeeking: [true, low]
+      alwaysGood: [false, medium]
+    origins:
+      - origin: us-ca
+        windows:
+          - [jan-1, sep-2, fair, medium]
+          - [oct-1, nov-2, prime, low]
+          - [dec-1, dec-2, fair, medium]
+      - origin: mx
+        windows:
+          - [jan-1, dec-2, fair, medium]
+      - origin: us-az
+        windows:
+          - [nov-2, dec-2, fair, medium]
+          - [jan-1, feb-2, prime, low]
+          - [mar-1, apr-1, fair, medium]
+    note:
+      Well chilled broccoli eats well throughout the year, with sweeter stalks and tighter florets in the best
+      cool-season lots.
+  - item: broccoli-rabe
+    traits:
+      shipsWell: [false, low]
+      storesWell: [false, high]
+      peakWorthSeeking: [true, low]
+      alwaysGood: [false, low]
+    origins:
+      - origin: us-ca
+        windows:
+          - [jan-1, oct-1, fair, low]
+          - [oct-2, dec-1, prime, low]
+          - [dec-2, dec-2, fair, low]
+      - origin: us-az
+        windows:
+          - [nov-2, mar-2, fair, low]
+    note: Cool-weather rabe tends to have tender stems and small buds, with the pleasantly bitter flavor that
+      defines it.
+  - item: cauliflower
+    traits:
+      shipsWell: [true, medium]
+      storesWell: [false, high]
+      peakWorthSeeking: [false, medium]
+      alwaysGood: [true, medium]
+    origins:
+      - origin: us-ca
+        windows:
+          - [jan-1, dec-2, fair, medium]
+      - origin: us-az
+        windows:
+          - [dec-1, mar-2, fair, medium]
+      - origin: mx
+        windows:
+          - [nov-1, apr-2, fair, low]
+    note: Growers shift districts with the weather, keeping supermarket heads firm and mild through the year.
+  - item: cabbage
+    traits:
+      shipsWell: [true, high]
+      storesWell: [true, high]
+      peakWorthSeeking: [true, medium]
+      alwaysGood: [false, medium]
+    origins:
+      - origin: us
+        windows:
+          - [jan-1, aug-2, fair, medium]
+          - [sep-1, nov-2, prime, medium]
+          - [dec-1, dec-2, fair, medium]
+      - origin: mx
+        windows:
+          - [nov-1, apr-2, fair, low]
+    note:
+      Domestic regions trade off supply through the year, with freshly harvested fall heads often sweeter and
+      crisper.
+  - item: brussels-sprouts
+    traits:
+      shipsWell: [true, medium]
+      storesWell: [false, high]
+      peakWorthSeeking: [true, high]
+      alwaysGood: [false, high]
+    origins:
+      - origin: mx
+        windows:
+          - [nov-1, dec-2, fair, low]
+          - [jan-1, mar-2, prime, medium]
+          - [apr-1, may-2, fair, medium]
+          - [jun-1, jun-2, poor, low]
+      - origin: us-ca
+        windows:
+          - [jun-2, aug-2, poor, low]
+          - [sep-1, sep-2, fair, medium]
+          - [oct-1, dec-2, prime, high]
+          - [jan-1, mar-2, fair, low]
+    note:
+      Cool weather brings tighter, sweeter sprouts, while warmer months more often yield loose sprouts with
+      stronger flavor.
+  - item: bok-choy
+    traits:
+      shipsWell: [true, medium]
+      storesWell: [false, high]
+      peakWorthSeeking: [false, medium]
+      alwaysGood: [true, low]
+    origins:
+      - origin: us-ca
+        windows:
+          - [jan-1, dec-2, fair, medium]
+      - origin: mx
+        windows:
+          - [nov-1, apr-2, fair, low]
+      - origin: us-az
+        windows:
+          - [dec-1, mar-2, fair, low]
+    note: Rotating growing districts supply crisp, mild bok choy throughout the year, and leaf condition is a
+      better guide than the calendar.
+  - item: napa-cabbage
+    traits:
+      shipsWell: [true, medium]
+      storesWell: [false, medium]
+      peakWorthSeeking: [true, low]
+      alwaysGood: [false, medium]
+    origins:
+      - origin: us-ca
+        windows:
+          - [jan-1, sep-2, fair, low]
+          - [oct-1, dec-2, prime, low]
+      - origin: mx
+        windows:
+          - [nov-1, apr-2, fair, low]
+    note: Cool fall weather favors dense heads with juicy ribs and milder flavor.

@@ -35,12 +35,10 @@ prep: Score the skin, break it open in a bowl of water and loosen the seeds; the
 origins:
   - origin: us-ca
     windows:
-      - from: sep-1
-        to: sep-1
-        rating: fair
-        reason: Only availability claims speak here, and the model panel has no rating.
+      - { from: sep-1, to: sep-1, rating: fair }
       - { from: sep-2, to: sep-2, rating: fair }
-      - { from: oct-1, to: dec-2, rating: prime }
+      - { from: oct-1, to: dec-1, rating: prime }
+      - { from: dec-2, to: dec-2, rating: fair }
       - { from: jan-1, to: feb-1, rating: fair }
   - origin: il
     windows:
@@ -52,14 +50,20 @@ origins:
         to: jun-1
         rating: fair
         reason: Only the model panel's low-confidence ranges rate this window; they read fair.
-      - { from: jun-2, to: jun-2, rating: poor }
+      - from: jun-2
+        to: jun-2
+        rating: poor
+        reason: The proposed upgrade has low confidence. Keep the existing poor rating for this window.
   - origin: pe
     windows:
       - from: mar-1
         to: may-2
         rating: fair
         reason: Only the model panel's low-confidence ranges rate this window; they read fair.
-      - { from: jun-1, to: jun-1, rating: poor }
+      - from: jun-1
+        to: jun-1
+        rating: poor
+        reason: The proposed upgrade has low confidence. Keep the existing poor rating for this window.
   - origin: ar
     windows:
       - { from: apr-1, to: may-2, rating: fair }

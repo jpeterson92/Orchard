@@ -44,25 +44,37 @@ origins:
         to: nov-2
         rating: fair
         reason: Only the model panel's low-confidence ranges rate this window; they read fair.
-      - { from: dec-1, to: feb-2, rating: poor }
-      - from: mar-1
-        to: mar-2
-        rating: fair
-        reason: Only the model panel's low-confidence ranges rate this window; they read fair.
+      - { from: dec-1, to: dec-2, rating: poor }
+      - from: jan-1
+        to: feb-2
+        rating: poor
+        reason: The panel splits between poor and fair here. Eating-quality evidence is too thin to recommend this window.
+      - { from: mar-1, to: mar-2, rating: fair }
       - { from: apr-1, to: jun-1, rating: prime }
   - origin: us-ga
     windows:
       - { from: may-1, to: may-1, rating: fair }
-      - { from: may-2, to: jul-2, rating: prime }
-      - { from: sep-2, to: sep-2, rating: fair }
-      - { from: oct-1, to: nov-2, rating: prime }
+      - { from: may-2, to: jun-1, rating: fair }
+      - { from: jun-2, to: jul-2, rating: prime }
+      - from: sep-2
+        to: sep-2
+        rating: fair
+        reason: The panel's fair proposal rests on low-confidence votes.
+      - from: oct-1
+        to: oct-2
+        rating: fair
+        reason: The panel's fair proposal rests on low-confidence votes.
+      - { from: nov-1, to: nov-2, rating: prime }
   - origin: us-ca
     windows:
       - { from: mar-2, to: apr-1, rating: fair }
-      - { from: apr-2, to: sep-2, rating: prime }
+      - { from: apr-2, to: apr-2, rating: prime }
+      - { from: may-1, to: jun-1, rating: fair }
+      - { from: jun-2, to: sep-2, rating: prime }
   - origin: us-ny
     windows:
-      - { from: jul-2, to: sep-2, rating: prime }
+      - { from: jul-2, to: aug-2, rating: prime }
+      - { from: sep-1, to: sep-2, rating: fair }
   - origin: mx
     windows:
       - { from: dec-1, to: apr-2, rating: poor }

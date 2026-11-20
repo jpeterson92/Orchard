@@ -6,7 +6,7 @@ status: draft
 rated by: origin
 peak worth seeking: true
 always good: false
-outlook: "SSGGGGPPPPPPGGGGSSSSSS·· (Jan to Dec, two windows a month: P Peak, G Good, S Skip, · Limited evidence)"
+outlook: "SSGGGGGPPPPPGGGGSSSSSS·· (Jan to Dec, two windows a month: P Peak, G Good, S Skip, · Limited evidence)"
 windows:
   jan-1:
     when: early January (from 2026-01-01)
@@ -75,19 +75,20 @@ windows:
     typical: [mx fair 60.9% (supply 2.30), us-fl prime 39.1% (supply 1.80)]
     peak:
       share: 39.1%
-      available: "no: counted share 0.0% < 33.0%, none cited in stores"
+      available: "yes: counted share 39.1% ≥ 33.0%"
       whole bin: no (≤ 75.0%)
-      origins: ["us-fl prime 39.1% (low confidence, not counted)"]
+      origins: [us-fl prime 39.1%]
     good:
       share: 100.0%
-      available: "yes: counted share 60.9% ≥ 33.0%"
+      available: "yes: counted share 100.0% ≥ 33.0%"
       whole bin: yes (> 75.0%)
-      origins: [mx fair 60.9%, "us-fl prime 39.1% (low confidence, not counted)"]
+      origins: [mx fair 60.9%, us-fl prime 39.1%]
     look for: []
     label note: false
-    reasons: [rated fair (origin mx)]
+    reasons: [rated fair (origin mx), main-peak apr-2 to jun-2]
     confidence: high
     markers: []
+    main peak: rated Peak here, but Peak is kept for apr-2 to jun-2 (P19), so good
     today:
       section: good buys
       line: none
@@ -107,19 +108,20 @@ windows:
     typical: [mx fair 60.9% (supply 2.30), us-fl prime 39.1% (supply 1.80)]
     peak:
       share: 39.1%
-      available: "no: counted share 0.0% < 33.0%, none cited in stores"
+      available: "yes: counted share 39.1% ≥ 33.0%"
       whole bin: no (≤ 75.0%)
-      origins: ["us-fl prime 39.1% (low confidence, not counted)"]
+      origins: [us-fl prime 39.1%]
     good:
       share: 100.0%
-      available: "yes: counted share 60.9% ≥ 33.0%"
+      available: "yes: counted share 100.0% ≥ 33.0%"
       whole bin: yes (> 75.0%)
-      origins: [mx fair 60.9%, "us-fl prime 39.1% (low confidence, not counted)"]
+      origins: [mx fair 60.9%, us-fl prime 39.1%]
     look for: []
     label note: false
-    reasons: [rated fair (origin mx)]
+    reasons: [rated fair (origin mx), main-peak apr-2 to jun-2]
     confidence: high
     markers: []
+    main peak: rated Peak here, but Peak is kept for apr-2 to jun-2 (P19), so good
     today:
       section: good buys
       line: none
@@ -133,10 +135,10 @@ windows:
     basis: typical
     decided:
       origin: us-ca
-      rating: prime
+      rating: fair
       evidence: medium
     weights: volume
-    typical: ["us-ca prime 52.7% (supply 0.77, thin)", mx fair 47.3% (supply 2.10)]
+    typical: ["us-ca fair 52.7% (supply 0.77, thin)", mx fair 47.3% (supply 2.10)]
     peak:
       share: 0.0%
       available: "no: no origin at this level"
@@ -146,11 +148,11 @@ windows:
       share: 100.0%
       available: "yes: counted share 100.0% ≥ 33.0%"
       whole bin: yes (> 75.0%)
-      origins: [us-ca prime 52.7%, mx fair 47.3%]
+      origins: [us-ca fair 52.7%, mx fair 47.3%]
     look for: []
     label note: false
-    reasons: [rated prime (origin us-ca), supply-thin]
-    confidence: medium (agreement)
+    reasons: [rated fair (origin us-ca)]
+    confidence: high
     markers: []
     today:
       section: good buys
@@ -165,10 +167,10 @@ windows:
     basis: typical
     decided:
       origin: us-ca
-      rating: prime
+      rating: fair
       evidence: medium
     weights: volume
-    typical: ["us-ca prime 52.7% (supply 0.77, thin)", mx fair 47.3% (supply 2.10)]
+    typical: ["us-ca fair 52.7% (supply 0.77, thin)", mx fair 47.3% (supply 2.10)]
     peak:
       share: 0.0%
       available: "no: no origin at this level"
@@ -178,11 +180,11 @@ windows:
       share: 100.0%
       available: "yes: counted share 100.0% ≥ 33.0%"
       whole bin: yes (> 75.0%)
-      origins: [us-ca prime 52.7%, mx fair 47.3%]
+      origins: [us-ca fair 52.7%, mx fair 47.3%]
     look for: []
     label note: false
-    reasons: [rated prime (origin us-ca), supply-thin]
-    confidence: medium (agreement)
+    reasons: [rated fair (origin us-ca)]
+    confidence: high
     markers: []
     today:
       section: good buys
@@ -192,33 +194,33 @@ windows:
       tags: []
   apr-1:
     when: early April (from 2026-04-01)
-    verdict: peak
-    rule: 3
+    verdict: good
+    rule: 4
     basis: typical
     decided:
       origin: us-ca
-      rating: prime
+      rating: fair
       evidence: medium
     weights: volume
-    typical: [us-ca prime 71.4% (supply 1.40), mx fair 28.6% (supply 1.70)]
+    typical: [us-ca fair 71.4% (supply 1.40), mx fair 28.6% (supply 1.70)]
     peak:
-      share: 71.4%
-      available: "yes: counted share 71.4% ≥ 33.0%"
+      share: 0.0%
+      available: "no: no origin at this level"
       whole bin: no (≤ 75.0%)
-      origins: [us-ca prime 71.4%]
+      origins: []
     good:
       share: 100.0%
       available: "yes: counted share 100.0% ≥ 33.0%"
       whole bin: yes (> 75.0%)
-      origins: [us-ca prime 71.4%, mx fair 28.6%]
-    look for: [us-ca]
-    label note: true
-    reasons: [rated prime (origin us-ca), look-for us-ca]
-    confidence: medium (agreement)
-    markers: [check-label]
+      origins: [us-ca fair 71.4%, mx fair 28.6%]
+    look for: []
+    label note: false
+    reasons: [rated fair (origin us-ca)]
+    confidence: high
+    markers: []
     today:
-      section: best right now
-      line: Look for ones from California
+      section: good buys
+      line: none
       reason: none
       avoid: none
       tags: []

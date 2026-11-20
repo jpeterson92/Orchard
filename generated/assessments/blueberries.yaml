@@ -202,9 +202,9 @@ windows:
       origins: [us-ga prime 44.0%, us-ca prime 24.3%]
     good:
       share: 100.0%
-      available: "yes: counted share 100.0% ≥ 33.0%"
+      available: "yes: counted share 68.3% ≥ 33.0%"
       whole bin: yes (> 75.0%)
-      origins: [us-ga prime 44.0%, mx fair 31.7%, us-ca prime 24.3%]
+      origins: [us-ga prime 44.0%, "mx fair 31.7% (low confidence, not counted)", us-ca prime 24.3%]
     look for: [us-ga, us-ca]
     label note: true
     reasons: [rated prime (origin us-ga), "look-for us-ga, us-ca"]
@@ -234,9 +234,9 @@ windows:
       origins: [us-ga prime 44.0%, us-ca prime 24.3%]
     good:
       share: 100.0%
-      available: "yes: counted share 100.0% ≥ 33.0%"
+      available: "yes: counted share 68.3% ≥ 33.0%"
       whole bin: yes (> 75.0%)
-      origins: [us-ga prime 44.0%, mx fair 31.7%, us-ca prime 24.3%]
+      origins: [us-ga prime 44.0%, "mx fair 31.7% (low confidence, not counted)", us-ca prime 24.3%]
     look for: [us-ga, us-ca]
     label note: true
     reasons: [rated prime (origin us-ga), "look-for us-ga, us-ca"]
@@ -258,7 +258,7 @@ windows:
       rating: prime
       evidence: medium
     weights: volume
-    typical: [us-nc prime 24.5% (supply 2.10), us-nj unrated 23.5% (supply 3.10), us-ca prime 18.7% (supply 2.80), "us-ga prime 16.8% (supply 0.70, thin)", "mx poor 16.5% (supply 0.65, thin)"]
+    typical: [us-nc prime 24.5% (supply 2.10), us-nj unrated 23.5% (supply 3.10), us-ca prime 18.7% (supply 2.80), "us-ga fair 16.8% (supply 0.70, thin)", "mx poor 16.5% (supply 0.65, thin)"]
     peak:
       share: 43.2%
       available: "yes: counted share 43.2% ≥ 33.0%"
@@ -268,7 +268,7 @@ windows:
       share: 60.0%
       available: "yes: counted share 60.0% ≥ 33.0%"
       whole bin: no (≤ 75.0%)
-      origins: [us-nc prime 24.5%, us-ca prime 18.7%, us-ga prime 16.8%]
+      origins: [us-nc prime 24.5%, us-ca prime 18.7%, us-ga fair 16.8%]
     look for: [us-nc, us-ca]
     label note: true
     reasons: [rated prime (origin us-nc), typical-origin-poor mx, "look-for us-nc, us-ca"]
@@ -286,29 +286,29 @@ windows:
     rule: 3
     basis: typical
     decided:
-      origin: us-nc
+      origin: us-nj
       rating: prime
       evidence: medium
     weights: volume
-    typical: [us-nc prime 24.5% (supply 2.10), us-nj prime 23.5% (supply 3.10), us-ca prime 18.7% (supply 2.80), "us-ga prime 16.8% (supply 0.70, thin)", "mx unrated 16.5% (supply 0.65, thin)"]
+    typical: [us-nc fair 24.5% (supply 2.10), us-nj prime 23.5% (supply 3.10), us-ca prime 18.7% (supply 2.80), "us-ga fair 16.8% (supply 0.70, thin)", "mx unrated 16.5% (supply 0.65, thin)"]
     peak:
-      share: 66.7%
-      available: "yes: counted share 66.7% ≥ 33.0%"
+      share: 42.2%
+      available: "yes: counted share 42.2% ≥ 33.0%"
       whole bin: no (≤ 75.0%)
-      origins: [us-nc prime 24.5%, us-nj prime 23.5%, us-ca prime 18.7%]
+      origins: [us-nj prime 23.5%, us-ca prime 18.7%]
     good:
       share: 83.5%
       available: "yes: counted share 83.5% ≥ 33.0%"
       whole bin: yes (> 75.0%)
-      origins: [us-nc prime 24.5%, us-nj prime 23.5%, us-ca prime 18.7%, us-ga prime 16.8%]
-    look for: [us-nc, us-nj, us-ca]
+      origins: [us-nc fair 24.5%, us-nj prime 23.5%, us-ca prime 18.7%, us-ga fair 16.8%]
+    look for: [us-nj, us-ca]
     label note: true
-    reasons: [rated prime (origin us-nc), "look-for us-nc, us-nj, us-ca"]
+    reasons: [rated prime (origin us-nj), "look-for us-nj, us-ca"]
     confidence: medium (agreement)
     markers: [check-label]
     today:
       section: best right now
-      line: Look for ones from North Carolina, New Jersey and California
+      line: Look for ones from New Jersey and California
       reason: none
       avoid: none
       tags: []
@@ -325,14 +325,14 @@ windows:
     typical: [us-or prime 34.3% (supply 2.90), ca prime 23.8% (supply 2.10), us-wa prime 21.5% (supply 2.10), us-mi prime 20.4% (supply 2.30)]
     peak:
       share: 100.0%
-      available: "yes: counted share 100.0% ≥ 33.0%"
+      available: "yes: counted share 76.2% ≥ 33.0%"
       whole bin: yes (> 75.0%)
-      origins: [us-or prime 34.3%, ca prime 23.8%, us-wa prime 21.5%, us-mi prime 20.4%]
+      origins: [us-or prime 34.3%, "ca prime 23.8% (low confidence, not counted)", us-wa prime 21.5%, us-mi prime 20.4%]
     good:
       share: 100.0%
-      available: "yes: counted share 100.0% ≥ 33.0%"
+      available: "yes: counted share 76.2% ≥ 33.0%"
       whole bin: yes (> 75.0%)
-      origins: [us-or prime 34.3%, ca prime 23.8%, us-wa prime 21.5%, us-mi prime 20.4%]
+      origins: [us-or prime 34.3%, "ca prime 23.8% (low confidence, not counted)", us-wa prime 21.5%, us-mi prime 20.4%]
     look for: []
     label note: false
     reasons: [rated prime (origin us-or)]
@@ -418,9 +418,9 @@ windows:
       origins: []
     good:
       share: 100.0%
-      available: "yes: counted share 100.0% ≥ 33.0%"
+      available: "yes: counted share 74.3% ≥ 33.0%"
       whole bin: yes (> 75.0%)
-      origins: [pe fair 74.3%, ca fair 25.7%]
+      origins: [pe fair 74.3%, "ca fair 25.7% (low confidence, not counted)"]
     look for: []
     label note: false
     reasons: [rated fair (origin pe)]

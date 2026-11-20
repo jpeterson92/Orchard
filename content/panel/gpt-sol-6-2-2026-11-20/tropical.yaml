@@ -1,0 +1,391 @@
+category: tropical
+items:
+  - item: bananas
+    traits:
+      shipsWell: [true, high]
+      storesWell: [false, high]
+      peakWorthSeeking: [false, high]
+      alwaysGood: [true, high]
+    origins:
+      - origin: gt
+        windows:
+          - [jan-1, dec-2, fair, high]
+      - origin: ec
+        windows:
+          - [jan-1, dec-2, fair, high]
+      - origin: cr
+        windows:
+          - [jan-1, dec-2, fair, high]
+      - origin: hn
+        windows:
+          - [jan-1, dec-2, fair, high]
+      - origin: co
+        windows:
+          - [jan-1, dec-2, fair, medium]
+      - origin: mx
+        windows:
+          - [jan-1, dec-2, fair, medium]
+    note:
+      Mature green bananas ripen predictably after shipping, and overlapping tropical harvests keep the eating
+      quality steady.
+  - item: plantains
+    traits:
+      shipsWell: [true, high]
+      storesWell: [false, high]
+      peakWorthSeeking: [false, high]
+      alwaysGood: [true, medium]
+    origins:
+      - origin: gt
+        windows:
+          - [jan-1, dec-2, fair, medium]
+      - origin: ec
+        windows:
+          - [jan-1, dec-2, fair, medium]
+      - origin: co
+        windows:
+          - [jan-1, dec-2, fair, medium]
+      - origin: hn
+        windows:
+          - [jan-1, dec-2, fair, low]
+    note: Plantains are reliable year-round when cooked at the color stage that suits the dish.
+  - item: avocados
+    traits:
+      shipsWell: [true, high]
+      storesWell: [false, high]
+      peakWorthSeeking: [true, medium]
+      alwaysGood: [false, high]
+    origins:
+      - origin: mx
+        windows:
+          - [jan-1, mar-2, prime, medium]
+          - [apr-1, jul-1, fair, medium]
+          - [jul-2, sep-1, poor, low]
+          - [sep-2, dec-2, fair, medium]
+      - origin: us-ca
+        windows:
+          - [feb-2, apr-2, fair, medium]
+          - [may-1, jul-2, prime, high]
+          - [aug-1, sep-1, fair, medium]
+      - origin: pe
+        windows:
+          - [may-2, jun-1, poor, low]
+          - [jun-2, aug-1, fair, medium]
+          - [aug-2, sep-2, poor, low]
+      - origin: co
+        windows:
+          - [oct-2, mar-2, fair, low]
+          - [apr-2, jul-2, fair, low]
+      - origin: do
+        windows:
+          - [sep-2, nov-1, fair, low]
+          - [nov-2, feb-2, prime, low]
+          - [mar-1, may-2, fair, low]
+      - origin: us-fl
+        windows:
+          - [jun-1, jul-2, fair, medium]
+          - [aug-1, oct-2, prime, medium]
+          - [nov-1, feb-1, fair, low]
+    varieties:
+      - variety: hass
+        windows:
+          - [jan-1, apr-2, prime, medium]
+          - [may-1, jul-2, fair, medium]
+          - [aug-1, sep-1, poor, low]
+          - [sep-2, dec-2, fair, medium]
+      - variety: green-skin
+        windows:
+          - [jan-1, may-2, fair, low]
+          - [jun-1, aug-2, fair, medium]
+          - [sep-1, nov-2, prime, low]
+          - [dec-1, dec-2, fair, low]
+    note: Avocados soften after harvest, but fruit picked before it develops enough oil can still taste watery
+      when soft.
+  - item: mangoes
+    traits:
+      shipsWell: [false, medium]
+      storesWell: [false, high]
+      peakWorthSeeking: [true, high]
+      alwaysGood: [false, high]
+    origins:
+      - origin: mx
+        windows:
+          - [feb-1, mar-1, poor, medium]
+          - [mar-2, apr-1, fair, medium]
+          - [apr-2, jul-2, prime, high]
+          - [aug-1, sep-1, fair, medium]
+          - [sep-2, oct-1, poor, low]
+      - origin: pe
+        windows:
+          - [dec-1, dec-2, fair, medium]
+          - [jan-1, feb-2, prime, medium]
+          - [mar-1, mar-2, poor, low]
+      - origin: ec
+        windows:
+          - [oct-1, oct-2, poor, low]
+          - [nov-1, dec-2, fair, medium]
+          - [jan-1, jan-2, poor, low]
+      - origin: br
+        windows:
+          - [aug-1, aug-2, poor, low]
+          - [sep-1, oct-2, fair, medium]
+          - [nov-1, nov-2, poor, low]
+      - origin: gt
+        windows:
+          - [feb-2, mar-2, fair, low]
+          - [apr-1, may-1, prime, low]
+          - [may-2, jun-1, fair, low]
+    varieties:
+      - variety: tommy-atkins
+        windows:
+          - [feb-1, mar-2, poor, medium]
+          - [apr-1, jun-2, fair, medium]
+          - [jul-1, jul-2, poor, low]
+          - [aug-2, oct-2, fair, low]
+          - [nov-1, jan-2, poor, low]
+      - variety: ataulfo
+        windows:
+          - [feb-1, mar-1, fair, medium]
+          - [mar-2, jun-2, prime, high]
+          - [jul-1, aug-1, fair, medium]
+          - [aug-2, sep-1, poor, low]
+      - variety: kent
+        windows:
+          - [dec-1, dec-2, fair, medium]
+          - [jan-1, feb-2, prime, medium]
+          - [mar-1, mar-2, fair, medium]
+          - [may-2, jul-2, prime, medium]
+          - [aug-1, aug-2, fair, medium]
+      - variety: keitt
+        windows:
+          - [jul-1, jul-2, fair, medium]
+          - [aug-1, sep-1, prime, medium]
+          - [sep-2, oct-2, fair, medium]
+      - variety: haden
+        windows:
+          - [mar-1, apr-1, fair, medium]
+          - [apr-2, may-2, prime, medium]
+          - [jun-1, jun-1, fair, low]
+    note:
+      Sweet, aromatic mangoes reach stores in several harvest waves, while early-picked lots can stay bland
+      and fibrous.
+  - item: pineapples
+    traits:
+      shipsWell: [true, high]
+      storesWell: [false, high]
+      peakWorthSeeking: [false, medium]
+      alwaysGood: [true, medium]
+    origins:
+      - origin: cr
+        windows:
+          - [jan-1, dec-2, fair, high]
+      - origin: mx
+        windows:
+          - [jan-1, dec-2, fair, low]
+      - origin: hn
+        windows:
+          - [jan-1, dec-2, fair, low]
+    note: Year-round tropical production supplies sweet pineapples picked at maturity, and individual fruit
+      quality varies more than the calendar suggests.
+  - item: papaya
+    traits:
+      shipsWell: [false, medium]
+      storesWell: [false, high]
+      peakWorthSeeking: [false, medium]
+      alwaysGood: [false, medium]
+    origins:
+      - origin: mx
+        windows:
+          - [jan-1, mar-2, poor, low]
+          - [apr-1, sep-2, fair, medium]
+          - [oct-1, dec-2, poor, low]
+      - origin: gt
+        windows:
+          - [jan-1, mar-2, poor, low]
+          - [apr-1, aug-2, fair, low]
+          - [sep-1, dec-2, poor, low]
+      - origin: bz
+        windows:
+          - [jan-1, mar-2, poor, low]
+          - [apr-1, aug-2, fair, low]
+          - [sep-1, dec-2, poor, low]
+    note: Large supermarket papayas can soften after shipping without developing the fragrance or sweetness of
+      fruit picked closer to ripe.
+  - item: kiwifruit
+    traits:
+      shipsWell: [true, high]
+      storesWell: [true, high]
+      peakWorthSeeking: [true, medium]
+      alwaysGood: [false, medium]
+    origins:
+      - origin: nz
+        windows:
+          - [may-1, jun-1, fair, medium]
+          - [jun-2, sep-1, prime, medium]
+          - [sep-2, oct-2, fair, medium]
+          - [nov-1, nov-2, poor, low]
+      - origin: cl
+        windows:
+          - [apr-1, apr-2, poor, low]
+          - [may-1, aug-2, fair, medium]
+          - [sep-1, oct-1, poor, low]
+      - origin: us-ca
+        windows:
+          - [oct-1, oct-2, fair, low]
+          - [nov-1, jan-2, prime, medium]
+          - [feb-1, mar-2, fair, medium]
+          - [apr-1, apr-2, poor, low]
+      - origin: it
+        windows:
+          - [nov-2, mar-1, fair, medium]
+          - [mar-2, apr-2, poor, low]
+      - origin: gr
+        windows:
+          - [nov-2, feb-2, fair, low]
+          - [mar-1, mar-2, poor, low]
+    note:
+      Mature kiwifruit ripens after shipping, but long-held lots can soften without developing the sweetness
+      and aroma of midseason fruit.
+  - item: coconuts
+    traits:
+      shipsWell: [true, medium]
+      storesWell: [false, medium]
+      peakWorthSeeking: [false, medium]
+      alwaysGood: [true, medium]
+    origins:
+      - origin: mx
+        windows:
+          - [jan-1, dec-2, fair, medium]
+      - origin: th
+        windows:
+          - [jan-1, dec-2, fair, medium]
+      - origin: do
+        windows:
+          - [jan-1, dec-2, fair, low]
+      - origin: vn
+        windows:
+          - [jan-1, dec-2, fair, low]
+    note:
+      Mature brown and young drinking coconuts can both be consistent year-round, with individual freshness
+      more important than a predictable shopping season.
+  - item: dragon-fruit
+    traits:
+      shipsWell: [false, medium]
+      storesWell: [false, high]
+      peakWorthSeeking: [true, low]
+      alwaysGood: [false, medium]
+    origins:
+      - origin: ec
+        windows:
+          - [jan-1, mar-2, prime, low]
+          - [apr-1, dec-2, fair, low]
+      - origin: vn
+        windows:
+          - [jan-1, may-2, poor, low]
+          - [jun-1, sep-2, fair, low]
+          - [oct-1, dec-2, poor, low]
+      - origin: us-fl
+        windows:
+          - [jun-2, jul-2, fair, low]
+          - [aug-1, oct-1, prime, medium]
+          - [oct-2, nov-2, fair, low]
+      - origin: us-ca
+        windows:
+          - [aug-1, aug-2, fair, low]
+          - [sep-1, oct-2, prime, low]
+          - [nov-1, nov-2, fair, low]
+    note: Ecuadorian yellow fruit is often sweeter, while white-fleshed imports picked firm can be watery and
+      domestic fruit improves in late summer.
+  - item: persimmons
+    traits:
+      shipsWell: [true, medium]
+      storesWell: [false, medium]
+      peakWorthSeeking: [true, high]
+      alwaysGood: [false, high]
+    origins:
+      - origin: us-ca
+        windows:
+          - [sep-2, oct-1, poor, low]
+          - [oct-2, dec-1, prime, high]
+          - [dec-2, jan-1, fair, medium]
+          - [jan-2, jan-2, poor, low]
+      - origin: es
+        windows:
+          - [nov-1, jan-2, fair, low]
+          - [feb-1, feb-2, poor, low]
+      - origin: cl
+        windows:
+          - [may-1, jun-2, fair, low]
+          - [jul-1, jul-1, poor, low]
+    note:
+      California fruit is sweetest in late fall, when Fuyus can be eaten crisp and Hachiyas become rich after
+      softening fully.
+  - item: pomegranates
+    traits:
+      shipsWell: [true, high]
+      storesWell: [true, medium]
+      peakWorthSeeking: [true, high]
+      alwaysGood: [false, high]
+    origins:
+      - origin: us-ca
+        windows:
+          - [sep-1, sep-2, fair, medium]
+          - [oct-1, dec-1, prime, high]
+          - [dec-2, jan-2, fair, medium]
+          - [feb-1, feb-2, poor, medium]
+      - origin: pe
+        windows:
+          - [mar-2, apr-2, poor, low]
+          - [may-1, jul-1, fair, low]
+          - [jul-2, aug-2, poor, low]
+      - origin: cl
+        windows:
+          - [apr-1, jun-2, fair, low]
+          - [jul-1, jul-2, poor, low]
+    note:
+      California's main fall crop has the juiciest arils, while arils in fruit held deep into winter are more
+      likely to dry out.
+  - item: dates
+    traits:
+      shipsWell: [true, high]
+      storesWell: [true, high]
+      peakWorthSeeking: [false, medium]
+      alwaysGood: [true, medium]
+    origins:
+      - origin: us-ca
+        windows:
+          - [jan-1, dec-2, fair, high]
+      - origin: us-az
+        windows:
+          - [jan-1, dec-2, fair, medium]
+      - origin: tn
+        windows:
+          - [jan-1, dec-2, fair, low]
+      - origin: mx
+        windows:
+          - [jan-1, dec-2, fair, low]
+      - origin: il
+        windows:
+          - [jan-1, dec-2, fair, low]
+    note:
+      The Medjool and Deglet Noor dates usually sold in supermarkets maintain their sweetness and texture well
+      enough for reliable year-round purchase.
+  - item: figs
+    traits:
+      shipsWell: [false, high]
+      storesWell: [false, high]
+      peakWorthSeeking: [true, high]
+      alwaysGood: [false, high]
+    origins:
+      - origin: us-ca
+        windows:
+          - [may-2, jul-2, fair, medium]
+          - [aug-1, sep-2, prime, high]
+          - [oct-1, oct-2, fair, medium]
+          - [nov-1, nov-2, poor, medium]
+      - origin: mx
+        windows:
+          - [nov-2, jan-2, poor, low]
+          - [feb-1, apr-2, fair, low]
+          - [may-1, may-2, poor, low]
+    note: Near-ripe figs bruise and spoil quickly, so California's main late-summer crop gives supermarket
+      shoppers the best chance of finding sweet fruit.

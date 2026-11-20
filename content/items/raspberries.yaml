@@ -55,7 +55,19 @@ origins:
             rating: fair,
             reason: "Mexican raspberries read fair either side of late September; one poor half-month there is a gap in one chart, not a drop in quality.",
           },
-          { from: oct-1, to: jun-1, rating: fair },
+          {
+            from: oct-1,
+            to: oct-1,
+            rating: fair,
+            reason: "Keep the prior fair call from the cited evidence. The new poor proposal rests on low-confidence votes, with no direct eating-quality claim for poor.",
+          },
+          { from: oct-2, to: may-2, rating: fair },
+          {
+            from: jun-1,
+            to: jun-1,
+            rating: fair,
+            reason: "Keep the prior fair call from the cited evidence. The new poor proposal rests on low-confidence votes, with no direct eating-quality claim for poor.",
+          },
           {
             from: jun-2,
             to: jun-2,
@@ -68,9 +80,21 @@ origins:
       origin: us-ca,
       windows:
         [
-          { from: jun-1, to: sep-1, rating: prime },
-          { from: sep-2, to: oct-2, rating: fair },
-          { from: nov-1, to: nov-1, rating: prime },
+          { from: jun-1, to: jul-2, rating: prime },
+          { from: aug-1, to: sep-1, rating: fair },
+          { from: sep-2, to: oct-1, rating: fair },
+          {
+            from: oct-2,
+            to: oct-2,
+            rating: fair,
+            reason: The panel's fair proposal rests on low-confidence votes.,
+          },
+          {
+            from: nov-1,
+            to: nov-1,
+            rating: fair,
+            reason: The panel's fair proposal rests on low-confidence votes.,
+          },
         ],
     }
 status: draft

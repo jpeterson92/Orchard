@@ -45,7 +45,8 @@ varieties:
     windows:
       - { from: jan-1, to: mar-2, rating: prime }
       - { from: apr-1, to: nov-2, rating: fair }
-      - { from: dec-1, to: dec-2, rating: prime }
+      - { from: dec-1, to: dec-1, rating: fair }
+      - { from: dec-2, to: dec-2, rating: prime }
     quotedAs: [oranges-navel, oranges-late-navel, oranges-navelinas]
   - id: valencia
     name: Valencia
@@ -76,11 +77,9 @@ varieties:
     plu: { codes: [4381], sources: [ifps-plu-codes] }
     sources: [ucr-moro, sunkist-fs-oranges, eatlikenoone-cara-cara]
     windows:
-      - from: dec-2
-        to: dec-2
-        rating: fair
-        reason: Only the model panel's low-confidence ranges rate this window; they read fair.
-      - { from: jan-1, to: mar-2, rating: prime }
+      - { from: dec-2, to: dec-2, rating: fair }
+      - { from: jan-1, to: jan-1, rating: fair }
+      - { from: jan-2, to: mar-2, rating: prime }
       - { from: apr-1, to: apr-2, rating: fair }
     quotedAs:
       [
@@ -99,7 +98,8 @@ varieties:
     plu: { codes: [3110], sources: [ifps-plu-codes] }
     sources: [ucr-cara-cara, sunkist-fs-oranges, eatlikenoone-cara-cara]
     windows:
-      - { from: dec-1, to: mar-2, rating: prime }
+      - { from: dec-1, to: dec-2, rating: fair }
+      - { from: jan-1, to: mar-2, rating: prime }
       - { from: apr-1, to: apr-2, rating: fair }
     inStores:
       - { from: dec, to: jan, sources: [ncsu-brunswick-cara-cara, pmg-california-citrus-early-2026] }

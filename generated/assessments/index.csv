@@ -20,8 +20,8 @@ apples,sep-1,2026-09-01,peak,variety,honeycrisp,prime,medium,high,,,,,,best righ
 apples,sep-2,2026-09-16,peak,variety,honeycrisp,prime,high,high,,,,,,best right now,Honeycrisp and Gala
 apples,oct-1,2026-10-01,peak,variety,honeycrisp,prime,high,high,,,,,,best right now,"Honeycrisp, Gala, Fuji and Ambrosia"
 apples,oct-2,2026-10-16,peak,variety,honeycrisp,prime,medium,high,,,,,,best right now,"Honeycrisp, Gala, Fuji and Ambrosia"
-apples,nov-1,2026-11-01,peak,variety,honeycrisp,prime,medium,high,,,,,,best right now,"Honeycrisp, Gala, Fuji and 3 more"
-apples,nov-2,2026-11-16,peak,variety,honeycrisp,prime,medium,high,,,,,,best right now,"Honeycrisp, Gala, Fuji and 3 more"
+apples,nov-1,2026-11-01,peak,variety,honeycrisp,prime,medium,high,,,,,,best right now,"Honeycrisp, Fuji, Pink Lady and 2 more"
+apples,nov-2,2026-11-16,peak,variety,honeycrisp,prime,medium,high,,,,,,best right now,"Honeycrisp, Fuji, Pink Lady and 2 more"
 apples,dec-1,2026-12-01,peak,variety,fuji,prime,medium,high,,,,,,best right now,"Fuji, Pink Lady and Ambrosia"
 apples,dec-2,2026-12-16,peak,variety,fuji,prime,medium,high,,,,,,best right now,"Fuji, Pink Lady and Ambrosia"
 apricots,jan-1,2026-01-01,limited,typical,,,,low,,,,,,,
@@ -32,13 +32,13 @@ apricots,mar-1,2026-03-01,skip,typical,,,,medium,,,,,,,
 apricots,mar-2,2026-03-16,skip,typical,,,,medium,,,,,,,
 apricots,apr-1,2026-04-01,skip,typical,,,,medium,,,,,,,
 apricots,apr-2,2026-04-16,skip,typical,,,,medium,,,,,,,
-apricots,may-1,2026-05-01,peak,typical,us-ca,prime,medium,medium,100.0%,share,100.0%,share,,best right now,
-apricots,may-2,2026-05-16,peak,typical,us-ca,prime,medium,medium,100.0%,share,100.0%,share,,best right now,
+apricots,may-1,2026-05-01,good,typical,us-ca,fair,low,low,0.0%,no,100.0%,share,,good buys,
+apricots,may-2,2026-05-16,good,typical,us-ca,fair,medium,medium,0.0%,no,100.0%,share,,good buys,
 apricots,jun-1,2026-06-01,peak,typical,us-ca,prime,medium,medium,100.0%,share,100.0%,share,,best right now,
 apricots,jun-2,2026-06-16,peak,typical,us-ca,prime,medium,medium,100.0%,share,100.0%,share,,best right now,
 apricots,jul-1,2026-07-01,peak,typical,us-wa,prime,medium,low,50.0%,share,100.0%,share,us-wa,best right now,Look for ones from Washington
 apricots,jul-2,2026-07-16,peak,typical,us-wa,prime,medium,low,50.0%,share,100.0%,share,us-wa,best right now,Look for ones from Washington
-apricots,aug-1,2026-08-01,good,typical,us-wa,fair,medium,medium,0.0%,no,100.0%,share,,good buys,
+apricots,aug-1,2026-08-01,good,typical,us-wa,fair,low,low,0.0%,no,100.0%,share,,good buys,
 apricots,aug-2,2026-08-16,good,typical,us-wa,fair,medium,medium,0.0%,no,100.0%,share,,good buys,
 apricots,sep-1,2026-09-01,skip,typical,,,,medium,,,,,,,
 apricots,sep-2,2026-09-16,skip,typical,,,,medium,,,,,,,
@@ -48,10 +48,10 @@ apricots,nov-1,2026-11-01,skip,typical,,,,medium,,,,,,,
 apricots,nov-2,2026-11-16,skip,typical,,,,medium,,,,,,,
 apricots,dec-1,2026-12-01,good,typical,cl,fair,low,low,0.0%,no,100.0%,share,,good buys,
 apricots,dec-2,2026-12-16,good,typical,cl,fair,low,low,0.0%,no,100.0%,share,,good buys,
-artichokes,jan-1,2026-01-01,good,typical,us-ca,fair,low,medium,0.0%,no,100.0%,share,,,
-artichokes,jan-2,2026-01-16,good,typical,us-ca,fair,low,medium,0.0%,no,100.0%,share,,,
-artichokes,feb-1,2026-02-01,good,typical,us-ca,fair,low,medium,0.0%,no,100.0%,share,,,
-artichokes,feb-2,2026-02-16,good,typical,us-ca,fair,low,medium,0.0%,no,100.0%,share,,,
+artichokes,jan-1,2026-01-01,good,typical,us-ca,fair,medium,high,0.0%,no,100.0%,share,,,
+artichokes,jan-2,2026-01-16,good,typical,us-ca,fair,medium,high,0.0%,no,100.0%,share,,,
+artichokes,feb-1,2026-02-01,good,typical,us-ca,fair,medium,high,0.0%,no,100.0%,share,,,
+artichokes,feb-2,2026-02-16,good,typical,us-ca,fair,medium,high,0.0%,no,100.0%,share,,,
 artichokes,mar-1,2026-03-01,peak,typical,us-ca,prime,high,high,100.0%,share,100.0%,share,,best right now,
 artichokes,mar-2,2026-03-16,peak,typical,us-ca,prime,high,high,100.0%,share,100.0%,share,,best right now,
 artichokes,apr-1,2026-04-01,peak,typical,us-ca,prime,high,high,100.0%,share,100.0%,share,,best right now,
@@ -66,8 +66,8 @@ artichokes,aug-1,2026-08-01,skip,typical,us-ca,poor,medium,high,0.0%,no,0.0%,no,
 artichokes,aug-2,2026-08-16,skip,typical,us-ca,poor,medium,high,0.0%,no,0.0%,no,,,
 artichokes,sep-1,2026-09-01,good,typical,us-ca,fair,low,medium,0.0%,no,100.0%,share,,,
 artichokes,sep-2,2026-09-16,good,typical,us-ca,fair,low,medium,0.0%,no,100.0%,share,,,
-artichokes,oct-1,2026-10-01,good,typical,us-ca,prime,high,high,100.0%,share,100.0%,share,,,
-artichokes,oct-2,2026-10-16,good,typical,us-ca,prime,high,high,100.0%,share,100.0%,share,,,
+artichokes,oct-1,2026-10-01,good,typical,us-ca,prime,low,medium,100.0%,share,100.0%,share,,,
+artichokes,oct-2,2026-10-16,good,typical,us-ca,prime,low,medium,100.0%,share,100.0%,share,,,
 artichokes,nov-1,2026-11-01,good,typical,us-ca,fair,medium,high,0.0%,no,100.0%,share,,,
 artichokes,nov-2,2026-11-16,good,typical,us-ca,fair,medium,high,0.0%,no,100.0%,share,,,
 artichokes,dec-1,2026-12-01,good,typical,us-ca,fair,medium,high,0.0%,no,100.0%,share,,,
@@ -84,11 +84,11 @@ asparagus,may-1,2026-05-01,peak,selection,,,,medium,,,,,,best right now,Look for
 asparagus,may-2,2026-05-16,peak,selection,mx,fair,medium,medium,18.9%,no,56.3%,share,mx us-mi,best right now,Look for US-grown spring asparagus
 asparagus,jun-1,2026-06-01,good,typical,mx,fair,medium,medium,0.0%,no,64.3%,share,mx,good buys,Look for ones from Mexico
 asparagus,jun-2,2026-06-16,good,typical,mx,fair,medium,medium,0.0%,no,64.3%,share,mx,good buys,Look for ones from Mexico
-asparagus,jul-1,2026-07-01,good,typical,mx,fair,medium,medium,0.0%,no,59.2%,share,mx,good buys,Look for ones from Mexico
-asparagus,jul-2,2026-07-16,good,typical,mx,fair,medium,medium,0.0%,no,59.2%,share,mx,good buys,Look for ones from Mexico
-asparagus,aug-1,2026-08-01,good,typical,mx,fair,medium,medium,0.0%,no,55.8%,share,mx,good buys,Look for ones from Mexico
-asparagus,aug-2,2026-08-16,good,typical,mx,fair,medium,medium,0.0%,no,55.8%,share,mx,good buys,Look for ones from Mexico
-asparagus,sep-1,2026-09-01,good,typical,mx,fair,medium,medium,0.0%,no,51.0%,share,mx,good buys,Look for ones from Mexico
+asparagus,jul-1,2026-07-01,good,typical,mx,fair,low,low,0.0%,no,59.2%,share,mx,good buys,Look for ones from Mexico
+asparagus,jul-2,2026-07-16,good,typical,mx,fair,low,low,0.0%,no,59.2%,share,mx,good buys,Look for ones from Mexico
+asparagus,aug-1,2026-08-01,good,typical,mx,fair,low,low,0.0%,no,55.8%,share,mx,good buys,Look for ones from Mexico
+asparagus,aug-2,2026-08-16,good,typical,mx,fair,low,low,0.0%,no,55.8%,share,mx,good buys,Look for ones from Mexico
+asparagus,sep-1,2026-09-01,good,typical,mx,fair,low,low,0.0%,no,51.0%,share,mx,good buys,Look for ones from Mexico
 asparagus,sep-2,2026-09-16,limited,typical,,,,medium,,,,,,,
 asparagus,oct-1,2026-10-01,limited,typical,,,,medium,,,,,,,
 asparagus,oct-2,2026-10-16,limited,typical,,,,medium,,,,,,,
@@ -106,14 +106,14 @@ blackberries,apr-1,2026-04-01,good,typical,mx,fair,medium,high,0.0%,no,100.0%,sh
 blackberries,apr-2,2026-04-16,good,typical,mx,fair,medium,high,0.0%,no,100.0%,share,,good buys,
 blackberries,may-1,2026-05-01,skip,typical,mx,poor,medium,medium,0.0%,no,0.0%,no,,,
 blackberries,may-2,2026-05-16,skip,typical,mx,poor,medium,medium,0.0%,no,0.0%,no,,,
-blackberries,jun-1,2026-06-01,peak,typical,us-ca,prime,low,low,55.0%,share,55.0%,share,us-ca,best right now,Look for ones from California
-blackberries,jun-2,2026-06-16,peak,typical,us-ca,prime,low,low,55.0%,share,100.0%,share,us-ca,best right now,Look for ones from California
-blackberries,jul-1,2026-07-01,peak,typical,us-ca,prime,low,medium,84.6%,share,84.6%,share,,best right now,
-blackberries,jul-2,2026-07-16,peak,typical,us-ca,prime,low,medium,84.6%,share,84.6%,share,,best right now,
-blackberries,aug-1,2026-08-01,peak,typical,us-ca,prime,low,medium,100.0%,share,100.0%,share,,best right now,
-blackberries,aug-2,2026-08-16,peak,typical,us-ca,prime,low,medium,100.0%,share,100.0%,share,,best right now,
-blackberries,sep-1,2026-09-01,peak,typical,us-ca,prime,low,low,70.5%,share,70.5%,share,us-ca,best right now,Look for ones from California
-blackberries,sep-2,2026-09-16,peak,typical,us-ca,prime,low,low,70.5%,share,70.5%,share,us-ca,best right now,Look for ones from California
+blackberries,jun-1,2026-06-01,peak,typical,us-ca,prime,medium,medium,55.0%,share,55.0%,share,us-ca,best right now,Look for ones from California
+blackberries,jun-2,2026-06-16,peak,typical,us-ca,prime,medium,medium,55.0%,share,100.0%,share,us-ca,best right now,Look for ones from California
+blackberries,jul-1,2026-07-01,peak,typical,us-ca,prime,medium,high,84.6%,share,84.6%,share,,best right now,
+blackberries,jul-2,2026-07-16,peak,typical,us-ca,prime,medium,high,84.6%,share,84.6%,share,,best right now,
+blackberries,aug-1,2026-08-01,peak,typical,us-ca,prime,medium,high,100.0%,share,100.0%,share,,best right now,
+blackberries,aug-2,2026-08-16,good,typical,us-ca,fair,medium,high,0.0%,no,100.0%,share,,good buys,
+blackberries,sep-1,2026-09-01,good,typical,us-ca,fair,medium,medium,0.0%,no,70.5%,share,us-ca,good buys,Look for ones from California
+blackberries,sep-2,2026-09-16,good,typical,us-ca,fair,medium,medium,0.0%,no,70.5%,share,us-ca,good buys,Look for ones from California
 blackberries,oct-1,2026-10-01,limited,typical,,,,medium,,,,,,,
 blackberries,oct-2,2026-10-16,limited,typical,,,,medium,,,,,,,
 blackberries,nov-1,2026-11-01,skip,typical,mx,poor,medium,high,0.0%,no,0.0%,no,,,
@@ -131,7 +131,7 @@ blueberries,apr-2,2026-04-16,good,typical,mx,fair,medium,high,23.6%,no,85.7%,sha
 blueberries,may-1,2026-05-01,peak,typical,us-ga,prime,medium,medium,68.3%,share,100.0%,share,us-ga us-ca,best right now,Look for ones from Georgia and California
 blueberries,may-2,2026-05-16,peak,typical,us-ga,prime,medium,medium,68.3%,share,100.0%,share,us-ga us-ca,best right now,Look for ones from Georgia and California
 blueberries,jun-1,2026-06-01,peak,typical,us-nc,prime,medium,medium,43.2%,share,60.0%,share,us-nc us-ca,best right now,Look for ones from North Carolina and California
-blueberries,jun-2,2026-06-16,peak,typical,us-nc,prime,medium,medium,66.7%,share,83.5%,share,us-nc us-nj us-ca,best right now,"Look for ones from North Carolina, New Jersey and California"
+blueberries,jun-2,2026-06-16,peak,typical,us-nj,prime,medium,medium,42.2%,share,83.5%,share,us-nj us-ca,best right now,Look for ones from New Jersey and California
 blueberries,jul-1,2026-07-01,peak,typical,us-or,prime,medium,high,100.0%,share,100.0%,share,,best right now,
 blueberries,jul-2,2026-07-16,peak,typical,us-or,prime,medium,high,100.0%,share,100.0%,share,,best right now,
 blueberries,aug-1,2026-08-01,limited,typical,,,,medium,,,,,,,
@@ -144,16 +144,16 @@ blueberries,nov-1,2026-11-01,good,typical,pe,fair,medium,high,0.0%,no,100.0%,sha
 blueberries,nov-2,2026-11-16,good,typical,pe,fair,medium,high,0.0%,no,100.0%,share,,good buys,
 blueberries,dec-1,2026-12-01,good,typical,pe,fair,medium,high,0.0%,no,100.0%,share,,good buys,
 blueberries,dec-2,2026-12-16,good,typical,pe,fair,medium,high,0.0%,no,100.0%,share,,good buys,
-brussels-sprouts,jan-1,2026-01-01,good,typical,mx,fair,low,medium,0.0%,no,100.0%,share,,,
-brussels-sprouts,jan-2,2026-01-16,good,typical,mx,fair,low,medium,0.0%,no,100.0%,share,,,
-brussels-sprouts,feb-1,2026-02-01,good,typical,mx,fair,low,medium,0.0%,no,100.0%,share,,,
-brussels-sprouts,feb-2,2026-02-16,good,typical,mx,fair,low,medium,0.0%,no,100.0%,share,,,
-brussels-sprouts,mar-1,2026-03-01,good,typical,mx,fair,low,medium,0.0%,no,100.0%,share,,,
-brussels-sprouts,mar-2,2026-03-16,good,typical,mx,fair,low,medium,0.0%,no,100.0%,share,,,
-brussels-sprouts,apr-1,2026-04-01,good,typical,mx,fair,low,medium,0.0%,no,100.0%,share,,,
-brussels-sprouts,apr-2,2026-04-16,good,typical,mx,fair,low,medium,0.0%,no,100.0%,share,,,
-brussels-sprouts,may-1,2026-05-01,good,typical,mx,fair,low,medium,0.0%,no,100.0%,share,,,
-brussels-sprouts,may-2,2026-05-16,good,typical,mx,fair,low,medium,0.0%,no,100.0%,share,,,
+brussels-sprouts,jan-1,2026-01-01,good,typical,mx,fair,medium,high,0.0%,no,100.0%,share,,,
+brussels-sprouts,jan-2,2026-01-16,good,typical,mx,fair,medium,high,0.0%,no,100.0%,share,,,
+brussels-sprouts,feb-1,2026-02-01,good,typical,mx,fair,medium,high,0.0%,no,100.0%,share,,,
+brussels-sprouts,feb-2,2026-02-16,good,typical,mx,fair,medium,high,0.0%,no,100.0%,share,,,
+brussels-sprouts,mar-1,2026-03-01,good,typical,mx,fair,medium,high,0.0%,no,100.0%,share,,,
+brussels-sprouts,mar-2,2026-03-16,good,typical,mx,fair,medium,high,0.0%,no,100.0%,share,,,
+brussels-sprouts,apr-1,2026-04-01,good,typical,mx,fair,medium,high,0.0%,no,100.0%,share,,,
+brussels-sprouts,apr-2,2026-04-16,good,typical,mx,fair,medium,high,0.0%,no,100.0%,share,,,
+brussels-sprouts,may-1,2026-05-01,good,typical,mx,fair,medium,high,0.0%,no,100.0%,share,,,
+brussels-sprouts,may-2,2026-05-16,good,typical,mx,fair,medium,high,0.0%,no,100.0%,share,,,
 brussels-sprouts,jun-1,2026-06-01,good,typical,mx,fair,low,low,0.0%,no,65.9%,share,mx,,
 brussels-sprouts,jun-2,2026-06-16,good,typical,mx,fair,low,low,0.0%,no,65.9%,share,mx,,
 brussels-sprouts,jul-1,2026-07-01,skip,typical,us-ca,poor,medium,medium,0.0%,no,32.5%,no,,,
@@ -185,8 +185,8 @@ cantaloupe,jul-2,2026-07-16,peak,typical,us-ca,prime,high,high,100.0%,share,100.
 cantaloupe,aug-1,2026-08-01,peak,typical,us-ca,prime,high,high,100.0%,share,100.0%,share,,best right now,
 cantaloupe,aug-2,2026-08-16,peak,typical,us-ca,prime,high,high,100.0%,share,100.0%,share,,best right now,
 cantaloupe,sep-1,2026-09-01,peak,typical,us-ca,prime,high,high,100.0%,share,100.0%,share,,best right now,
-cantaloupe,sep-2,2026-09-16,peak,typical,us-ca,prime,medium,high,100.0%,share,100.0%,share,,best right now,
-cantaloupe,oct-1,2026-10-01,good,typical,us-ca,fair,medium,high,29.7%,no,100.0%,share,,good buys,
+cantaloupe,sep-2,2026-09-16,good,typical,us-ca,fair,medium,high,0.0%,no,100.0%,share,,good buys,
+cantaloupe,oct-1,2026-10-01,good,typical,us-ca,fair,medium,high,0.0%,no,100.0%,share,,good buys,
 cantaloupe,oct-2,2026-10-16,skip,typical,us-ca,poor,medium,high,0.0%,no,29.7%,no,,,
 cantaloupe,nov-1,2026-11-01,limited,typical,,,,medium,,,,,,,
 cantaloupe,nov-2,2026-11-16,skip,typical,gt,poor,medium,high,0.0%,no,44.6%,no,,,
@@ -199,14 +199,14 @@ cherries,feb-2,2026-02-16,good,typical,cl,fair,low,medium,0.0%,no,100.0%,share,,
 cherries,mar-1,2026-03-01,good,typical,cl,fair,low,medium,0.0%,no,100.0%,share,,good buys,
 cherries,mar-2,2026-03-16,limited,typical,,,,medium,,,,,,,
 cherries,apr-1,2026-04-01,skip,typical,us-ca,poor,medium,high,0.0%,no,0.0%,no,,,
-cherries,apr-2,2026-04-16,good,typical,us-ca,fair,low,medium,0.0%,no,100.0%,share,,good buys,
-cherries,may-1,2026-05-01,peak,typical,us-ca,prime,medium,high,100.0%,share,100.0%,share,,best right now,
-cherries,may-2,2026-05-16,peak,typical,us-ca,prime,medium,high,100.0%,share,100.0%,share,,best right now,
-cherries,jun-1,2026-06-01,peak,typical,us-wa,prime,medium,high,100.0%,share,100.0%,share,,best right now,
+cherries,apr-2,2026-04-16,good,typical,us-ca,fair,medium,high,0.0%,no,100.0%,share,,good buys,
+cherries,may-1,2026-05-01,good,typical,us-ca,fair,medium,high,0.0%,no,100.0%,share,,good buys,
+cherries,may-2,2026-05-16,good,typical,us-ca,prime,medium,high,100.0%,share,100.0%,share,,good buys,
+cherries,jun-1,2026-06-01,good,typical,us-wa,fair,medium,high,0.0%,no,100.0%,share,,good buys,
 cherries,jun-2,2026-06-16,peak,typical,us-wa,prime,medium,high,100.0%,share,100.0%,share,,best right now,
 cherries,jul-1,2026-07-01,peak,typical,us-wa,prime,medium,high,100.0%,share,100.0%,share,,best right now,
 cherries,jul-2,2026-07-16,peak,typical,us-wa,prime,medium,high,100.0%,share,100.0%,share,,best right now,
-cherries,aug-1,2026-08-01,good,typical,us-wa,prime,medium,medium,0.0%,no,100.0%,share,,good buys,
+cherries,aug-1,2026-08-01,good,typical,us-wa,fair,medium,high,0.0%,no,100.0%,share,,good buys,
 cherries,aug-2,2026-08-16,good,typical,us-wa,fair,medium,high,0.0%,no,100.0%,share,,good buys,
 cherries,sep-1,2026-09-01,good,typical,ca,fair,medium,high,0.0%,no,100.0%,share,,good buys,
 cherries,sep-2,2026-09-16,skip,typical,ca,poor,medium,medium,0.0%,no,0.0%,no,,,
@@ -249,11 +249,11 @@ figs,mar-2,2026-03-16,skip,typical,mx,poor,medium,medium,0.0%,no,0.0%,no,,,
 figs,apr-1,2026-04-01,skip,typical,mx,poor,medium,medium,0.0%,no,0.0%,no,,,
 figs,apr-2,2026-04-16,skip,typical,mx,poor,medium,medium,0.0%,no,0.0%,no,,,
 figs,may-1,2026-05-01,good,typical,us-ca,fair,medium,low,0.0%,no,50.0%,share,us-ca,good buys,Look for ones from California
-figs,may-2,2026-05-16,good,typical,us-ca,prime,medium,low,50.0%,share,50.0%,share,us-ca,good buys,Look for ones from California
+figs,may-2,2026-05-16,good,typical,us-ca,fair,medium,low,0.0%,no,50.0%,share,us-ca,good buys,Look for ones from California
 figs,jun-1,2026-06-01,good,typical,us-ca,fair,medium,medium,0.0%,no,100.0%,share,,good buys,
 figs,jun-2,2026-06-16,good,typical,us-ca,fair,medium,medium,0.0%,no,100.0%,share,,good buys,
-figs,jul-1,2026-07-01,peak,typical,us-ca,prime,medium,medium,100.0%,share,100.0%,share,,best right now,
-figs,jul-2,2026-07-16,peak,typical,us-ca,prime,medium,medium,100.0%,share,100.0%,share,,best right now,
+figs,jul-1,2026-07-01,good,typical,us-ca,fair,medium,medium,0.0%,no,100.0%,share,,good buys,
+figs,jul-2,2026-07-16,good,typical,us-ca,fair,medium,medium,0.0%,no,100.0%,share,,good buys,
 figs,aug-1,2026-08-01,peak,typical,us-ca,prime,medium,medium,100.0%,share,100.0%,share,,best right now,
 figs,aug-2,2026-08-16,peak,typical,us-ca,prime,medium,medium,100.0%,share,100.0%,share,,best right now,
 figs,sep-1,2026-09-01,peak,typical,us-ca,prime,medium,medium,100.0%,share,100.0%,share,,best right now,
@@ -261,7 +261,7 @@ figs,sep-2,2026-09-16,peak,typical,us-ca,prime,medium,medium,100.0%,share,100.0%
 figs,oct-1,2026-10-01,good,typical,us-ca,fair,medium,medium,0.0%,no,100.0%,share,,good buys,
 figs,oct-2,2026-10-16,good,typical,us-ca,fair,medium,medium,0.0%,no,100.0%,share,,good buys,
 figs,nov-1,2026-11-01,good,typical,us-ca,fair,medium,low,0.0%,no,50.0%,share,us-ca,good buys,Look for ones from California
-figs,nov-2,2026-11-16,good,typical,us-ca,fair,medium,low,0.0%,no,50.0%,share,us-ca,good buys,Look for ones from California
+figs,nov-2,2026-11-16,skip,typical,us-ca,poor,medium,medium,0.0%,no,0.0%,no,,,
 figs,dec-1,2026-12-01,skip,typical,mx,poor,medium,medium,0.0%,no,0.0%,no,,,
 figs,dec-2,2026-12-16,skip,typical,mx,poor,medium,medium,0.0%,no,0.0%,no,,,
 grapefruit,jan-1,2026-01-01,peak,typical,us-tx,prime,medium,medium,100.0%,share,100.0%,share,,best right now,
@@ -301,7 +301,7 @@ grapes,may-2,2026-05-16,limited,typical,,,,medium,,,,,,,
 grapes,jun-1,2026-06-01,good,typical,mx,fair,medium,high,0.0%,no,100.0%,share,,,
 grapes,jun-2,2026-06-16,good,typical,mx,fair,medium,high,0.0%,no,100.0%,share,,,
 grapes,jul-1,2026-07-01,good,typical,us-ca,fair,medium,high,0.0%,no,100.0%,share,,,
-grapes,jul-2,2026-07-16,peak,typical,us-ca,prime,medium,high,100.0%,share,100.0%,share,,best right now,
+grapes,jul-2,2026-07-16,good,typical,us-ca,fair,medium,high,0.0%,no,100.0%,share,,,
 grapes,aug-1,2026-08-01,peak,typical,us-ca,prime,medium,high,100.0%,share,100.0%,share,,best right now,
 grapes,aug-2,2026-08-16,peak,typical,us-ca,prime,medium,high,100.0%,share,100.0%,share,,best right now,
 grapes,sep-1,2026-09-01,peak,typical,us-ca,prime,medium,high,100.0%,share,100.0%,share,,best right now,
@@ -324,28 +324,28 @@ honeydew,may-1,2026-05-01,limited,typical,,,,medium,,,,,,,
 honeydew,may-2,2026-05-16,limited,typical,,,,medium,,,,,,,
 honeydew,jun-1,2026-06-01,limited,typical,,,,medium,,,,,,,
 honeydew,jun-2,2026-06-16,limited,typical,,,,medium,,,,,,,
-honeydew,jul-1,2026-07-01,peak,typical,us-ca,prime,medium,high,100.0%,share,100.0%,share,,best right now,
+honeydew,jul-1,2026-07-01,peak,typical,us-ca,prime,low,medium,100.0%,share,100.0%,share,,best right now,
 honeydew,jul-2,2026-07-16,peak,typical,us-ca,prime,medium,high,100.0%,share,100.0%,share,,best right now,
 honeydew,aug-1,2026-08-01,peak,typical,us-ca,prime,medium,high,100.0%,share,100.0%,share,,best right now,
 honeydew,aug-2,2026-08-16,peak,typical,us-ca,prime,medium,high,100.0%,share,100.0%,share,,best right now,
 honeydew,sep-1,2026-09-01,peak,typical,us-ca,prime,medium,high,100.0%,share,100.0%,share,,best right now,
 honeydew,sep-2,2026-09-16,peak,typical,us-ca,prime,medium,high,100.0%,share,100.0%,share,,best right now,
-honeydew,oct-1,2026-10-01,peak,typical,us-ca,prime,medium,medium,72.2%,share,72.2%,share,us-ca,best right now,Look for ones from California
-honeydew,oct-2,2026-10-16,good,typical,us-ca,fair,low,low,0.0%,no,72.2%,share,us-ca,good buys,Look for ones from California
-honeydew,nov-1,2026-11-01,skip,typical,mx,poor,low,low,0.0%,no,0.0%,no,,,
-honeydew,nov-2,2026-11-16,skip,typical,mx,poor,low,low,0.0%,no,0.0%,no,,,
+honeydew,oct-1,2026-10-01,good,typical,us-ca,fair,medium,medium,0.0%,no,72.2%,share,us-ca,good buys,Look for ones from California
+honeydew,oct-2,2026-10-16,good,typical,us-ca,fair,medium,medium,0.0%,no,72.2%,share,us-ca,good buys,Look for ones from California
+honeydew,nov-1,2026-11-01,skip,typical,mx,poor,medium,medium,0.0%,no,0.0%,no,,,
+honeydew,nov-2,2026-11-16,skip,typical,mx,poor,medium,medium,0.0%,no,0.0%,no,,,
 honeydew,dec-1,2026-12-01,skip,typical,gt,poor,medium,medium,0.0%,no,0.0%,no,,,
 honeydew,dec-2,2026-12-16,skip,typical,gt,poor,medium,medium,0.0%,no,0.0%,no,,,
-mandarins,jan-1,2026-01-01,peak,variety,clementine,prime,medium,medium,,,,,,best right now,"Clementine, W. Murcott and Tango and Minneola tangelo"
-mandarins,jan-2,2026-01-16,peak,variety,clementine,prime,medium,medium,,,,,,best right now,"Clementine, W. Murcott and Tango and Minneola tangelo"
-mandarins,feb-1,2026-02-01,peak,variety,w-murcott,prime,medium,medium,,,,,,best right now,W. Murcott and Tango and Minneola tangelo
+mandarins,jan-1,2026-01-01,peak,variety,clementine,prime,medium,medium,,,,,,best right now,Clementine and W. Murcott and Tango
+mandarins,jan-2,2026-01-16,peak,variety,clementine,prime,medium,medium,,,,,,best right now,Clementine and Minneola tangelo
+mandarins,feb-1,2026-02-01,peak,variety,minneola,prime,medium,medium,,,,,,best right now,Minneola tangelo
 mandarins,feb-2,2026-02-16,peak,variety,w-murcott,prime,medium,medium,,,,,,best right now,W. Murcott and Tango and Minneola tangelo
 mandarins,mar-1,2026-03-01,peak,variety,w-murcott,prime,medium,medium,,,,,,best right now,W. Murcott and Tango and Minneola tangelo
-mandarins,mar-2,2026-03-16,peak,variety,w-murcott,prime,high,medium,,,,,,best right now,W. Murcott and Tango and Minneola tangelo
+mandarins,mar-2,2026-03-16,peak,variety,w-murcott,prime,high,medium,,,,,,best right now,W. Murcott and Tango
 mandarins,apr-1,2026-04-01,peak,variety,w-murcott,prime,medium,medium,,,,,,best right now,W. Murcott and Tango
-mandarins,apr-2,2026-04-16,peak,variety,w-murcott,prime,medium,medium,,,,,,best right now,W. Murcott and Tango
-mandarins,may-1,2026-05-01,peak,variety,gold-nugget,prime,medium,medium,,,,,,best right now,Gold Nugget
-mandarins,may-2,2026-05-16,peak,variety,gold-nugget,prime,medium,medium,,,,,,best right now,Gold Nugget
+mandarins,apr-2,2026-04-16,good,variety,w-murcott,fair,medium,medium,,,,,,,
+mandarins,may-1,2026-05-01,good,variety,gold-nugget,prime,medium,medium,,,,,,,
+mandarins,may-2,2026-05-16,good,variety,w-murcott,fair,medium,medium,,,,,,,
 mandarins,jun-1,2026-06-01,good,variety,w-murcott,fair,medium,medium,,,,,,,
 mandarins,jun-2,2026-06-16,good,variety,w-murcott,fair,medium,medium,,,,,,,
 mandarins,jul-1,2026-07-01,good,variety,w-murcott,fair,medium,medium,,,,,,,
@@ -356,15 +356,15 @@ mandarins,sep-1,2026-09-01,good,variety,w-murcott,fair,medium,medium,,,,,,,
 mandarins,sep-2,2026-09-16,good,variety,w-murcott,fair,medium,medium,,,,,,,
 mandarins,oct-1,2026-10-01,skip,variety,w-murcott,poor,medium,medium,,,,,,,
 mandarins,oct-2,2026-10-16,good,variety,clementine,fair,medium,medium,,,,,,,
-mandarins,nov-1,2026-11-01,peak,variety,clementine,prime,medium,medium,,,,,,best right now,Clementine
-mandarins,nov-2,2026-11-16,peak,variety,clementine,prime,medium,medium,,,,,,best right now,Clementine
+mandarins,nov-1,2026-11-01,good,variety,clementine,fair,medium,medium,,,,,,,
+mandarins,nov-2,2026-11-16,good,variety,clementine,fair,medium,medium,,,,,,,
 mandarins,dec-1,2026-12-01,peak,variety,clementine,prime,medium,medium,,,,,,best right now,Clementine
 mandarins,dec-2,2026-12-16,peak,variety,clementine,prime,medium,medium,,,,,,best right now,Clementine
 mangoes,jan-1,2026-01-01,good,variety,kent,fair,medium,high,,,,,,,
 mangoes,jan-2,2026-01-16,good,variety,kent,fair,medium,high,,,,,,,
 mangoes,feb-1,2026-02-01,good,variety,ataulfo,fair,medium,high,,,,,,,
 mangoes,feb-2,2026-02-16,good,variety,ataulfo,fair,medium,high,,,,,,,
-mangoes,mar-1,2026-03-01,peak,variety,ataulfo,prime,medium,high,,,,,,best right now,Ataulfo (Honey)
+mangoes,mar-1,2026-03-01,good,variety,ataulfo,fair,medium,high,,,,,,,
 mangoes,mar-2,2026-03-16,peak,variety,ataulfo,prime,medium,high,,,,,,best right now,Ataulfo (Honey)
 mangoes,apr-1,2026-04-01,peak,variety,ataulfo,prime,medium,high,,,,,,best right now,Ataulfo (Honey)
 mangoes,apr-2,2026-04-16,peak,variety,ataulfo,prime,medium,high,,,,,,best right now,Ataulfo (Honey)
@@ -374,11 +374,11 @@ mangoes,jun-1,2026-06-01,peak,variety,ataulfo,prime,medium,high,,,,,,best right 
 mangoes,jun-2,2026-06-16,peak,variety,ataulfo,prime,medium,high,,,,,,best right now,Ataulfo (Honey) and Kent
 mangoes,jul-1,2026-07-01,peak,variety,kent,prime,medium,high,,,,,,best right now,Kent
 mangoes,jul-2,2026-07-16,peak,variety,kent,prime,medium,high,,,,,,best right now,Kent
-mangoes,aug-1,2026-08-01,peak,variety,kent,prime,medium,high,,,,,,best right now,Kent and Keitt
-mangoes,aug-2,2026-08-16,peak,variety,kent,prime,medium,high,,,,,,best right now,Kent and Keitt
+mangoes,aug-1,2026-08-01,peak,variety,keitt,prime,medium,high,,,,,,best right now,Keitt
+mangoes,aug-2,2026-08-16,peak,variety,keitt,prime,medium,high,,,,,,best right now,Keitt
 mangoes,sep-1,2026-09-01,good,variety,kent,fair,low,medium,,,,,,,
-mangoes,sep-2,2026-09-16,good,variety,kent,fair,low,medium,,,,,,,
-mangoes,oct-1,2026-10-01,good,variety,keitt,prime,medium,high,,,,,,,
+mangoes,sep-2,2026-09-16,good,variety,keitt,fair,medium,high,,,,,,,
+mangoes,oct-1,2026-10-01,good,variety,keitt,fair,medium,high,,,,,,,
 mangoes,oct-2,2026-10-16,skip,variety,keitt,poor,medium,medium,,,,,,,
 mangoes,nov-1,2026-11-01,good,variety,kent,fair,medium,high,,,,,,,
 mangoes,nov-2,2026-11-16,good,variety,kent,fair,medium,high,,,,,,,
@@ -394,8 +394,8 @@ nectarines,apr-1,2026-04-01,limited,typical,,,,medium,,,,,,,
 nectarines,apr-2,2026-04-16,limited,typical,,,,medium,,,,,,,
 nectarines,may-1,2026-05-01,skip,typical,us-ca,poor,medium,high,0.0%,no,0.0%,no,,,
 nectarines,may-2,2026-05-16,skip,typical,us-ca,poor,medium,high,0.0%,no,0.0%,no,,,
-nectarines,jun-1,2026-06-01,peak,typical,us-ca,prime,medium,high,100.0%,share,100.0%,share,,best right now,
-nectarines,jun-2,2026-06-16,peak,typical,us-ca,prime,medium,high,100.0%,share,100.0%,share,,best right now,
+nectarines,jun-1,2026-06-01,good,typical,us-ca,fair,medium,high,0.0%,no,100.0%,share,,good buys,
+nectarines,jun-2,2026-06-16,good,typical,us-ca,fair,medium,high,0.0%,no,100.0%,share,,good buys,
 nectarines,jul-1,2026-07-01,peak,typical,us-ca,prime,medium,high,100.0%,share,100.0%,share,,best right now,
 nectarines,jul-2,2026-07-16,peak,typical,us-ca,prime,medium,high,100.0%,share,100.0%,share,,best right now,
 nectarines,aug-1,2026-08-01,peak,typical,us-ca,prime,medium,high,100.0%,share,100.0%,share,,best right now,
@@ -432,7 +432,7 @@ okra,nov-1,2026-11-01,good,typical,hn,fair,medium,medium,0.0%,no,100.0%,share,,,
 okra,nov-2,2026-11-16,good,typical,hn,fair,medium,medium,0.0%,no,100.0%,share,,,
 okra,dec-1,2026-12-01,good,typical,hn,fair,medium,medium,0.0%,no,100.0%,share,,,
 okra,dec-2,2026-12-16,good,typical,hn,fair,medium,medium,0.0%,no,100.0%,share,,,
-oranges,jan-1,2026-01-01,peak,variety,navel,prime,medium,medium,,,,,,best right now,"Navel, Blood orange and Cara Cara"
+oranges,jan-1,2026-01-01,peak,variety,navel,prime,medium,medium,,,,,,best right now,Navel and Cara Cara
 oranges,jan-2,2026-01-16,peak,variety,navel,prime,medium,medium,,,,,,best right now,"Navel, Blood orange and Cara Cara"
 oranges,feb-1,2026-02-01,peak,variety,navel,prime,medium,medium,,,,,,best right now,"Navel, Valencia, Blood orange and Cara Cara"
 oranges,feb-2,2026-02-16,peak,variety,navel,prime,medium,medium,,,,,,best right now,"Navel, Blood orange and Cara Cara"
@@ -454,8 +454,8 @@ oranges,oct-1,2026-10-01,good,variety,navel,fair,medium,medium,,,,,,,
 oranges,oct-2,2026-10-16,good,variety,navel,fair,medium,medium,,,,,,,
 oranges,nov-1,2026-11-01,good,variety,valencia,prime,medium,medium,,,,,,,
 oranges,nov-2,2026-11-16,good,variety,navel,fair,medium,medium,,,,,,,
-oranges,dec-1,2026-12-01,peak,variety,navel,prime,medium,medium,,,,,,best right now,Navel and Cara Cara
-oranges,dec-2,2026-12-16,peak,variety,navel,prime,medium,medium,,,,,,best right now,Navel and Cara Cara
+oranges,dec-1,2026-12-01,good,variety,navel,fair,medium,medium,,,,,,,
+oranges,dec-2,2026-12-16,peak,variety,navel,prime,medium,medium,,,,,,best right now,Navel
 peaches,jan-1,2026-01-01,skip,typical,cl,poor,medium,medium,0.0%,no,0.0%,no,,,
 peaches,jan-2,2026-01-16,skip,typical,cl,poor,medium,medium,0.0%,no,0.0%,no,,,
 peaches,feb-1,2026-02-01,skip,typical,cl,poor,medium,medium,0.0%,no,0.0%,no,,,
@@ -466,22 +466,22 @@ peaches,apr-1,2026-04-01,limited,typical,,,,medium,,,,,,,
 peaches,apr-2,2026-04-16,good,typical,us-ca,fair,medium,high,0.0%,no,100.0%,share,,good buys,
 peaches,may-1,2026-05-01,skip,typical,us-ca,poor,medium,high,0.0%,no,0.0%,no,,,
 peaches,may-2,2026-05-16,skip,typical,us-ca,poor,medium,high,0.0%,no,0.0%,no,,,
-peaches,jun-1,2026-06-01,peak,typical,us-ca,prime,medium,high,100.0%,share,100.0%,share,,best right now,
-peaches,jun-2,2026-06-16,peak,typical,us-ca,prime,medium,high,100.0%,share,100.0%,share,,best right now,
+peaches,jun-1,2026-06-01,good,typical,us-ca,fair,medium,high,0.0%,no,100.0%,share,,good buys,
+peaches,jun-2,2026-06-16,good,typical,us-ca,fair,medium,high,0.0%,no,100.0%,share,,good buys,
 peaches,jul-1,2026-07-01,peak,typical,us-ca,prime,medium,high,100.0%,share,100.0%,share,,best right now,
 peaches,jul-2,2026-07-16,peak,typical,us-ca,prime,medium,high,100.0%,share,100.0%,share,,best right now,
 peaches,aug-1,2026-08-01,peak,typical,us-ca,prime,medium,high,100.0%,share,100.0%,share,,best right now,
 peaches,aug-2,2026-08-16,peak,typical,us-ca,prime,medium,high,100.0%,share,100.0%,share,,best right now,
 peaches,sep-1,2026-09-01,good,typical,us-ca,fair,medium,high,0.0%,no,100.0%,share,,good buys,
 peaches,sep-2,2026-09-16,good,typical,us-ca,fair,medium,high,0.0%,no,100.0%,share,,good buys,
-peaches,oct-1,2026-10-01,good,typical,us-ca,prime,medium,high,100.0%,share,100.0%,share,,good buys,
+peaches,oct-1,2026-10-01,good,typical,us-ca,fair,low,medium,0.0%,no,100.0%,share,,good buys,
 peaches,oct-2,2026-10-16,limited,typical,,,,medium,,,,,,,
 peaches,nov-1,2026-11-01,limited,typical,,,,medium,,,,,,,
 peaches,nov-2,2026-11-16,limited,typical,,,,medium,,,,,,,
 peaches,dec-1,2026-12-01,skip,typical,cl,poor,medium,high,0.0%,no,0.0%,no,,,
 peaches,dec-2,2026-12-16,skip,typical,cl,poor,medium,high,0.0%,no,0.0%,no,,,
-pears,jan-1,2026-01-01,peak,variety,anjou,prime,medium,high,,,,,,best right now,Anjou and Comice
-pears,jan-2,2026-01-16,peak,variety,anjou,prime,medium,high,,,,,,best right now,Anjou and Comice
+pears,jan-1,2026-01-01,peak,variety,anjou,prime,medium,high,,,,,,best right now,Anjou
+pears,jan-2,2026-01-16,peak,variety,anjou,prime,medium,high,,,,,,best right now,Anjou
 pears,feb-1,2026-02-01,good,variety,anjou,fair,medium,high,,,,,,good buys,"Anjou, Bosc and Comice"
 pears,feb-2,2026-02-16,good,variety,anjou,fair,medium,high,,,,,,good buys,"Anjou, Bosc and Comice"
 pears,mar-1,2026-03-01,good,variety,anjou,fair,medium,high,,,,,,good buys,Anjou and Bosc
@@ -497,9 +497,9 @@ pears,jul-2,2026-07-16,good,variety,bartlett,fair,medium,high,,,,,,good buys,Bar
 pears,aug-1,2026-08-01,peak,variety,bartlett,prime,medium,high,,,,,,best right now,Bartlett and Starkrimson
 pears,aug-2,2026-08-16,peak,variety,bartlett,prime,medium,high,,,,,,best right now,Bartlett and Starkrimson
 pears,sep-1,2026-09-01,peak,variety,bartlett,prime,medium,high,,,,,,best right now,"Bartlett, Seckel and Starkrimson"
-pears,sep-2,2026-09-16,peak,variety,anjou,prime,medium,high,,,,,,best right now,"Anjou, Bartlett, Bosc and 2 more"
-pears,oct-1,2026-10-01,peak,variety,anjou,prime,medium,high,,,,,,best right now,"Anjou, Bartlett, Bosc and 2 more"
-pears,oct-2,2026-10-16,peak,variety,anjou,prime,medium,high,,,,,,best right now,"Anjou, Bartlett, Bosc and 3 more"
+pears,sep-2,2026-09-16,peak,variety,bartlett,prime,medium,high,,,,,,best right now,"Bartlett, Seckel and Starkrimson"
+pears,oct-1,2026-10-01,peak,variety,bartlett,prime,medium,high,,,,,,best right now,"Bartlett, Seckel and Starkrimson"
+pears,oct-2,2026-10-16,peak,variety,bartlett,prime,medium,high,,,,,,best right now,"Bartlett, Bosc, Seckel and Starkrimson"
 pears,nov-1,2026-11-01,peak,variety,anjou,prime,medium,high,,,,,,best right now,"Anjou, Bosc, Comice and Seckel"
 pears,nov-2,2026-11-16,peak,variety,anjou,prime,medium,high,,,,,,best right now,"Anjou, Bosc, Comice and Seckel"
 pears,dec-1,2026-12-01,peak,variety,anjou,prime,medium,high,,,,,,best right now,"Anjou, Bosc, Comice and Seckel"
@@ -512,9 +512,9 @@ persimmons,mar-1,2026-03-01,good,typical,il,fair,medium,medium,0.0%,no,100.0%,sh
 persimmons,mar-2,2026-03-16,good,typical,il,fair,medium,medium,0.0%,no,100.0%,share,,good buys,
 persimmons,apr-1,2026-04-01,good,typical,cl,fair,medium,medium,0.0%,no,100.0%,share,,good buys,
 persimmons,apr-2,2026-04-16,good,typical,cl,fair,medium,medium,0.0%,no,100.0%,share,,good buys,
-persimmons,may-1,2026-05-01,good,typical,cl,fair,medium,medium,0.0%,no,100.0%,share,,good buys,
-persimmons,may-2,2026-05-16,good,typical,cl,fair,medium,medium,0.0%,no,100.0%,share,,good buys,
-persimmons,jun-1,2026-06-01,skip,typical,cl,poor,medium,medium,0.0%,no,0.0%,no,,,
+persimmons,may-1,2026-05-01,good,typical,cl,fair,low,low,0.0%,no,100.0%,share,,good buys,
+persimmons,may-2,2026-05-16,good,typical,cl,fair,low,low,0.0%,no,100.0%,share,,good buys,
+persimmons,jun-1,2026-06-01,skip,typical,cl,poor,low,low,0.0%,no,0.0%,no,,,
 persimmons,jun-2,2026-06-16,limited,typical,,,,low,,,,,,,
 persimmons,jul-1,2026-07-01,limited,typical,,,,low,,,,,,,
 persimmons,jul-2,2026-07-16,limited,typical,,,,low,,,,,,,
@@ -527,7 +527,7 @@ persimmons,oct-2,2026-10-16,peak,typical,us-ca,prime,medium,medium,100.0%,share,
 persimmons,nov-1,2026-11-01,peak,typical,us-ca,prime,medium,medium,100.0%,share,100.0%,share,,best right now,
 persimmons,nov-2,2026-11-16,peak,typical,us-ca,prime,medium,medium,100.0%,share,100.0%,share,,best right now,
 persimmons,dec-1,2026-12-01,peak,typical,us-ca,prime,medium,low,50.0%,share,100.0%,share,us-ca,best right now,Look for ones from California
-persimmons,dec-2,2026-12-16,peak,typical,us-ca,prime,medium,low,50.0%,share,100.0%,share,us-ca,best right now,Look for ones from California
+persimmons,dec-2,2026-12-16,good,typical,us-ca,fair,medium,medium,0.0%,no,100.0%,share,,good buys,
 plums,jan-1,2026-01-01,skip,typical,cl,poor,low,medium,0.0%,no,0.0%,no,,,
 plums,jan-2,2026-01-16,skip,typical,cl,poor,low,medium,0.0%,no,0.0%,no,,,
 plums,feb-1,2026-02-01,skip,typical,cl,poor,low,low,0.0%,no,0.0%,no,,,
@@ -535,12 +535,12 @@ plums,feb-2,2026-02-16,skip,typical,cl,poor,low,low,0.0%,no,0.0%,no,,,
 plums,mar-1,2026-03-01,skip,typical,cl,poor,low,low,0.0%,no,0.0%,no,,,
 plums,mar-2,2026-03-16,skip,typical,cl,poor,low,low,0.0%,no,0.0%,no,,,
 plums,apr-1,2026-04-01,skip,typical,cl,poor,low,low,0.0%,no,0.0%,no,,,
-plums,apr-2,2026-04-16,skip,typical,cl,poor,medium,medium,0.0%,no,0.0%,no,,,
+plums,apr-2,2026-04-16,skip,typical,cl,poor,low,low,0.0%,no,0.0%,no,,,
 plums,may-1,2026-05-01,limited,typical,,,,medium,,,,,,,
 plums,may-2,2026-05-16,limited,typical,,,,medium,,,,,,,
 plums,jun-1,2026-06-01,good,typical,us-ca,fair,medium,high,0.0%,no,100.0%,share,,good buys,
-plums,jun-2,2026-06-16,peak,typical,us-ca,prime,medium,high,100.0%,share,100.0%,share,,best right now,
-plums,jul-1,2026-07-01,peak,typical,us-ca,prime,medium,high,100.0%,share,100.0%,share,,best right now,
+plums,jun-2,2026-06-16,good,typical,us-ca,fair,medium,high,0.0%,no,100.0%,share,,good buys,
+plums,jul-1,2026-07-01,good,typical,us-ca,fair,medium,high,0.0%,no,100.0%,share,,good buys,
 plums,jul-2,2026-07-16,peak,typical,us-ca,prime,medium,high,100.0%,share,100.0%,share,,best right now,
 plums,aug-1,2026-08-01,peak,typical,us-ca,prime,medium,high,100.0%,share,100.0%,share,,best right now,
 plums,aug-2,2026-08-16,peak,typical,us-ca,prime,medium,high,100.0%,share,100.0%,share,,best right now,
@@ -562,7 +562,7 @@ pomegranates,apr-1,2026-04-01,good,typical,pe,fair,low,low,0.0%,no,100.0%,share,
 pomegranates,apr-2,2026-04-16,good,typical,pe,fair,low,low,0.0%,no,100.0%,share,,good buys,
 pomegranates,may-1,2026-05-01,good,typical,ar,fair,medium,medium,0.0%,no,100.0%,share,,good buys,
 pomegranates,may-2,2026-05-16,good,typical,ar,fair,medium,medium,0.0%,no,100.0%,share,,good buys,
-pomegranates,jun-1,2026-06-01,skip,typical,pe,poor,medium,medium,0.0%,no,50.0%,no,,,
+pomegranates,jun-1,2026-06-01,skip,typical,pe,poor,low,low,0.0%,no,50.0%,no,,,
 pomegranates,jun-2,2026-06-16,limited,typical,,,,low,,,,,,,
 pomegranates,jul-1,2026-07-01,skip,typical,,,,medium,,,,,,,
 pomegranates,jul-2,2026-07-16,skip,typical,,,,medium,,,,,,,
@@ -575,7 +575,7 @@ pomegranates,oct-2,2026-10-16,peak,typical,us-ca,prime,medium,medium,100.0%,shar
 pomegranates,nov-1,2026-11-01,peak,typical,us-ca,prime,medium,medium,100.0%,share,100.0%,share,,best right now,
 pomegranates,nov-2,2026-11-16,peak,typical,us-ca,prime,medium,medium,100.0%,share,100.0%,share,,best right now,
 pomegranates,dec-1,2026-12-01,peak,typical,us-ca,prime,medium,medium,100.0%,share,100.0%,share,,best right now,
-pomegranates,dec-2,2026-12-16,peak,typical,us-ca,prime,medium,medium,100.0%,share,100.0%,share,,best right now,
+pomegranates,dec-2,2026-12-16,good,typical,us-ca,fair,medium,medium,0.0%,no,100.0%,share,,good buys,
 raspberries,jan-1,2026-01-01,good,typical,mx,fair,medium,high,0.0%,no,100.0%,share,,,
 raspberries,jan-2,2026-01-16,good,typical,mx,fair,medium,high,0.0%,no,100.0%,share,,,
 raspberries,feb-1,2026-02-01,good,typical,mx,fair,medium,high,0.0%,no,100.0%,share,,,
@@ -586,15 +586,15 @@ raspberries,apr-1,2026-04-01,good,typical,mx,fair,medium,high,0.0%,no,100.0%,sha
 raspberries,apr-2,2026-04-16,good,typical,mx,fair,medium,high,0.0%,no,100.0%,share,,,
 raspberries,may-1,2026-05-01,good,typical,mx,fair,medium,high,0.0%,no,100.0%,share,,,
 raspberries,may-2,2026-05-16,good,typical,mx,fair,medium,high,0.0%,no,100.0%,share,,,
-raspberries,jun-1,2026-06-01,good,typical,mx,fair,medium,high,45.4%,share,100.0%,share,,,
-raspberries,jun-2,2026-06-16,good,typical,mx,fair,low,medium,45.4%,share,100.0%,share,,,
+raspberries,jun-1,2026-06-01,peak,typical,us-ca,prime,medium,medium,45.4%,share,100.0%,share,us-ca,best right now,Look for ones from California
+raspberries,jun-2,2026-06-16,peak,typical,us-ca,prime,medium,medium,45.4%,share,100.0%,share,us-ca,best right now,Look for ones from California
 raspberries,jul-1,2026-07-01,limited,typical,,,,medium,,,,,,,
 raspberries,jul-2,2026-07-16,limited,typical,,,,medium,,,,,,,
-raspberries,aug-1,2026-08-01,peak,typical,us-ca,prime,medium,medium,48.6%,share,100.0%,share,us-ca,best right now,Look for ones from California
-raspberries,aug-2,2026-08-16,peak,typical,us-ca,prime,medium,medium,48.6%,share,100.0%,share,us-ca,best right now,Look for ones from California
-raspberries,sep-1,2026-09-01,peak,typical,us-ca,prime,medium,medium,40.6%,share,100.0%,share,us-ca,best right now,Look for ones from California
-raspberries,sep-2,2026-09-16,good,typical,mx,fair,medium,high,0.0%,no,100.0%,share,,,
-raspberries,oct-1,2026-10-01,good,typical,mx,fair,medium,high,0.0%,no,100.0%,share,,,
+raspberries,aug-1,2026-08-01,good,typical,mx,fair,low,medium,0.0%,no,100.0%,share,,,
+raspberries,aug-2,2026-08-16,good,typical,mx,prime,medium,medium,0.0%,no,100.0%,share,,,
+raspberries,sep-1,2026-09-01,good,typical,mx,fair,medium,high,0.0%,no,100.0%,share,,,
+raspberries,sep-2,2026-09-16,good,typical,mx,fair,low,medium,0.0%,no,100.0%,share,,,
+raspberries,oct-1,2026-10-01,good,typical,mx,fair,low,medium,0.0%,no,100.0%,share,,,
 raspberries,oct-2,2026-10-16,good,typical,mx,fair,medium,high,0.0%,no,100.0%,share,,,
 raspberries,nov-1,2026-11-01,good,typical,mx,fair,medium,high,0.0%,no,100.0%,share,,,
 raspberries,nov-2,2026-11-16,good,typical,mx,fair,medium,high,0.0%,no,100.0%,share,,,
@@ -602,11 +602,11 @@ raspberries,dec-1,2026-12-01,good,typical,mx,fair,medium,high,0.0%,no,100.0%,sha
 raspberries,dec-2,2026-12-16,good,typical,mx,fair,medium,high,0.0%,no,100.0%,share,,,
 strawberries,jan-1,2026-01-01,skip,typical,mx,poor,medium,medium,0.0%,no,32.0%,no,,,
 strawberries,jan-2,2026-01-16,skip,typical,mx,poor,medium,medium,0.0%,no,32.0%,no,,,
-strawberries,feb-1,2026-02-01,good,typical,mx,fair,medium,high,39.1%,no,100.0%,share,,good buys,
-strawberries,feb-2,2026-02-16,good,typical,mx,fair,medium,high,39.1%,no,100.0%,share,,good buys,
-strawberries,mar-1,2026-03-01,good,typical,us-ca,prime,medium,medium,0.0%,no,100.0%,share,,good buys,
-strawberries,mar-2,2026-03-16,good,typical,us-ca,prime,medium,medium,0.0%,no,100.0%,share,,good buys,
-strawberries,apr-1,2026-04-01,peak,typical,us-ca,prime,medium,medium,71.4%,share,100.0%,share,us-ca,best right now,Look for ones from California
+strawberries,feb-1,2026-02-01,good,typical,mx,fair,medium,high,39.1%,share,100.0%,share,,good buys,
+strawberries,feb-2,2026-02-16,good,typical,mx,fair,medium,high,39.1%,share,100.0%,share,,good buys,
+strawberries,mar-1,2026-03-01,good,typical,us-ca,fair,medium,high,0.0%,no,100.0%,share,,good buys,
+strawberries,mar-2,2026-03-16,good,typical,us-ca,fair,medium,high,0.0%,no,100.0%,share,,good buys,
+strawberries,apr-1,2026-04-01,good,typical,us-ca,fair,medium,high,0.0%,no,100.0%,share,,good buys,
 strawberries,apr-2,2026-04-16,peak,typical,us-ca,prime,medium,medium,71.4%,share,100.0%,share,us-ca,best right now,Look for ones from California
 strawberries,may-1,2026-05-01,peak,typical,us-ca,prime,high,high,100.0%,share,100.0%,share,,best right now,
 strawberries,may-2,2026-05-16,peak,typical,us-ca,prime,high,high,100.0%,share,100.0%,share,,best right now,
@@ -628,20 +628,20 @@ sweet-corn,jan-1,2026-01-01,skip,typical,mx,poor,medium,medium,0.0%,no,0.0%,no,,
 sweet-corn,jan-2,2026-01-16,skip,typical,mx,poor,medium,medium,0.0%,no,0.0%,no,,,
 sweet-corn,feb-1,2026-02-01,skip,typical,mx,poor,medium,medium,0.0%,no,0.0%,no,,,
 sweet-corn,feb-2,2026-02-16,skip,typical,mx,poor,medium,medium,0.0%,no,0.0%,no,,,
-sweet-corn,mar-1,2026-03-01,skip,typical,mx,poor,medium,medium,0.0%,no,49.9%,no,,,
-sweet-corn,mar-2,2026-03-16,skip,typical,mx,poor,medium,medium,0.0%,no,49.9%,no,,,
-sweet-corn,apr-1,2026-04-01,peak,typical,us-fl,prime,medium,medium,69.9%,share,100.0%,share,us-fl,best right now,Look for ones from Florida
-sweet-corn,apr-2,2026-04-16,peak,typical,us-fl,prime,medium,high,100.0%,share,100.0%,share,,best right now,
-sweet-corn,may-1,2026-05-01,peak,typical,us-fl,prime,medium,high,100.0%,share,100.0%,share,,best right now,
-sweet-corn,may-2,2026-05-16,peak,typical,us-fl,prime,medium,high,100.0%,share,100.0%,share,,best right now,
-sweet-corn,jun-1,2026-06-01,peak,typical,us-ga,prime,medium,high,100.0%,share,100.0%,share,,best right now,
+sweet-corn,mar-1,2026-03-01,good,typical,us-fl,fair,medium,medium,0.0%,no,49.9%,share,us-fl,good buys,Look for ones from Florida
+sweet-corn,mar-2,2026-03-16,good,typical,us-fl,fair,medium,medium,0.0%,no,49.9%,share,us-fl,good buys,Look for ones from Florida
+sweet-corn,apr-1,2026-04-01,good,typical,us-fl,prime,medium,high,69.9%,share,100.0%,share,,good buys,
+sweet-corn,apr-2,2026-04-16,good,typical,us-fl,prime,medium,high,100.0%,share,100.0%,share,,good buys,
+sweet-corn,may-1,2026-05-01,good,typical,us-fl,prime,medium,high,57.3%,share,100.0%,share,,good buys,
+sweet-corn,may-2,2026-05-16,good,typical,us-fl,prime,medium,high,57.3%,share,100.0%,share,,good buys,
+sweet-corn,jun-1,2026-06-01,good,typical,us-ga,fair,medium,high,0.0%,no,100.0%,share,,good buys,
 sweet-corn,jun-2,2026-06-16,peak,typical,us-ga,prime,medium,high,100.0%,share,100.0%,share,,best right now,
 sweet-corn,jul-1,2026-07-01,peak,typical,us-ca,prime,medium,medium,55.1%,share,77.9%,share,us-ca,best right now,Look for ones from California
 sweet-corn,jul-2,2026-07-16,peak,typical,us-ca,prime,medium,medium,55.1%,share,77.9%,share,us-ca,best right now,Look for ones from California
 sweet-corn,aug-1,2026-08-01,peak,selection,,,,medium,,,,,,best right now,Look for local summer corn
 sweet-corn,aug-2,2026-08-16,peak,selection,,,,medium,,,,,,best right now,Look for local summer corn
-sweet-corn,sep-1,2026-09-01,peak,selection,,,,medium,,,,,,best right now,Look for local summer corn
-sweet-corn,sep-2,2026-09-16,peak,selection,,,,medium,,,,,,best right now,Look for local summer corn
+sweet-corn,sep-1,2026-09-01,good,selection,,,,medium,,,,,,good buys,Look for local summer corn
+sweet-corn,sep-2,2026-09-16,good,selection,,,,medium,,,,,,good buys,Look for local summer corn
 sweet-corn,oct-1,2026-10-01,limited,typical,,,,medium,,,,,,,
 sweet-corn,oct-2,2026-10-16,limited,typical,,,,medium,,,,,,,
 sweet-corn,nov-1,2026-11-01,limited,typical,,,,medium,,,,,,,
@@ -676,24 +676,24 @@ watermelon,jan-1,2026-01-01,skip,typical,mx,poor,medium,high,0.0%,no,0.0%,no,,,
 watermelon,jan-2,2026-01-16,skip,typical,mx,poor,medium,high,0.0%,no,0.0%,no,,,
 watermelon,feb-1,2026-02-01,skip,typical,mx,poor,medium,high,0.0%,no,0.0%,no,,,
 watermelon,feb-2,2026-02-16,skip,typical,mx,poor,medium,high,0.0%,no,0.0%,no,,,
-watermelon,mar-1,2026-03-01,skip,typical,mx,poor,medium,high,0.0%,no,0.0%,no,,,
+watermelon,mar-1,2026-03-01,skip,typical,mx,poor,low,medium,0.0%,no,0.0%,no,,,
 watermelon,mar-2,2026-03-16,skip,typical,mx,poor,medium,high,0.0%,no,0.0%,no,,,
 watermelon,apr-1,2026-04-01,skip,typical,mx,poor,medium,medium,0.0%,no,31.8%,no,,,
 watermelon,apr-2,2026-04-16,good,typical,mx,fair,medium,high,0.0%,no,100.0%,share,,good buys,
 watermelon,may-1,2026-05-01,good,typical,us-fl,prime,medium,high,60.5%,share,100.0%,share,,good buys,
 watermelon,may-2,2026-05-16,limited,typical,,,,medium,,,,,,,
-watermelon,jun-1,2026-06-01,peak,typical,us-ga,prime,medium,high,82.5%,share,82.5%,share,,best right now,
-watermelon,jun-2,2026-06-16,peak,typical,us-ga,prime,medium,high,82.5%,share,82.5%,share,,best right now,
+watermelon,jun-1,2026-06-01,peak,typical,us-fl,prime,medium,medium,38.0%,share,82.5%,share,us-fl us-az,best right now,Look for ones from Florida and Arizona
+watermelon,jun-2,2026-06-16,peak,typical,us-ga,prime,medium,medium,57.9%,share,82.5%,share,us-ga us-az,best right now,Look for ones from Georgia and Arizona
 watermelon,jul-1,2026-07-01,peak,typical,us-ga,prime,medium,high,100.0%,share,100.0%,share,,best right now,
 watermelon,jul-2,2026-07-16,peak,typical,us-ga,prime,medium,high,100.0%,share,100.0%,share,,best right now,
 watermelon,aug-1,2026-08-01,peak,typical,us-in,prime,medium,high,100.0%,share,100.0%,share,,best right now,
-watermelon,aug-2,2026-08-16,peak,typical,us-in,prime,medium,high,100.0%,share,100.0%,share,,best right now,
-watermelon,sep-1,2026-09-01,peak,typical,us-ca,prime,medium,medium,41.9%,share,100.0%,share,us-ca,best right now,Look for ones from California
+watermelon,aug-2,2026-08-16,peak,typical,us-in,prime,medium,high,88.2%,share,100.0%,share,,best right now,
+watermelon,sep-1,2026-09-01,good,typical,us-ca,fair,medium,high,0.0%,no,100.0%,share,,good buys,
 watermelon,sep-2,2026-09-16,good,typical,us-ca,fair,medium,high,0.0%,no,100.0%,share,,good buys,
 watermelon,oct-1,2026-10-01,skip,typical,mx,poor,medium,high,0.0%,no,22.9%,no,,,
 watermelon,oct-2,2026-10-16,skip,typical,mx,poor,medium,high,0.0%,no,0.0%,no,,,
 watermelon,nov-1,2026-11-01,skip,typical,mx,poor,medium,high,0.0%,no,0.0%,no,,,
-watermelon,nov-2,2026-11-16,skip,typical,mx,poor,medium,high,0.0%,no,0.0%,no,,,
+watermelon,nov-2,2026-11-16,skip,typical,mx,poor,low,medium,0.0%,no,0.0%,no,,,
 watermelon,dec-1,2026-12-01,skip,typical,mx,poor,medium,high,0.0%,no,0.0%,no,,,
 watermelon,dec-2,2026-12-16,skip,typical,mx,poor,medium,high,0.0%,no,0.0%,no,,,
 winter-squash,jan-1,2026-01-01,good,typical,mx,fair,medium,medium,0.0%,no,100.0%,share,,good buys,
@@ -713,7 +713,7 @@ winter-squash,jul-2,2026-07-16,skip,typical,mx,poor,medium,medium,0.0%,no,0.0%,n
 winter-squash,aug-1,2026-08-01,skip,typical,us,poor,medium,medium,0.0%,no,0.0%,no,,,
 winter-squash,aug-2,2026-08-16,skip,typical,us,poor,medium,medium,0.0%,no,0.0%,no,,,
 winter-squash,sep-1,2026-09-01,good,typical,us,fair,medium,medium,0.0%,no,100.0%,share,,good buys,
-winter-squash,sep-2,2026-09-16,peak,typical,us,prime,medium,medium,100.0%,share,100.0%,share,,best right now,
+winter-squash,sep-2,2026-09-16,good,typical,us,fair,medium,medium,0.0%,no,100.0%,share,,good buys,
 winter-squash,oct-1,2026-10-01,peak,typical,us,prime,medium,medium,100.0%,share,100.0%,share,,best right now,
 winter-squash,oct-2,2026-10-16,peak,typical,us,prime,medium,medium,100.0%,share,100.0%,share,,best right now,
 winter-squash,nov-1,2026-11-01,peak,typical,us,prime,medium,medium,100.0%,share,100.0%,share,,best right now,

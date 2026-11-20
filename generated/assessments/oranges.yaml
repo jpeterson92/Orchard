@@ -6,7 +6,7 @@ status: draft
 rated by: variety
 peak worth seeking: true
 always good: false
-outlook: "PPPPPPGGGGGGGGGGGGGGGGPP (Jan to Dec, two windows a month: P Peak, G Good, S Skip, · Limited evidence)"
+outlook: "PPPPPPGGGGGGGGGGGGGGGGGP (Jan to Dec, two windows a month: P Peak, G Good, S Skip, · Limited evidence)"
 windows:
   jan-1:
     when: early January (from 2026-01-01)
@@ -24,12 +24,13 @@ windows:
     markers: [reliable-year-round]
     today:
       section: best right now
-      line: Navel, Blood orange and Cara Cara
+      line: Navel and Cara Cara
       reason: none
       avoid: none
       tags: []
     varieties:
-      peak: [Navel, Blood orange, Cara Cara]
+      peak: [Navel, Cara Cara]
+      good: [Blood orange]
       limited: [Valencia]
   jan-2:
     when: late January (from 2026-01-16)
@@ -190,10 +191,10 @@ windows:
       evidence: medium
     look for: []
     label note: false
-    reasons: [rated prime (variety valencia), main-peak dec-1 to mar-2]
+    reasons: [rated prime (variety valencia), main-peak dec-2 to mar-2]
     confidence: medium (relevance)
     markers: [reliable-year-round]
-    main peak: rated Peak here, but Peak is kept for dec-1 to mar-2 (P19), so good
+    main peak: rated Peak here, but Peak is kept for dec-2 to mar-2 (P19), so good
     today: not on Today
     varieties:
       peak: [Valencia]
@@ -210,10 +211,10 @@ windows:
       evidence: medium
     look for: []
     label note: false
-    reasons: [rated prime (variety valencia), main-peak dec-1 to mar-2]
+    reasons: [rated prime (variety valencia), main-peak dec-2 to mar-2]
     confidence: medium (relevance)
     markers: [reliable-year-round]
-    main peak: rated Peak here, but Peak is kept for dec-1 to mar-2 (P19), so good
+    main peak: rated Peak here, but Peak is kept for dec-2 to mar-2 (P19), so good
     today: not on Today
     varieties:
       peak: [Valencia]
@@ -230,10 +231,10 @@ windows:
       evidence: medium
     look for: []
     label note: false
-    reasons: [rated prime (variety valencia), main-peak dec-1 to mar-2]
+    reasons: [rated prime (variety valencia), main-peak dec-2 to mar-2]
     confidence: medium (relevance)
     markers: [reliable-year-round]
-    main peak: rated Peak here, but Peak is kept for dec-1 to mar-2 (P19), so good
+    main peak: rated Peak here, but Peak is kept for dec-2 to mar-2 (P19), so good
     today: not on Today
     varieties:
       peak: [Valencia]
@@ -251,10 +252,10 @@ windows:
       evidence: medium
     look for: []
     label note: false
-    reasons: [rated prime (variety valencia), main-peak dec-1 to mar-2]
+    reasons: [rated prime (variety valencia), main-peak dec-2 to mar-2]
     confidence: medium (relevance)
     markers: [reliable-year-round]
-    main peak: rated Peak here, but Peak is kept for dec-1 to mar-2 (P19), so good
+    main peak: rated Peak here, but Peak is kept for dec-2 to mar-2 (P19), so good
     today: not on Today
     varieties:
       peak: [Valencia]
@@ -426,10 +427,10 @@ windows:
       evidence: medium
     look for: []
     label note: false
-    reasons: [rated prime (variety valencia), main-peak dec-1 to mar-2]
+    reasons: [rated prime (variety valencia), main-peak dec-2 to mar-2]
     confidence: medium (relevance)
     markers: [reliable-year-round]
-    main peak: rated Peak here, but Peak is kept for dec-1 to mar-2 (P19), so good
+    main peak: rated Peak here, but Peak is kept for dec-2 to mar-2 (P19), so good
     today: not on Today
     varieties:
       peak: [Valencia]
@@ -457,26 +458,21 @@ windows:
       not in stores: [Cara Cara]
   dec-1:
     when: early December (from 2026-12-01)
-    verdict: peak
-    rule: 3
+    verdict: good
+    rule: 4
     basis: variety
     decided:
       variety: navel
-      rating: prime
+      rating: fair
       evidence: medium
     look for: []
     label note: false
-    reasons: [rated prime (variety navel)]
+    reasons: [rated fair (variety navel)]
     confidence: medium (relevance)
     markers: [reliable-year-round]
-    today:
-      section: best right now
-      line: Navel and Cara Cara
-      reason: none
-      avoid: none
-      tags: []
+    today: not on Today
     varieties:
-      peak: [Navel, Cara Cara]
+      good: [Navel, Cara Cara]
       limited: [Valencia, Blood orange]
   dec-2:
     when: late December (from 2026-12-16)
@@ -494,11 +490,11 @@ windows:
     markers: [reliable-year-round]
     today:
       section: best right now
-      line: Navel and Cara Cara
+      line: Navel
       reason: none
       avoid: none
       tags: []
     varieties:
-      peak: [Navel, Cara Cara]
-      good: [Blood orange]
+      peak: [Navel]
+      good: [Blood orange, Cara Cara]
       limited: [Valencia]

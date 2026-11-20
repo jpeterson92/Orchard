@@ -38,6 +38,11 @@ origins:
   - origin: mx
     windows:
       - from: jan-1
+        to: mar-2
+        rating: fair
+        reason: The new prime proposal lacks agreement between the models or clear support from eating-quality sources.
+      - { from: apr-1, to: may-2, rating: fair }
+      - from: jun-1
         to: dec-2
         rating: fair
         reason: Only the model panel's low-confidence ranges rate this window; they read fair.
@@ -46,10 +51,16 @@ origins:
       - { from: jun-1, to: aug-2, rating: poor }
       - { from: sep-1, to: sep-2, rating: fair }
       - { from: oct-1, to: dec-2, rating: prime }
-      - { from: jan-1, to: jan-1, rating: fair }
+      - from: jan-1
+        to: jan-1
+        rating: fair
+        reason: The panel's fair proposal rests on low-confidence votes.
       - from: jan-2
         to: jan-2
         rating: fair
-        reason: The panel has no rating here; California's harvest runs into January, so the cited sources split between fair and poor as it ends.
-      - { from: feb-1, to: feb-1, rating: fair }
+        reason: California's harvest runs into January, so the cited sources split between fair and poor as it ends.
+      - from: feb-1
+        to: feb-1
+        rating: fair
+        reason: The panel's fair proposal rests on low-confidence votes.
 status: draft

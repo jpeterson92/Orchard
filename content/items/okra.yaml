@@ -47,7 +47,14 @@ origins:
         to: may-2
         rating: fair
         reason: Only the model panel's low-confidence ranges rate this window; they read fair.
-      - { from: jun-1, to: sep-1, rating: prime }
+      - from: jun-1
+        to: jul-1
+        rating: prime
+        reason: The panel's prime proposal rests on low-confidence votes.
+      - from: jul-2
+        to: sep-1
+        rating: fair
+        reason: The panel's fair proposal rests on low-confidence votes.
       - from: sep-2
         to: sep-2
         rating: prime

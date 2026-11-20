@@ -64,7 +64,15 @@ prep: Rinse just before using and core the stem scar. Slice with a serrated or v
 origins:
   - origin: mx
     windows:
-      - { from: jan-1, to: dec-2, rating: poor }
+      - from: jan-1
+        to: apr-2
+        rating: poor
+        reason: Both models describe cherry and grape tomatoes as more dependable than standard rounds and Romas. The cherry/grape rating carries that recommendation through winter.
+      - { from: may-1, to: oct-2, rating: poor }
+      - from: nov-1
+        to: dec-2
+        rating: poor
+        reason: Both models describe cherry and grape tomatoes as more dependable than standard rounds and Romas. The cherry/grape rating carries that recommendation through winter.
   - origin: us-fl
     windows:
       - { from: jan-1, to: jun-1, rating: poor }
@@ -74,9 +82,16 @@ origins:
       - { from: mar-1, to: nov-2, rating: fair }
   - origin: us-ca
     windows:
-      - { from: jun-1, to: jun-1, rating: fair }
-      - { from: jun-2, to: jun-2, rating: prime }
-      - from: jul-1
+      - from: jun-1
+        to: jun-1
+        rating: fair
+        reason: The cited California vine-ripe harvests start in late June. Those reports establish the season's start, and Sol's lone poor vote is low confidence.
+      - from: jun-2
+        to: jun-2
+        rating: fair
+        reason: The cited California vine-ripe harvests start in late June. Those reports establish the season's start, and Sol's lone poor vote is low confidence.
+      - { from: jul-1, to: sep-2, rating: fair }
+      - from: oct-1
         to: oct-2
         rating: fair
         reason: Only the model panel's low-confidence ranges rate this window; they read fair.

@@ -1,0 +1,33 @@
+category: grapes
+items:
+  - item: grapes
+    traits:
+      shipsWell: [true, high]
+      storesWell: [false, medium]
+      peakWorthSeeking: [true, medium]
+      alwaysGood: [false, high]
+    origins:
+      - origin: us-ca
+        windows:
+          - [may-2, jul-2, fair, medium]
+          - [aug-1, oct-2, prime, high]
+          - [nov-1, nov-2, fair, medium]
+          - [dec-1, jan-1, poor, medium]
+      - origin: pe
+        windows:
+          - [oct-2, nov-1, poor, low]
+          - [nov-2, feb-2, fair, medium]
+          - [mar-1, mar-2, poor, low]
+      - origin: cl
+        windows:
+          - [dec-2, jan-2, poor, low]
+          - [feb-1, apr-1, fair, medium]
+          - [apr-2, may-1, poor, low]
+      - origin: mx
+        windows:
+          - [may-1, may-2, fair, medium]
+          - [jun-1, jun-2, prime, medium]
+          - [jul-1, jul-1, fair, medium]
+    note:
+      Fresh lots give the best crunch and sweetness, while extended storage can leave grapes soft and loose on
+      the stem.

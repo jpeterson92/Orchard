@@ -49,7 +49,11 @@ varieties:
       note: Stays crisp in storage, but flavor fades and late-season fruit is uneven.
     windows:
       - { from: jan-1, to: feb-2, rating: fair }
-      - { from: mar-1, to: aug-2, rating: poor }
+      - from: mar-1
+        to: mar-2
+        rating: poor
+        reason: Keep poor here based on eating-quality evidence from Eat Like No One Else.
+      - { from: apr-1, to: aug-2, rating: poor }
       - { from: sep-1, to: nov-2, rating: prime }
       - { from: dec-1, to: dec-2, rating: fair }
     quotedAs: [honeycrisp]
@@ -63,12 +67,10 @@ varieties:
     sources: [usapple-gala, veritable-apple-guide, atk-apples-for-cooking, rutgers-apple-varieties]
     windows:
       - { from: jan-1, to: mar-2, rating: fair }
-      - from: apr-1
-        to: apr-2
-        rating: fair
-        reason: Only the model panel's low-confidence ranges rate this window; they read fair.
+      - { from: apr-1, to: apr-2, rating: poor }
       - { from: may-1, to: aug-1, rating: poor }
-      - { from: aug-2, to: nov-2, rating: prime }
+      - { from: aug-2, to: oct-2, rating: prime }
+      - { from: nov-1, to: nov-2, rating: fair }
       - { from: dec-1, to: dec-2, rating: fair }
     quotedAs: [gala, royal-gala]
   - id: fuji
@@ -81,10 +83,7 @@ varieties:
     sources: [usapple-fuji, veritable-apple-guide, fruitguys-sweetest-apples]
     windows:
       - { from: jan-1, to: jun-2, rating: fair }
-      - from: jul-1
-        to: sep-2
-        rating: poor
-        reason: Only the model panel's low-confidence ranges rate this window; they read poor.
+      - { from: jul-1, to: sep-2, rating: poor }
       - { from: oct-1, to: dec-2, rating: prime }
     quotedAs: [fuji]
   - id: granny-smith
@@ -110,7 +109,12 @@ varieties:
     windows:
       - { from: jan-1, to: jan-2, rating: prime }
       - { from: feb-1, to: jun-2, rating: fair }
-      - from: jul-1
+      - { from: jul-1, to: aug-2, rating: fair }
+      - from: sep-1
+        to: sep-2
+        rating: poor
+        reason: The new fair proposal lacks agreement between the models or clear support from eating-quality sources.
+      - from: oct-1
         to: oct-2
         rating: poor
         reason: Only the model panel's low-confidence ranges rate this window; they read poor.
@@ -160,8 +164,16 @@ varieties:
     sources: [veritable-apple-guide, theproducemoms-apples-sweet-to-tart]
     windows:
       - { from: sep-2, to: sep-2, rating: fair }
-      - { from: oct-1, to: jan-2, rating: prime }
-      - { from: feb-1, to: may-2, rating: fair }
+      - { from: oct-1, to: dec-2, rating: prime }
+      - from: jan-1
+        to: jan-2
+        rating: prime
+        reason: Cited eating-quality evidence from EatHealthy365, Home for the Harvest outweighs the panel here and supports prime.
+      - { from: feb-1, to: apr-2, rating: fair }
+      - from: may-1
+        to: may-2
+        rating: fair
+        reason: Cited eating-quality evidence from EatHealthy365, Home for the Harvest outweighs the panel here and supports fair.
     quotedAs: [ambrosia]
   - id: mcintosh
     name: McIntosh
@@ -174,9 +186,13 @@ varieties:
     windows:
       - { from: sep-1, to: sep-2, rating: prime }
       - from: oct-1
-        to: nov-1
+        to: oct-2
         rating: fair
         reason: McIntosh softens fast once picked; Eat Like No One Else finds it worth eating only in September, outweighing the model panel's prime.
+      - from: nov-1
+        to: nov-1
+        rating: fair
+        reason: McIntosh softens fast once picked; Eat Like No One Else finds it worth eating only in September.
       - { from: nov-2, to: dec-2, rating: fair }
       - { from: jan-1, to: apr-2, rating: poor }
     quotedAs: [mcintosh]

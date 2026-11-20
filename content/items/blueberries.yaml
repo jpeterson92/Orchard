@@ -54,7 +54,17 @@ origins:
     }
   - {
       origin: mx,
-      windows: [{ from: jan-1, to: may-2, rating: fair }, { from: jun-1, to: jun-1, rating: poor }],
+      windows:
+        [
+          { from: jan-1, to: apr-2, rating: fair },
+          {
+            from: may-1,
+            to: may-2,
+            rating: fair,
+            reason: "Keep the prior fair call from the cited evidence. The new poor proposal rests on low-confidence votes, with no direct eating-quality claim for poor.",
+          },
+          { from: jun-1, to: jun-1, rating: poor },
+        ],
     }
   - {
       origin: us-fl,
@@ -65,12 +75,42 @@ origins:
           { from: may-2, to: may-2, rating: fair },
         ],
     }
-  - { origin: us-ga, windows: [{ from: may-1, to: jul-1, rating: prime }] }
-  - { origin: us-nc, windows: [{ from: may-1, to: aug-1, rating: prime }] }
+  - {
+      origin: us-ga,
+      windows:
+        [
+          { from: may-1, to: may-2, rating: prime },
+          { from: jun-1, to: jun-2, rating: fair },
+          { from: jul-1, to: jul-1, rating: prime },
+        ],
+    }
+  - {
+      origin: us-nc,
+      windows:
+        [
+          {
+            from: may-1,
+            to: may-1,
+            rating: fair,
+            reason: The panel's fair proposal rests on low-confidence votes.,
+          },
+          { from: may-2, to: jun-1, rating: prime },
+          {
+            from: jun-2,
+            to: jul-1,
+            rating: fair,
+            reason: The panel's fair proposal rests on low-confidence votes.,
+          },
+          { from: jul-2, to: aug-1, rating: prime },
+        ],
+    }
   - { origin: us-nj, windows: [{ from: jun-2, to: jul-2, rating: prime }] }
   - { origin: us-ca, windows: [{ from: apr-1, to: jun-2, rating: prime }] }
   - { origin: us-or, windows: [{ from: jul-1, to: sep-1, rating: prime }] }
-  - { origin: us-wa, windows: [{ from: jul-1, to: sep-1, rating: prime }] }
+  - {
+      origin: us-wa,
+      windows: [{ from: jul-1, to: aug-2, rating: prime }, { from: sep-1, to: sep-1, rating: fair }],
+    }
   - { origin: us-mi, windows: [{ from: jul-1, to: sep-1, rating: prime }] }
   - {
       origin: ca,
@@ -82,15 +122,26 @@ origins:
             rating: fair,
             reason: "The model panel has no rating here, and the cited sources disagree; together they read fair.",
           },
-          { from: jul-1, to: jul-2, rating: prime },
           {
-            from: aug-1,
-            to: aug-1,
-            rating: fair,
-            reason: "The model panel has no rating here, and the cited sources disagree; together they read fair.",
+            from: jul-1,
+            to: jul-1,
+            rating: prime,
+            reason: Cited eating-quality evidence from BC Blueberry Council outweighs the panel here and supports prime.,
           },
-          { from: aug-2, to: aug-2, rating: prime },
-          { from: sep-1, to: sep-1, rating: fair },
+          { from: jul-2, to: jul-2, rating: prime },
+          { from: aug-1, to: aug-1, rating: prime },
+          {
+            from: aug-2,
+            to: aug-2,
+            rating: prime,
+            reason: Cited eating-quality evidence from BC Blueberry Council outweighs the panel here and supports prime.,
+          },
+          {
+            from: sep-1,
+            to: sep-1,
+            rating: fair,
+            reason: The panel's fair proposal rests on low-confidence votes.,
+          },
         ],
     }
 status: draft
