@@ -142,6 +142,7 @@ export function varietyLine(
   item: AppItem,
   { varietyLine: ids, reasons, selection }: Pick<VerdictResult, "varietyLine" | "reasons" | "selection">,
   data: AppData,
+  { rankByOverall = false } = {},
 ): string | null {
   const s = item.selections.find((x) => x.id === selection);
   if (s) return `Look for ${s.label}`;
@@ -149,7 +150,12 @@ export function varietyLine(
   if (look?.code === "look-for")
     return `Look for ones from ${listNames(look.origins.map((o) => originName(o, data)))}`;
   if (!ids || ids.length === 0) return null;
-  const names = ids.map((id) => item.varieties.find((v) => v.id === id)?.name ?? id);
+  const varieties = ids.map((id) => {
+    const variety = item.varieties.find((v) => v.id === id);
+    return { name: variety?.name ?? id, score: variety?.overall?.score ?? -1 };
+  });
+  if (rankByOverall) varieties.sort((a, b) => b.score - a.score);
+  const names = varieties.map((v) => v.name);
   if (names.length <= MAX_NAMED) return listNames(names);
   return `${names.slice(0, MAX_NAMED - 1).join(", ")} and ${names.length - MAX_NAMED + 1} more`;
 }
@@ -185,20 +191,20 @@ export function tags(
 export function todayView(data: AppData, date: PlainDate, mode: "today" | "typical" = "today"): TodayView {
   const window = windowIndex(date.month, date.day);
   const cards = new Map<string, Card>();
+  const staples: AlwaysGoodRow[] = [];
   const entries: TodayEntry[] = data.items.map((item) => {
     const result = evaluate(item.inputs, { date }, data.env);
     const outlook = typicalOutlook(item.inputs, data.env, date.year);
+    const staple = alwaysGoodRow(item, data.env, date.year, outlook);
+    if (staple) staples.push(staple);
     let peakLeft = 0;
     while (peakLeft < outlook.length && outlook[(window + peakLeft) % outlook.length] === "peak") peakLeft++;
     const reason = reasonText(result.verdict, result.reasons, result.markers);
-  const staples: AlwaysGoodRow[] = [];
     cards.set(item.inputs.id, {
       id: item.inputs.id,
       name: item.name,
-    const staple = alwaysGoodRow(item, data.env, date.year, outlook);
-    if (staple) staples.push(staple);
       art: item.art,
-      varietyLine: varietyLine(item, result, data),
+      varietyLine: varietyLine(item, result, data, { rankByOverall: true }),
       verdict: result.verdict,
       reason: isGeneric(reason) ? null : atDate(reason, mode),
       tags: tags(item, result.markers, { today: true, alwaysGood: false }),
@@ -228,12 +234,12 @@ export function todayView(data: AppData, date: PlainDate, mode: "today" | "typic
     period: windowPhrase(window),
     best: pick(groups.best),
     good: pick(groups.good),
+    alwaysGood: staples.sort((a, b) => a.name.localeCompare(b.name, "en")),
   };
 }
 
 /** A YYYY-MM-DD string as a plain date. */
 export function plainDate(iso: string): PlainDate {
   const [year, month, day] = iso.split("-").map(Number);
-    alwaysGood: staples.sort((a, b) => a.name.localeCompare(b.name, "en")),
   return { year: year ?? 1970, month: month ?? 1, day: day ?? 1 };
 }

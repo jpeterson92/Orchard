@@ -74,7 +74,7 @@ windows:
     markers: []
     today:
       section: good buys
-      line: Anjou, Bosc and Comice
+      line: Comice, Anjou and Bosc
       reason: none
       avoid: none
       tags: []
@@ -98,7 +98,7 @@ windows:
     markers: []
     today:
       section: good buys
-      line: Anjou, Bosc and Comice
+      line: Comice, Anjou and Bosc
       reason: none
       avoid: none
       tags: []
@@ -459,7 +459,7 @@ windows:
     markers: []
     today:
       section: best right now
-      line: Bartlett, Bosc, Seckel and Starkrimson
+      line: Bartlett, Seckel, Starkrimson and Bosc
       reason: none
       avoid: none
       tags: []
@@ -482,7 +482,7 @@ windows:
     markers: []
     today:
       section: best right now
-      line: Anjou, Bosc, Comice and Seckel
+      line: Comice, Seckel, Anjou and Bosc
       reason: none
       avoid: none
       tags: []
@@ -506,7 +506,7 @@ windows:
     markers: []
     today:
       section: best right now
-      line: Anjou, Bosc, Comice and Seckel
+      line: Comice, Seckel, Anjou and Bosc
       reason: none
       avoid: none
       tags: []
@@ -530,7 +530,7 @@ windows:
     markers: []
     today:
       section: best right now
-      line: Anjou, Bosc, Comice and Seckel
+      line: Comice, Seckel, Anjou and Bosc
       reason: none
       avoid: none
       tags: []
@@ -554,7 +554,7 @@ windows:
     markers: []
     today:
       section: best right now
-      line: Anjou, Bosc, Comice and Seckel
+      line: Comice, Seckel, Anjou and Bosc
       reason: none
       avoid: none
       tags: []

@@ -1,7 +1,8 @@
 import { describe, expect, it } from "vitest";
+import appJson from "../generated/app.json";
 import type { AppData, AppItem } from "../shared/app-data";
 import { type VarietyRow, varietySummary } from "./item-view";
-import { avoidLine, listNames, reasonText, varietyLine } from "./today-view";
+import { avoidLine, listNames, plainDate, reasonText, todayView, varietyLine } from "./today-view";
 
 // Synthetic: just enough of an item and the app data for the card lines.
 const data = { stateNames: { "us-ca": "California", "us-ga": "Georgia" } } as unknown as AppData;
@@ -36,6 +37,16 @@ describe("varietyLine", () => {
     ).toBe("Honeycrisp, Gala, Fuji and 2 more");
   });
   it("says nothing when the whole bin qualifies", () => expect(varietyLine(fruit, none, data)).toBeNull());
+});
+
+describe("Today variety recommendations", () => {
+  it.each([
+    ["2026-11-20", "Cosmic Crisp, Pink Lady, Honeycrisp and 2 more"],
+    ["2026-12-20", "Cosmic Crisp, Pink Lady, Ambrosia and Fuji"],
+  ])("ranks the apples that qualify for Peak on %s by overall score", (iso, expected) => {
+    const view = todayView(appJson as unknown as AppData, plainDate(iso));
+    expect(view.best.find((card) => card.id === "apples")?.varietyLine).toBe(expected);
+  });
 });
 
 describe("avoidLine", () => {
