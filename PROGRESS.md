@@ -11,7 +11,7 @@ Updated: 2026-11-19 · Phase: build · Live: https://orchard.jpeterson92.workers
 
 ## Next concrete action
 
-Clear the remaining `npm run evidence:check` rejections (27): unregistered sources first (tomatoes' `cspi-november-tomatoes`, `umass-tomatoes-spotlight`; Israel's `freshplaza-jvi-israel-pomegranates` has no excerpt), then the month-naming warnings on import claims whose windows are shifted from harvest to US arrival (say so in the claim's comment, as pomegranates' Argentine claim does). Then the per-item follow-ups below, apples first. First run `node .cache/panel-missing.mjs`: it lists panel-rated origins an item file lacks. Rerunning the re-rating: `.cache/panel-rerate.mjs` writes the v3 run, `.cache/apply-proposals.ts all` makes item windows follow the proposals (keeps written reasons), `.cache/verdict-diff.mjs` compares verdict strips with HEAD.
+The per-item follow-ups below, apples first. Sources are checked once, when added; links are rechecked only with `evidence:check -- --urls` at the yearly refresh. The 27 remaining evidence:check rejections are add-time gaps (a few sources never registered, such as tomatoes' `cspi-november-tomatoes`) and month-naming warnings on import windows shifted to US arrival: fix them only when working on that item. First run `node .cache/panel-missing.mjs`: it lists panel-rated origins an item file lacks. Rerunning the re-rating: `.cache/panel-rerate.mjs` writes the v3 run, `.cache/apply-proposals.ts all` makes item windows follow the proposals (keeps written reasons), `.cache/verdict-diff.mjs` compares verdict strips with HEAD.
 
 ## Content
 
