@@ -48,6 +48,10 @@ Each subject paragraph below was sent with the same opening paragraph and transp
 
 > Paint one whole fresh-market garden slicing cucumber with one close, thin round cross-cut slice in the foreground. Use a gentle diagonal and keep the whole cucumber's ends visible. The whole cucumber represents a roughly 7–8 inch fruit about 1.5–2 inches across, a mostly straight elongated cylinder with softly blunt ends, a tiny stem scar and cool dark-green skin with sparse fine low pebbles and pale pinpoints. Avoid a thick zucchini stalk, large pickle warts, or the long slender English cucumber proportions. Keep the round cut face approximately the same diameter as the fruit, with a narrow dark-green rind, watery very pale celadon flesh and subtle small seeds in its center. The whole cucumber remains the focus.
 
+## Approval
+
+Jared approved `provisional-summer-squash-thumbnail-v1`, `provisional-bell-peppers-thumbnail-v1` and `provisional-cucumbers-thumbnail-v1` on 2026-11-20 (in Claude Code). They wait here until their item records exist; then rename each to its catalog ID and add it to a `handoff.json` in this folder.
+
 ## Next step
 
 Check records, staging and the approved manifest again, then take the next eligible first passes from mini sweet peppers, hot peppers, eggplant and tomatillos. Keep mini sweet peppers and hot peppers to one thumbnail each. Record any Jared-approved revisions or handoff decisions in this folder.

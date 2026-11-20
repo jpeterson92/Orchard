@@ -1,6 +1,6 @@
 # PROGRESS
 
-Updated: 2026-11-20 · Phase: build · Live: https://orchard.jpeterson92.workers.dev (M0 placeholder) · 13 commits unsynced
+Updated: 2026-11-20 · Phase: build · Live: https://orchard.jpeterson92.workers.dev (M0 placeholder) · 14 commits unsynced
 
 ## Milestones
 
@@ -16,12 +16,11 @@ Updated: 2026-11-20 · Phase: build · Live: https://orchard.jpeterson92.workers
 Claude, in order:
 
 1. **Per-item content follow-ups, apples first** (Content below). First run `node .cache/panel-missing.mjs`: it lists panel-rated origins an item file lacks. Fix the 27 `evidence:check` rejections only when working on that item; links are rechecked only at the yearly refresh (`evidence:check -- --urls`).
-2. **Draft the remaining items on the 89-item list** (engineering plan §5 order: by `purchaseRank`, always-good items last). Each new item record brings in its approved painting: rename `provisional-<item>-thumbnail-vN.png` in its staging folder to the catalog ID, add it to that folder's `handoff.json`, and run `npm run art:process`. Approved paintings are waiting for 50 of these items (staging folders 11–18 and 20).
+2. **Draft the remaining items on the 89-item list** (engineering plan §5 order: by `purchaseRank`, always-good items last). Each new item record brings in its approved painting: rename `provisional-<item>-thumbnail-vN.png` in its staging folder to the catalog ID, add it to that folder's `handoff.json`, and run `npm run art:process`. Approved paintings are waiting for 53 of these items (staging folders 11–20).
 3. **Take in repaints as Jared approves them:** `npm run art:process`, a phone-width look, and a commit.
 
 Jared:
 
-- **Art review:** approve or reject bell peppers, cucumbers and summer squash (`art/staging/19-squash-fruiting-vegetables/step-1-review.png`, or in the illustrator chat). The illustrator's handoff for them waits on their item records.
 - **Repaints:** start the illustrator on `art/staging/21-repaints/README.md`: 12 repaints in four batches of three (blackberries, Keitt mango, Red Bartlett; Clementine, Satsuma, Pixie; Gala, nectarine, grapefruit; kiwifruit, papaya, iceberg). The current versions stay in the app until each repaint is approved. Folder 19 also has first passes still to paint (mini sweet and hot peppers, eggplant and others).
 - Guide leads (`content/guides.yaml`, `draft`, atop each guide): approve or rewrite.
 - Methods and Privacy drafts (`content/methods.md`, `content/privacy.md`): approve or edit.
