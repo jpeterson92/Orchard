@@ -40,10 +40,9 @@ const bannerLink =
 
 /**
  * "Orchard" in Lora Bold, its O drawn as the mark (src/shared/brand.ts) so the leaf sits exactly on it. The SVG is
- * sized in em and lowered by the O's overshoot, so it lines up with the letters that follow.
+ * sized in em and lowered by the O's 16-unit overshoot, so it lines up with the letters that follow.
  */
 function Wordmark() {
-  const height = (MARK_BOTTOM - MARK_TOP) / 1000;
   return (
     <span className="font-editorial text-[1.75rem] leading-none font-bold">
       <span className="sr-only">Orchard</span>
@@ -51,12 +50,9 @@ function Wordmark() {
         aria-hidden="true"
         focusable={false}
         viewBox={`0 ${MARK_TOP} ${O_ADVANCE} ${MARK_BOTTOM - MARK_TOP}`}
-        style={{
-          width: `${O_ADVANCE / 1000}em`,
-          height: `${height}em`,
-          verticalAlign: `-${MARK_BOTTOM / 1000}em`,
-        }}
-        className="inline"
+        width={`${O_ADVANCE / 1000}em`}
+        height={`${(MARK_BOTTOM - MARK_TOP) / 1000}em`}
+        className="inline align-[-0.016em]"
       >
         <path d={O_PATH} fill="currentColor" />
         <path d={STEM_PATH} className="fill-olive" />
