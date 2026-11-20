@@ -33,6 +33,7 @@ mkdirSync(OUT, { recursive: true });
 let changed = false;
 let handedOff = 0;
 const handoffProblems: string[] = [];
+const handoffs: (Omit<ArtAsset, "status"> & { src: string })[] = [];
 
 for (const dir of existsSync(STAGING) ? readdirSync(STAGING).sort() : []) {
   const file = `${STAGING}/${dir}/handoff.json`;
@@ -46,21 +47,36 @@ for (const dir of existsSync(STAGING) ? readdirSync(STAGING).sort() : []) {
   }
   for (const a of parsed.data.assets) {
     const src = `${STAGING}/${dir}/${a.id}.png`;
-    if (!existsSync(src)) {
-      handoffProblems.push(`${file}: ${a.id}.png is missing`);
-      continue;
-    }
-    const dest = `${MASTERS}/${a.id}.png`;
-    if (!existsSync(dest) || statSync(src).mtimeMs > statSync(dest).mtimeMs) {
-      // Lossless recompression: the generator's PNGs shrink by about 13% on average.
-      await sharp(src).png({ compressionLevel: 9, adaptiveFiltering: true }).toFile(dest);
-      handedOff++;
-    }
-    const entry: ArtAsset = { ...a, status: "approved" };
-    if (JSON.stringify(byId.get(a.id)) !== JSON.stringify(entry)) {
-      byId.set(a.id, entry);
-      changed = true;
-    }
+    if (existsSync(src)) handoffs.push({ ...a, src });
+    else handoffProblems.push(`${file}: ${a.id}.png is missing`);
+  }
+}
+
+// Only each subject's newest approved revision is kept: an earlier one leaves the manifest and art/masters
+// (git history keeps it), and its derivatives are removed below.
+const subject = (a: Pick<ArtAsset, "item" | "variety" | "role">) => `${a.item}/${a.variety ?? ""}/${a.role}`;
+const newest = new Map<string, number>();
+for (const a of [...byId.values(), ...handoffs])
+  newest.set(subject(a), Math.max(newest.get(subject(a)) ?? 0, a.revision));
+const superseded = [...byId.values()].filter((a) => a.revision < (newest.get(subject(a)) ?? 0));
+for (const a of superseded) {
+  byId.delete(a.id);
+  if (existsSync(`${MASTERS}/${a.id}.png`)) unlinkSync(`${MASTERS}/${a.id}.png`);
+  changed = true;
+}
+
+for (const { src, ...a } of handoffs) {
+  if (a.revision < (newest.get(subject(a)) ?? 0)) continue;
+  const dest = `${MASTERS}/${a.id}.png`;
+  if (!existsSync(dest) || statSync(src).mtimeMs > statSync(dest).mtimeMs) {
+    // Lossless recompression: the generator's PNGs shrink by about 13% on average.
+    await sharp(src).png({ compressionLevel: 9, adaptiveFiltering: true }).toFile(dest);
+    handedOff++;
+  }
+  const entry: ArtAsset = { ...a, status: "approved" };
+  if (JSON.stringify(byId.get(a.id)) !== JSON.stringify(entry)) {
+    byId.set(a.id, entry);
+    changed = true;
   }
 }
 manifest.assets = [...byId.values()].sort((a, b) => a.id.localeCompare(b.id));
@@ -111,6 +127,7 @@ const waiting = manifest.assets.filter((a) => a.status === "requested" && !maste
 writeContactSheet(processed, failed);
 
 console.log(`Handed off from art/staging: ${handedOff} new or updated masters`);
+for (const a of superseded) console.log(`  superseded and removed: ${a.id}`);
 for (const p of handoffProblems) console.log(`  ${p}`);
 console.log(
   `Masters: ${masters.length} · derivatives written: ${written}, removed: ${removed} · failed: ${failed.length}`,
