@@ -260,45 +260,54 @@ test("static responses carry the CSP and security headers", async ({ request }) 
   );
 });
 
-for (const colorScheme of ["light", "dark"] as const) {
-  test(`every screen passes axe in ${colorScheme} mode, with no CSP or console errors`, async ({ page }) => {
-    const errors: string[] = [];
-    page.on("console", (msg) => msg.type() === "error" && errors.push(msg.text()));
-    page.on("pageerror", (err) => errors.push(err.message));
-    await page.emulateMedia({ colorScheme });
-    const check = async (where: string) => {
-      const { violations } = await new AxeBuilder({ page }).analyze();
-      expect(
-        violations.map((v) => `${where}: ${v.id} ${v.nodes.map((n) => n.target.join(" ")).join(", ")}`),
-      ).toEqual([]);
-    };
+test.describe("screen accessibility", () => {
+  // These scans cover the rendered pages. The offline test separately exercises the precache.
+  test.use({ serviceWorkers: "block" });
 
-    await page.goto("/");
-    await hydrated(page);
-    await page.locator("button[aria-expanded]").first().click();
-    await check("Today, a card open");
-    for (const [url, heading] of [
-      ["/items/apples", "Apples"],
-      ["/guides/apples", "Apples by variety"],
-      ["/items/pears/anjou", "Anjou"],
-      ["/browse", "Browse"],
-      ["/browse/citrus", "Citrus"],
-      ["/calendar", "Typical seasonal outlook"],
-      ["/about", "About Orchard"],
-      ["/no-such-page", "Page not found"],
-      ["/methods", /^How Orchard rates produce/],
-      ["/privacy", /Privacy/],
-    ] as const) {
-      await page.goto(url);
-      await expect(page.getByRole("heading", { level: 1, name: heading })).toBeVisible();
-      await check(url);
-    }
-    await page.goto("/items/apples");
-    await page.locator("#label select").selectOption("v:honeycrisp");
-    await check("/items/apples, a variety picked");
-    await page.getByRole("button", { name: "Search produce" }).last().click();
-    await page.getByRole("dialog", { name: "Search produce" }).getByRole("searchbox").fill("pear");
-    await check("search");
-    expect(errors).toEqual([]);
-  });
-}
+  for (const colorScheme of ["light", "dark"] as const) {
+    test(`every screen passes axe in ${colorScheme} mode, with no CSP or console errors`, async ({
+      page,
+    }) => {
+      // This test visits and scans every screen, so it needs more time than a single-page smoke test.
+      test.setTimeout(90_000);
+      const errors: string[] = [];
+      page.on("console", (msg) => msg.type() === "error" && errors.push(msg.text()));
+      page.on("pageerror", (err) => errors.push(err.message));
+      await page.emulateMedia({ colorScheme });
+      const check = async (where: string) => {
+        const { violations } = await new AxeBuilder({ page }).analyze();
+        expect(
+          violations.map((v) => `${where}: ${v.id} ${v.nodes.map((n) => n.target.join(" ")).join(", ")}`),
+        ).toEqual([]);
+      };
+
+      await page.goto("/");
+      await hydrated(page);
+      await page.locator("button[aria-expanded]").first().click();
+      await check("Today, a card open");
+      for (const [url, heading] of [
+        ["/items/apples", "Apples"],
+        ["/guides/apples", "Apples by variety"],
+        ["/items/pears/anjou", "Anjou"],
+        ["/browse", "Browse"],
+        ["/browse/citrus", "Citrus"],
+        ["/calendar", "Typical seasonal outlook"],
+        ["/about", "About Orchard"],
+        ["/no-such-page", "Page not found"],
+        ["/methods", /^How Orchard rates produce/],
+        ["/privacy", /Privacy/],
+      ] as const) {
+        await page.goto(url);
+        await expect(page.getByRole("heading", { level: 1, name: heading })).toBeVisible();
+        await check(url);
+      }
+      await page.goto("/items/apples");
+      await page.locator("#label select").selectOption("v:honeycrisp");
+      await check("/items/apples, a variety picked");
+      await page.getByRole("button", { name: "Search produce" }).last().click();
+      await page.getByRole("dialog", { name: "Search produce" }).getByRole("searchbox").fill("pear");
+      await check("search");
+      expect(errors).toEqual([]);
+    });
+  }
+});
