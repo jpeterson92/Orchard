@@ -3,7 +3,7 @@
 
 [design-system.md](design-system.md) governs the interface and tokens; this guide governs painted produce artwork, header art and generated visual studies. Review every output against the checklist in [design-system.md §9](design-system.md#9-reference-collection-and-acceptance-criteria).
 
-The design language and the mockups in `references/` were made with ChatGPT. Production artwork is generated there too, by Jared, using prompts from §2. The request, process and approval workflow is in the [engineering plan's art track](../engineering-plan.md#5-milestones).
+The design language and the mockups in `references/` were made with ChatGPT. The [Codex illustrator prompt](../../art/PROMPT.md) uses §2 to generate production thumbnails one step at a time. The [engineering plan's art track](../engineering-plan.md#5-milestones) describes processing and Jared's review.
 
 ## 1. Self-contained graphical style and illustration system
 

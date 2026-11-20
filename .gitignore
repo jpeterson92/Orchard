@@ -37,3 +37,7 @@ src/worker/worker-configuration.d.ts
 
 # data:build output
 src/generated/
+
+# Illustrator candidates (approved ones are copied to art/masters by art:process)
+art/staging/**/*.png
+art/staging/**/*.html

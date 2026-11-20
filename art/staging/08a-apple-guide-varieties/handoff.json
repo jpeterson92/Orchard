@@ -1,0 +1,44 @@
+{
+  "assets": [
+    {
+      "id": "apples-ambrosia-thumbnail-v1",
+      "item": "apples",
+      "variety": "ambrosia",
+      "role": "thumbnail",
+      "alt": "An Ambrosia apple with a rosy-red blush and a creamy-yellow side",
+      "revision": 1
+    },
+    {
+      "id": "apples-braeburn-thumbnail-v1",
+      "item": "apples",
+      "variety": "braeburn",
+      "role": "thumbnail",
+      "alt": "A Braeburn apple with russet-red streaks over yellow-green skin",
+      "revision": 1
+    },
+    {
+      "id": "apples-golden-delicious-thumbnail-v1",
+      "item": "apples",
+      "variety": "golden-delicious",
+      "role": "thumbnail",
+      "alt": "A golden-yellow Golden Delicious apple with fine tan speckles",
+      "revision": 1
+    },
+    {
+      "id": "apples-mcintosh-thumbnail-v1",
+      "item": "apples",
+      "variety": "mcintosh",
+      "role": "thumbnail",
+      "alt": "A round McIntosh apple with cool red skin and a yellow-green shoulder",
+      "revision": 1
+    },
+    {
+      "id": "apples-red-delicious-thumbnail-v1",
+      "item": "apples",
+      "variety": "red-delicious",
+      "role": "thumbnail",
+      "alt": "A deep crimson Red Delicious apple with a tapered, lobed base",
+      "revision": 1
+    }
+  ]
+}

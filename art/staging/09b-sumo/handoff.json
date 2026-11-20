@@ -1,0 +1,12 @@
+{
+  "assets": [
+    {
+      "id": "mandarins-sumo-thumbnail-v1",
+      "item": "mandarins",
+      "variety": "sumo",
+      "role": "thumbnail",
+      "alt": "A Sumo mandarin with a raised topknot and bumpy orange rind",
+      "revision": 1
+    }
+  ]
+}

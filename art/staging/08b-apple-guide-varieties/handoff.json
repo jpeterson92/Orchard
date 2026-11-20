@@ -1,0 +1,52 @@
+{
+  "assets": [
+    {
+      "id": "apples-envy-thumbnail-v1",
+      "item": "apples",
+      "variety": "envy",
+      "role": "thumbnail",
+      "alt": "A broad deep-red Envy apple with yellow specks and a yellow-green stem cavity",
+      "revision": 1
+    },
+    {
+      "id": "apples-jazz-thumbnail-v1",
+      "item": "apples",
+      "variety": "jazz",
+      "role": "thumbnail",
+      "alt": "A compact Jazz apple with an orange-red blush over a golden-yellow shoulder",
+      "revision": 1
+    },
+    {
+      "id": "apples-kanzi-thumbnail-v1",
+      "item": "apples",
+      "variety": "kanzi",
+      "role": "thumbnail",
+      "alt": "A squat Kanzi apple with a red blush and a bright yellow-green shoulder",
+      "revision": 1
+    },
+    {
+      "id": "apples-snapdragon-thumbnail-v1",
+      "item": "apples",
+      "variety": "snapdragon",
+      "role": "thumbnail",
+      "alt": "A gently tapered SnapDragon apple with crimson skin, pale speckles, and a golden-green crown",
+      "revision": 1
+    },
+    {
+      "id": "apples-sugarbee-thumbnail-v1",
+      "item": "apples",
+      "variety": "sugarbee",
+      "role": "thumbnail",
+      "alt": "A broad SugarBee apple with brick-red skin and subtle olive-gold flecks",
+      "revision": 1
+    },
+    {
+      "id": "apples-sweetango-thumbnail-v1",
+      "item": "apples",
+      "variety": "sweetango",
+      "role": "thumbnail",
+      "alt": "A round SweeTango apple with a rosy-red blush, fine gold speckles and a golden flank",
+      "revision": 1
+    }
+  ]
+}

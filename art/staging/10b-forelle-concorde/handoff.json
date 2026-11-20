@@ -1,0 +1,12 @@
+{
+  "assets": [
+    {
+      "id": "pears-concorde-thumbnail-v2",
+      "item": "pears",
+      "variety": "concorde",
+      "role": "thumbnail",
+      "alt": "A yellow-green Concorde pear with an elongated, rounded neck and a patch of golden russet",
+      "revision": 2
+    }
+  ]
+}

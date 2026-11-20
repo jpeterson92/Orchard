@@ -1,0 +1,42 @@
+{
+  "assets": [
+    {
+      "id": "grapefruit-thumbnail-v2",
+      "item": "grapefruit",
+      "role": "thumbnail",
+      "alt": "A yellow grapefruit with a cut half showing rose-pink segments",
+      "revision": 2
+    },
+    {
+      "id": "oranges-blood-thumbnail-v2",
+      "item": "oranges",
+      "variety": "blood",
+      "role": "thumbnail",
+      "alt": "A whole blood orange and a cut half showing deep crimson segments",
+      "revision": 2
+    },
+    {
+      "id": "oranges-navel-thumbnail-v2",
+      "item": "oranges",
+      "variety": "navel",
+      "role": "thumbnail",
+      "alt": "A deep orange Navel orange showing its blossom-end navel",
+      "revision": 2
+    },
+    {
+      "id": "oranges-thumbnail-v2",
+      "item": "oranges",
+      "role": "thumbnail",
+      "alt": "A whole orange with a green leaf and a cut orange wedge",
+      "revision": 2
+    },
+    {
+      "id": "oranges-valencia-thumbnail-v2",
+      "item": "oranges",
+      "variety": "valencia",
+      "role": "thumbnail",
+      "alt": "A Valencia orange with a green patch near the stem and a cut half",
+      "revision": 2
+    }
+  ]
+}

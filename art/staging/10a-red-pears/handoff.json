@@ -1,0 +1,20 @@
+{
+  "assets": [
+    {
+      "id": "pears-red-anjou-thumbnail-v1",
+      "item": "pears",
+      "variety": "red-anjou",
+      "role": "thumbnail",
+      "alt": "A maroon Red Anjou pear with a broad egg-shaped body",
+      "revision": 1
+    },
+    {
+      "id": "pears-red-bartlett-thumbnail-v1",
+      "item": "pears",
+      "variety": "red-bartlett",
+      "role": "thumbnail",
+      "alt": "A vivid red Bartlett pear with a bell-shaped base and a distinct neck",
+      "revision": 1
+    }
+  ]
+}

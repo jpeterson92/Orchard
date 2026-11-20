@@ -1,0 +1,53 @@
+{
+  "assets": [
+    {
+      "id": "apricots-thumbnail-v1",
+      "item": "apricots",
+      "role": "thumbnail",
+      "alt": "A golden-orange apricot beside a cut half with its stone",
+      "revision": 1
+    },
+    {
+      "id": "blackberries-thumbnail-v1",
+      "item": "blackberries",
+      "role": "thumbnail",
+      "alt": "Two deep purple-black blackberries with plump rounded drupelets",
+      "revision": 1
+    },
+    {
+      "id": "cherries-thumbnail-v1",
+      "item": "cherries",
+      "role": "thumbnail",
+      "alt": "Two deep red sweet cherries with slender green stems",
+      "revision": 1
+    },
+    {
+      "id": "nectarines-thumbnail-v1",
+      "item": "nectarines",
+      "role": "thumbnail",
+      "alt": "A whole smooth red nectarine with a golden shoulder and shallow seam",
+      "revision": 1
+    },
+    {
+      "id": "plums-thumbnail-v1",
+      "item": "plums",
+      "role": "thumbnail",
+      "alt": "A whole dark purple plum with a dusty blue-violet bloom",
+      "revision": 1
+    },
+    {
+      "id": "raspberries-thumbnail-v1",
+      "item": "raspberries",
+      "role": "thumbnail",
+      "alt": "Three red raspberries with clustered drupelets and one visible hollow",
+      "revision": 1
+    },
+    {
+      "id": "sweet-corn-thumbnail-v1",
+      "item": "sweet-corn",
+      "role": "thumbnail",
+      "alt": "A partially husked ear of sweet corn with yellow kernels and pale silk",
+      "revision": 1
+    }
+  ]
+}

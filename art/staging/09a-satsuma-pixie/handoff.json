@@ -1,0 +1,20 @@
+{
+  "assets": [
+    {
+      "id": "mandarins-pixie-thumbnail-v1",
+      "item": "mandarins",
+      "variety": "pixie",
+      "role": "thumbnail",
+      "alt": "A small, round yellow-orange Pixie mandarin with finely pebbled rind",
+      "revision": 1
+    },
+    {
+      "id": "mandarins-satsuma-thumbnail-v2",
+      "item": "mandarins",
+      "variety": "satsuma",
+      "role": "thumbnail",
+      "alt": "A gently flattened orange Satsuma mandarin with a narrow green leaf",
+      "revision": 2
+    }
+  ]
+}

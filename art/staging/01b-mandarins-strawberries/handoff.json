@@ -1,0 +1,50 @@
+{
+  "assets": [
+    {
+      "id": "mandarins-clementine-thumbnail-v2",
+      "item": "mandarins",
+      "variety": "clementine",
+      "role": "thumbnail",
+      "alt": "A small clementine with a leaf",
+      "revision": 2
+    },
+    {
+      "id": "mandarins-gold-nugget-thumbnail-v3",
+      "item": "mandarins",
+      "variety": "gold-nugget",
+      "role": "thumbnail",
+      "alt": "A Gold Nugget mandarin with bumpy, pebbled skin",
+      "revision": 3
+    },
+    {
+      "id": "mandarins-minneola-thumbnail-v2",
+      "item": "mandarins",
+      "variety": "minneola",
+      "role": "thumbnail",
+      "alt": "A Minneola tangelo with its knobbed neck",
+      "revision": 2
+    },
+    {
+      "id": "mandarins-thumbnail-v2",
+      "item": "mandarins",
+      "role": "thumbnail",
+      "alt": "A whole mandarin with leaves and two peeled segments",
+      "revision": 2
+    },
+    {
+      "id": "mandarins-w-murcott-thumbnail-v2",
+      "item": "mandarins",
+      "variety": "w-murcott",
+      "role": "thumbnail",
+      "alt": "A flattened, deep reddish-orange W. Murcott mandarin",
+      "revision": 2
+    },
+    {
+      "id": "strawberries-thumbnail-v2",
+      "item": "strawberries",
+      "role": "thumbnail",
+      "alt": "Two red strawberries with green caps",
+      "revision": 2
+    }
+  ]
+}

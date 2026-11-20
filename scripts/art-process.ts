@@ -1,26 +1,73 @@
 // npm run art:process
-// Checks each painted master in art/masters/ (checkMaster), writes its WebP derivatives to public/art/, moves a
-// requested asset to review, and writes a contact sheet of every processed asset over ivory and warm charcoal
-// (.cache/art/contact-sheet.html) for Jared's review. Approval is recorded in art/manifest.json by hand.
-import { existsSync, mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
+// Takes in Jared's approved paintings from the illustrator's staging folders (art/staging/<folder>/handoff.json
+// lists them; the PNG beside it is the master), copies each to art/masters/ and records it in art/manifest.json
+// as approved. Then checks each master (checkMaster), writes its WebP derivatives to public/art/, removes
+// derivatives no manifest entry uses, and writes a contact sheet of every processed asset over ivory and warm
+// charcoal (.cache/art/contact-sheet.html).
+import {
+  existsSync,
+  mkdirSync,
+  readdirSync,
+  readFileSync,
+  statSync,
+  unlinkSync,
+  writeFileSync,
+} from "node:fs";
 import { basename, relative } from "node:path";
 import sharp from "sharp";
-import { ART_WIDTHS, type ArtAsset, artFile, artManifestSchema } from "../src/shared/art";
+import { z } from "zod";
+import { ART_WIDTHS, type ArtAsset, artAssetSchema, artFile, artManifestSchema } from "../src/shared/art";
 import { checkMaster } from "./art-lib";
 
 const MANIFEST = "art/manifest.json";
 const MASTERS = "art/masters";
+const STAGING = "art/staging";
 const OUT = "public/art";
 const SHEET = ".cache/art/contact-sheet.html";
+
+const handoffSchema = z.strictObject({ assets: z.array(artAssetSchema.omit({ status: true })) });
 
 const manifest = artManifestSchema.parse(JSON.parse(readFileSync(MANIFEST, "utf8")));
 const byId = new Map(manifest.assets.map((a) => [a.id, a]));
 mkdirSync(OUT, { recursive: true });
+let changed = false;
+let handedOff = 0;
+const handoffProblems: string[] = [];
+
+for (const dir of existsSync(STAGING) ? readdirSync(STAGING).sort() : []) {
+  const file = `${STAGING}/${dir}/handoff.json`;
+  if (!existsSync(file)) continue;
+  const parsed = handoffSchema.safeParse(JSON.parse(readFileSync(file, "utf8")));
+  if (!parsed.success) {
+    handoffProblems.push(
+      `${file}: ${parsed.error.issues.map((i) => `${i.path.join(".")} ${i.message}`).join("; ")}`,
+    );
+    continue;
+  }
+  for (const a of parsed.data.assets) {
+    const src = `${STAGING}/${dir}/${a.id}.png`;
+    if (!existsSync(src)) {
+      handoffProblems.push(`${file}: ${a.id}.png is missing`);
+      continue;
+    }
+    const dest = `${MASTERS}/${a.id}.png`;
+    if (!existsSync(dest) || statSync(src).mtimeMs > statSync(dest).mtimeMs) {
+      // Lossless recompression: the generator's PNGs shrink by about 13% on average.
+      await sharp(src).png({ compressionLevel: 9, adaptiveFiltering: true }).toFile(dest);
+      handedOff++;
+    }
+    const entry: ArtAsset = { ...a, status: "approved" };
+    if (JSON.stringify(byId.get(a.id)) !== JSON.stringify(entry)) {
+      byId.set(a.id, entry);
+      changed = true;
+    }
+  }
+}
+manifest.assets = [...byId.values()].sort((a, b) => a.id.localeCompare(b.id));
 
 const masters = existsSync(MASTERS) ? readdirSync(MASTERS).filter((f) => f.endsWith(".png")) : [];
 const failed: { id: string; file: string; problems: string[] }[] = [];
 let written = 0;
-let changed = false;
 
 for (const f of masters.sort()) {
   const id = basename(f, ".png");
@@ -51,18 +98,30 @@ for (const f of masters.sort()) {
 
 if (changed) writeFileSync(MANIFEST, `${JSON.stringify(manifest, null, 2)}\n`);
 
+let removed = 0;
+for (const f of readdirSync(OUT)) {
+  const id = f.match(/^(.*)-\d+\.webp$/)?.[1];
+  if (id !== undefined && byId.has(id)) continue;
+  unlinkSync(`${OUT}/${f}`);
+  removed++;
+}
+
 const processed = manifest.assets.filter((a) => existsSync(`${OUT}/${artFile(a.id, ART_WIDTHS[0])}`));
 const waiting = manifest.assets.filter((a) => a.status === "requested" && !masters.includes(`${a.id}.png`));
 writeContactSheet(processed, failed);
 
-console.log(`Masters: ${masters.length} · derivatives written: ${written} · failed: ${failed.length}`);
+console.log(`Handed off from art/staging: ${handedOff} new or updated masters`);
+for (const p of handoffProblems) console.log(`  ${p}`);
+console.log(
+  `Masters: ${masters.length} · derivatives written: ${written}, removed: ${removed} · failed: ${failed.length}`,
+);
 for (const f of failed) console.log(`  ${f.id}: ${f.problems.join("; ")}`);
 const count = (s: ArtAsset["status"]) => manifest.assets.filter((a) => a.status === s).length;
 console.log(
   `Manifest: ${count("requested")} requested (${waiting.length} without a master), ${count("review")} awaiting review, ${count("approved")} approved, ${count("rejected")} rejected`,
 );
 console.log(`Contact sheet: ${SHEET}`);
-if (failed.length > 0) process.exitCode = 1;
+if (failed.length > 0 || handoffProblems.length > 0) process.exitCode = 1;
 
 function writeContactSheet(assets: ArtAsset[], failures: typeof failed) {
   mkdirSync(".cache/art", { recursive: true });

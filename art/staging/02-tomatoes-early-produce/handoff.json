@@ -1,0 +1,62 @@
+{
+  "assets": [
+    {
+      "id": "blueberries-thumbnail-v1",
+      "item": "blueberries",
+      "role": "thumbnail",
+      "alt": "Five dusty blue blueberries with recessed star-shaped crowns",
+      "revision": 1
+    },
+    {
+      "id": "cantaloupe-thumbnail-v2",
+      "item": "cantaloupe",
+      "role": "thumbnail",
+      "alt": "A whole cantaloupe with beige netting and an orange-fleshed wedge",
+      "revision": 2
+    },
+    {
+      "id": "grapes-thumbnail-v2",
+      "item": "grapes",
+      "role": "thumbnail",
+      "alt": "A tapered bunch of red-purple table grapes on a short green stem",
+      "revision": 2
+    },
+    {
+      "id": "peaches-thumbnail-v2",
+      "item": "peaches",
+      "role": "thumbnail",
+      "alt": "A golden-yellow peach with a soft rosy blush and a curved seam",
+      "revision": 2
+    },
+    {
+      "id": "tomatoes-cherry-grape-thumbnail-v2",
+      "item": "tomatoes",
+      "variety": "cherry-grape",
+      "role": "thumbnail",
+      "alt": "Two round red cherry tomatoes beside an oblong red grape tomato",
+      "revision": 2
+    },
+    {
+      "id": "tomatoes-local-field-thumbnail-v3",
+      "item": "tomatoes",
+      "variety": "local-field",
+      "role": "thumbnail",
+      "alt": "A broad, uneven red tomato with a soft golden-orange blush low on one side",
+      "revision": 3
+    },
+    {
+      "id": "tomatoes-thumbnail-v2",
+      "item": "tomatoes",
+      "role": "thumbnail",
+      "alt": "A round scarlet tomato with a small olive-green star-shaped calyx",
+      "revision": 2
+    },
+    {
+      "id": "watermelon-thumbnail-v1",
+      "item": "watermelon",
+      "role": "thumbnail",
+      "alt": "A striped green watermelon beside a red wedge with dark seeds",
+      "revision": 1
+    }
+  ]
+}

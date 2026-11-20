@@ -1,0 +1,56 @@
+{
+  "assets": [
+    {
+      "id": "figs-thumbnail-v1",
+      "item": "figs",
+      "role": "thumbnail",
+      "alt": "A dark purple Black Mission fig beside a cut half with pink flesh and tiny seeds",
+      "revision": 1
+    },
+    {
+      "id": "mangoes-ataulfo-thumbnail-v1",
+      "item": "mangoes",
+      "variety": "ataulfo",
+      "role": "thumbnail",
+      "alt": "A slender golden-yellow Ataulfo mango with a gently curved tip",
+      "revision": 1
+    },
+    {
+      "id": "mangoes-keitt-thumbnail-v1",
+      "item": "mangoes",
+      "variety": "keitt",
+      "role": "thumbnail",
+      "alt": "A broad oval Keitt mango with green skin and a short stem scar",
+      "revision": 1
+    },
+    {
+      "id": "mangoes-kent-thumbnail-v1",
+      "item": "mangoes",
+      "variety": "kent",
+      "role": "thumbnail",
+      "alt": "A broad, dark green Kent mango with yellow flecks and a small wine-red blush",
+      "revision": 1
+    },
+    {
+      "id": "mangoes-thumbnail-v1",
+      "item": "mangoes",
+      "role": "thumbnail",
+      "alt": "A whole oval mango with a deep red blush and green and golden skin",
+      "revision": 1
+    },
+    {
+      "id": "persimmons-thumbnail-v1",
+      "item": "persimmons",
+      "role": "thumbnail",
+      "alt": "A squat orange Fuyu persimmon with a broad green four-lobed cap",
+      "revision": 1
+    },
+    {
+      "id": "pomegranates-thumbnail-v1",
+      "item": "pomegranates",
+      "role": "thumbnail",
+      "alt": "A red pomegranate with a pointed crown beside a cut half showing ruby arils",
+      "revision": 1
+    }
+  ]
+}
