@@ -339,4 +339,4 @@ Both review stages are complete. Gold Nugget v2 was withdrawn after stage 2.
 
 ## Revision requested: mandarins-clementine-thumbnail-v2 (Jared, 2026-11-19)
 
-The approved painting was 52% of the canvas wide against 68–73% for the round mandarins. Claude rescaled the master in `art/masters/` (×1.31 about the centre) to 68% so the app matches its family meanwhile. Paint `mandarins-clementine-thumbnail-v3` with the same identifying traits at about 68% width (longer side 75–85% of the canvas), check it on the review sheet beside the family, and hand it off once Jared approves it.
+The approved painting was 52% of the canvas wide against 68–73% for the round mandarins. Claude rescaled the master in `art/masters/` (×1.31 about the centre) to 68% so the app matches its family meanwhile. Paint `mandarins-clementine-thumbnail-v3` in `art/staging/21-repaints/`, which has its prompt and saving steps, with the same identifying traits at about 68% width (longer side 75–85% of the canvas), check it on the review sheet beside the family, and hand it off once Jared approves it.

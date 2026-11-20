@@ -51,8 +51,8 @@ The original built-in output is a 1254 × 1254 RGBA PNG and passed `checkMaster`
 
 ## Revision requested: mandarins-satsuma-thumbnail-v2 (Jared, 2026-11-19)
 
-The approved painting was 60% of the canvas wide against 68–73% for the round mandarins. Claude rescaled the master in `art/masters/` (×1.17 about the centre) to 70% so the app matches its family meanwhile. Paint `mandarins-satsuma-thumbnail-v3` with the same identifying traits at about 70% width (longer side 75–85% of the canvas), check it on the review sheet beside the family, and hand it off once Jared approves it.
+The approved painting was 60% of the canvas wide against 68–73% for the round mandarins. Claude rescaled the master in `art/masters/` (×1.17 about the centre) to 70% so the app matches its family meanwhile. Paint `mandarins-satsuma-thumbnail-v3` in `art/staging/21-repaints/`, which has its prompt and saving steps, with the same identifying traits at about 70% width (longer side 75–85% of the canvas), check it on the review sheet beside the family, and hand it off once Jared approves it.
 
 ## Revision requested: mandarins-pixie-thumbnail-v1 (Jared, 2026-11-19)
 
-The approved painting was 50% of the canvas wide against 68–73% for the round mandarins. Claude rescaled the master in `art/masters/` (×1.36 about the centre) to 68% so the app matches its family meanwhile. Paint `mandarins-pixie-thumbnail-v2` with the same identifying traits at about 68% width (longer side 75–85% of the canvas), check it on the review sheet beside the family, and hand it off once Jared approves it.
+The approved painting was 50% of the canvas wide against 68–73% for the round mandarins. Claude rescaled the master in `art/masters/` (×1.36 about the centre) to 68% so the app matches its family meanwhile. Paint `mandarins-pixie-thumbnail-v2` in `art/staging/21-repaints/`, which has its prompt and saving steps, with the same identifying traits at about 68% width (longer side 75–85% of the canvas), check it on the review sheet beside the family, and hand it off once Jared approves it.

@@ -154,4 +154,4 @@ Reviewed the two remaining v1 assets on ivory and charcoal at their display size
 
 ## Revision requested: grapefruit-thumbnail-v2 (Jared, 2026-11-19)
 
-The approved painting was 88% of the canvas wide against 79–85% for the citrus with a cut half. Claude rescaled the master in `art/masters/` (×0.93 about the centre) to 82% so the app matches its family meanwhile. Paint `grapefruit-thumbnail-v3` with the same identifying traits at about 82% width (longer side 75–85% of the canvas), check it on the review sheet beside the family, and hand it off once Jared approves it.
+The approved painting was 88% of the canvas wide against 79–85% for the citrus with a cut half. Claude rescaled the master in `art/masters/` (×0.93 about the centre) to 82% so the app matches its family meanwhile. Paint `grapefruit-thumbnail-v3` in `art/staging/21-repaints/`, which has its prompt and saving steps, with the same identifying traits at about 82% width (longer side 75–85% of the canvas), check it on the review sheet beside the family, and hand it off once Jared approves it.

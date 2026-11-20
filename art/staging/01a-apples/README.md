@@ -268,4 +268,4 @@ Botanical checks:
 
 ## Revision requested: apples-gala-thumbnail-v3 (Jared, 2026-11-19)
 
-The approved painting was 63% of the canvas wide against 68–75% for the other apples. Claude rescaled the master in `art/masters/` (×1.10 about the centre) to 69% so the app matches its family meanwhile. Paint `apples-gala-thumbnail-v4` with the same identifying traits at about 69% width (longer side 75–85% of the canvas), check it on the review sheet beside the family, and hand it off once Jared approves it.
+The approved painting was 63% of the canvas wide against 68–75% for the other apples. Claude rescaled the master in `art/masters/` (×1.10 about the centre) to 69% so the app matches its family meanwhile. Paint `apples-gala-thumbnail-v4` in `art/staging/21-repaints/`, which has its prompt and saving steps, with the same identifying traits at about 69% width (longer side 75–85% of the canvas), check it on the review sheet beside the family, and hand it off once Jared approves it.
