@@ -1,15 +1,19 @@
-// npm run evidence:check [-- <dir>]
+// npm run evidence:check [-- <dir>] [--urls]
 // Checks evidence files (content/evidence/ by default; pass .cache/evidence/parsed to check parser drafts):
 // each claim's source is a registered page whose excerpt for the item (from evidence:fetch) names the claim's
-// months or season, and each cited source's URL still resolves. Records today's date as `accessed` in
-// data/sources.yaml for every URL that resolved. Exits 1 on any rejected claim or dead URL.
+// months or season. Local files only, so it takes a second.
+// --urls also checks that each cited source's URL still resolves (about 265 requests, 8 at a time) and records
+// today's date as `accessed` in data/sources.yaml for every URL that resolved. Run it when refreshing sources.
+// Exits 1 on any rejected claim or dead URL.
 import { existsSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { parseDocument, parse as parseYaml } from "yaml";
 import { evidenceFileSchema } from "../src/shared/data/schema";
-import { checkRegistry, claimProblems, get, robotsAllow } from "./evidence-lib";
+import { checkRegistry, claimProblems, robotsAllow, USER_AGENT } from "./evidence-lib";
 
 const CACHE = ".cache/evidence";
-const dir = process.argv[2] ?? "content/evidence";
+const args = process.argv.slice(2);
+const checkUrls = args.includes("--urls");
+const dir = args.find((a) => !a.startsWith("--")) ?? "content/evidence";
 const sourcesDoc = parseDocument(readFileSync("data/sources.yaml", "utf8"));
 const sources = (sourcesDoc.toJS() ?? []) as { id: string; url: string }[];
 const { registry, errors } = checkRegistry(
@@ -57,34 +61,56 @@ for (const f of files.sort()) {
   }
 }
 
-// Each cited source's URL, fetched fresh (robots.txt respected).
+// Each cited source's URL, fetched fresh (robots.txt respected), only with --urls.
 const today = new Date().toLocaleDateString("en-CA");
 const dead: string[] = [];
-for (const id of [...cited].sort()) {
+const resolved: string[] = [];
+const status = async (url: string): Promise<string | null> => {
+  try {
+    const res = await fetch(url, {
+      headers: { "User-Agent": USER_AGENT },
+      signal: AbortSignal.timeout(15_000),
+    });
+    await res.body?.cancel();
+    return res.status >= 400 ? `HTTP ${res.status}` : null;
+  } catch (err) {
+    return String(err);
+  }
+};
+const checkSource = async (id: string): Promise<void> => {
   const source = sources.find((s) => s.id === id);
   if (!source) {
     dead.push(`${id}: not in data/sources.yaml`);
-    continue;
+    return;
   }
-  const url = new URL(source.url);
-  if (!(await robotsAllow(url, `${CACHE}/robots`))) {
+  if (!(await robotsAllow(new URL(source.url), `${CACHE}/robots`))) {
     dead.push(`${id}: robots.txt disallows ${source.url}`);
-    continue;
+    return;
   }
-  const res = await get(source.url).catch((err) => ({ status: 0, body: String(err) }));
-  if (res.status === 0 || res.status >= 400) {
-    dead.push(`${id}: ${source.url} ${res.status === 0 ? res.body : `HTTP ${res.status}`}`);
-    continue;
+  const problem = await status(source.url);
+  if (problem === null) resolved.push(id);
+  else dead.push(`${id}: ${source.url} ${problem}`);
+};
+if (checkUrls) {
+  const queue = [...cited].sort();
+  const worker = async (): Promise<void> => {
+    for (let id = queue.shift(); id !== undefined; id = queue.shift()) await checkSource(id);
+  };
+  await Promise.all(Array.from({ length: 8 }, worker));
+  dead.sort();
+  for (const id of resolved) {
+    sourcesDoc.setIn([sources.findIndex((s) => s.id === id), "accessed"], today);
   }
-  const index = sources.findIndex((s) => s.id === id);
-  sourcesDoc.setIn([index, "accessed"], today);
+  if (resolved.length > 0) writeFileSync("data/sources.yaml", sourcesDoc.toString({ lineWidth: 0 }));
 }
-if (cited.size > dead.length) writeFileSync("data/sources.yaml", sourcesDoc.toString({ lineWidth: 0 }));
 
 for (const r of rejected) console.error(`rejected ${r}`);
 for (const d of dead) console.error(`dead ${d}`);
 console.log(
   `Checked ${checked} claim${checked === 1 ? "" : "s"} in ${files.length} file${files.length === 1 ? "" : "s"} under ${dir}: ` +
-    `${rejected.length} rejected; ${cited.size - dead.length} of ${cited.size} cited URLs resolved (accessed ${today})`,
+    `${rejected.length} rejected; ` +
+    (checkUrls
+      ? `${resolved.length} of ${cited.size} cited URLs resolved (accessed ${today})`
+      : "URLs not checked (add --urls)"),
 );
 if (rejected.length > 0 || dead.length > 0) process.exit(1);
