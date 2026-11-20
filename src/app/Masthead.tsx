@@ -43,7 +43,7 @@ export function Masthead({ date, shareTitle }: { date: AppDate; shareTitle?: str
   const choose = useChooseDate();
   return (
     <>
-      <header className="flex items-center justify-between gap-4 border-b border-olive/60 py-3">
+      <header className="flex items-center justify-between gap-4 border-b border-olive/60 py-2">
         <Link
           to="/"
           className="flex min-h-11 items-center gap-2 rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"

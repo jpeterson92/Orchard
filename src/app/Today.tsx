@@ -40,12 +40,14 @@ export function Today() {
       <main>
         <PageTitle />
         <h1 className="sr-only">Today</h1>
-        {view.summary && <p className="mt-3 font-editorial text-lg leading-snug text-ink">{view.summary}</p>}
+        {view.summary && (
+          <p className="mt-2 font-editorial leading-snug text-ink sm:text-lg">{view.summary}</p>
+        )}
         <OfflineStatus iso={date.today} />
 
         {any && (
           // One row of filters for both lists; it scrolls sideways on a narrow phone rather than wrapping.
-          <fieldset className="-mx-4 mt-3 min-w-0 overflow-x-auto px-4 [scrollbar-width:none] sm:mx-0 sm:px-0">
+          <fieldset className="-mx-4 mt-2 min-w-0 overflow-x-auto px-4 [scrollbar-width:none] sm:mx-0 sm:px-0">
             <legend className="sr-only">Show</legend>
             <div className="flex w-max gap-2">
               {FILTERS.map((f) => (
@@ -97,7 +99,7 @@ function OfflineStatus({ iso }: { iso: string }) {
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <section className="mt-6">
+    <section className="mt-4">
       <h2 className="flex items-center gap-4 font-editorial text-2xl font-bold">
         {title}
         <span aria-hidden className="h-px flex-1 bg-olive/60" />
@@ -121,7 +123,7 @@ function Row({ card }: { card: Card }) {
   const [open, setOpen] = useState(false);
   const panel = useId();
   return (
-    <li className="border-b border-rule py-4">
+    <li className="border-b border-rule py-2.5">
       {/* The whole collapsed card is the expand button; the Details link sits outside it (design system §6). */}
       <button
         type="button"
@@ -131,9 +133,9 @@ function Row({ card }: { card: Card }) {
           if (!open) count("expand");
           setOpen(!open);
         }}
-        className="flex w-full cursor-pointer items-start gap-4 rounded-sm text-left focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+        className="flex w-full cursor-pointer items-start gap-3 rounded-sm text-left focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
       >
-        <Art id={card.art} sizes="72px" className="size-18 shrink-0" />
+        <Art id={card.art} sizes="56px" className="size-14 shrink-0" />
         <span className="block min-w-0 flex-1">
           <span className="block font-editorial text-xl leading-tight font-bold">{card.name}</span>
           {card.varietyLine && (
@@ -164,7 +166,7 @@ function Row({ card }: { card: Card }) {
         className={`grid transition-[grid-template-rows] duration-200 ease-out motion-reduce:transition-none ${open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}
       >
         <div className="overflow-hidden">
-          <div className="mt-3 ml-22 space-y-1 border-l-2 border-olive/70 pl-3">
+          <div className="mt-2 mb-1 ml-17 space-y-1 border-l-2 border-olive/70 pl-3">
             {card.avoid && <p>{card.avoid}</p>}
             <p>
               <span className="font-semibold">Pick:</span> {card.pick}

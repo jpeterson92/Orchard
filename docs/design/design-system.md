@@ -160,7 +160,7 @@ Reserve serif italics for short editorial accents or verdicts. Practical instruc
 
 Use 8, 16, 24, 32, and 48 px as the main spacing scale. Small optical adjustments are allowed. Typical phone side gutters are 16 px, increasing on larger screens.
 
-On a phone, begin with artwork around 96–112 px wide, an approximately 16 px gap, and a flexible text column. Let actual content determine row height. Do not shrink text to force four items into a fixed viewport.
+On a phone, produce rows pair 56 px artwork, a 12 px gap and a flexible text column. Let actual content determine row height. Do not shrink text to fit more rows.
 
 Use modest corner radii for fields and chips. Produce rows have no enclosing corner treatment because they have no enclosing box.
 
@@ -238,8 +238,8 @@ One selected state with a restrained orange fill and a contrasting foreground. U
 
 ### Produce row
 
-Rows are compact so a shopper can scan many in an aisle (about 100 px tall on a phone). Collapsed content:
-- Recognizable watercolor image, 72 px.
+Rows are compact so a shopper can scan many in an aisle (about 76 px tall on a phone, 10 px above and below). Collapsed content:
+- Recognizable watercolor image, 56 px.
 - Produce name as the strongest text, with no status labels beside it.
 - Subtle icon and verdict word, with the origin in small secondary text on the same line ("Peak · California"); markers (Last call, Reliable year-round) on a quiet olive line below. When the shopper must pick, a "Look for ones from California" line sits under the name in place of the origin.
 - A short factual reason only when it says more than the section heading (when it fades, when it improves, why it can't be called); "At its best this time of year" is never shown.
