@@ -100,8 +100,6 @@ const pageErrors: string[] = [];
 const page = (file: string) => {
   const { page: rendered, errors } = renderPage(file, read(file), ruleValues(dataset.rules));
   pageErrors.push(...errors);
-  if (rendered?.draft && production)
-    pageErrors.push(`${file} is a draft; production builds need it reviewed`);
   return rendered ?? { html: "", draft: true };
 };
 const methods = page("content/methods.md");
@@ -130,8 +128,8 @@ writeFileSync("src/generated/data.json", JSON.stringify(dataset));
 const app = appData(dataset, new Date().toISOString().slice(0, 10), art.art, about);
 writeFileSync("src/generated/app.json", JSON.stringify(app));
 
-// Precalculated assessments, committed so verdict changes are reviewable as diffs. Production builds leave them
-// alone: they must refuse drafts, so they never rebuild the committed set.
+// Precalculated assessments, committed so verdict changes are reviewable as diffs. Dev builds keep them current;
+// production builds leave them alone.
 if (!production) {
   const files = renderAssessments(app);
   const stale = drift(ASSESSMENTS_DIR, files);

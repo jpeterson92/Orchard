@@ -1147,30 +1147,23 @@ describe("validate: edge cases that are allowed", () => {
 });
 
 describe("validate: production builds", () => {
-  it("refuse draft and synthetic records", () => {
+  it("refuse synthetic records", () => {
     const { errors, dataset } = validate(base(), { production: true });
     expect(dataset).toBeNull();
-    expect(errors).toContain("test-fruit: draft records can't ship (production build)");
     expect(errors).toContain("test-fruit: synthetic records can't ship (production build)");
-    expect(errors).toContain("evidence test-fruit: draft records can't ship (production build)");
     expect(errors).toContain("evidence test-fruit: synthetic records can't ship (production build)");
   });
 
-  it("refuse a draft guide", () => {
+  it("ship draft items, evidence, guides and summaries", () => {
     const raw = structuredClone(base());
     withGuide(raw);
-    expect(validate(raw, { production: true }).errors).toContain(
-      "guide test-guide: draft records can't ship (production build)",
-    );
-  });
-
-  it("refuse draft summaries", () => {
-    const raw = structuredClone(base());
     (raw.summaries as Any).status = "draft";
-    expect(validate(raw, { production: true }).errors).toContain(
-      "summaries: draft records can't ship (production build)",
-    );
-    expect(validate(raw, { production: false }).errors).toEqual([]);
+    for (const r of [...(raw.items as Any[]), ...(raw.evidence as Any[])]) delete r.data.synthetic;
+    for (const s of raw.sources as Any[]) delete s.synthetic;
+    delete guide(raw).synthetic;
+    const { errors, dataset } = validate(raw, { production: true });
+    expect(errors).toEqual([]);
+    expect(dataset).not.toBeNull();
   });
 
   it("refuse synthetic sources", () => {

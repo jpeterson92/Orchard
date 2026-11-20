@@ -48,7 +48,7 @@ When documents conflict: Jared's latest instruction > product spec for behavior 
 - The produce list, types, categories and classes are curated. Data scripts (`usda:*` and any future source) run on demand only, inform Claude's and Jared's judgment, and never change content themselves; propose list changes to Jared with the evidence.
 - Never present invented data as real. Synthetic fixtures carry `synthetic: true`.
 - Verdict methodology, thresholds and requirements come from the product spec or Jared. Never invent them.
-- Quality ratings start from the model panel (`content/panel/`, P15): Claude's own knowledge is the first-order source, and real, checked citations validate it, fill its gaps (at least 2 where the panel has no rating) and can overrule it only with eating-quality evidence. Traits, typical origins and store ranges still need real, checked citations. Editorial data starts as `status: draft`. A record becomes `reviewed` only on Jared's explicit approval. Production builds refuse drafts.
+- Quality ratings start from the model panel (`content/panel/`, P15): Claude's own knowledge is the first-order source, and real, checked citations validate it, fill its gaps (at least 2 where the panel has no rating) and can overrule it only with eating-quality evidence. Traits, typical origins and store ranges still need real, checked citations. Editorial data starts as `status: draft`. A record becomes `reviewed` only on Jared's explicit approval. Drafts deploy like reviewed records, so in conversation flag anything uncertain or needing Jared's judgment rather than relying on review to catch it.
 - Copy follows the product spec's §8 writing standards: concrete cues, ranges rather than guarantees, card text of at most 12 words.
 - `generated/` is build output: never edit it; read it for analysis and editorial review.
 - Privacy: never log or store a ZIP, coordinates, IP address or search text on a server.
@@ -65,7 +65,7 @@ When documents conflict: Jared's latest instruction > product spec for behavior 
   - `npm run deploy`: build, then `wrangler deploy` (wrangler is signed in on this machine)
   - `npm run format`: Biome autofix (Markdown is excluded, so docs keep their formatting)
   - `npm run cf-typegen`: regenerate Worker types after changing `wrangler.jsonc`
-  - `npm run data:build`: validate `content/` and `data/`, write `src/generated/data.json` and the committed assessments in `generated/assessments/`, print counts (`-- --production` refuses drafts). `npm run data:check` (first step of `check` and CI) fails when the committed assessments differ from a fresh build
+  - `npm run data:build`: validate `content/` and `data/`, write `src/generated/data.json` and the committed assessments in `generated/assessments/`, print counts (`-- --production` refuses synthetic records and items without approved art). `npm run data:check` (first step of `check` and CI) fails when the committed assessments differ from a fresh build
   - `npm run content:report`: editorial review listings (unrated windows, `alwaysGood` vs outlook). Run only for content review, never during app work
   - `npm run art:process`: check Jared's painted masters in `art/masters/`, write `public/art/` derivatives and the contact sheet (`.cache/art/contact-sheet.html`)
   - `npm run usda:probe`, `usda:terminal-probe`, `usda:terminal-screen`: USDA reference-data probes (cached in `.cache/usda/`, run in the background)
