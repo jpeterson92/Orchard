@@ -16,7 +16,7 @@ export const VERDICT_WORD: Record<Verdict, string> = {
   peak: "Peak",
   good: "Good",
   skip: "Skip for now",
-  limited: "Limited evidence",
+  limited: "Not rated",
 };
 
 export interface Card {
@@ -125,7 +125,7 @@ export function reasonText(verdict: Verdict, reasons: readonly Reason[], markers
     const text = LIMITED_REASONS[r.code];
     if (text) return text;
   }
-  return "Not enough evidence to call it now.";
+  return "No rating for this time of year.";
 }
 
 /** "California", "California and Mexico", "California, Georgia and Mexico". */

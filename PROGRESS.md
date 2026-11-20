@@ -1,6 +1,6 @@
 # PROGRESS
 
-Updated: 2026-11-20 · Phase: build · Live: https://orchard.jpeterson92.workers.dev (M0 placeholder) · 19 commits unsynced
+Updated: 2026-11-20 · Phase: build · Live: https://orchard.jpeterson92.workers.dev (M0 placeholder) · 20 commits unsynced
 
 ## Milestones
 
@@ -39,7 +39,7 @@ Jared:
 
 ## Content
 
-- **Gaps needing sources** (Limited evidence today): pomegranates late June (Argentina).
+- **Not rated windows** (10 of 720; the app shows "Not rated", confidence is never shown): apricots January, okra early June and October, plums April and December, pomegranates late June (Argentina, open question 5). Close each with a rating or by confirming no typical supply, so shoppers rarely see the empty state.
 - **Per-item follow-ups:** SweeTango and Satsuma first: the panel rates them but USDA never quotes them, so each needs cited `inStores` months, as Cara Cara now has (`node .cache/panel-missing-varieties.mjs` lists panel variety windows an item lacks; Red and Golden Delicious, Tommy Atkins, Haden, round and Roma stay unrated by rule); apples (Cosmic Crisp January to early June and late September to October, Chile and New Zealand imports beyond Honeycrisp; Ambrosia rests on two consumer guides and is unrated June to early September, McIntosh May to August (it is `recommended: false`, so Today never names it); six eating-quality claims are one writer); pears (Bartlett late November to December, Bosc January to March and May to early September; Red Anjou, Red Bartlett, Packham, Forelle and Concorde claims in `content/evidence-drafts/`); mandarins (summer imports need a second source per variety, clementines February to May unrated, Gold Nugget only in May; Royal, satsuma, Sumo and Pixie claims in drafts); oranges (Cara Cara rated, in stores December to April per NC State Extension and Produce Market Guide; Chile navels have no claim; summer blood oranges rest on Sunkist alone); mangoes (no variety-named eating-quality claim, so variety windows are Medium at best; Tommy Atkins and Haden never rated, so late October reads Skip; traits wait for tropical anchors).
 - **PLU gaps:** IFPS has no code of its own for Gold Nugget or Pixie, so their pages show none; W. Murcott shows only Tango's 3556.
 - **Tools:** `.cache/runs.ts <item>`, `.cache/curves.ts <item> <variety> <window>`, `.cache/proposals.ts <item>`, `.cache/eval-why.ts [items]`, `.cache/eval-dips.ts`, and for re-rating `.cache/panel-rerate.mjs`, `.cache/apply-proposals.ts all`, `.cache/verdict-diff.mjs`. They hard-code the main checkout's root. In parallel sessions write `origin: us` explicitly on claims and run `npx biome format --write` on edited YAML.

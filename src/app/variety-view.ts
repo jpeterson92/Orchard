@@ -3,7 +3,7 @@
 // Varieties outside a guide have no page; their item page covers them.
 import type { AppData, AppGuide, AppItem, AppVariety } from "../shared/app-data";
 import { windowIndex } from "../shared/time";
-import { type Confidence, evaluate, type PlainDate, typicalOutlook, type Verdict } from "../shared/verdict";
+import { evaluate, type PlainDate, typicalOutlook, type Verdict } from "../shared/verdict";
 
 export interface Alternative {
   id: string;
@@ -18,8 +18,8 @@ export interface VarietyView {
   item: { id: string; name: string };
   guide: AppGuide;
   variety: AppVariety;
-  /** Rated varieties only (P13): today's verdict, its confidence, and the 24-window outlook. */
-  rating: { verdict: Verdict; confidence: Confidence; inStore: boolean; outlook: Verdict[] } | null;
+  /** Rated varieties only (P13): today's verdict and the 24-window outlook. */
+  rating: { verdict: Verdict; inStore: boolean; outlook: Verdict[] } | null;
   window: number;
   /** "Can't find it? Try…": the closest varieties by traits, up to `MAX_ALTERNATIVES`. */
   alternatives: Alternative[];
@@ -58,7 +58,6 @@ export function varietyView(
     rating: own
       ? {
           verdict: own.verdict,
-          confidence: own.confidence,
           inStore: own.inStore,
           outlook: typicalOutlook(item.inputs, data.env, date.year, variety.id),
         }

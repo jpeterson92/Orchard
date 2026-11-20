@@ -23,7 +23,7 @@ const SECTION_TITLE: Record<Verdict, string> = {
   peak: "Peak",
   good: "Good",
   skip: "Skip",
-  limited: "Limited evidence",
+  limited: "Not rated",
 };
 const word = (v: Verdict | undefined) => VERDICT_WORD[v ?? "limited"];
 

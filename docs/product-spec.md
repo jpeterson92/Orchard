@@ -12,7 +12,7 @@ Three ideas set it apart:
 
 - **Supermarket-first.** Verdicts judge how well what US supermarkets typically stock right now is likely to eat, based on where that supply comes from. Farmers-market seasonality alone misleads supermarket shoppers, because chains import much of their produce year-round.
 - **Glance, then depth.** Five seconds gets the day's six best picks. Two taps get how to choose a ripe one. A variety guide settles Honeycrisp vs Cosmic Crisp.
-- **Honest verdicts.** Every verdict says why, what evidence it rests on, and how complete that evidence is. When the evidence is thin, the site says "Limited evidence" instead of guessing.
+- **Honest verdicts.** Every verdict says why and what evidence it rests on. When there's no reviewed rating to go on, the site says "Not rated" instead of guessing. Confidence is tracked for editorial use and ordering, never shown to shoppers: it adds doubt without helping a decision.
 
 **Precision reality check.** "Exact day" should be promised as "this half-month window," not literally. The most detailed consumer seasonality guide advertises data accurate to half-month increments ([source](https://apps.apple.com/us/app/-/id1235820625)). Verdicts are national, because US supermarkets source nationally: in a given window, chains across the country sell largely the same crops from the same origins. The app never asks where the shopper is. Today is a current assessment; a future date shows a typical seasonal outlook instead, and is labeled that way.
 
@@ -132,7 +132,7 @@ Today leads with every item at its Peak, then the seasonal items that are Good, 
 
 | Kind | Values | Meaning |
 | --- | --- | --- |
-| **Verdict** (exactly one per item) | Peak · Good · Skip · Limited evidence | The best eating quality a shopper has a reasonable chance of finding in a typical US supermarket right now (rules in section 7). Peak: "you should really get this now". Good: "if you want it now, you'll be happy with it". Skip: "not a great time of year; it'll be mediocre" |
+| **Verdict** (exactly one per item) | Peak · Good · Skip · Limited evidence (shown to shoppers as "Not rated") | The best eating quality a shopper has a reasonable chance of finding in a typical US supermarket right now (rules in section 7). Peak: "you should really get this now". Good: "if you want it now, you'll be happy with it". Skip: "not a great time of year; it'll be mediocre" |
 | **Markers** (zero or more, shown on the card) | Last call · Reliable year-round · Good value (v1.1) | Extra facts that never move the item to a different section |
 | **Look for** (the card's second line, when needed) | Varieties · origins · a selection | What to pick when the verdict holds for only part of the bin (section 7) |
 | **Always good** (an item class) | An editorial call, written in the item file. The usual evidence is a typical outlook of Good in all 24 windows, never Peak and never Skip; the data build flags any item where the two disagree, and an editor decides | Shown as "Always good" wherever they appear, in place of the Reliable year-round marker. They never appear on Today |
@@ -166,7 +166,7 @@ An item that is both Peak and Last call appears once, under Best right now, carr
 
 ### Item page
 
-- **Verdict block:** the badge, 1–3 reasons, the confidence level, and one line on what it rests on ("Reviewed seasonal assessment + typical national supply"). Two dates appear, worded so they can't be mistaken for an in-store check: "Supply data through Oct 2026" and "Guidance reviewed Oct 2026".
+- **Verdict block:** the badge, 1–3 reasons, and, under "About this verdict", one line on what it rests on ("Reviewed seasonal assessment + typical national supply"). Two dates appear, worded so they can't be mistaken for an in-store check: "Supply data through Oct 2026" and "Guidance reviewed Oct 2026".
 - **Variety summary** (items rated by variety), right under the reasons: where each rated variety falls today, best first, so a shopper after one variety can check it at a glance ("Peak: Honeycrisp, Gala, Fuji and Pink Lady · Good: Granny Smith · Not in stores now: Cosmic Crisp"). Today's card names only the varieties holding the item's verdict, and the reasons don't repeat them.
 - **Context notes**, separate and only shown when relevant:
   - "Typical supermarket supply: favorable this month"
@@ -175,7 +175,7 @@ An item that is both Peak and Last call appears once, under Best right now, carr
 - **How to pick:** 3–5 cues (look, feel, smell, weight), 1–2 "avoid" cues, and a type note where the type changes the advice.
 - **Store and ripen:** typical ranges, never guarantees, each with its ripeness assumption. For example: "Firm Hass: 3–5 days on the counter to ripen. Ripe: 2–3 days in the fridge."
 - **Typical seasonal outlook:** 24 half-month cells, with today marked. A band underneath shows the typical main supply origins by month.
-- **Varieties now** (items rated by variety): each variety's verdict for today and its quality across the year as a 24-window strip, best right now first, each with its confidence. Only rated varieties appear here; the variety guide lists the rest, without a rating and never ranked.
+- **Varieties now** (items rated by variety): each variety's verdict for today and its quality across the year as a 24-window strip, best right now first. Only rated varieties appear here; the variety guide lists the rest, without a rating and never ranked.
 - **Variety guide** (where one exists): a link to the item's guide (`/guides/<id>`).
 - **Value note** (v1.1): e.g. "Advertised more than usual nationally this week." It never changes the verdict.
 - **Prep and use:** 2–4 lines.
@@ -220,7 +220,7 @@ Today by default; the date follows the phone's clock, rolling over at midnight. 
 
 ### Methods page
 
-Defines each verdict, marker and confidence level. Explains the two kinds of evidence (typical supply data from a yearly USDA snapshot vs reviewed seasonal assessment), and how source claims are weighted and combined. Says the guidance is written for the contiguous US. Lists every source with its update schedule, and the AI models on the panel, and publishes audit results. Every reason chip links here.
+Defines each verdict and marker. Explains the two kinds of evidence (typical supply data from a yearly USDA snapshot vs reviewed seasonal assessment), and how source claims are weighted and combined. Says the guidance is written for the contiguous US. Lists every source with its update schedule, and the AI models on the panel, and publishes audit results. Every reason chip links here.
 
 ## 6. Views by device
 
@@ -302,7 +302,7 @@ So an expensive item can still be Peak, and a heavily advertised item can't beco
 
 ### Confidence
 
-Confidence describes how complete and current the evidence is. It is not a probability that the item is good, and the Methods page says so.
+Confidence describes how complete and current the evidence is. It is not a probability that the item is good. It orders Today, guides editorial review and limits what a weak rating can decide; the app never shows it.
 
 | Property | Question |
 | --- | --- |
@@ -401,7 +401,7 @@ Visual details are governed by the design system (`docs/design/design-system.md`
 | Canvas | Warm off-white in light mode, deep warm gray in dark mode, following the device setting. Higher contrast when the device asks for it. |
 | Type | A humanist sans for interface and body text; an editorial serif for page titles and variety names. Body at least 16 px, scaled by the phone's own text-size setting. Fixed-width digits for days and prices. |
 | Color | Neutral interface; the produce illustrations supply the color. Verdicts have their own reserved palette. |
-| Verdict marks | Peak: filled star + "Peak" · Good: check + "Good" · Skip: clock + "Skip for now" · Limited evidence: information symbol + "Limited evidence", in a neutral tone so it never reads as a warning about the produce. The palette is checked under color-blindness simulation; red vs green is never the only difference. |
+| Verdict marks | Peak: filled star + "Peak" · Good: check + "Good" · Skip: clock + "Skip for now" · Limited evidence: information symbol + "Not rated", in a neutral tone so it never reads as a warning about the produce. The palette is checked under color-blindness simulation; red vs green is never the only difference. |
 | Markers | Small text tags under the verdict: "Last call", "Reliable year-round", and "Good value" (v1.1). |
 | Imagery | One consistent illustration style: one drawing per item (all 30 at first release), plus one per rated variety (about 30; until its own is approved, a variety uses its item's). Illustrations are decorative, not identification aids. For varieties, the label or PLU sticker is authoritative. |
 | Layout | 8 px spacing grid; generous card padding; at most 2 levels of nesting on phone. |
@@ -423,7 +423,7 @@ The site has to feel instant on a phone with one bar of signal, be private by de
 | Speed | Pass Google's "good" Core Web Vitals on mobile at the 75th percentile: largest content painted ≤ 2.5 s, response to input ≤ 200 ms, layout shift ≤ 0.1 ([source](https://web.dev/articles/vitals)). Today must show its first verdicts within that 2.5 s on a mid-range phone over 4G. |
 | Offline | After the first visit, every covered item works with no signal; the copy downloads by itself in the background. Today speaks up only when the copy is out of date (section 6). |
 | Freshness | Supply data is reference data, refreshed from the last 3 years of USDA reports on demand (about once a year) and reviewed like content. The value signal is weekly (v1.1). Quality windows, seasonal evidence and written content reviewed at least once a year. |
-| Honesty | Every verdict states its evidence basis and confidence. "Data through" and "reviewed" dates are kept distinct and never imply someone checked the produce. Future dates are always labeled as the typical outlook. Missing evidence shows as Limited evidence, never as a default verdict. |
+| Honesty | Every verdict states its reasons and evidence basis. "Data through" and "reviewed" dates are kept distinct and never imply someone checked the produce. Future dates are always labeled as the typical outlook. Missing evidence shows as Not rated, never as a default verdict. |
 | Privacy | No account needed. The app never asks for, infers or stores the shopper's location. Analytics are aggregate, with no ad trackers and no selling of data. |
 | Accessibility | WCAG 2.2 AA throughout (details in section 9). |
 | Trust | Every verdict traces to its inputs on the Methods page. Audit results are published. Any editorial override carries a visible note. |
@@ -446,7 +446,7 @@ The closest existing product already does "what's in season near me." The openin
 1. **Supermarket-first verdicts on eating quality:** based on where supermarket supply actually comes from, with advice that adapts to the origin on the label.
 2. **Variety depth where it changes the decision:** verdicts per variety where varieties peak at different times, 3 full guides at launch, and type notes wherever the type changes how to pick or ripen.
 3. **Works in the store with no setup:** saves itself for offline after the first visit and shows when it's ready.
-4. **Honest evidence:** reasons, evidence basis and data dates on every verdict, published audits, and "Limited evidence" instead of a guess.
+4. **Honest evidence:** reasons, evidence basis and data dates on every verdict, published audits, and "Not rated" instead of a guess.
 
 ## 12. Release plan
 
@@ -459,7 +459,7 @@ Order: foundations → Gate 1 → first release → Gate 2 → v1.1 → Gate 3 �
 | Essential for the first release | Later releases |
 | --- | --- |
 | Today, search and item guidance | Desktop planning workspace |
-| Clear verdict explanations: reasons, evidence basis, confidence | Printable monthly sheets |
+| Clear verdict explanations: reasons, evidence basis, data dates | Printable monthly sheets |
 | Selection, storage and ripening advice | Large-type kitchen view |
 | "What does the label say?" origin and variety advice | Value markers from promotions (v1.1) |
 | Honest seasonal context; typical-outlook calendar | Deep guides beyond the first 3 |
@@ -491,7 +491,7 @@ The biggest risk is a confident verdict that doesn't match the bin in front of t
 | The named variety isn't in the shopper's store | A "best now" pick they can't find | Only varieties typically in stores that month are named; the item page lists the other good options |
 | Promotion data is ads, not shelf prices | Shoppers read it as their store's price | Value marker only, labeled "national ad activity"; never part of the verdict |
 | Weather shifts a season | Verdicts run early or late | Verdicts are labeled as the typical season and the Methods page says one year's weather isn't reflected; the typical outlook is never edited for it |
-| Verdicts read as guarantees | Lost trust after one bad purchase | "Likely" wording, storage as ranges, Methods page, confidence explained |
+| Verdicts read as guarantees | Lost trust after one bad purchase | "Likely" wording, storage as ranges, Methods page |
 | Content volume | Slow launch or uneven quality | 30 seasonal items at first release, drafted in batches of about 10; 3 guides; the other listed items (mostly always good, needing only a year-round rating and short copy) and anything beyond common produce join only through gates |
 
 **Decisions needed**

@@ -21,7 +21,6 @@ const data = appJson as unknown as AppData;
 const orList = (xs: string[]) =>
   xs.length < 2 ? (xs[0] ?? "") : `${xs.slice(0, -1).join(", ")} or ${xs.at(-1)}`;
 
-const CONFIDENCE_WORD = { high: "High", medium: "Medium", low: "Low" } as const;
 const linkClass =
   "inline-flex min-h-11 items-center gap-1 font-semibold text-olive underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
 
@@ -77,9 +76,6 @@ function Body({ view, mode }: { view: VarietyView; mode: Mode }) {
                 <span className="text-ink-secondary">{atDate("Not usually in stores now", mode)}</span>
               )}
             </p>
-          )}
-          {rating?.inStore && (
-            <p className="text-sm text-ink-secondary">{CONFIDENCE_WORD[rating.confidence]} confidence</p>
           )}
         </div>
         <Art id={v.art} sizes="(min-width: 640px) 112px, 96px" className="size-24 shrink-0 sm:size-28" />

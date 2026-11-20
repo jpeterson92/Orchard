@@ -8,7 +8,7 @@ Orchard says which produce is likely to eat well in US supermarkets right now. H
 - **Peak:** you should really get it now. It's this item's best season, and you have a good chance of finding it among the best you'll get all year. Where only some of the bin is, the card says what to look for. An item has at most one Peak season a year.
 - **Good:** if you want it now, you'll be happy with it.
 - **Skip:** not a great time of year; what's on the shelf will be mediocre, for example fruit out of long storage, or it's out of season.
-- **Limited evidence:** we don't have reviewed evidence for where stores usually get it now. We never fill the gap with a guess.
+- **Not rated:** we don't have reviewed ratings for where stores usually get it now, so we make no call. We never fill the gap with a guess.
 
 Prices and promotions never change a verdict. An expensive item can be Peak, and a heavily advertised one can't become Peak because stores are pushing it.
 
@@ -27,7 +27,7 @@ USDA shipment and import reports show where supermarkets typically get an item e
 
 The rules run in order, and the first that applies decides:
 
-1. **Limited evidence** when our ratings don't cover the regions that typically supply stores now.
+1. **Not rated** when our ratings don't cover the regions that typically supply stores now.
 2. **Skip** when the item is out of season, or too little of what's in stores is rated better than poor.
 3. **Peak** when regions rated prime are reasonably likely on the shelf. Those regions count only if their supply isn't thin and they're in the US, Mexico or Canada, and the item's best season must be one you can taste.
 4. **Good** when regions rated fair or better are reasonably likely on the shelf.
@@ -42,36 +42,25 @@ Some produce you can pick out by the sign or label is at its best even when most
 
 Future dates show the typical seasonal outlook: what is normally good around that time, never a current assessment.
 
-## Confidence
-
-Confidence says how complete and current the evidence is. It isn't the chance that the item is good. Four checks go into it:
-
-- **Coverage:** the ratings cover the regions or varieties that typically supply stores now, on solid seasonal evidence.
-- **Relevance:** the evidence describes supermarket supply, not only local farms.
-- **Freshness:** the USDA supply data is under {{snapshotMaxAgeMonths}} months old.
-- **Agreement:** the ratings and the typical supply pattern point the same way.
-
-**High** when all four hold, **Medium** when one is weak, **Low** when two or more are.
-
 ## Two kinds of evidence
 
 Each item page says which applies:
 
 - **Seasonal assessment and typical national supply:** USDA data ranks where stores get the item, and our ratings cover those regions.
-- **Seasonal assessment only:** for items whose USDA data is too thin to use. These verdicts are Medium confidence at most.
+- **Seasonal assessment only:** for items whose USDA data is too thin to use.
 
 USDA supply data is a yearly snapshot of the last three years of reports. The seasonal assessment is reviewed at least once a year. Neither means anyone checked the produce in a store.
 
 ## How sources are weighed
 
-Ratings start from an AI model panel: several AI models each rate every item from what they learned, using one shared prompt, and together they count as one source. Cited sources then check that rating. Where they agree, confidence rises. Where sources about eating quality clearly disagree, they win and the rating is marked Low confidence. A rating from the panel alone is Medium confidence. Where the panel gives no rating, at least two cited sources are needed.
+Ratings start from an AI model panel: several AI models each rate every item from what they learned, using one shared prompt, and together they count as one source. Cited sources then check that rating. Where sources about eating quality clearly disagree, they win. Where the panel gives no rating, at least two cited sources are needed.
 
 The cited sources come from a wide range of places that say when an item eats best:
 
 - **Authoritative sources** (university extension services, commodity boards, USDA and trade references) carry more weight.
 - **Mainstream sources** (major food publications and grocer guides) count too, with less weight.
 - A source that restates another counts once.
-- Harvest calendars show timing but not taste, so on their own they support Medium confidence at most. High confidence needs a source about eating quality.
+- Harvest calendars show timing but not taste, so they count for less than a source about eating quality.
 
 ## What the guidance covers
 

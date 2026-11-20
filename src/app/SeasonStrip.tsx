@@ -1,5 +1,5 @@
 // A 24-window season strip (design system §6 "Season strips"): Peak a solid ochre cell, Good a lighter green
-// cell, Skip a hatched cell, Limited evidence an empty outlined cell, so no state relies on color alone.
+// cell, Skip a hatched cell, Not rated an empty outlined cell, so no state relies on color alone.
 // The strip is one image whose label gives the runs in words.
 import type { Verdict } from "../shared/verdict";
 import { outlookSummary } from "./item-view";
@@ -44,7 +44,7 @@ export function StripLegend() {
     ["peak", "Peak"],
     ["good", "Good"],
     ["skip", "Skip"],
-    ["limited", "Limited evidence"],
+    ["limited", "Not rated"],
   ];
   return (
     <ul aria-hidden className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-ink-secondary">

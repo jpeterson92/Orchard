@@ -263,13 +263,13 @@ A separate text link, such as “Picking & storage,” opens the detail page. Ad
 | Peak | Small ochre star and “Peak” in dark olive or ink |
 | Good | Small green check and “Good” in dark olive or ink |
 | Skip for now | Small clock and explicit wording; secondary explanation |
-| Limited evidence | Neutral information symbol and explicit wording |
+| Limited evidence | Neutral information symbol and “Not rated” |
 
 Reliable year-round, Last call and Good value are markers, not verdicts: small text tags under the verdict word, per the product spec. Visual labels must follow the product’s approved terminology and contract. If methodology changes, update labels consistently. This table describes presentation, not new verdict logic.
 
 No filled pill backgrounds, large medallions, numerical scores invented for display, or alarming red treatment for ordinary seasonal advice. Never convey a verdict only through color.
 
-Confidence and supporting evidence can appear as secondary text or a short disclosure. Do not overwhelm Today with badges.
+Supporting evidence can appear as secondary text or a short disclosure; confidence is never shown. Do not overwhelm Today with badges.
 
 ### Search
 
@@ -287,7 +287,7 @@ Selected navigation uses a restrained orange icon/text treatment and optional sh
 
 Season strips and heatmaps require a stable, documented mapping between verdict and fill intensity or pattern. They cannot rely on tiny star icons alone. The phone calendar study uses a list; the heatmap treatment remains provisional.
 
-The item page's 24-window strip: Peak is a solid ochre cell, Good a lighter green cell, Skip a hatched cell, Limited evidence an empty outlined cell; today's window carries an ink outline, month initials sit underneath, and a legend names all four. The strip's accessible name states its runs in words ("Peak early November to late May; Limited evidence early June to late October"). Typical main supply origins follow as a short list of month ranges.
+The item page's 24-window strip: Peak is a solid ochre cell, Good a lighter green cell, Skip a hatched cell, Not rated an empty outlined cell; today's window carries an ink outline, month initials sit underneath, and a legend names all four. The strip's accessible name states its runs in words ("Peak early November to late May; Limited evidence early June to late October"). Typical main supply origins follow as a short list of month ranges.
 
 Keep written labels or accessible tables available. Use the warm neutral canvas and clear ink rather than introducing an unrelated chart palette.
 

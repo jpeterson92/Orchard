@@ -10,7 +10,6 @@ import {
   typicalOutlook,
   type Verdict,
   verdictRank,
-  type WeakProperty,
 } from "../shared/verdict";
 import {
   atDate,
@@ -69,9 +68,6 @@ export interface ItemView {
   tags: string[];
   /** 1–3 short reasons, the headline first. */
   reasons: string[];
-  confidence: Confidence;
-  /** Why confidence isn't High, in plain words. */
-  confidenceNote: string | null;
   basis: string;
   supplyDate: string | null;
   reviewDate: string;
@@ -101,13 +97,6 @@ const RATED: Record<"prime" | "fair" | "poor", string> = {
   prime: "typically at its best now",
   fair: "typically eats well now",
   poor: "typically below its best now",
-};
-
-const WEAK: Record<WeakProperty, string> = {
-  coverage: "little evidence covers this time of year",
-  relevance: "no national supply data confirms what stores carry",
-  freshness: "some of the data behind it is out of date",
-  agreement: "the signals behind it disagree",
 };
 
 const monthYear = (iso: string) => {
@@ -175,7 +164,7 @@ export function outlookSummary(outlook: readonly Verdict[]): string {
     peak: "Peak",
     good: "Good",
     skip: "Skip",
-    limited: "Limited evidence",
+    limited: "Not rated",
   };
   if (outlook.every((v) => v === outlook[0])) return `${WORD[outlook[0] ?? "limited"]} all year`;
   // Start at a change so a run across the new year stays whole.
@@ -270,9 +259,6 @@ export function itemView(
     verdict: result.verdict,
     tags: tags(item, result.markers),
     reasons: reasons.map((r) => atDate(r, mode)),
-    confidence: result.confidence,
-    confidenceNote:
-      result.weakProperties.length > 0 ? result.weakProperties.map((w) => WEAK[w]).join("; ") : null,
     basis: `${reviewed ? "Reviewed seasonal assessment" : "Draft seasonal assessment"}${supplyBacked ? " + typical national supply" : " only"}`,
     supplyDate:
       supplyBacked && data.env.snapshotTo ? `Supply data through ${monthYear(data.env.snapshotTo)}` : null,
@@ -315,7 +301,6 @@ export interface LabelChoices {
 export interface LabelResult {
   verdict: Verdict;
   reasons: string[];
-  confidence: Confidence;
   /** A variety's best uses, as the tip that changes with the label. */
   bestUses: string[];
 }
@@ -365,7 +350,6 @@ export function labelResult(
   return {
     verdict: r.verdict,
     reasons: reasons.map((x) => atDate(x, mode)),
-    confidence: r.confidence,
     bestUses: variety?.bestUses ?? [],
   };
 }

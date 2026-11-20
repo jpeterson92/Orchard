@@ -18,8 +18,6 @@ import { varietyPath } from "./variety-view";
 
 const data = appJson as unknown as AppData;
 
-const CONFIDENCE_WORD = { high: "High", medium: "Medium", low: "Low" } as const;
-
 const linkClass =
   "inline-flex min-h-11 items-center gap-1 font-semibold text-olive underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
 
@@ -118,10 +116,6 @@ function Item({ view, mode }: { view: ItemView; mode: Mode }) {
 
       <details className="group mt-2">
         <summary className="flex min-h-11 cursor-pointer list-none items-center gap-2 rounded-sm text-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent">
-          <span className="font-semibold">{CONFIDENCE_WORD[view.confidence]} confidence</span>
-          <span aria-hidden className="text-ink-secondary">
-            ·
-          </span>
           <span className="font-semibold text-olive underline-offset-4 group-hover:underline">
             About this verdict
           </span>
@@ -130,7 +124,6 @@ function Item({ view, mode }: { view: ItemView; mode: Mode }) {
           </span>
         </summary>
         <div className="space-y-1 border-l-2 border-olive/70 pb-1 pl-3 text-sm text-ink-secondary">
-          {view.confidenceNote && <p>Not higher because {view.confidenceNote}.</p>}
           <p>Based on: {view.basis.charAt(0).toLowerCase() + view.basis.slice(1)}.</p>
           <p>{[view.supplyDate, view.reviewDate].filter(Boolean).join(" · ")}</p>
           <p>
@@ -281,9 +274,6 @@ function LabelCheck({
               <p key={r}>{r}</p>
             ))}
             {result.bestUses.length > 0 && <p>Best for: {result.bestUses.join(", ").toLowerCase()}.</p>}
-            {result.verdict !== "limited" && (
-              <p className="text-sm text-ink-secondary">{CONFIDENCE_WORD[result.confidence]} confidence</p>
-            )}
           </div>
         )}
       </div>
@@ -324,11 +314,8 @@ function Variety({
               <span className="text-ink-secondary">Not rated</span>
             )}
           </div>
-          {row.confidence && (
-            <p className="text-sm text-ink-secondary">
-              {CONFIDENCE_WORD[row.confidence]} confidence
-              {!row.inStore && atDate(" · Not usually in stores now", mode)}
-            </p>
+          {row.verdict && !row.inStore && (
+            <p className="text-sm text-ink-secondary">{atDate("Not usually in stores now", mode)}</p>
           )}
         </div>
       </div>
