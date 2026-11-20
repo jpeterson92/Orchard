@@ -96,11 +96,7 @@ export function Today() {
         )}
         {alwaysGood.length > 0 && (
           <Section title="Always good" id="always-good">
-            <ul className="md:grid md:grid-cols-2 md:gap-x-10">
-              {alwaysGood.map((row) => (
-                <StapleRow key={row.id} row={row} />
-              ))}
-            </ul>
+            <AlwaysGoodGrid rows={alwaysGood} />
           </Section>
         )}
         {any && best.length + good.length + alwaysGood.length === 0 && (
@@ -140,27 +136,56 @@ function Section({ title, children, id }: { title: string; children: React.React
 const textLink =
   "inline-flex min-h-11 items-center gap-1 rounded-sm font-semibold text-olive underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
 
-function StapleRow({ row }: { row: AlwaysGoodRow }) {
+function AlwaysGoodGrid({ rows }: { rows: AlwaysGoodRow[] }) {
   return (
-    <li className="border-b border-rule py-0.5">
-      <Link to={`/items/${row.id}`} className={`${textLink} font-editorial text-lg`}>
-        {row.name} <Arrow />
+    <div className="max-w-2xl space-y-3 pt-2">
+      {data.categories.map(({ id, name }) => {
+        const cards = rows.filter((row) => row.category === id);
+        if (cards.length === 0) return null;
+        return (
+          <div key={id}>
+            <h3 className="mb-1.5 text-sm font-semibold text-ink-secondary">{name}</h3>
+            <ul className="grid grid-cols-2 items-start gap-2">
+              {cards.map((row) => (
+                <StapleCard key={row.id} row={row} />
+              ))}
+            </ul>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+function StapleCard({ row }: { row: AlwaysGoodRow }) {
+  return (
+    <li className="min-w-0 rounded-md border border-rule bg-surface/50">
+      <Link
+        to={`/items/${row.id}`}
+        className="flex min-h-14 items-center gap-2 rounded-md px-2 py-1.5 font-semibold text-ink hover:bg-surface focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent sm:px-3"
+      >
+        <Art id={row.art} sizes="(min-width: 640px) 40px, 32px" className="size-8 shrink-0 sm:size-10" />
+        <span className="min-w-0 font-editorial leading-tight wrap-anywhere sm:text-lg">{row.name}</span>
       </Link>
       {row.varieties.length > 0 && (
-        <p className="-mt-1 text-sm text-ink-secondary">
-          {row.listing === "except" && "Except "}
-          {row.varieties.map((variety, index) => {
-            const { to, label } = varietyDestination(row.id, variety.id, row.hasGuide);
-            return (
-              <span key={variety.id}>
-                {index > 0 && (index === row.varieties.length - 1 ? " and " : ", ")}
-                <Link to={to} state={{ label }} className={`${textLink} underline`}>
+        <div className="border-t border-rule px-2 text-xs leading-tight text-ink-secondary sm:px-3 sm:text-sm">
+          {row.listing === "except" && <p className="pt-1.5">Except</p>}
+          <p className="flex flex-wrap gap-x-2">
+            {row.varieties.map((variety) => {
+              const { to, label } = varietyDestination(row.id, variety.id, row.hasGuide);
+              return (
+                <Link
+                  key={variety.id}
+                  to={to}
+                  state={{ label }}
+                  className={`${textLink} min-w-11 max-w-full wrap-anywhere underline`}
+                >
                   {variety.name}
                 </Link>
-              </span>
-            );
-          })}
-        </p>
+              );
+            })}
+          </p>
+        </div>
       )}
     </li>
   );

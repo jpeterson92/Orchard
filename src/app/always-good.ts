@@ -5,6 +5,8 @@ export interface AlwaysGoodRow {
   id: string;
   name: string;
   group: FilterGroup;
+  category: string;
+  art: string | null;
   varieties: AppVariety[];
   listing: "whole" | "include" | "except";
   hasGuide: boolean;
@@ -30,7 +32,14 @@ export function alwaysGoodRow(
   year: number,
   itemOutlook: readonly Verdict[],
 ): AlwaysGoodRow | null {
-  const row = { id: item.inputs.id, name: item.name, group: item.group, hasGuide: item.guide !== null };
+  const row = {
+    id: item.inputs.id,
+    name: item.name,
+    group: item.group,
+    category: item.category,
+    art: item.art,
+    hasGuide: item.guide !== null,
+  };
   if (itemAlwaysGood(item, itemOutlook)) return { ...row, varieties: [], listing: "whole" };
   if (!item.varieties.some((v) => v.alwaysGood)) return null;
 

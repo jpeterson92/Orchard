@@ -126,7 +126,7 @@ A category appears only when it holds at least one covered item.
 
 ## 5. Core screens and behavior
 
-Today leads with Peak items and then seasonal Good items. A compact Always good list follows the seasonal cards. Cards expand in place, and list rows open pages.
+Today leads with Peak items and then seasonal Good items. A compact Always good grid follows the seasonal cards. Seasonal cards expand in place, and Always good cards open the item page.
 
 ### Verdict states and markers
 
@@ -155,7 +155,7 @@ Today leads with Peak items and then seasonal Good items. A compact Always good 
 5. **Best right now:** every Peak item, the one ending soonest first (fewest Peak half-months left, then the shortest Peak season: a 4-week strawberry peak before a 4-month one), then highest confidence, then the most commonly bought. These are suggestions: worth buying even if they weren't on the list. It is never padded with Good items.
 6. **Good buys:** the seasonal Good items, by confidence and then the most commonly bought. These are approvals: a shopper who wants one will be happy with it.
 
-7. **Always good:** qualifying items and varieties in a compact A–Z list. Use the family name alone when the rated varieties cover the common types and all qualify. When most qualify and one or two confirmed seasonal varieties are the only exceptions, name and link to those exceptions. For incomplete coverage or a wider mix, name and link to the qualifying varieties. A family can also appear above with its seasonal picks named on the card.
+7. **Always good:** qualifying items and varieties take two columns of small illustrated cards, grouped by Browse category and sorted A–Z within each category. Use the family name alone when the rated varieties cover the common types and all qualify. When most qualify and one or two confirmed seasonal varieties are the only exceptions, name and link to those exceptions. For incomplete coverage or a wider mix, name and link to the qualifying varieties. A family can also appear above with its seasonal picks named on the card.
 
 The seasonal lists show Peak and seasonal Good. An item marked Reliable year-round can appear in Best right now during its Peak. Browse, Calendar, search and the item page give shoppers a verdict for items they look up.
 
