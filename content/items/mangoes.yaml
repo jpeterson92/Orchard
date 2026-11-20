@@ -45,11 +45,9 @@ varieties:
     label: Ataulfo or Honey mango
     sources: [nmb-varieties, foodandwine-mango-types]
     windows:
-      - { from: jan-1, to: jan-2, rating: poor }
       - { from: feb-1, to: feb-2, rating: fair }
       - { from: mar-1, to: jun-2, rating: prime }
       - { from: jul-1, to: aug-1, rating: fair }
-      - { from: aug-2, to: dec-2, rating: poor }
     quotedAs: [ataulfo]
   - id: kent
     name: Kent
@@ -58,11 +56,13 @@ varieties:
     label: Kent
     sources: [nmb-varieties, foodandwine-mango-types]
     windows:
-      - { from: jan-1, to: mar-2, rating: fair }
+      - { from: nov-1, to: mar-2, rating: fair }
       - { from: apr-1, to: may-2, rating: poor }
       - { from: jun-1, to: aug-2, rating: prime }
-      - { from: sep-1, to: oct-2, rating: poor }
-      - { from: nov-1, to: dec-2, rating: fair }
+      - from: sep-1
+        to: sep-2
+        rating: fair
+        reason: Only the model panel's low-confidence ranges rate this window; they read fair.
     quotedAs: [kent]
   - id: keitt
     name: Keitt
@@ -71,10 +71,13 @@ varieties:
     label: Keitt, which stays green when ripe
     sources: [nmb-varieties, foodandwine-mango-types, producebusiness-mangos-sage]
     windows:
-      - { from: jan-1, to: jul-1, rating: poor }
+      - { from: feb-2, to: mar-1, rating: poor }
+      - { from: mar-2, to: apr-1, rating: fair }
+      - { from: apr-2, to: jul-1, rating: poor }
       - { from: jul-2, to: jul-2, rating: fair }
       - { from: aug-1, to: oct-1, rating: prime }
-      - { from: oct-2, to: dec-2, rating: poor }
+      - { from: oct-2, to: nov-1, rating: poor }
+      - { from: dec-2, to: jan-1, rating: poor }
     quotedAs: [keitt]
 origins:
   - origin: mx
@@ -86,12 +89,12 @@ origins:
         to: sep-2
         rating: prime
         reason: Food Network and The Produce Moms rate eating quality prime here, outweighing the model panel's fair.
-      - { from: oct-1, to: dec-2, rating: poor }
+      - { from: oct-1, to: oct-1, rating: poor }
   - origin: pe
     windows:
-      - { from: jan-1, to: mar-2, rating: fair }
-      - { from: apr-1, to: nov-2, rating: poor }
-      - { from: dec-1, to: dec-2, rating: fair }
+      - { from: nov-2, to: nov-2, rating: poor }
+      - { from: dec-1, to: mar-2, rating: fair }
+      - { from: apr-1, to: apr-1, rating: poor }
   - origin: ec
     windows:
       - { from: oct-2, to: jan-1, rating: poor }

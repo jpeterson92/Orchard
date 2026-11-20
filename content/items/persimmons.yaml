@@ -45,18 +45,19 @@ prep: Rinse and slice a Fuyu, skin and all. Halve a soft Hachiya and scoop out t
 origins:
   - origin: us-ca
     windows:
-      - { from: jan-1, to: aug-2, rating: poor }
       - { from: sep-1, to: sep-1, rating: fair }
       - from: sep-2
         to: sep-2
         rating: fair
-        reason: Only availability claims speak here, and the model panel has no rating.
+        reason: Only the model panel's low-confidence ranges rate this window; they read fair.
       - { from: oct-1, to: dec-2, rating: prime }
+      - from: jan-1
+        to: jan-2
+        rating: fair
+        reason: Only the model panel's low-confidence ranges rate this window; they read fair.
   - origin: es
     windows:
-      - { from: jan-1, to: feb-2, rating: fair }
-      - { from: mar-1, to: nov-1, rating: poor }
-      - { from: nov-2, to: dec-2, rating: fair }
+      - { from: nov-2, to: feb-2, rating: fair }
   - origin: il
     windows:
       - { from: jan-1, to: mar-2, rating: fair }
@@ -64,7 +65,7 @@ origins:
   - origin: cl
     windows:
       - { from: apr-1, to: may-2, rating: fair }
-      - { from: jun-1, to: jul-2, rating: poor }
+      - { from: jun-1, to: jun-1, rating: poor }
 typicalOrigins:
   - from: sep
     to: nov

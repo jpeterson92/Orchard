@@ -39,12 +39,11 @@ prep: Rinse just before eating. Halve along the seam and twist; the pit lifts ou
 origins:
   - origin: us-ca
     windows:
-      - { from: may-1, to: may-1, rating: fair }
-      - { from: may-2, to: jun-2, rating: prime }
+      - { from: may-1, to: jun-2, rating: prime }
       - from: jul-1
         to: jul-1
         rating: fair
-        reason: The panel rates early-July California fruit fair as the harvest winds down; the cited sources speak only to availability.
+        reason: Only the model panel's low-confidence ranges rate this window; they read fair.
       - from: jul-2
         to: jul-2
         rating: fair

@@ -62,9 +62,14 @@ varieties:
     plu: { codes: [4132, 4133, 4134, 4135, 4173, 4174], sources: [ifps-plu-codes] }
     sources: [usapple-gala, veritable-apple-guide, atk-apples-for-cooking, rutgers-apple-varieties]
     windows:
-      - { from: aug-2, to: nov-2, rating: prime }
-      - { from: dec-1, to: apr-2, rating: fair }
+      - { from: jan-1, to: mar-2, rating: fair }
+      - from: apr-1
+        to: apr-2
+        rating: fair
+        reason: Only the model panel's low-confidence ranges rate this window; they read fair.
       - { from: may-1, to: aug-1, rating: poor }
+      - { from: aug-2, to: nov-2, rating: prime }
+      - { from: dec-1, to: dec-2, rating: fair }
     quotedAs: [gala, royal-gala]
   - id: fuji
     name: Fuji
@@ -75,7 +80,11 @@ varieties:
     plu: { codes: [4129, 4131], sources: [ifps-plu-codes] }
     sources: [usapple-fuji, veritable-apple-guide, fruitguys-sweetest-apples]
     windows:
-      - { from: jan-1, to: sep-2, rating: fair }
+      - { from: jan-1, to: jun-2, rating: fair }
+      - from: jul-1
+        to: sep-2
+        rating: poor
+        reason: Only the model panel's low-confidence ranges rate this window; they read poor.
       - { from: oct-1, to: dec-2, rating: prime }
     quotedAs: [fuji]
   - id: granny-smith
@@ -100,11 +109,11 @@ varieties:
       [veritable-apple-guide, atk-apples-for-cooking, rutgers-apple-varieties, almanac-best-apples-baking]
     windows:
       - { from: jan-1, to: jan-2, rating: prime }
-      - { from: feb-1, to: sep-2, rating: fair }
-      - from: oct-1
+      - { from: feb-1, to: jun-2, rating: fair }
+      - from: jul-1
         to: oct-2
-        rating: fair
-        reason: Pink Lady is picked from late October, so early-October fruit is last season's, from long storage.
+        rating: poor
+        reason: Only the model panel's low-confidence ranges rate this window; they read poor.
       - { from: nov-1, to: dec-2, rating: prime }
     quotedAs: [pink-lady-cripps-pink]
   - id: cosmic-crisp

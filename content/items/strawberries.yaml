@@ -41,25 +41,27 @@ prep: Rinse under cool water just before eating, then hull. Washing ahead speeds
 origins:
   - origin: us-ca
     windows:
-      - { from: jan-1, to: feb-1, rating: poor }
-      - { from: feb-2, to: feb-2, rating: fair }
+      - from: feb-1
+        to: feb-2
+        rating: fair
+        reason: Only the model panel's low-confidence ranges rate this window; they read fair.
       - { from: mar-1, to: jun-2, rating: prime }
       - { from: jul-1, to: aug-2, rating: fair }
-      - { from: sep-1, to: dec-2, rating: poor }
+      - { from: sep-1, to: nov-2, rating: poor }
   - origin: mx
     windows:
-      - { from: jan-1, to: jan-2, rating: poor }
+      - { from: nov-1, to: jan-2, rating: poor }
       - { from: feb-1, to: apr-2, rating: fair }
-      - { from: may-1, to: dec-2, rating: poor }
   - origin: us-fl
     windows:
-      - { from: jan-1, to: jan-2, rating: fair }
-      - { from: feb-1, to: mar-1, rating: prime }
+      - { from: nov-2, to: jan-2, rating: fair }
+      - from: feb-1
+        to: mar-1
+        rating: prime
+        reason: Only the model panel's low-confidence ranges rate this window; they read prime.
       - from: mar-2
         to: mar-2
         rating: prime
-        reason: The model panel has no rating here, and the cited sources disagree; together they read prime.
+        reason: Cited eating-quality sources outweigh the model panel here and read prime.
       - { from: apr-1, to: apr-1, rating: fair }
-      - { from: apr-2, to: nov-1, rating: poor }
-      - { from: nov-2, to: dec-2, rating: fair }
 status: draft

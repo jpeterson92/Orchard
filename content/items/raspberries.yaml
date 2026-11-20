@@ -41,13 +41,13 @@ origins:
       origin: mx,
       windows:
         [
-          { from: jan-1, to: jun-1, rating: fair },
           {
-            from: jun-2,
-            to: aug-2,
+            from: aug-1,
+            to: aug-1,
             rating: fair,
             reason: "The model panel has no rating here, and the cited sources disagree; together they read fair.",
           },
+          { from: aug-2, to: aug-2, rating: prime },
           { from: sep-1, to: sep-1, rating: fair },
           {
             from: sep-2,
@@ -55,23 +55,22 @@ origins:
             rating: fair,
             reason: "Mexican raspberries read fair either side of late September; one poor half-month there is a gap in one chart, not a drop in quality.",
           },
-          { from: oct-1, to: dec-2, rating: fair },
+          { from: oct-1, to: jun-1, rating: fair },
+          {
+            from: jun-2,
+            to: jun-2,
+            rating: fair,
+            reason: "The model panel has no rating here, and the cited sources disagree; together they read fair.",
+          },
         ],
     }
   - {
       origin: us-ca,
       windows:
         [
-          { from: jan-1, to: may-2, rating: poor },
           { from: jun-1, to: sep-1, rating: prime },
           { from: sep-2, to: oct-2, rating: fair },
-          {
-            from: nov-1,
-            to: nov-2,
-            rating: fair,
-            reason: "The model panel has no rating here, and the cited sources disagree; together they read fair.",
-          },
-          { from: dec-1, to: dec-2, rating: poor },
+          { from: nov-1, to: nov-1, rating: prime },
         ],
     }
 status: draft

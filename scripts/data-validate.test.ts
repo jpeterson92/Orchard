@@ -317,7 +317,7 @@ describe("validate: a valid dataset", () => {
     const values = Array(WINDOW_COUNT).fill(null);
     for (const i of windowRange("apr-1", "jun-2")) values[i] = 1;
     for (const i of windowRange("jul-1", "aug-2")) values[i] = 0.5;
-    raw.panel = [{ item: "test-fruit", origin: "us-ca", values }];
+    raw.panel = [{ item: "test-fruit", origin: "us-ca", values, low: Array(WINDOW_COUNT).fill(false) }];
     expect(validate(raw, { production: false }).errors).toEqual([]);
     for (const i of windowRange("jul-1", "aug-2")) values[i] = 0;
     expect(validate(raw, { production: false }).errors.join("\n")).toContain(
@@ -331,9 +331,21 @@ describe("validate: a valid dataset", () => {
     const values = Array(WINDOW_COUNT).fill(null);
     for (const i of windowRange("apr-1", "jun-2")) values[i] = 1;
     for (const i of windowRange("jul-1", "aug-2")) values[i] = 0.5;
-    raw.panel = [{ item: "test-fruit", origin: "us-ca", values }];
+    raw.panel = [{ item: "test-fruit", origin: "us-ca", values, low: Array(WINDOW_COUNT).fill(false) }];
     const usCa = () => validate(raw, { production: false }).errors.filter((e) => e.includes(" us-ca "));
     expect(usCa()).toEqual([]);
+    // Resting on the panel's low-confidence ranges alone, the window counts but needs a reason.
+    raw.panel = [
+      {
+        item: "test-fruit",
+        origin: "us-ca",
+        values,
+        low: values.map((_, i) => windowRange("jul-1", "aug-2").includes(i)),
+      },
+    ];
+    expect(usCa()).toEqual([
+      "item test-fruit us-ca jul-1..aug-2: the evidence is Low confidence at jul-1; add a reason",
+    ]);
     raw.panel = [];
     expect(validate(raw, { production: false }).errors.join(String.fromCharCode(10))).toContain(
       "needs claims from 2 independent sources, has 0 at apr-1",

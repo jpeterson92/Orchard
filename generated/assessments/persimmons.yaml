@@ -6,7 +6,7 @@ status: draft
 rated by: origin
 peak worth seeking: true
 always good: false
-outlook: "GGGGGGGGGGSSSSSSGGPPPPPP (Jan to Dec, two windows a month: P Peak, G Good, S Skip, · Limited evidence)"
+outlook: "GGGGGGGGGGS···SSGGPPPPPP (Jan to Dec, two windows a month: P Peak, G Good, S Skip, · Limited evidence)"
 windows:
   jan-1:
     when: early January (from 2026-01-01)
@@ -357,84 +357,39 @@ windows:
     today: not on Today
   jun-2:
     when: late June (from 2026-06-16)
-    verdict: skip
-    rule: 2
+    verdict: limited
+    rule: 1
     basis: typical
-    decided:
-      origin: cl
-      rating: poor
-      evidence: medium
-    weights: editorial
-    typical: [cl poor 100.0%]
-    peak:
-      share: 0.0%
-      available: "no: no origin at this level"
-      whole bin: no (≤ 75.0%)
-      origins: []
-    good:
-      share: 0.0%
-      available: "no: no origin at this level"
-      whole bin: no (≤ 75.0%)
-      origins: []
+    decided: none
     look for: []
     label note: false
-    reasons: [rated poor (origin cl)]
-    confidence: medium (relevance)
-    markers: [improves (sep-1)]
+    reasons: [origin-unrated cl]
+    confidence: low (coverage, relevance)
+    markers: []
     today: not on Today
   jul-1:
     when: early July (from 2026-07-01)
-    verdict: skip
-    rule: 2
+    verdict: limited
+    rule: 1
     basis: typical
-    decided:
-      origin: cl
-      rating: poor
-      evidence: medium
-    weights: editorial
-    typical: [cl poor 100.0%]
-    peak:
-      share: 0.0%
-      available: "no: no origin at this level"
-      whole bin: no (≤ 75.0%)
-      origins: []
-    good:
-      share: 0.0%
-      available: "no: no origin at this level"
-      whole bin: no (≤ 75.0%)
-      origins: []
+    decided: none
     look for: []
     label note: false
-    reasons: [rated poor (origin cl)]
-    confidence: medium (relevance)
-    markers: [improves (sep-1)]
+    reasons: [origin-unrated cl]
+    confidence: low (coverage, relevance)
+    markers: []
     today: not on Today
   jul-2:
     when: late July (from 2026-07-16)
-    verdict: skip
-    rule: 2
+    verdict: limited
+    rule: 1
     basis: typical
-    decided:
-      origin: cl
-      rating: poor
-      evidence: medium
-    weights: editorial
-    typical: [cl poor 100.0%]
-    peak:
-      share: 0.0%
-      available: "no: no origin at this level"
-      whole bin: no (≤ 75.0%)
-      origins: []
-    good:
-      share: 0.0%
-      available: "no: no origin at this level"
-      whole bin: no (≤ 75.0%)
-      origins: []
+    decided: none
     look for: []
     label note: false
-    reasons: [rated poor (origin cl)]
-    confidence: medium (relevance)
-    markers: [improves (sep-1)]
+    reasons: [origin-unrated cl]
+    confidence: low (coverage, relevance)
+    markers: []
     today: not on Today
   aug-1:
     when: early August (from 2026-08-01)

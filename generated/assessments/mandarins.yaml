@@ -166,12 +166,13 @@ windows:
     markers: [reliable-year-round]
     today:
       section: best right now
-      line: W. Murcott and Tango and Minneola tangelo
+      line: W. Murcott and Tango
       reason: none
       avoid: none
       tags: []
     varieties:
-      peak: [W. Murcott and Tango, Minneola tangelo]
+      peak: [W. Murcott and Tango]
+      skip: [Minneola tangelo]
       limited: [Clementine, Gold Nugget]
   apr-2:
     when: late April (from 2026-04-16)
@@ -189,12 +190,13 @@ windows:
     markers: [reliable-year-round]
     today:
       section: best right now
-      line: W. Murcott and Tango and Minneola tangelo
+      line: W. Murcott and Tango
       reason: none
       avoid: none
       tags: []
     varieties:
-      peak: [W. Murcott and Tango, Minneola tangelo]
+      peak: [W. Murcott and Tango]
+      skip: [Minneola tangelo]
       limited: [Clementine, Gold Nugget]
   may-1:
     when: early May (from 2026-05-01)
@@ -243,7 +245,8 @@ windows:
     varieties:
       peak: [Gold Nugget]
       good: [W. Murcott and Tango]
-      skip: [Clementine, Minneola tangelo]
+      skip: [Clementine]
+      limited: [Minneola tangelo]
   jun-1:
     when: early June (from 2026-06-01)
     verdict: good
@@ -261,8 +264,8 @@ windows:
     today: not on Today
     varieties:
       good: [W. Murcott and Tango]
-      skip: [Clementine, Minneola tangelo]
-      limited: [Gold Nugget]
+      skip: [Clementine]
+      limited: [Minneola tangelo, Gold Nugget]
   jun-2:
     when: late June (from 2026-06-16)
     verdict: good
@@ -280,8 +283,8 @@ windows:
     today: not on Today
     varieties:
       good: [W. Murcott and Tango]
-      skip: [Clementine, Minneola tangelo]
-      limited: [Gold Nugget]
+      skip: [Clementine]
+      limited: [Minneola tangelo, Gold Nugget]
   jul-1:
     when: early July (from 2026-07-01)
     verdict: good
@@ -299,7 +302,8 @@ windows:
     today: not on Today
     varieties:
       good: [W. Murcott and Tango]
-      skip: [Clementine, Minneola tangelo]
+      skip: [Clementine]
+      limited: [Minneola tangelo]
       not in stores: [Gold Nugget]
   jul-2:
     when: late July (from 2026-07-16)
@@ -318,8 +322,7 @@ windows:
     today: not on Today
     varieties:
       good: [W. Murcott and Tango]
-      skip: [Minneola tangelo]
-      limited: [Clementine]
+      limited: [Clementine, Minneola tangelo]
       not in stores: [Gold Nugget]
   aug-1:
     when: early August (from 2026-08-01)
@@ -338,8 +341,7 @@ windows:
     today: not on Today
     varieties:
       good: [W. Murcott and Tango]
-      skip: [Minneola tangelo]
-      limited: [Clementine]
+      limited: [Clementine, Minneola tangelo]
       not in stores: [Gold Nugget]
   aug-2:
     when: late August (from 2026-08-16)
@@ -358,8 +360,7 @@ windows:
     today: not on Today
     varieties:
       good: [W. Murcott and Tango]
-      skip: [Minneola tangelo]
-      limited: [Clementine]
+      limited: [Clementine, Minneola tangelo]
       not in stores: [Gold Nugget]
   sep-1:
     when: early September (from 2026-09-01)
@@ -378,8 +379,7 @@ windows:
     today: not on Today
     varieties:
       good: [W. Murcott and Tango]
-      skip: [Minneola tangelo]
-      limited: [Clementine]
+      limited: [Clementine, Minneola tangelo]
       not in stores: [Gold Nugget]
   sep-2:
     when: late September (from 2026-09-16)
@@ -398,8 +398,7 @@ windows:
     today: not on Today
     varieties:
       good: [W. Murcott and Tango]
-      skip: [Minneola tangelo]
-      limited: [Clementine]
+      limited: [Clementine, Minneola tangelo]
       not in stores: [Gold Nugget]
   oct-1:
     when: early October (from 2026-10-01)
@@ -417,8 +416,8 @@ windows:
     markers: [reliable-year-round, improves (oct-2)]
     today: not on Today
     varieties:
-      skip: [W. Murcott and Tango, Minneola tangelo]
-      limited: [Clementine]
+      skip: [W. Murcott and Tango]
+      limited: [Clementine, Minneola tangelo]
       not in stores: [Gold Nugget]
   oct-2:
     when: late October (from 2026-10-16)
@@ -486,8 +485,7 @@ windows:
       tags: []
     varieties:
       peak: [Clementine]
-      skip: [W. Murcott and Tango]
-      limited: [Minneola tangelo]
+      limited: [W. Murcott and Tango, Minneola tangelo]
       not in stores: [Gold Nugget]
   dec-1:
     when: early December (from 2026-12-01)
@@ -512,7 +510,7 @@ windows:
     varieties:
       peak: [Clementine]
       good: [Minneola tangelo]
-      skip: [W. Murcott and Tango]
+      limited: [W. Murcott and Tango]
       not in stores: [Gold Nugget]
   dec-2:
     when: late December (from 2026-12-16)
@@ -530,11 +528,12 @@ windows:
     markers: [reliable-year-round]
     today:
       section: best right now
-      line: Clementine and Minneola tangelo
+      line: Clementine
       reason: none
       avoid: none
       tags: []
     varieties:
-      peak: [Clementine, Minneola tangelo]
+      peak: [Clementine]
+      good: [Minneola tangelo]
       limited: [W. Murcott and Tango]
       not in stores: [Gold Nugget]

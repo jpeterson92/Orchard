@@ -119,9 +119,9 @@ for (const item of data.items) {
     // P15: the panel beside the cited evidence; where it disagrees, research goes there first.
     const panel = panelFor(data.panel, item.id, target);
     if (panel !== null) {
-      detail.push(row(`    ×${P15.weight.toFixed(1)} model panel`, ratingStrip(panel)));
+      detail.push(row(`    ×${P15.weight.toFixed(1)} model panel`, ratingStrip(panel.values)));
       const cited = propose(claims, sources, target, traitsFor(item, target)).windows;
-      const differs = panel.flatMap((v, i) => {
+      const differs = panel.values.flatMap((v, i) => {
         const c = cited[i];
         return v !== null && c != null && ratingForValue(v) !== c.rating ? [windowLabel(i)] : [];
       });

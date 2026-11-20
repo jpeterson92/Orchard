@@ -6,7 +6,7 @@ status: draft
 rated by: origin
 peak worth seeking: true
 always good: false
-outlook: "SSSSSSSGPPPPPPPPPGSSSSSS (Jan to Dec, two windows a month: P Peak, G Good, S Skip, · Limited evidence)"
+outlook: "SSSSSSSGG·PPPPPPPGSSSSSS (Jan to Dec, two windows a month: P Peak, G Good, S Skip, · Limited evidence)"
 windows:
   jan-1:
     when: early January (from 2026-01-01)
@@ -231,8 +231,8 @@ windows:
       tags: []
   may-1:
     when: early May (from 2026-05-01)
-    verdict: peak
-    rule: 3
+    verdict: good
+    rule: 4
     basis: typical
     decided:
       origin: us-fl
@@ -250,49 +250,30 @@ windows:
       available: "yes: counted share 100.0% ≥ 33.0%"
       whole bin: yes (> 75.0%)
       origins: [us-fl prime 60.5%, mx fair 39.5%]
-    look for: [us-fl]
-    label note: true
-    reasons: [rated prime (origin us-fl), look-for us-fl]
-    confidence: medium (agreement)
-    markers: [check-label]
+    look for: []
+    label note: false
+    reasons: [rated prime (origin us-fl), main-peak jun-1 to sep-1]
+    confidence: high
+    markers: []
+    main peak: rated Peak here, but Peak is kept for jun-1 to sep-1 (P19), so good
     today:
-      section: best right now
-      line: Look for ones from Florida
+      section: good buys
+      line: none
       reason: none
       avoid: none
       tags: []
   may-2:
     when: late May (from 2026-05-16)
-    verdict: peak
-    rule: 3
+    verdict: limited
+    rule: 1
     basis: typical
-    decided:
-      origin: us-fl
-      rating: prime
-      evidence: medium
-    weights: volume
-    typical: [us-fl prime 60.5% (supply 4.60), mx fair 39.5% (supply 2.70)]
-    peak:
-      share: 60.5%
-      available: "yes: counted share 60.5% ≥ 33.0%"
-      whole bin: no (≤ 75.0%)
-      origins: [us-fl prime 60.5%]
-    good:
-      share: 100.0%
-      available: "yes: counted share 100.0% ≥ 33.0%"
-      whole bin: yes (> 75.0%)
-      origins: [us-fl prime 60.5%, mx fair 39.5%]
-    look for: [us-fl]
-    label note: true
-    reasons: [rated prime (origin us-fl), look-for us-fl]
-    confidence: medium (agreement)
-    markers: [check-label]
-    today:
-      section: best right now
-      line: Look for ones from Florida
-      reason: none
-      avoid: none
-      tags: []
+    decided: none
+    look for: []
+    label note: false
+    reasons: [origin-unrated mx]
+    confidence: medium (coverage)
+    markers: []
+    today: not on Today
   jun-1:
     when: early June (from 2026-06-01)
     verdict: peak
@@ -303,7 +284,7 @@ windows:
       rating: prime
       evidence: medium
     weights: volume
-    typical: [us-ga prime 44.5% (supply 4.00), us-fl prime 24.7% (supply 2.20), mx poor 17.5% (supply 1.40), us-az prime 13.3% (supply 2.10)]
+    typical: [us-ga prime 44.5% (supply 4.00), us-fl prime 24.7% (supply 2.20), mx unrated 17.5% (supply 1.40), us-az prime 13.3% (supply 2.10)]
     peak:
       share: 82.5%
       available: "yes: counted share 82.5% ≥ 33.0%"
@@ -316,7 +297,7 @@ windows:
       origins: [us-ga prime 44.5%, us-fl prime 24.7%, us-az prime 13.3%]
     look for: []
     label note: false
-    reasons: [rated prime (origin us-ga), typical-origin-poor mx]
+    reasons: [rated prime (origin us-ga)]
     confidence: high
     markers: []
     today:
@@ -335,7 +316,7 @@ windows:
       rating: prime
       evidence: medium
     weights: volume
-    typical: [us-ga prime 44.5% (supply 4.00), us-fl prime 24.7% (supply 2.20), mx poor 17.5% (supply 1.40), us-az prime 13.3% (supply 2.10)]
+    typical: [us-ga prime 44.5% (supply 4.00), us-fl prime 24.7% (supply 2.20), mx unrated 17.5% (supply 1.40), us-az prime 13.3% (supply 2.10)]
     peak:
       share: 82.5%
       available: "yes: counted share 82.5% ≥ 33.0%"
@@ -348,7 +329,7 @@ windows:
       origins: [us-ga prime 44.5%, us-fl prime 24.7%, us-az prime 13.3%]
     look for: []
     label note: false
-    reasons: [rated prime (origin us-ga), typical-origin-poor mx]
+    reasons: [rated prime (origin us-ga)]
     confidence: high
     markers: []
     today:
@@ -586,17 +567,17 @@ windows:
       rating: poor
       evidence: medium
     weights: volume
-    typical: ["mx poor 77.1% (supply 0.76, thin)", "us-ca fair 22.9% (supply 0.48, thin)"]
+    typical: ["mx poor 77.1% (supply 0.76, thin)", "us-ca unrated 22.9% (supply 0.48, thin)"]
     peak:
       share: 0.0%
       available: "no: no origin at this level"
       whole bin: no (≤ 75.0%)
       origins: []
     good:
-      share: 22.9%
-      available: "no: counted share 0.0% < 33.0%, none cited in stores"
+      share: 0.0%
+      available: "no: no origin at this level"
       whole bin: no (≤ 75.0%)
-      origins: ["us-ca fair 22.9% (low confidence, not counted)"]
+      origins: []
     look for: []
     label note: false
     reasons: [rated poor (origin mx)]

@@ -393,6 +393,8 @@ export interface PanelCurve {
   variety?: string | undefined;
   /** Indexed by window 0–23; null where the panel abstains. */
   values: (number | null)[];
+  /** Indexed by window 0–23; true where the value rests on low-confidence ranges alone (P15). */
+  low: boolean[];
 }
 
 /** What data-build writes to `src/generated/data.json`. */

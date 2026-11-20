@@ -25,7 +25,8 @@ windows:
     today: not on Today
     varieties:
       good: [Kent]
-      skip: [Ataulfo (Honey), Keitt]
+      skip: [Keitt]
+      limited: [Ataulfo (Honey)]
   jan-2:
     when: late January (from 2026-01-16)
     verdict: good
@@ -43,7 +44,7 @@ windows:
     today: not on Today
     varieties:
       good: [Kent]
-      skip: [Ataulfo (Honey), Keitt]
+      limited: [Ataulfo (Honey), Keitt]
   feb-1:
     when: early February (from 2026-02-01)
     verdict: good
@@ -361,43 +362,43 @@ windows:
       tags: [Last call]
     varieties:
       peak: [Kent, Keitt]
-      skip: [Ataulfo (Honey)]
+      limited: [Ataulfo (Honey)]
   sep-1:
     when: early September (from 2026-09-01)
     verdict: good
     rule: 4
     basis: variety
     decided:
-      variety: keitt
-      rating: prime
-      evidence: medium
+      variety: kent
+      rating: fair
+      evidence: low
     look for: []
     label note: false
-    reasons: [rated prime (variety keitt), supply-thin]
-    confidence: medium (agreement)
+    reasons: [rated fair (variety kent)]
+    confidence: medium (coverage)
     markers: [reliable-year-round]
     today: not on Today
     varieties:
-      good: [Keitt]
-      skip: [Ataulfo (Honey), Kent]
+      good: [Kent, Keitt]
+      limited: [Ataulfo (Honey)]
   sep-2:
     when: late September (from 2026-09-16)
     verdict: good
     rule: 4
     basis: variety
     decided:
-      variety: keitt
-      rating: prime
-      evidence: medium
+      variety: kent
+      rating: fair
+      evidence: low
     look for: []
     label note: false
-    reasons: [rated prime (variety keitt), supply-thin]
-    confidence: medium (agreement)
+    reasons: [rated fair (variety kent)]
+    confidence: medium (coverage)
     markers: [last-call (fades by oct-2), reliable-year-round]
     today: not on Today
     varieties:
-      good: [Keitt]
-      skip: [Ataulfo (Honey), Kent]
+      good: [Kent, Keitt]
+      limited: [Ataulfo (Honey)]
   oct-1:
     when: early October (from 2026-10-01)
     verdict: good
@@ -415,7 +416,7 @@ windows:
     today: not on Today
     varieties:
       peak: [Keitt]
-      skip: [Ataulfo (Honey)]
+      limited: [Ataulfo (Honey)]
       not in stores: [Kent]
   oct-2:
     when: late October (from 2026-10-16)
@@ -423,17 +424,18 @@ windows:
     rule: 2
     basis: variety
     decided:
-      variety: ataulfo
+      variety: keitt
       rating: poor
       evidence: medium
     look for: []
     label note: false
-    reasons: [rated poor (variety ataulfo)]
+    reasons: [rated poor (variety keitt)]
     confidence: medium (agreement)
     markers: [reliable-year-round, improves (nov-1)]
     today: not on Today
     varieties:
-      skip: [Ataulfo (Honey), Keitt]
+      skip: [Keitt]
+      limited: [Ataulfo (Honey)]
       not in stores: [Kent]
   nov-1:
     when: early November (from 2026-11-01)
@@ -452,7 +454,8 @@ windows:
     today: not on Today
     varieties:
       good: [Kent]
-      skip: [Ataulfo (Honey), Keitt]
+      skip: [Keitt]
+      limited: [Ataulfo (Honey)]
   nov-2:
     when: late November (from 2026-11-16)
     verdict: good
@@ -470,7 +473,7 @@ windows:
     today: not on Today
     varieties:
       good: [Kent]
-      skip: [Ataulfo (Honey), Keitt]
+      limited: [Ataulfo (Honey), Keitt]
   dec-1:
     when: early December (from 2026-12-01)
     verdict: good
@@ -488,7 +491,7 @@ windows:
     today: not on Today
     varieties:
       good: [Kent]
-      skip: [Ataulfo (Honey), Keitt]
+      limited: [Ataulfo (Honey), Keitt]
   dec-2:
     when: late December (from 2026-12-16)
     verdict: good
@@ -506,4 +509,5 @@ windows:
     today: not on Today
     varieties:
       good: [Kent]
-      skip: [Ataulfo (Honey), Keitt]
+      skip: [Keitt]
+      limited: [Ataulfo (Honey)]

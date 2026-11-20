@@ -46,7 +46,6 @@ prep: Rinse gently and trim the stem. Eat whole, skin and all, or halve for sala
 origins:
   - origin: us-ca
     windows:
-      - { from: jan-1, to: apr-1, rating: poor }
       - { from: apr-2, to: apr-2, rating: fair }
       - from: may-1
         to: may-1
@@ -65,10 +64,9 @@ origins:
         rating: fair
         reason: Only availability claims speak here, and the model panel has no rating.
       - { from: dec-1, to: dec-1, rating: fair }
-      - { from: dec-2, to: dec-2, rating: poor }
   - origin: mx
     windows:
-      - { from: jan-1, to: dec-2, rating: poor }
+      - { from: nov-1, to: may-2, rating: poor }
 typicalOrigins:
   - from: may
     to: may

@@ -228,7 +228,7 @@ export function panelCurves(
       }
     }
   const curves = [...ranges.values()]
-    .map(({ runs: rs, ...t }) => ({ ...t, values: panelValues(rs) }))
+    .map(({ runs: rs, ...t }) => ({ ...t, ...panelValues(rs) }))
     .sort((a, b) =>
       `${a.item} ${a.origin ?? ""} ${a.variety ?? ""}`.localeCompare(
         `${b.item} ${b.origin ?? ""} ${b.variety ?? ""}`,

@@ -6,7 +6,7 @@ status: draft
 rated by: origin
 peak worth seeking: true
 always good: false
-outlook: "GGGGGGGGGG·PPPPPPP··GGGG (Jan to Dec, two windows a month: P Peak, G Good, S Skip, · Limited evidence)"
+outlook: "GGGGGGGGGG·PPPPPPPGGGGGG (Jan to Dec, two windows a month: P Peak, G Good, S Skip, · Limited evidence)"
 windows:
   jan-1:
     when: early January (from 2026-01-01)
@@ -18,22 +18,22 @@ windows:
       rating: fair
       evidence: medium
     weights: editorial
-    typical: [hn fair 50.0%, us-fl poor 50.0%]
+    typical: [hn fair 50.0%, us-fl fair 50.0%]
     peak:
       share: 0.0%
       available: "no: no origin at this level"
       whole bin: no (≤ 75.0%)
       origins: []
     good:
-      share: 50.0%
+      share: 100.0%
       available: "yes: counted share 50.0% ≥ 33.0%"
-      whole bin: no (≤ 75.0%)
-      origins: [hn fair 50.0%]
-    look for: [hn]
-    label note: true
-    reasons: [rated fair (origin hn), typical-origin-poor us-fl, look-for hn]
-    confidence: low (relevance, agreement)
-    markers: [reliable-year-round, check-label]
+      whole bin: yes (> 75.0%)
+      origins: [hn fair 50.0%, "us-fl fair 50.0% (low confidence, not counted)"]
+    look for: []
+    label note: false
+    reasons: [rated fair (origin hn)]
+    confidence: medium (relevance)
+    markers: [reliable-year-round]
     today: not on Today
   jan-2:
     when: late January (from 2026-01-16)
@@ -45,22 +45,22 @@ windows:
       rating: fair
       evidence: medium
     weights: editorial
-    typical: [hn fair 50.0%, us-fl poor 50.0%]
+    typical: [hn fair 50.0%, us-fl fair 50.0%]
     peak:
       share: 0.0%
       available: "no: no origin at this level"
       whole bin: no (≤ 75.0%)
       origins: []
     good:
-      share: 50.0%
+      share: 100.0%
       available: "yes: counted share 50.0% ≥ 33.0%"
-      whole bin: no (≤ 75.0%)
-      origins: [hn fair 50.0%]
-    look for: [hn]
-    label note: true
-    reasons: [rated fair (origin hn), typical-origin-poor us-fl, look-for hn]
-    confidence: low (relevance, agreement)
-    markers: [reliable-year-round, check-label]
+      whole bin: yes (> 75.0%)
+      origins: [hn fair 50.0%, "us-fl fair 50.0% (low confidence, not counted)"]
+    look for: []
+    label note: false
+    reasons: [rated fair (origin hn)]
+    confidence: medium (relevance)
+    markers: [reliable-year-round]
     today: not on Today
   feb-1:
     when: early February (from 2026-02-01)
@@ -72,22 +72,22 @@ windows:
       rating: fair
       evidence: medium
     weights: editorial
-    typical: [hn fair 50.0%, us-fl poor 50.0%]
+    typical: [hn fair 50.0%, us-fl fair 50.0%]
     peak:
       share: 0.0%
       available: "no: no origin at this level"
       whole bin: no (≤ 75.0%)
       origins: []
     good:
-      share: 50.0%
+      share: 100.0%
       available: "yes: counted share 50.0% ≥ 33.0%"
-      whole bin: no (≤ 75.0%)
-      origins: [hn fair 50.0%]
-    look for: [hn]
-    label note: true
-    reasons: [rated fair (origin hn), typical-origin-poor us-fl, look-for hn]
-    confidence: low (relevance, agreement)
-    markers: [reliable-year-round, check-label]
+      whole bin: yes (> 75.0%)
+      origins: [hn fair 50.0%, "us-fl fair 50.0% (low confidence, not counted)"]
+    look for: []
+    label note: false
+    reasons: [rated fair (origin hn)]
+    confidence: medium (relevance)
+    markers: [reliable-year-round]
     today: not on Today
   feb-2:
     when: late February (from 2026-02-16)
@@ -107,9 +107,9 @@ windows:
       origins: []
     good:
       share: 100.0%
-      available: "yes: counted share 100.0% ≥ 33.0%"
+      available: "yes: counted share 50.0% ≥ 33.0%"
       whole bin: yes (> 75.0%)
-      origins: [hn fair 50.0%, us-fl fair 50.0%]
+      origins: [hn fair 50.0%, "us-fl fair 50.0% (low confidence, not counted)"]
     look for: []
     label note: false
     reasons: [rated fair (origin hn)]
@@ -286,7 +286,7 @@ windows:
     decided: none
     look for: []
     label note: false
-    reasons: [origin-unrated hn, origin-unrated us-ca, origin-unrated us-ga]
+    reasons: [origin-unrated us-ca, origin-unrated us-ga]
     confidence: low (coverage, relevance)
     markers: [reliable-year-round]
     today: not on Today
@@ -299,7 +299,7 @@ windows:
     decided: none
     look for: []
     label note: true
-    reasons: [selection local-southern, origin-unrated hn, origin-unrated us-ca]
+    reasons: [selection local-southern, origin-unrated us-ca]
     confidence: low (relevance, agreement)
     markers: [reliable-year-round, check-label]
     today:
@@ -317,7 +317,7 @@ windows:
     decided: none
     look for: []
     label note: true
-    reasons: [selection local-southern, origin-unrated hn, origin-unrated us-ca]
+    reasons: [selection local-southern, origin-unrated us-ca]
     confidence: low (relevance, agreement)
     markers: [reliable-year-round, check-label]
     today:
@@ -335,7 +335,7 @@ windows:
     decided: none
     look for: []
     label note: true
-    reasons: [selection local-southern, origin-unrated hn, origin-unrated us-ca]
+    reasons: [selection local-southern, origin-unrated us-ca]
     confidence: low (relevance, agreement)
     markers: [reliable-year-round, check-label]
     today:
@@ -353,7 +353,7 @@ windows:
     decided: none
     look for: []
     label note: true
-    reasons: [selection local-southern, origin-unrated hn, origin-unrated us-ca]
+    reasons: [selection local-southern, origin-unrated us-ca]
     confidence: low (relevance, agreement)
     markers: [reliable-year-round, check-label]
     today:
@@ -371,7 +371,7 @@ windows:
     decided: none
     look for: []
     label note: true
-    reasons: [selection local-southern, origin-unrated hn, origin-unrated us-ca]
+    reasons: [selection local-southern, origin-unrated us-ca]
     confidence: low (relevance, agreement)
     markers: [reliable-year-round, check-label]
     today:
@@ -389,15 +389,15 @@ windows:
     decided: none
     look for: []
     label note: true
-    reasons: [selection local-southern, origin-unrated hn, origin-unrated us-ca]
+    reasons: [selection local-southern, origin-unrated us-ca]
     confidence: low (relevance, agreement)
-    markers: [reliable-year-round, check-label]
+    markers: [last-call (fades by oct-1), reliable-year-round, check-label]
     today:
       section: best right now
       line: Look for local Southern okra
-      reason: none
+      reason: Fades by early October.
       avoid: none
-      tags: []
+      tags: [Last call]
   sep-2:
     when: late September (from 2026-09-16)
     verdict: peak
@@ -407,36 +407,66 @@ windows:
     decided: none
     look for: []
     label note: true
-    reasons: [selection local-southern, origin-unrated hn, origin-unrated us-ca]
+    reasons: [selection local-southern, origin-unrated us-ca]
     confidence: low (relevance, agreement)
-    markers: [reliable-year-round, check-label]
+    markers: [last-call (fades by oct-1), reliable-year-round, check-label]
     today:
       section: best right now
       line: Look for local Southern okra
-      reason: none
+      reason: Fades by early October.
       avoid: none
-      tags: []
+      tags: [Last call]
   oct-1:
     when: early October (from 2026-10-01)
-    verdict: limited
-    rule: 1
+    verdict: good
+    rule: 4
     basis: typical
-    decided: none
+    decided:
+      origin: us-fl
+      rating: fair
+      evidence: low
+    weights: editorial
+    typical: [us-fl fair 100.0%]
+    peak:
+      share: 0.0%
+      available: "no: no origin at this level"
+      whole bin: no (≤ 75.0%)
+      origins: []
+    good:
+      share: 100.0%
+      available: "yes: counted share 100.0% ≥ 33.0%"
+      whole bin: yes (> 75.0%)
+      origins: [us-fl fair 100.0%]
     look for: []
     label note: false
-    reasons: [origin-unrated hn]
+    reasons: [rated fair (origin us-fl)]
     confidence: low (coverage, relevance)
     markers: [reliable-year-round]
     today: not on Today
   oct-2:
     when: late October (from 2026-10-16)
-    verdict: limited
-    rule: 1
+    verdict: good
+    rule: 4
     basis: typical
-    decided: none
+    decided:
+      origin: us-fl
+      rating: fair
+      evidence: low
+    weights: editorial
+    typical: [us-fl fair 100.0%]
+    peak:
+      share: 0.0%
+      available: "no: no origin at this level"
+      whole bin: no (≤ 75.0%)
+      origins: []
+    good:
+      share: 100.0%
+      available: "yes: counted share 100.0% ≥ 33.0%"
+      whole bin: yes (> 75.0%)
+      origins: [us-fl fair 100.0%]
     look for: []
     label note: false
-    reasons: [origin-unrated hn]
+    reasons: [rated fair (origin us-fl)]
     confidence: low (coverage, relevance)
     markers: [reliable-year-round]
     today: not on Today
@@ -450,17 +480,17 @@ windows:
       rating: fair
       evidence: medium
     weights: editorial
-    typical: [hn fair 50.0%, us-fl prime 50.0%]
+    typical: [hn fair 50.0%, us-fl fair 50.0%]
     peak:
-      share: 50.0%
-      available: "no: counted share 0.0% < 33.0%, none cited in stores"
+      share: 0.0%
+      available: "no: no origin at this level"
       whole bin: no (≤ 75.0%)
-      origins: ["us-fl prime 50.0% (low confidence, not counted)"]
+      origins: []
     good:
       share: 100.0%
       available: "yes: counted share 50.0% ≥ 33.0%"
       whole bin: yes (> 75.0%)
-      origins: [hn fair 50.0%, "us-fl prime 50.0% (low confidence, not counted)"]
+      origins: [hn fair 50.0%, "us-fl fair 50.0% (low confidence, not counted)"]
     look for: []
     label note: false
     reasons: [rated fair (origin hn)]
@@ -512,9 +542,9 @@ windows:
       origins: []
     good:
       share: 100.0%
-      available: "yes: counted share 100.0% ≥ 33.0%"
+      available: "yes: counted share 50.0% ≥ 33.0%"
       whole bin: yes (> 75.0%)
-      origins: [hn fair 50.0%, us-fl fair 50.0%]
+      origins: [hn fair 50.0%, "us-fl fair 50.0% (low confidence, not counted)"]
     look for: []
     label note: false
     reasons: [rated fair (origin hn)]
@@ -531,20 +561,20 @@ windows:
       rating: fair
       evidence: medium
     weights: editorial
-    typical: [hn fair 50.0%, us-fl poor 50.0%]
+    typical: [hn fair 50.0%, us-fl fair 50.0%]
     peak:
       share: 0.0%
       available: "no: no origin at this level"
       whole bin: no (≤ 75.0%)
       origins: []
     good:
-      share: 50.0%
+      share: 100.0%
       available: "yes: counted share 50.0% ≥ 33.0%"
-      whole bin: no (≤ 75.0%)
-      origins: [hn fair 50.0%]
-    look for: [hn]
-    label note: true
-    reasons: [rated fair (origin hn), typical-origin-poor us-fl, look-for hn]
-    confidence: low (relevance, agreement)
-    markers: [reliable-year-round, check-label]
+      whole bin: yes (> 75.0%)
+      origins: [hn fair 50.0%, "us-fl fair 50.0% (low confidence, not counted)"]
+    look for: []
+    label note: false
+    reasons: [rated fair (origin hn)]
+    confidence: medium (relevance)
+    markers: [reliable-year-round]
     today: not on Today

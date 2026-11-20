@@ -40,22 +40,23 @@ prep: Rinse just before eating. The skin is edible; cut around the pit to slice.
 origins:
   - origin: us-ca
     windows:
-      - { from: jan-1, to: may-1, rating: poor }
-      - from: may-2
-        to: may-2
-        rating: fair
-        reason: The model panel has no rating here, and the cited sources disagree; together they read fair.
       - { from: jun-1, to: jun-1, rating: fair }
       - { from: jun-2, to: sep-1, rating: prime }
       - { from: sep-2, to: oct-1, rating: fair }
-      - { from: oct-2, to: dec-2, rating: poor }
   - origin: cl
     windows:
-      - { from: jan-1, to: dec-2, rating: poor }
+      - { from: nov-2, to: nov-2, rating: poor }
+      - { from: dec-1, to: dec-1, rating: fair }
+      - { from: dec-2, to: dec-2, rating: poor }
+      - from: jan-1
+        to: apr-1
+        rating: poor
+        reason: Only the model panel's low-confidence ranges rate this window; they read poor.
+      - { from: apr-2, to: apr-2, rating: poor }
   - origin: za
     windows:
-      - from: jan-2
-        to: may-1
+      - from: mar-1
+        to: apr-2
         rating: poor
         reason: The sources speak only to timing. Like Chile's, South African plums come weeks by sea after cold treatment, so they read poor, as Chile's do.
 status: draft

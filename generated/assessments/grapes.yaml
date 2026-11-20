@@ -6,7 +6,7 @@ status: draft
 rated by: origin
 peak worth seeking: true
 always good: false
-outlook: "GGGGGGSSSGGGGPPPPPPPGGGG (Jan to Dec, two windows a month: P Peak, G Good, S Skip, · Limited evidence)"
+outlook: "GGGGGGSS··GGGPPPPPPPGGGG (Jan to Dec, two windows a month: P Peak, G Good, S Skip, · Limited evidence)"
 windows:
   jan-1:
     when: early January (from 2026-01-01)
@@ -195,7 +195,7 @@ windows:
     label note: false
     reasons: [rated poor (origin cl)]
     confidence: medium (agreement)
-    markers: [reliable-year-round, improves (may-2)]
+    markers: [reliable-year-round, improves (jun-1)]
     today: not on Today
   apr-2:
     when: late April (from 2026-04-16)
@@ -222,61 +222,31 @@ windows:
     label note: false
     reasons: [rated poor (origin cl)]
     confidence: medium (agreement)
-    markers: [reliable-year-round, improves (may-2)]
+    markers: [reliable-year-round, improves (jun-1)]
     today: not on Today
   may-1:
     when: early May (from 2026-05-01)
-    verdict: skip
-    rule: 2
+    verdict: limited
+    rule: 1
     basis: typical
-    decided:
-      origin: mx
-      rating: poor
-      evidence: medium
-    weights: volume
-    typical: [mx poor 58.1% (supply 4.70), cl poor 41.9% (supply 1.30)]
-    peak:
-      share: 0.0%
-      available: "no: no origin at this level"
-      whole bin: no (≤ 75.0%)
-      origins: []
-    good:
-      share: 0.0%
-      available: "no: no origin at this level"
-      whole bin: no (≤ 75.0%)
-      origins: []
+    decided: none
     look for: []
     label note: false
-    reasons: [rated poor (origin mx)]
-    confidence: medium (agreement)
-    markers: [reliable-year-round, improves (may-2)]
+    reasons: [origin-unrated mx]
+    confidence: medium (coverage)
+    markers: [reliable-year-round]
     today: not on Today
   may-2:
     when: late May (from 2026-05-16)
-    verdict: good
-    rule: 4
+    verdict: limited
+    rule: 1
     basis: typical
-    decided:
-      origin: mx
-      rating: fair
-      evidence: medium
-    weights: volume
-    typical: [mx fair 58.1% (supply 4.70), cl poor 41.9% (supply 1.30)]
-    peak:
-      share: 0.0%
-      available: "no: no origin at this level"
-      whole bin: no (≤ 75.0%)
-      origins: []
-    good:
-      share: 58.1%
-      available: "yes: counted share 58.1% ≥ 33.0%"
-      whole bin: no (≤ 75.0%)
-      origins: [mx fair 58.1%]
-    look for: [mx]
-    label note: true
-    reasons: [rated fair (origin mx), typical-origin-poor cl, look-for mx]
-    confidence: medium (agreement)
-    markers: [reliable-year-round, check-label]
+    decided: none
+    look for: []
+    label note: false
+    reasons: [origin-unrated cl]
+    confidence: medium (coverage)
+    markers: [reliable-year-round]
     today: not on Today
   jun-1:
     when: early June (from 2026-06-01)

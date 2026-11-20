@@ -41,7 +41,7 @@ export type Claim = Pick<
 export interface ItemTraits {
   /** Arrives from abroad eating well, without being picked underripe to survive the trip. */
   shipsWell: boolean;
-  /** Eats well for months out of commercial storage, so months away from harvest read Good, never Peak. */
+  /** Eats well for months out of commercial storage, so an import's chart speaks only for its listed months. */
   storesWell: boolean;
 }
 
@@ -112,13 +112,12 @@ export function ratingForValue(value: number): Rating {
 /**
  * A claim's values by window.
  *
- * An `availability` claim (a harvest chart, an in-season list) speaks for the whole year (P14): the windows it
- * lists keep their rating, the window either side of each listed range reads fair (never above the edge it
- * touches, never over a listed window), and every other window reads poor, or fair for an item that stores
- * well. A US-grown claim naming no state keeps only its listed windows and shoulders: it can't say when each
- * state is out of season. An import's availability curve sits one level lower, so its own season reads fair; for an item that
- * doesn't ship well every window reads poor. Eating-quality claims, imports included, are read as written.
- * With `offSeason` false, an availability claim keeps only its own season: listed windows and shoulders.
+ * An `availability` claim (a harvest chart, an in-season list) is one shipper's or one state's season (P14): the
+ * windows it lists keep their rating and the window either side of each listed range reads fair (never above the
+ * edge it touches, never over a listed window). It says nothing about the rest of the year, since other shippers
+ * and states may still be selling. An import's availability curve sits one level lower, so its own season reads
+ * fair; for an item that doesn't ship well it reads poor. An import that ships and stores well reads only its
+ * listed windows. Eating-quality claims, imports included, are read as written.
  *
  * Otherwise windows the claim doesn't rate have no value. A `season` claim gets a soft shoulder one window
  * beyond each end of each rated range, at half the edge value; shoulders never override a window the claim
@@ -127,13 +126,11 @@ export function ratingForValue(value: number): Rating {
 export function claimValues(
   claim: Pick<Claim, "windows" | "specificity" | "directness" | "origin">,
   item: ItemTraits,
-  offSeason = true,
 ): (number | null)[] {
   const values: (number | null)[] = Array(WINDOW_COUNT).fill(null);
   const ranges = claim.windows.map((w) => ({ range: windowRange(w.from, w.to), value: P12.value[w.rating] }));
   for (const { range, value } of ranges) for (const i of range) values[i] = value;
-  if (claim.directness === "availability")
-    return availabilityValues(values, ranges, claim.origin, item, offSeason);
+  if (claim.directness === "availability") return availabilityValues(values, ranges, claim.origin, item);
   if (claim.specificity !== "season") return values;
   const shoulders: (number | null)[] = Array(WINDOW_COUNT).fill(null);
   for (const { range, value } of ranges) {
@@ -152,12 +149,8 @@ function availabilityValues(
   ranges: { range: number[]; value: number }[],
   origin: string,
   item: ItemTraits,
-  readOffSeason: boolean,
 ): (number | null)[] {
   const imported = isImport(origin);
-  // A claim naming no state can't say when every state's season is: it keeps only its listed season.
-  const national = origin === "us";
-  const offSeason = national || !readOffSeason ? null : item.storesWell ? P12.value.fair : P12.value.poor;
   const shoulders: (number | null)[] = Array(WINDOW_COUNT).fill(null);
   for (const { range, value } of ranges) {
     if (range.length >= WINDOW_COUNT) continue;
@@ -174,9 +167,9 @@ function availabilityValues(
   if (imported && item.shipsWell && item.storesWell)
     return listed.map((v) => (v === null ? null : Math.max(P12.value.poor, v - step)));
   return listed.map((v, i) => {
-    if (v === null && shoulders[i] === null && offSeason === null) return null;
+    const value = v ?? shoulders[i] ?? null;
+    if (value === null) return null;
     if (imported && !item.shipsWell) return P12.value.poor;
-    const value = v ?? Math.max(offSeason ?? P12.value.poor, shoulders[i] ?? P12.value.poor);
     return imported ? Math.max(P12.value.poor, value - step) : value;
   });
 }
@@ -211,60 +204,40 @@ export function claimsFor<C extends Claim>(
   return [...own, ...plain.filter((c) => c.origin === "us" && !specific.has(root(c.source)))];
 }
 
-/**
- * Each claim's values for a target. A variety's claims span origins, so one origin's chart doesn't speak for
- * another's season (P14): an availability claim's off-season reading is dropped in any window that a claim for
- * the variety from another origin covers with its own season (listed windows and shoulders). A US claim naming no
- * state (`us`) is no other origin than any state's.
- */
-export const otherOrigin = (a: string, b: string): boolean =>
-  a !== b && !(a === "us" && b.startsWith("us-")) && !(b === "us" && a.startsWith("us-"));
-
-function targetValues(claims: readonly Claim[], target: Target, item: ItemTraits): (number | null)[][] {
-  const values = claims.map((c) => claimValues(c, item));
-  if (!("variety" in target)) return values;
-  const seasons = claims.map((c) => claimValues(c, item, false));
-  return values.map((v, j) =>
-    v.map((x, i) =>
-      x !== null &&
-      seasons[j]?.[i] === null &&
-      claims.some((o, k) => otherOrigin(o.origin, claims[j]?.origin ?? "") && seasons[k]?.[i] !== null)
-        ? null
-        : x,
-    ),
-  );
-}
-
 /** One run's range for a target: from, to, rating and the run's confidence in it. */
 export type PanelRange = readonly [string, string, Rating, Confidence];
 
+/** The panel's curve for one target, as `propose` reads it. */
+export type PanelReading = Pick<PanelCurve, "values" | "low">;
+
 /**
  * The panel's curve for one target (P15): per window, the rating a strict majority of the counted runs that rate
- * it give, leaving out low-confidence ranges; fair where they split evenly one level apart (prime against fair,
- * or fair against poor). Null where no run rates the window, or where runs differ by more than one level.
+ * it give, from their medium- and high-confidence ranges; fair where they split evenly one level apart (prime
+ * against fair, or fair against poor). Where no such range rates the window, the low-confidence ranges are read
+ * the same way and the window is marked `low`. Null where no run rates the window, or where runs differ by more
+ * than one level.
  */
-export function panelValues(runs: readonly (readonly PanelRange[])[]): (number | null)[] {
-  const byWindow: number[][] = Array.from({ length: WINDOW_COUNT }, () => []);
+export function panelValues(runs: readonly (readonly PanelRange[])[]): PanelReading {
+  const firm: number[][] = Array.from({ length: WINDOW_COUNT }, () => []);
+  const weak: number[][] = Array.from({ length: WINDOW_COUNT }, () => []);
   for (const ranges of runs)
     for (const [from, to, rating, confidence] of ranges)
-      if (confidence !== "low") for (const i of windowRange(from, to)) byWindow[i]?.push(P12.value[rating]);
-  return byWindow.map((vs) => {
+      for (const i of windowRange(from, to)) (confidence === "low" ? weak : firm)[i]?.push(P12.value[rating]);
+  const combine = (vs: number[]): number | null => {
     if (vs.length === 0 || Math.max(...vs) - Math.min(...vs) > P15.maxGap + EPS) return null;
     const majority = vs.find((v) => vs.filter((w) => w === v).length * 2 > vs.length);
     return majority ?? P12.value.fair;
-  });
+  };
+  const low = firm.map((vs, i) => vs.length === 0 && (weak[i]?.length ?? 0) > 0);
+  return { values: firm.map((vs, i) => combine(low[i] ? (weak[i] ?? []) : vs)), low };
 }
 
-export function panelFor(
-  curves: readonly PanelCurve[],
-  item: string,
-  target: Target,
-): (number | null)[] | null {
+export function panelFor(curves: readonly PanelCurve[], item: string, target: Target): PanelReading | null {
   const found = curves.find(
     (c) =>
       c.item === item && ("variety" in target ? c.variety === target.variety : c.origin === target.origin),
   );
-  return found?.values ?? null;
+  return found === undefined ? null : { values: found.values, low: found.low };
 }
 
 /**
@@ -272,32 +245,30 @@ export function panelFor(
  * curve (P15). Where the panel rates a window, its rating is the proposal: alone it is Medium; cited sources
  * that agree with it count beside it and can lift it to High (with an authoritative and an eating-quality source
  * among them, and weight enough); cited sources that disagree don't move it, except that eating-quality claims
- * that disagree, outweighing it, overrule it at Low confidence. Where the panel abstains or has no curve, the
- * cited curves combine as before (P12).
+ * that disagree, outweighing it, overrule it at Low confidence. A window that rests on the panel's low-confidence
+ * ranges alone keeps the panel's rating at Low confidence, however many sources agree. Where the panel abstains
+ * or has no curve, the cited curves combine as before (P12).
  */
 export function propose(
   claims: readonly Claim[],
   sources: ReadonlyMap<string, EvidenceSource>,
   target: Target,
   item: ItemTraits,
-  panel: readonly (number | null)[] | null = null,
+  panel: PanelReading | null = null,
 ): Proposal {
   const own = claimsFor(claims, target, (s) => rootOf(s, sources));
-  const values = targetValues(own, target, item);
-  const curves: (ClaimCurve & { root: string; authoritative: boolean; taste: boolean })[] = own.map(
-    (c, j) => {
-      const source = sources.get(c.source);
-      if (source === undefined) throw new Error(`unknown source ${c.source}`);
-      return {
-        source: c.source,
-        weight: claimWeight(source.tier, c.directness),
-        values: values[j] as (number | null)[],
-        root: rootOf(c.source, sources),
-        authoritative: source.tier === "authoritative",
-        taste: c.directness === "eating-quality",
-      };
-    },
-  );
+  const curves: (ClaimCurve & { root: string; authoritative: boolean; taste: boolean })[] = own.map((c) => {
+    const source = sources.get(c.source);
+    if (source === undefined) throw new Error(`unknown source ${c.source}`);
+    return {
+      source: c.source,
+      weight: claimWeight(source.tier, c.directness),
+      values: claimValues(c, item),
+      root: rootOf(c.source, sources),
+      authoritative: source.tier === "authoritative",
+      taste: c.directness === "eating-quality",
+    };
+  });
 
   const windows = Array.from({ length: WINDOW_COUNT }, (_, i): WindowProposal | null => {
     // Per independent source, keep its highest-weight curve here; equal-weight curves average.
@@ -317,7 +288,7 @@ export function propose(
         k.taste ||= c.taste;
       }
     }
-    const p = panel?.[i] ?? null;
+    const p = panel?.values[i] ?? null;
     if (kept.size === 0 && p === null) return null;
     const cited = [...kept].map(([root, k]) => ({
       root,
@@ -375,7 +346,7 @@ export function propose(
     return {
       value: p,
       rating: ratingForValue(p),
-      confidence: high ? "high" : "medium",
+      confidence: panel?.low[i] ? "low" : high ? "high" : "medium",
       weight,
       spread,
       sources: [...names(agreeing), PANEL],

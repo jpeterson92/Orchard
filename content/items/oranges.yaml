@@ -55,12 +55,8 @@ varieties:
     plu: { codes: [3108, 4014, 4388], sources: [ifps-plu-codes] }
     sources: [sunkist-fs-oranges, sunkist-oranges, halegroves-valencia-sweet]
     windows:
-      - { from: jan-1, to: jan-1, rating: poor }
       - { from: jan-2, to: jan-2, rating: fair }
-      - from: feb-1
-        to: feb-1
-        rating: fair
-        reason: The model panel has no rating here, and the cited sources disagree; together they read fair.
+      - { from: feb-1, to: feb-1, rating: prime }
       - from: feb-2
         to: apr-2
         rating: fair
@@ -70,11 +66,7 @@ varieties:
         rating: prime
         reason: Valencias are sweetest in late spring and summer; Hale Groves puts California's peak in May, June and July.
       - { from: aug-1, to: oct-2, rating: fair }
-      - from: nov-1
-        to: nov-1
-        rating: fair
-        reason: The model panel has no rating here, and the cited sources disagree; together they read fair.
-      - { from: nov-2, to: dec-2, rating: poor }
+      - { from: nov-1, to: nov-1, rating: prime }
     quotedAs: [oranges-valencia, oranges-late-valencia, oranges-valencia-seedless]
   - id: blood
     name: Blood orange
@@ -84,14 +76,12 @@ varieties:
     plu: { codes: [4381], sources: [ifps-plu-codes] }
     sources: [ucr-moro, sunkist-fs-oranges, eatlikenoone-cara-cara]
     windows:
-      - { from: jan-1, to: mar-2, rating: prime }
-      - { from: apr-1, to: apr-2, rating: fair }
-      - { from: may-1, to: nov-1, rating: poor }
-      - { from: nov-2, to: nov-2, rating: fair }
-      - from: dec-1
+      - from: dec-2
         to: dec-2
         rating: fair
-        reason: The model panel has no rating here, and the cited sources disagree; together they read fair.
+        reason: Only the model panel's low-confidence ranges rate this window; they read fair.
+      - { from: jan-1, to: mar-2, rating: prime }
+      - { from: apr-1, to: apr-2, rating: fair }
     quotedAs:
       [
         blood-orange-moro,

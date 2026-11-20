@@ -6,7 +6,7 @@ status: draft
 rated by: origin
 peak worth seeking: true
 always good: false
-outlook: "GGGGGGGGGGGSSSSSGGPPPPPP (Jan to Dec, two windows a month: P Peak, G Good, S Skip, · Limited evidence)"
+outlook: "GGGGGGGGGGS·SSSSGGPPPPPP (Jan to Dec, two windows a month: P Peak, G Good, S Skip, · Limited evidence)"
 windows:
   jan-1:
     when: early January (from 2026-01-01)
@@ -146,27 +146,27 @@ windows:
       rating: fair
       evidence: medium
     weights: editorial
-    typical: [il fair 33.3%, pe poor 33.3%, cl fair 33.3%]
+    typical: [il fair 33.3%, pe fair 33.3%, cl fair 33.3%]
     peak:
       share: 0.0%
       available: "no: no origin at this level"
       whole bin: no (≤ 75.0%)
       origins: []
     good:
-      share: 66.7%
+      share: 100.0%
       available: "yes: counted share 66.7% ≥ 33.0%"
-      whole bin: no (≤ 75.0%)
-      origins: [il fair 33.3%, cl fair 33.3%]
-    look for: [il, cl]
-    label note: true
-    reasons: [rated fair (origin il), typical-origin-poor pe, "look-for il, cl"]
-    confidence: low (relevance, agreement)
-    markers: [check-label]
+      whole bin: yes (> 75.0%)
+      origins: [il fair 33.3%, "pe fair 33.3% (low confidence, not counted)", cl fair 33.3%]
+    look for: []
+    label note: false
+    reasons: [rated fair (origin il)]
+    confidence: medium (relevance)
+    markers: []
     today:
       section: good buys
-      line: Look for ones from Israel and Chile
+      line: none
       reason: none
-      avoid: Pomegranates from Peru often disappoint now.
+      avoid: none
       tags: []
   mar-2:
     when: late March (from 2026-03-16)
@@ -178,27 +178,27 @@ windows:
       rating: fair
       evidence: medium
     weights: editorial
-    typical: [il fair 33.3%, pe poor 33.3%, cl fair 33.3%]
+    typical: [il fair 33.3%, pe fair 33.3%, cl fair 33.3%]
     peak:
       share: 0.0%
       available: "no: no origin at this level"
       whole bin: no (≤ 75.0%)
       origins: []
     good:
-      share: 66.7%
-      available: "yes: counted share 66.7% ≥ 33.0%"
-      whole bin: no (≤ 75.0%)
-      origins: [il fair 33.3%, cl fair 33.3%]
-    look for: [il, cl]
-    label note: true
-    reasons: [rated fair (origin il), typical-origin-poor pe, "look-for il, cl"]
-    confidence: low (relevance, agreement)
-    markers: [check-label]
+      share: 100.0%
+      available: "yes: counted share 33.3% ≥ 33.0%"
+      whole bin: yes (> 75.0%)
+      origins: [il fair 33.3%, "pe fair 33.3% (low confidence, not counted)", "cl fair 33.3% (low confidence, not counted)"]
+    look for: []
+    label note: false
+    reasons: [rated fair (origin il)]
+    confidence: medium (relevance)
+    markers: []
     today:
       section: good buys
-      line: Look for ones from Israel and Chile
+      line: none
       reason: none
-      avoid: Pomegranates from Peru often disappoint now.
+      avoid: none
       tags: []
   apr-1:
     when: early April (from 2026-04-01)
@@ -208,7 +208,7 @@ windows:
     decided:
       origin: pe
       rating: fair
-      evidence: medium
+      evidence: low
     weights: editorial
     typical: [pe fair 50.0%, cl fair 50.0%]
     peak:
@@ -218,13 +218,13 @@ windows:
       origins: []
     good:
       share: 100.0%
-      available: "yes: counted share 100.0% ≥ 33.0%"
+      available: "yes: counted share 50.0% ≥ 33.0%"
       whole bin: yes (> 75.0%)
-      origins: [pe fair 50.0%, cl fair 50.0%]
+      origins: [pe fair 50.0%, "cl fair 50.0% (low confidence, not counted)"]
     look for: []
     label note: false
     reasons: [rated fair (origin pe)]
-    confidence: medium (relevance)
+    confidence: low (coverage, relevance)
     markers: []
     today:
       section: good buys
@@ -240,7 +240,7 @@ windows:
     decided:
       origin: pe
       rating: fair
-      evidence: medium
+      evidence: low
     weights: editorial
     typical: [pe fair 50.0%, cl fair 50.0%]
     peak:
@@ -250,13 +250,13 @@ windows:
       origins: []
     good:
       share: 100.0%
-      available: "yes: counted share 100.0% ≥ 33.0%"
+      available: "yes: counted share 50.0% ≥ 33.0%"
       whole bin: yes (> 75.0%)
-      origins: [pe fair 50.0%, cl fair 50.0%]
+      origins: [pe fair 50.0%, "cl fair 50.0% (low confidence, not counted)"]
     look for: []
     label note: false
     reasons: [rated fair (origin pe)]
-    confidence: medium (relevance)
+    confidence: low (coverage, relevance)
     markers: []
     today:
       section: good buys
@@ -282,20 +282,20 @@ windows:
       origins: []
     good:
       share: 100.0%
-      available: "yes: counted share 100.0% ≥ 33.0%"
+      available: "yes: counted share 33.3% ≥ 33.0%"
       whole bin: yes (> 75.0%)
-      origins: [ar fair 33.3%, pe fair 33.3%, cl fair 33.3%]
+      origins: [ar fair 33.3%, "pe fair 33.3% (low confidence, not counted)", "cl fair 33.3% (low confidence, not counted)"]
     look for: []
     label note: false
     reasons: [rated fair (origin ar)]
     confidence: medium (relevance)
-    markers: []
+    markers: [last-call (fades by jun-1)]
     today:
       section: good buys
       line: none
-      reason: none
+      reason: Fades by early June.
       avoid: none
-      tags: []
+      tags: [Last call]
   may-2:
     when: late May (from 2026-05-16)
     verdict: good
@@ -314,28 +314,28 @@ windows:
       origins: []
     good:
       share: 100.0%
-      available: "yes: counted share 100.0% ≥ 33.0%"
+      available: "yes: counted share 33.3% ≥ 33.0%"
       whole bin: yes (> 75.0%)
-      origins: [ar fair 33.3%, pe fair 33.3%, cl fair 33.3%]
+      origins: [ar fair 33.3%, "pe fair 33.3% (low confidence, not counted)", "cl fair 33.3% (low confidence, not counted)"]
     look for: []
     label note: false
     reasons: [rated fair (origin ar)]
     confidence: medium (relevance)
-    markers: [last-call (fades by jun-2)]
+    markers: [last-call (fades by jun-1)]
     today:
       section: good buys
       line: none
-      reason: Fades by late June.
+      reason: Fades by early June.
       avoid: none
       tags: [Last call]
   jun-1:
     when: early June (from 2026-06-01)
-    verdict: good
-    rule: 4
+    verdict: skip
+    rule: 2
     basis: typical
     decided:
-      origin: cl
-      rating: fair
+      origin: pe
+      rating: poor
       evidence: medium
     weights: editorial
     typical: [pe poor 50.0%, cl fair 50.0%]
@@ -346,46 +346,26 @@ windows:
       origins: []
     good:
       share: 50.0%
-      available: "yes: counted share 50.0% ≥ 33.0%"
+      available: "no: counted share 0.0% < 33.0%, none cited in stores"
       whole bin: no (≤ 75.0%)
-      origins: [cl fair 50.0%]
-    look for: [cl]
-    label note: true
-    reasons: [rated fair (origin cl), typical-origin-poor pe, look-for cl]
-    confidence: low (relevance, agreement)
-    markers: [last-call (fades by jun-2), check-label]
-    today:
-      section: good buys
-      line: Look for ones from Chile
-      reason: Fades by late June.
-      avoid: Pomegranates from Peru often disappoint now.
-      tags: [Last call]
-  jun-2:
-    when: late June (from 2026-06-16)
-    verdict: skip
-    rule: 2
-    basis: typical
-    decided:
-      origin: pe
-      rating: poor
-      evidence: medium
-    weights: editorial
-    typical: [pe poor 50.0%, cl poor 50.0%]
-    peak:
-      share: 0.0%
-      available: "no: no origin at this level"
-      whole bin: no (≤ 75.0%)
-      origins: []
-    good:
-      share: 0.0%
-      available: "no: no origin at this level"
-      whole bin: no (≤ 75.0%)
-      origins: []
+      origins: ["cl fair 50.0% (low confidence, not counted)"]
     look for: []
     label note: false
     reasons: [rated poor (origin pe)]
     confidence: medium (relevance)
     markers: [improves (sep-1)]
+    today: not on Today
+  jun-2:
+    when: late June (from 2026-06-16)
+    verdict: limited
+    rule: 1
+    basis: typical
+    decided: none
+    look for: []
+    label note: false
+    reasons: [origin-unrated pe]
+    confidence: low (coverage, relevance)
+    markers: []
     today: not on Today
   jul-1:
     when: early July (from 2026-07-01)
@@ -443,7 +423,7 @@ windows:
     decided:
       origin: us-ca
       rating: fair
-      evidence: low
+      evidence: medium
     weights: editorial
     typical: [us-ca fair 100.0%]
     peak:
@@ -459,7 +439,7 @@ windows:
     look for: []
     label note: false
     reasons: [rated fair (origin us-ca)]
-    confidence: low (coverage, relevance)
+    confidence: medium (relevance)
     markers: []
     today:
       section: good buys

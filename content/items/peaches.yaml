@@ -52,31 +52,24 @@ prep: Rinse just before eating. Peel if you like by dipping in boiling water for
 origins:
   - origin: us-ca
     windows:
-      - { from: jan-1, to: may-2, rating: poor }
+      - { from: apr-2, to: apr-2, rating: fair }
+      - { from: may-1, to: may-2, rating: poor }
       - { from: jun-1, to: aug-2, rating: prime }
       - { from: sep-1, to: sep-2, rating: fair }
-      - from: oct-1
-        to: oct-2
-        rating: fair
-        reason: The model panel has no rating here, and the cited sources disagree; together they read fair.
-      - { from: nov-1, to: dec-2, rating: poor }
+      - { from: oct-1, to: oct-1, rating: prime }
   - origin: us-ga
     windows:
-      - { from: jan-1, to: apr-2, rating: poor }
-      - { from: may-1, to: may-2, rating: fair }
+      - { from: apr-2, to: may-2, rating: fair }
       - { from: jun-1, to: jul-2, rating: prime }
       - { from: aug-1, to: aug-2, rating: fair }
       - from: sep-1
-        to: dec-2
+        to: sep-1
         rating: poor
         reason: Georgia sources end the harvest in mid-August; only US-wide season spans reach September.
   - origin: us-sc
     windows:
-      - { from: jan-1, to: apr-2, rating: poor }
-      - from: may-1
-        to: may-1
-        rating: fair
-        reason: The model panel has no rating here, and the cited sources disagree; together they read fair.
+      - { from: apr-2, to: apr-2, rating: fair }
+      - { from: may-1, to: may-1, rating: prime }
       - { from: may-2, to: may-2, rating: fair }
       - { from: jun-1, to: jul-2, rating: prime }
       - { from: aug-1, to: aug-2, rating: fair }
@@ -84,17 +77,12 @@ origins:
         to: sep-2
         rating: fair
         reason: The season winds down in September, after an August the model panel rates fair; the charts reaching it mark availability only.
-      - { from: oct-1, to: dec-2, rating: poor }
+      - { from: oct-1, to: oct-1, rating: fair }
   - origin: us-nj
     windows:
-      - from: jan-1
-        to: jun-1
-        rating: poor
-        reason: New Jersey sources start the harvest in early July; only US-wide season spans reach May.
       - { from: jun-2, to: jun-2, rating: fair }
       - { from: jul-1, to: aug-2, rating: prime }
       - { from: sep-1, to: sep-2, rating: fair }
-      - { from: oct-1, to: dec-2, rating: poor }
   - origin: cl
     windows:
       - { from: jan-1, to: mar-2, rating: poor }

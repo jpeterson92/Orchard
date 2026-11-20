@@ -9,9 +9,9 @@ import {
   claimWeight,
   combinedConfidence,
   type EvidenceSource,
-  otherOrigin,
   PANEL,
   type PanelRange,
+  type PanelReading,
   type Proposal,
   panelFor,
   panelValues,
@@ -433,65 +433,77 @@ describe("availability curves (P14)", () => {
   const STORES = { shipsWell: true, storesWell: true };
 
   it.each([
-    // In season prime, the half-month either side fair, the rest of the year poor.
+    // In season prime, the half-month either side fair, nothing said about the rest of the year.
     [
       "jun-1..aug-2 prime",
       ["may-1", "may-2", "jun-1", "aug-2", "sep-1", "sep-2", "jan-1"],
-      [0, 0.5, 1, 1, 0.5, 0, 0],
+      [null, 0.5, 1, 1, 0.5, null, null],
     ],
     // Wraps past December.
-    ["dec-1..feb-2 prime", ["nov-1", "nov-2", "dec-1", "feb-2", "mar-1", "mar-2"], [0, 0.5, 1, 1, 0.5, 0]],
+    [
+      "dec-1..feb-2 prime",
+      ["nov-1", "nov-2", "dec-1", "feb-2", "mar-1", "mar-2"],
+      [null, 0.5, 1, 1, 0.5, null],
+    ],
     // Shoulders meeting in a one-window gap read fair.
     ["apr-1..may-2 prime, jun-2..jul-2 prime", ["may-2", "jun-1", "jun-2", "aug-1"], [1, 0.5, 1, 0.5]],
     // A shoulder never reads above the edge it touches.
-    ["jun-1 fair", ["may-2", "jun-1", "jun-2", "jul-1"], [0.5, 0.5, 0.5, 0]],
+    ["jun-1 fair", ["may-2", "jun-1", "jun-2", "jul-1"], [0.5, 0.5, 0.5, null]],
     ["jun-1 poor", ["may-2", "jun-1", "jun-2"], [0, 0, 0]],
     // A shoulder never overrides a listed window.
     ["jun-1 prime, jun-2 poor", ["may-2", "jun-1", "jun-2", "jul-1"], [0.5, 1, 0, 0]],
-  ])("a domestic chart listing %s", (windows, labels, values) => {
-    const v = claimValues(avail(windows), SHIPS);
-    expect(valuesAt(v, labels)).toEqual(values);
-    expect(v.every((x) => x !== null)).toBe(true);
+  ])("a state's chart listing %s", (windows, labels, values) => {
+    expect(valuesAt(claimValues(avail(windows), SHIPS), labels)).toEqual(values);
   });
 
-  it("a US-grown claim naming no state keeps only its season and shoulders", () => {
-    const v = claimValues(avail("apr-1..jun-2 prime", { origin: "us" }), STORES);
-    expect(valuesAt(v, ["feb-1", "mar-2", "apr-1", "jun-2", "jul-1", "dec-1"])).toEqual([
+  it.each([["us-wa"], ["us"]])("a %s chart reads the same whether or not the item stores well", (origin) => {
+    const c = avail("apr-1..jun-2 prime", { origin });
+    expect(claimValues(c, STORES)).toEqual(claimValues(c, SHIPS));
+    expect(valuesAt(claimValues(c, STORES), ["mar-1", "mar-2", "jul-1", "jul-2"])).toEqual([
       null,
       0.5,
-      1,
-      1,
       0.5,
       null,
     ]);
-    // So a national chart can't make Florida's winter season poor.
+  });
+
+  it("one state's chart can't make the off-season poor where nothing else speaks", () => {
+    expect(at(propose([avail("jun-1..aug-2 prime")], sources, US_WA, SHIPS), "jan-1")).toBeNull();
+    // A national chart reaches a state the same way.
     const p = propose([avail("apr-1..jun-2 prime", { origin: "us" })], sources, { origin: "us-fl" }, SHIPS);
     expect(at(p, "jan-1")).toBeNull();
+    expect(at(p, "may-1")?.rating).toBe("prime");
   });
 
   it("a year-round listing has no shoulders", () => {
     expect(new Set(claimValues(avail("jan-1..dec-2 prime"), SHIPS))).toEqual(new Set([1]));
   });
 
-  it("an import that ships well sits one level lower: its own season reads fair", () => {
+  it("an import that ships well sits one level lower: its own season reads fair, its shoulders poor", () => {
     const v = claimValues(avail("dec-1..mar-2 prime", { origin: "mx" }), SHIPS);
-    expect(valuesAt(v, ["nov-2", "dec-1", "mar-2", "apr-1", "jul-1"])).toEqual([0, 0.5, 0.5, 0, 0]);
-  });
-
-  it("an import that doesn't ship well reads poor all year, even in its own season", () => {
-    const c = avail("dec-1..mar-2 prime", { origin: "mx" });
-    expect(new Set(claimValues(c, NOT_SHIPPING))).toEqual(new Set([0]));
-    expect(new Set(claimValues(c, { ...NOT_SHIPPING, storesWell: true }))).toEqual(new Set([0]));
-    expect(at(propose([c], sources, { origin: "mx" }, NOT_SHIPPING), "jan-1")?.rating).toBe("poor");
-  });
-
-  it("an item that stores well reads fair away from harvest, never prime", () => {
-    const v = claimValues(avail("aug-1..oct-2 prime"), STORES);
-    expect(valuesAt(v, ["jul-1", "jul-2", "aug-1", "oct-2", "nov-1", "mar-1"])).toEqual([
-      0.5, 0.5, 1, 1, 0.5, 0.5,
+    expect(valuesAt(v, ["nov-1", "nov-2", "dec-1", "mar-2", "apr-1", "apr-2", "jul-1"])).toEqual([
+      null,
+      0,
+      0.5,
+      0.5,
+      0,
+      null,
+      null,
     ]);
-    // An import that ships and stores well reads fair in its own season and says nothing else: stored domestic
-    // fruit is on sale the rest of the year.
+  });
+
+  it("an import that doesn't ship well reads poor in its own season and shoulders, and nothing else", () => {
+    const c = avail("dec-1..mar-2 prime", { origin: "mx" });
+    for (const traits of [NOT_SHIPPING, { ...NOT_SHIPPING, storesWell: true }]) {
+      const v = claimValues(c, traits);
+      expect(valuesAt(v, ["nov-1", "nov-2", "jan-1", "apr-1", "jul-1"])).toEqual([null, 0, 0, 0, null]);
+    }
+    expect(at(propose([c], sources, { origin: "mx" }, NOT_SHIPPING), "jan-1")?.rating).toBe("poor");
+    expect(at(propose([c], sources, { origin: "mx" }, NOT_SHIPPING), "jul-1")).toBeNull();
+  });
+
+  it("an import that ships and stores well reads fair in its own season and says nothing else", () => {
+    // Stored domestic fruit is on sale around the import's season, so even its shoulders go unsaid.
     const nz = claimValues(avail("mar-1..may-2 prime", { origin: "nz" }), STORES);
     expect(valuesAt(nz, ["feb-2", "mar-1", "may-2", "jun-1", "sep-1"])).toEqual([null, 0.5, 0.5, null, null]);
   });
@@ -529,148 +541,64 @@ describe("availability curves (P14)", () => {
     }
   });
 
-  it("two agreeing charts propose poor off season, from 2 sources", () => {
+  it("two agreeing charts propose their season and shoulders, from 2 sources", () => {
     const claims = [
       avail("jun-1..aug-2 prime"),
       claim("b", "jun-1..aug-2 prime", { directness: "availability", origin: "us-wa" }),
     ];
     const p = propose(claims, sources, US_WA, SHIPS);
-    expect(at(p, "jan-1")).toMatchObject({ rating: "poor", sources: ["a", "b"] });
-    expect(at(p, "sep-1")).toMatchObject({ rating: "fair" });
+    expect(at(p, "jan-1")).toBeNull();
+    expect(at(p, "sep-1")).toMatchObject({ rating: "fair", sources: ["a", "b"] });
     expect(at(p, "jul-1")).toMatchObject({ rating: "prime" });
   });
 
-  describe("a variety sold from several origins", () => {
-    const V1: Target = { variety: "v1" };
+  it("a variety sold from several origins reads each origin's chart as its own season only", () => {
     const ca = avail("nov-1..jan-2 prime", { origin: "us-ca", variety: "v1" });
     const cl = claim("b", "aug-1..nov-2 prime", { directness: "availability", origin: "cl", variety: "v1" });
-    const curve = (p: Proposal, source: string) => p.curves.find((c) => c.source === source)?.values ?? [];
-
-    it.each([
-      // California's season: Chile's off-season reading is dropped, so only California speaks.
-      ["dec-2", "prime", ["a"]],
-      // Chile's season: California's off-season reading is dropped; the import reads fair.
-      ["sep-1", "fair", ["b"]],
-      // Both in season: both count.
-      ["nov-1", "prime", ["a", "b"]],
-      // Chile's shoulder (fair, so poor for an import) is its own season too: California's reading is dropped.
-      ["jul-2", "poor", ["b"]],
-      // Neither origin's season: both off-season readings stand.
-      ["may-1", "poor", ["a", "b"]],
-    ])("at %s it reads %s from %j", (window, rating, from) => {
-      expect(at(propose([ca, cl], sources, V1, SHIPS), window)).toMatchObject({ rating, sources: from });
-    });
-
-    it("the source curves show the dropped windows as empty", () => {
-      const p = propose([ca, cl], sources, V1, SHIPS);
-      expect(valuesAt(curve(p, "b"), ["dec-2", "may-1"])).toEqual([null, 0]);
-      expect(valuesAt(curve(p, "a"), ["sep-1", "may-1"])).toEqual([null, 0]);
-    });
-
-    it("another origin's eating-quality claim also covers its windows", () => {
-      const ma = claim("m", "mar-1 fair", { origin: "ma", variety: "v1" });
-      const p = propose([ca, ma], sources, V1, SHIPS);
-      expect(at(p, "mar-1")).toMatchObject({ rating: "fair", sources: ["m"] });
-      expect(at(p, "apr-1")).toMatchObject({ rating: "poor", sources: ["a"] });
-    });
-
-    it("charts from the same origin still read each other's off-season", () => {
-      const late = claim("b", "mar-1..apr-2 prime", {
-        directness: "availability",
-        origin: "us-ca",
-        variety: "v1",
-      });
-      expect(at(propose([ca, late], sources, V1, SHIPS), "dec-1")).toMatchObject({ rating: "fair" });
-    });
-
-    it.each([
-      ["a national eating-quality claim", claim("b", "nov-1..may-2 fair", { origin: "us", variety: "v1" })],
-      [
-        "a national chart",
-        claim("b", "nov-1..may-2 prime", { directness: "availability", origin: "us", variety: "v1" }),
-      ],
-    ])("%s is no other origin than a state's: the state chart keeps its off-season", (_, other) => {
-      const wa = avail("aug-1..aug-2 prime", { origin: "us-wa", variety: "v1" });
-      const p = propose([wa, other], sources, V1, STORES);
-      expect(valuesAt(curve(p, "a"), ["jan-1"])).toEqual([0.5]);
-      expect(at(p, "jan-1")?.sources).toEqual(["a", "b"]);
-    });
-
-    it.each([
-      ["us-wa", "us-mn", true],
-      ["us", "us-wa", false],
-      ["us-wa", "us", false],
-      ["us", "cl", true],
-      ["cl", "nz", true],
-    ])("%s and %s are other origins: %s", (a, b, other) => {
-      expect(otherOrigin(a, b)).toBe(other);
-    });
-
-    it("an origin's curve is unchanged: a national chart's season doesn't drop a state chart's off-season", () => {
-      const national = claim("b", "dec-1..feb-2 prime", { directness: "availability", origin: "us" });
-      const p = propose([avail("jun-1..aug-2 prime"), national], sources, US_WA, SHIPS);
-      expect(valuesAt(curve(p, "a"), ["jan-1"])).toEqual([0]);
-    });
+    const p = propose([ca, cl], sources, { variety: "v1" }, SHIPS);
+    expect(at(p, "dec-2")).toMatchObject({ rating: "prime", sources: ["a"] });
+    expect(at(p, "sep-1")).toMatchObject({ rating: "fair", sources: ["b"] });
+    expect(at(p, "nov-1")).toMatchObject({ rating: "prime", sources: ["a", "b"] });
+    expect(at(p, "may-1")).toBeNull();
   });
 
   const availArb = claimArb.map((c) => ({ ...c, directness: "availability" as const }));
 
-  it("a variety's claims from one origin read exactly as their own curves (property)", () => {
+  it("a target's curves are its claims' own curves (property)", () => {
     fc.assert(
-      fc.property(fc.array(availArb, { maxLength: 6 }), fc.boolean(), (cs, storesWell) => {
-        const claims = cs.map((c) => ({ ...c, origin: "us-wa", variety: "v1" }));
-        const traits = { shipsWell: true, storesWell };
+      fc.property(claimsArb, fc.boolean(), fc.boolean(), (cs, shipsWell, storesWell) => {
+        const claims = cs.map((c) => ({ ...c, variety: "v1" }));
+        const traits = { shipsWell, storesWell };
         const p = propose(claims, sources, { variety: "v1" }, traits);
         expect(p.curves.map((c) => c.values)).toEqual(claims.map((c) => claimValues(c, traits)));
       }),
     );
   });
 
-  it("across origins, a variety drops only off-season readings, and only where another origin is in season (property)", () => {
-    fc.assert(
-      fc.property(claimsArb, fc.boolean(), fc.boolean(), (cs, shipsWell, storesWell) => {
-        const claims = cs.map((c) => ({ ...c, variety: "v1" }));
-        const traits = { shipsWell, storesWell };
-        const p = propose(claims, sources, { variety: "v1" }, traits);
-        const seasons = claims.map((c) => claimValues(c, traits, false));
-        p.curves.forEach((curve, j) => {
-          const full = claimValues(claims[j] as Claim, traits);
-          for (const [i, x] of curve.values.entries()) {
-            if (x !== null) expect(x).toBe(full[i]);
-            else if (full[i] !== null) {
-              expect(seasons[j]?.[i]).toBeNull();
-              expect(
-                claims.some(
-                  (o, k) => otherOrigin(o.origin, claims[j]?.origin ?? "") && seasons[k]?.[i] !== null,
-                ),
-              ).toBe(true);
-            }
-          }
-        });
-      }),
-    );
-  });
-
-  it("a domestic availability curve covers every window, keeps listed windows, and reads fair or poor elsewhere (fair throughout when it stores well) (property)", () => {
+  it("a domestic availability curve keeps its listed windows, reads at most fair one window beyond them, and is empty elsewhere (property)", () => {
     fc.assert(
       fc.property(availArb, fc.boolean(), fc.boolean(), (c, shipsWell, storesWell) => {
         const domestic = { ...c, origin: "us-wa" };
         const v = claimValues(domestic, { shipsWell, storesWell });
-        expect(v.every((x) => x !== null)).toBe(true);
         const listed = claimValues(
           { ...domestic, directness: "eating-quality", specificity: "month" },
           { shipsWell, storesWell },
         );
         v.forEach((x, i) => {
           const l = listed[i];
-          if (l !== null && l !== undefined) expect(x).toBe(l);
-          else expect(x).toBe(storesWell ? 0.5 : (x as number) > 0 ? 0.5 : 0);
+          if (l !== null && l !== undefined) {
+            expect(x).toBe(l);
+            return;
+          }
+          const near = [i - 1, i + 1].some((k) => listed[(k + WINDOW_COUNT) % WINDOW_COUNT] != null);
+          if (near) expect([0, 0.5]).toContain(x);
+          else expect(x).toBeNull();
         });
       }),
     );
   });
 
-  it("an import's curve is the domestic curve one level lower (only its listing when it stores well), or poor throughout when the item doesn't ship well (property)", () => {
+  it("an import's curve is the domestic curve one level lower (only its listing when it stores well), or poor wherever the domestic curve speaks when the item doesn't ship well (property)", () => {
     fc.assert(
       fc.property(availArb, fc.boolean(), (c, storesWell) => {
         const traits = { shipsWell: true, storesWell };
@@ -679,26 +607,27 @@ describe("availability curves (P14)", () => {
         const listed = claimValues({ ...c, directness: "eating-quality", specificity: "month" }, traits);
         expect(imported).toEqual(
           domestic.map((x, i) =>
-            storesWell && listed[i] === null ? null : Math.max(0, (x as number) - 0.5),
+            x === null || (storesWell && listed[i] === null) ? null : Math.max(0, x - 0.5),
           ),
         );
         const notShipping = claimValues({ ...c, origin: "mx" }, { shipsWell: false, storesWell });
-        expect(notShipping.every((x) => x === 0)).toBe(true);
+        expect(notShipping).toEqual(domestic.map((x) => (x === null ? null : 0)));
       }),
     );
   });
 });
 
 // P15: the model panel, one source of weight 1.
-/** `panel("jun-1 prime")`: a panel curve rating only the listed windows. */
-function panel(windows: string): (number | null)[] {
+/** `panel("jun-1 prime")`: a panel curve rating only the listed windows; `low` marks them all low-confidence. */
+function panel(windows: string, low = false): PanelReading {
   const values: (number | null)[] = Array(WINDOW_COUNT).fill(null);
   for (const part of windows.split(",")) {
     const [l, rating] = part.trim().split(" ") as [string, Rating];
     values[windowFromLabel(l)] = { prime: 1, fair: 0.5, poor: 0 }[rating];
   }
-  return values;
+  return { values, low: values.map((v) => low && v !== null) };
 }
+const NO_LOW: boolean[] = Array(WINDOW_COUNT).fill(false);
 const range = (from: string, to: string, rating: Rating, confidence: PanelRange[3] = "high"): PanelRange => [
   from,
   to,
@@ -708,46 +637,75 @@ const range = (from: string, to: string, rating: Rating, confidence: PanelRange[
 
 describe("model panel curve (P15)", () => {
   it("takes the majority of the runs that rate a window, and fair on an even split", () => {
-    const v = panelValues([[range("jun-1", "jun-2", "prime")], [range("jun-1", "jun-1", "fair")]]);
+    const v = panelValues([[range("jun-1", "jun-2", "prime")], [range("jun-1", "jun-1", "fair")]]).values;
     expect(valuesAt(v, ["may-2", "jun-1", "jun-2"])).toEqual([null, 0.5, 1]);
-    const low = panelValues([[range("jun-1", "jun-1", "poor")], [range("jun-1", "jun-1", "fair")]]);
+    const low = panelValues([[range("jun-1", "jun-1", "poor")], [range("jun-1", "jun-1", "fair")]]).values;
     expect(valuesAt(low, ["jun-1"])).toEqual([0.5]);
     const three = panelValues([
       [range("jun-1", "jun-1", "prime")],
       [range("jun-1", "jun-1", "prime")],
       [range("jun-1", "jun-1", "fair")],
-    ]);
+    ]).values;
     expect(valuesAt(three, ["jun-1"])).toEqual([1]);
   });
-  it("leaves out low-confidence ranges", () => {
-    const v = panelValues([
+  it("leaves out low-confidence ranges where a firmer range rates the window", () => {
+    const p = panelValues([
       [range("jun-1", "jun-1", "prime", "low")],
       [range("jun-1", "jun-1", "poor", "medium")],
     ]);
-    expect(valuesAt(v, ["jun-1"])).toEqual([0]);
-    expect(valuesAt(panelValues([[range("jun-1", "jun-1", "prime", "low")]]), ["jun-1"])).toEqual([null]);
+    expect(valuesAt(p.values, ["jun-1"])).toEqual([0]);
+    expect(p.low[windowFromLabel("jun-1")]).toBe(false);
+  });
+  it.each([
+    // Alone, a low-confidence range rates the window, marked low.
+    [[[range("jun-1", "jun-1", "prime", "low")]], 1],
+    // Low-confidence ranges combine like any others: majority, fair on an even one-level split, abstain on a wider one.
+    [[[range("jun-1", "jun-1", "prime", "low")], [range("jun-1", "jun-1", "fair", "low")]], 0.5],
+    [[[range("jun-1", "jun-1", "prime", "low")], [range("jun-1", "jun-1", "poor", "low")]], null],
+    [
+      [
+        [range("jun-1", "jun-1", "poor", "low")],
+        [range("jun-1", "jun-1", "poor", "low")],
+        [range("jun-1", "jun-1", "fair", "low")],
+      ],
+      0,
+    ],
+  ] as const)("counts low-confidence ranges where nothing firmer rates the window: %j", (runs, value) => {
+    const p = panelValues(runs);
+    expect(p.values[windowFromLabel("jun-1")]).toBe(value);
+    expect(p.low[windowFromLabel("jun-1")]).toBe(true);
+    expect(p.low[windowFromLabel("jun-2")]).toBe(false);
+  });
+  it("a firmer range that abstains doesn't fall back to low-confidence ones", () => {
+    const p = panelValues([
+      [range("jun-1", "jun-1", "prime")],
+      [range("jun-1", "jun-1", "poor")],
+      [range("jun-1", "jun-1", "fair", "low")],
+    ]);
+    expect(p.values[windowFromLabel("jun-1")]).toBeNull();
+    expect(p.low[windowFromLabel("jun-1")]).toBe(false);
   });
   it("abstains where runs differ by more than one level", () => {
     const v = panelValues([
       [range("jun-1", "jun-2", "prime")],
       [range("jun-1", "jun-1", "poor"), range("jun-2", "jun-2", "fair")],
-    ]);
+    ]).values;
     expect(valuesAt(v, ["jun-1", "jun-2"])).toEqual([null, 0.5]);
   });
   it("finds a target's curve by origin or variety", () => {
     const curves = [
-      { item: "x", origin: "us-wa", values: panel("jun-1 prime") },
-      { item: "x", variety: "v1", values: panel("jun-1 poor") },
+      { item: "x", origin: "us-wa", ...panel("jun-1 prime") },
+      { item: "x", variety: "v1", ...panel("jun-1 poor", true) },
     ];
-    expect(panelFor(curves, "x", { origin: "us-wa" })?.[windowFromLabel("jun-1")]).toBe(1);
-    expect(panelFor(curves, "x", { variety: "v1" })?.[windowFromLabel("jun-1")]).toBe(0);
+    expect(panelFor(curves, "x", { origin: "us-wa" })?.values[windowFromLabel("jun-1")]).toBe(1);
+    expect(panelFor(curves, "x", { variety: "v1" })).toEqual(panel("jun-1 poor", true));
     expect(panelFor(curves, "x", { origin: "mx" })).toBeNull();
     expect(panelFor(curves, "y", { origin: "us-wa" })).toBeNull();
   });
 });
 
 describe("combining with the model panel (P15)", () => {
-  const one = (p: (number | null)[], claims = [claim("a", "jun-1 prime")]) =>
+  const one = (p: PanelReading, claims = [claim("a", "jun-1 prime")]) =>
     at(propose(claims, sources, US_WA, SHIPS, p), "jun-1");
   const avail = { directness: "availability" as const };
 
@@ -815,17 +773,38 @@ describe("combining with the model panel (P15)", () => {
     const w = one(panel("jun-1 fair"), [claim("a", "jun-1 fair", avail), claim("m", "jun-1 prime", avail)]);
     expect(w?.sources).toEqual(["a", PANEL]);
   });
+  it("a window resting on low-confidence ranges keeps the panel's rating, at Low, however many sources agree", () => {
+    expect(one(panel("jun-1 prime", true))).toEqual({
+      value: 1,
+      rating: "prime",
+      confidence: "low",
+      weight: 3,
+      spread: 0,
+      sources: ["a", PANEL],
+      overrules: false,
+    });
+    expect(at(propose([], sources, US_WA, SHIPS, panel("jun-1 fair", true)), "jun-1")).toMatchObject({
+      rating: "fair",
+      confidence: "low",
+      sources: [PANEL],
+    });
+    // Eating-quality claims still overrule it.
+    const two = one(panel("jun-1 poor", true), [claim("m", "jun-1 prime"), claim("n", "jun-1 prime")]);
+    expect(two).toMatchObject({ rating: "prime", confidence: "low", overrules: true });
+  });
   it("an abstaining window is as if there were no panel", () => {
     const p = panel("jun-2 prime");
-    expect(one(p)).toEqual(one(Array(WINDOW_COUNT).fill(null)));
+    expect(one(p)).toEqual(one({ values: Array(WINDOW_COUNT).fill(null), low: NO_LOW }));
     expect(one(p)).toEqual(at(propose([claim("a", "jun-1 prime")], sources, US_WA, SHIPS), "jun-1"));
   });
 });
 
-const panelArb = fc.array(fc.option(fc.constantFrom(0, 0.25, 0.5, 0.75, 1), { nil: null }), {
-  minLength: WINDOW_COUNT,
-  maxLength: WINDOW_COUNT,
-});
+const panelArb = fc
+  .array(fc.tuple(fc.option(fc.constantFrom(0, 0.25, 0.5, 0.75, 1), { nil: null }), fc.boolean()), {
+    minLength: WINDOW_COUNT,
+    maxLength: WINDOW_COUNT,
+  })
+  .map((ws): PanelReading => ({ values: ws.map(([v]) => v), low: ws.map(([v, l]) => v !== null && l) }));
 
 describe("combining with the model panel: properties", () => {
   it("the panel's rating stands unless eating-quality claims overrule it; abstaining, nothing changes", () => {
@@ -835,7 +814,7 @@ describe("combining with the model panel: properties", () => {
         const withPanel = propose(claims, sources, target, SHIPS, p);
         for (const [i, w] of withPanel.windows.entries()) {
           const base = without.windows[i] ?? null;
-          const pv = p[i] ?? null;
+          const pv = p.values[i] ?? null;
           if (pv === null) {
             expect(w).toEqual(base);
             continue;
@@ -850,8 +829,9 @@ describe("combining with the model panel: properties", () => {
           } else {
             expect(w.rating).toBe(ratingForValue(pv));
             expect(w.sources).toContain(PANEL);
-            expect(w.confidence).not.toBe("low");
-            if (w.sources.length < 2) expect(w.confidence).toBe("medium");
+            if (p.low[i]) expect(w.confidence).toBe("low");
+            else expect(w.confidence).not.toBe("low");
+            if (w.sources.length < 2 && !p.low[i]) expect(w.confidence).toBe("medium");
           }
         }
       }),

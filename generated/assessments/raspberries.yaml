@@ -6,7 +6,7 @@ status: draft
 rated by: origin
 peak worth seeking: true
 always good: false
-outlook: "GGGGGGGGGGPPPPPPPGGGGGGG (Jan to Dec, two windows a month: P Peak, G Good, S Skip, · Limited evidence)"
+outlook: "GGGGGGGGGGGG··PPPGGGGGGG (Jan to Dec, two windows a month: P Peak, G Good, S Skip, · Limited evidence)"
 windows:
   jan-1:
     when: early January (from 2026-01-01)
@@ -280,12 +280,12 @@ windows:
     today: not on Today
   jun-1:
     when: early June (from 2026-06-01)
-    verdict: peak
-    rule: 3
+    verdict: good
+    rule: 4
     basis: typical
     decided:
-      origin: us-ca
-      rating: prime
+      origin: mx
+      rating: fair
       evidence: medium
     weights: volume
     typical: [mx fair 54.6% (supply 0.83), us-ca prime 45.4% (supply 2.20)]
@@ -299,26 +299,22 @@ windows:
       available: "yes: counted share 100.0% ≥ 33.0%"
       whole bin: yes (> 75.0%)
       origins: [mx fair 54.6%, us-ca prime 45.4%]
-    look for: [us-ca]
-    label note: true
-    reasons: [rated prime (origin us-ca), look-for us-ca]
-    confidence: medium (agreement)
-    markers: [reliable-year-round, check-label]
-    today:
-      section: best right now
-      line: Look for ones from California
-      reason: none
-      avoid: none
-      tags: []
+    look for: []
+    label note: false
+    reasons: [rated fair (origin mx), main-peak aug-1 to sep-1]
+    confidence: high
+    markers: [reliable-year-round]
+    main peak: rated Peak here, but Peak is kept for aug-1 to sep-1 (P19), so good
+    today: not on Today
   jun-2:
     when: late June (from 2026-06-16)
-    verdict: peak
-    rule: 3
+    verdict: good
+    rule: 4
     basis: typical
     decided:
-      origin: us-ca
-      rating: prime
-      evidence: medium
+      origin: mx
+      rating: fair
+      evidence: low
     weights: volume
     typical: [mx fair 54.6% (supply 0.83), us-ca prime 45.4% (supply 2.20)]
     peak:
@@ -331,81 +327,37 @@ windows:
       available: "yes: counted share 100.0% ≥ 33.0%"
       whole bin: yes (> 75.0%)
       origins: [mx fair 54.6%, us-ca prime 45.4%]
-    look for: [us-ca]
-    label note: true
-    reasons: [rated prime (origin us-ca), look-for us-ca]
-    confidence: medium (agreement)
-    markers: [reliable-year-round, check-label]
-    today:
-      section: best right now
-      line: Look for ones from California
-      reason: none
-      avoid: none
-      tags: []
+    look for: []
+    label note: false
+    reasons: [rated fair (origin mx), main-peak aug-1 to sep-1]
+    confidence: medium (coverage)
+    markers: [reliable-year-round]
+    main peak: rated Peak here, but Peak is kept for aug-1 to sep-1 (P19), so good
+    today: not on Today
   jul-1:
     when: early July (from 2026-07-01)
-    verdict: peak
-    rule: 3
+    verdict: limited
+    rule: 1
     basis: typical
-    decided:
-      origin: us-ca
-      rating: prime
-      evidence: medium
-    weights: volume
-    typical: [us-ca prime 58.6% (supply 2.40), "mx fair 41.4% (supply 0.53, thin)"]
-    peak:
-      share: 58.6%
-      available: "yes: counted share 58.6% ≥ 33.0%"
-      whole bin: no (≤ 75.0%)
-      origins: [us-ca prime 58.6%]
-    good:
-      share: 100.0%
-      available: "yes: counted share 58.6% ≥ 33.0%"
-      whole bin: yes (> 75.0%)
-      origins: [us-ca prime 58.6%, "mx fair 41.4% (low confidence, not counted)"]
-    look for: [us-ca]
-    label note: true
-    reasons: [rated prime (origin us-ca), look-for us-ca]
-    confidence: medium (agreement)
-    markers: [reliable-year-round, check-label]
-    today:
-      section: best right now
-      line: Look for ones from California
-      reason: none
-      avoid: none
-      tags: []
+    decided: none
+    look for: []
+    label note: false
+    reasons: [origin-unrated mx]
+    confidence: medium (coverage)
+    markers: [reliable-year-round]
+    today: not on Today
   jul-2:
     when: late July (from 2026-07-16)
-    verdict: peak
-    rule: 3
+    verdict: limited
+    rule: 1
     basis: typical
-    decided:
-      origin: us-ca
-      rating: prime
-      evidence: medium
-    weights: volume
-    typical: [us-ca prime 58.6% (supply 2.40), "mx fair 41.4% (supply 0.53, thin)"]
-    peak:
-      share: 58.6%
-      available: "yes: counted share 58.6% ≥ 33.0%"
-      whole bin: no (≤ 75.0%)
-      origins: [us-ca prime 58.6%]
-    good:
-      share: 100.0%
-      available: "yes: counted share 58.6% ≥ 33.0%"
-      whole bin: yes (> 75.0%)
-      origins: [us-ca prime 58.6%, "mx fair 41.4% (low confidence, not counted)"]
-    look for: [us-ca]
-    label note: true
-    reasons: [rated prime (origin us-ca), look-for us-ca]
-    confidence: medium (agreement)
-    markers: [reliable-year-round, check-label]
-    today:
-      section: best right now
-      line: Look for ones from California
-      reason: none
-      avoid: none
-      tags: []
+    decided: none
+    look for: []
+    label note: false
+    reasons: [origin-unrated mx]
+    confidence: medium (coverage)
+    markers: [reliable-year-round]
+    today: not on Today
   aug-1:
     when: early August (from 2026-08-01)
     verdict: peak
@@ -448,7 +400,7 @@ windows:
       rating: prime
       evidence: medium
     weights: volume
-    typical: ["mx fair 51.4% (supply 0.59, thin)", us-ca prime 48.6% (supply 1.80)]
+    typical: ["mx prime 51.4% (supply 0.59, thin)", us-ca prime 48.6% (supply 1.80)]
     peak:
       share: 48.6%
       available: "yes: counted share 48.6% ≥ 33.0%"
@@ -458,7 +410,7 @@ windows:
       share: 100.0%
       available: "yes: counted share 100.0% ≥ 33.0%"
       whole bin: yes (> 75.0%)
-      origins: [mx fair 51.4%, us-ca prime 48.6%]
+      origins: [mx prime 51.4%, us-ca prime 48.6%]
     look for: [us-ca]
     label note: true
     reasons: [rated prime (origin us-ca), look-for us-ca]

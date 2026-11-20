@@ -37,8 +37,10 @@ prep: Rinse well, snip the leaf tips and trim the stem. Rub cut surfaces with le
 origins:
   - origin: us-ca
     windows:
-      - { from: jan-1, to: feb-1, rating: poor }
-      - { from: feb-2, to: feb-2, rating: fair }
+      - from: jan-1
+        to: feb-2
+        rating: fair
+        reason: Only the model panel's low-confidence ranges rate this window; they read fair.
       - { from: mar-1, to: may-2, rating: prime }
       - { from: jun-1, to: jul-2, rating: fair }
       - { from: aug-1, to: aug-2, rating: poor }

@@ -37,69 +37,36 @@ ripen:
   sources: [ucdavis-postharvest-bushberry, driscolls-blueberries]
 prep: Rinse gently in cool water just before eating, then drain. Never soak them.
 origins:
-  - {
-      origin: pe,
-      windows:
-        [
-          { from: jan-1, to: jan-2, rating: fair },
-          { from: feb-1, to: aug-2, rating: poor },
-          { from: sep-1, to: dec-2, rating: fair },
-        ],
-    }
+  - { origin: pe, windows: [{ from: sep-1, to: jan-2, rating: fair }] }
   - {
       origin: cl,
       windows:
         [
-          { from: jan-1, to: feb-2, rating: fair },
-          { from: mar-1, to: nov-2, rating: poor },
-          { from: dec-1, to: dec-2, rating: fair },
+          { from: nov-2, to: nov-2, rating: poor },
+          { from: dec-1, to: feb-2, rating: fair },
+          {
+            from: mar-1,
+            to: mar-2,
+            rating: poor,
+            reason: Only the model panel's low-confidence ranges rate this window; they read poor.,
+          },
         ],
     }
   - {
       origin: mx,
-      windows: [{ from: jan-1, to: may-2, rating: fair }, { from: jun-1, to: dec-2, rating: poor }],
+      windows: [{ from: jan-1, to: may-2, rating: fair }, { from: jun-1, to: jun-1, rating: poor }],
     }
   - {
       origin: us-fl,
       windows:
         [
-          { from: jan-1, to: feb-1, rating: poor },
           { from: feb-2, to: feb-2, rating: fair },
           { from: mar-1, to: may-1, rating: prime },
           { from: may-2, to: may-2, rating: fair },
-          { from: jun-1, to: dec-2, rating: poor },
         ],
     }
-  - {
-      origin: us-ga,
-      windows:
-        [
-          { from: jan-1, to: apr-2, rating: poor },
-          { from: may-1, to: jul-1, rating: prime },
-          { from: jul-2, to: dec-2, rating: poor },
-        ],
-    }
-  - {
-      origin: us-nc,
-      windows:
-        [
-          { from: jan-1, to: apr-2, rating: poor },
-          {
-            from: may-1,
-            to: may-2,
-            rating: fair,
-            reason: "The model panel has no rating here, and the cited sources disagree; together they read fair.",
-          },
-          { from: jun-1, to: jul-2, rating: prime },
-          {
-            from: aug-1,
-            to: aug-1,
-            rating: fair,
-            reason: "The model panel has no rating here, and the cited sources disagree; together they read fair.",
-          },
-          { from: aug-2, to: dec-2, rating: poor },
-        ],
-    }
+  - { origin: us-ga, windows: [{ from: may-1, to: jul-1, rating: prime }] }
+  - { origin: us-nc, windows: [{ from: may-1, to: aug-1, rating: prime }] }
   - { origin: us-nj, windows: [{ from: jun-2, to: jul-2, rating: prime }] }
   - { origin: us-ca, windows: [{ from: apr-1, to: jun-2, rating: prime }] }
   - { origin: us-or, windows: [{ from: jul-1, to: sep-1, rating: prime }] }
@@ -109,8 +76,6 @@ origins:
       origin: ca,
       windows:
         [
-          { from: jan-1, to: may-2, rating: poor },
-          { from: jun-1, to: jun-1, rating: fair },
           {
             from: jun-2,
             to: jun-2,
@@ -120,12 +85,12 @@ origins:
           { from: jul-1, to: jul-2, rating: prime },
           {
             from: aug-1,
-            to: aug-2,
+            to: aug-1,
             rating: fair,
             reason: "The model panel has no rating here, and the cited sources disagree; together they read fair.",
           },
+          { from: aug-2, to: aug-2, rating: prime },
           { from: sep-1, to: sep-1, rating: fair },
-          { from: sep-2, to: dec-2, rating: poor },
         ],
     }
 status: draft

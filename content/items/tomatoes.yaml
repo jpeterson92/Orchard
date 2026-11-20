@@ -74,14 +74,13 @@ origins:
       - { from: mar-1, to: nov-2, rating: fair }
   - origin: us-ca
     windows:
-      - { from: jan-1, to: may-2, rating: poor }
       - { from: jun-1, to: jun-1, rating: fair }
-      - { from: jun-2, to: nov-1, rating: prime }
-      - from: nov-2
-        to: nov-2
+      - { from: jun-2, to: jun-2, rating: prime }
+      - from: jul-1
+        to: oct-2
         rating: fair
-        reason: The model panel has no rating here, and the cited sources disagree; together they read fair.
-      - { from: dec-1, to: dec-2, rating: poor }
+        reason: Only the model panel's low-confidence ranges rate this window; they read fair.
+      - { from: nov-1, to: nov-1, rating: prime }
   - origin: us-nj
     windows:
       - { from: jul-2, to: sep-1, rating: prime }

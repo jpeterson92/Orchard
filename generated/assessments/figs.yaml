@@ -232,7 +232,7 @@ windows:
     decided:
       origin: us-ca
       rating: fair
-      evidence: low
+      evidence: medium
     weights: editorial
     typical: [us-ca fair 50.0%, mx poor 50.0%]
     peak:
@@ -248,7 +248,7 @@ windows:
     look for: [us-ca]
     label note: true
     reasons: [rated fair (origin us-ca), typical-origin-poor mx, look-for us-ca]
-    confidence: low (coverage, relevance, agreement)
+    confidence: low (relevance, agreement)
     markers: [check-label]
     today:
       section: good buys
@@ -649,7 +649,7 @@ windows:
     decided:
       origin: us-ca
       rating: fair
-      evidence: low
+      evidence: medium
     weights: editorial
     typical: [us-ca fair 50.0%, mx poor 50.0%]
     peak:
@@ -665,7 +665,7 @@ windows:
     look for: [us-ca]
     label note: true
     reasons: [rated fair (origin us-ca), typical-origin-poor mx, look-for us-ca]
-    confidence: low (coverage, relevance, agreement)
+    confidence: low (relevance, agreement)
     markers: [last-call (fades by dec-1), check-label]
     today:
       section: good buys

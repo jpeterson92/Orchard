@@ -46,46 +46,32 @@ prep: Halve across the middle and loosen the segments, or peel and cut out the s
 origins:
   - origin: us-tx
     windows:
-      - { from: jan-1, to: mar-2, rating: prime }
-      - { from: apr-1, to: may-1, rating: fair }
-      - from: may-2
-        to: may-2
-        rating: fair
-        reason: Only availability claims speak here, and the model panel has no rating.
-      - { from: jun-1, to: sep-2, rating: poor }
-      - from: oct-1
-        to: oct-1
-        rating: fair
-        reason: Only availability claims speak here, and the model panel has no rating.
       - { from: oct-2, to: nov-2, rating: fair }
-      - { from: dec-1, to: dec-2, rating: prime }
+      - { from: dec-1, to: mar-2, rating: prime }
+      - { from: apr-1, to: may-1, rating: fair }
   - origin: us-fl
     windows:
-      - { from: jan-1, to: mar-2, rating: prime }
-      - { from: apr-1, to: may-2, rating: fair }
-      - from: jun-1
-        to: jun-2
-        rating: fair
-        reason: Florida ships almost no fresh grapefruit this month; season charts alone overstate it.
-      - { from: jul-1, to: jul-1, rating: fair }
-      - { from: jul-2, to: aug-1, rating: poor }
       - { from: aug-2, to: aug-2, rating: fair }
       - from: sep-1
         to: sep-2
         rating: fair
         reason: Florida ships almost no fresh grapefruit this month; season charts alone overstate it.
       - { from: oct-1, to: nov-2, rating: fair }
-      - { from: dec-1, to: dec-2, rating: prime }
+      - { from: dec-1, to: mar-2, rating: prime }
+      - { from: apr-1, to: may-2, rating: fair }
+      - from: jun-1
+        to: jun-2
+        rating: fair
+        reason: Florida ships almost no fresh grapefruit this month; season charts alone overstate it.
+      - { from: jul-1, to: jul-1, rating: fair }
   - origin: us-ca
     windows:
-      - { from: jan-1, to: jul-2, rating: fair }
+      - { from: dec-2, to: jul-2, rating: fair }
       - from: aug-1
         to: aug-2
         rating: fair
         reason: Only availability claims speak here, and the model panel has no rating.
       - { from: sep-1, to: sep-1, rating: fair }
-      - { from: sep-2, to: dec-1, rating: poor }
-      - { from: dec-2, to: dec-2, rating: fair }
   - origin: za
     windows:
       - { from: jun-1, to: sep-2, rating: fair }

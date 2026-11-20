@@ -39,11 +39,7 @@ prep: Scrub the rind under running water before cutting, since the netting can h
 origins:
   - origin: us-ca
     windows:
-      - { from: jan-1, to: mar-2, rating: poor }
-      - from: apr-1
-        to: apr-2
-        rating: fair
-        reason: The model panel has no rating here, and the cited sources disagree; together they read fair.
+      - { from: apr-2, to: apr-2, rating: fair }
       - { from: may-1, to: may-2, rating: prime }
       - from: jun-1
         to: jun-1
@@ -56,26 +52,23 @@ origins:
         to: nov-1
         rating: fair
         reason: California's melon season is ending after a fair October, so early November isn't its best.
-      - { from: nov-2, to: dec-2, rating: poor }
   - origin: us-az
     windows:
-      - { from: jan-1, to: apr-2, rating: poor }
       - { from: may-1, to: may-2, rating: fair }
       - from: jun-1
         to: jun-1
         rating: prime
         reason: Chowhound and The Takeout rate eating quality prime here, outweighing the model panel's fair.
-      - from: jun-2
-        to: aug-2
+      - { from: jun-2, to: oct-1, rating: prime }
+      - from: oct-2
+        to: nov-2
         rating: fair
-        reason: The model panel has no rating here, and the cited sources disagree; together they read fair.
-      - { from: sep-1, to: nov-2, rating: prime }
+        reason: Only the model panel's low-confidence ranges rate this window; they read fair.
       - { from: dec-1, to: dec-1, rating: fair }
-      - { from: dec-2, to: dec-2, rating: poor }
   - origin: gt
     windows:
-      - { from: jan-1, to: dec-2, rating: poor }
+      - { from: nov-2, to: apr-2, rating: poor }
   - origin: hn
     windows:
-      - { from: jan-1, to: dec-2, rating: poor }
+      - { from: dec-1, to: may-1, rating: poor }
 status: draft

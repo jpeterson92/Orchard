@@ -309,23 +309,23 @@ windows:
     rule: 4
     basis: variety
     decided:
-      variety: anjou
+      variety: bartlett
       rating: fair
       evidence: medium
     look for: []
     label note: false
-    reasons: [rated fair (variety anjou)]
+    reasons: [rated fair (variety bartlett)]
     confidence: high
     markers: []
     today:
       section: good buys
-      line: Anjou and Bartlett
+      line: Bartlett
       reason: none
       avoid: none
       tags: []
     varieties:
-      good: [Anjou, Bartlett]
-      limited: [Bosc, Starkrimson]
+      good: [Bartlett]
+      limited: [Anjou, Bosc, Starkrimson]
       not in stores: [Comice, Seckel]
   aug-1:
     when: early August (from 2026-08-01)
@@ -349,8 +349,7 @@ windows:
       tags: []
     varieties:
       peak: [Bartlett, Starkrimson]
-      good: [Anjou]
-      limited: [Bosc]
+      limited: [Anjou, Bosc]
       not in stores: [Comice, Seckel]
   aug-2:
     when: late August (from 2026-08-16)
@@ -374,8 +373,7 @@ windows:
       tags: []
     varieties:
       peak: [Bartlett, Starkrimson]
-      good: [Anjou]
-      limited: [Bosc]
+      limited: [Anjou, Bosc]
       not in stores: [Comice, Seckel]
   sep-1:
     when: early September (from 2026-09-01)
