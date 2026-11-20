@@ -1,7 +1,7 @@
 # source: USDA AMS Market News terminal market price reports, 12 cities (usda:derive)
 # from: 2023-11
 # to: 2026-10
-# derived: 2026-11-17
+# derived: 2026-11-20
 item,variety,month,share,origins
 apples,granny-smith,1,1,us-wa
 apples,granny-smith,2,1,us-wa

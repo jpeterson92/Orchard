@@ -1,7 +1,7 @@
 # source: USDA AMS Market News movement reports (usda:derive)
 # from: 2023-11
 # to: 2026-10
-# derived: 2026-11-17
+# derived: 2026-11-20
 item,month,rank,origin,major,share
 apples,1,1,us-wa,true,0.769
 apples,2,1,us-wa,true,0.789
@@ -983,6 +983,18 @@ snap-snow-peas,11,1,mx,true,0.511
 snap-snow-peas,11,2,gt,true,0.26
 snap-snow-peas,12,1,mx,true,0.53
 snap-snow-peas,12,2,gt,true,0.429
+artichokes,1,1,us-ca,true,0.768
+artichokes,2,1,us-ca,true,0.81
+artichokes,3,1,us-ca,true,0.79
+artichokes,4,1,us-ca,true,0.951
+artichokes,5,1,us-ca,true,0.999
+artichokes,6,1,us-ca,true,0.997
+artichokes,7,1,us-ca,true,1
+artichokes,8,1,us-ca,true,1
+artichokes,9,1,us-ca,true,1
+artichokes,10,1,us-ca,true,1
+artichokes,11,1,us-ca,true,0.999
+artichokes,12,1,us-ca,true,0.941
 asparagus,1,1,pe,true,0.652
 asparagus,1,2,mx,true,0.319
 asparagus,2,1,mx,true,0.85

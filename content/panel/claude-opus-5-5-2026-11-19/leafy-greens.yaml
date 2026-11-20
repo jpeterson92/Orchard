@@ -1,0 +1,31 @@
+category: leafy-greens
+items:
+  - item: collard-greens
+    traits:
+      {
+        shipsWell: [true, medium],
+        storesWell: [false, high],
+        peakWorthSeeking: [true, low],
+        alwaysGood: [false, low],
+      }
+    origins:
+      - origin: us-ga
+        windows:
+          - [nov-1, feb-2, prime, medium]
+          - [mar-1, apr-2, fair, medium]
+          - [may-1, sep-2, poor, medium]
+          - [oct-1, oct-2, fair, medium]
+      - origin: us-ca
+        windows:
+          - [jan-1, dec-2, fair, medium]
+      - origin: us-sc
+        windows:
+          - [nov-1, feb-2, prime, medium]
+          - [mar-1, apr-2, fair, medium]
+          - [may-1, sep-2, poor, medium]
+          - [oct-1, oct-2, fair, medium]
+      - origin: us-tx
+        windows:
+          - [nov-1, mar-2, fair, medium]
+          - [apr-1, oct-2, poor, medium]
+    note: Cool-season Southeastern collards, sweetest after frost, are the best; hot-weather leaves are tough and bitter, while coastal California's are steady.

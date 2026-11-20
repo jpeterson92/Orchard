@@ -47,7 +47,7 @@ The top origin matches in all 3 years for most item-months. Where it flips (pear
 
 ## What this means for the build
 
-- **`npm run usda:derive`** writes `data/usda/typical-origins.csv` and `supply-index.csv` for 49 launch items (the first two groups below, as launch items, plus plantains, coconuts, ginger, jicama, yuca, tomatillos and hot peppers), with per-item month tables and dropped rows in `.cache/usda/derive-report.md`. It drops 4 lump sums (peaches, watermelon, avocados, sweet potatoes, all California). An item joins its list only when its evidence basis is set to USDA-backed at drafting; items with a domestic reporting gap stay off it.
+- **`npm run usda:derive`** writes `data/usda/typical-origins.csv` and `supply-index.csv` for 50 launch items (the first two groups below, as launch items, plus artichokes, plantains, coconuts, ginger, jicama, yuca, tomatillos and hot peppers), with per-item month tables and dropped rows in `.cache/usda/derive-report.md`. It drops 4 lump sums (peaches, watermelon, avocados, sweet potatoes, all California). An item joins its list only when its evidence basis is set to USDA-backed at drafting; items with a domestic reporting gap stay off it.
 - **Commodity names containing a comma** (`Lettuce, Romaine`) must be quoted in API queries, or the API reads them as two values. `scripts/usda-client.ts` does this.
 
 ## Coverage by item
@@ -63,6 +63,7 @@ The top origin matches in all 3 years for most item-months. Where it flips (pear
 | **Too little data** | apricots (~7M lb a season), basil | Assessment only, or leave out |
 
 Notes:
+- Collard greens are reported only from Southeastern shippers (no California, and South Carolina alone in late summer), so their typical origins are editorial. Winter squash imports from Mexico are reported by type (acorn, spaghetti, kabocha), and US winter squash is not.
 - Stone fruit, grapes and berries from California are unaffected by the 2025 gap; they're reported through Fresno.
 - Ten items have a few lump-sum rows, each bigger than half an average month. The derive step must cap or drop these before computing the index.
 - Thin months (supply index < 0.8) are mostly where expected: the winter import months for stone fruit and cherries, and summer for broccoli, cabbage and Brussels sprouts.

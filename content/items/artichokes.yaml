@@ -17,7 +17,7 @@ storesWell:
   value: false
   sources: [umn-artichokes, instacart-artichoke-season]
   note: Best cooked within about a week of purchase.
-evidenceBasis: assessment-only
+evidenceBasis: supply+assessment
 cardLine: Heavy for its size, with tight leaves that squeak.
 pick:
   - Heavy for its size
@@ -48,9 +48,4 @@ origins:
         reason: One extension blog puts the fall crop in September and October; Melissa's and Farmers Market Online date its peak to October, so September stays with the panel at fair.
       - { from: oct-1, to: oct-2, rating: prime }
       - { from: nov-1, to: dec-2, rating: fair }
-typicalOrigins:
-  - from: jan
-    to: dec
-    origins: [{ origin: us-ca, major: true }]
-    sources: [usda-ams-fv-movement, melissas-artichoke-facts]
 status: draft

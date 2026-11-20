@@ -1,0 +1,25 @@
+category: squash
+items:
+  - item: winter-squash
+    traits:
+      {
+        shipsWell: [true, high],
+        storesWell: [true, high],
+        peakWorthSeeking: [true, medium],
+        alwaysGood: [false, medium],
+      }
+    origins:
+      - origin: us-mi
+        windows:
+          - [aug-1, aug-2, poor, medium]
+          - [sep-1, sep-1, fair, medium]
+          - [sep-2, nov-2, prime, high]
+          - [dec-1, dec-2, prime, medium]
+          - [jan-1, feb-2, fair, medium]
+          - [mar-1, jul-2, poor, medium]
+        note: Michigan leads US production; cured fall squash is sweetest, and delicata keeps the least time.
+      - origin: mx
+        windows:
+          - [nov-1, apr-2, fair, medium]
+          - [may-1, jul-2, poor, medium]
+    note: Fall squash, cured a few weeks, is the sweetest; Mexican winter squash is good, and late-spring and summer squash is often bland or stringy.

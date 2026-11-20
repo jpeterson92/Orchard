@@ -1,0 +1,34 @@
+item: collard-greens
+status: draft
+claims:
+  # Georgia and South Carolina supply the cool months; cold weather sweetens the leaves.
+  - source: georgiagrown-collards
+    origin: us-ga
+    windows:
+      - { from: jan-1, to: jun-2, rating: prime }
+      - { from: oct-1, to: dec-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Georgia collards have two seasons, January through June and October through December.
+  - source: freshplaza-georgia-collards
+    origin: us-ga
+    windows:
+      - { from: sep-1, to: may-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: A Georgia grower ships collards nine months of the year, from September to about the end of May.
+  - source: gardenandgun-greens-frost
+    origin: us
+    windows:
+      - { from: dec-1, to: feb-2, rating: prime }
+    specificity: season
+    directness: eating-quality
+    paraphrase: Collards are sweeter after the first frost; cooks chase that peak winter flavor, even adding sugar to greens cooked out of season.
+  - source: colostate-planttalk-frost-sweet
+    origin: us
+    windows:
+      - { from: jun-1, to: aug-2, rating: poor }
+      - { from: sep-1, to: nov-2, rating: prime }
+    specificity: season
+    directness: eating-quality
+    paraphrase: Summer-harvested collards often have tough midribs best removed; in the fall the midribs are tender and sweet.

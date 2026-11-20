@@ -78,6 +78,7 @@ const ITEMS: Record<string, string[]> = {
   "sweet-corn": ["sweet-corn"],
   "green-beans": ["green-beans"],
   "snap-snow-peas": ["snap-peas"],
+  artichokes: ["artichokes"],
   asparagus: ["asparagus"],
   celery: ["celery"],
 };

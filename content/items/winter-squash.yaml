@@ -1,0 +1,79 @@
+id: winter-squash
+name: Winter squash
+synonyms:
+  [
+    butternut,
+    butternut squash,
+    acorn squash,
+    spaghetti squash,
+    kabocha,
+    kabocha squash,
+    delicata,
+    delicata squash,
+    pie pumpkin,
+    sugar pumpkin,
+    hard squash,
+  ]
+misspellings:
+  [winter sqaush, butternut sqaush, butter nut squash, acorn sqash, spagetti squash, kabocha squah, delicatta]
+category: squash
+purchaseRank: 33
+alwaysGood: false
+shipsWell:
+  value: true
+  sources: [usda-ams-fv-movement, freshplaza-mexico-hard-squash-season]
+  note: The hard rind travels well; Mexico ships across the US all winter.
+peakWorthSeeking:
+  value: true
+  sources: [umass-winter-squash-curing, oregonstate-butternut-bland]
+  note: Fall squash given a few weeks to sweeten in storage eats best.
+storesWell:
+  value: true
+  sources: [umass-winter-squash-curing, cooksmarts-winter-squash, foodprint-winter-squash]
+  note: Cured fall squash keeps for months; butternut keeps longest.
+evidenceBasis: assessment-only
+cardLine: Heavy for its size, with a dull, hard rind and dry stem.
+pick:
+  - Heavy for its size
+  - Dull, hard rind; a soft rind means watery, bland flesh
+  - Firm, dry stem still attached
+  - Butternut fully tan, with no green streaks
+avoid:
+  - Soft spots, cuts or blemishes
+store:
+  temperature: cool
+  ethylene: neither
+  life: { min: 1, max: 3, unit: months }
+  text: Keep whole squash in a cool, dark, dry spot rather than the fridge; typically good for 1–3 months, butternut longest. Refrigerate cut squash, covered, for up to 5 days.
+  sources: [umn-winter-squash, foodprint-winter-squash, umass-winter-squash-curing]
+prep: Halve with a heavy knife, scoop out the seeds and roast cut side down. Peel butternut with a sturdy peeler; delicata skin is tender enough to eat.
+origins:
+  - origin: us-mi
+    windows:
+      - { from: aug-1, to: aug-2, rating: poor }
+      - { from: sep-1, to: sep-1, rating: fair }
+      - { from: sep-2, to: dec-2, rating: prime }
+      - { from: jan-1, to: feb-2, rating: fair }
+      - { from: mar-1, to: jul-2, rating: poor }
+  - origin: mx
+    windows:
+      - { from: nov-1, to: apr-2, rating: fair }
+      - { from: may-1, to: jul-2, rating: poor }
+typicalOrigins:
+  - from: aug
+    to: oct
+    origins: [{ origin: us-mi, major: true }]
+    sources: [farmscom-greiner-squash, foodprint-winter-squash, cooksmarts-winter-squash]
+  - from: nov
+    to: dec
+    origins: [{ origin: us-mi, major: true }, { origin: mx, major: false }]
+    sources: [freshplaza-mexican-squash-quality, freshplaza-mexico-hard-squash-season, usda-ams-fv-movement]
+  - from: jan
+    to: feb
+    origins: [{ origin: mx, major: true }, { origin: us-mi, major: false }]
+    sources: [freshplaza-cold-winter-squash-demand, usda-ams-fv-movement]
+  - from: mar
+    to: jul
+    origins: [{ origin: mx, major: true }]
+    sources: [usda-ams-fv-movement]
+status: draft

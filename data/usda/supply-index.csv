@@ -1,7 +1,7 @@
 # source: USDA AMS Market News movement reports (usda:derive)
 # from: 2023-11
 # to: 2026-10
-# derived: 2026-11-17
+# derived: 2026-11-20
 item,month,origin,value,reason
 apples,1,us-wa,1.1,
 apples,2,us-wa,0.98,
@@ -1983,6 +1983,18 @@ snap-snow-peas,9,pe,2.1,
 snap-snow-peas,10,pe,2,
 snap-snow-peas,11,pe,0.89,
 snap-snow-peas,12,pe,0.27,
+artichokes,1,us-ca,0.89,
+artichokes,2,us-ca,1.2,
+artichokes,3,us-ca,0.87,
+artichokes,4,us-ca,1.3,
+artichokes,5,us-ca,1.2,
+artichokes,6,us-ca,1,
+artichokes,7,us-ca,0.99,
+artichokes,8,us-ca,0.83,
+artichokes,9,us-ca,0.85,
+artichokes,10,us-ca,0.84,
+artichokes,11,us-ca,1,
+artichokes,12,us-ca,1.1,
 asparagus,1,mx,0.45,
 asparagus,2,mx,1.8,
 asparagus,3,mx,2.7,

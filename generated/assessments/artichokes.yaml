@@ -17,8 +17,8 @@ windows:
       origin: us-ca
       rating: poor
       evidence: medium
-    weights: editorial
-    typical: [us-ca poor 100.0%]
+    weights: volume
+    typical: [us-ca poor 100.0% (supply 0.89)]
     peak:
       share: 0.0%
       available: "no: no origin at this level"
@@ -32,7 +32,7 @@ windows:
     look for: []
     label note: false
     reasons: [rated poor (origin us-ca)]
-    confidence: medium (relevance)
+    confidence: high
     markers: [improves (feb-2)]
     today: not on Today
   jan-2:
@@ -44,8 +44,8 @@ windows:
       origin: us-ca
       rating: poor
       evidence: medium
-    weights: editorial
-    typical: [us-ca poor 100.0%]
+    weights: volume
+    typical: [us-ca poor 100.0% (supply 0.89)]
     peak:
       share: 0.0%
       available: "no: no origin at this level"
@@ -59,7 +59,7 @@ windows:
     look for: []
     label note: false
     reasons: [rated poor (origin us-ca)]
-    confidence: medium (relevance)
+    confidence: high
     markers: [improves (feb-2)]
     today: not on Today
   feb-1:
@@ -71,8 +71,8 @@ windows:
       origin: us-ca
       rating: poor
       evidence: medium
-    weights: editorial
-    typical: [us-ca poor 100.0%]
+    weights: volume
+    typical: [us-ca poor 100.0% (supply 1.20)]
     peak:
       share: 0.0%
       available: "no: no origin at this level"
@@ -86,7 +86,7 @@ windows:
     look for: []
     label note: false
     reasons: [rated poor (origin us-ca)]
-    confidence: medium (relevance)
+    confidence: medium (agreement)
     markers: [improves (feb-2)]
     today: not on Today
   feb-2:
@@ -98,8 +98,8 @@ windows:
       origin: us-ca
       rating: fair
       evidence: medium
-    weights: editorial
-    typical: [us-ca fair 100.0%]
+    weights: volume
+    typical: [us-ca fair 100.0% (supply 1.20)]
     peak:
       share: 0.0%
       available: "no: no origin at this level"
@@ -113,7 +113,7 @@ windows:
     look for: []
     label note: false
     reasons: [rated fair (origin us-ca)]
-    confidence: medium (relevance)
+    confidence: high
     markers: []
     today:
       section: good buys
@@ -131,8 +131,8 @@ windows:
       origin: us-ca
       rating: prime
       evidence: high
-    weights: editorial
-    typical: [us-ca prime 100.0%]
+    weights: volume
+    typical: [us-ca prime 100.0% (supply 0.87)]
     peak:
       share: 100.0%
       available: "yes: counted share 100.0% ≥ 33.0%"
@@ -146,7 +146,7 @@ windows:
     look for: []
     label note: false
     reasons: [rated prime (origin us-ca)]
-    confidence: medium (relevance)
+    confidence: high
     markers: []
     today:
       section: best right now
@@ -164,8 +164,8 @@ windows:
       origin: us-ca
       rating: prime
       evidence: high
-    weights: editorial
-    typical: [us-ca prime 100.0%]
+    weights: volume
+    typical: [us-ca prime 100.0% (supply 0.87)]
     peak:
       share: 100.0%
       available: "yes: counted share 100.0% ≥ 33.0%"
@@ -179,7 +179,7 @@ windows:
     look for: []
     label note: false
     reasons: [rated prime (origin us-ca)]
-    confidence: medium (relevance)
+    confidence: high
     markers: []
     today:
       section: best right now
@@ -197,8 +197,8 @@ windows:
       origin: us-ca
       rating: prime
       evidence: high
-    weights: editorial
-    typical: [us-ca prime 100.0%]
+    weights: volume
+    typical: [us-ca prime 100.0% (supply 1.30)]
     peak:
       share: 100.0%
       available: "yes: counted share 100.0% ≥ 33.0%"
@@ -212,7 +212,7 @@ windows:
     look for: []
     label note: false
     reasons: [rated prime (origin us-ca)]
-    confidence: medium (relevance)
+    confidence: high
     markers: []
     today:
       section: best right now
@@ -230,8 +230,8 @@ windows:
       origin: us-ca
       rating: prime
       evidence: high
-    weights: editorial
-    typical: [us-ca prime 100.0%]
+    weights: volume
+    typical: [us-ca prime 100.0% (supply 1.30)]
     peak:
       share: 100.0%
       available: "yes: counted share 100.0% ≥ 33.0%"
@@ -245,7 +245,7 @@ windows:
     look for: []
     label note: false
     reasons: [rated prime (origin us-ca)]
-    confidence: medium (relevance)
+    confidence: high
     markers: []
     today:
       section: best right now
@@ -263,8 +263,8 @@ windows:
       origin: us-ca
       rating: prime
       evidence: high
-    weights: editorial
-    typical: [us-ca prime 100.0%]
+    weights: volume
+    typical: [us-ca prime 100.0% (supply 1.20)]
     peak:
       share: 100.0%
       available: "yes: counted share 100.0% ≥ 33.0%"
@@ -278,7 +278,7 @@ windows:
     look for: []
     label note: false
     reasons: [rated prime (origin us-ca)]
-    confidence: medium (relevance)
+    confidence: high
     markers: [last-call (fades by jun-1)]
     today:
       section: best right now
@@ -296,8 +296,8 @@ windows:
       origin: us-ca
       rating: prime
       evidence: high
-    weights: editorial
-    typical: [us-ca prime 100.0%]
+    weights: volume
+    typical: [us-ca prime 100.0% (supply 1.20)]
     peak:
       share: 100.0%
       available: "yes: counted share 100.0% ≥ 33.0%"
@@ -311,7 +311,7 @@ windows:
     look for: []
     label note: false
     reasons: [rated prime (origin us-ca)]
-    confidence: medium (relevance)
+    confidence: high
     markers: [last-call (fades by jun-1)]
     today:
       section: best right now
@@ -329,8 +329,8 @@ windows:
       origin: us-ca
       rating: fair
       evidence: medium
-    weights: editorial
-    typical: [us-ca fair 100.0%]
+    weights: volume
+    typical: [us-ca fair 100.0% (supply 1.00)]
     peak:
       share: 0.0%
       available: "no: no origin at this level"
@@ -344,7 +344,7 @@ windows:
     look for: []
     label note: false
     reasons: [rated fair (origin us-ca)]
-    confidence: medium (relevance)
+    confidence: high
     markers: []
     today:
       section: good buys
@@ -362,8 +362,8 @@ windows:
       origin: us-ca
       rating: fair
       evidence: medium
-    weights: editorial
-    typical: [us-ca fair 100.0%]
+    weights: volume
+    typical: [us-ca fair 100.0% (supply 1.00)]
     peak:
       share: 0.0%
       available: "no: no origin at this level"
@@ -377,7 +377,7 @@ windows:
     look for: []
     label note: false
     reasons: [rated fair (origin us-ca)]
-    confidence: medium (relevance)
+    confidence: high
     markers: []
     today:
       section: good buys
@@ -395,8 +395,8 @@ windows:
       origin: us-ca
       rating: fair
       evidence: medium
-    weights: editorial
-    typical: [us-ca fair 100.0%]
+    weights: volume
+    typical: [us-ca fair 100.0% (supply 0.99)]
     peak:
       share: 0.0%
       available: "no: no origin at this level"
@@ -410,7 +410,7 @@ windows:
     look for: []
     label note: false
     reasons: [rated fair (origin us-ca)]
-    confidence: medium (relevance)
+    confidence: high
     markers: [last-call (fades by aug-1)]
     today:
       section: good buys
@@ -428,8 +428,8 @@ windows:
       origin: us-ca
       rating: fair
       evidence: medium
-    weights: editorial
-    typical: [us-ca fair 100.0%]
+    weights: volume
+    typical: [us-ca fair 100.0% (supply 0.99)]
     peak:
       share: 0.0%
       available: "no: no origin at this level"
@@ -443,7 +443,7 @@ windows:
     look for: []
     label note: false
     reasons: [rated fair (origin us-ca)]
-    confidence: medium (relevance)
+    confidence: high
     markers: [last-call (fades by aug-1)]
     today:
       section: good buys
@@ -461,8 +461,8 @@ windows:
       origin: us-ca
       rating: poor
       evidence: medium
-    weights: editorial
-    typical: [us-ca poor 100.0%]
+    weights: volume
+    typical: [us-ca poor 100.0% (supply 0.83)]
     peak:
       share: 0.0%
       available: "no: no origin at this level"
@@ -476,7 +476,7 @@ windows:
     look for: []
     label note: false
     reasons: [rated poor (origin us-ca)]
-    confidence: medium (relevance)
+    confidence: high
     markers: [improves (sep-1)]
     today: not on Today
   aug-2:
@@ -488,8 +488,8 @@ windows:
       origin: us-ca
       rating: poor
       evidence: medium
-    weights: editorial
-    typical: [us-ca poor 100.0%]
+    weights: volume
+    typical: [us-ca poor 100.0% (supply 0.83)]
     peak:
       share: 0.0%
       available: "no: no origin at this level"
@@ -503,7 +503,7 @@ windows:
     look for: []
     label note: false
     reasons: [rated poor (origin us-ca)]
-    confidence: medium (relevance)
+    confidence: high
     markers: [improves (sep-1)]
     today: not on Today
   sep-1:
@@ -515,8 +515,8 @@ windows:
       origin: us-ca
       rating: fair
       evidence: low
-    weights: editorial
-    typical: [us-ca fair 100.0%]
+    weights: volume
+    typical: [us-ca fair 100.0% (supply 0.85)]
     peak:
       share: 0.0%
       available: "no: no origin at this level"
@@ -530,7 +530,7 @@ windows:
     look for: []
     label note: false
     reasons: [rated fair (origin us-ca)]
-    confidence: low (coverage, relevance)
+    confidence: medium (coverage)
     markers: []
     today:
       section: good buys
@@ -548,8 +548,8 @@ windows:
       origin: us-ca
       rating: fair
       evidence: low
-    weights: editorial
-    typical: [us-ca fair 100.0%]
+    weights: volume
+    typical: [us-ca fair 100.0% (supply 0.85)]
     peak:
       share: 0.0%
       available: "no: no origin at this level"
@@ -563,7 +563,7 @@ windows:
     look for: []
     label note: false
     reasons: [rated fair (origin us-ca)]
-    confidence: low (coverage, relevance)
+    confidence: medium (coverage)
     markers: []
     today:
       section: good buys
@@ -581,8 +581,8 @@ windows:
       origin: us-ca
       rating: prime
       evidence: high
-    weights: editorial
-    typical: [us-ca prime 100.0%]
+    weights: volume
+    typical: [us-ca prime 100.0% (supply 0.84)]
     peak:
       share: 100.0%
       available: "yes: counted share 100.0% ≥ 33.0%"
@@ -596,7 +596,7 @@ windows:
     look for: []
     label note: false
     reasons: [rated prime (origin us-ca), main-peak mar-1 to may-2]
-    confidence: medium (relevance)
+    confidence: high
     markers: []
     main peak: rated Peak here, but Peak is kept for mar-1 to may-2 (P19), so good
     today:
@@ -615,8 +615,8 @@ windows:
       origin: us-ca
       rating: prime
       evidence: high
-    weights: editorial
-    typical: [us-ca prime 100.0%]
+    weights: volume
+    typical: [us-ca prime 100.0% (supply 0.84)]
     peak:
       share: 100.0%
       available: "yes: counted share 100.0% ≥ 33.0%"
@@ -630,7 +630,7 @@ windows:
     look for: []
     label note: false
     reasons: [rated prime (origin us-ca), main-peak mar-1 to may-2]
-    confidence: medium (relevance)
+    confidence: high
     markers: []
     main peak: rated Peak here, but Peak is kept for mar-1 to may-2 (P19), so good
     today:
@@ -649,8 +649,8 @@ windows:
       origin: us-ca
       rating: fair
       evidence: medium
-    weights: editorial
-    typical: [us-ca fair 100.0%]
+    weights: volume
+    typical: [us-ca fair 100.0% (supply 1.00)]
     peak:
       share: 0.0%
       available: "no: no origin at this level"
@@ -664,7 +664,7 @@ windows:
     look for: []
     label note: false
     reasons: [rated fair (origin us-ca)]
-    confidence: medium (relevance)
+    confidence: high
     markers: []
     today:
       section: good buys
@@ -682,8 +682,8 @@ windows:
       origin: us-ca
       rating: fair
       evidence: medium
-    weights: editorial
-    typical: [us-ca fair 100.0%]
+    weights: volume
+    typical: [us-ca fair 100.0% (supply 1.00)]
     peak:
       share: 0.0%
       available: "no: no origin at this level"
@@ -697,7 +697,7 @@ windows:
     look for: []
     label note: false
     reasons: [rated fair (origin us-ca)]
-    confidence: medium (relevance)
+    confidence: high
     markers: []
     today:
       section: good buys
@@ -715,8 +715,8 @@ windows:
       origin: us-ca
       rating: fair
       evidence: medium
-    weights: editorial
-    typical: [us-ca fair 100.0%]
+    weights: volume
+    typical: [us-ca fair 100.0% (supply 1.10)]
     peak:
       share: 0.0%
       available: "no: no origin at this level"
@@ -730,7 +730,7 @@ windows:
     look for: []
     label note: false
     reasons: [rated fair (origin us-ca)]
-    confidence: medium (relevance)
+    confidence: high
     markers: [last-call (fades by jan-1)]
     today:
       section: good buys
@@ -748,8 +748,8 @@ windows:
       origin: us-ca
       rating: fair
       evidence: medium
-    weights: editorial
-    typical: [us-ca fair 100.0%]
+    weights: volume
+    typical: [us-ca fair 100.0% (supply 1.10)]
     peak:
       share: 0.0%
       available: "no: no origin at this level"
@@ -763,7 +763,7 @@ windows:
     look for: []
     label note: false
     reasons: [rated fair (origin us-ca)]
-    confidence: medium (relevance)
+    confidence: high
     markers: [last-call (fades by jan-1)]
     today:
       section: good buys

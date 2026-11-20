@@ -1,0 +1,109 @@
+id: collard-greens
+name: Collard greens
+synonyms: [collards, collard, collard green, collards greens, southern greens]
+misspellings: [colard greens, collard grens, colards, collord greens, collerd greens]
+category: leafy-greens
+purchaseRank: 55
+alwaysGood: false
+shipsWell:
+  value: true
+  sources: [usda-ams-fv-movement, californiagrown-leafy-greens]
+  note: Southeastern and California bunches ship by truck nationwide.
+peakWorthSeeking:
+  value: true
+  sources: [gardenandgun-greens-frost, colostate-planttalk-frost-sweet]
+  note: Cold-weather leaves are sweeter and more tender.
+storesWell:
+  value: false
+  sources: [umn-collard-greens]
+  note: Best used within about five days of purchase.
+evidenceBasis: assessment-only
+cardLine: Deep green, firm leaves with no yellowing; smaller leaves are more tender.
+pick:
+  - Dark green leaves with no yellow
+  - Firm, crisp leaves, not limp
+  - Smaller leaves for tender, milder greens
+avoid:
+  - Yellowing or browning leaves, or lots of small holes
+store:
+  temperature: cold
+  ethylene: sensitive
+  life: { min: 3, max: 5, unit: days }
+  text: Refrigerate unwashed in a plastic bag. Typically best within 3–5 days.
+  sources: [umn-collard-greens]
+prep: Swish the leaves in a big bowl of water, lift them out and repeat until no grit remains. Strip out the thick midribs, especially in summer, then slice and cook.
+origins:
+  - origin: us-ga
+    windows:
+      - from: nov-1
+        to: feb-2
+        rating: prime
+        reason: Frost-sweetened winter leaves are the ones Garden & Gun calls peak flavor, and Georgia ships its main crop then; the panel rates them prime.
+      - { from: mar-1, to: apr-2, rating: fair }
+      - from: may-1
+        to: sep-2
+        rating: poor
+        reason: Georgia's chart lists May and June and Colorado State's fall starts in September, but Southeastern leaves grown in heat have the tough midribs Colorado State describes; first frost comes later here.
+      - from: oct-1
+        to: oct-2
+        rating: fair
+        reason: October leaves are good but come before the Southeast's first frost, so they stay fair until the cold sweetens them.
+  - origin: us-sc
+    windows:
+      - from: nov-1
+        to: feb-2
+        rating: prime
+        reason: Frost-sweetened winter leaves are the ones Garden & Gun calls peak flavor, and South Carolina ships most of its collards in November and December; the panel rates them prime.
+      - { from: mar-1, to: apr-2, rating: fair }
+      - from: may-1
+        to: sep-2
+        rating: poor
+        reason: Colorado State's fall starts in September, but Southeastern leaves grown in heat have the tough midribs it describes; first frost comes later here.
+      - from: oct-1
+        to: oct-2
+        rating: fair
+        reason: October leaves are good but come before the Southeast's first frost, so they stay fair until the cold sweetens them.
+  - origin: us-tx
+    windows:
+      - from: nov-1
+        to: mar-2
+        rating: fair
+        reason: South Texas winters rarely bring the frost that sweetens collards, so its winter greens stay fair with the panel.
+      - from: apr-1
+        to: oct-2
+        rating: poor
+        reason: Colorado State's fall starts in September, but South Texas is still hot then and leaves grown in heat are tough.
+  - origin: us-ca
+    windows:
+      - from: jan-1
+        to: dec-2
+        rating: fair
+        reason: Colorado State's tough summer leaves come from hot summers; California's collards grow on the cool coast in summer and in the Imperial Valley in winter, so they stay fair all year with the panel.
+typicalOrigins:
+  - from: jan
+    to: mar
+    origins:
+      [
+        { origin: us-ga, major: true },
+        { origin: us-sc, major: true },
+        { origin: us-ca, major: true },
+        { origin: us-tx, major: false },
+      ]
+    sources: [usda-ams-fv-movement, georgiagrown-collards, californiagrown-leafy-greens]
+  - from: apr
+    to: may
+    origins: [{ origin: us-sc, major: true }, { origin: us-ga, major: true }, { origin: us-ca, major: true }]
+    sources: [usda-ams-fv-movement, freshplaza-georgia-collards, californiagrown-leafy-greens]
+  - from: jun
+    to: aug
+    origins: [{ origin: us-sc, major: true }, { origin: us-ca, major: true }]
+    sources: [usda-ams-fv-movement, californiagrown-leafy-greens]
+  - from: sep
+    to: sep
+    origins: [{ origin: us-sc, major: true }, { origin: us-ca, major: true }, { origin: us-ga, major: false }]
+    sources: [usda-ams-fv-movement, freshplaza-georgia-collards, californiagrown-leafy-greens]
+  - from: oct
+    to: dec
+    origins: [{ origin: us-sc, major: true }, { origin: us-ga, major: true }, { origin: us-ca, major: true }]
+    sources: [usda-ams-fv-movement, georgiagrown-collards, californiagrown-leafy-greens]
+status: draft

@@ -1,0 +1,18 @@
+item: winter-squash
+status: draft
+claims:
+  # US squash is harvested late summer into fall and stored through winter; Mexico ships from late October.
+  - source: foodprint-winter-squash
+    origin: us
+    windows:
+      - { from: aug-1, to: nov-2, rating: prime }
+    specificity: season
+    directness: availability
+    paraphrase: In four-season parts of the country, winter squash has its heyday from late summer through the end of fall.
+  - source: cooksmarts-winter-squash
+    origin: us
+    windows:
+      - { from: aug-1, to: nov-2, rating: prime }
+    specificity: season
+    directness: availability
+    paraphrase: Winter squash is harvested in late summer and autumn and keeps well through the winter months.

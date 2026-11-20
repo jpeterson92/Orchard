@@ -2015,3 +2015,93 @@ pages:
     kind: item-page
     origin: us-ca
     items: [artichokes]
+  - source: ofbf-collards
+    url: https://ofbf.org/whats-in-season/collards/
+    kind: item-page
+    origin: us
+    items: [collard-greens]
+  - source: georgiagrown-collards
+    url: https://georgiagrown.com/find-georgia-grown/fruits-vegetables/collards/
+    kind: item-page
+    origin: us-ga
+    items: [collard-greens]
+  - source: clemson-hgic-collards
+    url: https://hgic.clemson.edu/factsheet/collards/
+    kind: item-page
+    origin: us-sc
+    items: [collard-greens]
+  - source: freshplaza-georgia-collards
+    url: https://www.freshplaza.com/north-america/article/2185899/georgia-has-collard-greens-in-good-supply-and-full-production/
+    kind: item-page
+    origin: us-ga
+    items: [collard-greens]
+  - source: gardenandgun-greens-frost
+    url: https://gardenandgun.com/why-do-greens-taste-sweeter-after-the-first-frost
+    kind: item-page
+    origin: us
+    items: [collard-greens]
+  - source: colostate-planttalk-frost-sweet
+    url: https://planttalk.colostate.edu/?p=1347
+    kind: item-page
+    origin: us
+    items: [collard-greens]
+  - source: californiagrown-leafy-greens
+    url: https://californiagrown.org/?p=39592
+    kind: item-page
+    origin: us-ca
+    items: [collard-greens]
+  - source: foodwise-collard-greens
+    url: https://foodwise.org/food/collard-greens
+    kind: item-page
+    origin: us-ca
+    items: [collard-greens]
+  - source: farmscom-greiner-squash
+    url: https://www.farms.com/ag-industry-news/todd-greiner-farms-launches-fall-pumpkin-and-squash-season-519.aspx
+    kind: item-page
+    origin: us-mi
+    items: [winter-squash]
+  - source: freshplaza-mexico-hard-squash-season
+    url: https://www.freshplaza.com/north-america/article/9668921/challenges-and-opportunities-in-mexico-s-hard-squash-season
+    kind: item-page
+    origin: mx
+    items: [winter-squash]
+  - source: freshplaza-cold-winter-squash-demand
+    url: https://www.freshplaza.com/north-america/article/9696276/cold-temperatures-across-u-s-help-winter-squash-demand/
+    kind: item-page
+    origin: mx
+    items: [winter-squash]
+  - source: freshplaza-mexican-squash-quality
+    url: https://www.freshplaza.com/north-america/article/9786403/good-quality-mexican-squash-shipping-despite-earlier-rains-and-wind/
+    kind: item-page
+    origin: mx
+    items: [winter-squash]
+  - source: oregonstate-butternut-bland
+    url: https://extension.oregonstate.edu/ask-extension/featured/why-does-my-butternut-squash-taste-bland
+    kind: item-page
+    origin: us
+    items: [winter-squash]
+  - source: umass-winter-squash-curing
+    url: https://www.umass.edu/agriculture-food-environment/vegetable/fact-sheets/pumpkin-winter-squash-harvest-curing-storage
+    kind: item-page
+    origin: us
+    items: [winter-squash]
+  - source: foodprint-winter-squash
+    url: https://foodprint.org/real-food/real-food-encyclopedia-winter-squash/
+    kind: item-page
+    origin: us
+    items: [winter-squash]
+  - source: cooksmarts-winter-squash
+    url: https://www.cooksmarts.com/articles/how-to-prepare-winter-squash-guide/
+    kind: item-page
+    origin: us
+    items: [winter-squash]
+  - source: umn-collard-greens
+    url: https://reallifegoodfood.umn.edu/vegetables/collard-greens
+    kind: item-page
+    origin: us
+    items: [collard-greens]
+  - source: umn-winter-squash
+    url: https://reallifegoodfood.umn.edu/vegetables/winter-squash
+    kind: item-page
+    origin: us
+    items: [winter-squash]
