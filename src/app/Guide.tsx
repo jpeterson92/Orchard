@@ -91,7 +91,8 @@ function GuideBody({ view, mode }: { view: GuideView; mode: "today" | "typical" 
       <h1 className="mt-4 font-editorial text-[2rem] leading-tight font-bold">
         {view.guide.name} by variety
       </h1>
-      <p className="mt-1 text-ink-secondary">
+      <p className="mt-2 max-w-prose font-editorial text-lg leading-snug">{view.guide.lead}</p>
+      <p className="mt-2 text-ink-secondary">
         {view.rows.length} varieties compared on {view.guide.traits.length} traits, each scored 1 to 5.
       </p>
       {overall && (

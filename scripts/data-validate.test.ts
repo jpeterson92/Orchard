@@ -187,6 +187,7 @@ const withGuide = (r: RawInputs) => {
       id: "test-guide",
       name: "Test fruit",
       items: ["test-fruit"],
+      lead: { text: "Sweetness is what differs.", status: "draft" },
       uses: [{ id: "eating", name: "Eating", match: ["eat"] }],
       traits: [
         {
@@ -405,6 +406,22 @@ const broken: [string, (r: RawInputs) => void, string][] = [
       (r.guides as Any[]).push({ ...structuredClone(guide(r)), id: "other" });
     },
     "guide other: item test-fruit is already in guide test-guide",
+  ],
+  [
+    "guide lead over the word limit",
+    (r) => {
+      withGuide(r);
+      guide(r).lead.text = Array(61).fill("word").join(" ");
+    },
+    "lead.text: at most 60 words",
+  ],
+  [
+    "guide lead reviewed without a reviewer",
+    (r) => {
+      withGuide(r);
+      guide(r).lead.status = "reviewed";
+    },
+    "a reviewed record needs reviewedOn and reviewer",
   ],
   [
     "unknown reference variety",

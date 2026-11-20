@@ -210,6 +210,8 @@ export const guideSchema = z
     id,
     name: text,
     items: z.array(id).min(1),
+    /** "What matters": a short lead on what actually differs between the varieties, reviewed apart from the guide. */
+    lead: z.strictObject({ text: words(SECTION_WORDS), ...review }).refine(reviewComplete, reviewMessage),
     /** Each variety gives a short cue for telling when it's ripe (pears). */
     ripeCues: z.boolean().default(false),
     /** An overall rating per variety (product spec §5): the mean of one source's 0–100 score and Orchard's

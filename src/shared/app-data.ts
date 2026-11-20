@@ -56,6 +56,8 @@ export interface AppGuide {
   id: string;
   name: string;
   items: string[];
+  /** "What matters": what actually differs between the varieties. */
+  lead: string;
   ripeCues: boolean;
   /** What the overall rating judges (e.g. eating raw) and whose scores it uses, or null where there is none. */
   overall: { basis: string; source: Pick<Source, "title" | "publisher" | "url"> } | null;
@@ -188,6 +190,7 @@ export function appData(data: Dataset, builtOn: string, art: ArtMap, about: Abou
       id: g.id,
       name: g.name,
       items: g.items,
+      lead: g.lead.text,
       ripeCues: g.ripeCues,
       overall: g.overall ? { basis: g.overall.basis, source: sourceRef(g.overall.source) } : null,
       traits: g.traits.map((t) => ({

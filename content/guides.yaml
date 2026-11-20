@@ -6,6 +6,9 @@
 - id: apples
   name: Apples
   items: [apples]
+  lead:
+    text: "Crunch and the balance of sweet and tart set apples apart. Honeycrisp, Cosmic Crisp and SweeTango are among the crispest. Fuji and Ambrosia are sweet with little tang, and Granny Smith is sharp. For pies, pick a firm one like Granny Smith, Pink Lady or Braeburn. McIntosh cooks down to sauce."
+    status: draft
   # Overall: the mean of Apple Rankings' 0-100 score (each apple as a fresh "munching" apple) and Orchard's
   # editorial score on the same scale (Claude's, adjusted by Jared), sorted into tiers by these floors.
   overall:
@@ -59,6 +62,9 @@
 - id: pears
   name: Pears
   items: [pears]
+  lead:
+    text: "Texture once ripe sets pears apart. Comice and Bartlett turn soft, buttery and juicy, best eaten fresh. Bosc and Concorde stay dense and sweeten while still firm, so they hold their shape baked or poached. Pears ripen off the tree and only some change color, so check the neck. It gives to gentle pressure when ripe."
+    status: draft
   ripeCues: true
   status: reviewed
   reviewer: Jared
@@ -99,6 +105,9 @@
 - id: citrus
   name: Mandarins & oranges
   items: [mandarins, oranges]
+  lead:
+    text: "Peeling, seeds and tang set them apart. Clementines, satsumas, Pixies and Sumos peel by hand and are nearly seedless. Minneolas are tangier and juicier, with some seeds. Navels and Cara Caras are the seedless oranges, Cara Cara the sweeter and less acidic. Valencias are the juice orange, and blood oranges add tang and red flesh."
+    status: draft
   status: reviewed
   reviewer: Jared
   reviewedOn: 2026-11-18
