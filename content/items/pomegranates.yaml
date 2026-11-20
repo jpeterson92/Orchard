@@ -55,6 +55,10 @@ origins:
       - { from: mar-1, to: mar-2, rating: poor }
       - { from: apr-1, to: may-2, rating: fair }
       - { from: jun-1, to: jun-2, rating: poor }
+  - origin: ar
+    windows:
+      - { from: apr-1, to: may-2, rating: fair }
+      - { from: jun-1, to: jun-1, rating: poor }
 typicalOrigins:
   - from: sep
     to: dec

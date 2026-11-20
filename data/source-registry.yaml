@@ -1825,6 +1825,11 @@ pages:
     kind: item-page
     origin: il
     items: [pomegranates]
+  - source: freshplaza-argentina-pomegranates-positive-results
+    url: https://www.freshplaza.com/north-america/article/2138458/argentina-highly-positive-results-for-pomegranates
+    kind: item-page
+    origin: ar
+    items: [pomegranates]
   - source: freshplaza-israeli-pomegranates-in-markets
     url: https://www.freshplaza.com/article/2128673/israeli-pomegranates-now-in-markets/
     kind: item-page

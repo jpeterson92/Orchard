@@ -52,7 +52,7 @@ claims:
     specificity: month
     directness: availability
     paraphrase: Chile's early varieties arrive in the first week of March, then Wonderful; imports run until June.
-  # Argentina: one importer since 2018.
+  # Argentina: one importer since 2018, and a Córdoba grower.
   - source: freshplaza-sa-pomegranates-strong-demand
     origin: ar
     windows:
@@ -60,6 +60,14 @@ claims:
     specificity: season
     directness: eating-quality
     paraphrase: An importer finds late-April Argentine fruit large and very sweet, about 17 to 18 Brix, with little membrane.
+  # Harvest mid-February to mid-April; with the 15-day cold treatment in transit, US arrivals run about a month later.
+  - source: freshplaza-argentina-pomegranates-positive-results
+    origin: ar
+    windows:
+      - { from: mar-2, to: may-1, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: A Córdoba grower harvested from mid-February to mid-April and shipped fresh and processing fruit to the US.
   # Israel: Wonderful exports from late October through February, into March.
   - source: freshplaza-israeli-pomegranates-in-markets
     origin: il
