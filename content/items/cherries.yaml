@@ -61,6 +61,7 @@ origins:
   - origin: ca
     windows:
       - { from: jul-1, to: sep-1, rating: fair }
+      - { from: sep-2, to: sep-2, rating: poor }
   - origin: cl
     windows:
       - from: nov-1
@@ -68,4 +69,9 @@ origins:
         rating: fair
         reason: The panel has no rating here; an importer calls the first air-freighted Chilean fruit very nice, so it reads fair like December.
       - { from: dec-1, to: jan-2, rating: fair }
+      - from: feb-1
+        to: mar-1
+        rating: fair
+        reason: Sources split on late Chilean cherries; an importer praises its late southern varieties, while a reviewer found winter imports soft, so they read fair.
+      - { from: mar-2, to: mar-2, rating: poor }
 status: draft

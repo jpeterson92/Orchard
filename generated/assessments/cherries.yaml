@@ -6,7 +6,7 @@ status: draft
 rated by: origin
 peak worth seeking: true
 always good: false
-outlook: "GG·····GPPPPPPGGG···GGGG (Jan to Dec, two windows a month: P Peak, G Good, S Skip, · Limited evidence)"
+outlook: "GGGGGS·GPPPPPPGGGS··GGGG (Jan to Dec, two windows a month: P Peak, G Good, S Skip, · Limited evidence)"
 windows:
   jan-1:
     when: early January (from 2026-01-01)
@@ -76,51 +76,129 @@ windows:
       tags: []
   feb-1:
     when: early February (from 2026-02-01)
-    verdict: limited
-    rule: 1
+    verdict: good
+    rule: 4
     basis: typical
-    decided: none
+    decided:
+      origin: cl
+      rating: fair
+      evidence: low
+    weights: volume
+    typical: [cl fair 100.0% (supply 1.60)]
+    peak:
+      share: 0.0%
+      available: "no: no origin at this level"
+      whole bin: no (≤ 75.0%)
+      origins: []
+    good:
+      share: 100.0%
+      available: "yes: counted share 100.0% ≥ 33.0%"
+      whole bin: yes (> 75.0%)
+      origins: [cl fair 100.0%]
     look for: []
     label note: false
-    reasons: [origin-unrated cl]
+    reasons: [rated fair (origin cl)]
     confidence: medium (coverage)
     markers: []
-    today: not on Today
+    today:
+      section: good buys
+      line: none
+      reason: none
+      origin: Chile
+      avoid: none
+      tags: []
   feb-2:
     when: late February (from 2026-02-16)
-    verdict: limited
-    rule: 1
+    verdict: good
+    rule: 4
     basis: typical
-    decided: none
+    decided:
+      origin: cl
+      rating: fair
+      evidence: low
+    weights: volume
+    typical: [cl fair 100.0% (supply 1.60)]
+    peak:
+      share: 0.0%
+      available: "no: no origin at this level"
+      whole bin: no (≤ 75.0%)
+      origins: []
+    good:
+      share: 100.0%
+      available: "yes: counted share 100.0% ≥ 33.0%"
+      whole bin: yes (> 75.0%)
+      origins: [cl fair 100.0%]
     look for: []
     label note: false
-    reasons: [origin-unrated cl]
+    reasons: [rated fair (origin cl)]
     confidence: medium (coverage)
-    markers: []
-    today: not on Today
+    markers: [last-call (fades by mar-2)]
+    today:
+      section: good buys
+      line: none
+      reason: Fades by late March.
+      origin: Chile
+      avoid: none
+      tags: [Last call]
   mar-1:
     when: early March (from 2026-03-01)
-    verdict: limited
-    rule: 1
+    verdict: good
+    rule: 4
     basis: typical
-    decided: none
+    decided:
+      origin: cl
+      rating: fair
+      evidence: low
+    weights: volume
+    typical: ["cl fair 100.0% (supply 0.42, thin)"]
+    peak:
+      share: 0.0%
+      available: "no: no origin at this level"
+      whole bin: no (≤ 75.0%)
+      origins: []
+    good:
+      share: 100.0%
+      available: "yes: counted share 100.0% ≥ 33.0%"
+      whole bin: yes (> 75.0%)
+      origins: [cl fair 100.0%]
     look for: []
     label note: false
-    reasons: [origin-unrated cl]
+    reasons: [rated fair (origin cl)]
     confidence: medium (coverage)
-    markers: []
-    today: not on Today
+    markers: [last-call (fades by mar-2)]
+    today:
+      section: good buys
+      line: none
+      reason: Fades by late March.
+      origin: Chile
+      avoid: none
+      tags: [Last call]
   mar-2:
     when: late March (from 2026-03-16)
-    verdict: limited
-    rule: 1
+    verdict: skip
+    rule: 2
     basis: typical
-    decided: none
+    decided:
+      origin: cl
+      rating: poor
+      evidence: medium
+    weights: volume
+    typical: ["cl poor 100.0% (supply 0.42, thin)"]
+    peak:
+      share: 0.0%
+      available: "no: no origin at this level"
+      whole bin: no (≤ 75.0%)
+      origins: []
+    good:
+      share: 0.0%
+      available: "no: no origin at this level"
+      whole bin: no (≤ 75.0%)
+      origins: []
     look for: []
     label note: false
-    reasons: [origin-unrated cl]
-    confidence: medium (coverage)
-    markers: []
+    reasons: [rated poor (origin cl)]
+    confidence: high
+    markers: [improves (apr-2)]
     today: not on Today
   apr-1:
     when: early April (from 2026-04-01)
@@ -423,14 +501,14 @@ windows:
     label note: false
     reasons: [rated fair (origin us-wa)]
     confidence: high
-    markers: []
+    markers: [last-call (fades by sep-2)]
     today:
       section: good buys
       line: none
-      reason: none
+      reason: Fades by late September.
       origin: Washington
       avoid: none
-      tags: []
+      tags: [Last call]
   sep-1:
     when: early September (from 2026-09-01)
     verdict: good
@@ -456,25 +534,40 @@ windows:
     label note: false
     reasons: [rated fair (origin ca)]
     confidence: high
-    markers: []
+    markers: [last-call (fades by sep-2)]
     today:
       section: good buys
       line: none
-      reason: none
+      reason: Fades by late September.
       origin: Canada
       avoid: none
-      tags: []
+      tags: [Last call]
   sep-2:
     when: late September (from 2026-09-16)
-    verdict: limited
-    rule: 1
+    verdict: skip
+    rule: 2
     basis: typical
-    decided: none
+    decided:
+      origin: ca
+      rating: poor
+      evidence: medium
+    weights: volume
+    typical: [ca poor 100.0% (supply 1.20)]
+    peak:
+      share: 0.0%
+      available: "no: no origin at this level"
+      whole bin: no (≤ 75.0%)
+      origins: []
+    good:
+      share: 0.0%
+      available: "no: no origin at this level"
+      whole bin: no (≤ 75.0%)
+      origins: []
     look for: []
     label note: false
-    reasons: [origin-unrated ca]
-    confidence: medium (coverage)
-    markers: []
+    reasons: [rated poor (origin ca)]
+    confidence: medium (agreement)
+    markers: [improves (nov-1)]
     today: not on Today
   oct-1:
     when: early October (from 2026-10-01)

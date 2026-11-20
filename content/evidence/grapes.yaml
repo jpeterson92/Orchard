@@ -73,3 +73,25 @@ claims:
     specificity: half-month
     directness: availability
     paraphrase: Sonora's grape season wraps up in late June, with the last shipments tailing into July.
+  # The May handover: Chile's and Peru's tail end, then Mexico's new crop.
+  - source: ffp-grapes-tricky-transition-2021
+    origin: cl
+    windows:
+      - { from: may-2, to: jun-1, rating: poor }
+    specificity: half-month
+    directness: eating-quality
+    paraphrase: At the end of May the US market was still working through lower-quality, poor-condition tail-end grapes from Chile.
+  - source: ffp-grapes-tricky-transition-2021
+    origin: pe
+    windows:
+      - { from: may-2, to: jun-1, rating: poor }
+    specificity: half-month
+    directness: eating-quality
+    paraphrase: At the end of May the US market was still working through lower-quality, poor-condition tail-end grapes from Peru.
+  - source: freshplaza-mexico-grapes-start-early
+    origin: mx
+    windows:
+      - { from: may-2, to: jul-1, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: Mexico's main grape season typically runs from mid-May through early July.

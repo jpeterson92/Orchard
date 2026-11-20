@@ -138,3 +138,17 @@ claims:
     specificity: month
     directness: eating-quality
     paraphrase: Importers called one season's Chilean cherries high quality; shorter transits brought better condition, and January ads kept them moving.
+  - source: ffp-late-chilean-cherries-2024
+    origin: cl
+    windows:
+      - { from: feb-1, to: mar-1, rating: prime }
+    specificity: half-month
+    directness: eating-quality
+    paraphrase: An importer called its late southern Chilean varieties, arriving until mid-March, very high quality with amazing color and size.
+  - source: freshplaza-chilean-cherries-logistics-quality
+    origin: cl
+    windows:
+      - { from: dec-1, to: feb-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: After Christmas promotions and January ads, one season's Chilean cherries were gone from US stores after the third week of February.
