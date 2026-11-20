@@ -38,6 +38,12 @@ export function Today() {
       <main>
         <PageTitle />
         <h1 className="sr-only">Today</h1>
+        {view.summary && (
+          <p className="mt-3 text-lg leading-snug text-ink">
+            <span className="font-editorial">{view.summary}</span>{" "}
+            <StatusLabels draft={data.summaries.draft} synthetic={false} />
+          </p>
+        )}
         <OfflineStatus iso={date.today} />
 
         {any && (

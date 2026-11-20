@@ -18,10 +18,12 @@ import {
   type Snapshot,
   type Source,
   type State,
+  type Summaries,
   type SupplyIndexRow,
   snapshotSchema,
   sourceSchema,
   stateSchema,
+  summariesSchema,
   supplyIndexRowSchema,
   type TypicalOriginRow,
   typicalOriginRowSchema,
@@ -46,6 +48,8 @@ export interface RawInputs {
   items: { file: string; data: unknown }[];
   /** content/guides.yaml: the variety guides and their trait scales. */
   guides: unknown;
+  /** content/summaries.yaml: the 24 one-line Today summaries. */
+  summaries: unknown;
   evidence: { file: string; data: unknown }[];
   typicalOrigins: Csv | null;
   supplyIndex: Csv | null;
@@ -142,6 +146,7 @@ export function validate(raw: RawInputs, opts: { production: boolean }): Result 
     return [item];
   });
   const guides: Guide[] = list(guideSchema, raw.guides, "content/guides.yaml");
+  const summaries: Summaries | null = parse(summariesSchema, raw.summaries, "content/summaries.yaml");
   const evidence: EvidenceFile[] = raw.evidence.flatMap(({ file, data }) => {
     const ev = parse(evidenceFileSchema, data, file);
     if (ev === null) return [];
@@ -456,6 +461,7 @@ export function validate(raw: RawInputs, opts: { production: boolean }): Result 
     const records = [
       ...items,
       ...guides.map((g) => ({ ...g, id: `guide ${g.id}` })),
+      ...(summaries ? [{ ...summaries, id: "summaries" }] : []),
       ...evidence.map((e) => ({ ...e, id: `evidence ${e.item}` })),
     ];
     for (const s of sources)
@@ -466,7 +472,7 @@ export function validate(raw: RawInputs, opts: { production: boolean }): Result 
     }
   }
 
-  if (errors.length > 0 || rules === null) return { errors, warnings, dataset: null };
+  if (errors.length > 0 || rules === null || summaries === null) return { errors, warnings, dataset: null };
   const byId = <T extends { id: string }>(xs: T[]) => [...xs].sort((a, b) => a.id.localeCompare(b.id));
   return {
     errors,
@@ -478,6 +484,7 @@ export function validate(raw: RawInputs, opts: { production: boolean }): Result 
       states,
       items: byId(items),
       guides,
+      summaries,
       evidence: [...evidence].sort((a, b) => a.item.localeCompare(b.item)),
       snapshot,
       typicalOrigins,

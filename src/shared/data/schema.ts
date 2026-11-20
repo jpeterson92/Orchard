@@ -1,7 +1,7 @@
 // Schemas for every editorial and reference input (engineering plan §4.1). `scripts/data-build.ts` validates
 // the files against these; the app only imports the inferred types.
 import { z } from "zod";
-import { MONTH_LABEL, WINDOW_LABEL } from "../time";
+import { windowLabel as labelOf, MONTH_LABEL, WINDOW_COUNT, WINDOW_LABEL } from "../time";
 
 export const wordCount = (text: string): number => text.trim().split(/\s+/).filter(Boolean).length;
 
@@ -21,6 +21,8 @@ export const CARD_WORDS = 12;
 /** A finder chip's label. */
 export const FILTER_WORDS = 3;
 export const SECTION_WORDS = 60;
+/** The one-line Today summary. */
+export const SUMMARY_WORDS = 12;
 
 const review = {
   status: z.enum(["draft", "reviewed"]),
@@ -85,6 +87,15 @@ export const rulesSchema = z.strictObject({
 const windowLabel = z.string().regex(WINDOW_LABEL, 'use a half-month label such as "jun-1"');
 
 const rating = z.enum(["prime", "fair", "poor"]);
+
+/** content/summaries.yaml: the one-line Today summary for each half-month window, national (product spec §5). */
+export const summariesSchema = z
+  .strictObject({ ...review, windows: z.record(windowLabel, words(SUMMARY_WORDS)) })
+  .refine(reviewComplete, reviewMessage)
+  .refine((s) => Array.from({ length: WINDOW_COUNT }, (_, i) => labelOf(i)).every((l) => l in s.windows), {
+    message: "needs a summary for each of the 24 windows",
+    path: ["windows"],
+  });
 
 /** An editorial rating. Its citations are the evidence file's claims covering it (data-build checks them). */
 export const qualityWindowSchema = z.strictObject({
@@ -361,6 +372,7 @@ export type State = z.infer<typeof stateSchema>;
 export type Rules = z.infer<typeof rulesSchema>;
 export type Item = z.infer<typeof itemSchema>;
 export type Guide = z.infer<typeof guideSchema>;
+export type Summaries = z.infer<typeof summariesSchema>;
 export type QualityWindow = z.infer<typeof qualityWindowSchema>;
 export type EvidenceClaim = z.infer<typeof evidenceClaimSchema>;
 export type EvidenceFile = z.infer<typeof evidenceFileSchema>;
@@ -386,6 +398,7 @@ export interface Dataset {
   states: State[];
   items: Item[];
   guides: Guide[];
+  summaries: Summaries;
   evidence: EvidenceFile[];
   snapshot: Snapshot | null;
   typicalOrigins: TypicalOriginRow[];

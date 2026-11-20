@@ -44,6 +44,8 @@ export interface Card {
 }
 
 export interface TodayView {
+  /** The window's one-line summary (product spec §5), or null where none is written. */
+  summary: string | null;
   best: Card[];
   good: Card[];
 }
@@ -232,7 +234,7 @@ export function todayView(data: AppData, date: PlainDate, mode: "today" | "typic
   });
   const groups = groupToday(entries);
   const pick = (ids: string[]) => ids.flatMap((id) => cards.get(id) ?? []);
-  return { best: pick(groups.best), good: pick(groups.good) };
+  return { summary: data.summaries.lines[window] || null, best: pick(groups.best), good: pick(groups.good) };
 }
 
 /** A YYYY-MM-DD string as a plain date. */

@@ -1,0 +1,28 @@
+# The one-line Today summary for each half-month window, national (product spec §5). At most 12 words each.
+# Drafted from the verdicts in generated/assessments/; edit freely, then mark reviewed.
+status: draft
+windows:
+  jan-1: Citrus season is in full swing, and collards are frost-sweet.
+  jan-2: "Deep winter: oranges, grapefruit and mandarins carry the produce aisle."
+  feb-1: Mandarins, navels and grapefruit lead; collards stay frost-sweet.
+  feb-2: Citrus holds strong while collards finish their frost-sweet winter run.
+  mar-1: Spring artichokes and Mexican mangoes join late-winter citrus.
+  mar-2: Artichokes and mangoes are peaking; navels and grapefruit wind down.
+  apr-1: Spring strawberries hit their stride as navels and grapefruit fade.
+  apr-2: Strawberries, artichokes and Ataulfo mangoes are the spring standouts.
+  may-1: Asparagus, early cherries and blueberries mark the turn toward summer.
+  may-2: First apricots arrive; asparagus and artichokes near the end of spring.
+  jun-1: "Stone fruit season begins: peaches and nectarines join early apricots."
+  jun-2: "Summer is here: berries, cherries and stone fruit are all peaking."
+  jul-1: "Peak summer: melons, tomatoes, sweet corn and stone fruit at their best."
+  jul-2: The year's fullest stretch; grapes join melons, berries and stone fruit.
+  aug-1: Cherries and blueberries are done; peaches, melons and tomatoes carry on.
+  aug-2: New-crop pears and the first apples arrive beside late-summer peaches.
+  sep-1: Peaches are done; apples, pears and grapes lead into fall.
+  sep-2: "Fall arrives: winter squash and apples peak; tomatoes and watermelon fade."
+  oct-1: Pomegranates, persimmons and Brussels sprouts join the fall apple harvest.
+  oct-2: "Fall is at full strength: apples, pears, squash and pomegranates."
+  nov-1: Mandarins return as collards sweeten; fall apples and pears still shine.
+  nov-2: "Thanksgiving staples peak: winter squash, Brussels sprouts, apples and pears."
+  dec-1: Navel oranges and grapefruit arrive; winter squash and pears still peak.
+  dec-2: Citrus takes over the aisle; persimmons and pomegranates are nearly done.

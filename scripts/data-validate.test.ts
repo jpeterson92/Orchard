@@ -74,6 +74,17 @@ const csv = (file: string, rows: Record<string, string>[]): Csv => ({
   rows,
 });
 
+// Synthetic: a reviewed summary line for each of the 24 windows.
+const LABELS = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"].flatMap(
+  (m) => [`${m}-1`, `${m}-2`],
+);
+const summaries = () => ({
+  status: "reviewed",
+  reviewer: "Jared",
+  reviewedOn: "2026-11-17",
+  windows: Object.fromEntries(LABELS.map((l) => [l, `Test summary for ${l}.`])),
+});
+
 function base(): RawInputs {
   return {
     rules: {
@@ -98,6 +109,7 @@ function base(): RawInputs {
     ]),
     items: [{ file: "content/items/test-fruit.yaml", data: item("test-fruit", 1) }],
     guides: [],
+    summaries: summaries(),
     evidence: [{ file: "content/evidence/test-fruit.yaml", data: evidence("test-fruit") }],
     typicalOrigins: csv("data/usda/typical-origins.csv", [
       { item: "test-fruit", month: "5", rank: "1", origin: "us-ca", major: "true", share: "0.6" },
@@ -348,7 +360,8 @@ describe("validate: a valid dataset", () => {
     editorialOrigins(raw);
     const it0 = firstItem(raw);
     it0.origins[0].origin = "us";
-    for (const run of it0.typicalOrigins) for (const o of run.origins) if (o.origin === "us-ca") o.origin = "us";
+    for (const run of it0.typicalOrigins)
+      for (const o of run.origins) if (o.origin === "us-ca") o.origin = "us";
     for (const c of claims(raw)) if (c.origin === "us-ca") c.origin = "us";
     const { errors, dataset } = validate(raw, { production: false });
     expect(errors).toEqual([]);
@@ -662,6 +675,28 @@ const broken: [string, (r: RawInputs) => void, string][] = [
     "unknown US state in origin us-zz",
   ],
   ["unknown country origin", (r) => (firstItem(r).origins[1].origin = "qq"), "unknown origin qq"],
+  [
+    "a Today summary missing",
+    (r) => delete (r.summaries as Any).windows["dec-2"],
+    "needs a summary for each of the 24 windows",
+  ],
+  [
+    "a Today summary over 12 words",
+    (r) =>
+      ((r.summaries as Any).windows["jan-1"] =
+        "one two three four five six seven eight nine ten eleven twelve thirteen"),
+    "content/summaries.yaml: windows.jan-1: at most 12 words",
+  ],
+  [
+    "a Today summary under an unknown window",
+    (r) => ((r.summaries as Any).windows["jan-3"] = "Extra."),
+    "windows.jan-3: Invalid key in record",
+  ],
+  [
+    "reviewed summaries without a reviewer",
+    (r) => delete (r.summaries as Any).reviewer,
+    "a reviewed record needs reviewedOn and reviewer",
+  ],
   [
     "both us and a US state rated",
     (r) => (firstItem(r).origins[1].origin = "us"),
@@ -1126,6 +1161,15 @@ describe("validate: production builds", () => {
     expect(validate(raw, { production: true }).errors).toContain(
       "guide test-guide: draft records can't ship (production build)",
     );
+  });
+
+  it("refuse draft summaries", () => {
+    const raw = structuredClone(base());
+    (raw.summaries as Any).status = "draft";
+    expect(validate(raw, { production: true }).errors).toContain(
+      "summaries: draft records can't ship (production build)",
+    );
+    expect(validate(raw, { production: false }).errors).toEqual([]);
   });
 
   it("refuse synthetic sources", () => {
