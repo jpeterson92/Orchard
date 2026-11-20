@@ -4,7 +4,7 @@
 import { useId, useState } from "react";
 import { Link } from "react-router";
 import appJson from "../generated/app.json";
-import type { AppData, FilterGroup } from "../shared/app-data";
+import type { AppData, AppVariety, FilterGroup } from "../shared/app-data";
 import { Art } from "./Art";
 import type { AlwaysGoodRow } from "./always-good";
 import { useAppDate } from "./date";
@@ -150,6 +150,7 @@ function AlwaysGoodGrid({ rows }: { rows: AlwaysGoodRow[] }) {
                 <StapleCard key={row.id} row={row} />
               ))}
             </ul>
+            <CategoryExceptions rows={cards} />
           </div>
         );
       })}
@@ -158,48 +159,69 @@ function AlwaysGoodGrid({ rows }: { rows: AlwaysGoodRow[] }) {
 }
 
 function StapleCard({ row }: { row: AlwaysGoodRow }) {
-  const except = row.listing === "except";
-  const surface = "border border-rule bg-surface/50";
   return (
-    <li className={`min-w-0 ${except ? "" : `rounded-md ${surface}`}`}>
+    <li className="min-w-0 rounded-md border border-rule bg-surface/50">
       <Link
         to={`/items/${row.id}`}
-        className={`flex min-h-14 items-center gap-2 rounded-md px-2 py-1.5 font-semibold text-ink hover:bg-surface focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent sm:px-3 ${except ? surface : ""}`}
+        className="flex min-h-14 items-center gap-2 rounded-md px-2 py-1.5 font-semibold text-ink hover:bg-surface focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent sm:px-3"
       >
         <Art id={row.art} sizes="(min-width: 640px) 40px, 32px" className="size-8 shrink-0 sm:size-10" />
         <span className="min-w-0 font-editorial leading-tight wrap-anywhere sm:text-lg">{row.name}</span>
       </Link>
-      {row.varieties.length > 0 && (
-        <div
-          className={`px-2 leading-tight text-ink-secondary sm:px-3 ${except ? "relative" : "border-t border-rule"}`}
-        >
-          {except && (
-            <p className="pointer-events-none absolute inset-x-2 top-2.5 text-[0.625rem] leading-none font-semibold tracking-wider uppercase sm:inset-x-3">
-              Except
-            </p>
-          )}
-          <p
-            className={`flex flex-wrap gap-x-2 ${except ? "text-[0.6875rem] sm:text-xs" : "text-xs sm:text-sm"}`}
-          >
-            {row.varieties.map((variety) => {
-              const { to, label } = varietyDestination(row.id, variety.id, row.hasGuide);
-              return (
-                <Link
-                  key={variety.id}
-                  to={to}
-                  state={{ label }}
-                  className={`${textLink} min-w-11 max-w-full wrap-anywhere underline ${
-                    except ? "items-end pt-5 pb-2" : "items-center"
-                  }`}
-                >
-                  {variety.name}
-                </Link>
-              );
-            })}
-          </p>
-        </div>
+      {row.listing === "include" && (
+        <p className="flex flex-wrap gap-x-2 border-t border-rule px-2 text-xs leading-tight sm:px-3 sm:text-sm">
+          {row.varieties.map((variety) => (
+            <StapleVarietyLink key={variety.id} row={row} variety={variety} className="items-center" />
+          ))}
+        </p>
       )}
     </li>
+  );
+}
+
+function CategoryExceptions({ rows }: { rows: AlwaysGoodRow[] }) {
+  const exceptions = rows
+    .filter((row) => row.listing === "except")
+    .flatMap((row) => row.varieties.map((variety) => ({ row, variety })))
+    .sort((a, b) => a.variety.name.localeCompare(b.variety.name, "en"));
+  if (exceptions.length === 0) return null;
+  return (
+    <div className="relative px-2 leading-tight text-ink-secondary sm:px-3">
+      <p className="pointer-events-none absolute inset-x-2 top-2.5 text-[0.625rem] leading-none font-semibold tracking-wider uppercase sm:inset-x-3">
+        Except
+      </p>
+      <p className="flex flex-wrap gap-x-3 text-[0.6875rem] sm:text-xs">
+        {exceptions.map(({ row, variety }) => (
+          <StapleVarietyLink
+            key={`${row.id}/${variety.id}`}
+            row={row}
+            variety={variety}
+            className="items-end pt-5 pb-2"
+          />
+        ))}
+      </p>
+    </div>
+  );
+}
+
+function StapleVarietyLink({
+  row,
+  variety,
+  className,
+}: {
+  row: AlwaysGoodRow;
+  variety: AppVariety;
+  className: string;
+}) {
+  const { to, label } = varietyDestination(row.id, variety.id, row.hasGuide);
+  return (
+    <Link
+      to={to}
+      state={{ label }}
+      className={`${textLink} min-w-11 max-w-full wrap-anywhere underline ${className}`}
+    >
+      {variety.name}
+    </Link>
   );
 }
 
