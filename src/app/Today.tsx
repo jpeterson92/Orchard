@@ -174,7 +174,7 @@ function StapleCard({ row }: { row: AlwaysGoodRow }) {
           className={`px-2 leading-tight text-ink-secondary sm:px-3 ${except ? "relative" : "border-t border-rule"}`}
         >
           {except && (
-            <p className="pointer-events-none absolute inset-x-2 top-2 text-[0.625rem] leading-none font-semibold tracking-wider uppercase sm:inset-x-3">
+            <p className="pointer-events-none absolute inset-x-2 top-2.5 text-[0.625rem] leading-none font-semibold tracking-wider uppercase sm:inset-x-3">
               Except
             </p>
           )}
@@ -189,7 +189,7 @@ function StapleCard({ row }: { row: AlwaysGoodRow }) {
                   to={to}
                   state={{ label }}
                   className={`${textLink} min-w-11 max-w-full wrap-anywhere underline ${
-                    except ? "items-end pt-5 pb-1" : "items-center"
+                    except ? "items-end pt-5 pb-2" : "items-center"
                   }`}
                 >
                   {variety.name}
