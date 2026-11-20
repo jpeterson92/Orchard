@@ -15,8 +15,15 @@ Updated: 2026-11-20 · Phase: build · Live: https://orchard.jpeterson92.workers
 
 Claude, in order:
 
-1. **Per-item content follow-ups, apples first** (Content below). First run `node .cache/panel-missing.mjs`: it lists panel-rated origins an item file lacks. Fix the 26 `evidence:check` rejections only when working on that item; links are rechecked only at the yearly refresh (`evidence:check -- --urls`).
-2. **Draft the remaining items on the 89-item list** (engineering plan §5 order: by `purchaseRank`, always-good items last). Each new item record brings in its approved painting: rename `provisional-<item>-thumbnail-vN.png` in its staging folder to the catalog ID, add it to that folder's `handoff.json`, and run `npm run art:process`. Approved paintings are waiting for 53 of these items (staging folders 11–20); kiwifruit, papaya and iceberg use their v2 repaints in folder 21.
+1. **Jared's 2026-11-20 decisions** (write each into its governing doc as it lands):
+   - Okra: drop Honduras from June to October in `typicalOrigins`.
+   - P14: a single shipper's or state's availability chart rates only the months it names and their shoulders, never an off-season poor (as for a stateless `us` claim). Then recheck Mexican watermelon, Georgia's fall okra and Chile's persimmons in June and July.
+   - P15: the panel's low-confidence ranges count, as Low-confidence ratings (each with a written `reason`, in Jared's review list). Then recheck Florida okra in midwinter.
+   - Item page: drop the "Not rated: …" line from the variety summary in the verdict block.
+   - `purchaseRank`: one pass over all items from USDA ERS per-capita availability.
+   - "Can't find it? Try…" stays automatic. South African plums stay poor.
+2. **Per-item content follow-ups, apples first** (Content below). First run `node .cache/panel-missing.mjs`: it lists panel-rated origins an item file lacks. Fix the 26 `evidence:check` rejections only when working on that item; links are rechecked only at the yearly refresh (`evidence:check -- --urls`).
+3. **Draft the remaining items on the 89-item list** (engineering plan §5 order: by `purchaseRank`, always-good items last). Each new item record brings in its approved painting: rename `provisional-<item>-thumbnail-vN.png` in its staging folder to the catalog ID, add it to that folder's `handoff.json`, and run `npm run art:process`. Approved paintings are waiting for 53 of these items (staging folders 11–20); kiwifruit, papaya and iceberg use their v2 repaints in folder 21.
 
 Jared:
 
@@ -30,16 +37,12 @@ Jared:
 
 ## Open questions (Jared)
 
-1. P14 reads one shipper's or state's chart as the whole origin's, so its other months read poor where other sources say supply continues (Mexican watermelon, Honduran okra, Georgia's fall okra, Chile's persimmons in June and July).
-2. The panel's low-confidence ranges are dropped, which leaves some origins unrated (Florida okra in midwinter).
-3. `purchaseRank`: one pass over all items from one source would settle it (collard greens 55 and winter squash 33 are placeholders); say which source.
-4. P1 at 75%: revisit as more items are drafted.
-5. Okra's typical origins are editorial (USDA has no okra data) and list Honduras as major June to November, but the only fetched trade report says Honduran okra arrives from about November. Drop Honduras from June to October? October would then rest on Florida and read Peak; early June would still need California and Georgia rated or dropped from June (both are minor there).
-6. "Can't find it? Try…" picks up to two same-item varieties by trait distance (Honeycrisp → SweeTango, Jazz). Keep it automatic, or curate by hand? Also say if any finder chip name in `content/guides.yaml` should read differently.
+1. P1 at 75%: revisit as more items are drafted.
+2. Say if any finder chip name in `content/guides.yaml` should read differently.
 
 ## Content
 
-- **Not rated windows** (7 of 720; the app shows "Not rated", confidence is never shown). No source found good enough to rate: apricots January (Chile; one trade report puts main volume just after Christmas, no month named), plums December (Mexico holds a third of USDA volume; no source names Mexican plum months or varieties; try USDA FAS's Mexico deciduous fruit annual), okra early June and October (open question 5; California okra in June is small-farm only, and no source gives Georgia's start).
+- **Not rated windows** (7 of 720; the app shows "Not rated", confidence is never shown). No source found good enough to rate: apricots January (Chile; one trade report puts main volume just after Christmas, no month named), plums December (Mexico holds a third of USDA volume; no source names Mexican plum months or varieties; try USDA FAS's Mexico deciduous fruit annual), okra early June (after Honduras leaves June, California and Georgia still need June ratings; California okra in June is small-farm only, and no source gives Georgia's start).
 - **Per-item follow-ups:** SweeTango and Satsuma first: the panel rates them but USDA never quotes them, so each needs cited `inStores` months, as Cara Cara now has (`node .cache/panel-missing-varieties.mjs` lists panel variety windows an item lacks; Red and Golden Delicious, Tommy Atkins, Haden, round and Roma stay unrated by rule); apples (Cosmic Crisp January to early June and late September to October, Chile and New Zealand imports beyond Honeycrisp; Ambrosia rests on two consumer guides and is unrated June to early September, McIntosh May to August (it is `recommended: false`, so Today never names it); six eating-quality claims are one writer); pears (Bartlett late November to December, Bosc January to March and May to early September; Red Anjou, Red Bartlett, Packham, Forelle and Concorde claims in `content/evidence-drafts/`); mandarins (summer imports need a second source per variety, clementines February to May unrated, Gold Nugget only in May; Royal, satsuma, Sumo and Pixie claims in drafts); oranges (Cara Cara rated, in stores December to April per NC State Extension and Produce Market Guide; Chile navels have no claim; summer blood oranges rest on Sunkist alone); mangoes (no variety-named eating-quality claim, so variety windows are Medium at best; Tommy Atkins and Haden never rated, so late October reads Skip; traits wait for tropical anchors).
 - **PLU gaps:** IFPS has no code of its own for Gold Nugget or Pixie, so their pages show none; W. Murcott shows only Tango's 3556.
 - **Tools:** `.cache/runs.ts <item>`, `.cache/curves.ts <item> <variety> <window>`, `.cache/proposals.ts <item>`, `.cache/eval-why.ts [items]`, `.cache/eval-dips.ts`, and for re-rating `.cache/panel-rerate.mjs`, `.cache/apply-proposals.ts all`, `.cache/verdict-diff.mjs`. They hard-code the main checkout's root. In parallel sessions write `origin: us` explicitly on claims and run `npx biome format --write` on edited YAML.
