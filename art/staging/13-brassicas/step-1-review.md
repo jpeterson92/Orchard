@@ -6,7 +6,7 @@ The [Orchard illustration guide](../../../docs/design/illustration-guide.md#2-re
 
 ## Broccoli
 
-Proposed asset ID and staged PNG [`provisional-broccoli-thumbnail-v1`](provisional-broccoli-thumbnail-v1.png). Image checks passed. Pending Jared’s review.
+Proposed asset ID and staged PNG [`provisional-broccoli-thumbnail-v1`](provisional-broccoli-thumbnail-v1.png). Image checks passed. Approved by Jared.
 
 A broad crown of tight unopened green buds sits on short branches that join a single trimmed stalk. The visible leaf joins the stalk below the crown. The painting fills slightly more of the square than the other two, which Jared may want to compare at card size. [Illinois Extension’s broccoli guide](https://extension.illinois.edu/gardening/broccoli) and [University of Minnesota Extension’s broccoli harvest guidance and foliage reference](https://extension.umn.edu/garden-and-home/yard-and-garden/gardening-in-minnesota/growing-broccoli).
 
@@ -18,7 +18,7 @@ A broad crown of tight unopened green buds sits on short branches that join a si
 
 ## Cauliflower
 
-Proposed asset ID and staged PNG [`provisional-cauliflower-thumbnail-v1`](provisional-cauliflower-thumbnail-v1.png). Image checks passed. Pending Jared’s review.
+Proposed asset ID and staged PNG [`provisional-cauliflower-thumbnail-v1`](provisional-cauliflower-thumbnail-v1.png). Image checks passed. Approved by Jared.
 
 A dense ivory curd forms a continuous dome. The leafy wrappers cup it from below, with the visible ribs meeting the short basal stem. The green base and modeled curd preserve the silhouette on ivory. [University of Minnesota Extension’s cauliflower guide](https://extension.umn.edu/garden-and-home/yard-and-garden/gardening-in-minnesota/growing-cauliflower) and [Illinois Extension’s exhibiting guide](https://extension.illinois.edu/sites/default/files/exhibiting_vegetables_0.pdf).
 
@@ -30,7 +30,7 @@ A dense ivory curd forms a continuous dome. The leafy wrappers cup it from below
 
 ## Green cabbage
 
-Proposed asset ID and staged PNG [`provisional-cabbage-thumbnail-v1`](provisional-cabbage-thumbnail-v1.png). Image checks passed. Pending Jared’s review.
+Proposed asset ID and staged PNG [`provisional-cabbage-thumbnail-v1`](provisional-cabbage-thumbnail-v1.png). Image checks passed. Approved by Jared.
 
 Broad, smooth overlapping leaves form the whole globe. The outer wrappers curl closely around the head, with the visible front ribs converging toward the trimmed base. [Illinois Extension’s cabbage guide](https://extension.illinois.edu/gardening/cabbage) and [Illinois Extension’s exhibiting guide](https://extension.illinois.edu/sites/default/files/exhibiting_vegetables_0.pdf).
 
@@ -40,6 +40,6 @@ Broad, smooth overlapping leaves form the whole globe. The outer wrappers curl c
 >
 > Paint one whole trimmed smooth green heading cabbage as a solid round, slightly squat globe. Shape the entire head with broad, smooth cupped green leaves wrapping and overlapping toward the top, with one or two attached outer wrappers hugging the lower globe. Each visible main rib rises from the short basal core and branches naturally across its own leaf. Use muted blue-green outer folds and lighter yellow-green where upper leaves catch light. Keep edges soft and gently curved; the silhouette stays compact and closed. No exposed curd, florets, long stalk, loose rosette, heavily blistered Savoy texture, or detached leaves.
 
-## Next step
+## Batch approval
 
-Broccoli rabe, bok choy and napa cabbage.
+See the [batch approval record](README.md#jareds-approval) for all six approved illustrations.

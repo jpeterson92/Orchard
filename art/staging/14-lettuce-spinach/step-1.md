@@ -2,7 +2,7 @@
 
 The [curated expansion list](../../../docs/data/usda.md) includes all three subjects. The filenames use provisional IDs because these subjects have no item records in `content/items/`. The manifest, request briefs, live masters, public export filenames, and staging filenames and briefs showed no existing candidates for these subjects.
 
-**Art direction.** [Orchard illustration guide, §2 A](../../../docs/design/illustration-guide.md#a-isolated-produce-illustration) and [illustration-language style study](../../../docs/design/references/04-illustration-language.png). [Review sheet](review-step-1.png) shows each painting at 320, 72, and 104 px on ivory and warm charcoal. Each master used one built-in generation call with transparency enabled and passed Orchard’s [`checkMaster`](../../../scripts/art-lib.ts). All three are pending Jared’s review.
+**Art direction.** [Orchard illustration guide, §2 A](../../../docs/design/illustration-guide.md#a-isolated-produce-illustration) and [illustration-language style study](../../../docs/design/references/04-illustration-language.png). [Review sheet](review-step-1.png) shows each painting at 320, 72, and 104 px on ivory and warm charcoal. Each master used one built-in generation call with transparency enabled and passed Orchard’s [`checkMaster`](../../../scripts/art-lib.ts). See [Jared’s approval](README.md#approval) for all three.
 
 ## Shared prompt
 
@@ -46,7 +46,7 @@ The [curated expansion list](../../../docs/data/usda.md) includes all three subj
 
 Romaine’s vertical margin and butter lettuce’s horizontal margin are tighter than the prompt’s 10% target. Both clear the crop check and remain fully visible at the reviewed sizes.
 
-## Next step
+## Step 2
 
-Leaf lettuce as one representative specimen, spring mix as a compact selection of actual young leaves, and spinach.
+See the [batch brief](README.md) for leaf lettuce, spring mix, and spinach.
 

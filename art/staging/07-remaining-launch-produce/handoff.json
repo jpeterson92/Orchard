@@ -1,0 +1,18 @@
+{
+  "assets": [
+    {
+      "id": "collard-greens-thumbnail-v1",
+      "item": "collard-greens",
+      "role": "thumbnail",
+      "alt": "A bunch of broad dark green collard leaves with pale stems and prominent midribs",
+      "revision": 1
+    },
+    {
+      "id": "winter-squash-thumbnail-v1",
+      "item": "winter-squash",
+      "role": "thumbnail",
+      "alt": "A whole tan butternut squash with a rounded base, narrow neck, and dry stem",
+      "revision": 1
+    }
+  ]
+}

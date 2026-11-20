@@ -202,6 +202,14 @@
       "status": "approved"
     },
     {
+      "id": "collard-greens-thumbnail-v1",
+      "item": "collard-greens",
+      "role": "thumbnail",
+      "alt": "A bunch of broad dark green collard leaves with pale stems and prominent midribs",
+      "revision": 1,
+      "status": "approved"
+    },
+    {
       "id": "figs-thumbnail-v1",
       "item": "figs",
       "role": "thumbnail",
@@ -521,11 +529,11 @@
       "status": "approved"
     },
     {
-      "id": "sweet-corn-thumbnail-v1",
+      "id": "sweet-corn-thumbnail-v2",
       "item": "sweet-corn",
       "role": "thumbnail",
-      "alt": "A partially husked ear of sweet corn with yellow kernels and pale silk",
-      "revision": 1,
+      "alt": "A slim ear of yellow sweet corn framed by green husks that wrap up its sides",
+      "revision": 2,
       "status": "approved"
     },
     {
@@ -559,6 +567,14 @@
       "item": "watermelon",
       "role": "thumbnail",
       "alt": "A striped green watermelon beside a red wedge with dark seeds",
+      "revision": 1,
+      "status": "approved"
+    },
+    {
+      "id": "winter-squash-thumbnail-v1",
+      "item": "winter-squash",
+      "role": "thumbnail",
+      "alt": "A whole tan butternut squash with a rounded base, narrow neck, and dry stem",
       "revision": 1,
       "status": "approved"
     }
