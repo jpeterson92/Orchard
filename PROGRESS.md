@@ -1,6 +1,6 @@
 # PROGRESS
 
-Updated: 2026-11-20 · Phase: build · Live: https://orchard.jpeterson92.workers.dev (M0 placeholder) · 18 commits unsynced
+Updated: 2026-11-20 · Phase: build · Live: https://orchard.jpeterson92.workers.dev (M0 placeholder) · 19 commits unsynced
 
 ## Milestones
 
@@ -9,19 +9,18 @@ Updated: 2026-11-20 · Phase: build · Live: https://orchard.jpeterson92.workers
 - **M7 variety guides:** built (finder, variety pages, PLU numbers, apple overall rating, "What matters" leads); closes with Jared's review of the three leads.
 - **M9:** slices 1–2 done (security headers, axe in light and dark, WebKit e2e, page titles). The rest waits on devices, the domain and the independent reviewer; check the security headers on the live URL (`curl -I`) after the next deploy.
 - **Content:** all 30 first-release items drafted, and the 24 Today summaries reviewed.
-- **Art:** all 30 items and 43 varieties have approved art in the app (73 paintings).
+- **Art:** all 30 items and 43 varieties have approved art in the app (73 paintings), including the nine round-1 repaints (folder 21).
 
 ## Task list
 
 Claude, in order:
 
 1. **Per-item content follow-ups, apples first** (Content below). First run `node .cache/panel-missing.mjs`: it lists panel-rated origins an item file lacks. Fix the 26 `evidence:check` rejections only when working on that item; links are rechecked only at the yearly refresh (`evidence:check -- --urls`).
-2. **Draft the remaining items on the 89-item list** (engineering plan §5 order: by `purchaseRank`, always-good items last). Each new item record brings in its approved painting: rename `provisional-<item>-thumbnail-vN.png` in its staging folder to the catalog ID, add it to that folder's `handoff.json`, and run `npm run art:process`. Approved paintings are waiting for 53 of these items (staging folders 11–20).
-3. **Take in repaints as Jared approves them:** `npm run art:process`, a phone-width look, and a commit.
+2. **Draft the remaining items on the 89-item list** (engineering plan §5 order: by `purchaseRank`, always-good items last). Each new item record brings in its approved painting: rename `provisional-<item>-thumbnail-vN.png` in its staging folder to the catalog ID, add it to that folder's `handoff.json`, and run `npm run art:process`. Approved paintings are waiting for 53 of these items (staging folders 11–20); kiwifruit, papaya and iceberg use their v2 repaints in folder 21.
 
 Jared:
 
-- **Repaints:** start the illustrator on `art/staging/21-repaints/README.md`: 12 repaints in four batches of three (blackberries, Keitt mango, Red Bartlett; Clementine, Satsuma, Pixie; Gala, nectarine, grapefruit; kiwifruit, papaya, iceberg). The current versions stay in the app until each repaint is approved. Folder 19 also has first passes still to paint (mini sweet and hot peppers, eggplant and others).
+- **Art:** folder 19 has first passes still to paint (mini sweet and hot peppers, eggplant and others).
 - Guide leads (`content/guides.yaml`, `draft`, atop each guide): approve or rewrite.
 - Methods and Privacy drafts (`content/methods.md`, `content/privacy.md`): approve or edit.
 - Preview deploy for the M3 phone review, when you want it (it also creates the free D1 database `orchard`; then `npm run db:migrate`).
@@ -48,7 +47,7 @@ Jared:
 
 ## Art workflow
 
-Each illustrator chat works in its own `art/staging/<NN>-<topic>/` folder (`art/PROMPT.md`) and lists Jared's approvals in its `handoff.json`. `npm run art:process` copies them into `art/masters/` and the manifest, keeping only each subject's newest approved revision. Candidate PNGs are gitignored; briefs are committed. Gala, Clementine, Satsuma, Pixie, nectarine and grapefruit masters are rescaled stopgaps until their repaints land.
+Each illustrator chat works in its own `art/staging/<NN>-<topic>/` folder (`art/PROMPT.md`) and lists Jared's approvals in its `handoff.json`. `npm run art:process` copies them into `art/masters/` and the manifest, keeping only each subject's newest approved revision. Candidate PNGs are gitignored; briefs are committed.
 
 ## Environment notes
 

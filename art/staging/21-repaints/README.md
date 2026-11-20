@@ -27,6 +27,8 @@ Sizes below are the painting's visible width as a percentage of the canvas, unle
 
 ## Batch 1: identity and legibility
 
+[Review sheet](review-batch-1.png) shows the candidates, current paintings, and family references at 40, 72, and 320 px on both backgrounds.
+
 ### blackberries-thumbnail-v2
 
 - **Why:** the berries are nearly black with little reflected light, so their outline disappears on warm charcoal at 40 and 72 px.
@@ -35,6 +37,8 @@ Sizes below are the painting's visible width as a percentage of the canvas, unle
 - **Subject prompt:**
   > Two ripe blackberries, as in image 1: plump, slightly elongated, with tightly packed round drupelets and a tiny green-brown calyx on one. Keep the deep purple-black, but let each drupelet catch a cool blue-violet reflected rim on its shadow side and a small warm highlight on its lit side. Vary the highlights in size so they don't form a repeating pattern. The outer silhouette and the drupelet clusters must stay readable against dark charcoal at 40 px. No leaves.
 - **Handoff entry:** `{ "id": "blackberries-thumbnail-v2", "item": "blackberries", "role": "thumbnail", "alt": "Two deep purple-black blackberries with plump, glinting drupelets", "revision": 2 }`
+- **Result.** [blackberries-thumbnail-v2.png](blackberries-thumbnail-v2.png) passed `checkMaster` at 1254 × 1254 px with genuine alpha. Visible size is 83.3% wide × 76.2% tall. Cool reflected light makes the drupelets and bottom contour easier to read on charcoal. No touch-up queued.
+- **Approved by Jared (2026-11-19).**
 
 ### mangoes-keitt-thumbnail-v2
 
@@ -44,6 +48,8 @@ Sizes below are the painting's visible width as a percentage of the canvas, unle
 - **Subject prompt:**
   > One whole ripe Keitt mango. Keep its mostly green skin, but make the mango shape unmistakable: a large, full oval with one fuller, rounded shoulder by the stem, one slightly flatter flank, and a small, softly offset beak toward the lower tip. Add faint pale-yellow lenticel dots, a short stem scar, and a modest yellow flush with a touch of pink on the upper shoulder, as ripe Keitts often show. Lay the long axis on a gentle diagonal like the Kent. It must read as a mango beside the Kent at 40 px, and never as an avocado or a lime.
 - **Handoff entry:** `{ "id": "mangoes-keitt-thumbnail-v2", "item": "mangoes", "variety": "keitt", "role": "thumbnail", "alt": "A large oval Keitt mango, green with a yellow-pink flush on one shoulder", "revision": 2 }`
+- **Result.** [mangoes-keitt-thumbnail-v2.png](mangoes-keitt-thumbnail-v2.png) passed `checkMaster` at 1254 × 1254 px with genuine alpha. Visible size is 72.2% wide × 85.8% tall. The shoulder flush improves the mango read. The offset tip remains subtle at 40 px, where the silhouette is close to Kent’s.
+- **Approved by Jared (2026-11-19).**
 
 ### pears-red-bartlett-thumbnail-v2
 
@@ -53,10 +59,24 @@ Sizes below are the painting's visible width as a percentage of the canvas, unle
 - **Subject prompt:**
   > One ripe Red Bartlett pear with the classic Bartlett bell shape of image 2: a full rounded base, a defined shoulder and a short neck, with a short woody stem. Unlike the solid, even crimson Starkrimson in image 3, the red is uneven: bright red blush and fine vertical red striations over a visible yellow-to-yellow-green ground. The yellow shows clearly through the streaks, at the neck and in one lighter area on the shaded flank. Add a few fine pale lenticel dots. Side by side at 72 px it must read as a different pear from Starkrimson.
 - **Handoff entry:** `{ "id": "pears-red-bartlett-thumbnail-v2", "item": "pears", "variety": "red-bartlett", "role": "thumbnail", "alt": "A bell-shaped Red Bartlett pear with red streaks over a yellow ground", "revision": 2 }`
+- **Result.** [pears-red-bartlett-thumbnail-v2.png](pears-red-bartlett-thumbnail-v2.png) passed `checkMaster` at 1254 × 1254 px with genuine alpha. Visible size is 55.9% wide × 79.3% tall. Yellow ground and red streaking stay visible at 72 px, giving the pear a clear distinction from Starkrimson. No touch-up queued.
+- **Superseded** by v3 at Jared’s request.
+
+### pears-red-bartlett-thumbnail-v3
+
+- **Revision requested.** Jared asked to soften the streaks substantially and confine them to one small area. Use his attached Red Bartlett photograph for coloration and markings.
+- **Inputs.** `art/staging/21-repaints/pears-red-bartlett-thumbnail-v2.png` (edit target) and Jared’s `Pasted Image 1.jpg` (skin color and markings).
+- **Built-in image-generation prompt.**
+  > Image 1 is the Orchard watercolor to edit. Image 2 is Jared’s real Red Bartlett reference for skin coloration and markings only. Preserve Image 1’s pear silhouette, Bartlett proportions, stem, position, canvas size and scale (about 56% wide and 79% tall), three-quarter view, soft upper-left light and botanical watercolor handling. Change the surface pigmentation to match Image 2: a broad, soft red and coral blush covering the lower body and one flank, softly mottled, blending into a distinct golden-yellow to yellow-green neck and upper shoulder. Confine only two or three very faint, short, soft red streaks to a single small patch just below the stem on the upper-left shoulder, as in the photo. Those subtle streaks should disappear into the blush at thumbnail size. The entire rest of the fruit has smooth washes and tiny natural lenticels, with no linear markings on the middle, right flank or base. The broad red area should read as a continuous blush, not stripes or patches of solid crimson. Preserve pigment granulation and matte watercolor highlights. Output the same centered square isolated PNG at least 1024 px with genuine transparent alpha, no paper, matte, halo, text, or shadow.
+- **Result.** [pears-red-bartlett-thumbnail-v3.png](pears-red-bartlett-thumbnail-v3.png) passed `checkMaster` at 1254 × 1254 px with genuine alpha. Visible size is 56.4% wide × 79.9% tall. Faint streaks are confined to the upper shoulder, with a broad coral-red blush across the lower fruit. [Review comparison](review-red-bartlett-v3.png).
+- **Handoff entry:** `{ "id": "pears-red-bartlett-thumbnail-v3", "item": "pears", "variety": "red-bartlett", "role": "thumbnail", "alt": "A bell-shaped Red Bartlett pear with a golden neck and soft coral-red blush", "revision": 3 }`
+- **Approved by Jared (2026-11-19).**
 
 ## Batch 2: mandarin scale
 
 The approved paintings were painted small: Clementine and Pixie at about 50% of the canvas width, and Satsuma at 60%, against 68–73% for the other mandarins. Claude has already enlarged the masters in `art/masters/`, so image 1 is at the target scale. Repaint at that scale at full resolution and keep each variety's traits.
+
+[Review sheet](review-batch-2.png) compares the three candidates with the current paintings, W. Murcott, and Gold Nugget at 40, 72, and 320 px on both backgrounds.
 
 ### mandarins-clementine-thumbnail-v3
 
@@ -65,6 +85,8 @@ The approved paintings were painted small: Clementine and Pixie at about 50% of 
 - **Subject prompt:**
   > One clementine as in image 1: a small, slightly flattened, glossy deep-orange fruit with fine, smooth pores, a tiny stem and one green leaf. Paint it at about 68% of the canvas width, matching the visual weight of the W. Murcott and Gold Nugget. Its smooth, tight, deep-orange rind sets it apart from their pebbled or reddish rinds.
 - **Handoff entry:** `{ "id": "mandarins-clementine-thumbnail-v3", "item": "mandarins", "variety": "clementine", "role": "thumbnail", "alt": "A small clementine with a leaf", "revision": 3 }`
+- **Result.** [mandarins-clementine-thumbnail-v3.png](mandarins-clementine-thumbnail-v3.png) passed `checkMaster` at 1254 × 1254 px with genuine alpha. Visible size is 68.7% wide × 59.9% tall. The fruit retains the smooth, deep-orange rind and single leaf. No touch-up queued.
+- **Approved by Jared (2026-11-19).**
 
 ### mandarins-satsuma-thumbnail-v3
 
@@ -73,6 +95,8 @@ The approved paintings were painted small: Clementine and Pixie at about 50% of 
 - **Subject prompt:**
   > One Satsuma mandarin as in image 1: gently flattened but not squashed, with a slightly loose, softly puffy orange rind and faint surface creases, a short stem and one narrow green leaf. Paint it at about 70% of the canvas width, matching the visual weight of the W. Murcott and Gold Nugget.
 - **Handoff entry:** `{ "id": "mandarins-satsuma-thumbnail-v3", "item": "mandarins", "variety": "satsuma", "role": "thumbnail", "alt": "A gently flattened orange Satsuma mandarin with a narrow green leaf", "revision": 3 }`
+- **Result.** [mandarins-satsuma-thumbnail-v3.png](mandarins-satsuma-thumbnail-v3.png) passed `checkMaster` at 1254 × 1254 px with genuine alpha. Visible size is 70.7% wide × 64.0% tall. The fuller shoulders, faint rind creases, and narrow leaf carry through. No touch-up queued.
+- **Approved by Jared (2026-11-19).**
 
 ### mandarins-pixie-thumbnail-v2
 
@@ -81,8 +105,12 @@ The approved paintings were painted small: Clementine and Pixie at about 50% of 
 - **Subject prompt:**
   > One Pixie mandarin as in image 1: round, lighter yellow-orange than a clementine, with a distinctly pebbled, bumpy rind and a small stem end with a tiny stub of stem. No leaf. Paint it at about 68% of the canvas width, matching the visual weight of the Gold Nugget. The pebbled texture and paler yellow-orange must still show at 72 px.
 - **Handoff entry:** `{ "id": "mandarins-pixie-thumbnail-v2", "item": "mandarins", "variety": "pixie", "role": "thumbnail", "alt": "A small, round yellow-orange Pixie mandarin with finely pebbled rind", "revision": 2 }`
+- **Result.** [mandarins-pixie-thumbnail-v2.png](mandarins-pixie-thumbnail-v2.png) passed `checkMaster` at 1254 × 1254 px with genuine alpha. Visible size is 69.1% wide × 63.1% tall. The rind texture is more visible at 72 px and the round, leafless silhouette holds at 40 px. No touch-up queued.
+- **Approved by Jared (2026-11-19).**
 
 ## Batch 3: scale
+
+[Review sheet](review-batch-3.png) shows the three candidates beside the current paintings and their family references at 40, 72, and 320 px on both backgrounds.
 
 The approved Gala was painted small, at 63% of the canvas width against 68–75% for the other apples. The nectarine was painted at 84% against 70% for peaches and 78% for plums, and the grapefruit at 88% against 79–85% for the other citrus. Claude has already rescaled the masters in `art/masters/`, so image 1 is at the target scale.
 
@@ -93,6 +121,8 @@ The approved Gala was painted small, at 63% of the canvas width against 68–75%
 - **Subject prompt:**
   > One Gala apple as in image 1: a small-to-medium, slightly conical round apple with bright orange-red stripes and blush over a golden-yellow ground, and a slender stem. Paint it at about 69% of the canvas width, matching the Fuji and Honeycrisp. The striping over gold sets it apart from Honeycrisp's mottling.
 - **Handoff entry:** `{ "id": "apples-gala-thumbnail-v4", "item": "apples", "variety": "gala", "role": "thumbnail", "alt": "A small Gala apple with orange-red stripes over gold", "revision": 4 }`
+- **Result.** [apples-gala-thumbnail-v4.png](apples-gala-thumbnail-v4.png) passed `checkMaster` at 1254 × 1254 px with genuine alpha. Visible size is 69.5% wide × 72.5% tall. The orange-red stripes over gold distinguish it from Honeycrisp’s mottling, and the body matches the requested scale. No touch-up queued.
+- **Approved by Jared (2026-11-19).**
 
 ### nectarines-thumbnail-v2
 
@@ -101,6 +131,8 @@ The approved Gala was painted small, at 63% of the canvas width against 68–75%
 - **Subject prompt:**
   > One whole nectarine as in image 1: smooth, fuzz-free, faintly glossy skin with a shallow seam, and deep crimson over most of the fruit, giving way to golden yellow on one shoulder. Paint it at about 74% of the canvas width, between the peach and the plum. Its smooth red skin sets it apart from the peach's soft, fuzzy blush.
 - **Handoff entry:** `{ "id": "nectarines-thumbnail-v2", "item": "nectarines", "role": "thumbnail", "alt": "A whole smooth red nectarine with a golden shoulder and shallow seam", "revision": 2 }`
+- **Result.** [nectarines-thumbnail-v2.png](nectarines-thumbnail-v2.png) passed `checkMaster` at 1254 × 1254 px with genuine alpha. Visible size is 74.6% wide × 73.7% tall. The smooth crimson skin and shallow seam hold beside the softer peach. Its width falls between the peach and plum references. No touch-up queued.
+- **Approved by Jared (2026-11-19).**
 
 ### grapefruit-thumbnail-v3
 
@@ -109,10 +141,14 @@ The approved Gala was painted small, at 63% of the canvas width against 68–75%
 - **Subject prompt:**
   > One whole yellow grapefruit with a cut half in front, as in image 1: the whole fruit's pale yellow rind is blushed faintly pink, and the cut half shows rose-pink segments, thin pale membranes and a white pith ring. Keep the whole fruit and the half overlapping compactly, at about 82% of the canvas on the longer side, matching the blood orange and the Valencia.
 - **Handoff entry:** `{ "id": "grapefruit-thumbnail-v3", "item": "grapefruit", "role": "thumbnail", "alt": "A yellow grapefruit with a cut half showing rose-pink segments", "revision": 3 }`
+- **Result.** [grapefruit-thumbnail-v3.png](grapefruit-thumbnail-v3.png) passed `checkMaster` at 1254 × 1254 px with genuine alpha. Visible size is 82.9% wide × 76.3% tall. The compact pairing retains the pale yellow rind, white pith, and rose-pink segments at the requested scale. No touch-up queued.
+- **Approved by Jared (2026-11-19).**
 
 ## Batch 4: provisional items
 
 These items have no catalog record yet. Save the PNGs here under their `provisional-` names. Record Jared's decision under each one, but add no handoff entry.
+
+[Review sheet](review-batch-4.png) shows the three candidates beside the current paintings and visual references at 40, 72, and 320 px on ivory and warm charcoal.
 
 ### provisional-kiwifruit-thumbnail-v2
 
@@ -122,6 +158,8 @@ These items have no catalog record yet. Save the PNGs here under their `provisio
 - **Subject prompt:**
   > One whole kiwifruit with a cut half in front. The whole fruit is an oval with fine, short, fuzzy brown skin. The cut half shows bright translucent green flesh, a creamy white core with fine pale rays, and a ring of tiny black seeds around the core. Overlap the two compactly. The green cut face must read clearly at 40 px on both backgrounds.
 - **Proposed alt:** A fuzzy brown kiwifruit beside a cut half with green flesh and a ring of black seeds
+- **Result.** [provisional-kiwifruit-thumbnail-v2.png](provisional-kiwifruit-thumbnail-v2.png) passed `checkMaster` at 1254 × 1254 px with genuine alpha. Visible size is 75.4% wide × 77.0% tall. The composition is three percentage points below the 80% target on its longest side. The green cut face and pale core read at 40 px on both backgrounds.
+- **Approved by Jared (2026-11-19).**
 
 ### provisional-papaya-thumbnail-v2
 
@@ -131,6 +169,8 @@ These items have no catalog record yet. Save the PNGs here under their `provisio
 - **Subject prompt:**
   > One whole ripe papaya with a lengthwise cut half in front of it. The skin is smooth, yellow with green streaks fading toward the stem end. The cut face shows salmon-orange flesh around a long central cavity filled with glossy round black seeds. Elongated pear-oval shape with a blunt stem end. The black-seeded cavity must read at 40 px, and it must not look like a mango.
 - **Proposed alt:** A papaya cut lengthwise, showing salmon-orange flesh and a cavity of black seeds
+- **Result.** [provisional-papaya-thumbnail-v2.png](provisional-papaya-thumbnail-v2.png) passed `checkMaster` at 1254 × 1254 px with genuine alpha. Visible size is 76.3% wide × 85.1% tall. The black seed cavity reads at 40 px and distinguishes it from the mango.
+- **Approved by Jared (2026-11-19).**
 
 ### provisional-iceberg-thumbnail-v2
 
@@ -140,3 +180,5 @@ These items have no catalog record yet. Save the PNGs here under their `provisio
 - **Subject prompt:**
   > One head of iceberg lettuce with a wedge cut from it, the wedge resting in front. The head is pale, nearly white-green at the center, fresh light green on the outer leaves. The leaves are thin, crisp and loosely crinkled, with wavy, slightly ruffled edges and fine pale veins. Unlike the smooth, waxy, blue-green cabbage in image 2, it has no thick prominent ribs and no tight, heavy layers. The wedge shows densely packed, pale, crisp, wavy layers. At 72 px it must read as lettuce, not cabbage.
 - **Proposed alt:** A pale green head of iceberg lettuce with a crisp cut wedge
+- **Result.** [provisional-iceberg-thumbnail-v2.png](provisional-iceberg-thumbnail-v2.png) passed `checkMaster` at 1254 × 1254 px with genuine alpha. Visible size is 86.8% wide × 85.5% tall. The pale wedge shows the thin, wavy layers and helps distinguish the head from cabbage. The composition is 4.8 percentage points above the 82% target on its longest side.
+- **Approved by Jared (2026-11-19).**

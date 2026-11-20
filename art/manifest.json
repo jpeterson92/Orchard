@@ -46,12 +46,12 @@
       "status": "approved"
     },
     {
-      "id": "apples-gala-thumbnail-v3",
+      "id": "apples-gala-thumbnail-v4",
       "item": "apples",
       "variety": "gala",
       "role": "thumbnail",
       "alt": "A small Gala apple with orange-red stripes over gold",
-      "revision": 3,
+      "revision": 4,
       "status": "approved"
     },
     {
@@ -186,11 +186,11 @@
       "status": "approved"
     },
     {
-      "id": "blackberries-thumbnail-v1",
+      "id": "blackberries-thumbnail-v2",
       "item": "blackberries",
       "role": "thumbnail",
-      "alt": "Two deep purple-black blackberries with plump rounded drupelets",
-      "revision": 1,
+      "alt": "Two deep purple-black blackberries with plump, glinting drupelets",
+      "revision": 2,
       "status": "approved"
     },
     {
@@ -242,11 +242,11 @@
       "status": "approved"
     },
     {
-      "id": "grapefruit-thumbnail-v2",
+      "id": "grapefruit-thumbnail-v3",
       "item": "grapefruit",
       "role": "thumbnail",
       "alt": "A yellow grapefruit with a cut half showing rose-pink segments",
-      "revision": 2,
+      "revision": 3,
       "status": "approved"
     },
     {
@@ -266,12 +266,12 @@
       "status": "approved"
     },
     {
-      "id": "mandarins-clementine-thumbnail-v2",
+      "id": "mandarins-clementine-thumbnail-v3",
       "item": "mandarins",
       "variety": "clementine",
       "role": "thumbnail",
       "alt": "A small clementine with a leaf",
-      "revision": 2,
+      "revision": 3,
       "status": "approved"
     },
     {
@@ -293,21 +293,21 @@
       "status": "approved"
     },
     {
-      "id": "mandarins-pixie-thumbnail-v1",
+      "id": "mandarins-pixie-thumbnail-v2",
       "item": "mandarins",
       "variety": "pixie",
       "role": "thumbnail",
       "alt": "A small, round yellow-orange Pixie mandarin with finely pebbled rind",
-      "revision": 1,
+      "revision": 2,
       "status": "approved"
     },
     {
-      "id": "mandarins-satsuma-thumbnail-v2",
+      "id": "mandarins-satsuma-thumbnail-v3",
       "item": "mandarins",
       "variety": "satsuma",
       "role": "thumbnail",
       "alt": "A gently flattened orange Satsuma mandarin with a narrow green leaf",
-      "revision": 2,
+      "revision": 3,
       "status": "approved"
     },
     {
@@ -346,12 +346,12 @@
       "status": "approved"
     },
     {
-      "id": "mangoes-keitt-thumbnail-v1",
+      "id": "mangoes-keitt-thumbnail-v2",
       "item": "mangoes",
       "variety": "keitt",
       "role": "thumbnail",
-      "alt": "A broad oval Keitt mango with green skin and a short stem scar",
-      "revision": 1,
+      "alt": "A large oval Keitt mango, green with a yellow-pink flush on one shoulder",
+      "revision": 2,
       "status": "approved"
     },
     {
@@ -372,11 +372,11 @@
       "status": "approved"
     },
     {
-      "id": "nectarines-thumbnail-v1",
+      "id": "nectarines-thumbnail-v2",
       "item": "nectarines",
       "role": "thumbnail",
       "alt": "A whole smooth red nectarine with a golden shoulder and shallow seam",
-      "revision": 1,
+      "revision": 2,
       "status": "approved"
     },
     {
@@ -503,12 +503,12 @@
       "status": "approved"
     },
     {
-      "id": "pears-red-bartlett-thumbnail-v1",
+      "id": "pears-red-bartlett-thumbnail-v3",
       "item": "pears",
       "variety": "red-bartlett",
       "role": "thumbnail",
-      "alt": "A vivid red Bartlett pear with a bell-shaped base and a distinct neck",
-      "revision": 1,
+      "alt": "A bell-shaped Red Bartlett pear with a golden neck and soft coral-red blush",
+      "revision": 3,
       "status": "approved"
     },
     {
