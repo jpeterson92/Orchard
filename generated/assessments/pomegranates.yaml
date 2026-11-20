@@ -6,7 +6,7 @@ status: draft
 rated by: origin
 peak worth seeking: true
 always good: false
-outlook: "GGGGGGGG········GGPPPPPP (Jan to Dec, two windows a month: P Peak, G Good, S Skip, · Limited evidence)"
+outlook: "GGGGGGGG····SSSSGGPPPPPP (Jan to Dec, two windows a month: P Peak, G Good, S Skip, · Limited evidence)"
 windows:
   jan-1:
     when: early January (from 2026-01-01)
@@ -322,51 +322,51 @@ windows:
     today: not on Today
   jul-1:
     when: early July (from 2026-07-01)
-    verdict: limited
-    rule: 1
+    verdict: skip
+    rule: 2
     basis: typical
     decided: none
     look for: []
     label note: false
-    reasons: [origin-unrated ar]
-    confidence: low (coverage, relevance)
-    markers: []
+    reasons: [out-of-season]
+    confidence: medium (relevance)
+    markers: [improves (sep-1)]
     today: not on Today
   jul-2:
     when: late July (from 2026-07-16)
-    verdict: limited
-    rule: 1
+    verdict: skip
+    rule: 2
     basis: typical
     decided: none
     look for: []
     label note: false
-    reasons: [origin-unrated ar]
-    confidence: low (coverage, relevance)
-    markers: []
+    reasons: [out-of-season]
+    confidence: medium (relevance)
+    markers: [improves (sep-1)]
     today: not on Today
   aug-1:
     when: early August (from 2026-08-01)
-    verdict: limited
-    rule: 1
+    verdict: skip
+    rule: 2
     basis: typical
     decided: none
     look for: []
     label note: false
-    reasons: [origin-unrated ar]
-    confidence: low (coverage, relevance)
-    markers: []
+    reasons: [out-of-season]
+    confidence: medium (relevance)
+    markers: [improves (sep-1)]
     today: not on Today
   aug-2:
     when: late August (from 2026-08-16)
-    verdict: limited
-    rule: 1
+    verdict: skip
+    rule: 2
     basis: typical
     decided: none
     look for: []
     label note: false
-    reasons: [origin-unrated ar]
-    confidence: low (coverage, relevance)
-    markers: []
+    reasons: [out-of-season]
+    confidence: medium (relevance)
+    markers: [improves (sep-1)]
     today: not on Today
   sep-1:
     when: early September (from 2026-09-01)

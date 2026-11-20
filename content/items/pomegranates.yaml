@@ -54,7 +54,7 @@ origins:
     windows:
       - { from: mar-1, to: mar-2, rating: poor }
       - { from: apr-1, to: may-2, rating: fair }
-      - { from: jun-1, to: aug-2, rating: poor }
+      - { from: jun-1, to: jun-2, rating: poor }
 typicalOrigins:
   - from: sep
     to: dec
@@ -80,8 +80,4 @@ typicalOrigins:
     to: jun
     origins: [{ origin: ar, major: true }, { origin: pe, major: true }, { origin: cl, major: true }]
     sources: [usda-ams-fv-movement, freshplaza-peru-figs-pomegranates-spring]
-  - from: jul
-    to: aug
-    origins: [{ origin: pe, major: true }, { origin: ar, major: true }]
-    sources: [usda-ams-fv-movement]
 status: draft
