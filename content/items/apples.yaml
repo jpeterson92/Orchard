@@ -64,7 +64,7 @@ varieties:
     windows:
       - { from: aug-2, to: nov-2, rating: prime }
       - { from: dec-1, to: apr-2, rating: fair }
-      - { from: may-1, to: jul-1, rating: poor }
+      - { from: may-1, to: aug-1, rating: poor }
     quotedAs: [gala, royal-gala]
   - id: fuji
     name: Fuji

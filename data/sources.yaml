@@ -627,6 +627,18 @@
   url: https://foodservice.sunkist.com/citrus-info/oranges/
   accessed: 2026-11-19
   tier: authoritative
+- id: ncsu-brunswick-cara-cara
+  title: "Grab Some Cara Cara Oranges While You Can"
+  publisher: N.C. Cooperative Extension, Brunswick County Center
+  url: https://brunswick.ces.ncsu.edu/2022/03/grab-some-cara-cara-oranges-while-you-can
+  accessed: 2026-11-20
+  tier: authoritative
+- id: pmg-california-citrus-early-2026
+  title: "California Citrus Season Starts Early With Strong Holiday Supply"
+  publisher: Produce Market Guide
+  url: https://www.producemarketguide.com/news/california-citrus-season-starts-early-with-strong-holiday-supply
+  accessed: 2026-11-20
+  tier: mainstream
 - id: sunkist-oranges
   title: "Iconic Sunkist Navels"
   publisher: Sunkist Growers

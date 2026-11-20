@@ -108,6 +108,12 @@ varieties:
     label: Cara Cara navel
     plu: { codes: [3110], sources: [ifps-plu-codes] }
     sources: [ucr-cara-cara, sunkist-fs-oranges, eatlikenoone-cara-cara]
+    windows:
+      - { from: dec-1, to: mar-2, rating: prime }
+      - { from: apr-1, to: apr-2, rating: fair }
+    inStores:
+      - { from: dec, to: jan, sources: [ncsu-brunswick-cara-cara, pmg-california-citrus-early-2026] }
+      - { from: feb, to: apr, sources: [ncsu-brunswick-cara-cara] }
 typicalOrigins:
   - from: nov
     to: nov

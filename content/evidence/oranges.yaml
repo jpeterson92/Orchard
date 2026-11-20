@@ -120,3 +120,38 @@ claims:
     specificity: season
     directness: availability
     paraphrase: Blood oranges debut later in the winter, as the early citrus varieties finish.
+  # Cara Cara: USDA never quotes it separately; the item file cites the months stores carry it.
+  - source: sunkist-fs-oranges
+    origin: us-ca
+    variety: cara-cara
+    windows:
+      - { from: dec-1, to: may-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Cara Cara navels are available from December through May.
+  - source: eatlikenoone-cara-cara
+    origin: us-ca
+    variety: cara-cara
+    windows:
+      - { from: jan-1, to: apr-2, rating: prime }
+    specificity: month
+    directness: eating-quality
+    paraphrase: Cara Cara flavor arrives into January and the season runs into April.
+  - source: eatlikenoone-orange-mandarin-season
+    origin: us-ca
+    variety: cara-cara
+    windows:
+      - { from: jan-1, to: jan-1, rating: poor }
+      - { from: jan-2, to: jan-2, rating: fair }
+      - { from: mar-1, to: mar-2, rating: prime }
+    specificity: half-month
+    directness: eating-quality
+    paraphrase: Cara Caras aren't good until mid to late January; March brings the best flavor.
+  - source: ncsu-brunswick-cara-cara
+    origin: us-ca
+    variety: cara-cara
+    windows:
+      - { from: dec-1, to: apr-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Cara Cara season peaks from December to April; bags were still in a grocery store in late March.

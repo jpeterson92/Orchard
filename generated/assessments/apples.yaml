@@ -269,8 +269,7 @@ windows:
     today: not on Today
     varieties:
       good: [Fuji, Granny Smith, Pink Lady, Cosmic Crisp]
-      skip: [Honeycrisp]
-      limited: [Gala]
+      skip: [Honeycrisp, Gala]
   aug-1:
     when: early August (from 2026-08-01)
     verdict: good
@@ -288,8 +287,7 @@ windows:
     today: not on Today
     varieties:
       good: [Fuji, Granny Smith, Pink Lady, Cosmic Crisp]
-      skip: [Honeycrisp]
-      limited: [Gala]
+      skip: [Honeycrisp, Gala]
   aug-2:
     when: late August (from 2026-08-16)
     verdict: peak

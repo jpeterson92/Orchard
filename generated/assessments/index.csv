@@ -432,12 +432,12 @@ okra,nov-1,2026-11-01,good,typical,hn,fair,medium,medium,50.0%,no,100.0%,share,,
 okra,nov-2,2026-11-16,good,typical,hn,fair,medium,medium,0.0%,no,100.0%,share,,,
 okra,dec-1,2026-12-01,good,typical,hn,fair,medium,medium,0.0%,no,100.0%,share,,,
 okra,dec-2,2026-12-16,good,typical,hn,fair,medium,low,0.0%,no,50.0%,share,hn,,
-oranges,jan-1,2026-01-01,peak,variety,navel,prime,medium,medium,,,,,,best right now,Navel and Blood orange
-oranges,jan-2,2026-01-16,peak,variety,navel,prime,medium,medium,,,,,,best right now,Navel and Blood orange
-oranges,feb-1,2026-02-01,peak,variety,navel,prime,medium,medium,,,,,,best right now,Navel and Blood orange
-oranges,feb-2,2026-02-16,peak,variety,navel,prime,medium,medium,,,,,,best right now,Navel and Blood orange
-oranges,mar-1,2026-03-01,peak,variety,navel,prime,medium,medium,,,,,,best right now,Navel and Blood orange
-oranges,mar-2,2026-03-16,peak,variety,navel,prime,medium,medium,,,,,,best right now,Navel and Blood orange
+oranges,jan-1,2026-01-01,peak,variety,navel,prime,medium,medium,,,,,,best right now,"Navel, Blood orange and Cara Cara"
+oranges,jan-2,2026-01-16,peak,variety,navel,prime,medium,medium,,,,,,best right now,"Navel, Blood orange and Cara Cara"
+oranges,feb-1,2026-02-01,peak,variety,navel,prime,medium,medium,,,,,,best right now,"Navel, Blood orange and Cara Cara"
+oranges,feb-2,2026-02-16,peak,variety,navel,prime,medium,medium,,,,,,best right now,"Navel, Blood orange and Cara Cara"
+oranges,mar-1,2026-03-01,peak,variety,navel,prime,medium,medium,,,,,,best right now,"Navel, Blood orange and Cara Cara"
+oranges,mar-2,2026-03-16,peak,variety,navel,prime,medium,medium,,,,,,best right now,"Navel, Blood orange and Cara Cara"
 oranges,apr-1,2026-04-01,good,variety,navel,fair,medium,medium,,,,,,,
 oranges,apr-2,2026-04-16,good,variety,navel,fair,medium,medium,,,,,,,
 oranges,may-1,2026-05-01,good,variety,valencia,prime,medium,medium,,,,,,,
@@ -454,8 +454,8 @@ oranges,oct-1,2026-10-01,good,variety,navel,fair,medium,medium,,,,,,,
 oranges,oct-2,2026-10-16,good,variety,navel,fair,medium,medium,,,,,,,
 oranges,nov-1,2026-11-01,good,variety,navel,fair,medium,medium,,,,,,,
 oranges,nov-2,2026-11-16,good,variety,navel,fair,medium,medium,,,,,,,
-oranges,dec-1,2026-12-01,peak,variety,navel,prime,medium,medium,,,,,,best right now,Navel
-oranges,dec-2,2026-12-16,peak,variety,navel,prime,medium,medium,,,,,,best right now,Navel
+oranges,dec-1,2026-12-01,peak,variety,navel,prime,medium,medium,,,,,,best right now,Navel and Cara Cara
+oranges,dec-2,2026-12-16,peak,variety,navel,prime,medium,medium,,,,,,best right now,Navel and Cara Cara
 peaches,jan-1,2026-01-01,skip,typical,cl,poor,medium,medium,0.0%,no,0.0%,no,,,
 peaches,jan-2,2026-01-16,skip,typical,cl,poor,medium,medium,0.0%,no,0.0%,no,,,
 peaches,feb-1,2026-02-01,skip,typical,cl,poor,medium,medium,0.0%,no,0.0%,no,,,

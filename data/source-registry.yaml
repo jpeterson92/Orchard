@@ -600,6 +600,11 @@ pages:
     kind: item-page
     origin: us-wa
     items: [pears]
+  - source: ncsu-brunswick-cara-cara
+    url: https://brunswick.ces.ncsu.edu/2022/03/grab-some-cara-cara-oranges-while-you-can
+    kind: item-page
+    origin: us-ca
+    items: [oranges]
   - source: sunkist-fs-oranges
     url: https://foodservice.sunkist.com/citrus-info/oranges/
     kind: item-page

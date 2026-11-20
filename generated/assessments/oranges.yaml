@@ -24,13 +24,13 @@ windows:
     markers: [reliable-year-round]
     today:
       section: best right now
-      line: Navel and Blood orange
+      line: Navel, Blood orange and Cara Cara
       reason: none
       origin: California
       avoid: none
       tags: []
     varieties:
-      peak: [Navel, Blood orange]
+      peak: [Navel, Blood orange, Cara Cara]
       skip: [Valencia]
   jan-2:
     when: late January (from 2026-01-16)
@@ -48,13 +48,13 @@ windows:
     markers: [reliable-year-round]
     today:
       section: best right now
-      line: Navel and Blood orange
+      line: Navel, Blood orange and Cara Cara
       reason: none
       origin: California
       avoid: none
       tags: []
     varieties:
-      peak: [Navel, Blood orange]
+      peak: [Navel, Blood orange, Cara Cara]
       good: [Valencia]
   feb-1:
     when: early February (from 2026-02-01)
@@ -72,13 +72,13 @@ windows:
     markers: [reliable-year-round]
     today:
       section: best right now
-      line: Navel and Blood orange
+      line: Navel, Blood orange and Cara Cara
       reason: none
       origin: California
       avoid: none
       tags: []
     varieties:
-      peak: [Navel, Blood orange]
+      peak: [Navel, Blood orange, Cara Cara]
       good: [Valencia]
   feb-2:
     when: late February (from 2026-02-16)
@@ -96,13 +96,13 @@ windows:
     markers: [reliable-year-round]
     today:
       section: best right now
-      line: Navel and Blood orange
+      line: Navel, Blood orange and Cara Cara
       reason: none
       origin: California
       avoid: none
       tags: []
     varieties:
-      peak: [Navel, Blood orange]
+      peak: [Navel, Blood orange, Cara Cara]
       good: [Valencia]
   mar-1:
     when: early March (from 2026-03-01)
@@ -120,13 +120,13 @@ windows:
     markers: [last-call (fades by apr-1), reliable-year-round]
     today:
       section: best right now
-      line: Navel and Blood orange
+      line: Navel, Blood orange and Cara Cara
       reason: Fades by early April.
       origin: California
       avoid: none
       tags: [Last call]
     varieties:
-      peak: [Navel, Blood orange]
+      peak: [Navel, Blood orange, Cara Cara]
       good: [Valencia]
   mar-2:
     when: late March (from 2026-03-16)
@@ -144,13 +144,13 @@ windows:
     markers: [last-call (fades by apr-1), reliable-year-round]
     today:
       section: best right now
-      line: Navel and Blood orange
+      line: Navel, Blood orange and Cara Cara
       reason: Fades by early April.
       origin: California
       avoid: none
       tags: [Last call]
     varieties:
-      peak: [Navel, Blood orange]
+      peak: [Navel, Blood orange, Cara Cara]
       good: [Valencia]
   apr-1:
     when: early April (from 2026-04-01)
@@ -168,7 +168,7 @@ windows:
     markers: [reliable-year-round]
     today: not on Today
     varieties:
-      good: [Navel, Valencia, Blood orange]
+      good: [Navel, Valencia, Blood orange, Cara Cara]
   apr-2:
     when: late April (from 2026-04-16)
     verdict: good
@@ -185,7 +185,7 @@ windows:
     markers: [reliable-year-round]
     today: not on Today
     varieties:
-      good: [Navel, Valencia, Blood orange]
+      good: [Navel, Valencia, Blood orange, Cara Cara]
   may-1:
     when: early May (from 2026-05-01)
     verdict: good
@@ -206,6 +206,7 @@ windows:
       peak: [Valencia]
       good: [Navel]
       skip: [Blood orange]
+      not in stores: [Cara Cara]
   may-2:
     when: late May (from 2026-05-16)
     verdict: good
@@ -226,6 +227,7 @@ windows:
       peak: [Valencia]
       good: [Navel]
       skip: [Blood orange]
+      not in stores: [Cara Cara]
   jun-1:
     when: early June (from 2026-06-01)
     verdict: good
@@ -246,6 +248,7 @@ windows:
       peak: [Valencia]
       good: [Navel]
       skip: [Blood orange]
+      not in stores: [Cara Cara]
   jun-2:
     when: late June (from 2026-06-16)
     verdict: good
@@ -266,6 +269,7 @@ windows:
       peak: [Valencia]
       good: [Navel]
       skip: [Blood orange]
+      not in stores: [Cara Cara]
   jul-1:
     when: early July (from 2026-07-01)
     verdict: good
@@ -285,6 +289,7 @@ windows:
       peak: [Valencia]
       good: [Navel]
       skip: [Blood orange]
+      not in stores: [Cara Cara]
   jul-2:
     when: late July (from 2026-07-16)
     verdict: good
@@ -304,6 +309,7 @@ windows:
       peak: [Valencia]
       good: [Navel]
       skip: [Blood orange]
+      not in stores: [Cara Cara]
   aug-1:
     when: early August (from 2026-08-01)
     verdict: good
@@ -322,6 +328,7 @@ windows:
     varieties:
       good: [Navel, Valencia]
       skip: [Blood orange]
+      not in stores: [Cara Cara]
   aug-2:
     when: late August (from 2026-08-16)
     verdict: good
@@ -340,6 +347,7 @@ windows:
     varieties:
       good: [Navel, Valencia]
       skip: [Blood orange]
+      not in stores: [Cara Cara]
   sep-1:
     when: early September (from 2026-09-01)
     verdict: good
@@ -358,6 +366,7 @@ windows:
     varieties:
       good: [Navel, Valencia]
       skip: [Blood orange]
+      not in stores: [Cara Cara]
   sep-2:
     when: late September (from 2026-09-16)
     verdict: good
@@ -376,6 +385,7 @@ windows:
     varieties:
       good: [Navel, Valencia]
       skip: [Blood orange]
+      not in stores: [Cara Cara]
   oct-1:
     when: early October (from 2026-10-01)
     verdict: good
@@ -394,6 +404,7 @@ windows:
     varieties:
       good: [Navel, Valencia]
       skip: [Blood orange]
+      not in stores: [Cara Cara]
   oct-2:
     when: late October (from 2026-10-16)
     verdict: good
@@ -412,6 +423,7 @@ windows:
     varieties:
       good: [Navel, Valencia]
       skip: [Blood orange]
+      not in stores: [Cara Cara]
   nov-1:
     when: early November (from 2026-11-01)
     verdict: good
@@ -430,6 +442,7 @@ windows:
     varieties:
       good: [Navel, Valencia]
       skip: [Blood orange]
+      not in stores: [Cara Cara]
   nov-2:
     when: late November (from 2026-11-16)
     verdict: good
@@ -448,6 +461,7 @@ windows:
     varieties:
       good: [Navel, Blood orange]
       skip: [Valencia]
+      not in stores: [Cara Cara]
   dec-1:
     when: early December (from 2026-12-01)
     verdict: peak
@@ -464,13 +478,13 @@ windows:
     markers: [reliable-year-round]
     today:
       section: best right now
-      line: Navel
+      line: Navel and Cara Cara
       reason: none
       origin: California
       avoid: none
       tags: []
     varieties:
-      peak: [Navel]
+      peak: [Navel, Cara Cara]
       good: [Blood orange]
       skip: [Valencia]
   dec-2:
@@ -489,12 +503,12 @@ windows:
     markers: [reliable-year-round]
     today:
       section: best right now
-      line: Navel
+      line: Navel and Cara Cara
       reason: none
       origin: California
       avoid: none
       tags: []
     varieties:
-      peak: [Navel]
+      peak: [Navel, Cara Cara]
       good: [Blood orange]
       skip: [Valencia]

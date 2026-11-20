@@ -232,8 +232,8 @@ windows:
     markers: [improves (jul-2)]
     today: not on Today
     varieties:
-      skip: [Anjou]
-      limited: [Bartlett, Bosc, Comice]
+      skip: [Anjou, Bartlett]
+      limited: [Bosc, Comice]
       not in stores: [Seckel, Starkrimson]
   may-2:
     when: late May (from 2026-05-16)
@@ -251,8 +251,8 @@ windows:
     markers: [improves (jul-2)]
     today: not on Today
     varieties:
-      skip: [Anjou]
-      limited: [Bartlett, Bosc, Comice]
+      skip: [Anjou, Bartlett]
+      limited: [Bosc, Comice]
       not in stores: [Seckel, Starkrimson]
   jun-1:
     when: early June (from 2026-06-01)
@@ -270,8 +270,8 @@ windows:
     markers: [improves (jul-2)]
     today: not on Today
     varieties:
-      skip: [Anjou]
-      limited: [Bartlett, Bosc]
+      skip: [Anjou, Bartlett]
+      limited: [Bosc]
       not in stores: [Comice, Seckel, Starkrimson]
   jun-2:
     when: late June (from 2026-06-16)
@@ -289,8 +289,8 @@ windows:
     markers: [improves (jul-2)]
     today: not on Today
     varieties:
-      skip: [Anjou]
-      limited: [Bartlett, Bosc]
+      skip: [Anjou, Bartlett]
+      limited: [Bosc]
       not in stores: [Comice, Seckel, Starkrimson]
   jul-1:
     when: early July (from 2026-07-01)
@@ -308,8 +308,8 @@ windows:
     markers: [improves (jul-2)]
     today: not on Today
     varieties:
-      skip: [Anjou]
-      limited: [Bartlett, Bosc, Starkrimson]
+      skip: [Anjou, Bartlett]
+      limited: [Bosc, Starkrimson]
       not in stores: [Comice, Seckel]
   jul-2:
     when: late July (from 2026-07-16)

@@ -65,7 +65,7 @@ varieties:
       - { from: jul-2, to: jul-2, rating: fair }
       - { from: aug-1, to: oct-2, rating: prime }
       - { from: nov-1, to: nov-2, rating: fair }
-      - { from: dec-1, to: apr-2, rating: poor }
+      - { from: dec-1, to: jul-1, rating: poor }
     quotedAs: [bartlett, williams, summer-bartlett, mountain-bartlett]
   - id: bosc
     name: Bosc
