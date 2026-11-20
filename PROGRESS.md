@@ -1,6 +1,6 @@
 # PROGRESS
 
-Updated: 2026-11-20 · Phase: build · Live: https://orchard.jpeterson92.workers.dev (current build, deployed 2026-11-20) · synced
+Updated: 2026-11-20 · Phase: build · Live: https://orchard.jpeterson92.workers.dev (deployed 2026-11-20; Today's origin-to-expanded-card change not yet deployed) · 2 commits unsynced
 
 ## Milestones
 
