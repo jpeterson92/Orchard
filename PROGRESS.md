@@ -1,6 +1,6 @@
 # PROGRESS
 
-Updated: 2026-11-19 · Phase: build · Live: https://orchard.jpeterson92.workers.dev (M0 placeholder) · 23 commits unsynced
+Updated: 2026-11-19 · Phase: build · Live: https://orchard.jpeterson92.workers.dev (M0 placeholder) · 27 commits unsynced
 
 ## Milestones
 
@@ -53,7 +53,7 @@ Applied 2026-11-19 (Jared's decisions): a level counts when origins at it are re
 To do when convenient:
 
 - Approve or edit the Methods and Privacy drafts (`content/methods.md`, `content/privacy.md`).
-- Production deploys still refuse any `draft` record, so today's content can't deploy. Ship drafts to production, or keep the gate until review?
+- Deploys ship drafts now. They still refuse items without approved art (7 today: artichokes, asparagus, Brussels sprouts, collards, honeydew, okra, winter squash). Ship those with the blank placeholder, or keep the art gate?
 - Preview deploy for the M3 phone review, when you want it. It also creates a free D1 database `orchard` for the speed counts (then `npm run db:migrate`).
 - Recruit the independent reviewer Gate 1 needs (a person; product spec §12).
 - Model panel runs from other providers: follow `content/panel/README.md`, then ask Claude to review the run.
