@@ -253,7 +253,7 @@ export function validate(raw: RawInputs, opts: { production: boolean }): Result 
   const guideOf = new Map<string, Guide>();
   for (const g of guides) {
     const at = `guide ${g.id}`;
-    if (g.overall) checkSources([g.overall.source], `${at} overall`);
+    if (g.overall?.source) checkSources([g.overall.source], `${at} overall`);
     unique(g.traits, (t) => `${g.id}/${t.id}`, "trait");
     unique(g.uses, (u) => `${g.id}/${u.id}`, "use");
     const varieties = new Map<string, Item["varieties"][number]>();
@@ -295,8 +295,13 @@ export function validate(raw: RawInputs, opts: { production: boolean }): Result 
       const keys = Object.keys(v.traits);
       if (v.ripeCue !== undefined && !g?.ripeCues)
         errors.push(`${at}: a ripe cue needs a guide with ripeCues`);
-      if (v.overallScore !== undefined && !g?.overall)
-        errors.push(`${at}: an overall score needs a guide with an overall rating`);
+      if (v.overallScore !== undefined) {
+        if (!g?.overall) errors.push(`${at}: an overall score needs a guide with an overall rating`);
+        else if (g.overall.source && v.overallScore.source === undefined)
+          errors.push(`${at}: missing overall score from ${g.overall.source}`);
+        else if (!g.overall.source && v.overallScore.source !== undefined)
+          errors.push(`${at}: an external overall score needs a scoring source on the guide`);
+      }
       if (!g) {
         if (keys.length > 0) errors.push(`${at}: traits need a guide for ${item.id}`);
         continue;

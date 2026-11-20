@@ -65,6 +65,9 @@
   lead:
     text: "Texture once ripe sets pears apart. Comice and Bartlett turn soft, buttery and juicy, best eaten fresh. Bosc and Concorde stay dense and sweeten while still firm, so they hold their shape baked or poached. Pears ripen off the tree and only some change color, so check the neck. It gives to gentle pressure when ripe."
     status: draft
+  overall:
+    basis: Eating raw
+    tiers: { amazing: 85, great: 75, fine: 60 }
   ripeCues: true
   status: reviewed
   reviewer: Jared

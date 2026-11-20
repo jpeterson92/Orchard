@@ -97,12 +97,18 @@ function GuideBody({ view, mode }: { view: GuideView; mode: "today" | "typical" 
       </p>
       {overall && (
         <p className="mt-2">
-          <span className="font-semibold">Overall</span> rates each variety for {overall.basis.toLowerCase()}:
-          bad, fine, great or amazing. It averages the 100-point scores at{" "}
-          <a href={overall.source.url} className="text-olive underline underline-offset-4" rel="noopener">
-            {overall.source.publisher}
-          </a>{" "}
-          with Orchard's own.
+          <span className="font-semibold">Overall</span> rates each variety for {overall.basis.toLowerCase()}.
+          {overall.source ? (
+            <>
+              {" It averages Orchard's 100-point score with one from "}
+              <a href={overall.source.url} className="text-olive underline underline-offset-4" rel="noopener">
+                {overall.source.publisher}
+              </a>
+              .
+            </>
+          ) : (
+            " Orchard's 100-point estimate weighs flavor, juiciness and texture when ripe."
+          )}
         </p>
       )}
 
@@ -158,7 +164,7 @@ function GuideBody({ view, mode }: { view: GuideView; mode: "today" | "typical" 
                 </th>
                 {overall && (
                   <td className="py-3 pr-3">
-                    <Overall value={r.overall} />
+                    <Overall value={r.overall} showScore={overall.source === null} />
                   </td>
                 )}
                 <td className="py-3 pr-3">
@@ -312,7 +318,7 @@ function Card({ row, view, mode }: { row: GuideRow; view: GuideView; mode: "toda
           {view.guide.overall && (
             <p className="mt-0.5">
               <span className="sr-only">Overall, eating raw: </span>
-              <Overall value={row.overall} />
+              <Overall value={row.overall} showScore={view.guide.overall.source === null} />
             </p>
           )}
           <p className="text-sm text-ink-secondary">
@@ -350,8 +356,8 @@ function Now({ row, mode, short = false }: { row: GuideRow; mode: "today" | "typ
 const TIER_WORD = { amazing: "Amazing", great: "Great", fine: "Fine", bad: "Bad" } as const;
 const TIER_LEVEL = { amazing: 4, great: 3, fine: 2, bad: 1 } as const;
 
-/** The overall tier as a four-step bar and its word; a dash where the source has no score. */
-export function Overall({ value }: { value: GuideRow["overall"] }) {
+/** The overall tier as a four-step bar and its word, with the score on editorial-only guides. */
+export function Overall({ value, showScore }: { value: GuideRow["overall"]; showScore: boolean }) {
   if (value === null)
     return (
       <span className="text-ink-secondary">
@@ -371,6 +377,7 @@ export function Overall({ value }: { value: GuideRow["overall"] }) {
         ))}
       </span>
       <span className="font-semibold">{TIER_WORD[value.tier]}</span>
+      {showScore && <span className="text-sm tabular-nums text-ink-secondary">{value.score}/100</span>}
     </span>
   );
 }

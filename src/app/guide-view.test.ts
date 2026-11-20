@@ -46,8 +46,19 @@ describe("Variety guide", () => {
     ]);
   });
 
-  it("gives an overall rating only where the guide has one, and keeps best right now first there", () => {
+  it("sorts all pears by Orchard's raw-eating score, including varieties without a seasonal verdict", () => {
     const view = guideView(data, "pears", date);
+    expect(view?.guide.overall).toEqual({ basis: "Eating raw", source: null });
+    expect(view?.defaultSort).toBe("overall");
+    expect(view?.rows.map((r) => r.overall?.score)).toEqual([90, 90, 88, 85, 84, 82, 81, 81, 78, 72]);
+    expect(view?.rows.find((r) => r.variety === "red-bartlett")).toMatchObject({
+      overall: { score: 90, tier: "amazing" },
+      verdict: null,
+    });
+  });
+
+  it("defaults to best right now for guides without an overall rating", () => {
+    const view = guideView(data, "citrus", date);
     expect(view?.guide.overall).toBeNull();
     expect(view?.defaultSort).toBe("now");
     expect(view?.rows.every((r) => r.overall === null)).toBe(true);

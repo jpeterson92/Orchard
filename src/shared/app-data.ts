@@ -25,8 +25,7 @@ export interface AppVariety {
   traits: Record<string, number>;
   /** How to tell when it's ripe, on guides with ripe cues (pears). */
   ripeCue: string | null;
-  /** On guides with an overall rating (apples): the mean of the source's and the editorial 0–100 scores, and its
-   * tier. */
+  /** The guide's overall 0–100 score and its tier. */
   overall: { score: number; tier: OverallTier } | null;
   /** False for a variety never worth seeking out: it is never offered as an alternative. */
   recommended: boolean;
@@ -62,7 +61,7 @@ export interface AppGuide {
   lead: string;
   ripeCues: boolean;
   /** What the overall rating judges (e.g. eating raw) and whose scores it uses, or null where there is none. */
-  overall: { basis: string; source: Pick<Source, "title" | "publisher" | "url"> } | null;
+  overall: { basis: string; source: Pick<Source, "title" | "publisher" | "url"> | null } | null;
   traits: {
     id: string;
     name: string;
@@ -139,12 +138,9 @@ export interface About {
 export function appData(data: Dataset, builtOn: string, art: ArtMap, about: About): AppData {
   const groups = new Map(data.categories.map((c) => [c.id, c.group]));
   const guideFor = (itemId: string) => data.guides.find((g) => g.items.includes(itemId));
-  const overallOf = (
-    scores: { source: number; editorial: number } | undefined,
-    overall: Guide["overall"],
-  ) => {
+  const overallOf = (scores: Item["varieties"][number]["overallScore"], overall: Guide["overall"]) => {
     if (!scores || !overall) return null;
-    const score = (scores.source + scores.editorial) / 2;
+    const score = scores.source === undefined ? scores.editorial : (scores.source + scores.editorial) / 2;
     return { score, tier: overallTier(score, overall.tiers) };
   };
   const sourceRef = (id: string) => {
@@ -195,7 +191,9 @@ export function appData(data: Dataset, builtOn: string, art: ArtMap, about: Abou
       items: g.items,
       lead: g.lead.text,
       ripeCues: g.ripeCues,
-      overall: g.overall ? { basis: g.overall.basis, source: sourceRef(g.overall.source) } : null,
+      overall: g.overall
+        ? { basis: g.overall.basis, source: g.overall.source ? sourceRef(g.overall.source) : null }
+        : null,
       traits: g.traits.map((t) => ({
         id: t.id,
         name: t.name,

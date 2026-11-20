@@ -42,6 +42,10 @@ Some produce you can pick out by the sign or label is at its best even when most
 
 Future dates show the typical seasonal outlook: what is normally good around that time, never a current assessment.
 
+## Overall variety scores
+
+The apple and pear guides rate how enjoyable each variety is to eat raw. Apple scores average [Apple Rankings](https://applerankings.com/) and Orchard's own scores. For pears, Orchard estimates ripe flavor, juiciness and texture on a 100-point scale. The estimates draw on a [Pacific Northwest consumer tasting study](https://pubmed.ncbi.nlm.nih.gov/38204401/) and [published variety profiles](https://www.usapears.org/pear-varieties/). The tasting covered six of Orchard's ten pears and tested summer and winter varieties with different groups of tasters. The overall score applies year-round. Today's verdict reflects what's typically good and available at this time of year.
+
 ## Two kinds of evidence
 
 Each item page says which applies:

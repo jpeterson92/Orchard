@@ -37,15 +37,18 @@ ripen:
   text: Ripen firm pears at room temperature, usually 3–5 days. A paper bag, or a banana or apple beside them, speeds it up. Check the neck daily.
   sources: [usapears-green-anjou, superfresh-anjou-year-round, stemilt-how-to-ripen-pears]
 prep: Rinse just before eating. Cut pears brown quickly; a squeeze of lemon juice slows it.
+# Overall scores are Orchard estimates of ripe flavor, juiciness and texture. The consumer study
+# tested summer and winter pears in separate groups. Red Bartlett and Red Anjou share their green counterparts' scores.
 varieties:
   - id: anjou
     name: Anjou
+    overallScore: { editorial: 81 }
     traits: { sweetness: 3, texture: 3, juiciness: 3, holds-shape: 4 }
     bestUses: [Snacking, salads, baking]
     label: Anjou or D'Anjou
     plu: { codes: [4025, 4416], sources: [ifps-plu-codes] }
     ripeCue: Stays green; ripe when the neck gives to gentle pressure
-    sources: [usapears-green-anjou, veritable-pear-guide]
+    sources: [usapears-green-anjou, veritable-pear-guide, pnw-pear-sensory-study]
     windows:
       - { from: sep-1, to: sep-1, rating: fair }
       - { from: sep-2, to: jan-2, rating: prime }
@@ -54,12 +57,13 @@ varieties:
     quotedAs: [d-anjou]
   - id: bartlett
     name: Bartlett
+    overallScore: { editorial: 90 }
     traits: { sweetness: 4, texture: 2, juiciness: 4, holds-shape: 3 }
     bestUses: [Snacking, salads, canning]
     label: Bartlett or Williams
     plu: { codes: [4024, 4409], sources: [ifps-plu-codes] }
     ripeCue: Turns from green to yellow; sweetest when golden
-    sources: [usapears-bartlett, veritable-pear-guide]
+    sources: [usapears-bartlett, veritable-pear-guide, pnw-pear-sensory-study]
     windows:
       - { from: jul-2, to: jul-2, rating: fair }
       - { from: aug-1, to: oct-2, rating: prime }
@@ -68,24 +72,26 @@ varieties:
     quotedAs: [bartlett, williams, summer-bartlett, mountain-bartlett]
   - id: bosc
     name: Bosc
+    overallScore: { editorial: 72 }
     traits: { sweetness: 4, texture: 4, juiciness: 3, holds-shape: 5 }
     bestUses: [Baking, poaching, snacking]
     label: Bosc
     plu: { codes: [4026, 4411, 4412, 4413], sources: [ifps-plu-codes] }
     ripeCue: Sweet before fully soft; the neck gives only slightly
-    sources: [usapears-bosc, veritable-pear-guide]
+    sources: [usapears-bosc, veritable-pear-guide, pnw-pear-sensory-study]
     windows:
       - { from: jan-1, to: apr-2, rating: fair }
       - { from: sep-2, to: dec-2, rating: prime }
     quotedAs: [bosc, beurre-bosc]
   - id: comice
     name: Comice
+    overallScore: { editorial: 88 }
     traits: { sweetness: 5, texture: 1, juiciness: 5, holds-shape: 1 }
     bestUses: [Snacking, cheese plates]
     label: Comice
     plu: { codes: [4414], sources: [ifps-plu-codes] }
     ripeCue: Ripe when the neck gives; don't rely on color
-    sources: [usapears-comice, veritable-pear-guide]
+    sources: [usapears-comice, veritable-pear-guide, pnw-pear-sensory-study]
     windows:
       - { from: jan-1, to: jan-2, rating: prime }
       - { from: feb-1, to: feb-2, rating: fair }
@@ -93,17 +99,19 @@ varieties:
     quotedAs: [comice]
   - id: seckel
     name: Seckel
+    overallScore: { editorial: 84 }
     traits: { sweetness: 5, texture: 4, holds-shape: 4 }
     bestUses: [Snacking, lunch boxes]
     label: Seckel
     plu: { codes: [4422], sources: [ifps-plu-codes] }
     ripeCue: Ripe when the neck yields and the middle stays firm
-    sources: [usapears-seckel, veritable-pear-guide]
+    sources: [usapears-seckel, veritable-pear-guide, pnw-pear-sensory-study]
     windows:
       - { from: sep-1, to: dec-2, rating: prime }
     quotedAs: [seckel]
   - id: starkrimson
     name: Starkrimson
+    overallScore: { editorial: 82 }
     traits: { sweetness: 3, texture: 2, juiciness: 4 }
     bestUses: [Snacking, salads]
     label: Starkrimson; often sold as red pears
@@ -115,6 +123,7 @@ varieties:
     quotedAs: [star-crimson, stark-crimson]
   - id: red-anjou
     name: Red Anjou
+    overallScore: { editorial: 81 }
     traits: { sweetness: 3, texture: 3, juiciness: 3, holds-shape: 4 }
     bestUses: [Salads with the skin on, baking]
     label: Red Anjou; often sold as red pears
@@ -123,6 +132,7 @@ varieties:
     sources: [usapears-red-anjou, veritable-pear-guide]
   - id: red-bartlett
     name: Red Bartlett
+    overallScore: { editorial: 90 }
     traits: { sweetness: 4, texture: 2, juiciness: 4, holds-shape: 3 }
     bestUses: [Snacking, salads, canning]
     label: Red Bartlett; often sold as red pears
@@ -131,6 +141,7 @@ varieties:
     sources: [usapears-red-bartlett, veritable-pear-guide]
   - id: forelle
     name: Forelle
+    overallScore: { editorial: 78 }
     traits: { sweetness: 4, texture: 4, juiciness: 3 }
     bestUses: [Snacking, lunch boxes]
     label: Forelle
@@ -139,10 +150,11 @@ varieties:
     sources: [usapears-forelle, veritable-pear-guide]
   - id: concorde
     name: Concorde
+    overallScore: { editorial: 85 }
     traits: { sweetness: 4, texture: 5, juiciness: 3, holds-shape: 5 }
     bestUses: [Snacking, cheese boards, roasting]
     label: Concorde
     plu: { codes: [3016], sources: [ifps-plu-codes] }
     ripeCue: Sweet while still firm; the neck gives only slightly
-    sources: [usapears-concorde, veritable-pear-guide]
+    sources: [usapears-concorde, veritable-pear-guide, pnw-pear-sensory-study]
 status: draft

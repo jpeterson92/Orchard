@@ -170,10 +170,9 @@ export const varietySchema = z.strictObject({
   /** How to find it and tell it apart in the store, on the item page, where its name alone doesn't (local field
    * tomatoes). */
   cue: words(SECTION_WORDS).optional(),
-  /** On guides with an overall rating (apples): its 0–100 score from the guide's source and Orchard's
-   * editorial score. */
-  overallScore: z.strictObject({ source: score100, editorial: score100 }).optional(),
-  /** Citations for the traits, uses and ripe cue. */
+  /** Orchard's 0–100 score and, on guides that name a scoring source, that source's score. */
+  overallScore: z.strictObject({ source: score100.optional(), editorial: score100 }).optional(),
+  /** Citations for the traits, uses, ripe cue and editorial rating. */
   sources: z.array(id).default([]),
   /** Overrides the item's `storesWell` (P14), e.g. a long-keeping apple. */
   storesWell: trait.optional(),
@@ -217,13 +216,12 @@ export const guideSchema = z
     lead: z.strictObject({ text: words(SECTION_WORDS), ...review }).refine(reviewComplete, reviewMessage),
     /** Each variety gives a short cue for telling when it's ripe (pears). */
     ripeCues: z.boolean().default(false),
-    /** An overall rating per variety (product spec §5): the mean of one source's 0–100 score and Orchard's
-     * editorial score, sorted into tiers by these floors (below `fine` is bad). `basis` says what the scores
-     * judge, e.g. eating raw. */
+    /** An overall rating per variety (product spec §5): Orchard's 0–100 score, averaged with a source score
+     * where the guide names one. `basis` says what the scores judge; `tiers` gives the tier floors. */
     overall: z
       .strictObject({
         basis: text,
-        source: id,
+        source: id.optional(),
         tiers: z.strictObject({ amazing: z.int(), great: z.int(), fine: z.int() }),
       })
       .refine((o) => o.tiers.amazing > o.tiers.great && o.tiers.great > o.tiers.fine && o.tiers.fine > 0, {

@@ -100,7 +100,7 @@ function Body({ view, mode }: { view: VarietyView; mode: Mode }) {
         {guide.overall && (
           <p className="mb-3">
             <span className="font-semibold">Overall, {guide.overall.basis.toLowerCase()}:</span>{" "}
-            <Overall value={v.overall} />
+            <Overall value={v.overall} showScore={guide.overall.source === null} />
           </p>
         )}
         <dl className="grid max-w-sm grid-cols-[1fr_auto] gap-x-4 gap-y-1">

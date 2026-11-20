@@ -6,7 +6,7 @@ Updated: 2026-11-20 · Phase: build · Live: https://orchard.jpeterson92.workers
 
 - **Done:** M0 scaffold and deploy · M1 USDA probe · M2 schemas, verdict engine (P1, P10–P20), evidence pipeline, `usda:derive`, `content:report`, precalculated assessments in `generated/assessments/` (CI fails on drift) · model panel run `claude-opus-5-5-2026-11-19` (prompt v3) · M4 offline · M5 planning date and shared dates · M6 navigation, Browse, Calendar, search, Methods and Privacy · M8 measurement (web vitals and daily event counts in D1).
 - **M3:** built; closes with Jared's phone review on the live URL.
-- **M7 variety guides:** built (finder, variety pages, PLU numbers, apple overall rating, "What matters" leads); closes with Jared's review of the three leads.
+- **M7 variety guides:** built (finder, variety pages, PLU numbers, apple and pear overall ratings, "What matters" leads); closes with Jared's review of the three leads and draft pear scores.
 - **M9:** slices 1–2 done (security headers, axe in light and dark, WebKit e2e, page titles). The rest waits on devices, the domain and the independent reviewer. Security headers checked on the live URL.
 - **Content:** all 30 first-release items drafted, and the 24 Today summaries reviewed.
 - **Art:** all 30 items and 43 varieties have approved art in the app (73 paintings), including the nine round-1 repaints (folder 21).

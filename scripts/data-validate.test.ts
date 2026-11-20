@@ -524,6 +524,23 @@ const broken: [string, (r: RawInputs) => void, string][] = [
     "item test-fruit variety gala: an overall score needs a guide with an overall rating",
   ],
   [
+    "editorial-only score on a guide that names a scoring source",
+    (r) => {
+      withOverall(r);
+      firstItem(r).varieties[0].overallScore = { editorial: 80 };
+    },
+    "item test-fruit variety gala: missing overall score from s1",
+  ],
+  [
+    "external score on a guide without a scoring source",
+    (r) => {
+      withOverall(r);
+      delete guide(r).overall.source;
+      firstItem(r).varieties[0].overallScore = { source: 80, editorial: 80 };
+    },
+    "item test-fruit variety gala: an external overall score needs a scoring source on the guide",
+  ],
+  [
     "overall score above 100",
     (r) => {
       withOverall(r);
