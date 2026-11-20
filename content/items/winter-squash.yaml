@@ -48,7 +48,7 @@ store:
   sources: [umn-winter-squash, foodprint-winter-squash, umass-winter-squash-curing]
 prep: Halve with a heavy knife, scoop out the seeds and roast cut side down. Peel butternut with a sturdy peeler; delicata skin is tender enough to eat.
 origins:
-  - origin: us-mi
+  - origin: us
     windows:
       - { from: aug-1, to: aug-2, rating: poor }
       - { from: sep-1, to: sep-1, rating: fair }
@@ -62,15 +62,15 @@ origins:
 typicalOrigins:
   - from: aug
     to: oct
-    origins: [{ origin: us-mi, major: true }]
+    origins: [{ origin: us, major: true }]
     sources: [farmscom-greiner-squash, foodprint-winter-squash, cooksmarts-winter-squash]
   - from: nov
     to: dec
-    origins: [{ origin: us-mi, major: true }, { origin: mx, major: false }]
+    origins: [{ origin: us, major: true }, { origin: mx, major: false }]
     sources: [freshplaza-mexican-squash-quality, freshplaza-mexico-hard-squash-season, usda-ams-fv-movement]
   - from: jan
     to: feb
-    origins: [{ origin: mx, major: true }, { origin: us-mi, major: false }]
+    origins: [{ origin: mx, major: true }, { origin: us, major: false }]
     sources: [freshplaza-cold-winter-squash-demand, usda-ams-fv-movement]
   - from: mar
     to: jul

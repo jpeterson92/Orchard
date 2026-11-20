@@ -168,6 +168,7 @@ export function validate(raw: RawInputs, opts: { production: boolean }): Result 
   const itemIds = new Set(items.map((i) => i.id));
 
   const originProblem = (origin: string): string | null => {
+    if (origin === "us") return null;
     if (origin.startsWith("us-")) {
       return stateCodes.has(origin.slice(3).toUpperCase()) ? null : `unknown US state in origin ${origin}`;
     }
@@ -205,6 +206,9 @@ export function validate(raw: RawInputs, opts: { production: boolean }): Result 
       checkOrigin(o.origin, at);
       for (const r of o.inStores) checkSources(r.sources, `${at} origin ${o.origin} inStores`);
     }
+    // National (`us`) claims speak for every state, so an item rates the US as a whole or by state, never both.
+    if (item.origins.some((o) => o.origin === "us") && item.origins.some((o) => o.origin.startsWith("us-")))
+      errors.push(`${at}: rates both us and US states; rate the US as a whole or by state`);
     unique(item.selections, (s) => `${item.id}/${s.id}`, "selection");
     for (const s of item.selections) {
       const where = `${at} selection ${s.id}`;

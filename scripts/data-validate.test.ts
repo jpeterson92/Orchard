@@ -343,6 +343,18 @@ describe("validate: a valid dataset", () => {
     expect(dataset?.items[0]?.typicalOrigins[1]?.origins.map((o) => o.origin)).toEqual(["mx", "us-ca"]);
   });
 
+  it("accepts the US as a whole (us) as a rated and typical origin", () => {
+    const raw = structuredClone(base());
+    editorialOrigins(raw);
+    const it0 = firstItem(raw);
+    it0.origins[0].origin = "us";
+    for (const run of it0.typicalOrigins) for (const o of run.origins) if (o.origin === "us-ca") o.origin = "us";
+    for (const c of claims(raw)) if (c.origin === "us-ca") c.origin = "us";
+    const { errors, dataset } = validate(raw, { production: false });
+    expect(errors).toEqual([]);
+    expect(dataset?.items[0]?.typicalOrigins[0]?.origins.map((o) => o.origin)).toEqual(["us"]);
+  });
+
   it("accepts a selection of rated near origins with cited in-store months (P16)", () => {
     const raw = base();
     firstItem(raw).selections = [
@@ -650,7 +662,11 @@ const broken: [string, (r: RawInputs) => void, string][] = [
     "unknown US state in origin us-zz",
   ],
   ["unknown country origin", (r) => (firstItem(r).origins[1].origin = "qq"), "unknown origin qq"],
-  ["plain us origin", (r) => (firstItem(r).origins[1].origin = "us"), "unknown origin us"],
+  [
+    "both us and a US state rated",
+    (r) => (firstItem(r).origins[1].origin = "us"),
+    "rates both us and US states",
+  ],
   [
     "typical origin unknown",
     (r) => (((r.typicalOrigins as Csv).rows[1] as Any).origin = "qq"),

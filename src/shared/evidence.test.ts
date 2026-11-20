@@ -174,6 +174,9 @@ describe("which claims speak for a target", () => {
   it("a US state takes its own claims and US-grown claims", () => {
     expect(ids({ origin: "us-ca" })).toEqual(["a:us", "b:us"]);
   });
+  it("the US as a whole takes only US-grown claims", () => {
+    expect(ids({ origin: "us" })).toEqual(["a:us", "b:us"]);
+  });
   it("a source's state claim replaces its US-grown claim for that state only", () => {
     expect(ids(US_WA)).toEqual(["b:us-wa", "a:us"]);
   });

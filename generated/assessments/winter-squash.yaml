@@ -18,7 +18,7 @@ windows:
       rating: fair
       evidence: medium
     weights: editorial
-    typical: [mx fair 100.0%, us-mi fair 0.0%]
+    typical: [mx fair 100.0%, us fair 0.0%]
     peak:
       share: 0.0%
       available: "no: no origin at this level"
@@ -28,7 +28,7 @@ windows:
       share: 100.0%
       available: "yes: counted share 100.0% ≥ 33.0%"
       whole bin: yes (> 75.0%)
-      origins: [mx fair 100.0%, us-mi fair 0.0%]
+      origins: [mx fair 100.0%, us fair 0.0%]
     look for: []
     label note: false
     reasons: [rated fair (origin mx)]
@@ -51,7 +51,7 @@ windows:
       rating: fair
       evidence: medium
     weights: editorial
-    typical: [mx fair 100.0%, us-mi fair 0.0%]
+    typical: [mx fair 100.0%, us fair 0.0%]
     peak:
       share: 0.0%
       available: "no: no origin at this level"
@@ -61,7 +61,7 @@ windows:
       share: 100.0%
       available: "yes: counted share 100.0% ≥ 33.0%"
       whole bin: yes (> 75.0%)
-      origins: [mx fair 100.0%, us-mi fair 0.0%]
+      origins: [mx fair 100.0%, us fair 0.0%]
     look for: []
     label note: false
     reasons: [rated fair (origin mx)]
@@ -84,7 +84,7 @@ windows:
       rating: fair
       evidence: medium
     weights: editorial
-    typical: [mx fair 100.0%, us-mi fair 0.0%]
+    typical: [mx fair 100.0%, us fair 0.0%]
     peak:
       share: 0.0%
       available: "no: no origin at this level"
@@ -94,7 +94,7 @@ windows:
       share: 100.0%
       available: "yes: counted share 100.0% ≥ 33.0%"
       whole bin: yes (> 75.0%)
-      origins: [mx fair 100.0%, us-mi fair 0.0%]
+      origins: [mx fair 100.0%, us fair 0.0%]
     look for: []
     label note: false
     reasons: [rated fair (origin mx)]
@@ -117,7 +117,7 @@ windows:
       rating: fair
       evidence: medium
     weights: editorial
-    typical: [mx fair 100.0%, us-mi fair 0.0%]
+    typical: [mx fair 100.0%, us fair 0.0%]
     peak:
       share: 0.0%
       available: "no: no origin at this level"
@@ -127,7 +127,7 @@ windows:
       share: 100.0%
       available: "yes: counted share 100.0% ≥ 33.0%"
       whole bin: yes (> 75.0%)
-      origins: [mx fair 100.0%, us-mi fair 0.0%]
+      origins: [mx fair 100.0%, us fair 0.0%]
     look for: []
     label note: false
     reasons: [rated fair (origin mx)]
@@ -440,11 +440,11 @@ windows:
     rule: 2
     basis: typical
     decided:
-      origin: us-mi
+      origin: us
       rating: poor
       evidence: medium
     weights: editorial
-    typical: [us-mi poor 100.0%]
+    typical: [us poor 100.0%]
     peak:
       share: 0.0%
       available: "no: no origin at this level"
@@ -457,7 +457,7 @@ windows:
       origins: []
     look for: []
     label note: false
-    reasons: [rated poor (origin us-mi)]
+    reasons: [rated poor (origin us)]
     confidence: medium (relevance)
     markers: [improves (sep-1)]
     today: not on Today
@@ -467,11 +467,11 @@ windows:
     rule: 2
     basis: typical
     decided:
-      origin: us-mi
+      origin: us
       rating: poor
       evidence: medium
     weights: editorial
-    typical: [us-mi poor 100.0%]
+    typical: [us poor 100.0%]
     peak:
       share: 0.0%
       available: "no: no origin at this level"
@@ -484,7 +484,7 @@ windows:
       origins: []
     look for: []
     label note: false
-    reasons: [rated poor (origin us-mi)]
+    reasons: [rated poor (origin us)]
     confidence: medium (relevance)
     markers: [improves (sep-1)]
     today: not on Today
@@ -494,11 +494,11 @@ windows:
     rule: 4
     basis: typical
     decided:
-      origin: us-mi
+      origin: us
       rating: fair
       evidence: medium
     weights: editorial
-    typical: [us-mi fair 100.0%]
+    typical: [us fair 100.0%]
     peak:
       share: 0.0%
       available: "no: no origin at this level"
@@ -508,17 +508,17 @@ windows:
       share: 100.0%
       available: "yes: counted share 100.0% ≥ 33.0%"
       whole bin: yes (> 75.0%)
-      origins: [us-mi fair 100.0%]
+      origins: [us fair 100.0%]
     look for: []
     label note: false
-    reasons: [rated fair (origin us-mi)]
+    reasons: [rated fair (origin us)]
     confidence: medium (relevance)
     markers: []
     today:
       section: good buys
       line: none
       reason: none
-      origin: Michigan
+      origin: United States
       avoid: none
       tags: []
   sep-2:
@@ -527,31 +527,31 @@ windows:
     rule: 3
     basis: typical
     decided:
-      origin: us-mi
+      origin: us
       rating: prime
       evidence: medium
     weights: editorial
-    typical: [us-mi prime 100.0%]
+    typical: [us prime 100.0%]
     peak:
       share: 100.0%
       available: "yes: counted share 100.0% ≥ 33.0%"
       whole bin: yes (> 75.0%)
-      origins: [us-mi prime 100.0%]
+      origins: [us prime 100.0%]
     good:
       share: 100.0%
       available: "yes: counted share 100.0% ≥ 33.0%"
       whole bin: yes (> 75.0%)
-      origins: [us-mi prime 100.0%]
+      origins: [us prime 100.0%]
     look for: []
     label note: false
-    reasons: [rated prime (origin us-mi)]
+    reasons: [rated prime (origin us)]
     confidence: medium (relevance)
     markers: []
     today:
       section: best right now
       line: none
       reason: none
-      origin: Michigan
+      origin: United States
       avoid: none
       tags: []
   oct-1:
@@ -560,31 +560,31 @@ windows:
     rule: 3
     basis: typical
     decided:
-      origin: us-mi
+      origin: us
       rating: prime
       evidence: medium
     weights: editorial
-    typical: [us-mi prime 100.0%]
+    typical: [us prime 100.0%]
     peak:
       share: 100.0%
       available: "yes: counted share 100.0% ≥ 33.0%"
       whole bin: yes (> 75.0%)
-      origins: [us-mi prime 100.0%]
+      origins: [us prime 100.0%]
     good:
       share: 100.0%
       available: "yes: counted share 100.0% ≥ 33.0%"
       whole bin: yes (> 75.0%)
-      origins: [us-mi prime 100.0%]
+      origins: [us prime 100.0%]
     look for: []
     label note: false
-    reasons: [rated prime (origin us-mi)]
+    reasons: [rated prime (origin us)]
     confidence: medium (relevance)
     markers: []
     today:
       section: best right now
       line: none
       reason: none
-      origin: Michigan
+      origin: United States
       avoid: none
       tags: []
   oct-2:
@@ -593,31 +593,31 @@ windows:
     rule: 3
     basis: typical
     decided:
-      origin: us-mi
+      origin: us
       rating: prime
       evidence: medium
     weights: editorial
-    typical: [us-mi prime 100.0%]
+    typical: [us prime 100.0%]
     peak:
       share: 100.0%
       available: "yes: counted share 100.0% ≥ 33.0%"
       whole bin: yes (> 75.0%)
-      origins: [us-mi prime 100.0%]
+      origins: [us prime 100.0%]
     good:
       share: 100.0%
       available: "yes: counted share 100.0% ≥ 33.0%"
       whole bin: yes (> 75.0%)
-      origins: [us-mi prime 100.0%]
+      origins: [us prime 100.0%]
     look for: []
     label note: false
-    reasons: [rated prime (origin us-mi)]
+    reasons: [rated prime (origin us)]
     confidence: medium (relevance)
     markers: []
     today:
       section: best right now
       line: none
       reason: none
-      origin: Michigan
+      origin: United States
       avoid: none
       tags: []
   nov-1:
@@ -626,31 +626,31 @@ windows:
     rule: 3
     basis: typical
     decided:
-      origin: us-mi
+      origin: us
       rating: prime
       evidence: medium
     weights: editorial
-    typical: [us-mi prime 100.0%, mx fair 0.0%]
+    typical: [us prime 100.0%, mx fair 0.0%]
     peak:
       share: 100.0%
       available: "yes: counted share 100.0% ≥ 33.0%"
       whole bin: yes (> 75.0%)
-      origins: [us-mi prime 100.0%]
+      origins: [us prime 100.0%]
     good:
       share: 100.0%
       available: "yes: counted share 100.0% ≥ 33.0%"
       whole bin: yes (> 75.0%)
-      origins: [us-mi prime 100.0%, mx fair 0.0%]
+      origins: [us prime 100.0%, mx fair 0.0%]
     look for: []
     label note: false
-    reasons: [rated prime (origin us-mi)]
+    reasons: [rated prime (origin us)]
     confidence: medium (relevance)
     markers: []
     today:
       section: best right now
       line: none
       reason: none
-      origin: Michigan
+      origin: United States
       avoid: none
       tags: []
   nov-2:
@@ -659,31 +659,31 @@ windows:
     rule: 3
     basis: typical
     decided:
-      origin: us-mi
+      origin: us
       rating: prime
       evidence: medium
     weights: editorial
-    typical: [us-mi prime 100.0%, mx fair 0.0%]
+    typical: [us prime 100.0%, mx fair 0.0%]
     peak:
       share: 100.0%
       available: "yes: counted share 100.0% ≥ 33.0%"
       whole bin: yes (> 75.0%)
-      origins: [us-mi prime 100.0%]
+      origins: [us prime 100.0%]
     good:
       share: 100.0%
       available: "yes: counted share 100.0% ≥ 33.0%"
       whole bin: yes (> 75.0%)
-      origins: [us-mi prime 100.0%, mx fair 0.0%]
+      origins: [us prime 100.0%, mx fair 0.0%]
     look for: []
     label note: false
-    reasons: [rated prime (origin us-mi)]
+    reasons: [rated prime (origin us)]
     confidence: medium (relevance)
     markers: []
     today:
       section: best right now
       line: none
       reason: none
-      origin: Michigan
+      origin: United States
       avoid: none
       tags: []
   dec-1:
@@ -692,31 +692,31 @@ windows:
     rule: 3
     basis: typical
     decided:
-      origin: us-mi
+      origin: us
       rating: prime
       evidence: medium
     weights: editorial
-    typical: [us-mi prime 100.0%, mx fair 0.0%]
+    typical: [us prime 100.0%, mx fair 0.0%]
     peak:
       share: 100.0%
       available: "yes: counted share 100.0% ≥ 33.0%"
       whole bin: yes (> 75.0%)
-      origins: [us-mi prime 100.0%]
+      origins: [us prime 100.0%]
     good:
       share: 100.0%
       available: "yes: counted share 100.0% ≥ 33.0%"
       whole bin: yes (> 75.0%)
-      origins: [us-mi prime 100.0%, mx fair 0.0%]
+      origins: [us prime 100.0%, mx fair 0.0%]
     look for: []
     label note: false
-    reasons: [rated prime (origin us-mi)]
+    reasons: [rated prime (origin us)]
     confidence: medium (relevance)
     markers: [last-call (fades by jan-1)]
     today:
       section: best right now
       line: none
       reason: Fades by early January.
-      origin: Michigan
+      origin: United States
       avoid: none
       tags: [Last call]
   dec-2:
@@ -725,30 +725,30 @@ windows:
     rule: 3
     basis: typical
     decided:
-      origin: us-mi
+      origin: us
       rating: prime
       evidence: medium
     weights: editorial
-    typical: [us-mi prime 100.0%, mx fair 0.0%]
+    typical: [us prime 100.0%, mx fair 0.0%]
     peak:
       share: 100.0%
       available: "yes: counted share 100.0% ≥ 33.0%"
       whole bin: yes (> 75.0%)
-      origins: [us-mi prime 100.0%]
+      origins: [us prime 100.0%]
     good:
       share: 100.0%
       available: "yes: counted share 100.0% ≥ 33.0%"
       whole bin: yes (> 75.0%)
-      origins: [us-mi prime 100.0%, mx fair 0.0%]
+      origins: [us prime 100.0%, mx fair 0.0%]
     look for: []
     label note: false
-    reasons: [rated prime (origin us-mi)]
+    reasons: [rated prime (origin us)]
     confidence: medium (relevance)
     markers: [last-call (fades by jan-1)]
     today:
       section: best right now
       line: none
       reason: Fades by early January.
-      origin: Michigan
+      origin: United States
       avoid: none
       tags: [Last call]

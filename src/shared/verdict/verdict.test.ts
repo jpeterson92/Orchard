@@ -890,6 +890,7 @@ describe("distance cap (P16)", () => {
   });
   it.each([
     ["us-ca", "peak"],
+    ["us", "peak"],
     ["mx", "peak"],
     ["ca", "peak"],
     ["pe", "good"],
