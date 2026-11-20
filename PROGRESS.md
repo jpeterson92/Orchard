@@ -1,6 +1,6 @@
 # PROGRESS
 
-Updated: 2026-11-20 · Phase: build · Live: https://orchard.jpeterson92.workers.dev (M0 placeholder) · 14 commits unsynced
+Updated: 2026-11-20 · Phase: build · Live: https://orchard.jpeterson92.workers.dev (M0 placeholder) · 16 commits unsynced
 
 ## Milestones
 
@@ -15,7 +15,7 @@ Updated: 2026-11-20 · Phase: build · Live: https://orchard.jpeterson92.workers
 
 Claude, in order:
 
-1. **Per-item content follow-ups, apples first** (Content below). First run `node .cache/panel-missing.mjs`: it lists panel-rated origins an item file lacks. Fix the 27 `evidence:check` rejections only when working on that item; links are rechecked only at the yearly refresh (`evidence:check -- --urls`).
+1. **Per-item content follow-ups, apples first** (Content below). First run `node .cache/panel-missing.mjs`: it lists panel-rated origins an item file lacks. Fix the 26 `evidence:check` rejections only when working on that item; links are rechecked only at the yearly refresh (`evidence:check -- --urls`).
 2. **Draft the remaining items on the 89-item list** (engineering plan §5 order: by `purchaseRank`, always-good items last). Each new item record brings in its approved painting: rename `provisional-<item>-thumbnail-vN.png` in its staging folder to the catalog ID, add it to that folder's `handoff.json`, and run `npm run art:process`. Approved paintings are waiting for 53 of these items (staging folders 11–20).
 3. **Take in repaints as Jared approves them:** `npm run art:process`, a phone-width look, and a commit.
 
@@ -37,11 +37,12 @@ Jared:
 4. P1 at 75%: revisit as more items are drafted.
 5. Pomegranates: most US-bound Argentine fruit in the sources is aril or processing grade, with one importer selling it whole. Drop Argentina from June, so late June reads Skip?
 6. "Can't find it? Try…" picks up to two same-item varieties by trait distance (Honeycrisp → SweeTango, Jazz). Keep it automatic, or curate by hand? Also say if any finder chip name in `content/guides.yaml` should read differently.
+7. McIntosh: the model panel rates it prime through early November; the one cited eating-quality source says only September is worth it (it softens in storage). Keep the panel's window, or cut prime to September?
 
 ## Content
 
 - **Gaps needing sources** (Limited evidence today): pomegranates late June (Argentina).
-- **Per-item follow-ups:** apples (Cosmic Crisp January to early June and late September to October, Gala late July to early August, Chile and New Zealand imports beyond Honeycrisp, Ambrosia and McIntosh unrated; five eating-quality pages are one writer); pears (Bartlett May to July and late November to December, Bosc January to March and May to early September; Red Anjou, Red Bartlett, Packham, Forelle and Concorde claims in `content/evidence-drafts/`); mandarins (summer imports need a second source per variety, clementines February to May unrated, Gold Nugget only in May; Royal, satsuma, Sumo and Pixie claims in drafts); oranges (Chile navels have no claim; summer blood oranges rest on Sunkist alone); mangoes (no variety-named eating-quality claim, so variety windows are Medium at best; Tommy Atkins and Haden never rated, so late October reads Skip; traits wait for tropical anchors).
+- **Per-item follow-ups:** apples (Cosmic Crisp January to early June and late September to October, Gala late July to early August, Chile and New Zealand imports beyond Honeycrisp; Ambrosia rests on two consumer guides and is unrated June to early September, McIntosh May to August; six eating-quality claims are one writer); pears (Bartlett May to July and late November to December, Bosc January to March and May to early September; Red Anjou, Red Bartlett, Packham, Forelle and Concorde claims in `content/evidence-drafts/`); mandarins (summer imports need a second source per variety, clementines February to May unrated, Gold Nugget only in May; Royal, satsuma, Sumo and Pixie claims in drafts); oranges (Chile navels have no claim; summer blood oranges rest on Sunkist alone); mangoes (no variety-named eating-quality claim, so variety windows are Medium at best; Tommy Atkins and Haden never rated, so late October reads Skip; traits wait for tropical anchors).
 - **PLU gaps:** IFPS has no code of its own for Gold Nugget or Pixie, so their pages show none; W. Murcott shows only Tango's 3556.
 - **Tools:** `.cache/runs.ts <item>`, `.cache/curves.ts <item> <variety> <window>`, `.cache/proposals.ts <item>`, `.cache/eval-why.ts [items]`, `.cache/eval-dips.ts`, and for re-rating `.cache/panel-rerate.mjs`, `.cache/apply-proposals.ts all`, `.cache/verdict-diff.mjs`. They hard-code the main checkout's root. In parallel sessions write `origin: us` explicitly on claims and run `npx biome format --write` on edited YAML.
 - **Blocked to the fetcher:** calstrawberry.com and Blue Book (robots.txt); UC Davis fact sheets, The Packer, Produce Market Guide, Serious Eats, WSU, Arizona Extension, Good Fruit Grower, The Produce News, cosmiccrisp.com, AndNowUKnow (403); bestapples.com. Jared's Chrome may be used to read them.
