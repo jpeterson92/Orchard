@@ -1599,6 +1599,18 @@
   url: https://www.driscolls.com/article/best-ways-to-store-raspberries
   accessed: 2026-11-18
   tier: mainstream
+- id: freshplaza-mexico-berries-2026
+  title: "Mexico will continue to be the United States' top supplier of fresh berries in 2026"
+  publisher: FreshPlaza
+  url: https://www.freshplaza.com/north-america/article/9819843/mexico-will-continue-to-be-the-united-states-top-supplier-of-fresh-berries-in-2026/
+  accessed: 2026-11-19
+  tier: mainstream
+- id: freshplaza-mexican-blackberries-rain
+  title: "Weather tightens supplies of Mexican blackberries"
+  publisher: FreshPlaza
+  url: https://www.freshplaza.com/north-america/article/9149380/weather-tightens-supplies-of-mexican-blackberries/
+  accessed: 2026-11-19
+  tier: mainstream
 - id: freshplaza-central-valley-blackberries
   title: "Conventional blackberry supply new for California's Central Valley this season"
   publisher: FreshPlaza

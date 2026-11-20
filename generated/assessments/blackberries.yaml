@@ -6,7 +6,7 @@ status: draft
 rated by: origin
 peak worth seeking: true
 always good: false
-outlook: "GGGGGGGGSSG·PPGG··SSSSSS (Jan to Dec, two windows a month: P Peak, G Good, S Skip, · Limited evidence)"
+outlook: "GGGGGGGGSSGGPPGGGGSSSSSS (Jan to Dec, two windows a month: P Peak, G Good, S Skip, · Limited evidence)"
 windows:
   jan-1:
     when: early January (from 2026-01-01)
@@ -361,16 +361,37 @@ windows:
       tags: []
   jun-2:
     when: late June (from 2026-06-16)
-    verdict: limited
-    rule: 1
+    verdict: good
+    rule: 4
     basis: typical
-    decided: none
+    decided:
+      origin: us-ca
+      rating: fair
+      evidence: low
+    weights: volume
+    typical: [us-ca fair 55.0% (supply 2.00), "mx fair 45.0% (supply 0.66, thin)"]
+    peak:
+      share: 0.0%
+      available: "no: no origin at this level"
+      whole bin: no (≤ 75.0%)
+      origins: []
+    good:
+      share: 100.0%
+      available: "yes: counted share 100.0% ≥ 33.0%"
+      whole bin: yes (> 75.0%)
+      origins: [us-ca fair 55.0%, mx fair 45.0%]
     look for: []
     label note: false
-    reasons: [origin-unrated mx]
+    reasons: [rated fair (origin us-ca)]
     confidence: medium (coverage)
     markers: []
-    today: not on Today
+    today:
+      section: good buys
+      line: none
+      reason: none
+      origin: California
+      avoid: none
+      tags: []
   jul-1:
     when: early July (from 2026-07-01)
     verdict: peak
@@ -505,28 +526,70 @@ windows:
       tags: []
   sep-1:
     when: early September (from 2026-09-01)
-    verdict: limited
-    rule: 1
+    verdict: good
+    rule: 4
     basis: typical
-    decided: none
-    look for: []
-    label note: false
-    reasons: [origin-unrated mx]
-    confidence: medium (coverage)
-    markers: []
-    today: not on Today
+    decided:
+      origin: us-ca
+      rating: fair
+      evidence: low
+    weights: volume
+    typical: [us-ca fair 70.5% (supply 2.00), "mx poor 29.5% (supply 0.33, thin)"]
+    peak:
+      share: 0.0%
+      available: "no: no origin at this level"
+      whole bin: no (≤ 75.0%)
+      origins: []
+    good:
+      share: 70.5%
+      available: "yes: counted share 70.5% ≥ 33.0%"
+      whole bin: no (≤ 75.0%)
+      origins: [us-ca fair 70.5%]
+    look for: [us-ca]
+    label note: true
+    reasons: [rated fair (origin us-ca), typical-origin-poor mx, look-for us-ca]
+    confidence: low (coverage, agreement)
+    markers: [last-call (fades by oct-1), check-label]
+    today:
+      section: good buys
+      line: Look for ones from California
+      reason: Fades by early October.
+      origin: none
+      avoid: Blackberries from Mexico often disappoint now.
+      tags: [Last call]
   sep-2:
     when: late September (from 2026-09-16)
-    verdict: limited
-    rule: 1
+    verdict: good
+    rule: 4
     basis: typical
-    decided: none
-    look for: []
-    label note: false
-    reasons: [origin-unrated mx]
-    confidence: medium (coverage)
-    markers: []
-    today: not on Today
+    decided:
+      origin: us-ca
+      rating: fair
+      evidence: low
+    weights: volume
+    typical: [us-ca fair 70.5% (supply 2.00), "mx poor 29.5% (supply 0.33, thin)"]
+    peak:
+      share: 0.0%
+      available: "no: no origin at this level"
+      whole bin: no (≤ 75.0%)
+      origins: []
+    good:
+      share: 70.5%
+      available: "yes: counted share 70.5% ≥ 33.0%"
+      whole bin: no (≤ 75.0%)
+      origins: [us-ca fair 70.5%]
+    look for: [us-ca]
+    label note: true
+    reasons: [rated fair (origin us-ca), typical-origin-poor mx, look-for us-ca]
+    confidence: low (coverage, agreement)
+    markers: [last-call (fades by oct-1), check-label]
+    today:
+      section: good buys
+      line: Look for ones from California
+      reason: Fades by early October.
+      origin: none
+      avoid: Blackberries from Mexico often disappoint now.
+      tags: [Last call]
   oct-1:
     when: early October (from 2026-10-01)
     verdict: skip

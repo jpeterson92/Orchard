@@ -44,6 +44,8 @@ origins:
           { from: oct-1, to: dec-2, rating: poor },
           { from: jan-1, to: apr-2, rating: fair },
           { from: may-1, to: jun-1, rating: poor },
+          { from: jun-2, to: jun-2, rating: fair },
+          { from: sep-1, to: sep-2, rating: poor },
         ],
     }
   - {

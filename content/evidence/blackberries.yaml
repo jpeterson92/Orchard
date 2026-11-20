@@ -36,3 +36,19 @@ claims:
     specificity: half-month
     directness: availability
     paraphrase: An organic grower's Santa Maria blackberry season runs from mid-April through November.
+  # Mexico's summer slump: rains cut volume and quality from July to September.
+  - source: freshplaza-mexico-berries-2026
+    origin: mx
+    windows:
+      - { from: jan-1, to: jun-2, rating: prime }
+      - { from: nov-1, to: dec-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Mexico's berries come mainly from January to June and in November and December, with production falling sharply from July to September.
+  - source: freshplaza-mexican-blackberries-rain
+    origin: mx
+    windows:
+      - { from: sep-1, to: sep-2, rating: poor }
+    specificity: month
+    directness: eating-quality
+    paraphrase: After heavy September rains, Mexican blackberries arrived with post-harvest disease and receivers had to clean them or cut prices.
