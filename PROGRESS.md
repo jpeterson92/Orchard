@@ -23,7 +23,9 @@ M7 slice 5: draft each guide's "What matters" lead (spec §5) as `draft` copy fo
 
 ## Art
 
-When Jared's batch 1 masters land in `art/masters/`, run `npm run art:process`, show Jared the contact sheet, and record approvals in `art/manifest.json` (rejects get a §2 F revision prompt in batch 2).
+- **65 approved paintings are in the app:** 23 of the 30 items and 42 varieties. Each illustrator chat works in its own `art/staging/<NN>-<topic>/` folder and lists Jared's approvals in that folder's `handoff.json`; `npm run art:process` copies them into `art/masters/` and the manifest (`art/PROMPT.md`, engineering plan art track). Candidate PNGs are gitignored; briefs are committed.
+- **Awaiting Jared's review** (staged, not in the app): artichokes, asparagus, Brussels sprouts, honeydew, okra (`07-remaining-launch-produce`), Forelle (`10b-forelle-concorde`). Not painted yet: collard greens, winter squash. 15 `provisional-` paintings for items without records (folders 11–15) wait for those items.
+- **Do-overs Claude recommends** (approved, not redone): blackberries (nearly black on charcoal); Keitt mango (reads as an avocado at card size); Red Bartlett (same solid red as Starkrimson; it should show its yellow ground); Pixie, Clementine, Satsuma and Gala are painted at 50–65% of the canvas against 70–85% for their families, and nectarine and grapefruit run large. The scale ones can be fixed without repainting by re-cropping the transparent margin.
 
 ## Blocking (needs Jared)
 
@@ -52,7 +54,6 @@ Applied 2026-11-19 (Jared's decisions): a level counts when origins at it are re
 To do when convenient:
 
 - Approve or edit the Methods and Privacy drafts (`content/methods.md`, `content/privacy.md`); production deploys refuse drafts.
-- Art batch 1: paste the 13 prompts in `art/requests/batch-1.md` into one ChatGPT conversation (square, transparent background) and save each as `art/masters/<asset id>.png`.
 - Preview deploy for the M3 phone review, when you want it. It also creates a free D1 database `orchard` for the speed counts (then `npm run db:migrate`).
 - Recruit the independent reviewer Gate 1 needs (a person; product spec §12).
 - Model panel runs from other providers: follow `content/panel/README.md`, then ask Claude to review the run.
