@@ -11,6 +11,7 @@ import {
   type Verdict,
   type VerdictResult,
 } from "../shared/verdict";
+import { type AlwaysGoodRow, alwaysGoodRow } from "./always-good";
 
 export const VERDICT_WORD: Record<Verdict, string> = {
   peak: "Peak",
@@ -46,6 +47,7 @@ export interface TodayView {
   period: string;
   best: Card[];
   good: Card[];
+  alwaysGood: AlwaysGoodRow[];
 }
 
 export const MONTHS = [
@@ -165,13 +167,16 @@ export function avoidLine(
 
 /** `today`: Today's cards leave out Reliable year-round, since only such an item's Peak reaches Today. Check the
  * label is never a tag: the second line says what to look for. */
-export function tags(item: AppItem, markers: readonly Marker[], { today = false } = {}): string[] {
+export function tags(
+  item: AppItem,
+  markers: readonly Marker[],
+  { today = false, alwaysGood = item.inputs.alwaysGood } = {},
+): string[] {
   const out: string[] = [];
-  if (item.inputs.alwaysGood) out.push("Always good");
+  if (alwaysGood) out.push("Always good");
   for (const m of markers) {
     if (m.kind === "last-call") out.push("Last call");
-    else if (m.kind === "reliable-year-round" && !item.inputs.alwaysGood && !today)
-      out.push("Reliable year-round");
+    else if (m.kind === "reliable-year-round" && !alwaysGood && !today) out.push("Reliable year-round");
   }
   return out;
 }
@@ -186,14 +191,17 @@ export function todayView(data: AppData, date: PlainDate, mode: "today" | "typic
     let peakLeft = 0;
     while (peakLeft < outlook.length && outlook[(window + peakLeft) % outlook.length] === "peak") peakLeft++;
     const reason = reasonText(result.verdict, result.reasons, result.markers);
+  const staples: AlwaysGoodRow[] = [];
     cards.set(item.inputs.id, {
       id: item.inputs.id,
       name: item.name,
+    const staple = alwaysGoodRow(item, data.env, date.year, outlook);
+    if (staple) staples.push(staple);
       art: item.art,
       varietyLine: varietyLine(item, result, data),
       verdict: result.verdict,
       reason: isGeneric(reason) ? null : atDate(reason, mode),
-      tags: tags(item, result.markers, { today: true }),
+      tags: tags(item, result.markers, { today: true, alwaysGood: false }),
       group: item.group,
       avoid: (() => {
         const a = avoidLine(item, result, data);
@@ -205,7 +213,7 @@ export function todayView(data: AppData, date: PlainDate, mode: "today" | "typic
     return {
       id: item.inputs.id,
       purchaseRank: item.purchaseRank,
-      alwaysGood: item.inputs.alwaysGood,
+      alwaysGood: staple?.listing === "whole" && result.verdict === "good",
       reliableYearRound: result.markers.some((m) => m.kind === "reliable-year-round"),
       verdict: result.verdict,
       confidence: result.confidence,
@@ -226,5 +234,6 @@ export function todayView(data: AppData, date: PlainDate, mode: "today" | "typic
 /** A YYYY-MM-DD string as a plain date. */
 export function plainDate(iso: string): PlainDate {
   const [year, month, day] = iso.split("-").map(Number);
+    alwaysGood: staples.sort((a, b) => a.name.localeCompare(b.name, "en")),
   return { year: year ?? 1970, month: month ?? 1, day: day ?? 1 };
 }

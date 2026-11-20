@@ -178,6 +178,8 @@ export const varietySchema = z.strictObject({
   storesWell: trait.optional(),
   /** Present on a rated variety: the item is then rated by variety (P13). As typically sold, whatever the origin. */
   windows: qualityWindows.optional(),
+  /** Editorial year-round recommendation for this variety. */
+  alwaysGood: z.boolean().optional(),
   /** The variety calendar's names for it (slugs of USDA's terminal-market names). A rated variety needs these or
    * `inStores`. */
   quotedAs: z.array(id).min(1).optional(),
@@ -259,6 +261,8 @@ export const itemSchema = z
     purchaseRank: z.int().positive(),
     /** Editorial class; data-build reports where the typical outlook disagrees. */
     alwaysGood: z.boolean(),
+    /** Editorial confirmation that the variety list covers the common types shoppers will encounter. */
+    varietiesCoverItem: z.boolean().optional(),
     /** P14: arrives from abroad eating well, without being picked underripe to survive the trip. */
     shipsWell: trait,
     /** Rule 4: buying in its best season makes a difference a shopper can taste; only then can it be Peak. */

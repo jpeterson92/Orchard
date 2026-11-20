@@ -29,6 +29,7 @@ export interface AppVariety {
   overall: { score: number; tier: OverallTier } | null;
   /** False for a variety never worth seeking out: it is never offered as an alternative. */
   recommended: boolean;
+  alwaysGood?: boolean;
 }
 
 /** The guide's use chips a variety's best uses fall under: a best use containing a chip's match text, ignoring
@@ -89,8 +90,9 @@ export interface AppItem {
   ripen: string | null;
   prep: string;
   /** Type notes, shown with the pick cues where the type changes the advice. */
-  types: { name: string; note: string | null }[];
+  types: { id: string; name: string; note: string | null }[];
   varieties: AppVariety[];
+  varietiesCoverItem?: boolean;
   /** The id of the variety guide covering it, or null. */
   guide: string | null;
   /** P16: what to look for when a selection makes the item Peak. */
@@ -163,7 +165,8 @@ export function appData(data: Dataset, builtOn: string, art: ArtMap, about: Abou
       store: { text: item.store.text, temperature: item.store.temperature, life: item.store.life },
       ripen: item.ripen?.text ?? null,
       prep: item.prep,
-      types: item.types.map((t) => ({ name: t.name, note: t.note ?? null })),
+      types: item.types.map((t) => ({ id: t.id, name: t.name, note: t.note ?? null })),
+      ...(item.varietiesCoverItem && { varietiesCoverItem: true }),
       varieties: item.varieties.map((v) => ({
         id: v.id,
         name: v.name,
@@ -177,6 +180,7 @@ export function appData(data: Dataset, builtOn: string, art: ArtMap, about: Abou
         ripeCue: v.ripeCue ?? null,
         overall: overallOf(v.overallScore, guideFor(item.id)?.overall),
         recommended: v.recommended !== false,
+        ...(v.alwaysGood && { alwaysGood: true }),
       })),
       guide: guideFor(item.id)?.id ?? null,
       selections: item.selections.map((s) => ({ id: s.id, label: s.label, cue: s.cue })),

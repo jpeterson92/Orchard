@@ -37,6 +37,14 @@ export const varietyPath = (item: string, variety: string) => `/items/${item}/${
 /** Whether a variety has its own page: it belongs to an item with a guide. */
 export const hasVarietyPage = (item: Pick<AppItem, "guide">) => item.guide !== null;
 
+/** A named variety opens on its own page or preselected in the item's label check. */
+export function varietyDestination(item: string, variety: string, hasGuide: boolean) {
+  return {
+    to: hasGuide ? varietyPath(item, variety) : `/items/${item}#label`,
+    label: `v:${variety}`,
+  };
+}
+
 export function varietyView(
   data: AppData,
   itemId: string,

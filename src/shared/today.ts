@@ -20,8 +20,7 @@ export interface TodayGroups {
   good: string[];
 }
 
-/** Today lists only what a shopper should consider buying: Peak items, and Good items that are seasonal (neither
- * Always good nor Reliable year-round). Skip and Limited evidence stay off it. */
+/** The seasonal lists take Peak items and Good items whose recommendation is seasonal. */
 export const onToday = (e: TodayEntry): boolean =>
   !e.alwaysGood && (e.verdict === "peak" || (e.verdict === "good" && !e.reliableYearRound));
 

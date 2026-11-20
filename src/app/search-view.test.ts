@@ -82,6 +82,15 @@ describe("search", () => {
     expect(keys("green onions")[0]).toBe("green-onions");
   });
 
+  it.each([
+    ["Honeycrisp apple", "apples/honeycrisp"],
+    ["Ataulfo mango", "mangoes/ataulfo"],
+    ["cherry tomatoes", "tomatoes/cherry-grape"],
+    ["grape tomatoes", "tomatoes/cherry-grape"],
+  ])("shows the named variety first for %s", (query, key) => {
+    expect(keys(query)[0]).toBe(key);
+  });
+
   it("finds every bundled item by its own name", () => {
     for (const item of data.items) expect(keys(item.name)).toContain(item.inputs.id);
   });

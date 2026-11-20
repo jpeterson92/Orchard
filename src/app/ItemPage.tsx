@@ -28,7 +28,8 @@ export function ItemPage() {
   useVerdictVisible(data.builtOn, date.today, view !== null);
   useCount("item", view ? id : null);
   // Back to the Browse list it was opened from; Today otherwise (a shared link, search, Today itself).
-  const back = (useLocation().state as { back?: BackTo } | null)?.back ?? { to: "/", label: "Today" };
+  const state = useLocation().state as { back?: BackTo; label?: string | null } | null;
+  const back = state?.back ?? { to: "/", label: "Today" };
 
   return (
     <PageFrame date={date} shareTitle={view ? `${view.name} · Orchard` : undefined}>
@@ -39,7 +40,7 @@ export function ItemPage() {
       </nav>
       {view ? (
         <div className="lg:grid lg:grid-cols-[minmax(0,40rem)_1fr] lg:gap-12">
-          <Item view={view} mode={date.mode} />
+          <Item key={`${view.id}/${state?.label ?? ""}`} view={view} mode={date.mode} picked={state?.label} />
           {/* Wide screens: the artwork gets its own column and stays in view. */}
           <aside className="hidden lg:block">
             <Art id={view.art} sizes="320px" className="sticky top-6 aspect-square w-full max-w-80" />
@@ -56,9 +57,8 @@ export function ItemPage() {
   );
 }
 
-function Item({ view, mode }: { view: ItemView; mode: Mode }) {
+function Item({ view, mode, picked }: { view: ItemView; mode: Mode; picked?: string | null }) {
   // A variety found by search opens with it picked in the label check.
-  const picked = (useLocation().state as { label?: string | null } | null)?.label;
   const [label, setLabel] = useState(picked ?? "");
   const labelCheck = <LabelCheck view={view} choice={label} onChoose={setLabel} />;
   return (

@@ -126,7 +126,7 @@ A category appears only when it holds at least one covered item.
 
 ## 5. Core screens and behavior
 
-Today leads with every item at its Peak, then the seasonal items that are Good, each exactly once. Always-good items (below) stay off Today; they appear in search, Browse, Calendar and their own pages. Interaction rules are the same on every screen: cards expand in place, and list rows open pages.
+Today leads with Peak items and then seasonal Good items. A compact Always good list follows the seasonal cards. Cards expand in place, and list rows open pages.
 
 ### Verdict states and markers
 
@@ -135,7 +135,7 @@ Today leads with every item at its Peak, then the seasonal items that are Good, 
 | **Verdict** (exactly one per item) | Peak · Good · Skip · Limited evidence (shown to shoppers as "Not rated") | The best eating quality a shopper has a reasonable chance of finding in a typical US supermarket right now (rules in section 7). Peak: "you should really get this now". Good: "if you want it now, you'll be happy with it". Skip: "not a great time of year; it'll be mediocre" |
 | **Markers** (zero or more, shown on the card) | Last call · Reliable year-round · Good value (v1.1) | Extra facts that never move the item to a different section |
 | **Look for** (the card's second line, when needed) | Varieties · origins · a selection | What to pick when the verdict holds for only part of the bin (section 7) |
-| **Always good** (an item class) | An editorial call, written in the item file. The usual evidence is a typical outlook of Good in all 24 windows, never Peak and never Skip; the data build flags any item where the two disagree, and an editor decides | Shown as "Always good" wherever they appear, in place of the Reliable year-round marker. They never appear on Today |
+| **Always good** (a year-round recommendation) | An editorial call for a whole item or a rated variety, with a typical outlook of Good in all 24 windows. A recommended variety also needs evidence that it is typically in stores in every month. | The label appears in search when the result itself qualifies. Today lists the recommendation in Always good. |
 
 **Items rated by variety.** Some items' varieties peak at different times: some apples are only worth buying near harvest, while Cosmic Crisp keeps well all year. These items are rated per variety as well as per origin:
 
@@ -151,11 +151,13 @@ Today leads with every item at its Peak, then the seasonal items that are Good, 
 1. **Date chip:** "Mon Nov 16". Tap to plan for another date.
 2. **One-line summary** of what's typically happening this time of year. It is edited by hand for each of the 24 half-month windows, nationally.
 3. **Search field**, visible without scrolling.
-4. **Filter chips** (All · Fruit · Vegetables · Herbs & mushrooms), filtering both lists below.
+4. **Filter chips** (All · Fruit · Vegetables · Herbs & mushrooms), filtering all three lists below. An Always good link jumps to that section when the current filter has matches.
 5. **Best right now:** every Peak item, the one ending soonest first (fewest Peak half-months left, then the shortest Peak season: a 4-week strawberry peak before a 4-month one), then highest confidence, then the most commonly bought. These are suggestions: worth buying even if they weren't on the list. It is never padded with Good items.
 6. **Good buys:** the seasonal Good items, by confidence and then the most commonly bought. These are approvals: a shopper who wants one will be happy with it.
 
-Today lists only what a shopper should consider buying now. Skip and Limited evidence items stay off it, and so do Always good items and Reliable year-round items while they are only Good: a Reliable year-round item appears on Today only when it is Peak, and its card there leaves out the Reliable year-round marker. Browse, Calendar, search and the item page show every item with its verdict, including when a Skip item is usually back or improves.
+7. **Always good:** qualifying items and varieties in a compact A–Z list. Use the family name alone when the rated varieties cover the common types and all qualify. When most qualify and one or two confirmed seasonal varieties are the only exceptions, name and link to those exceptions. For incomplete coverage or a wider mix, name and link to the qualifying varieties. A family can also appear above with its seasonal picks named on the card.
+
+The seasonal lists show Peak and seasonal Good. An item marked Reliable year-round can appear in Best right now during its Peak. Browse, Calendar, search and the item page give shoppers a verdict for items they look up.
 
 An item that is both Peak and Last call appears once, under Best right now, carrying a Last call marker.
 
@@ -212,7 +214,7 @@ An item that is both Peak and Last call appears once, under Best right now, carr
 
 - A global control, pinned in thumb reach. Suggestions start at the first letter.
 - Results show the verdict badge, so a lookup often needs no tap.
-- Matches item names, variety names ("Honeycrisp" → its variety page; "Ataulfo" → the mango page, at that variety), synonyms (scallion = green onion, cilantro = coriander leaf) and common misspellings. Spanish names come in v2.
+- Matches item names, variety names and labels, family-qualified variety names ("Honeycrisp apple"), synonyms (scallion = green onion, cilantro = coriander leaf) and common misspellings. Results for a named variety give its own verdict and year-round status. Spanish names come in v2.
 - No match: "We don't cover this yet", and the closest items.
 
 ### Date

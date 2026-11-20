@@ -6,12 +6,14 @@ import { Link } from "react-router";
 import appJson from "../generated/app.json";
 import type { AppData, FilterGroup } from "../shared/app-data";
 import { Art } from "./Art";
+import type { AlwaysGoodRow } from "./always-good";
 import { useAppDate } from "./date";
 import { Arrow, Chevron, VerdictMark } from "./icons";
 import { PageFrame, PageTitle } from "./Masthead";
 import { count, useVerdictVisible } from "./measure";
 import { readinessText, useReadiness } from "./offline";
 import { type Card, plainDate, todayView } from "./today-view";
+import { varietyDestination } from "./variety-view";
 
 const data = appJson as unknown as AppData;
 
@@ -30,10 +32,11 @@ export function Today() {
   useVerdictVisible(data.builtOn, date.today);
   const [filter, setFilter] = useState<FilterGroup | "all">("all");
   const view = todayView(data, plainDate(date.iso), date.mode);
-  const inGroup = (c: Card) => filter === "all" || c.group === filter;
+  const inGroup = (c: { group: FilterGroup }) => filter === "all" || c.group === filter;
   const best = view.best.filter(inGroup);
   const good = view.good.filter(inGroup);
-  const any = view.best.length + view.good.length > 0;
+  const alwaysGood = view.alwaysGood.filter(inGroup);
+  const any = view.best.length + view.good.length + view.alwaysGood.length > 0;
 
   return (
     <PageFrame date={date}>
@@ -53,7 +56,7 @@ export function Today() {
         <OfflineStatus iso={date.today} />
 
         {any && (
-          // One row of filters for both lists; it scrolls sideways on a narrow phone rather than wrapping.
+          // One row of filters for all three lists; it scrolls sideways on a narrow phone rather than wrapping.
           <fieldset className="-mx-4 mt-2 min-w-0 overflow-x-auto px-4 [scrollbar-width:none] sm:mx-0 sm:px-0">
             <legend className="sr-only">Show</legend>
             <div className="flex w-max gap-2">
@@ -75,6 +78,11 @@ export function Today() {
             </div>
           </fieldset>
         )}
+        {alwaysGood.length > 0 && (
+          <a href="#always-good" className={`mt-1 text-sm ${textLink}`}>
+            Always good <Chevron />
+          </a>
+        )}
 
         {best.length > 0 && (
           <Section title={date.planning ? "Typically best" : "Best right now"}>
@@ -86,7 +94,16 @@ export function Today() {
             <Rows cards={good} />
           </Section>
         )}
-        {any && best.length + good.length === 0 && (
+        {alwaysGood.length > 0 && (
+          <Section title="Always good" id="always-good">
+            <ul className="md:grid md:grid-cols-2 md:gap-x-10">
+              {alwaysGood.map((row) => (
+                <StapleRow key={row.id} row={row} />
+              ))}
+            </ul>
+          </Section>
+        )}
+        {any && best.length + good.length + alwaysGood.length === 0 && (
           <p className="py-6 text-ink-secondary">Nothing in this group today.</p>
         )}
       </main>
@@ -104,15 +121,48 @@ function OfflineStatus({ iso }: { iso: string }) {
   );
 }
 
-function Section({ title, children }: { title: string; children: React.ReactNode }) {
+function Section({ title, children, id }: { title: string; children: React.ReactNode; id?: string }) {
   return (
     <section className="mt-4">
-      <h2 className="flex items-center gap-4 font-editorial text-2xl font-bold">
+      <h2
+        id={id}
+        tabIndex={id ? -1 : undefined}
+        className="flex scroll-mt-4 items-center gap-4 font-editorial text-2xl font-bold"
+      >
         {title}
         <span aria-hidden className="h-px flex-1 bg-olive/60" />
       </h2>
       {children}
     </section>
+  );
+}
+
+const textLink =
+  "inline-flex min-h-11 items-center gap-1 rounded-sm font-semibold text-olive underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
+
+function StapleRow({ row }: { row: AlwaysGoodRow }) {
+  return (
+    <li className="border-b border-rule py-0.5">
+      <Link to={`/items/${row.id}`} className={`${textLink} font-editorial text-lg`}>
+        {row.name} <Arrow />
+      </Link>
+      {row.varieties.length > 0 && (
+        <p className="-mt-1 text-sm text-ink-secondary">
+          {row.listing === "except" && "Except "}
+          {row.varieties.map((variety, index) => {
+            const { to, label } = varietyDestination(row.id, variety.id, row.hasGuide);
+            return (
+              <span key={variety.id}>
+                {index > 0 && (index === row.varieties.length - 1 ? " and " : ", ")}
+                <Link to={to} state={{ label }} className={`${textLink} underline`}>
+                  {variety.name}
+                </Link>
+              </span>
+            );
+          })}
+        </p>
+      )}
+    </li>
   );
 }
 
