@@ -170,6 +170,22 @@
       "status": "approved"
     },
     {
+      "id": "artichokes-thumbnail-v1",
+      "item": "artichokes",
+      "role": "thumbnail",
+      "alt": "A whole green globe artichoke with tightly overlapping bracts and a short stem",
+      "revision": 1,
+      "status": "approved"
+    },
+    {
+      "id": "asparagus-thumbnail-v1",
+      "item": "asparagus",
+      "role": "thumbnail",
+      "alt": "A bundle of green asparagus spears with tight tips and pale cut ends",
+      "revision": 1,
+      "status": "approved"
+    },
+    {
       "id": "blackberries-thumbnail-v1",
       "item": "blackberries",
       "role": "thumbnail",
@@ -182,6 +198,14 @@
       "item": "blueberries",
       "role": "thumbnail",
       "alt": "Five dusty blue blueberries with recessed star-shaped crowns",
+      "revision": 1,
+      "status": "approved"
+    },
+    {
+      "id": "brussels-sprouts-thumbnail-v1",
+      "item": "brussels-sprouts",
+      "role": "thumbnail",
+      "alt": "Two tightly wrapped green Brussels sprouts and a cut half with a pale core",
       "revision": 1,
       "status": "approved"
     },
@@ -231,6 +255,14 @@
       "role": "thumbnail",
       "alt": "A tapered bunch of red-purple table grapes on a short green stem",
       "revision": 2,
+      "status": "approved"
+    },
+    {
+      "id": "honeydew-thumbnail-v1",
+      "item": "honeydew",
+      "role": "thumbnail",
+      "alt": "A whole cream-skinned honeydew with a pale green wedge",
+      "revision": 1,
       "status": "approved"
     },
     {
@@ -348,6 +380,14 @@
       "status": "approved"
     },
     {
+      "id": "okra-thumbnail-v1",
+      "item": "okra",
+      "role": "thumbnail",
+      "alt": "Three tapered green okra pods with lengthwise ridges and a star-shaped slice",
+      "revision": 1,
+      "status": "approved"
+    },
+    {
       "id": "oranges-blood-thumbnail-v2",
       "item": "oranges",
       "variety": "blood",
@@ -442,6 +482,15 @@
       "role": "thumbnail",
       "alt": "A yellow-green Concorde pear with an elongated, rounded neck and a patch of golden russet",
       "revision": 2,
+      "status": "approved"
+    },
+    {
+      "id": "pears-forelle-thumbnail-v1",
+      "item": "pears",
+      "variety": "forelle",
+      "role": "thumbnail",
+      "alt": "A small yellow Forelle pear with red freckles and a coral blush",
+      "revision": 1,
       "status": "approved"
     },
     {

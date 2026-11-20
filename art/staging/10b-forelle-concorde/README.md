@@ -83,3 +83,7 @@ Jared requested a fuller, slightly shorter upper neck with less taper near the t
 
 **Approval.** Jared approved `pears-concorde-thumbnail-v2`. This is the selected Concorde master for integration. The art integration owner can record the approval after processing the proposed entry above.
 
+
+## Approval
+
+Jared approved `pears-forelle-thumbnail-v1` on 2026-11-19 (in Claude Code, from the review sheets). They are listed in [handoff.json](handoff.json).

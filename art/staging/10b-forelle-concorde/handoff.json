@@ -7,6 +7,14 @@
       "role": "thumbnail",
       "alt": "A yellow-green Concorde pear with an elongated, rounded neck and a patch of golden russet",
       "revision": 2
+    },
+    {
+      "role": "thumbnail",
+      "revision": 1,
+      "id": "pears-forelle-thumbnail-v1",
+      "item": "pears",
+      "variety": "forelle",
+      "alt": "A small yellow Forelle pear with red freckles and a coral blush"
     }
   ]
 }

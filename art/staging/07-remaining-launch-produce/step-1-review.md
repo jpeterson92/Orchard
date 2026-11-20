@@ -76,3 +76,7 @@ Each call used `Use case: illustration-story. Asset: <asset-id>.` followed by th
 
 Artichokes and okra are the next eligible subjects. Winter squash and collard greens are deferred until their item records exist. Confirm the representative winter squash type from its record before generating.
 
+
+## Approval
+
+Jared approved the step 1 and step 2 candidates (artichokes, asparagus, Brussels sprouts, honeydew, okra) on 2026-11-19 (in Claude Code, from the review sheets). They are listed in [handoff.json](handoff.json).
