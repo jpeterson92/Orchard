@@ -2044,6 +2044,30 @@
   url: https://askthefoodgeek.com/grapefruit/
   accessed: 2026-11-19
   tier: mainstream
+- id: freshplaza-israel-persimmons-on-way
+  title: "Persimmons from Israel on their way to the US"
+  publisher: FreshPlaza
+  url: https://www.freshplaza.com/north-america/article/2166166/persimmons-from-israel-on-their-way-to-the-us/
+  accessed: 2026-11-20
+  tier: mainstream
+- id: freshplaza-mor-persimmon-gaps
+  title: "Israel: MOR International covers gaps in persimmon season"
+  publisher: FreshPlaza
+  url: https://www.freshplaza.com/article/2114793/israel-mor-international-covers-gaps-in-persimmon-season/
+  accessed: 2026-11-20
+  tier: mainstream
+- id: freshpoint-fuyu-persimmon
+  title: "FM Fuyu Persimmon"
+  publisher: FreshPoint
+  url: https://www.freshpoint.com/?p=407
+  accessed: 2026-11-20
+  tier: mainstream
+- id: freshplaza-nz-fuyu-gap
+  title: "New Zealand Fuyu persimmon filling gap before California season starts"
+  publisher: FreshPlaza
+  url: https://www.freshplaza.com/north-america/article/9020603/new-zealand-fuyu-persimmon-filling-gap-before-california-season-starts/
+  accessed: 2026-11-20
+  tier: mainstream
 # pomegranates
 - id: freshplaza-ca-pomegranates-late-start
   title: "Slightly late start for California pomegranates"

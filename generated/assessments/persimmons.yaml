@@ -6,7 +6,7 @@ status: draft
 rated by: origin
 peak worth seeking: true
 always good: false
-outlook: "GGG···········SSGGPPPPPP (Jan to Dec, two windows a month: P Peak, G Good, S Skip, · Limited evidence)"
+outlook: "GGGGGGGGGGSSSSSSGGPPPPPP (Jan to Dec, two windows a month: P Peak, G Good, S Skip, · Limited evidence)"
 windows:
   jan-1:
     when: early January (from 2026-01-01)
@@ -109,135 +109,342 @@ windows:
       tags: []
   feb-2:
     when: late February (from 2026-02-16)
-    verdict: limited
-    rule: 1
+    verdict: good
+    rule: 4
     basis: typical
-    decided: none
+    decided:
+      origin: es
+      rating: fair
+      evidence: medium
+    weights: editorial
+    typical: [es fair 50.0%, il fair 50.0%]
+    peak:
+      share: 0.0%
+      available: "no: no origin at this level"
+      whole bin: no (≤ 75.0%)
+      origins: []
+    good:
+      share: 100.0%
+      available: "yes: counted share 100.0% ≥ 33.0%"
+      whole bin: yes (> 75.0%)
+      origins: [es fair 50.0%, il fair 50.0%]
     look for: []
     label note: false
-    reasons: [origin-unrated il]
-    confidence: low (coverage, relevance)
+    reasons: [rated fair (origin es)]
+    confidence: medium (relevance)
     markers: []
-    today: not on Today
+    today:
+      section: good buys
+      line: none
+      reason: none
+      origin: Spain
+      avoid: none
+      tags: []
   mar-1:
     when: early March (from 2026-03-01)
-    verdict: limited
-    rule: 1
+    verdict: good
+    rule: 4
     basis: typical
-    decided: none
+    decided:
+      origin: il
+      rating: fair
+      evidence: medium
+    weights: editorial
+    typical: [il fair 100.0%]
+    peak:
+      share: 0.0%
+      available: "no: no origin at this level"
+      whole bin: no (≤ 75.0%)
+      origins: []
+    good:
+      share: 100.0%
+      available: "yes: counted share 100.0% ≥ 33.0%"
+      whole bin: yes (> 75.0%)
+      origins: [il fair 100.0%]
     look for: []
     label note: false
-    reasons: [origin-unrated il, origin-unrated cl]
-    confidence: low (coverage, relevance)
+    reasons: [rated fair (origin il)]
+    confidence: medium (relevance)
     markers: []
-    today: not on Today
+    today:
+      section: good buys
+      line: none
+      reason: none
+      origin: Israel
+      avoid: none
+      tags: []
   mar-2:
     when: late March (from 2026-03-16)
-    verdict: limited
-    rule: 1
+    verdict: good
+    rule: 4
     basis: typical
-    decided: none
+    decided:
+      origin: il
+      rating: fair
+      evidence: medium
+    weights: editorial
+    typical: [il fair 100.0%]
+    peak:
+      share: 0.0%
+      available: "no: no origin at this level"
+      whole bin: no (≤ 75.0%)
+      origins: []
+    good:
+      share: 100.0%
+      available: "yes: counted share 100.0% ≥ 33.0%"
+      whole bin: yes (> 75.0%)
+      origins: [il fair 100.0%]
     look for: []
     label note: false
-    reasons: [origin-unrated il, origin-unrated cl]
-    confidence: low (coverage, relevance)
+    reasons: [rated fair (origin il)]
+    confidence: medium (relevance)
     markers: []
-    today: not on Today
+    today:
+      section: good buys
+      line: none
+      reason: none
+      origin: Israel
+      avoid: none
+      tags: []
   apr-1:
     when: early April (from 2026-04-01)
-    verdict: limited
-    rule: 1
+    verdict: good
+    rule: 4
     basis: typical
-    decided: none
+    decided:
+      origin: cl
+      rating: fair
+      evidence: medium
+    weights: editorial
+    typical: [cl fair 100.0%]
+    peak:
+      share: 0.0%
+      available: "no: no origin at this level"
+      whole bin: no (≤ 75.0%)
+      origins: []
+    good:
+      share: 100.0%
+      available: "yes: counted share 100.0% ≥ 33.0%"
+      whole bin: yes (> 75.0%)
+      origins: [cl fair 100.0%]
     look for: []
     label note: false
-    reasons: [origin-unrated il, origin-unrated cl]
-    confidence: low (coverage, relevance)
+    reasons: [rated fair (origin cl)]
+    confidence: medium (relevance)
     markers: []
-    today: not on Today
+    today:
+      section: good buys
+      line: none
+      reason: none
+      origin: Chile
+      avoid: none
+      tags: []
   apr-2:
     when: late April (from 2026-04-16)
-    verdict: limited
-    rule: 1
+    verdict: good
+    rule: 4
     basis: typical
-    decided: none
+    decided:
+      origin: cl
+      rating: fair
+      evidence: medium
+    weights: editorial
+    typical: [cl fair 100.0%]
+    peak:
+      share: 0.0%
+      available: "no: no origin at this level"
+      whole bin: no (≤ 75.0%)
+      origins: []
+    good:
+      share: 100.0%
+      available: "yes: counted share 100.0% ≥ 33.0%"
+      whole bin: yes (> 75.0%)
+      origins: [cl fair 100.0%]
     look for: []
     label note: false
-    reasons: [origin-unrated il, origin-unrated cl]
-    confidence: low (coverage, relevance)
+    reasons: [rated fair (origin cl)]
+    confidence: medium (relevance)
     markers: []
-    today: not on Today
+    today:
+      section: good buys
+      line: none
+      reason: none
+      origin: Chile
+      avoid: none
+      tags: []
   may-1:
     when: early May (from 2026-05-01)
-    verdict: limited
-    rule: 1
+    verdict: good
+    rule: 4
     basis: typical
-    decided: none
+    decided:
+      origin: cl
+      rating: fair
+      evidence: medium
+    weights: editorial
+    typical: [cl fair 100.0%]
+    peak:
+      share: 0.0%
+      available: "no: no origin at this level"
+      whole bin: no (≤ 75.0%)
+      origins: []
+    good:
+      share: 100.0%
+      available: "yes: counted share 100.0% ≥ 33.0%"
+      whole bin: yes (> 75.0%)
+      origins: [cl fair 100.0%]
     look for: []
     label note: false
-    reasons: [origin-unrated cl]
-    confidence: low (coverage, relevance)
-    markers: []
-    today: not on Today
+    reasons: [rated fair (origin cl)]
+    confidence: medium (relevance)
+    markers: [last-call (fades by jun-1)]
+    today:
+      section: good buys
+      line: none
+      reason: Fades by early June.
+      origin: Chile
+      avoid: none
+      tags: [Last call]
   may-2:
     when: late May (from 2026-05-16)
-    verdict: limited
-    rule: 1
+    verdict: good
+    rule: 4
     basis: typical
-    decided: none
+    decided:
+      origin: cl
+      rating: fair
+      evidence: medium
+    weights: editorial
+    typical: [cl fair 100.0%]
+    peak:
+      share: 0.0%
+      available: "no: no origin at this level"
+      whole bin: no (≤ 75.0%)
+      origins: []
+    good:
+      share: 100.0%
+      available: "yes: counted share 100.0% ≥ 33.0%"
+      whole bin: yes (> 75.0%)
+      origins: [cl fair 100.0%]
     look for: []
     label note: false
-    reasons: [origin-unrated cl]
-    confidence: low (coverage, relevance)
-    markers: []
-    today: not on Today
+    reasons: [rated fair (origin cl)]
+    confidence: medium (relevance)
+    markers: [last-call (fades by jun-1)]
+    today:
+      section: good buys
+      line: none
+      reason: Fades by early June.
+      origin: Chile
+      avoid: none
+      tags: [Last call]
   jun-1:
     when: early June (from 2026-06-01)
-    verdict: limited
-    rule: 1
+    verdict: skip
+    rule: 2
     basis: typical
-    decided: none
+    decided:
+      origin: cl
+      rating: poor
+      evidence: medium
+    weights: editorial
+    typical: [cl poor 100.0%]
+    peak:
+      share: 0.0%
+      available: "no: no origin at this level"
+      whole bin: no (≤ 75.0%)
+      origins: []
+    good:
+      share: 0.0%
+      available: "no: no origin at this level"
+      whole bin: no (≤ 75.0%)
+      origins: []
     look for: []
     label note: false
-    reasons: [origin-unrated cl]
-    confidence: low (coverage, relevance)
-    markers: []
+    reasons: [rated poor (origin cl)]
+    confidence: medium (relevance)
+    markers: [improves (sep-1)]
     today: not on Today
   jun-2:
     when: late June (from 2026-06-16)
-    verdict: limited
-    rule: 1
+    verdict: skip
+    rule: 2
     basis: typical
-    decided: none
+    decided:
+      origin: cl
+      rating: poor
+      evidence: medium
+    weights: editorial
+    typical: [cl poor 100.0%]
+    peak:
+      share: 0.0%
+      available: "no: no origin at this level"
+      whole bin: no (≤ 75.0%)
+      origins: []
+    good:
+      share: 0.0%
+      available: "no: no origin at this level"
+      whole bin: no (≤ 75.0%)
+      origins: []
     look for: []
     label note: false
-    reasons: [origin-unrated cl]
-    confidence: low (coverage, relevance)
-    markers: []
+    reasons: [rated poor (origin cl)]
+    confidence: medium (relevance)
+    markers: [improves (sep-1)]
     today: not on Today
   jul-1:
     when: early July (from 2026-07-01)
-    verdict: limited
-    rule: 1
+    verdict: skip
+    rule: 2
     basis: typical
-    decided: none
+    decided:
+      origin: cl
+      rating: poor
+      evidence: medium
+    weights: editorial
+    typical: [cl poor 100.0%]
+    peak:
+      share: 0.0%
+      available: "no: no origin at this level"
+      whole bin: no (≤ 75.0%)
+      origins: []
+    good:
+      share: 0.0%
+      available: "no: no origin at this level"
+      whole bin: no (≤ 75.0%)
+      origins: []
     look for: []
     label note: false
-    reasons: [origin-unrated cl]
-    confidence: low (coverage, relevance)
-    markers: []
+    reasons: [rated poor (origin cl)]
+    confidence: medium (relevance)
+    markers: [improves (sep-1)]
     today: not on Today
   jul-2:
     when: late July (from 2026-07-16)
-    verdict: limited
-    rule: 1
+    verdict: skip
+    rule: 2
     basis: typical
-    decided: none
+    decided:
+      origin: cl
+      rating: poor
+      evidence: medium
+    weights: editorial
+    typical: [cl poor 100.0%]
+    peak:
+      share: 0.0%
+      available: "no: no origin at this level"
+      whole bin: no (≤ 75.0%)
+      origins: []
+    good:
+      share: 0.0%
+      available: "no: no origin at this level"
+      whole bin: no (≤ 75.0%)
+      origins: []
     look for: []
     label note: false
-    reasons: [origin-unrated cl]
-    confidence: low (coverage, relevance)
-    markers: []
+    reasons: [rated poor (origin cl)]
+    confidence: medium (relevance)
+    markers: [improves (sep-1)]
     today: not on Today
   aug-1:
     when: early August (from 2026-08-01)

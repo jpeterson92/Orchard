@@ -52,3 +52,33 @@ claims:
     specificity: half-month
     directness: availability
     paraphrase: An importer sources Spanish persimmons from late November through early February.
+  # Israel: Triumph (Sharon fruit), mid-November to the end of March.
+  - source: freshplaza-israel-persimmons-on-way
+    origin: il
+    windows:
+      - { from: nov-2, to: mar-2, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: Israel's importer says its persimmons are available in the US from mid-November until the end of March.
+  - source: freshplaza-mor-persimmon-gaps
+    origin: il
+    windows:
+      - { from: oct-1, to: mar-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Israel's Sharon fruit season runs October through March; South Africa fills April to June for Europe.
+  # Chile: the spring import, April into summer.
+  - source: freshplaza-nz-fuyu-gap
+    origin: cl
+    windows:
+      - { from: apr-1, to: jul-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: An importer says California Fuyu and Hachiya run October to February, then Chile picks up in April and lasts until July.
+  - source: freshpoint-fuyu-persimmon
+    origin: cl
+    windows:
+      - { from: apr-1, to: may-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: A distributor's availability guide lists Fuyu persimmons in April and May from Chile.

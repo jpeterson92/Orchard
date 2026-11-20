@@ -1663,6 +1663,26 @@ pages:
     origin: pe
     items: [pomegranates]
   # persimmons
+  - source: freshplaza-israel-persimmons-on-way
+    url: https://www.freshplaza.com/north-america/article/2166166/persimmons-from-israel-on-their-way-to-the-us/
+    kind: item-page
+    origin: il
+    items: [persimmons]
+  - source: freshplaza-mor-persimmon-gaps
+    url: https://www.freshplaza.com/article/2114793/israel-mor-international-covers-gaps-in-persimmon-season/
+    kind: item-page
+    origin: il
+    items: [persimmons]
+  - source: freshpoint-fuyu-persimmon
+    url: https://www.freshpoint.com/?p=407
+    kind: item-page
+    origin: cl
+    items: [persimmons]
+  - source: freshplaza-nz-fuyu-gap
+    url: https://www.freshplaza.com/north-america/article/9020603/new-zealand-fuyu-persimmon-filling-gap-before-california-season-starts/
+    kind: item-page
+    origin: cl
+    items: [persimmons]
   - source: freshplaza-ca-persimmons-larger
     url: https://www.freshplaza.com/europe/article/9573233/larger-and-more-persimmons-expected-from-california
     kind: item-page
