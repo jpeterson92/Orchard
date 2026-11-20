@@ -41,7 +41,14 @@ export function Today() {
         <PageTitle />
         <h1 className="sr-only">Today</h1>
         {view.summary && (
-          <p className="mt-2 font-editorial leading-snug text-ink sm:text-lg">{view.summary}</p>
+          <p className="mt-2 font-editorial leading-snug text-ink sm:text-lg">
+            {/* A run-in label, so the half-month costs no extra line. */}
+            <span className="mr-2 font-sans text-xs font-semibold tracking-widest text-accent uppercase">
+              {view.period}
+              <span className="sr-only">. </span>
+            </span>
+            {view.summary}
+          </p>
         )}
         <OfflineStatus iso={date.today} />
 
