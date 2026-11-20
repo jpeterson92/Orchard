@@ -2192,3 +2192,13 @@ pages:
     kind: item-page
     origin: us-wa
     items: [cherries]
+  - source: oppy-south-african-plums-second-season
+    url: https://oppy.com/oppy-expands-south-african-plum-portfolio-in-second-season/
+    kind: item-page
+    origin: za
+    items: [plums]
+  - source: freshplaza-sa-late-plums-empty-markets
+    url: https://www.freshplaza.com/north-america/article/2010192/late-plums-take-advantage-of-empty-markets-and-early-springtime/
+    kind: item-page
+    origin: za
+    items: [plums]

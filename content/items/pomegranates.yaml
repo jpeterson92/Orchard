@@ -81,7 +81,12 @@ typicalOrigins:
     origins: [{ origin: pe, major: true }, { origin: cl, major: true }]
     sources: [usda-ams-fv-movement, freshplaza-peru-figs-pomegranates-spring]
   - from: may
-    to: jun
+    to: may
     origins: [{ origin: ar, major: true }, { origin: pe, major: true }, { origin: cl, major: true }]
+    sources: [usda-ams-fv-movement, freshplaza-peru-figs-pomegranates-spring]
+  # Argentina leaves June: most of its US-bound fruit in the sources is aril or processing grade.
+  - from: jun
+    to: jun
+    origins: [{ origin: pe, major: true }, { origin: cl, major: true }]
     sources: [usda-ams-fv-movement, freshplaza-peru-figs-pomegranates-spring]
 status: draft

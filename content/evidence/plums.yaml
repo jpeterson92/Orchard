@@ -59,6 +59,21 @@ claims:
     specificity: season
     directness: eating-quality
     paraphrase: Winter plums come from Chile; the writer usually avoids such distant fruit but found some Chilean lemon plums delicious.
+  # South Africa: late January to early May, late varieties in late March and April.
+  - source: oppy-south-african-plums-second-season
+    origin: za
+    windows:
+      - { from: jan-2, to: may-1, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: An importer's South African plums arrive from late January and load through the first week of May.
+  - source: freshplaza-sa-late-plums-empty-markets
+    origin: za
+    windows:
+      - { from: mar-2, to: apr-1, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: South Africa's late plum varieties bring better volumes in late March and early April.
   # Harvest charts for other states.
   - source: msstate-fruits-vegetables-in-season
     origin: us-ms

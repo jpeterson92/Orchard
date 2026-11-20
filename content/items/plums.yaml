@@ -52,4 +52,10 @@ origins:
   - origin: cl
     windows:
       - { from: jan-1, to: dec-2, rating: poor }
+  - origin: za
+    windows:
+      - from: jan-2
+        to: may-1
+        rating: poor
+        reason: The sources speak only to timing. Like Chile's, South African plums come weeks by sea after cold treatment, so they read poor, as Chile's do.
 status: draft
