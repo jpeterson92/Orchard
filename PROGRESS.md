@@ -1,72 +1,57 @@
 # PROGRESS
 
-Updated: 2026-11-19 · Phase: build · Live: https://orchard.jpeterson92.workers.dev (M0 placeholder) · synced to GitHub
+Updated: 2026-11-20 · Phase: build · Live: https://orchard.jpeterson92.workers.dev (M0 placeholder) · 13 commits unsynced
 
 ## Milestones
 
-- **Done:** M0 scaffold and deploy · M1 USDA probe · M2 schemas, verdict engine (P1, P10–P20), evidence pipeline, `usda:derive`, `content:report` · precalculated assessments in `generated/assessments/` (committed; `npm run check` and CI fail on drift) · model panel run `claude-opus-5-5-2026-11-19` (prompt v3, the higher bar for fair; the 30 drafted items, re-rated from the 89-item v2 run of 2026-11-17) · M4 offline · M5 planning date and shared dates · M6 navigation, Browse, Calendar, search, Methods and Privacy pages · M8 measurement (web vitals and daily event counts in D1; shopper feedback removed by Jared).
+- **Done:** M0 scaffold and deploy · M1 USDA probe · M2 schemas, verdict engine (P1, P10–P20), evidence pipeline, `usda:derive`, `content:report`, precalculated assessments in `generated/assessments/` (CI fails on drift) · model panel run `claude-opus-5-5-2026-11-19` (prompt v3) · M4 offline · M5 planning date and shared dates · M6 navigation, Browse, Calendar, search, Methods and Privacy · M8 measurement (web vitals and daily event counts in D1).
 - **M3:** built; closes with Jared's phone review, which needs a preview deploy.
-- **M9:** slices 1–2 done (security headers, axe in light and dark, WebKit e2e, page titles). The rest waits on content, art, devices, the domain and the independent reviewer; check the security headers on the live URL (`curl -I`) after the next deploy.
-- **M7 (variety guides): built; closes with Jared's review of the three "What matters" leads.** Slice 5: each guide opens with a lead (`lead` in `content/guides.yaml`, `draft`, reviewed apart from the reviewed guide). Slice 4: PLU sticker numbers on 35 variety pages, from the IFPS database (`plu` on the variety, cited `ifps-plu-codes`; organic adds a 9 in front). Slice 3: a page per guide variety (`/items/<item>/<variety>`: verdict and outlook where rated, label text, traits, best uses, "Can't find it? Try…" by trait distance), opened from guide cards and rows, the item page's varieties and search; opens counted. Slice 2 is the finder: use chips (one at a time) and trait chips (one end of a scale; all must hold) over the cards and the table, with a count, Clear filters, and the picks kept in the address. Guide screen at `/guides/<id>` for all three guides (phone cards, sortable table from 600 px, anchors), linked from the item page; unrated varieties left the item page's "Varieties now" list for the guide. Apples carry an overall rating for eating raw (bad, fine, great, amazing): the mean of applerankings.com's score and Orchard's editorial score (Claude's, with Jared's overrides so Cosmic Crisp, SugarBee, SweeTango, Envy, Kanzi lead in that order; amazing from 85, fine from 60); Kanzi and SnapDragon added, unrated, with no holds-shape source yet; the apples guide opens sorted by it. Scales approved; traits for 33 varieties drafted.
+- **M7 variety guides:** built (finder, variety pages, PLU numbers, apple overall rating, "What matters" leads); closes with Jared's review of the three leads.
+- **M9:** slices 1–2 done (security headers, axe in light and dark, WebKit e2e, page titles). The rest waits on devices, the domain and the independent reviewer; check the security headers on the live URL (`curl -I`) after the next deploy.
+- **Content:** all 30 first-release items drafted, and the 24 Today summaries reviewed.
+- **Art:** all 30 items and 43 varieties have approved art in the app (73 paintings).
 
-## Next concrete action
+## Task list
 
-The per-item follow-ups below, apples first. Sources are checked once, when added; links are rechecked only with `evidence:check -- --urls` at the yearly refresh. The 27 remaining evidence:check rejections are add-time gaps (a few sources never registered, such as tomatoes' `cspi-november-tomatoes`) and month-naming warnings on import windows shifted to US arrival: fix them only when working on that item. First run `node .cache/panel-missing.mjs`: it lists panel-rated origins an item file lacks. Rerunning the re-rating: `.cache/panel-rerate.mjs` writes the v3 run, `.cache/apply-proposals.ts all` makes item windows follow the proposals (keeps written reasons), `.cache/verdict-diff.mjs` compares verdict strips with HEAD.
+Claude, in order:
+
+1. **Per-item content follow-ups, apples first** (Content below). First run `node .cache/panel-missing.mjs`: it lists panel-rated origins an item file lacks. Fix the 27 `evidence:check` rejections only when working on that item; links are rechecked only at the yearly refresh (`evidence:check -- --urls`).
+2. **Draft the remaining items on the 89-item list** (engineering plan §5 order: by `purchaseRank`, always-good items last). Each new item record brings in its approved painting: rename `provisional-<item>-thumbnail-vN.png` in its staging folder to the catalog ID, add it to that folder's `handoff.json`, and run `npm run art:process`. Approved paintings are waiting for 50 of these items (staging folders 11–18 and 20).
+3. **Take in repaints as Jared approves them:** `npm run art:process`, a phone-width look, and a commit.
+
+Jared:
+
+- **Art review:** approve or reject bell peppers, cucumbers and summer squash (`art/staging/19-squash-fruiting-vegetables/step-1-review.png`, or in the illustrator chat). The illustrator's handoff for them waits on their item records.
+- **Repaints:** start the illustrator on `art/staging/21-repaints/README.md`: 12 repaints in four batches of three (blackberries, Keitt mango, Red Bartlett; Clementine, Satsuma, Pixie; Gala, nectarine, grapefruit; kiwifruit, papaya, iceberg). The current versions stay in the app until each repaint is approved. Folder 19 also has first passes still to paint (mini sweet and hot peppers, eggplant and others).
+- Guide leads (`content/guides.yaml`, `draft`, atop each guide): approve or rewrite.
+- Methods and Privacy drafts (`content/methods.md`, `content/privacy.md`): approve or edit.
+- Preview deploy for the M3 phone review, when you want it (it also creates the free D1 database `orchard`; then `npm run db:migrate`).
+- Recruit the independent reviewer Gate 1 needs (product spec §12).
+- Review the drafts in `content:report` (`npm run content:report > .cache/content-report.txt`) and the variety traits.
+- Optional: model panel runs from other providers (`content/panel/README.md`).
+
+## Open questions (Jared)
+
+1. P14 reads one shipper's or state's chart as the whole origin's, so its other months read poor where other sources say supply continues (Mexican watermelon, Honduran okra, Georgia's fall okra, Chile's persimmons in June and July).
+2. The panel's low-confidence ranges are dropped, which leaves some origins unrated (Florida okra in midwinter).
+3. `purchaseRank`: one pass over all items from one source would settle it (collard greens 55 and winter squash 33 are placeholders); say which source.
+4. P1 at 75%: revisit as more items are drafted.
+5. Pomegranates: most US-bound Argentine fruit in the sources is aril or processing grade, with one importer selling it whole. Drop Argentina from June, so late June reads Skip?
+6. "Can't find it? Try…" picks up to two same-item varieties by trait distance (Honeycrisp → SweeTango, Jazz). Keep it automatic, or curate by hand? Also say if any finder chip name in `content/guides.yaml` should read differently.
 
 ## Content
 
-- **All 30 first-release items drafted** (all `draft`), plus the 24 Today summaries (`content/summaries.yaml`, reviewed; up to 18 words, periods only). The app shows no Draft or Sample labels or preview notice, the sample fixtures are gone, and Today's offline line appears only for a stale copy. Collard greens: Georgia, South Carolina, Texas and California with editorial origins (USDA reports only the Southeast); Peak November to February from all four (cool weather sweetens them as frost does), Good in spring and October, Skip in summer (Colorado State's tough summer leaves put California's fair at Low). Winter squash: the US as a whole (`us`, allowed for US supply spread over many states) August to December, Mexico January to July (USDA import reports); Peak late September to December, Good January to April, Skip May to August; no month-named eating-quality claim fetched, so it rests on the panel at Medium. Artichokes are now USDA-backed (verdicts unchanged).
-- **Sweet corn and okra gaps closed (2026-11-19).** Sweet corn: Mexico added from the panel (poor December to April, Medium), so December to early March reads Skip. Okra: Florida rated from UF/IFAS's Miami-Dade guide (harvest early spring to late fall, few growers in midwinter) and FreshPlaza, so November to early March reads Good from Honduras; October and early June stay Limited until question (1) settles Honduras's off-season.
-- **Grape and cherry gaps closed (2026-11-19).** Grapes: early May reads Skip (Chile's poor-condition tail, Mexico's first picks), late May Good from Mexico. Cherries: February to mid-March Good from Chile (an importer praises late southern varieties, a reviewer found winter imports soft), late March Skip, late September Skip as British Columbia ends. Honeydew in May and nectarines in April read Skip: Guatemala's and Chile's seasons are over and California's hasn't begun. Blackberries: Mexico late June fair, September poor (summer rains), so September reads Good with "look for California".
-- **Pomegranates January to mid-April now read Good (2026-11-19):** Israel January to March (three importer and trade sources; its two earlier claims cancelled each other out), Chile March to early June and Peru April to May (two or three trade sources each). March names "Israel and Chile". July and August read Skip (Jared, 2026-11-20: summer imports aren't shown on shelves, so only domestic fruit counts). May reads Good and early June Good ("look for Chile") since 2026-11-20: Argentina fair April to May, poor early June, from the importer's claim and a Córdoba grower's 2015 report of fresh US shipments. Late June stays Limited (one Argentine source); see question (5).
-- **Persimmons rated year-round (2026-11-20):** Israel mid-November to March (its importer, MOR), Chile April and May (an importer and a distributor's guide), so February to May read Good. June and July read Skip: the importer has Chile until July, the distributor April and May only (question (1) below). Typical origins now follow those sources: March Israel only (California has a short gap), April to July Chile (it was Israel in April).
-- **Cherry edges closed (2026-11-20):** early April and October read Skip. California early April rated poor (two half-month sources start its harvest mid-April); Washington October poor from a second Northwest Cherry Growers source (stores supplied mid-June to early September), now Medium.
-- **Gaps needing sources** (Limited evidence today): pomegranates late June (Argentina). Chile's late-cherry source now points at FreshFruitPortal's /archive/ copy.
-- **Per-item follow-ups:** apples (Cosmic Crisp January to early June and late September to October, Gala late July to early August, Chile and New Zealand imports beyond Honeycrisp, Ambrosia and McIntosh unrated; five eating-quality pages are one writer); pears (Bartlett May to July and late November to December, Bosc January to March and May to early September; Red Anjou, Red Bartlett, Packham, Forelle and Concorde claims in `content/evidence-drafts/`); mandarins (summer imports need a second source per variety, clementines February to May unrated, Gold Nugget only in May; Royal, satsuma, Sumo and Pixie claims in drafts); oranges (Chile navels have no claim; summer blood oranges rest on Sunkist alone; Cara Cara in drafts); mangoes (no variety-named eating-quality claim, so variety windows are Medium at best; Tommy Atkins and Haden never rated, so late October reads Skip; traits wait for tropical anchors).
-- **Tools:** `.cache/runs.ts <item>`, `.cache/curves.ts <item> <variety> <window>`, `.cache/proposals.ts <item>`, `.cache/eval-why.ts [items]` (verdict, reasons and typical origins per window) and `.cache/eval-dips.ts` (Peak windows blocked by a poor origin). They hard-code the main checkout's root. In parallel sessions write `origin: us` explicitly on claims and run `npx biome format --write` on edited YAML.
+- **Gaps needing sources** (Limited evidence today): pomegranates late June (Argentina).
+- **Per-item follow-ups:** apples (Cosmic Crisp January to early June and late September to October, Gala late July to early August, Chile and New Zealand imports beyond Honeycrisp, Ambrosia and McIntosh unrated; five eating-quality pages are one writer); pears (Bartlett May to July and late November to December, Bosc January to March and May to early September; Red Anjou, Red Bartlett, Packham, Forelle and Concorde claims in `content/evidence-drafts/`); mandarins (summer imports need a second source per variety, clementines February to May unrated, Gold Nugget only in May; Royal, satsuma, Sumo and Pixie claims in drafts); oranges (Chile navels have no claim; summer blood oranges rest on Sunkist alone); mangoes (no variety-named eating-quality claim, so variety windows are Medium at best; Tommy Atkins and Haden never rated, so late October reads Skip; traits wait for tropical anchors).
+- **PLU gaps:** IFPS has no code of its own for Gold Nugget or Pixie, so their pages show none; W. Murcott shows only Tango's 3556.
+- **Tools:** `.cache/runs.ts <item>`, `.cache/curves.ts <item> <variety> <window>`, `.cache/proposals.ts <item>`, `.cache/eval-why.ts [items]`, `.cache/eval-dips.ts`, and for re-rating `.cache/panel-rerate.mjs`, `.cache/apply-proposals.ts all`, `.cache/verdict-diff.mjs`. They hard-code the main checkout's root. In parallel sessions write `origin: us` explicitly on claims and run `npx biome format --write` on edited YAML.
 - **Blocked to the fetcher:** calstrawberry.com and Blue Book (robots.txt); UC Davis fact sheets, The Packer, Produce Market Guide, Serious Eats, WSU, Arizona Extension, Good Fruit Grower, The Produce News, cosmiccrisp.com, AndNowUKnow (403); bestapples.com. Jared's Chrome may be used to read them.
 
-## Art
+## Art workflow
 
-- **73 approved paintings are in the app: all 30 items and 43 varieties.** Each illustrator chat works in its own `art/staging/<NN>-<topic>/` folder and lists Jared's approvals in that folder's `handoff.json`; `npm run art:process` copies them into `art/masters/` and the manifest, keeping only each subject's newest revision (`art/PROMPT.md`, engineering plan art track). Candidate PNGs are gitignored; briefs are committed.
-- **Awaiting Jared's review** (staged): bell peppers, cucumbers, summer squash (`19`, items not yet in the catalog). Still to paint: the rest of folder 19's queue (mini sweet and hot peppers, eggplant and others).
-- **50 approved `provisional-` paintings** (folders 11–18 and 20) cover items without a `content/items/` record. Each waits in staging until its record exists, then is renamed to the catalog ID and handed off.
-- **Repaints, round 1** (`art/staging/21-repaints/README.md`: prompts, inputs, saving and handoff steps; 12 repaints in four batches of three, none painted yet): blackberries, Keitt mango, Red Bartlett (identity and legibility); Clementine, Satsuma, Pixie, Gala, nectarine, grapefruit (scale; their masters are rescaled in `art/masters/` meanwhile); kiwifruit, papaya, iceberg (provisional). The current versions stay in the app until each repaint is approved.
-
-## Blocking (needs Jared)
-
-None.
-
-## For Jared (non-blocking)
-
-- Guide leads (`content/guides.yaml`, `draft`; shown atop each guide): approve or rewrite. Apples: crunch and sweet-tart balance, with pie and sauce picks. Pears: texture once ripe, and check the neck. Mandarins & oranges: peeling, seeds and tang.
-- Collard greens and winter squash are drafted. `purchaseRank` 55 and 33 are placeholders until question (3) below is settled.
-
-- PLU numbers: IFPS has no code of its own for Gold Nugget or Pixie (stores use a generic tangerine or store code), so their pages show none; W. Murcott shows only Tango's 3556. Generic codes (4415 "red pears") and specialty ones (clementines with leaves) are left out.
-- Variety pages: "Can't find it? Try…" picks up to two varieties of the same item closest on the trait scores (within one point on average, sharing a use, not Skip or out of stores). Examples: Honeycrisp → SweeTango, Jazz; Anjou → Red Anjou, Forelle; Clementine → Pixie, Satsuma. Golden Delicious, McIntosh, Minneola and Comice get none. Say if you'd rather curate these by hand.
-
-- Finder chip names (in `content/guides.yaml`, added to the reviewed guides; say if any should read differently): uses Snacking, Salads, Baking, Applesauce (apples); Snacking, Salads & cheese, Baking & poaching (pears); Snacking, Juice, Salads & desserts (citrus). Traits Sweet, Tart, Tender, Crisp, Juicy, Holds shape baked (apples); Sweet, Buttery, Crisp, Juicy, Holds shape baked (pears); Sweet, Mellow, Tangy, Easy to peel, Nearly seedless, Juicy (citrus). "Slicing ahead" counts as Salads.
-
-Re-rated on the higher bar (2026-11-19, Jared's decision): prompt v3 says fair means "you'll be happy with it" and "just fine" is poor; the 28 items' panel ratings, five cited claims that say "disappointing" in so many words, and the item windows follow. Review it in the diff of `generated/assessments/`. Now Skip: strawberries September to January; watermelon October to mid-April; pears May to early July; peaches and nectarines in May; asparagus and artichokes in January; Brussels sprouts June to August; sweet corn in November; blackberries October to December.
-
-- Tomatoes are rated by type (2026-11-19): cherry or grape read Good all year, local field-grown Peak July to early September (with the how-to-find cue on the item page); round and Roma stay unrated, so tomatoes no longer read Skip from late September to May. Year-round cherry and grape supply rests on HortiDaily (Mexican grape tomatoes all year), USDA ERS and Florida's October to June harvest; their winter quality on Chowhound and Nutrition Action. Late September names both types ("Cherry or grape and Local field-grown"); say if you'd rather the names read differently.
-- Applied: an item takes the best level among its constituents in stores; a selection now lifts to Good as well as Peak. Harvest-chart edges, stored produce and in-season imports that ship well keep reading fair where the panel has no rating.
-
-Applied 2026-11-19 (Jared's decisions): a level counts when origins at it are reasonably likely on the shelf, about a third of typical supply or cited as commonly in stores (P20, replacing P9 and P17); the card names what to look for only when at most three quarters qualifies (the Check the label tag is gone); Best right now lists every Peak item, soonest-ending first, and Good buys only Good items. Earlier: out of season reads Skip (P18), one Peak season a year (P19), Today shows only Peak and seasonal Good items.
-
-- Worth a glance: late-November Today holds 8 Peak and 4 Good items. Apples and pears name their varieties; Brussels sprouts drop the caveat (Mexico 17%); cantaloupe reads Good with "Look for ones from Arizona"; sweet corn "Look for ones from Florida and Georgia". Early July lists 16 Peak items. Raspberries gain June Peak and cantaloupe May Good under the one-third rule.
-- Earlier questions still open: (1) P14 reads one shipper's or state's chart as the whole origin's, so its other months read poor where other sources say supply continues (Mexican watermelon, Honduran okra, Georgia's fall okra); (2) the panel's low-confidence ranges are dropped, which leaves Mexico (sweet corn, okra) and Florida (okra) unrated; (3) `purchaseRank`: one pass over all 30 from one source would settle it, say which source; (4) P1 at 75%: revisit as more items are drafted; (5) pomegranates: most US-bound Argentine fruit in the sources is aril or processing grade (Ruby Fresh 2016, Senasa 2022), with one importer selling it whole. Drop Argentina from June's typical origins, so late June reads Skip from Peru and Chile?
-
-To do when convenient:
-
-- Approve or edit the Methods and Privacy drafts (`content/methods.md`, `content/privacy.md`).
-- Deploys ship drafts now. They still refuse items without approved art (7 today: artichokes, asparagus, Brussels sprouts, collards, honeydew, okra, winter squash). Ship those with the blank placeholder, or keep the art gate?
-- Preview deploy for the M3 phone review, when you want it. It also creates a free D1 database `orchard` for the speed counts (then `npm run db:migrate`).
-- Recruit the independent reviewer Gate 1 needs (a person; product spec §12).
-- Model panel runs from other providers: follow `content/panel/README.md`, then ask Claude to review the run.
-- Review the 28 drafts in `content:report` (`npm run content:report > .cache/content-report.txt`) and the variety traits.
+Each illustrator chat works in its own `art/staging/<NN>-<topic>/` folder (`art/PROMPT.md`) and lists Jared's approvals in its `handoff.json`. `npm run art:process` copies them into `art/masters/` and the manifest, keeping only each subject's newest approved revision. Candidate PNGs are gitignored; briefs are committed. Gala, Clementine, Satsuma, Pixie, nectarine and grapefruit masters are rescaled stopgaps until their repaints land.
 
 ## Environment notes
 
 - Node 26.13 LTS (Scoop). Wrangler is signed in (OAuth) to Jared's account; the GitHub CLI as jpeterson92.
-- 2026-11-19: `npm run dev` exited twice on start with a miniflare ECONNRESET. `npm run build` plus the `orchard-preview` launch config works; restart the preview server after each rebuild, or new asset hashes 404.
+- `npm run dev` has exited on start with a miniflare ECONNRESET. `npm run build` plus the `orchard-preview` launch config works; restart the preview server after each rebuild. A returning tab keeps the previous build's offline copy until its next launch.
