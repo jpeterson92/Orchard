@@ -63,9 +63,9 @@ export function BrowseIcon() {
   );
 }
 
-export function CalendarIcon() {
+export function CalendarIcon({ size = 22 }: { size?: number }) {
   return (
-    <svg aria-hidden="true" {...base} width={22} height={22} strokeWidth={1.7}>
+    <svg aria-hidden="true" {...base} width={size} height={size} strokeWidth={1.7}>
       <rect x="4" y="5" width="16" height="15" rx="2" />
       <path d="M4 10h16M8.5 3v4M15.5 3v4" />
     </svg>
@@ -76,7 +76,7 @@ export function CalendarIcon() {
 export function VerdictMark({ verdict, size = "base" }: { verdict: Verdict; size?: "base" | "lg" }) {
   return (
     <span
-      className={`inline-flex items-center gap-1.5 font-editorial font-bold text-olive italic ${size === "lg" ? "text-xl" : "text-lg"}`}
+      className={`inline-flex items-center gap-1.5 font-semibold text-olive ${size === "lg" ? "text-lg" : "text-sm"}`}
     >
       <VerdictIcon verdict={verdict} />
       {VERDICT_WORD[verdict]}
@@ -89,6 +89,32 @@ export function SearchIcon() {
     <svg aria-hidden="true" {...base} width={20} height={20} strokeWidth={1.8}>
       <circle cx="10.5" cy="10.5" r="6" />
       <path d="M15 15l5 5" />
+    </svg>
+  );
+}
+
+export function Chevron({ direction = "down" }: { direction?: "down" | "left" | "right" }) {
+  return (
+    <svg aria-hidden="true" {...base} className="shrink-0">
+      <path
+        d={direction === "left" ? "m15 5-7 7 7 7" : direction === "right" ? "m9 5 7 7-7 7" : "m5 9 7 7 7-7"}
+      />
+    </svg>
+  );
+}
+
+export function Arrow({ direction = "right" }: { direction?: "right" | "left" }) {
+  return (
+    <svg aria-hidden="true" {...base} width={16} height={16} className="inline-block shrink-0 align-middle">
+      <path d={direction === "right" ? "M4 12h15m-6-6 6 6-6 6" : "M20 12H5m6-6-6 6 6 6"} />
+    </svg>
+  );
+}
+
+export function CloseIcon() {
+  return (
+    <svg aria-hidden="true" {...base}>
+      <path d="m6 6 12 12M18 6 6 18" />
     </svg>
   );
 }

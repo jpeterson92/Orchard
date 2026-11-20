@@ -1,14 +1,18 @@
-// Methods and Privacy (product spec §5 "Methods page", §10 Privacy and Trust). The text is Markdown from content/,
+// About, recovery, Methods and Privacy. The long-form text is Markdown from content/,
 // rendered at build time; Methods then lists the sources the bundled items cite, the USDA snapshot and the model panel.
+import { Link } from "react-router";
 import appJson from "../generated/app.json";
 import type { AppData } from "../shared/app-data";
 import { useAppDate } from "./date";
-import { Masthead, PageTitle } from "./Masthead";
+import { Arrow } from "./icons";
+import { PageFrame, PageTitle } from "./Masthead";
+import { SearchField } from "./Search";
 
 const data = appJson as unknown as AppData;
 const { about } = data;
 
-const page = "mx-auto max-w-2xl px-4 pb-12 sm:px-6";
+const action =
+  "inline-flex min-h-11 items-center gap-1 rounded-sm font-semibold text-olive underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
 
 const monthYear = (ym: string) => {
   const [year, month] = ym.split("-").map(Number);
@@ -32,8 +36,7 @@ function TextPage({
 }) {
   const date = useAppDate(data);
   return (
-    <div className={page}>
-      <Masthead date={date} />
+    <PageFrame date={date} reading>
       <main>
         <PageTitle name={title} />
         <h1 className="mt-6 font-editorial text-3xl font-bold">{title}</h1>
@@ -42,7 +45,85 @@ function TextPage({
         <div className="page-text" dangerouslySetInnerHTML={{ __html: text.html }} />
         {children}
       </main>
-    </div>
+    </PageFrame>
+  );
+}
+
+export function About() {
+  const date = useAppDate(data);
+  return (
+    <PageFrame date={date} reading>
+      <main>
+        <PageTitle name="About" />
+        <div className="mt-6 flex items-center gap-1 border-b border-rule pb-4 sm:gap-6">
+          <h1 className="min-w-0 flex-1">
+            <span className="sr-only">About Orchard</span>
+            <picture>
+              <source media="(prefers-color-scheme: dark)" srcSet="/brand/wordmark-dark.webp" />
+              <img
+                src="/brand/wordmark.webp"
+                alt=""
+                width={880}
+                height={235}
+                loading="lazy"
+                className="h-auto w-full max-w-96"
+              />
+            </picture>
+          </h1>
+          <img
+            src="/brand/blossom.webp"
+            alt=""
+            width={420}
+            height={420}
+            loading="lazy"
+            className="size-24 sm:size-36"
+          />
+        </div>
+        <p className="mt-5 max-w-prose font-editorial text-xl leading-relaxed">
+          Orchard helps you see what’s worth buying right now at U.S. supermarkets and how to pick, store, and
+          ripen it.
+        </p>
+        <div className="mt-4 flex flex-wrap gap-x-6">
+          <Link to="/" className={action}>
+            See what’s good today <Arrow />
+          </Link>
+          <Link to="/methods" className={action}>
+            How Orchard rates produce <Arrow />
+          </Link>
+        </div>
+      </main>
+    </PageFrame>
+  );
+}
+
+export function NotFound() {
+  const date = useAppDate(data);
+  return (
+    <PageFrame date={date} reading>
+      <main>
+        <PageTitle name="Page not found" />
+        <div className="mt-6 flex items-center gap-2 border-b border-rule pb-4 sm:gap-6">
+          <div className="min-w-0 flex-1">
+            <h1 className="font-editorial text-3xl font-bold">Page not found</h1>
+            <p className="mt-2">Try searching for a fruit, vegetable, or variety.</p>
+          </div>
+          <img
+            src="/brand/blossom.webp"
+            alt=""
+            width={420}
+            height={420}
+            loading="lazy"
+            className="size-24 sm:size-36"
+          />
+        </div>
+        <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2">
+          <SearchField />
+          <Link to="/browse" className={action}>
+            Browse produce <Arrow />
+          </Link>
+        </div>
+      </main>
+    </PageFrame>
   );
 }
 

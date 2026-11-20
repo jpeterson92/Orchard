@@ -10,7 +10,7 @@ Updated: 2026-11-20 · Phase: build · Live: https://orchard.jpeterson92.workers
 - **M9:** slices 1–2 done (security headers, axe in light and dark, WebKit e2e, page titles). The rest waits on devices, the domain and the independent reviewer. Security headers checked on the live URL.
 - **Content:** all 30 first-release items drafted, and the 24 Today summaries reviewed.
 - **Art:** all 30 items and 43 varieties have approved art in the app (73 paintings), including the nine round-1 repaints (folder 21).
-- **Brand:** the leaf-topped O wordmark in Lora Bold, Lora as the editorial serif, and favicon, home-screen icons and web app manifest from the same shapes (`npm run brand:icons`).
+- **Brand and interface:** the leaf-topped O marks the app and its icons. The approved painted wordmark and blossom are on About and the share preview. The blossom also appears on the missing-page screen. The local design pass aligns the masthead across routes, keeps Search within reach, and makes picking, comparison, and calendar guidance easier to find.
 
 ## Task list
 
@@ -23,11 +23,10 @@ Claude, in order:
 2. **Fill the new Not rated windows** (Content below), largest supply first: each needs the panel or 2 cited sources for the origin left unrated. Then `npx tsx .cache/apply-proposals.ts all --drop-thin` re-derives windows (it writes the low-confidence-panel reason).
 3. **Per-item content follow-ups, apples first** (Content below). First run `node .cache/panel-missing.mjs`: it lists panel-rated origins an item file lacks. Fix the 26 `evidence:check` rejections only when working on that item; links are rechecked only at the yearly refresh (`evidence:check -- --urls`).
 4. **Draft the remaining items on the 89-item list** (engineering plan §5 order: by `purchaseRank`, always-good items last). Use the Sol run’s 59 undrafted items to prioritize cited supply and eating-quality research, starting with low-confidence windows. Each new item record brings in its approved painting: rename `provisional-<item>-thumbnail-vN.png` in its staging folder to the catalog ID, add it to that folder's `handoff.json`, and run `npm run art:process`. Approved paintings are waiting for 53 of these items (staging folders 11–20); kiwifruit, papaya and iceberg use their v2 repaints in folder 21.
-5. **When folder 22's paintings are approved:** the blossom sprig as the About and not-found header accent, and a link-preview image (painted leaf on the Lora wordmark plus the blossom).
 
 Jared:
 
-- **Art:** folder 19 has first passes still to paint (mini sweet and hot peppers, eggplant and others). Folder 22 (brand): the painted wordmark leaf and the apple blossom sprig, prompts in its README.
+- **Art:** folder 19 has first passes still to paint (mini sweet and hot peppers, eggplant and others).
 - Guide leads (`content/guides.yaml`, `draft`, atop each guide): approve or rewrite.
 - Methods and Privacy drafts (`content/methods.md`, `content/privacy.md`): approve or edit.
 - M3 phone review: try the live URL in a store (add it to the home screen; it works offline).

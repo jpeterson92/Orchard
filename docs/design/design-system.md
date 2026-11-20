@@ -42,7 +42,7 @@ Preserve the selected identity when reconciling practical constraints. Explain c
 
 | Established visual decisions | Initial implementation baseline | Still to develop |
 | --- | --- | --- |
-| Warm ivory, plum ink, olive rules, restrained orange | Exact color tokens and type sizes below | Painted wordmark and blossom ornament |
+| Warm ivory, plum ink, olive rules, restrained orange | Exact color tokens and type sizes below | In-store device review |
 | Editorial serif hierarchy and clear functional text | Lora for the editorial serif, system sans for functional text | Item and variety page implementation |
 | Rich botanical watercolor | Illustration sizes and responsive proportions | Responsive implementation verification |
 | Open produce rows | Component states described below | Dark-mode review and implementation |
@@ -84,6 +84,8 @@ These are implementable starting values chosen to express the approved direction
 | Olive | #4F572D | Utility links, quiet controls, verdict words |
 | Accent | #B94C1D | Active navigation and selected filter |
 | Rule | #CEC3AD | Decorative separators |
+| Control | #827659 | Interactive outlines and empty season cells |
+| Good season fill | #718D72 | Solid Good cells in strips and heatmaps |
 | Peak icon | #A56B12 | Small star, paired with a verdict word |
 | Good icon | #3B6C47 | Small check, paired with a verdict word |
 | Skip icon | #8B5E3C | Small clock, paired with explicit wording; never an alarming red |
@@ -112,6 +114,8 @@ Dark mode is part of the product requirements. A proposed mode study exists, but
 | Olive | #CBD0A2 |
 | Accent | #E69A68 |
 | Rule | #665B50 |
+| Control | #9B8B78 |
+| Good season fill | #8CA185 |
 | Peak icon | #E6B65C |
 | Good icon | #B0C7A6 |
 | Skip icon | #D8AE8E |
@@ -131,6 +135,8 @@ There is no in-app contrast or large-type mode. When the device asks for more co
 | Olive | #384020 (10.7:1) | #DDE1B8 (11.8:1) |
 | Accent | #A3400F (6.3:1; white on it 6.4:1) | #E69A68 |
 | Rule | #8F8573 (3.6:1) | #8A7D70 (4.0:1) |
+| Control | #6B604B | #B4A691 |
+| Good season fill | #577557 | #ADC2A5 |
 | Peak icon | #8A5600 (6.1:1) | #E6B65C |
 | Good icon | #2C5636 (8.3:1) | #B0C7A6 |
 | Skip icon | #6F4628 (8.0:1) | #D8AE8E |
@@ -152,9 +158,7 @@ Text sizes are in rem, so the phone's own text-size setting scales them.
 | Editorial subtitle | Short serif italic or restrained body treatment |
 | Verdict word | Compact serif or sans treatment, consistent throughout |
 
-The editorial serif is Lora (SIL Open Font License), self-hosted in Latin only: regular, bold and bold italic, about 65 KB together. It is the wordmark's face too, so headings and brand agree. Functional text stays on the system sans stack.
-
-Reserve serif italics for short editorial accents or verdicts. Practical instructions, errors, and form labels should remain easy to scan. Use sentence case for interface text and title case for produce names where appropriate. Do not alternate small-cap and title-case section systems arbitrarily.
+The editorial serif is Lora (SIL Open Font License), self-hosted in Latin regular and bold. It is the wordmark's face too, so headings and brand agree. Functional text, secondary variety lines and verdict words use the system sans stack. Use sentence case for interface text and title case for produce names where appropriate.
 
 ### Layout rhythm
 
@@ -210,7 +214,7 @@ Keep decorative header art secondary. It may occupy a small upper-right area but
 
 Items appear in open horizontal rows. Use thin rules between groups or rows when helpful. Align text consistently; do not draw a vertical line between every picture and name.
 
-Provide enough bottom content padding for the fixed search/navigation region and the device safe area. The fixed region must not cover advice, feedback, or the final row.
+Search sits above the tabs on Today and Browse and shares the tab row on reading and comparison screens. Allow for the fixed row and device safe area so content can scroll fully into view.
 
 ### Larger screens
 
@@ -218,7 +222,7 @@ Follow the product’s navigation and information architecture. Reuse the same t
 
 Use the product’s proposed breakpoints as the initial baseline: phone below 600 px, tablet 600–1024 px, desktop above 1024 px. Content must also behave between those sizes.
 
-Keep reading text to a comfortable measure, approximately 60–70 characters where applicable. From 768 px, Today's rows run in two columns inside a 1024 px page. The item page stays one reading column (at most 40 rem) in product order; from 1024 px its artwork moves to a column of its own on the right and stays in view. Below the verdict, the confidence level is visible and "About this verdict" opens what it rests on: why confidence isn't higher, the evidence basis and the two dates. Desktop calendar and comparison layouts may be wider. A two-pane desktop study is available; exact responsive arrangements still require implementation and review.
+The masthead aligns to the same 1024 px frame across routes. Keep reading text to approximately 60–70 characters where applicable. From 768 px, Today's rows run in two columns. The item page uses a reading column of at most 40 rem; from 1024 px its artwork moves to a column on the right and stays in view. "About this verdict" opens the evidence basis and the two dates. The calendar and comparison layouts use the wider frame.
 
 ### In the store
 
@@ -228,9 +232,9 @@ The phone view is the in-store view; there is no separate mode, and the screen s
 
 ### Brand and date
 
-The masthead shows the wordmark: "Orchard" in Lora Bold at about 28 px, its O drawn as the mark with the stem and leaf in olive. In the interface the mark is always the flat vector in `src/shared/brand.ts`, never a painting; the painted wordmark is for large brand uses only. Browser and home-screen icons are the cream mark on a plum tile, generated from the same shapes (`npm run brand:icons`).
+The masthead shows "Orchard" in Lora Bold at about 28 px, with the flat O, stem and leaf from `src/shared/brand.ts`. Browser and home-screen icons use the cream mark on a plum tile, generated from the same shapes (`npm run brand:icons`). The painted wordmark and apple blossom appear on About and in the link preview. The missing-page screen uses the blossom with a clear heading and recovery actions. Approved masters are in `art/brand/` and web exports are in `public/brand/`.
 
-The date is a recognizable interactive control. A rounded outline or restrained wash is acceptable. Show planning mode explicitly with a return-to-today action. Keep full values accessible when visible text must abbreviate.
+The date control uses a calendar icon and rounded outline, with a filled treatment in planning mode. Show planning mode explicitly with a return-to-today action. Keep full values accessible when visible text must abbreviate.
 
 ### Category filters
 
@@ -287,7 +291,7 @@ Selected navigation uses a restrained orange icon/text treatment and optional sh
 
 Season strips and heatmaps require a stable, documented mapping between verdict and fill intensity or pattern. They cannot rely on tiny star icons alone. The phone calendar study uses a list; the heatmap treatment remains provisional.
 
-The item page's 24-window strip: Peak is a solid ochre cell, Good a lighter green cell, Skip a hatched cell, Not rated an empty outlined cell; today's window carries an ink outline, month initials sit underneath, and a legend names all four. The strip's accessible name states its runs in words ("Peak early November to late May; Limited evidence early June to late October"). Typical main supply origins follow as a short list of month ranges.
+The 24-window strip and heatmap use an ochre cell with a center dot for Peak, a solid green cell for Good, hatching for Skip, and an empty outlined cell for Not rated. The chosen window has an ink outline. The strip's accessible name states its runs in words, and a legend names all four states. On the phone calendar, rows also spell out both verdicts when the half-months differ. Typical main supply origins follow the item strip as a short list of month ranges.
 
 Keep written labels or accessible tables available. Use the warm neutral canvas and clear ink rather than introducing an unrelated chart palette.
 

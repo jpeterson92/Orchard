@@ -39,16 +39,15 @@ export function TopNav() {
   );
 }
 
-/**
- * Fixed to the bottom of a phone screen with the search field pinned above it, clear of the home indicator; the
- * layout leaves room for both.
- */
-export function TabBar() {
+/** Search stays in thumb reach. On reading and comparison pages it shares the navigation row. */
+export function TabBar({ compactSearch }: { compactSearch: boolean }) {
   return (
     <div className="fixed inset-x-0 bottom-0 z-10 border-t border-rule bg-canvas pb-[env(safe-area-inset-bottom)] sm:hidden">
-      <div className="mx-auto max-w-2xl px-4 pt-2">
-        <SearchField className="w-full" />
-      </div>
+      {!compactSearch && (
+        <div className="mx-auto max-w-2xl px-4 pt-2">
+          <SearchField className="w-full" />
+        </div>
+      )}
       <nav aria-label="Main">
         <ul className="mx-auto flex max-w-2xl">
           {DESTINATIONS.map(({ to, label, Icon, end }) => (
@@ -58,7 +57,9 @@ export function TabBar() {
                 end={end}
                 className={({ isActive }) =>
                   `flex h-14 flex-col items-center justify-center gap-0.5 rounded-sm text-xs font-medium ${focus} ${
-                    isActive ? "text-accent" : "text-ink-secondary"
+                    isActive
+                      ? "relative text-accent after:absolute after:bottom-0.5 after:h-0.5 after:w-5 after:rounded-full after:bg-current"
+                      : "text-ink-secondary"
                   }`
                 }
               >
@@ -67,6 +68,11 @@ export function TabBar() {
               </NavLink>
             </li>
           ))}
+          {compactSearch && (
+            <li className="flex-1">
+              <SearchField compact />
+            </li>
+          )}
         </ul>
       </nav>
     </div>

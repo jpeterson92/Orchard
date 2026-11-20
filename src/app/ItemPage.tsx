@@ -8,9 +8,9 @@ import type { AppData } from "../shared/app-data";
 import { Art } from "./Art";
 import type { BackTo } from "./Browse";
 import { type Mode, useAppDate } from "./date";
-import { VerdictMark } from "./icons";
+import { Arrow, Chevron, VerdictMark } from "./icons";
 import { type ItemView, itemView, type LabelOption, labelResult, type VarietyRow } from "./item-view";
-import { Masthead, PageTitle } from "./Masthead";
+import { PageFrame, PageTitle } from "./Masthead";
 import { useCount, useVerdictVisible } from "./measure";
 import { MonthAxis, SeasonStrip, StripLegend } from "./SeasonStrip";
 import { atDate, listNames, plainDate, VERDICT_WORD } from "./today-view";
@@ -31,11 +31,10 @@ export function ItemPage() {
   const back = (useLocation().state as { back?: BackTo } | null)?.back ?? { to: "/", label: "Today" };
 
   return (
-    <div className="mx-auto max-w-2xl px-4 pb-12 sm:px-6 md:max-w-5xl">
-      <Masthead date={date} shareTitle={view ? `${view.name} · Orchard` : undefined} />
+    <PageFrame date={date} shareTitle={view ? `${view.name} · Orchard` : undefined}>
       <nav aria-label="Back">
         <Link to={back.to} className={`${linkClass} mt-1`}>
-          <span aria-hidden>←</span> {back.label}
+          <Arrow direction="left" /> {back.label}
         </Link>
       </nav>
       {view ? (
@@ -53,7 +52,7 @@ export function ItemPage() {
           <p className="mt-2">Orchard doesn't have guidance for this item yet.</p>
         </main>
       )}
-    </div>
+    </PageFrame>
   );
 }
 
@@ -63,14 +62,12 @@ function Item({ view, mode }: { view: ItemView; mode: Mode }) {
   const [label, setLabel] = useState(picked ?? "");
   const labelCheck = <LabelCheck view={view} choice={label} onChoose={setLabel} />;
   return (
-    <main>
+    <main className="max-w-[40rem]">
       <div className="mt-1 flex gap-4">
         <div className="min-w-0 flex-1">
           <PageTitle name={view.name} />
           <h1 className="font-editorial text-[2rem] leading-tight font-bold">{view.name}</h1>
-          {view.varietyLine && (
-            <p className="font-editorial text-lg text-ink-secondary">{view.varietyLine}</p>
-          )}
+          {view.varietyLine && <p className="text-ink-secondary">{view.varietyLine}</p>}
           <p className="mt-1">
             <VerdictMark verdict={view.verdict} size="lg" />
           </p>
@@ -114,13 +111,24 @@ function Item({ view, mode }: { view: ItemView; mode: Mode }) {
       {/* Where the label decides it, the control sits just below the note; otherwise in the page order. */}
       {view.labelNote && labelCheck}
 
+      {view.pick[0] && (
+        <div className="mt-4 border-l-2 border-olive bg-surface/60 px-3 pt-2">
+          <p>
+            <span className="font-semibold">Pick</span> · {view.pick[0]}
+          </p>
+          <a href="#how-to-pick" className={`${linkClass} text-sm`}>
+            More picking tips <Arrow />
+          </a>
+        </div>
+      )}
+
       <details className="group mt-2">
         <summary className="flex min-h-11 cursor-pointer list-none items-center gap-2 rounded-sm text-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent">
           <span className="font-semibold text-olive underline-offset-4 group-hover:underline">
             About this verdict
           </span>
           <span aria-hidden className="text-olive transition-transform group-open:rotate-180">
-            ▾
+            <Chevron />
           </span>
         </summary>
         <div className="space-y-1 border-l-2 border-olive/70 pb-1 pl-3 text-sm text-ink-secondary">
@@ -128,7 +136,7 @@ function Item({ view, mode }: { view: ItemView; mode: Mode }) {
           <p>{[view.supplyDate, view.reviewDate].filter(Boolean).join(" · ")}</p>
           <p>
             <Link to="/methods" className={linkClass}>
-              How Orchard rates produce →
+              How Orchard rates produce <Arrow />
             </Link>
           </p>
         </div>
@@ -161,7 +169,7 @@ function Item({ view, mode }: { view: ItemView; mode: Mode }) {
         </Section>
       )}
 
-      <Section title="How to pick">
+      <Section title="How to pick" id="how-to-pick">
         <Bullets items={view.pick} />
         <h3 className="mt-3 font-semibold">Avoid</h3>
         <Bullets items={view.avoid} />
@@ -204,7 +212,7 @@ function Item({ view, mode }: { view: ItemView; mode: Mode }) {
         <Section title="Variety guide">
           <p>Every variety side by side, including ones not rated here: traits and best uses.</p>
           <Link to={`/guides/${view.guide}`} className={linkClass}>
-            Open the variety guide <span aria-hidden>→</span>
+            Open the variety guide <Arrow />
           </Link>
         </Section>
       )}
@@ -248,7 +256,7 @@ function LabelCheck({
         <select
           value={choice}
           onChange={(e) => onChoose(e.target.value)}
-          className="mt-1 block min-h-11 w-full max-w-sm rounded-md border border-rule bg-surface px-3 text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+          className="mt-1 block min-h-11 w-full max-w-sm rounded-md border border-control bg-surface px-3 text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
         >
           <option value="">
             Choose {/^[aeiou]/.test(what) ? "an" : "a"} {what}
@@ -302,7 +310,7 @@ function Variety({
             <h3 className="font-editorial text-lg font-bold">
               {page ? (
                 <Link to={page.path} state={{ back: page.back }} className={`${linkClass} font-bold`}>
-                  {row.name} <span aria-hidden>→</span>
+                  {row.name} <Arrow />
                 </Link>
               ) : (
                 row.name
@@ -329,9 +337,9 @@ function Variety({
   );
 }
 
-function Section({ title, children }: { title: string; children: React.ReactNode }) {
+function Section({ title, id, children }: { title: string; id?: string; children: React.ReactNode }) {
   return (
-    <section className="mt-6 border-t border-olive/60 pt-4">
+    <section id={id} className="mt-6 scroll-mt-4 border-t border-olive/60 pt-4">
       <h2 className="font-editorial text-2xl font-bold">{title}</h2>
       <div className="mt-2">{children}</div>
     </section>

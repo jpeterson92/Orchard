@@ -1,15 +1,15 @@
-// A 24-window season strip (design system §6 "Season strips"): Peak a solid ochre cell, Good a lighter green
-// cell, Skip a hatched cell, Not rated an empty outlined cell, so no state relies on color alone.
+// A 24-window season strip (design system §6 "Season strips"): Peak has a dot, Good is solid,
+// Skip uses hatching, and Not rated is an empty outlined cell.
 // The strip is one image whose label gives the runs in words.
 import type { Verdict } from "../shared/verdict";
 import { outlookSummary } from "./item-view";
 import { MONTHS } from "./today-view";
 
 export const FILL: Record<Verdict, string> = {
-  peak: "bg-peak-icon",
-  good: "bg-good-icon/55",
+  peak: "strip-peak",
+  good: "strip-good",
   skip: "strip-hatch",
-  limited: "border border-rule",
+  limited: "border border-control",
 };
 
 export function SeasonStrip({ outlook, today }: { outlook: readonly Verdict[]; today?: number }) {

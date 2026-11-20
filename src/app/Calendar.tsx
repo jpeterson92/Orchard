@@ -10,7 +10,8 @@ import type { Verdict } from "../shared/verdict";
 import type { BackTo } from "./Browse";
 import { type CalendarRow, calendarRows, monthSections } from "./calendar-view";
 import { useAppDate } from "./date";
-import { Masthead, PageTitle } from "./Masthead";
+import { Chevron } from "./icons";
+import { PageFrame, PageTitle } from "./Masthead";
 import { FILL, StripLegend } from "./SeasonStrip";
 import { MONTHS, plainDate, VERDICT_WORD } from "./today-view";
 
@@ -34,22 +35,19 @@ export function Calendar() {
   const current = windowIndex(month, day);
 
   return (
-    <div className="mx-auto max-w-2xl px-4 pb-12 sm:px-6 md:max-w-5xl">
-      <Masthead date={date} />
+    <PageFrame date={date}>
       <main>
         <PageTitle name="Typical seasonal outlook" />
         <h1 className="mt-6 font-editorial text-3xl font-bold">Typical seasonal outlook</h1>
-        <div className="mt-3">
-          <StripLegend />
-        </div>
         <div className="sm:hidden">
           <MonthList rows={rows} initial={month - 1} />
         </div>
-        <div className="hidden sm:block">
+        <div className="mt-3 hidden sm:block">
+          <StripLegend />
           <Heatmap rows={rows} current={current} />
         </div>
       </main>
-    </div>
+    </PageFrame>
   );
 }
 
@@ -70,18 +68,18 @@ function MonthList({ rows, initial }: { rows: CalendarRow[]; initial: number }) 
   };
   const backHere: BackTo = { ...back, to: `/calendar?${MONTH_PARAM}=${m + 1}` };
   const name = MONTHS[m] ?? "";
-  const stepButton = `flex size-11 items-center justify-center rounded-full border border-olive text-olive ${focus}`;
+  const stepButton = `flex size-11 items-center justify-center rounded-full border border-control bg-canvas text-olive ${focus}`;
 
   return (
     <>
-      <div className="mt-5 flex items-center gap-3">
+      <div className="mt-3 flex items-center gap-3 rounded-md bg-surface px-2 py-1.5">
         <button
           type="button"
           onClick={() => step(-1)}
           aria-label={`Previous month, ${MONTHS[(m + 11) % 12]}`}
           className={stepButton}
         >
-          <span aria-hidden>‹</span>
+          <Chevron direction="left" />
         </button>
         <h2 aria-live="polite" className="flex-1 text-center font-editorial text-2xl font-bold">
           {name}
@@ -92,8 +90,11 @@ function MonthList({ rows, initial }: { rows: CalendarRow[]; initial: number }) 
           aria-label={`Next month, ${MONTHS[(m + 1) % 12]}`}
           className={stepButton}
         >
-          <span aria-hidden>›</span>
+          <Chevron direction="right" />
         </button>
+      </div>
+      <div className="mt-3">
+        <StripLegend />
       </div>
       {monthSections(rows, m).map((s) => (
         <section key={s.verdict} className="mt-5">
@@ -115,14 +116,18 @@ function MonthList({ rows, initial }: { rows: CalendarRow[]; initial: number }) 
                     state={{ back: backHere }}
                     className={`flex min-h-12 items-center gap-3 rounded-sm py-2 ${focus}`}
                   >
-                    <span className="flex min-w-0 flex-1 flex-wrap items-baseline gap-x-2">
-                      <span className="font-editorial text-lg font-bold">{r.name}</span>
-                      {r.alwaysGood && <span className="text-sm font-medium text-olive">Always good</span>}
-                    </span>
-                    <span className="sr-only">
-                      {early === late
-                        ? `${word(early)} all month`
-                        : `Early ${name}: ${word(early)}. Late ${name}: ${word(late)}.`}
+                    <span className="min-w-0 flex-1">
+                      <span className="flex flex-wrap items-baseline gap-x-2">
+                        <span className="font-editorial text-lg font-bold">{r.name}</span>
+                        {r.alwaysGood && <span className="text-sm font-medium text-olive">Always good</span>}
+                      </span>
+                      {early === late ? (
+                        <span className="sr-only">{word(early)} all month</span>
+                      ) : (
+                        <span className="block text-sm text-ink-secondary">
+                          Early {word(early)} · Late {word(late)}
+                        </span>
+                      )}
                     </span>
                     <span aria-hidden className="grid w-16 grid-cols-2 gap-0.5">
                       <span className={`h-5 rounded-[2px] ${FILL[early ?? "limited"]}`} />

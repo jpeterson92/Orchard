@@ -1,7 +1,7 @@
-import { Link, Outlet, type RouteObject, ScrollRestoration } from "react-router";
+import { Link, Outlet, type RouteObject, ScrollRestoration, useLocation } from "react-router";
 import appJson from "../generated/app.json";
 import type { AppData } from "../shared/app-data";
-import { Methods, Privacy } from "./About";
+import { About, Methods, NotFound, Privacy } from "./About";
 import { Browse, BrowseCategory } from "./Browse";
 import { Calendar } from "./Calendar";
 import { Guide } from "./Guide";
@@ -19,14 +19,21 @@ const footerLink =
 
 // Back returns to the exact scroll position; a new page opens at the top (product spec §4).
 function Layout() {
+  const { pathname } = useLocation();
+  const compactSearch = pathname !== "/" && !/^\/browse(?:\/|$)/.test(pathname);
   return (
     // On phone the fixed search field and tab bar sit below the page, so the last row is never under them
     // (design system §5).
     <SearchProvider>
-      <div className="pb-[calc(7rem+env(safe-area-inset-bottom))] sm:pb-0">
+      <div
+        className={`sm:pb-0 ${compactSearch ? "pb-[calc(3.75rem+env(safe-area-inset-bottom))]" : "pb-[calc(7rem+env(safe-area-inset-bottom))]"}`}
+      >
         <Outlet />
         <footer className="mx-auto max-w-2xl border-t border-rule px-4 py-2 text-sm sm:px-6">
-          <nav aria-label="About Orchard" className="flex gap-6">
+          <nav aria-label="About Orchard" className="flex flex-wrap gap-x-6">
+            <Link to="/about" className={footerLink}>
+              About
+            </Link>
             <Link to="/methods" className={footerLink}>
               How Orchard rates produce
             </Link>
@@ -35,7 +42,7 @@ function Layout() {
             </Link>
           </nav>
         </footer>
-        <TabBar />
+        <TabBar compactSearch={compactSearch} />
         {/* Every first load shares the key "default"; keying those by path stops one page restoring another's. */}
         <ScrollRestoration getKey={(l) => (l.key === "default" ? l.pathname : l.key)} />
       </div>
@@ -55,8 +62,10 @@ export const routes: RouteObject[] = [
       { path: "/items/:id", element: <ItemPage /> },
       { path: "/items/:id/:variety", element: <VarietyPage /> },
       { path: "/guides/:id", element: <Guide /> },
+      { path: "/about", element: <About /> },
       { path: "/methods", element: <Methods /> },
       { path: "/privacy", element: <Privacy /> },
+      { path: "*", element: <NotFound /> },
     ],
   },
 ];
@@ -68,6 +77,7 @@ export const prerenderPaths = [
   "/browse",
   ...data.categories.map((c) => `/browse/${c.id}`),
   "/calendar",
+  "/about",
   "/methods",
   "/privacy",
   ...data.items.map((i) => `/items/${i.inputs.id}`),

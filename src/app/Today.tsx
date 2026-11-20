@@ -7,8 +7,8 @@ import appJson from "../generated/app.json";
 import type { AppData, FilterGroup } from "../shared/app-data";
 import { Art } from "./Art";
 import { useAppDate } from "./date";
-import { VerdictMark } from "./icons";
-import { Masthead, PageTitle } from "./Masthead";
+import { Arrow, Chevron, VerdictMark } from "./icons";
+import { PageFrame, PageTitle } from "./Masthead";
 import { count, useVerdictVisible } from "./measure";
 import { readinessText, useReadiness } from "./offline";
 import { type Card, plainDate, todayView } from "./today-view";
@@ -36,8 +36,7 @@ export function Today() {
   const any = view.best.length + view.good.length > 0;
 
   return (
-    <div className="mx-auto max-w-2xl px-4 pb-12 sm:px-6 md:max-w-5xl">
-      <Masthead date={date} />
+    <PageFrame date={date}>
       <main>
         <PageTitle />
         <h1 className="sr-only">Today</h1>
@@ -91,7 +90,7 @@ export function Today() {
           <p className="py-6 text-ink-secondary">Nothing in this group today.</p>
         )}
       </main>
-    </div>
+    </PageFrame>
   );
 }
 
@@ -132,7 +131,7 @@ function Row({ card }: { card: Card }) {
   const panel = useId();
   return (
     <li className="border-b border-rule py-2.5">
-      {/* The whole collapsed card is the expand button; the Details link sits outside it (design system §6). */}
+      {/* The whole collapsed card expands; the item link sits outside it. */}
       <button
         type="button"
         aria-expanded={open}
@@ -146,9 +145,7 @@ function Row({ card }: { card: Card }) {
         <Art id={card.art} sizes="56px" className="size-14 shrink-0" />
         <span className="block min-w-0 flex-1">
           <span className="block font-editorial text-xl leading-tight font-bold">{card.name}</span>
-          {card.varietyLine && (
-            <span className="block font-editorial text-ink-secondary">{card.varietyLine}</span>
-          )}
+          {card.varietyLine && <span className="block text-sm text-ink-secondary">{card.varietyLine}</span>}
           {/* Inline, so a long line wraps inside its text rather than starting a line with a separator. */}
           <span className="mt-0.5 block">
             <VerdictMark verdict={card.verdict} />
@@ -162,7 +159,7 @@ function Row({ card }: { card: Card }) {
           aria-hidden
           className={`mt-1 shrink-0 text-olive transition-transform motion-reduce:transition-none ${open ? "rotate-180" : ""}`}
         >
-          ▾
+          <Chevron />
         </span>
       </button>
       {/* Expands in place over 200 ms (none with reduced motion); inert while closed. Classes rather than a style
@@ -185,7 +182,7 @@ function Row({ card }: { card: Card }) {
               to={`/items/${card.id}`}
               className="inline-flex min-h-11 items-center gap-1 font-semibold text-olive underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
             >
-              Details <span aria-hidden>→</span>
+              Picking &amp; storage <Arrow />
             </Link>
           </div>
         </div>

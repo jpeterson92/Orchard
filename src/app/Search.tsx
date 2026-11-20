@@ -7,7 +7,7 @@ import appJson from "../generated/app.json";
 import type { AppData } from "../shared/app-data";
 import { Art } from "./Art";
 import { useAppDate } from "./date";
-import { SearchIcon, VerdictMark } from "./icons";
+import { Arrow, CloseIcon, SearchIcon, VerdictMark } from "./icons";
 import { count } from "./measure";
 import { type SearchResult, search, searchIndex } from "./search-view";
 import { plainDate } from "./today-view";
@@ -22,13 +22,15 @@ const index = () => {
   return cachedIndex;
 };
 
-const OpenSearch = createContext<() => void>(() => {});
+const OpenSearch = createContext<(trigger: HTMLButtonElement) => void>(() => {});
 
 /** Holds the one search dialog; the fields in the tab bar and top bar open it. */
 export function SearchProvider({ children }: { children: ReactNode }) {
   const dialog = useRef<HTMLDialogElement>(null);
   const input = useRef<HTMLInputElement>(null);
-  const open = () => {
+  const open = (trigger: HTMLButtonElement) => {
+    // The dialog returns focus here even in browsers that do not focus a button on tap.
+    trigger.focus();
     dialog.current?.showModal();
     input.current?.focus();
   };
@@ -41,18 +43,22 @@ export function SearchProvider({ children }: { children: ReactNode }) {
 }
 
 /** Looks like a field and opens the dialog, so the keyboard comes up in a screen made for results. */
-export function SearchField({ className = "" }: { className?: string }) {
+export function SearchField({ className = "", compact = false }: { className?: string; compact?: boolean }) {
   const open = use(OpenSearch);
   return (
     <button
       type="button"
+      aria-label="Search produce"
       aria-haspopup="dialog"
-      onClick={open}
-      className={`flex min-h-11 items-center gap-2 rounded-full border border-rule bg-surface px-4 text-left text-ink-secondary ${focus} ${className}`}
+      onClick={(e) => open(e.currentTarget)}
+      className={
+        compact
+          ? `flex h-14 w-full flex-col items-center justify-center gap-1 rounded-sm text-xs font-medium text-ink-secondary ${focus}`
+          : `flex min-h-11 items-center gap-2 rounded-full border border-control bg-surface px-4 text-left text-ink-secondary ${focus} ${className}`
+      }
     >
       <SearchIcon />
-      {/* Icon only in the narrowest top bar, where the destinations and date need the room. */}
-      <span className="truncate sm:max-md:sr-only">Search produce</span>
+      <span className={compact ? undefined : "truncate"}>{compact ? "Search" : "Search produce"}</span>
     </button>
   );
 }
@@ -118,9 +124,7 @@ function SearchDialog({
             }}
             className="flex items-center gap-2"
           >
-            <label
-              className={`flex min-h-12 flex-1 items-center gap-2 rounded-full border border-olive bg-surface px-4 has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-accent`}
-            >
+            <div className="flex min-h-12 min-w-0 flex-1 items-center gap-2 rounded-full border border-control bg-surface px-3 has-[input:focus-visible]:outline-2 has-[input:focus-visible]:outline-offset-2 has-[input:focus-visible]:outline-accent">
               <SearchIcon />
               <input
                 ref={input}
@@ -134,13 +138,26 @@ function SearchDialog({
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 onKeyDown={onFieldKey}
-                className="min-w-0 flex-1 bg-transparent text-lg text-ink outline-none placeholder:text-ink-secondary"
+                className="min-w-0 flex-1 appearance-none bg-transparent text-base text-ink outline-none placeholder:text-ink-secondary [&::-webkit-search-cancel-button]:hidden"
               />
-            </label>
+              {query && (
+                <button
+                  type="button"
+                  aria-label="Clear search"
+                  onClick={() => {
+                    setQuery("");
+                    input.current?.focus();
+                  }}
+                  className={`-mr-2 grid size-11 shrink-0 place-items-center rounded-full text-olive ${focus}`}
+                >
+                  <CloseIcon />
+                </button>
+              )}
+            </div>
             <button
               type="button"
               onClick={close}
-              className={`min-h-11 rounded-sm px-1 font-semibold text-olive ${focus}`}
+              className={`min-h-11 shrink-0 rounded-sm px-2 font-semibold text-olive ${focus}`}
             >
               Close
             </button>
@@ -214,11 +231,9 @@ function ResultRow({ result: r, onOpen }: { result: SearchResult; onOpen: () => 
         <span className="block min-w-0 flex-1">
           <span className="flex flex-wrap items-baseline gap-x-2">
             <span className="font-editorial text-lg leading-tight font-bold">{r.title}</span>
-            {r.label && <span className="font-editorial text-ink-secondary">{r.subtitle}</span>}
+            {r.label && <span className="text-sm text-ink-secondary">{r.subtitle}</span>}
           </span>
-          {!r.label && r.subtitle && (
-            <span className="block font-editorial text-ink-secondary">{r.subtitle}</span>
-          )}
+          {!r.label && r.subtitle && <span className="block text-sm text-ink-secondary">{r.subtitle}</span>}
           <span className="block">
             <VerdictMark verdict={r.verdict} />
             {r.tags.length > 0 && (
@@ -227,7 +242,7 @@ function ResultRow({ result: r, onOpen }: { result: SearchResult; onOpen: () => 
           </span>
         </span>
         <span aria-hidden className="text-olive">
-          →
+          <Arrow />
         </span>
       </Link>
     </li>

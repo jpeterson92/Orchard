@@ -42,6 +42,9 @@ test("after one visit, an item never visited opens offline", async ({ page, cont
   await expect(page.getByRole("heading", { level: 1, name: "Strawberries" })).toBeVisible();
   await page.reload();
   await expect(page.getByRole("heading", { level: 1, name: "Strawberries" })).toBeVisible();
+  await page.goto("/no-such-page");
+  await expect(page.getByRole("heading", { level: 1, name: "Page not found" })).toBeVisible();
+  await expect(page.getByRole("link", { name: "Browse produce" })).toBeVisible();
 });
 
 test("pages are served at clean URLs", async ({ request }) => {
@@ -57,6 +60,9 @@ test("each page has its own title, in the prerendered head and after navigating"
   const html = await (await request.get("/items/apples")).text();
   expect(html).toMatch(/<head>[\s\S]*<title>Apples · Orchard<\/title>[\s\S]*<\/head>/);
   expect(html.match(/<title>/g)).toHaveLength(1);
+  expect(html).toContain('property="og:title" content="Apples · Orchard"');
+  expect(html).toMatch(/property="og:image" content="https:\/\/[^/]+\/brand\/share\.jpg"/);
+  expect((await request.get("/brand/share.jpg")).headers()["content-type"]).toContain("image/jpeg");
   await page.goto("/items/apples");
   await expect(page.getByRole("heading", { level: 1, name: "Apples" })).toBeVisible();
   await expect(page).toHaveTitle("Apples · Orchard");
@@ -164,6 +170,44 @@ test("search from the pinned field: a misspelled guide variety opens its page; a
   await expect(dialog.getByText("We don't cover this yet", { exact: true }).first()).toBeVisible();
 });
 
+test("compact Search keeps Clear and Close in reach at 320 px", async ({ page }) => {
+  await page.setViewportSize({ width: 320, height: 568 });
+  await page.goto("/items/apples");
+  const trigger = page
+    .getByRole("navigation", { name: "Main" })
+    .getByRole("button", { name: "Search produce" });
+  await trigger.click();
+  const dialog = page.getByRole("dialog", { name: "Search produce" });
+  const input = dialog.getByRole("searchbox");
+  await input.fill("apple");
+  const clear = dialog.getByRole("button", { name: "Clear search" });
+  const close = dialog.getByRole("button", { name: "Close" });
+  await expect(clear).toBeInViewport({ ratio: 1 });
+  await expect(close).toBeInViewport({ ratio: 1 });
+  await clear.click();
+  await expect(input).toHaveValue("");
+  await expect(input).toBeFocused();
+  await close.click();
+  await expect(dialog).not.toBeVisible();
+  await expect(trigger).toBeFocused();
+});
+
+test("the finder fits a tablet and the desktop table can sort", async ({ page }) => {
+  await page.setViewportSize({ width: 600, height: 850 });
+  await page.goto("/guides/apples");
+  await expect(page.getByRole("heading", { name: "Apples by variety" })).toBeVisible();
+  await expect(page.getByRole("table")).toHaveCount(0);
+  await expect(page.getByRole("link", { name: "Cosmic Crisp", exact: true })).toBeVisible();
+  expect(await page.evaluate<number>("document.documentElement.scrollWidth")).toBe(600);
+
+  await page.setViewportSize({ width: 1024, height: 850 });
+  await expect(page.getByRole("table")).toBeVisible();
+  expect(await page.evaluate<number>("document.documentElement.scrollWidth")).toBe(1024);
+  const tartness = page.getByRole("columnheader", { name: "Tartness" });
+  await tartness.getByRole("button").click();
+  await expect(tartness).toHaveAttribute("aria-sort", "descending");
+});
+
 test("a page load sends one beacon with its metrics and time to first verdict, and the Worker counts it", async ({
   page,
 }) => {
@@ -240,6 +284,8 @@ for (const colorScheme of ["light", "dark"] as const) {
       ["/browse", "Browse"],
       ["/browse/citrus", "Citrus"],
       ["/calendar", "Typical seasonal outlook"],
+      ["/about", "About Orchard"],
+      ["/no-such-page", "Page not found"],
       ["/methods", /^How Orchard rates produce/],
       ["/privacy", /Privacy/],
     ] as const) {

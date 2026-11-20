@@ -8,8 +8,8 @@ import { Art } from "./Art";
 import type { BackTo } from "./Browse";
 import { type Mode, useAppDate } from "./date";
 import { Overall, Score } from "./Guide";
-import { VerdictMark } from "./icons";
-import { Masthead, PageTitle } from "./Masthead";
+import { Arrow, VerdictMark } from "./icons";
+import { PageFrame, PageTitle } from "./Masthead";
 import { useCount } from "./measure";
 import { MonthAxis, SeasonStrip, StripLegend } from "./SeasonStrip";
 import { atDate, plainDate } from "./today-view";
@@ -36,14 +36,14 @@ export function VarietyPage() {
       ? { to: `/guides/${view.guide.id}`, label: `${view.guide.name} variety guide` }
       : { to: "/", label: "Today" });
   return (
-    <div className="mx-auto max-w-2xl px-4 pb-12 sm:px-6">
-      <Masthead
-        date={date}
-        shareTitle={view ? `${view.variety.name} ${view.item.name.toLowerCase()} · Orchard` : undefined}
-      />
+    <PageFrame
+      date={date}
+      shareTitle={view ? `${view.variety.name} ${view.item.name.toLowerCase()} · Orchard` : undefined}
+      reading
+    >
       <nav aria-label="Back">
         <Link to={back.to} className={`${linkClass} mt-1`}>
-          <span aria-hidden>←</span> {back.label}
+          <Arrow direction="left" /> {back.label}
         </Link>
       </nav>
       {view ? (
@@ -55,7 +55,7 @@ export function VarietyPage() {
           <p className="mt-2">Orchard doesn't have a page for this variety yet.</p>
         </main>
       )}
-    </div>
+    </PageFrame>
   );
 }
 
@@ -67,7 +67,7 @@ function Body({ view, mode }: { view: VarietyView; mode: Mode }) {
         <div className="min-w-0 flex-1">
           <PageTitle name={`${v.name} ${view.item.name.toLowerCase()}`} />
           <h1 className="font-editorial text-[2rem] leading-tight font-bold">{v.name}</h1>
-          <p className="font-editorial text-lg text-ink-secondary">{view.item.name}</p>
+          <p className="text-ink-secondary">{view.item.name}</p>
           {rating && (
             <p className="mt-1">
               {rating.inStore ? (
@@ -81,6 +81,12 @@ function Body({ view, mode }: { view: VarietyView; mode: Mode }) {
         <Art id={v.art} sizes="(min-width: 640px) 112px, 96px" className="size-24 shrink-0 sm:size-28" />
       </div>
 
+      {v.ripeCue && (
+        <p className="mt-3 border-l-2 border-olive bg-surface/60 px-3 py-2">
+          <span className="font-semibold">Ripe when</span> · {v.ripeCue}
+        </p>
+      )}
+
       <Section title="On the label">
         <p>
           Look for <span className="font-semibold">{v.label}</span> on the sign or sticker. The label is the
@@ -89,8 +95,10 @@ function Body({ view, mode }: { view: VarietyView; mode: Mode }) {
         {v.plu.length > 0 && (
           <p className="mt-2">
             Sticker number (PLU):{" "}
-            <span className="font-semibold tabular-nums">{orList(v.plu.map(String))}</span>. Organic ones put
-            a 9 in front, as in <span className="tabular-nums">9{v.plu[0]}</span>.
+            <span className="rounded bg-surface px-1.5 py-0.5 font-semibold tabular-nums">
+              {orList(v.plu.map(String))}
+            </span>
+            . Organic ones put a 9 in front, as in <span className="tabular-nums">9{v.plu[0]}</span>.
           </p>
         )}
         {v.cue && <p className="mt-2">How to find it: {v.cue}</p>}
@@ -121,11 +129,6 @@ function Body({ view, mode }: { view: VarietyView; mode: Mode }) {
         <p className="mt-2">
           <span className="font-semibold">Best for:</span> {v.bestUses.join(", ").toLowerCase()}
         </p>
-        {v.ripeCue && (
-          <p className="mt-2">
-            <span className="font-semibold">Ripe when:</span> {v.ripeCue}
-          </p>
-        )}
       </Section>
 
       {/* Only where variety evidence exists (product spec §5). */}
@@ -147,7 +150,7 @@ function Body({ view, mode }: { view: VarietyView; mode: Mode }) {
             {view.alternatives.map((a) => (
               <li key={a.id} className="flex flex-wrap items-baseline justify-between gap-x-4">
                 <Link to={varietyPath(view.item.id, a.id)} className={linkClass}>
-                  {a.name} <span aria-hidden>→</span>
+                  {a.name} <Arrow />
                 </Link>
                 {a.verdict && <VerdictMark verdict={a.verdict} />}
               </li>
@@ -160,10 +163,10 @@ function Body({ view, mode }: { view: VarietyView; mode: Mode }) {
       <Section title="More">
         <p className="flex flex-col">
           <Link to={`/items/${view.item.id}`} className={linkClass}>
-            {view.item.name}: how to pick and store <span aria-hidden>→</span>
+            {view.item.name}: how to pick and store <Arrow />
           </Link>
           <Link to={`/guides/${guide.id}`} className={linkClass}>
-            {guide.name} variety guide: every variety side by side <span aria-hidden>→</span>
+            {guide.name} variety guide: every variety side by side <Arrow />
           </Link>
         </p>
       </Section>

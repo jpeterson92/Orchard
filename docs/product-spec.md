@@ -102,7 +102,7 @@ Today, Calendar and search all lead to the same item page. Browse reaches it thr
 - Browse goes Category → Item → Variety, three levels at most. Variety pages exist for the varieties in a guide; other items stop at the item page.
 - There are no onboarding screens.
 - Every item and variety can be reached in at most 3 taps from Today, or with one search.
-- Phone: a bottom tab bar (Today, Browse, Calendar) with the pinned search field. Tablet and desktop: a top bar with the same three plus search.
+- Phone: a bottom tab bar (Today, Browse, Calendar). Search sits above the tabs on Today and Browse, and in the tab bar on other screens. Tablet and desktop: a top bar with the same three plus search.
 - **Shared links follow today by default:** a shared item link shows the recipient's current verdict. "Share for this date" pins the date; the recipient then sees a "Showing Dec 20 · Switch to today" banner.
 - Back returns to the exact scroll position the user left.
 
@@ -162,7 +162,7 @@ An item that is both Peak and Last call appears once, under Best right now, carr
 ### Card behavior (the same everywhere)
 
 - **The collapsed card shows only what's needed to shop well:** the verdict, markers, and what to look for when the verdict holds for only part of the bin (a variety, an origin or a selection). Nice-to-know facts wait for the expanded card. No screen singles out one origin when others typically in stores are as good: a shopper holding one of those shouldn't put it back.
-- **Tapping a card expands it in place.** The expanded card shows how to pick, the typical storage range, and a clear **Details →** button that opens the item page.
+- **Tapping a card expands it in place.** The expanded card shows how to pick, the typical storage range, and a **Picking & storage** link to the item page.
 - **Tapping a list row** (search results, Browse lists) opens the page directly, because a row is a lookup. Rows still show the verdict badge, so the answer is often visible without a tap.
 
 ### Item page
@@ -173,7 +173,7 @@ An item that is both Peak and Last call appears once, under Best right now, carr
   - "Typical supermarket supply: favorable this month"
   - "Depends on the label", naming the origin that is usually poor now ("Florida field tomatoes often disappoint now"), with the "What does the label say?" control just below
 - **What does the label say?** (optional): pick the origin or variety shown on the label or sticker, and the verdict and tips update for it. Today's verdict never needs this input.
-- **How to pick:** 3–5 cues (look, feel, smell, weight), 1–2 "avoid" cues, and a type note where the type changes the advice.
+- **How to pick:** show the first cue near the verdict and link to the full section with 3–5 cues (look, feel, smell, weight), 1–2 "avoid" cues, and a type note where the type changes the advice.
 - **Store and ripen:** typical ranges, never guarantees, each with its ripeness assumption. For example: "Firm Hass: 3–5 days on the counter to ripen. Ripe: 2–3 days in the fridge."
 - **Typical seasonal outlook:** 24 half-month cells, with today marked. A band underneath shows the typical main supply origins by month.
 - **Varieties now** (items rated by variety): each variety's verdict for today and its quality across the year as a 24-window strip, best right now first. Only rated varieties appear here; the variety guide lists the rest, without a rating and never ranked.
@@ -200,13 +200,13 @@ An item that is both Peak and Last call appears once, under Best right now, carr
 - **Overall rating** (apples and pears). Both guides open sorted by expected enjoyment when eaten raw, highest score first. The tiers are amazing from 85, great from 75, fine from 60, and bad below 60. Apple scores average the 0–100 score at applerankings.com and Orchard's editorial score. Pears show Orchard's 0–100 estimate of ripe flavor, juiciness and texture alongside the tier on the guide and variety pages. Seasonal verdicts still show which varieties are good and typically available at the selected date.
 - **Every variety** of the guide's items: its scores as five dots with the number, best uses, its ripe cue (pears) and, where rated, today's verdict. Without an overall rating, rated varieties in stores come first, best first; unrated ones follow, A to Z. The scales' anchors close the page.
 - **Finder:** chips for one use at a time (each guide groups its varieties' best uses into a few, such as Snacking or Baking) and for traits, each naming one end of a scale (Tart is 4–5 on tartness; Buttery is 1–2 on pear texture). Picked traits must all hold, and a variety with no value for a picked trait drops out. Results and a count ("4 of 10 varieties") update instantly; with none left, "No variety has all of these" and Clear filters. The picks stay in the address, so Back and shared links keep them.
-- **Phone:** variety cards. **Tablet and desktop:** a sortable comparison table.
+- **Below 1024 px:** compact variety cards. **From 1024 px:** a sortable comparison table with sticky column headings.
 - **Variety page:** traits, best uses, its quality across the year (only where evidence exists), what the label or price-lookup (PLU) sticker typically says, and "can't find it? try…": up to two varieties of the same item closest on the trait scales (sharing at least three, within one point on average), sharing a use, and not Skip or out of stores today. Search, the guide and the item page's varieties open it. The label is the authority on identity. Pictures are decorative, and pages don't claim shoppers can tell similar varieties apart by sight.
 
 ### Calendar
 
 - Titled **Typical seasonal outlook**. It shows what is normally favorable at each time of year, not a forecast.
-- **Tablet and desktop:** a heatmap, items × 24 half-months. **Phone:** one month at a time.
+- **Tablet and desktop:** a heatmap, items × 24 half-months. **Phone:** one month at a time, with both half-month verdicts written out when they differ.
 
 ### Search
 
@@ -229,10 +229,10 @@ v1 uses one information hierarchy on every device. Layouts adapt to the screen w
 
 |  | Phone (< 600 px wide) | Tablet (600–1,024 px) | Desktop (> 1,024 px) |
 | --- | --- | --- | --- |
-| Navigation | Bottom tabs; search pinned above them | Top bar with search | Top bar with search |
+| Navigation | Bottom tabs and thumb-reach search | Top bar with search | Top bar with search |
 | Today | One column of cards | The same sections; cards 2–3 across | Same as tablet, with a wider content column |
 | Item page | One column | One column, wider | One column, wider |
-| Variety guide | Cards + filter chips | Sortable comparison table | Sortable comparison table |
+| Variety guide | Cards + filter chips | Compact cards + filter chips until 1024 px | Sortable comparison table |
 | Calendar | One month at a time | Full-year heatmap | Full-year heatmap |
 
 **Candidates for later, each added only if testing or usage shows demand:** a two-pane tablet layout, a desktop planning workspace, a large-type kitchen view for storage and ripening, and a printable one-page sheet for a month.

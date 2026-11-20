@@ -6,13 +6,12 @@ import type { AppData } from "../shared/app-data";
 import { Art } from "./Art";
 import { type BrowseRow, browseGroups, categoryRows } from "./browse-view";
 import { useAppDate } from "./date";
-import { VerdictMark } from "./icons";
-import { Masthead, PageTitle } from "./Masthead";
+import { Arrow, VerdictMark } from "./icons";
+import { PageFrame, PageTitle } from "./Masthead";
 import { plainDate } from "./today-view";
 
 const data = appJson as unknown as AppData;
 
-const page = "mx-auto max-w-2xl px-4 pb-12 sm:px-6";
 const focus = "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
 const backLink = `inline-flex min-h-11 items-center gap-1 font-semibold text-olive underline-offset-4 hover:underline ${focus}`;
 
@@ -25,8 +24,7 @@ export interface BackTo {
 export function Browse() {
   const date = useAppDate(data);
   return (
-    <div className={page}>
-      <Masthead date={date} />
+    <PageFrame date={date} reading>
       <main>
         <PageTitle name="Browse" />
         <h1 className="mt-6 font-editorial text-3xl font-bold">Browse</h1>
@@ -48,7 +46,7 @@ export function Browse() {
                       {c.count} {c.count === 1 ? "item" : "items"}
                     </span>
                     <span aria-hidden className="text-olive">
-                      →
+                      <Arrow />
                     </span>
                   </Link>
                 </li>
@@ -57,7 +55,7 @@ export function Browse() {
           </section>
         ))}
       </main>
-    </div>
+    </PageFrame>
   );
 }
 
@@ -69,11 +67,10 @@ export function BrowseCategory() {
   const back: BackTo = { to: `/browse/${category}`, label: name ?? "Browse" };
 
   return (
-    <div className={page}>
-      <Masthead date={date} />
+    <PageFrame date={date} reading>
       <nav aria-label="Back">
         <Link to="/browse" className={`${backLink} mt-1`}>
-          <span aria-hidden>←</span> Browse
+          <Arrow direction="left" /> Browse
         </Link>
       </nav>
       <main>
@@ -95,7 +92,7 @@ export function BrowseCategory() {
           </>
         )}
       </main>
-    </div>
+    </PageFrame>
   );
 }
 
@@ -111,9 +108,7 @@ function Row({ row, back }: { row: BrowseRow; back: BackTo }) {
         <Art id={row.art} sizes="56px" className="size-14 shrink-0" />
         <span className="block min-w-0 flex-1">
           <span className="block font-editorial text-xl leading-tight font-bold">{row.name}</span>
-          {row.varietyLine && (
-            <span className="block font-editorial text-ink-secondary">{row.varietyLine}</span>
-          )}
+          {row.varietyLine && <span className="block text-sm text-ink-secondary">{row.varietyLine}</span>}
           <span className="block">
             <VerdictMark verdict={row.verdict} />
             {row.tags.length > 0 && (
@@ -122,7 +117,7 @@ function Row({ row, back }: { row: BrowseRow; back: BackTo }) {
           </span>
         </span>
         <span aria-hidden className="text-olive">
-          →
+          <Arrow />
         </span>
       </Link>
     </li>

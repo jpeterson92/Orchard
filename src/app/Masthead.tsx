@@ -1,8 +1,9 @@
 // Brand, primary navigation from 600 px, and date chip, the same on every screen (design system §6 "Brand and date").
-import { type MouseEvent, useEffect, useState } from "react";
+import { type MouseEvent, type ReactNode, useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import { LEAF_PATH, MARK_BOTTOM, MARK_TOP, O_ADVANCE, O_PATH, STEM_PATH } from "../shared/brand";
 import { type AppDate, DATE_PARAM, sharedLink, useChooseDate } from "./date";
+import { CalendarIcon } from "./icons";
 import { TopNav } from "./Nav";
 import { SearchField } from "./Search";
 import { plainDate } from "./today-view";
@@ -63,12 +64,22 @@ function Wordmark() {
   );
 }
 
-/** `shareTitle` offers "Share for this date" in the planning banner (item pages). */
-export function Masthead({ date, shareTitle }: { date: AppDate; shareTitle?: string }) {
+/** The masthead keeps its position when the content measure changes between routes. */
+export function PageFrame({
+  date,
+  shareTitle,
+  reading = false,
+  children,
+}: {
+  date: AppDate;
+  shareTitle?: string;
+  reading?: boolean;
+  children: ReactNode;
+}) {
   const choose = useChooseDate();
   return (
-    <>
-      <header className="flex items-center justify-between gap-4 border-b border-olive/60 py-2">
+    <div className="mx-auto max-w-5xl px-4 pb-12 sm:px-6">
+      <header className="flex items-center justify-between gap-3 border-b border-olive/60 py-2 sm:gap-4">
         <Link
           to="/"
           className="flex min-h-11 items-center gap-2 rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
@@ -76,26 +87,29 @@ export function Masthead({ date, shareTitle }: { date: AppDate; shareTitle?: str
           <Wordmark />
         </Link>
         <TopNav />
-        <SearchField className="hidden shrink-0 sm:flex sm:max-md:w-11 sm:max-md:justify-center sm:max-md:px-0 md:w-44 lg:w-56" />
+        <SearchField className="hidden shrink-0 sm:flex sm:max-md:w-11 sm:max-md:justify-center sm:max-md:px-0 sm:max-md:[&>span]:sr-only md:w-44 lg:w-56" />
         <DateChip date={date} onChoose={choose} />
       </header>
-      {date.planning && (
-        <aside
-          aria-label="Planning date"
-          className="mt-3 flex flex-wrap items-center gap-x-4 rounded-sm bg-olive/15 px-3 py-1 font-medium"
-        >
-          {/* Opened from a link shared for a date: the spec's own wording, so the recipient knows it isn't today.
+      <div className={reading ? "mx-auto max-w-2xl" : undefined}>
+        {date.planning && (
+          <aside
+            aria-label="Planning date"
+            className="mt-3 flex flex-wrap items-center gap-x-4 rounded-sm bg-olive/15 px-3 py-1 font-medium"
+          >
+            {/* Opened from a link shared for a date: the spec's own wording, so the recipient knows it isn't today.
               Actions are spaced, not dotted, so a wrapped line never starts or ends on a separator. */}
-          <span>
-            {date.pinned ? "Showing" : "Typical outlook for"} {bannerDate(date.iso)}
-          </span>
-          {shareTitle && <ShareForDate title={shareTitle} iso={date.iso} />}
-          <button type="button" onClick={() => choose(null)} className={bannerLink}>
-            {date.pinned ? "Switch to today" : "Back to today"}
-          </button>
-        </aside>
-      )}
-    </>
+            <span>
+              {date.pinned ? "Showing" : "Typical outlook for"} {bannerDate(date.iso)}
+            </span>
+            {shareTitle && <ShareForDate title={shareTitle} iso={date.iso} />}
+            <button type="button" onClick={() => choose(null)} className={bannerLink}>
+              {date.pinned ? "Switch to today" : "Back to today"}
+            </button>
+          </aside>
+        )}
+        {children}
+      </div>
+    </div>
   );
 }
 
@@ -151,10 +165,11 @@ function ShareForDate({ title, iso }: { title: string; iso: string }) {
 function DateChip({ date, onChoose }: { date: AppDate; onChoose: (iso: string | null) => void }) {
   return (
     <label
-      className={`relative flex min-h-11 shrink-0 items-center rounded-full border px-3 whitespace-nowrap text-sm font-medium has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-accent ${
+      className={`relative flex min-h-11 shrink-0 items-center gap-1.5 rounded-full border px-3 whitespace-nowrap text-sm font-medium has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-accent ${
         date.planning ? "border-olive bg-olive text-canvas" : "border-olive text-olive"
       }`}
     >
+      <CalendarIcon size={16} />
       <time dateTime={date.iso} aria-hidden>
         {chipDate(date.iso)}
       </time>

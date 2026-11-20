@@ -19,8 +19,8 @@ const app = (
 if (import.meta.env.PROD && "serviceWorker" in navigator)
   window.addEventListener("load", () => void navigator.serviceWorker.register("/sw.js"));
 
-// Prerendered pages arrive with markup to hydrate; the SPA fallback and dev arrive with only the placeholder comment.
-const prerendered = container.firstElementChild !== null;
+// The SPA and offline fallbacks may serve Today's HTML on a different path. Hydrate only the matching page.
+const prerendered = container.dataset.prerenderPath === window.location.pathname;
 // Real-user measurement (src/app/measure.ts), production builds only; started before the first render's effects run.
 if (import.meta.env.PROD) startMeasuring(prerendered);
 if (prerendered) hydrateRoot(container, app);

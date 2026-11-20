@@ -25,6 +25,11 @@ for (const route of prerenderPaths) {
   if (!title) throw new Error(`${route} rendered no <title>`);
   const html = template
     .replace("<title>Orchard</title>", title)
+    .replace(
+      'property="og:title" content="Orchard"',
+      () => `property="og:title" content="${title.slice(7, -8).replaceAll('"', "&quot;")}"`,
+    )
+    .replace('<div id="root">', `<div id="root" data-prerender-path="${encodeURI(route)}">`)
     .replace("<!--app-html-->", app.slice(title.length));
   const file = path.join(clientDir, ...route.split("/").filter(Boolean), "index.html");
   await mkdir(path.dirname(file), { recursive: true });

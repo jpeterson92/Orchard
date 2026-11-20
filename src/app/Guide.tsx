@@ -22,12 +22,20 @@ import {
   toggleTrait,
   traitChips,
 } from "./guide-view";
-import { VerdictMark } from "./icons";
-import { Masthead, PageTitle } from "./Masthead";
+import { Arrow, Chevron, VerdictMark } from "./icons";
+import { PageFrame, PageTitle } from "./Masthead";
 import { atDate, listNames, plainDate } from "./today-view";
 import { varietyPath } from "./variety-view";
 
 const data = appJson as unknown as AppData;
+const sentences = new Intl.Segmenter("en", { granularity: "sentence" });
+const shortTrait: Record<string, string> = {
+  crispness: "Crispness",
+  "holds-shape": "Holds shape",
+  "ease-of-peeling": "Peeling",
+  sweetness: "Sweetness",
+  texture: "Texture",
+};
 
 const focus = "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
 const linkClass = `inline-flex min-h-11 items-center gap-1 font-semibold text-olive underline-offset-4 hover:underline ${focus}`;
@@ -38,12 +46,11 @@ export function Guide() {
   const view = guideView(data, id, plainDate(date.iso));
   const back = view?.guide.items.length === 1 ? view.guide.items[0] : undefined;
   return (
-    <div className="mx-auto max-w-2xl px-4 pb-12 sm:px-6 md:max-w-5xl">
-      <Masthead date={date} shareTitle={view ? `${view.guide.name} variety guide · Orchard` : undefined} />
+    <PageFrame date={date} shareTitle={view ? `${view.guide.name} variety guide · Orchard` : undefined}>
       {back && (
         <nav aria-label="Back">
           <Link to={`/items/${back}`} className={`${linkClass} mt-1`}>
-            <span aria-hidden>←</span> {view?.guide.name}
+            <Arrow direction="left" /> {view?.guide.name}
           </Link>
         </nav>
       )}
@@ -56,7 +63,7 @@ export function Guide() {
           <p className="mt-2">Orchard doesn't have a guide for this item yet.</p>
         </main>
       )}
-    </div>
+    </PageFrame>
   );
 }
 
@@ -66,6 +73,9 @@ function GuideBody({ view, mode }: { view: GuideView; mode: "today" | "typical" 
     descending: true,
   });
   const overall = view.guide.overall;
+  const [firstSentence] = sentences.segment(view.guide.lead);
+  const lead = firstSentence?.segment ?? view.guide.lead;
+  const rest = view.guide.lead.slice(lead.length).trim();
   const chips = useMemo(() => traitChips(view.guide), [view.guide]);
   // The finder is copied to the address, so Back returns to it. Taps update state first (the router's navigation
   // lags a quick second tap); the address is read once after hydrating, since the prerendered page has no query.
@@ -91,26 +101,48 @@ function GuideBody({ view, mode }: { view: GuideView; mode: "today" | "typical" 
       <h1 className="mt-4 font-editorial text-[2rem] leading-tight font-bold">
         {view.guide.name} by variety
       </h1>
-      <p className="mt-2 max-w-prose font-editorial text-lg leading-snug">{view.guide.lead}</p>
-      <p className="mt-2 text-ink-secondary">
-        {view.rows.length} varieties compared on {view.guide.traits.length} traits, each scored 1 to 5.
-      </p>
-      {overall && (
-        <p className="mt-2">
-          <span className="font-semibold">Overall</span> rates each variety for {overall.basis.toLowerCase()}.
-          {overall.source ? (
-            <>
-              {" It averages Orchard's 100-point score with one from "}
-              <a href={overall.source.url} className="text-olive underline underline-offset-4" rel="noopener">
-                {overall.source.publisher}
-              </a>
-              .
-            </>
-          ) : (
-            " Orchard's 100-point estimate weighs flavor, juiciness and texture when ripe."
+      {lead && <p className="mt-2 max-w-prose font-editorial text-lg leading-snug">{lead.trim()}</p>}
+      <details className="group max-w-prose">
+        <summary
+          className={`flex min-h-11 cursor-pointer list-none items-center gap-1.5 rounded-sm text-sm font-semibold text-olive [&::-webkit-details-marker]:hidden ${focus}`}
+        >
+          What matters and how we score
+          <span className="group-open:rotate-180">
+            <Chevron />
+          </span>
+        </summary>
+        <div className="space-y-2 border-l-2 border-rule pl-3 text-sm">
+          {rest && <p>{rest}</p>}
+          <p>
+            Traits are scored from 1 to 5.{" "}
+            <a href="#scores" className="font-semibold text-olive underline underline-offset-4">
+              See the scales
+            </a>
+            .
+          </p>
+          {overall && (
+            <p>
+              <span className="font-semibold">Overall</span> rates each variety for{" "}
+              {overall.basis.toLowerCase()}.
+              {overall.source ? (
+                <>
+                  {" It averages Orchard's 100-point score with one from "}
+                  <a
+                    href={overall.source.url}
+                    className="text-olive underline underline-offset-4"
+                    rel="noopener"
+                  >
+                    {overall.source.publisher}
+                  </a>
+                  .
+                </>
+              ) : (
+                " Orchard's 100-point estimate weighs flavor, juiciness and texture when ripe."
+              )}
+            </p>
           )}
-        </p>
-      )}
+        </div>
+      </details>
 
       <FinderControls
         view={view}
@@ -120,23 +152,30 @@ function GuideBody({ view, mode }: { view: GuideView; mode: "today" | "typical" 
         onChange={(change) => setPicked((f) => change(f ?? NO_FILTER))}
       />
 
-      {/* Phone: one card per variety, in the default order (overall rating, or best right now). */}
-      <ul className="mt-2 sm:hidden">
+      {/* The comparison table needs a full desktop column; cards reflow on narrower screens. */}
+      <ul className="md:grid md:grid-cols-2 md:gap-x-8 lg:hidden">
         {cards.map((r) => (
           <Card key={r.key} row={r} view={view} mode={mode} />
         ))}
       </ul>
 
       {/* Wider screens: the same rows as a table, sorted by any column. */}
-      <div className={`mt-2 hidden overflow-x-auto ${rows.length > 0 ? "sm:block" : ""}`}>
-        <table className="w-full border-collapse text-left">
-          <thead>
-            <tr className="border-b border-olive/60 align-bottom">
+      {rows.length > 0 && (
+        <table className="mt-2 hidden w-full border-separate border-spacing-0 text-left text-sm lg:table">
+          <thead className="sticky top-0 z-10 bg-canvas shadow-[0_1px_0_var(--color-rule)]">
+            <tr className="align-bottom">
               <SortHeader label="Variety" k="name" sort={sort} onChoose={choose} />
               {overall && <SortHeader label="Overall (raw)" k="overall" sort={sort} onChoose={choose} />}
               <SortHeader label={mode === "typical" ? "Then" : "Now"} k="now" sort={sort} onChoose={choose} />
               {view.guide.traits.map((t) => (
-                <SortHeader key={t.id} label={t.name} k={t.id} sort={sort} onChoose={choose} />
+                <SortHeader
+                  key={t.id}
+                  label={shortTrait[t.id] ?? t.name}
+                  fullLabel={t.name}
+                  k={t.id}
+                  sort={sort}
+                  onChoose={choose}
+                />
               ))}
               <th scope="col" className="py-2 pr-2 font-semibold">
                 Best for
@@ -145,14 +184,14 @@ function GuideBody({ view, mode }: { view: GuideView; mode: "today" | "typical" 
           </thead>
           <tbody>
             {rows.map((r) => (
-              <tr key={r.key} className="border-b border-rule align-top">
+              <tr key={r.key} className="align-top [&>*]:border-b [&>*]:border-rule">
                 <th scope="row" className="py-3 pr-3">
                   <span className="flex items-center gap-2">
                     <Art id={r.art} sizes="32px" className="size-8 shrink-0" />
                     <span>
                       <Link
                         to={varietyPath(r.item, r.variety)}
-                        className={`font-editorial text-lg font-bold text-olive underline-offset-4 hover:underline ${focus}`}
+                        className={`font-editorial text-base font-bold text-olive underline-offset-4 hover:underline ${focus}`}
                       >
                         {r.name}
                       </Link>
@@ -183,7 +222,7 @@ function GuideBody({ view, mode }: { view: GuideView; mode: "today" | "typical" 
             ))}
           </tbody>
         </table>
-      </div>
+      )}
 
       <section id="scores" className="mt-8 scroll-mt-4 border-t border-olive/60 pt-4">
         <h2 className="font-editorial text-2xl font-bold">How to read the scores</h2>
@@ -234,7 +273,7 @@ function FinderControls({
 }) {
   const filtered = finder.use !== null || finder.traits.length > 0;
   return (
-    <div className="mt-5 space-y-3 border-t border-olive/60 pt-4">
+    <div className="mt-1 space-y-2 border-t border-olive/60 pt-3">
       <fieldset>
         <legend className="mb-1.5 font-semibold">Use</legend>
         <div className="flex flex-wrap gap-2">
@@ -300,7 +339,7 @@ function FinderControls({
 
 function Card({ row, view, mode }: { row: GuideRow; view: GuideView; mode: "today" | "typical" }) {
   return (
-    <li className="border-b border-rule py-4 last:border-b-0">
+    <li className="border-b border-rule py-3">
       <div className="flex items-center gap-3">
         <Art id={row.art} sizes="48px" className="size-12 shrink-0" />
         <div className="min-w-0 flex-1">
@@ -308,28 +347,32 @@ function Card({ row, view, mode }: { row: GuideRow; view: GuideView; mode: "toda
             <h2 className="font-editorial text-xl font-bold">
               <Link
                 to={varietyPath(row.item, row.variety)}
-                className={`inline-flex min-h-11 items-center text-olive underline-offset-4 hover:underline ${focus}`}
+                className={`inline-flex min-h-11 items-center gap-1 text-olive underline-offset-4 hover:underline ${focus}`}
               >
-                {row.name} <span aria-hidden>&nbsp;→</span>
+                {row.name} <Arrow />
               </Link>
             </h2>
             <Now row={row} mode={mode} />
           </div>
+          <p className="text-sm">
+            {view.multiItem && <span className="text-ink-secondary">{row.itemName} · </span>}
+            <span className="font-semibold">Best for</span> {row.bestUses.join(", ").toLowerCase()}
+          </p>
           {view.guide.overall && (
             <p className="mt-0.5">
               <span className="sr-only">Overall, eating raw: </span>
               <Overall value={row.overall} showScore={view.guide.overall.source === null} />
             </p>
           )}
-          <p className="text-sm text-ink-secondary">
-            {view.multiItem && `${row.itemName} · `}Best for {row.bestUses.join(", ").toLowerCase()}
-          </p>
         </div>
       </div>
-      <dl className="mt-2 grid grid-cols-[1fr_auto] gap-x-4 gap-y-1">
+      <dl className="mt-3 grid grid-cols-2 gap-x-2 gap-y-1.5 text-sm">
         {view.guide.traits.map((t) => (
-          <div key={t.id} className="contents">
-            <dt>{t.name}</dt>
+          <div key={t.id} className="flex flex-wrap items-baseline gap-x-2">
+            <dt className="text-ink-secondary">
+              <span aria-hidden>{shortTrait[t.id] ?? t.name}</span>
+              <span className="sr-only">{t.name}</span>
+            </dt>
             <dd>
               <Score value={row.traits[t.id]} />
             </dd>
@@ -411,11 +454,13 @@ export function Score({ value }: { value: number | undefined }) {
 
 function SortHeader({
   label,
+  fullLabel = label,
   k,
   sort,
   onChoose,
 }: {
   label: string;
+  fullLabel?: string;
   k: SortKey;
   sort: { key: SortKey; descending: boolean };
   onChoose: (k: SortKey) => void;
@@ -429,13 +474,17 @@ function SortHeader({
     >
       <button
         type="button"
+        aria-label={fullLabel}
+        title={fullLabel}
         onClick={() => onChoose(k)}
-        className={`inline-flex min-h-11 items-end gap-1 rounded-sm text-left ${focus}`}
+        className={`inline-flex min-h-11 items-center gap-1 rounded-sm text-left ${focus}`}
       >
         {label}
-        <span aria-hidden className={active ? "text-olive" : "text-transparent"}>
-          {sort.descending ? "↓" : "↑"}
-        </span>
+        {active && (
+          <span aria-hidden className="text-olive">
+            {sort.descending ? "↓" : "↑"}
+          </span>
+        )}
       </button>
     </th>
   );
