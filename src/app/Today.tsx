@@ -158,6 +158,7 @@ function AlwaysGoodGrid({ rows }: { rows: AlwaysGoodRow[] }) {
 }
 
 function StapleCard({ row }: { row: AlwaysGoodRow }) {
+  const except = row.listing === "except";
   return (
     <li className="min-w-0 rounded-md border border-rule bg-surface/50">
       <Link
@@ -168,24 +169,28 @@ function StapleCard({ row }: { row: AlwaysGoodRow }) {
         <span className="min-w-0 font-editorial leading-tight wrap-anywhere sm:text-lg">{row.name}</span>
       </Link>
       {row.varieties.length > 0 && (
-        <div className="border-t border-rule px-2 text-xs leading-tight text-ink-secondary sm:px-3 sm:text-sm">
-          {row.listing === "except" && <p className="pt-1.5">Except</p>}
-          <p className="flex flex-wrap gap-x-2">
-            {row.varieties.map((variety) => {
-              const { to, label } = varietyDestination(row.id, variety.id, row.hasGuide);
-              return (
-                <Link
-                  key={variety.id}
-                  to={to}
-                  state={{ label }}
-                  className={`${textLink} min-w-11 max-w-full wrap-anywhere underline`}
-                >
-                  {variety.name}
-                </Link>
-              );
-            })}
-          </p>
-        </div>
+        <p
+          className={`flex flex-wrap items-center border-t border-rule text-xs leading-tight text-ink-secondary sm:px-3 sm:text-sm ${
+            except ? "gap-x-0.5 px-1 sm:gap-x-1.5" : "gap-x-2 px-2"
+          }`}
+        >
+          {except && <span>Except</span>}
+          {row.varieties.map((variety) => {
+            const { to, label } = varietyDestination(row.id, variety.id, row.hasGuide);
+            return (
+              <Link
+                key={variety.id}
+                to={to}
+                state={{ label }}
+                className={`${textLink} min-w-11 max-w-full wrap-anywhere underline ${
+                  except ? "basis-11 grow sm:basis-auto sm:grow-0" : ""
+                }`}
+              >
+                {variety.name}
+              </Link>
+            );
+          })}
+        </p>
       )}
     </li>
   );
