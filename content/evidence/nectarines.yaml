@@ -50,3 +50,17 @@ claims:
     specificity: month
     directness: availability
     paraphrase: Mississippi harvest chart lists nectarines in season May to Sep.
+  - source: freshplaza-chilean-stone-fruit-challenging-season
+    origin: cl
+    windows:
+      - { from: nov-2, to: mar-2, rating: prime }
+    specificity: half-month
+    directness: availability
+    paraphrase: Chile's stone fruit season, nectarines included, starts with air shipments in late November and ends in late March.
+  - source: ffp-california-stone-fruit-2024
+    origin: us-ca
+    windows:
+      - { from: may-1, to: sep-1, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Most California stone fruit, nectarines included, is in season from May to mid-September.

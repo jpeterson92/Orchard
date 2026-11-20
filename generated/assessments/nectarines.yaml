@@ -6,7 +6,7 @@ status: draft
 rated by: origin
 peak worth seeking: true
 always good: false
-outlook: "SSSSSS··SSPPPPPPGGSSSSSS (Jan to Dec, two windows a month: P Peak, G Good, S Skip, · Limited evidence)"
+outlook: "SSSSSSSSSSPPPPPPGGSSSSSS (Jan to Dec, two windows a month: P Peak, G Good, S Skip, · Limited evidence)"
 windows:
   jan-1:
     when: early January (from 2026-01-01)
@@ -172,27 +172,57 @@ windows:
     today: not on Today
   apr-1:
     when: early April (from 2026-04-01)
-    verdict: limited
-    rule: 1
+    verdict: skip
+    rule: 2
     basis: typical
-    decided: none
+    decided:
+      origin: cl
+      rating: poor
+      evidence: medium
+    weights: volume
+    typical: ["cl poor 52.1% (supply 0.16, thin)", "us-ca poor 47.9% (supply 0.05, thin)"]
+    peak:
+      share: 0.0%
+      available: "no: no origin at this level"
+      whole bin: no (≤ 75.0%)
+      origins: []
+    good:
+      share: 0.0%
+      available: "no: no origin at this level"
+      whole bin: no (≤ 75.0%)
+      origins: []
     look for: []
     label note: false
-    reasons: [origin-unrated cl, origin-unrated us-ca]
-    confidence: medium (coverage)
-    markers: []
+    reasons: [rated poor (origin cl)]
+    confidence: high
+    markers: [improves (jun-1)]
     today: not on Today
   apr-2:
     when: late April (from 2026-04-16)
-    verdict: limited
-    rule: 1
+    verdict: skip
+    rule: 2
     basis: typical
-    decided: none
+    decided:
+      origin: cl
+      rating: poor
+      evidence: medium
+    weights: volume
+    typical: ["cl poor 52.1% (supply 0.16, thin)", "us-ca poor 47.9% (supply 0.05, thin)"]
+    peak:
+      share: 0.0%
+      available: "no: no origin at this level"
+      whole bin: no (≤ 75.0%)
+      origins: []
+    good:
+      share: 0.0%
+      available: "no: no origin at this level"
+      whole bin: no (≤ 75.0%)
+      origins: []
     look for: []
     label note: false
-    reasons: [origin-unrated cl]
-    confidence: medium (coverage)
-    markers: []
+    reasons: [rated poor (origin cl)]
+    confidence: high
+    markers: [improves (jun-1)]
     today: not on Today
   may-1:
     when: early May (from 2026-05-01)

@@ -1100,12 +1100,6 @@
   url: https://www.freshplaza.com/article/9206935/overall-stone-fruit-volumes-from-chile-are-down-but-market-is-steady/
   accessed: 2026-11-19
   tier: mainstream
-- id: freshplaza-chile-stone-fruit-2025
-  title: "Finishing a challenging season on Chilean stone fruit"
-  publisher: FreshPlaza
-  url: https://www.freshplaza.com/article/9715897/finishing-a-challenging-season-on-chilean-stone-fruit
-  accessed: 2026-11-18
-  tier: mainstream
 - id: scripps-summer-fruit-months
   title: "These are the months each summer fruit tastes best"
   publisher: Scripps News
@@ -1705,6 +1699,12 @@
   title: "Central American melon season is off to a good start"
   publisher: FreshPlaza
   url: https://www.freshplaza.com/north-america/article/2189028/central-american-melon-season-is-off-to-a-good-start/
+  accessed: 2026-11-19
+  tier: mainstream
+- id: ffp-california-stone-fruit-2024
+  title: "California stone fruit growers anticipate positive season"
+  publisher: FreshFruitPortal
+  url: https://www.freshfruitportal.com/news/2024/05/14/california-stone-fruit-growers-anticipate-positive-season/
   accessed: 2026-11-19
   tier: mainstream
 - id: freshplaza-offshore-melon-transition

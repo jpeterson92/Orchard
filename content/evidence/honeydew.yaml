@@ -94,3 +94,10 @@ claims:
     specificity: month
     directness: availability
     paraphrase: Honduras grows cantaloupe, Galia and honeydew melons, exporting them from December to June.
+  - source: freshplaza-offshore-melon-transition
+    origin: gt
+    windows:
+      - { from: nov-1, to: apr-2, rating: prime }
+    specificity: month
+    directness: availability
+    paraphrase: Guatemalan melons, honeydew included, ship from November, with a spring harvest giving promotable volume in March and April.

@@ -55,7 +55,7 @@ origins:
       - { from: jan-1, to: dec-2, rating: poor }
   - origin: gt
     windows:
-      - { from: jan-1, to: apr-2, rating: poor }
+      - { from: jan-1, to: may-2, rating: poor }
       - { from: dec-1, to: dec-2, rating: poor }
   - origin: hn
     windows:
