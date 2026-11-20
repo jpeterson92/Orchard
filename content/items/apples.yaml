@@ -161,10 +161,15 @@ varieties:
     plu: { codes: [4019, 4152, 4153, 4154], sources: [ifps-plu-codes] }
     sources: [usapple-mcintosh, veritable-apple-guide, atk-apples-for-cooking]
     windows:
-      - { from: sep-1, to: nov-1, rating: prime }
+      - { from: sep-1, to: sep-2, rating: prime }
+      - from: oct-1
+        to: nov-1
+        rating: fair
+        reason: McIntosh softens fast once picked; Eat Like No One Else finds it worth eating only in September, outweighing the model panel's prime.
       - { from: nov-2, to: dec-2, rating: fair }
       - { from: jan-1, to: apr-2, rating: poor }
     quotedAs: [mcintosh]
+    recommended: false
   - id: braeburn
     name: Braeburn
     traits: { sweetness: 3, tartness: 3, crispness: 4, juiciness: 4, holds-shape: 5 }

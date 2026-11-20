@@ -28,6 +28,8 @@ export interface AppVariety {
   /** On guides with an overall rating (apples): the mean of the source's and the editorial 0–100 scores, and its
    * tier. */
   overall: { score: number; tier: OverallTier } | null;
+  /** False for a variety never worth seeking out: it is never offered as an alternative. */
+  recommended: boolean;
 }
 
 /** The guide's use chips a variety's best uses fall under: a best use containing a chip's match text, ignoring
@@ -178,6 +180,7 @@ export function appData(data: Dataset, builtOn: string, art: ArtMap, about: Abou
         traits: v.traits,
         ripeCue: v.ripeCue ?? null,
         overall: overallOf(v.overallScore, guideFor(item.id)?.overall),
+        recommended: v.recommended !== false,
       })),
       guide: guideFor(item.id)?.id ?? null,
       selections: item.selections.map((s) => ({ id: s.id, label: s.label, cue: s.cue })),

@@ -45,7 +45,9 @@ const itemArb: fc.Arbitrary<ItemInputs> = fc
     // P20: origins cited as commonly in stores, by month.
     cited: months(fc.subarray([...ORIGINS], { maxLength: 1 })),
     supply: fc.tuple(...ORIGINS.map(() => months(supplyValue))),
-    varieties: fc.array(fc.record({ s: series, inStore: months(fc.boolean()) }), { maxLength: 3 }),
+    varieties: fc.array(fc.record({ s: series, inStore: months(fc.boolean()), recommended: fc.boolean() }), {
+      maxLength: 3,
+    }),
     evidenceBasis: fc.constantFrom("supply+assessment" as const, "assessment-only" as const),
     alwaysGood: fc.boolean(),
     peakWorthSeeking: fc.boolean(),
@@ -64,7 +66,12 @@ const itemArb: fc.Arbitrary<ItemInputs> = fc
     alwaysGood: r.alwaysGood,
     peakWorthSeeking: r.peakWorthSeeking,
     origins: Object.fromEntries(r.rated.map((o, i) => [o, r.seriesList[i] ?? { windows: [] }])),
-    varieties: r.varieties.map((v, i) => ({ id: `v${i}`, ...v.s, inStore: v.inStore })),
+    varieties: r.varieties.map((v, i) => ({
+      id: `v${i}`,
+      ...v.s,
+      inStore: v.inStore,
+      ...(v.recommended ? {} : { recommended: false as const }),
+    })),
     selections: r.varieties.length > 0 ? [] : r.selections.map((s, i) => ({ id: `s${i}`, ...s })),
     typicalOrigins: r.typical,
     typicalShares: r.typical.map((os, m) =>
@@ -282,7 +289,7 @@ describe("verdict engine invariants", () => {
       RUNS,
     ));
 
-  it("a variety-rated item takes the best in-store variety verdict, and its line holds that verdict", () =>
+  it("a variety-rated item takes the best in-store recommended variety verdict, and its line holds that verdict", () =>
     fc.assert(
       fc.property(itemArb, ctxArb, (item, ctx) => {
         if (item.varieties.length === 0) return;
@@ -294,14 +301,19 @@ describe("verdict engine invariants", () => {
           expect(r.verdict).toBe("skip");
           return;
         }
-        const inStore = Object.values(r.byVariety).filter((v) => v.inStore);
+        const skipped = new Set(item.varieties.filter((v) => v.recommended === false).map((v) => v.id));
+        const inStore = Object.entries(r.byVariety)
+          .filter(([id, v]) => v.inStore && !skipped.has(id))
+          .map(([, v]) => v);
         const best = Math.max(-1, ...inStore.map((v) => verdictRank(asItem(v.verdict))));
         // P19: a Peak outside the item's main Peak season reads Good; its line still names the best varieties.
         const held = demoted(r) ? "peak" : r.verdict;
         if (inStore.length === 0) expect(r.verdict).toBe("limited");
         else expect(verdictRank(held)).toBe(best);
-        for (const id of r.varietyLine ?? [])
+        for (const id of r.varietyLine ?? []) {
+          expect(skipped.has(id)).toBe(false);
           expect(asItem(r.byVariety[id]?.verdict ?? "limited")).toBe(held);
+        }
       }),
       RUNS,
     ));

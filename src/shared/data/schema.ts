@@ -184,6 +184,9 @@ export const varietySchema = z.strictObject({
   quotedAs: z.array(id).min(1).optional(),
   /** P13: cited months it is commonly in supermarkets, where USDA's terminal reports don't name it. */
   inStores,
+  /** Editorial: widely sold but never worth seeking out (McIntosh). Today never names it and it is never offered
+   * as an alternative; its own page and label advice still rate it. */
+  recommended: z.literal(false).optional(),
 });
 
 /** P16: what a shopper can pick out by the sign or label, e.g. local field tomatoes, grouping rated origins. */

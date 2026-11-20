@@ -27,6 +27,8 @@ export interface RatedVariety extends RatedSeries {
   id: VarietyId;
   /** Indexed by month 0–11: the variety is typically in stores (P13). */
   inStore: readonly boolean[];
+  /** Editorial: never holds the item verdict or the card's variety line (P13). */
+  recommended?: false;
 }
 
 /** P16: what a shopper can pick out by the sign or label (local field tomatoes), grouping rated origins. */
@@ -531,11 +533,11 @@ function staleSnapshot(item: ItemInputs, date: PlainDate, env: Env): boolean {
   return date.year * 12 + date.month - (y * 12 + m) > env.rules.snapshotMaxAgeMonths;
 }
 
-/** P13: the item result is the best among in-store rated varieties, ties by confidence, then file order. */
+/** P13: the item result is the best among in-store recommended varieties, ties by confidence, then file order. */
 function bestVariety(item: ItemInputs, window: number, ctx: EvalContext, env: Env) {
   const month = monthOf(window);
   const ranked = item.varieties
-    .filter((v) => v.inStore[month] === true)
+    .filter((v) => v.inStore[month] === true && v.recommended !== false)
     .map((v, order) => ({
       id: v.id,
       order,

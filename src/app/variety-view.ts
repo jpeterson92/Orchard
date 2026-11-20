@@ -87,7 +87,7 @@ export function alternatives(
   const rank = (s: ReturnType<typeof status>) => (s === "peak" ? 3 : s === "good" ? 2 : 1);
   return item.varieties
     .flatMap((v): (Alternative & { rank: number })[] => {
-      if (v.id === variety.id) return [];
+      if (v.id === variety.id || !v.recommended) return [];
       const s = status(v.id);
       if (s === "out" || s === "skip") return [];
       if (variety.uses.length > 0 && !v.uses.some((u) => variety.uses.includes(u))) return [];

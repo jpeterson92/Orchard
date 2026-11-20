@@ -16,11 +16,11 @@ apples,jul-1,2026-07-01,good,variety,fuji,fair,medium,high,,,,,,,
 apples,jul-2,2026-07-16,good,variety,fuji,fair,medium,high,,,,,,,
 apples,aug-1,2026-08-01,good,variety,fuji,fair,medium,high,,,,,,,
 apples,aug-2,2026-08-16,peak,variety,gala,prime,medium,high,,,,,,best right now,Gala
-apples,sep-1,2026-09-01,peak,variety,honeycrisp,prime,medium,high,,,,,,best right now,"Honeycrisp, Gala and McIntosh"
-apples,sep-2,2026-09-16,peak,variety,honeycrisp,prime,high,high,,,,,,best right now,"Honeycrisp, Gala and McIntosh"
-apples,oct-1,2026-10-01,peak,variety,honeycrisp,prime,high,high,,,,,,best right now,"Honeycrisp, Gala, Fuji and 2 more"
-apples,oct-2,2026-10-16,peak,variety,honeycrisp,prime,medium,high,,,,,,best right now,"Honeycrisp, Gala, Fuji and 2 more"
-apples,nov-1,2026-11-01,peak,variety,honeycrisp,prime,medium,high,,,,,,best right now,"Honeycrisp, Gala, Fuji and 3 more"
+apples,sep-1,2026-09-01,peak,variety,honeycrisp,prime,medium,high,,,,,,best right now,Honeycrisp and Gala
+apples,sep-2,2026-09-16,peak,variety,honeycrisp,prime,high,high,,,,,,best right now,Honeycrisp and Gala
+apples,oct-1,2026-10-01,peak,variety,honeycrisp,prime,high,high,,,,,,best right now,"Honeycrisp, Gala, Fuji and Ambrosia"
+apples,oct-2,2026-10-16,peak,variety,honeycrisp,prime,medium,high,,,,,,best right now,"Honeycrisp, Gala, Fuji and Ambrosia"
+apples,nov-1,2026-11-01,peak,variety,honeycrisp,prime,medium,high,,,,,,best right now,"Honeycrisp, Gala, Fuji and 2 more"
 apples,nov-2,2026-11-16,peak,variety,honeycrisp,prime,medium,high,,,,,,best right now,"Honeycrisp, Gala, Fuji and 2 more"
 apples,dec-1,2026-12-01,peak,variety,fuji,prime,medium,high,,,,,,best right now,"Fuji, Pink Lady and Ambrosia"
 apples,dec-2,2026-12-16,peak,variety,fuji,prime,medium,high,,,,,,best right now,"Fuji, Pink Lady and Ambrosia"

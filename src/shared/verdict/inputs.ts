@@ -101,6 +101,7 @@ export function itemInputs(item: Item, data: Dataset): ItemInputs {
             id: v.id,
             ...series(v.windows, claims, sources, { variety: v.id }, item, data),
             inStore: inStore(item, v, data),
+            ...(v.recommended === false ? { recommended: false as const } : {}),
           },
         ]
       : [],

@@ -20,6 +20,7 @@ const v = (id: string, traits: Record<string, number>, uses: string[] = []): App
   traits,
   ripeCue: null,
   overall: null,
+  recommended: true,
 });
 
 describe("Can't find it? Try…", () => {
@@ -51,6 +52,11 @@ describe("Can't find it? Try…", () => {
     expect(alternatives(items, thin, all).map((a) => a.id)).toEqual(["c"]);
     const none = v("a", {});
     expect(alternatives({ varieties: [none, v("b", {})] }, none, all)).toEqual([]);
+  });
+
+  it("never offers a variety that isn't recommended", () => {
+    const meh = { ...v("b", base.traits, ["snacking"]), recommended: false };
+    expect(alternatives({ varieties: [base, meh] }, base, all)).toEqual([]);
   });
 
   it("leaves out rated varieties not usually in stores now or Skip today, never itself", () => {

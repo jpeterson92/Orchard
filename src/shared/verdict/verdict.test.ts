@@ -812,6 +812,27 @@ describe("items rated by variety (P13)", () => {
     );
     expect(r.confidence).toBe("high");
   });
+  it("a variety not recommended never holds the item verdict or line, but keeps its own rating", () => {
+    const i = item({
+      ...base,
+      varieties: [variety("a", rated("fair")), { ...variety("b", rated("prime")), recommended: false }],
+    });
+    expect(line(i)).toEqual(["good", ["a"]]);
+    expect(evaluate(i, today, ENV).byVariety.b).toMatchObject({ verdict: "peak", inStore: true });
+    expect(evaluate(i, { ...today, labelVariety: "b" }, ENV).verdict).toBe("peak");
+  });
+  it("Limited evidence when the only in-store variety is not recommended", () => {
+    const r = evaluate(
+      item({ ...base, varieties: [{ ...variety("a", rated("prime")), recommended: false }] }),
+      today,
+      ENV,
+    );
+    expect([r.verdict, r.varietyLine, r.reasons]).toEqual([
+      "limited",
+      null,
+      [{ code: "no-variety-in-stores" }],
+    ]);
+  });
   it("labelVariety rates that variety even out of stores", () => {
     const i = item({
       ...base,

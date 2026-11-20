@@ -341,7 +341,7 @@ windows:
     markers: [reliable-year-round]
     today:
       section: best right now
-      line: Honeycrisp, Gala and McIntosh
+      line: Honeycrisp and Gala
       reason: none
       origin: Washington
       avoid: none
@@ -366,7 +366,7 @@ windows:
     markers: [reliable-year-round]
     today:
       section: best right now
-      line: Honeycrisp, Gala and McIntosh
+      line: Honeycrisp and Gala
       reason: none
       origin: Washington
       avoid: none
@@ -390,14 +390,14 @@ windows:
     markers: [reliable-year-round]
     today:
       section: best right now
-      line: Honeycrisp, Gala, Fuji and 2 more
+      line: Honeycrisp, Gala, Fuji and Ambrosia
       reason: none
       origin: Washington
       avoid: none
       tags: []
     varieties:
-      peak: [Honeycrisp, Gala, Fuji, Ambrosia, McIntosh]
-      good: [Granny Smith, Pink Lady, Cosmic Crisp]
+      peak: [Honeycrisp, Gala, Fuji, Ambrosia]
+      good: [Granny Smith, Pink Lady, Cosmic Crisp, McIntosh]
   oct-2:
     when: late October (from 2026-10-16)
     verdict: peak
@@ -414,14 +414,14 @@ windows:
     markers: [reliable-year-round]
     today:
       section: best right now
-      line: Honeycrisp, Gala, Fuji and 2 more
+      line: Honeycrisp, Gala, Fuji and Ambrosia
       reason: none
       origin: Washington
       avoid: none
       tags: []
     varieties:
-      peak: [Honeycrisp, Gala, Fuji, Ambrosia, McIntosh]
-      good: [Granny Smith, Pink Lady, Cosmic Crisp]
+      peak: [Honeycrisp, Gala, Fuji, Ambrosia]
+      good: [Granny Smith, Pink Lady, Cosmic Crisp, McIntosh]
   nov-1:
     when: early November (from 2026-11-01)
     verdict: peak
@@ -438,14 +438,14 @@ windows:
     markers: [reliable-year-round]
     today:
       section: best right now
-      line: Honeycrisp, Gala, Fuji and 3 more
+      line: Honeycrisp, Gala, Fuji and 2 more
       reason: none
       origin: Washington
       avoid: none
       tags: []
     varieties:
-      peak: [Honeycrisp, Gala, Fuji, Pink Lady, Ambrosia, McIntosh]
-      good: [Granny Smith]
+      peak: [Honeycrisp, Gala, Fuji, Pink Lady, Ambrosia]
+      good: [Granny Smith, McIntosh]
       not in stores: [Cosmic Crisp]
   nov-2:
     when: late November (from 2026-11-16)
