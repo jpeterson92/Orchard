@@ -1,13 +1,13 @@
 # PROGRESS
 
-Updated: 2026-11-20 · Phase: build · Live: https://orchard.jpeterson92.workers.dev (M0 placeholder) · 20 commits unsynced
+Updated: 2026-11-20 · Phase: build · Live: https://orchard.jpeterson92.workers.dev (current build, deployed 2026-11-20) · synced
 
 ## Milestones
 
 - **Done:** M0 scaffold and deploy · M1 USDA probe · M2 schemas, verdict engine (P1, P10–P20), evidence pipeline, `usda:derive`, `content:report`, precalculated assessments in `generated/assessments/` (CI fails on drift) · model panel run `claude-opus-5-5-2026-11-19` (prompt v3) · M4 offline · M5 planning date and shared dates · M6 navigation, Browse, Calendar, search, Methods and Privacy · M8 measurement (web vitals and daily event counts in D1).
-- **M3:** built; closes with Jared's phone review, which needs a preview deploy.
+- **M3:** built; closes with Jared's phone review on the live URL.
 - **M7 variety guides:** built (finder, variety pages, PLU numbers, apple overall rating, "What matters" leads); closes with Jared's review of the three leads.
-- **M9:** slices 1–2 done (security headers, axe in light and dark, WebKit e2e, page titles). The rest waits on devices, the domain and the independent reviewer; check the security headers on the live URL (`curl -I`) after the next deploy.
+- **M9:** slices 1–2 done (security headers, axe in light and dark, WebKit e2e, page titles). The rest waits on devices, the domain and the independent reviewer. Security headers checked on the live URL.
 - **Content:** all 30 first-release items drafted, and the 24 Today summaries reviewed.
 - **Art:** all 30 items and 43 varieties have approved art in the app (73 paintings), including the nine round-1 repaints (folder 21).
 
@@ -23,7 +23,7 @@ Jared:
 - **Art:** folder 19 has first passes still to paint (mini sweet and hot peppers, eggplant and others).
 - Guide leads (`content/guides.yaml`, `draft`, atop each guide): approve or rewrite.
 - Methods and Privacy drafts (`content/methods.md`, `content/privacy.md`): approve or edit.
-- Preview deploy for the M3 phone review, when you want it (it also creates the free D1 database `orchard`; then `npm run db:migrate`).
+- M3 phone review: try the live URL in a store (add it to the home screen; it works offline).
 - Recruit the independent reviewer Gate 1 needs (product spec §12).
 - Review the drafts in `content:report` (`npm run content:report > .cache/content-report.txt`) and the variety traits.
 - Optional: model panel runs from other providers (`content/panel/README.md`).
@@ -51,5 +51,6 @@ Each illustrator chat works in its own `art/staging/<NN>-<topic>/` folder (`art/
 
 ## Environment notes
 
+- D1 database `orchard` exists with migrations 0001–0002 applied. `npm run db:migrate` prompts; from Claude's shell set `CI=true` first. GitHub remote is `jpeterson92/Orchard`.
 - Node 26.13 LTS (Scoop). Wrangler is signed in (OAuth) to Jared's account; the GitHub CLI as jpeterson92.
 - `npm run dev` has exited on start with a miniflare ECONNRESET. `npm run build` plus the `orchard-preview` launch config works; restart the preview server after each rebuild. A returning tab keeps the previous build's offline copy until its next launch.
