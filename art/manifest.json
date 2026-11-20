@@ -1,118 +1,566 @@
 {
   "assets": [
     {
-      "id": "apples-thumbnail-v1",
+      "id": "apples-ambrosia-thumbnail-v1",
       "item": "apples",
+      "variety": "ambrosia",
       "role": "thumbnail",
-      "alt": "A whole red apple with a leaf",
+      "alt": "An Ambrosia apple with a rosy-red blush and a creamy-yellow side",
       "revision": 1,
-      "status": "requested"
+      "status": "approved"
     },
     {
-      "id": "apples-honeycrisp-thumbnail-v1",
+      "id": "apples-braeburn-thumbnail-v1",
       "item": "apples",
-      "variety": "honeycrisp",
+      "variety": "braeburn",
       "role": "thumbnail",
-      "alt": "A large Honeycrisp apple, red mottled over yellow",
+      "alt": "A Braeburn apple with russet-red streaks over yellow-green skin",
       "revision": 1,
-      "status": "requested"
+      "status": "approved"
     },
     {
-      "id": "apples-gala-thumbnail-v1",
-      "item": "apples",
-      "variety": "gala",
-      "role": "thumbnail",
-      "alt": "A small Gala apple with orange-red stripes over gold",
-      "revision": 1,
-      "status": "requested"
-    },
-    {
-      "id": "apples-fuji-thumbnail-v1",
-      "item": "apples",
-      "variety": "fuji",
-      "role": "thumbnail",
-      "alt": "A round Fuji apple, pinkish-red over yellow-green",
-      "revision": 1,
-      "status": "requested"
-    },
-    {
-      "id": "apples-granny-smith-thumbnail-v1",
-      "item": "apples",
-      "variety": "granny-smith",
-      "role": "thumbnail",
-      "alt": "A bright green Granny Smith apple",
-      "revision": 1,
-      "status": "requested"
-    },
-    {
-      "id": "apples-pink-lady-thumbnail-v1",
-      "item": "apples",
-      "variety": "pink-lady",
-      "role": "thumbnail",
-      "alt": "An oval Pink Lady apple, pink blush over yellow-green",
-      "revision": 1,
-      "status": "requested"
-    },
-    {
-      "id": "apples-cosmic-crisp-thumbnail-v1",
+      "id": "apples-cosmic-crisp-thumbnail-v2",
       "item": "apples",
       "variety": "cosmic-crisp",
       "role": "thumbnail",
       "alt": "A dark red Cosmic Crisp apple speckled with pale dots",
-      "revision": 1,
-      "status": "requested"
+      "revision": 2,
+      "status": "approved"
     },
     {
-      "id": "strawberries-thumbnail-v1",
-      "item": "strawberries",
+      "id": "apples-envy-thumbnail-v1",
+      "item": "apples",
+      "variety": "envy",
       "role": "thumbnail",
-      "alt": "Two red strawberries with green caps",
+      "alt": "A broad deep-red Envy apple with yellow specks and a yellow-green stem cavity",
       "revision": 1,
-      "status": "requested"
+      "status": "approved"
     },
     {
-      "id": "mandarins-thumbnail-v1",
-      "item": "mandarins",
+      "id": "apples-fuji-thumbnail-v2",
+      "item": "apples",
+      "variety": "fuji",
       "role": "thumbnail",
-      "alt": "A whole mandarin with leaves and two peeled segments",
-      "revision": 1,
-      "status": "requested"
+      "alt": "A round Fuji apple, pinkish-red over yellow-green",
+      "revision": 2,
+      "status": "approved"
     },
     {
-      "id": "mandarins-clementine-thumbnail-v1",
+      "id": "apples-gala-thumbnail-v3",
+      "item": "apples",
+      "variety": "gala",
+      "role": "thumbnail",
+      "alt": "A small Gala apple with orange-red stripes over gold",
+      "revision": 3,
+      "status": "approved"
+    },
+    {
+      "id": "apples-golden-delicious-thumbnail-v1",
+      "item": "apples",
+      "variety": "golden-delicious",
+      "role": "thumbnail",
+      "alt": "A golden-yellow Golden Delicious apple with fine tan speckles",
+      "revision": 1,
+      "status": "approved"
+    },
+    {
+      "id": "apples-granny-smith-thumbnail-v2",
+      "item": "apples",
+      "variety": "granny-smith",
+      "role": "thumbnail",
+      "alt": "A bright green Granny Smith apple",
+      "revision": 2,
+      "status": "approved"
+    },
+    {
+      "id": "apples-honeycrisp-thumbnail-v3",
+      "item": "apples",
+      "variety": "honeycrisp",
+      "role": "thumbnail",
+      "alt": "A large Honeycrisp apple, red mottled over yellow",
+      "revision": 3,
+      "status": "approved"
+    },
+    {
+      "id": "apples-jazz-thumbnail-v1",
+      "item": "apples",
+      "variety": "jazz",
+      "role": "thumbnail",
+      "alt": "A compact Jazz apple with an orange-red blush over a golden-yellow shoulder",
+      "revision": 1,
+      "status": "approved"
+    },
+    {
+      "id": "apples-kanzi-thumbnail-v1",
+      "item": "apples",
+      "variety": "kanzi",
+      "role": "thumbnail",
+      "alt": "A squat Kanzi apple with a red blush and a bright yellow-green shoulder",
+      "revision": 1,
+      "status": "approved"
+    },
+    {
+      "id": "apples-mcintosh-thumbnail-v1",
+      "item": "apples",
+      "variety": "mcintosh",
+      "role": "thumbnail",
+      "alt": "A round McIntosh apple with cool red skin and a yellow-green shoulder",
+      "revision": 1,
+      "status": "approved"
+    },
+    {
+      "id": "apples-pink-lady-thumbnail-v2",
+      "item": "apples",
+      "variety": "pink-lady",
+      "role": "thumbnail",
+      "alt": "An oval Pink Lady apple, pink blush over yellow-green",
+      "revision": 2,
+      "status": "approved"
+    },
+    {
+      "id": "apples-red-delicious-thumbnail-v1",
+      "item": "apples",
+      "variety": "red-delicious",
+      "role": "thumbnail",
+      "alt": "A deep crimson Red Delicious apple with a tapered, lobed base",
+      "revision": 1,
+      "status": "approved"
+    },
+    {
+      "id": "apples-snapdragon-thumbnail-v1",
+      "item": "apples",
+      "variety": "snapdragon",
+      "role": "thumbnail",
+      "alt": "A gently tapered SnapDragon apple with crimson skin, pale speckles, and a golden-green crown",
+      "revision": 1,
+      "status": "approved"
+    },
+    {
+      "id": "apples-sugarbee-thumbnail-v1",
+      "item": "apples",
+      "variety": "sugarbee",
+      "role": "thumbnail",
+      "alt": "A broad SugarBee apple with brick-red skin and subtle olive-gold flecks",
+      "revision": 1,
+      "status": "approved"
+    },
+    {
+      "id": "apples-sweetango-thumbnail-v1",
+      "item": "apples",
+      "variety": "sweetango",
+      "role": "thumbnail",
+      "alt": "A round SweeTango apple with a rosy-red blush, fine gold speckles and a golden flank",
+      "revision": 1,
+      "status": "approved"
+    },
+    {
+      "id": "apples-thumbnail-v2",
+      "item": "apples",
+      "role": "thumbnail",
+      "alt": "A whole red apple with a leaf",
+      "revision": 2,
+      "status": "approved"
+    },
+    {
+      "id": "apricots-thumbnail-v1",
+      "item": "apricots",
+      "role": "thumbnail",
+      "alt": "A golden-orange apricot beside a cut half with its stone",
+      "revision": 1,
+      "status": "approved"
+    },
+    {
+      "id": "blackberries-thumbnail-v1",
+      "item": "blackberries",
+      "role": "thumbnail",
+      "alt": "Two deep purple-black blackberries with plump rounded drupelets",
+      "revision": 1,
+      "status": "approved"
+    },
+    {
+      "id": "blueberries-thumbnail-v1",
+      "item": "blueberries",
+      "role": "thumbnail",
+      "alt": "Five dusty blue blueberries with recessed star-shaped crowns",
+      "revision": 1,
+      "status": "approved"
+    },
+    {
+      "id": "cantaloupe-thumbnail-v2",
+      "item": "cantaloupe",
+      "role": "thumbnail",
+      "alt": "A whole cantaloupe with beige netting and an orange-fleshed wedge",
+      "revision": 2,
+      "status": "approved"
+    },
+    {
+      "id": "cherries-thumbnail-v1",
+      "item": "cherries",
+      "role": "thumbnail",
+      "alt": "Two deep red sweet cherries with slender green stems",
+      "revision": 1,
+      "status": "approved"
+    },
+    {
+      "id": "figs-thumbnail-v1",
+      "item": "figs",
+      "role": "thumbnail",
+      "alt": "A dark purple Black Mission fig beside a cut half with pink flesh and tiny seeds",
+      "revision": 1,
+      "status": "approved"
+    },
+    {
+      "id": "grapefruit-thumbnail-v2",
+      "item": "grapefruit",
+      "role": "thumbnail",
+      "alt": "A yellow grapefruit with a cut half showing rose-pink segments",
+      "revision": 2,
+      "status": "approved"
+    },
+    {
+      "id": "grapes-thumbnail-v2",
+      "item": "grapes",
+      "role": "thumbnail",
+      "alt": "A tapered bunch of red-purple table grapes on a short green stem",
+      "revision": 2,
+      "status": "approved"
+    },
+    {
+      "id": "mandarins-clementine-thumbnail-v2",
       "item": "mandarins",
       "variety": "clementine",
       "role": "thumbnail",
       "alt": "A small clementine with a leaf",
-      "revision": 1,
-      "status": "requested"
+      "revision": 2,
+      "status": "approved"
     },
     {
-      "id": "mandarins-w-murcott-thumbnail-v1",
-      "item": "mandarins",
-      "variety": "w-murcott",
-      "role": "thumbnail",
-      "alt": "A flattened, deep reddish-orange W. Murcott mandarin",
-      "revision": 1,
-      "status": "requested"
-    },
-    {
-      "id": "mandarins-minneola-thumbnail-v1",
-      "item": "mandarins",
-      "variety": "minneola",
-      "role": "thumbnail",
-      "alt": "A Minneola tangelo with its knobbed neck",
-      "revision": 1,
-      "status": "requested"
-    },
-    {
-      "id": "mandarins-gold-nugget-thumbnail-v1",
+      "id": "mandarins-gold-nugget-thumbnail-v3",
       "item": "mandarins",
       "variety": "gold-nugget",
       "role": "thumbnail",
       "alt": "A Gold Nugget mandarin with bumpy, pebbled skin",
+      "revision": 3,
+      "status": "approved"
+    },
+    {
+      "id": "mandarins-minneola-thumbnail-v2",
+      "item": "mandarins",
+      "variety": "minneola",
+      "role": "thumbnail",
+      "alt": "A Minneola tangelo with its knobbed neck",
+      "revision": 2,
+      "status": "approved"
+    },
+    {
+      "id": "mandarins-pixie-thumbnail-v1",
+      "item": "mandarins",
+      "variety": "pixie",
+      "role": "thumbnail",
+      "alt": "A small, round yellow-orange Pixie mandarin with finely pebbled rind",
       "revision": 1,
-      "status": "requested"
+      "status": "approved"
+    },
+    {
+      "id": "mandarins-satsuma-thumbnail-v2",
+      "item": "mandarins",
+      "variety": "satsuma",
+      "role": "thumbnail",
+      "alt": "A gently flattened orange Satsuma mandarin with a narrow green leaf",
+      "revision": 2,
+      "status": "approved"
+    },
+    {
+      "id": "mandarins-sumo-thumbnail-v1",
+      "item": "mandarins",
+      "variety": "sumo",
+      "role": "thumbnail",
+      "alt": "A Sumo mandarin with a raised topknot and bumpy orange rind",
+      "revision": 1,
+      "status": "approved"
+    },
+    {
+      "id": "mandarins-thumbnail-v2",
+      "item": "mandarins",
+      "role": "thumbnail",
+      "alt": "A whole mandarin with leaves and two peeled segments",
+      "revision": 2,
+      "status": "approved"
+    },
+    {
+      "id": "mandarins-w-murcott-thumbnail-v2",
+      "item": "mandarins",
+      "variety": "w-murcott",
+      "role": "thumbnail",
+      "alt": "A flattened, deep reddish-orange W. Murcott mandarin",
+      "revision": 2,
+      "status": "approved"
+    },
+    {
+      "id": "mangoes-ataulfo-thumbnail-v1",
+      "item": "mangoes",
+      "variety": "ataulfo",
+      "role": "thumbnail",
+      "alt": "A slender golden-yellow Ataulfo mango with a gently curved tip",
+      "revision": 1,
+      "status": "approved"
+    },
+    {
+      "id": "mangoes-keitt-thumbnail-v1",
+      "item": "mangoes",
+      "variety": "keitt",
+      "role": "thumbnail",
+      "alt": "A broad oval Keitt mango with green skin and a short stem scar",
+      "revision": 1,
+      "status": "approved"
+    },
+    {
+      "id": "mangoes-kent-thumbnail-v1",
+      "item": "mangoes",
+      "variety": "kent",
+      "role": "thumbnail",
+      "alt": "A broad, dark green Kent mango with yellow flecks and a small wine-red blush",
+      "revision": 1,
+      "status": "approved"
+    },
+    {
+      "id": "mangoes-thumbnail-v1",
+      "item": "mangoes",
+      "role": "thumbnail",
+      "alt": "A whole oval mango with a deep red blush and green and golden skin",
+      "revision": 1,
+      "status": "approved"
+    },
+    {
+      "id": "nectarines-thumbnail-v1",
+      "item": "nectarines",
+      "role": "thumbnail",
+      "alt": "A whole smooth red nectarine with a golden shoulder and shallow seam",
+      "revision": 1,
+      "status": "approved"
+    },
+    {
+      "id": "oranges-blood-thumbnail-v2",
+      "item": "oranges",
+      "variety": "blood",
+      "role": "thumbnail",
+      "alt": "A whole blood orange and a cut half showing deep crimson segments",
+      "revision": 2,
+      "status": "approved"
+    },
+    {
+      "id": "oranges-cara-cara-thumbnail-v1",
+      "item": "oranges",
+      "variety": "cara-cara",
+      "role": "thumbnail",
+      "alt": "A whole Cara Cara navel orange beside a cut half with coral-pink flesh",
+      "revision": 1,
+      "status": "approved"
+    },
+    {
+      "id": "oranges-navel-thumbnail-v2",
+      "item": "oranges",
+      "variety": "navel",
+      "role": "thumbnail",
+      "alt": "A deep orange Navel orange showing its blossom-end navel",
+      "revision": 2,
+      "status": "approved"
+    },
+    {
+      "id": "oranges-thumbnail-v2",
+      "item": "oranges",
+      "role": "thumbnail",
+      "alt": "A whole orange with a green leaf and a cut orange wedge",
+      "revision": 2,
+      "status": "approved"
+    },
+    {
+      "id": "oranges-valencia-thumbnail-v2",
+      "item": "oranges",
+      "variety": "valencia",
+      "role": "thumbnail",
+      "alt": "A Valencia orange with a green patch near the stem and a cut half",
+      "revision": 2,
+      "status": "approved"
+    },
+    {
+      "id": "peaches-thumbnail-v2",
+      "item": "peaches",
+      "role": "thumbnail",
+      "alt": "A golden-yellow peach with a soft rosy blush and a curved seam",
+      "revision": 2,
+      "status": "approved"
+    },
+    {
+      "id": "pears-anjou-thumbnail-v2",
+      "item": "pears",
+      "variety": "anjou",
+      "role": "thumbnail",
+      "alt": "An egg-shaped green Anjou pear with a rounded base and a short stem",
+      "revision": 2,
+      "status": "approved"
+    },
+    {
+      "id": "pears-bartlett-thumbnail-v2",
+      "item": "pears",
+      "variety": "bartlett",
+      "role": "thumbnail",
+      "alt": "A golden-yellow Bartlett pear with a bell-shaped base and a defined shoulder",
+      "revision": 2,
+      "status": "approved"
+    },
+    {
+      "id": "pears-bosc-thumbnail-v2",
+      "item": "pears",
+      "variety": "bosc",
+      "role": "thumbnail",
+      "alt": "A matte cinnamon-brown Bosc pear with a slender neck and curved woody stem",
+      "revision": 2,
+      "status": "approved"
+    },
+    {
+      "id": "pears-comice-thumbnail-v2",
+      "item": "pears",
+      "variety": "comice",
+      "role": "thumbnail",
+      "alt": "A rounded green Comice pear with a short neck and rosy shoulder",
+      "revision": 2,
+      "status": "approved"
+    },
+    {
+      "id": "pears-concorde-thumbnail-v2",
+      "item": "pears",
+      "variety": "concorde",
+      "role": "thumbnail",
+      "alt": "A yellow-green Concorde pear with an elongated, rounded neck and a patch of golden russet",
+      "revision": 2,
+      "status": "approved"
+    },
+    {
+      "id": "pears-red-anjou-thumbnail-v1",
+      "item": "pears",
+      "variety": "red-anjou",
+      "role": "thumbnail",
+      "alt": "A maroon Red Anjou pear with a broad egg-shaped body",
+      "revision": 1,
+      "status": "approved"
+    },
+    {
+      "id": "pears-red-bartlett-thumbnail-v1",
+      "item": "pears",
+      "variety": "red-bartlett",
+      "role": "thumbnail",
+      "alt": "A vivid red Bartlett pear with a bell-shaped base and a distinct neck",
+      "revision": 1,
+      "status": "approved"
+    },
+    {
+      "id": "pears-seckel-thumbnail-v2",
+      "item": "pears",
+      "variety": "seckel",
+      "role": "thumbnail",
+      "alt": "A petite olive-green Seckel pear with a broad maroon blush and a short stem",
+      "revision": 2,
+      "status": "approved"
+    },
+    {
+      "id": "pears-starkrimson-thumbnail-v1",
+      "item": "pears",
+      "variety": "starkrimson",
+      "role": "thumbnail",
+      "alt": "A vivid crimson Starkrimson pear with a thick, curved stem",
+      "revision": 1,
+      "status": "approved"
+    },
+    {
+      "id": "pears-thumbnail-v2",
+      "item": "pears",
+      "role": "thumbnail",
+      "alt": "A golden-green pear with a soft coral blush and a short woody stem",
+      "revision": 2,
+      "status": "approved"
+    },
+    {
+      "id": "persimmons-thumbnail-v1",
+      "item": "persimmons",
+      "role": "thumbnail",
+      "alt": "A squat orange Fuyu persimmon with a broad green four-lobed cap",
+      "revision": 1,
+      "status": "approved"
+    },
+    {
+      "id": "plums-thumbnail-v1",
+      "item": "plums",
+      "role": "thumbnail",
+      "alt": "A whole dark purple plum with a dusty blue-violet bloom",
+      "revision": 1,
+      "status": "approved"
+    },
+    {
+      "id": "pomegranates-thumbnail-v1",
+      "item": "pomegranates",
+      "role": "thumbnail",
+      "alt": "A red pomegranate with a pointed crown beside a cut half showing ruby arils",
+      "revision": 1,
+      "status": "approved"
+    },
+    {
+      "id": "raspberries-thumbnail-v1",
+      "item": "raspberries",
+      "role": "thumbnail",
+      "alt": "Three red raspberries with clustered drupelets and one visible hollow",
+      "revision": 1,
+      "status": "approved"
+    },
+    {
+      "id": "strawberries-thumbnail-v2",
+      "item": "strawberries",
+      "role": "thumbnail",
+      "alt": "Two red strawberries with green caps",
+      "revision": 2,
+      "status": "approved"
+    },
+    {
+      "id": "sweet-corn-thumbnail-v1",
+      "item": "sweet-corn",
+      "role": "thumbnail",
+      "alt": "A partially husked ear of sweet corn with yellow kernels and pale silk",
+      "revision": 1,
+      "status": "approved"
+    },
+    {
+      "id": "tomatoes-cherry-grape-thumbnail-v2",
+      "item": "tomatoes",
+      "variety": "cherry-grape",
+      "role": "thumbnail",
+      "alt": "Two round red cherry tomatoes beside an oblong red grape tomato",
+      "revision": 2,
+      "status": "approved"
+    },
+    {
+      "id": "tomatoes-local-field-thumbnail-v3",
+      "item": "tomatoes",
+      "variety": "local-field",
+      "role": "thumbnail",
+      "alt": "A broad, uneven red tomato with a soft golden-orange blush low on one side",
+      "revision": 3,
+      "status": "approved"
+    },
+    {
+      "id": "tomatoes-thumbnail-v2",
+      "item": "tomatoes",
+      "role": "thumbnail",
+      "alt": "A round scarlet tomato with a small olive-green star-shaped calyx",
+      "revision": 2,
+      "status": "approved"
+    },
+    {
+      "id": "watermelon-thumbnail-v1",
+      "item": "watermelon",
+      "role": "thumbnail",
+      "alt": "A striped green watermelon beside a red wedge with dark seeds",
+      "revision": 1,
+      "status": "approved"
     }
   ]
 }
