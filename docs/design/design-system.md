@@ -222,7 +222,7 @@ Keep reading text to a comfortable measure, approximately 60–70 characters whe
 
 ### In the store
 
-The phone view is the in-store view; there is no separate mode, and the screen sleeps normally. Today reflects offline readiness and data age in one quiet secondary line under the masthead, never a banner.
+The phone view is the in-store view; there is no separate mode, and the screen sleeps normally. Today shows a stale offline copy in one quiet secondary line under the masthead, never a banner, and otherwise says nothing about offline.
 
 ## 6. Component rules and states
 
@@ -240,7 +240,7 @@ One selected state with a restrained orange fill and a contrasting foreground. U
 
 Rows are compact so a shopper can scan many in an aisle (about 100 px tall on a phone). Collapsed content:
 - Recognizable watercolor image, 72 px.
-- Produce name as the strongest text, with quiet uppercase Draft or Sample labels beside it in previews; one preview notice under the masthead explains them.
+- Produce name as the strongest text, with no status labels beside it.
 - Subtle icon and verdict word, with the origin in small secondary text on the same line ("Peak · California"); markers (Last call, Reliable year-round) on a quiet olive line below. When the shopper must pick, a "Look for ones from California" line sits under the name in place of the origin.
 - A short factual reason only when it says more than the section heading (when it fades, when it improves, why it can't be called); "At its best this time of year" is never shown.
 - For items rated by variety, a quieter variety line under the name ("Ataulfo", or "Honeycrisp, Gala, Fuji and Pink Lady"); the image is that variety's, or the item's when the line names more than two.

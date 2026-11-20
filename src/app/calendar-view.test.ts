@@ -13,8 +13,6 @@ const row = (name: string, early: Verdict, late: Verdict): CalendarRow => ({
   alwaysGood: false,
   // Month 5 (June) is windows 10 and 11; every other window is Limited evidence.
   outlook: Array.from({ length: 24 }, (_, w) => (w === 10 ? early : w === 11 ? late : "limited")),
-  draft: false,
-  synthetic: false,
 });
 
 describe("monthSections", () => {

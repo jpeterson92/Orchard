@@ -95,8 +95,6 @@ export interface ItemView {
   outlook: Verdict[];
   window: number;
   supply: SupplyRun[];
-  draft: boolean;
-  synthetic: boolean;
 }
 
 const RATED: Record<"prime" | "fair" | "poor", string> = {
@@ -297,8 +295,6 @@ export function itemView(
     outlook: typicalOutlook(item.inputs, data.env, date.year),
     window,
     supply: supplyRuns(item, data),
-    draft: item.status === "draft",
-    synthetic: item.synthetic,
   };
 }
 

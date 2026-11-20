@@ -39,8 +39,6 @@ export interface Card {
   avoid: string | null;
   pick: string;
   storage: string;
-  draft: boolean;
-  synthetic: boolean;
 }
 
 export interface TodayView {
@@ -218,8 +216,6 @@ export function todayView(data: AppData, date: PlainDate, mode: "today" | "typic
       })(),
       pick: item.cardLine,
       storage: storageLine(item.store),
-      draft: item.status === "draft",
-      synthetic: item.synthetic,
     });
     return {
       id: item.inputs.id,
@@ -234,7 +230,7 @@ export function todayView(data: AppData, date: PlainDate, mode: "today" | "typic
   });
   const groups = groupToday(entries);
   const pick = (ids: string[]) => ids.flatMap((id) => cards.get(id) ?? []);
-  return { summary: data.summaries.lines[window] || null, best: pick(groups.best), good: pick(groups.good) };
+  return { summary: data.summaries[window] || null, best: pick(groups.best), good: pick(groups.good) };
 }
 
 /** A YYYY-MM-DD string as a plain date. */

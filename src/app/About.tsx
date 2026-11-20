@@ -3,7 +3,6 @@
 import appJson from "../generated/app.json";
 import type { AppData } from "../shared/app-data";
 import { useAppDate } from "./date";
-import { StatusLabels } from "./icons";
 import { Masthead, PageTitle } from "./Masthead";
 
 const data = appJson as unknown as AppData;
@@ -38,7 +37,6 @@ function TextPage({
       <main>
         <PageTitle name={title} />
         <h1 className="mt-6 font-editorial text-3xl font-bold">{title}</h1>
-        <StatusLabels draft={text.draft} synthetic={false} />
         {/* Built from our own Markdown in content/, never from user input. */}
         {/* biome-ignore lint/security/noDangerouslySetInnerHtml: build-time HTML from committed content */}
         <div className="page-text" dangerouslySetInnerHTML={{ __html: text.html }} />

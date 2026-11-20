@@ -23,8 +23,6 @@ export interface VarietyView {
   window: number;
   /** "Can't find it? Try…": the closest varieties by traits, up to `MAX_ALTERNATIVES`. */
   alternatives: Alternative[];
-  draft: boolean;
-  synthetic: boolean;
 }
 
 export const MAX_ALTERNATIVES = 2;
@@ -70,8 +68,6 @@ export function varietyView(
       const r = today(id);
       return r === undefined ? "unrated" : r.inStore ? r.verdict : "out";
     }),
-    draft: item.status === "draft",
-    synthetic: item.synthetic,
   };
 }
 

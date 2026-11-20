@@ -238,11 +238,7 @@ v1 uses one information hierarchy on every device. Layouts adapt to the screen w
 
 ### In the store (phone)
 
-There is no mode to switch on. The first visit shows Today at once; once the page has loaded, the offline copy of every covered item downloads in the background, with nothing for the shopper to do (section 10). A quiet line under Today's masthead says where it stands, so the shopper knows it's safe to lose signal:
-
-- "Preparing for offline… 12 of 30 items"
-- "Ready offline · 30 items · supply data through Oct 2026"
-- "Offline copy is from Nov 13; reconnect to refresh" (when the phone is offline and the copy is more than 7 days old)
+There is no mode to switch on. The first visit shows Today at once; once the page has loaded, the offline copy of every covered item downloads in the background, with nothing for the shopper to do (section 10). Today says nothing about it unless the phone is offline and the copy is more than 7 days old; then a quiet line under the masthead reads "Offline copy is from Nov 13; reconnect to refresh".
 
 The phone view is the in-store view: no pop-ups, prompts or animation beyond expand and collapse, and no layout that shifts after load. The screen sleeps normally.
 
@@ -425,7 +421,7 @@ The site has to feel instant on a phone with one bar of signal, be private by de
 | Area | Requirement |
 | --- | --- |
 | Speed | Pass Google's "good" Core Web Vitals on mobile at the 75th percentile: largest content painted ≤ 2.5 s, response to input ≤ 200 ms, layout shift ≤ 0.1 ([source](https://web.dev/articles/vitals)). Today must show its first verdicts within that 2.5 s on a mid-range phone over 4G. |
-| Offline | After the first visit, every covered item works with no signal; the copy downloads by itself in the background. Today shows its readiness status (section 6). |
+| Offline | After the first visit, every covered item works with no signal; the copy downloads by itself in the background. Today speaks up only when the copy is out of date (section 6). |
 | Freshness | Supply data is reference data, refreshed from the last 3 years of USDA reports on demand (about once a year) and reviewed like content. The value signal is weekly (v1.1). Quality windows, seasonal evidence and written content reviewed at least once a year. |
 | Honesty | Every verdict states its evidence basis and confidence. "Data through" and "reviewed" dates are kept distinct and never imply someone checked the produce. Future dates are always labeled as the typical outlook. Missing evidence shows as Limited evidence, never as a default verdict. |
 | Privacy | No account needed. The app never asks for, infers or stores the shopper's location. Analytics are aggregate, with no ad trackers and no selling of data. |

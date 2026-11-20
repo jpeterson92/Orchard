@@ -111,8 +111,8 @@ export interface AppData {
   items: AppItem[];
   guides: AppGuide[];
   categories: AppCategory[];
-  /** The one-line Today summary for each window, 0–23 (product spec §5), and whether they await review. */
-  summaries: { lines: string[]; draft: boolean };
+  /** The one-line Today summary for each window, 0–23 (product spec §5). */
+  summaries: string[];
   /** US state origins (`us-wa`) to names; countries are named with Intl.DisplayNames. */
   stateNames: Record<string, string>;
   /** The build's date (YYYY-MM-DD): prerendered pages show verdicts for it until the phone recomputes. */
@@ -201,10 +201,7 @@ export function appData(data: Dataset, builtOn: string, art: ArtMap, about: Abou
     categories: data.categories
       .filter((c) => data.items.some((i) => i.category === c.id))
       .map((c) => ({ id: c.id, name: c.name, group: c.group })),
-    summaries: {
-      lines: Array.from({ length: WINDOW_COUNT }, (_, i) => data.summaries.windows[windowLabel(i)] ?? ""),
-      draft: data.summaries.status === "draft",
-    },
+    summaries: Array.from({ length: WINDOW_COUNT }, (_, i) => data.summaries.windows[windowLabel(i)] ?? ""),
     stateNames: Object.fromEntries(data.states.map((s) => [`us-${s.state.toLowerCase()}`, s.name])),
     builtOn,
     about,

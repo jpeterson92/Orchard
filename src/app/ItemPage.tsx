@@ -8,9 +8,9 @@ import type { AppData } from "../shared/app-data";
 import { Art } from "./Art";
 import type { BackTo } from "./Browse";
 import { type Mode, useAppDate } from "./date";
-import { StatusLabels, VerdictMark } from "./icons";
+import { VerdictMark } from "./icons";
 import { type ItemView, itemView, type LabelOption, labelResult, type VarietyRow } from "./item-view";
-import { Masthead, PageTitle, PreviewNotice } from "./Masthead";
+import { Masthead, PageTitle } from "./Masthead";
 import { useCount, useVerdictVisible } from "./measure";
 import { MonthAxis, SeasonStrip, StripLegend } from "./SeasonStrip";
 import { atDate, listNames, plainDate, VERDICT_WORD } from "./today-view";
@@ -35,7 +35,6 @@ export function ItemPage() {
   return (
     <div className="mx-auto max-w-2xl px-4 pb-12 sm:px-6 md:max-w-5xl">
       <Masthead date={date} shareTitle={view ? `${view.name} · Orchard` : undefined} />
-      <PreviewNotice data={data} />
       <nav aria-label="Back">
         <Link to={back.to} className={`${linkClass} mt-1`}>
           <span aria-hidden>←</span> {back.label}
@@ -71,7 +70,6 @@ function Item({ view, mode }: { view: ItemView; mode: Mode }) {
         <div className="min-w-0 flex-1">
           <PageTitle name={view.name} />
           <h1 className="font-editorial text-[2rem] leading-tight font-bold">{view.name}</h1>
-          <StatusLabels draft={view.draft} synthetic={view.synthetic} />
           {view.varietyLine && (
             <p className="font-editorial text-lg text-ink-secondary">{view.varietyLine}</p>
           )}

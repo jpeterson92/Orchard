@@ -1,6 +1,5 @@
-// The offline readiness line on Today (product spec §6). The service worker saves the offline copy by itself after
-// the first visit; this reports how much is saved, then that it's ready and how current its supply data is, or that
-// it's stale and needs a connection.
+// The offline line on Today (product spec §6). The service worker saves the offline copy by itself after the first
+// visit; the line appears only when the phone is offline and the copy is stale, asking for a connection.
 import { useEffect, useState } from "react";
 import type { AppData } from "../shared/app-data";
 
@@ -23,19 +22,10 @@ export function isStale(builtOn: string, todayIso: string, online: boolean): boo
   return !online && utc(todayIso) - utc(builtOn) > STALE_AFTER_DAYS * DAY_MS;
 }
 
-export function readinessText(r: Readiness, data: Pick<AppData, "builtOn" | "env">): string | null {
-  switch (r.state) {
-    case "checking":
-      return null;
-    case "unavailable":
-      return "Offline copy isn't available in this browser";
-    case "preparing":
-      return `Preparing for offline… ${r.saved} of ${r.total} items`;
-    case "ready":
-      return `Ready offline · ${r.total} items · supply data through ${fmt(utc(`${data.env.snapshotTo}-01`), { month: "short", year: "numeric" })}`;
-    case "stale":
-      return `Offline copy is from ${fmt(utc(data.builtOn), { month: "short", day: "numeric" })}; reconnect to refresh`;
-  }
+export function readinessText(r: Readiness, data: Pick<AppData, "builtOn">): string | null {
+  return r.state === "stale"
+    ? `Offline copy is from ${fmt(utc(data.builtOn), { month: "short", day: "numeric" })}; reconnect to refresh`
+    : null;
 }
 
 /** Item ids whose prerendered page is in the service worker's precache (scripts/sw-build.ts). */

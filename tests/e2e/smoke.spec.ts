@@ -1,5 +1,15 @@
 import AxeBuilder from "@axe-core/playwright";
-import { expect, test } from "@playwright/test";
+import { expect, type Page, test } from "@playwright/test";
+
+/** Waits until Today has hydrated: a filter button responds to a click. */
+async function hydrated(page: Page) {
+  const fruit = page.getByRole("button", { name: "Fruit", exact: true });
+  await expect(async () => {
+    await fruit.click();
+    await expect(fruit).toHaveAttribute("aria-pressed", "true", { timeout: 250 });
+  }).toPass();
+  await page.getByRole("button", { name: "All", exact: true }).click();
+}
 
 test("home page is prerendered: heading is in the HTML before any JavaScript runs", async ({ request }) => {
   const html = await (await request.get("/")).text();
@@ -27,10 +37,6 @@ test("after one visit, an item never visited opens offline", async ({ page, cont
   await page.goto("/");
   // The service worker activates once its precache (every page, the app and its data) is complete.
   await page.evaluate("navigator.serviceWorker.ready.then(() => true)");
-  // With nothing to switch on, Today says when the copy is complete.
-  await expect(page.getByRole("status")).toHaveText(
-    /^Ready offline · \d+ items · supply data through \w{3} \d{4}$/,
-  );
   await context.setOffline(true);
   await page.goto("/items/strawberries");
   await expect(page.getByRole("heading", { level: 1, name: "Strawberries" })).toBeVisible();
@@ -162,8 +168,8 @@ test("a page load sends one beacon with its metrics and time to first verdict, a
   page,
 }) => {
   await page.goto("/");
-  // The readiness line appears once the app has hydrated and measurement has started.
-  await expect(page.getByRole("status").filter({ hasText: /offline/i })).toBeVisible();
+  // Measurement starts when the app hydrates.
+  await hydrated(page);
   // A first key press settles LCP (web-vitals finalizes it in an idle callback after trusted input); then leaving
   // the app hides the page, which sends the beacon. A synthetic hide alone isn't trusted, so it can't settle LCP.
   await page.keyboard.press("Shift");
@@ -224,7 +230,7 @@ for (const colorScheme of ["light", "dark"] as const) {
     };
 
     await page.goto("/");
-    await expect(page.getByRole("status").filter({ hasText: /offline/i })).toBeVisible();
+    await hydrated(page);
     await page.locator("button[aria-expanded]").first().click();
     await check("Today, a card open");
     for (const [url, heading] of [

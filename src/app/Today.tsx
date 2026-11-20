@@ -6,20 +6,23 @@ import appJson from "../generated/app.json";
 import type { AppData, FilterGroup } from "../shared/app-data";
 import { Art } from "./Art";
 import { useAppDate } from "./date";
-import { StatusLabels, VerdictMark } from "./icons";
-import { Masthead, PageTitle, PreviewNotice } from "./Masthead";
+import { VerdictMark } from "./icons";
+import { Masthead, PageTitle } from "./Masthead";
 import { count, useVerdictVisible } from "./measure";
 import { readinessText, useReadiness } from "./offline";
 import { type Card, plainDate, todayView } from "./today-view";
 
 const data = appJson as unknown as AppData;
 
-const FILTERS: { id: FilterGroup | "all"; label: string }[] = [
-  { id: "all", label: "All" },
-  { id: "fruit", label: "Fruit" },
-  { id: "vegetables", label: "Vegetables" },
-  { id: "herbs-mushrooms", label: "Herbs & mushrooms" },
-];
+// Only groups the covered items fill.
+const FILTERS = (
+  [
+    { id: "all", label: "All" },
+    { id: "fruit", label: "Fruit" },
+    { id: "vegetables", label: "Vegetables" },
+    { id: "herbs-mushrooms", label: "Herbs & mushrooms" },
+  ] satisfies { id: FilterGroup | "all"; label: string }[]
+).filter((f) => f.id === "all" || data.categories.some((c) => c.group === f.id));
 
 export function Today() {
   const date = useAppDate(data);
@@ -34,16 +37,10 @@ export function Today() {
   return (
     <div className="mx-auto max-w-2xl px-4 pb-12 sm:px-6 md:max-w-5xl">
       <Masthead date={date} />
-      <PreviewNotice data={data} />
       <main>
         <PageTitle />
         <h1 className="sr-only">Today</h1>
-        {view.summary && (
-          <p className="mt-3 text-lg leading-snug text-ink">
-            <span className="font-editorial">{view.summary}</span>{" "}
-            <StatusLabels draft={data.summaries.draft} synthetic={false} />
-          </p>
-        )}
+        {view.summary && <p className="mt-3 font-editorial text-lg leading-snug text-ink">{view.summary}</p>}
         <OfflineStatus iso={date.today} />
 
         {any && (
@@ -88,11 +85,11 @@ export function Today() {
   );
 }
 
-/** Where the offline copy stands. It downloads by itself after the first visit; this line only reports it. */
+/** Speaks up only when the offline copy is out of date; it downloads by itself after the first visit. */
 function OfflineStatus({ iso }: { iso: string }) {
   const text = readinessText(useReadiness(data, iso), data);
   return (
-    <p role="status" className="mt-2 min-h-5 text-sm text-ink-secondary">
+    <p role="status" className="mt-2 text-sm text-ink-secondary empty:mt-0">
       {text}
     </p>
   );
@@ -138,10 +135,7 @@ function Row({ card }: { card: Card }) {
       >
         <Art id={card.art} sizes="72px" className="size-18 shrink-0" />
         <span className="block min-w-0 flex-1">
-          <span className="flex flex-wrap items-baseline gap-x-2">
-            <span className="font-editorial text-xl leading-tight font-bold">{card.name}</span>
-            <StatusLabels draft={card.draft} synthetic={card.synthetic} />
-          </span>
+          <span className="block font-editorial text-xl leading-tight font-bold">{card.name}</span>
           {card.varietyLine && (
             <span className="block font-editorial text-ink-secondary">{card.varietyLine}</span>
           )}

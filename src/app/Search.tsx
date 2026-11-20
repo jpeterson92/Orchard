@@ -7,7 +7,7 @@ import appJson from "../generated/app.json";
 import type { AppData } from "../shared/app-data";
 import { Art } from "./Art";
 import { useAppDate } from "./date";
-import { SearchIcon, StatusLabels, VerdictMark } from "./icons";
+import { SearchIcon, VerdictMark } from "./icons";
 import { count } from "./measure";
 import { type SearchResult, search, searchIndex } from "./search-view";
 import { plainDate } from "./today-view";
@@ -215,7 +215,6 @@ function ResultRow({ result: r, onOpen }: { result: SearchResult; onOpen: () => 
           <span className="flex flex-wrap items-baseline gap-x-2">
             <span className="font-editorial text-lg leading-tight font-bold">{r.title}</span>
             {r.label && <span className="font-editorial text-ink-secondary">{r.subtitle}</span>}
-            <StatusLabels draft={r.draft} synthetic={r.synthetic} />
           </span>
           {!r.label && r.subtitle && (
             <span className="block font-editorial text-ink-secondary">{r.subtitle}</span>

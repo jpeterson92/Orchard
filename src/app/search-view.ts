@@ -31,8 +31,6 @@ export interface SearchResult {
   art: string | null;
   verdict: Verdict;
   tags: string[];
-  draft: boolean;
-  synthetic: boolean;
 }
 
 export type SearchOutcome =
@@ -108,7 +106,7 @@ function result(data: AppData, key: string, date: PlainDate): SearchResult | nul
   if (!item) return null;
   const variety = varietyId ? item.varieties.find((v) => v.id === varietyId) : undefined;
   const r = evaluate(item.inputs, { date, ...(variety ? { labelVariety: variety.id } : {}) }, data.env);
-  const common = { key, item: item.inputs.id, draft: item.status === "draft", synthetic: item.synthetic };
+  const common = { key, item: item.inputs.id };
   if (variety)
     return {
       ...common,

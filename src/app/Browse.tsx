@@ -6,8 +6,8 @@ import type { AppData } from "../shared/app-data";
 import { Art } from "./Art";
 import { type BrowseRow, browseGroups, categoryRows } from "./browse-view";
 import { useAppDate } from "./date";
-import { StatusLabels, VerdictMark } from "./icons";
-import { Masthead, PageTitle, PreviewNotice } from "./Masthead";
+import { VerdictMark } from "./icons";
+import { Masthead, PageTitle } from "./Masthead";
 import { plainDate } from "./today-view";
 
 const data = appJson as unknown as AppData;
@@ -27,7 +27,6 @@ export function Browse() {
   return (
     <div className={page}>
       <Masthead date={date} />
-      <PreviewNotice data={data} />
       <main>
         <PageTitle name="Browse" />
         <h1 className="mt-6 font-editorial text-3xl font-bold">Browse</h1>
@@ -72,7 +71,6 @@ export function BrowseCategory() {
   return (
     <div className={page}>
       <Masthead date={date} />
-      <PreviewNotice data={data} />
       <nav aria-label="Back">
         <Link to="/browse" className={`${backLink} mt-1`}>
           <span aria-hidden>←</span> Browse
@@ -112,10 +110,7 @@ function Row({ row, back }: { row: BrowseRow; back: BackTo }) {
       >
         <Art id={row.art} sizes="56px" className="size-14 shrink-0" />
         <span className="block min-w-0 flex-1">
-          <span className="flex flex-wrap items-baseline gap-x-2">
-            <span className="font-editorial text-xl leading-tight font-bold">{row.name}</span>
-            <StatusLabels draft={row.draft} synthetic={row.synthetic} />
-          </span>
+          <span className="block font-editorial text-xl leading-tight font-bold">{row.name}</span>
           {row.varietyLine && (
             <span className="block font-editorial text-ink-secondary">{row.varietyLine}</span>
           )}

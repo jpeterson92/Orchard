@@ -1,7 +1,6 @@
 // Brand, primary navigation from 600 px, and date chip, the same on every screen (design system §6 "Brand and date").
 import { type MouseEvent, useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
-import type { AppData } from "../shared/app-data";
 import { type AppDate, DATE_PARAM, sharedLink, useChooseDate } from "./date";
 import { LeafMark } from "./icons";
 import { TopNav } from "./Nav";
@@ -152,21 +151,6 @@ function DateChip({ date, onChoose }: { date: AppDate; onChoose: (iso: string | 
         className="absolute inset-0 cursor-pointer opacity-0"
       />
     </label>
-  );
-}
-
-/** One line for preview builds, so the per-row Draft and Sample labels need no explaining. */
-export function PreviewNotice({ data }: { data: AppData }) {
-  const draft = data.items.some((i) => i.status === "draft");
-  const synthetic = data.items.some((i) => i.synthetic);
-  if (!draft && !synthetic) return null;
-  // Its own landmark, so no page content sits outside one (axe "region").
-  return (
-    <aside aria-label="Preview" className="mt-3 rounded-sm bg-surface px-3 py-2 text-sm text-ink-secondary">
-      Preview.
-      {draft && " Draft guidance hasn't been reviewed yet."}
-      {synthetic && " Sample items are made-up test data."}
-    </aside>
   );
 }
 

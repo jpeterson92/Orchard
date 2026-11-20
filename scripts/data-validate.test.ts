@@ -562,7 +562,8 @@ const broken: [string, (r: RawInputs) => void, string][] = [
   [
     "card line over 12 words",
     (r) =>
-      (firstItem(r).cardLine = "one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen"),
+      (firstItem(r).cardLine =
+        "one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen"),
     "at most 12 words",
   ],
   [

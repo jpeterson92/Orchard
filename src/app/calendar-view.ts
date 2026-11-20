@@ -9,8 +9,6 @@ export interface CalendarRow {
   category: string;
   alwaysGood: boolean;
   outlook: Verdict[];
-  draft: boolean;
-  synthetic: boolean;
 }
 
 /** Items in Browse order: by category, then A to Z. */
@@ -23,8 +21,6 @@ export function calendarRows(data: AppData, year: number): CalendarRow[] {
       category: item.category,
       alwaysGood: item.inputs.alwaysGood,
       outlook: typicalOutlook(item.inputs, data.env, year),
-      draft: item.status === "draft",
-      synthetic: item.synthetic,
     }))
     .sort(
       (a, b) =>

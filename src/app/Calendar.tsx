@@ -10,8 +10,7 @@ import type { Verdict } from "../shared/verdict";
 import type { BackTo } from "./Browse";
 import { type CalendarRow, calendarRows, monthSections } from "./calendar-view";
 import { useAppDate } from "./date";
-import { StatusLabels } from "./icons";
-import { Masthead, PageTitle, PreviewNotice } from "./Masthead";
+import { Masthead, PageTitle } from "./Masthead";
 import { FILL, StripLegend } from "./SeasonStrip";
 import { MONTHS, plainDate, VERDICT_WORD } from "./today-view";
 
@@ -37,7 +36,6 @@ export function Calendar() {
   return (
     <div className="mx-auto max-w-2xl px-4 pb-12 sm:px-6 md:max-w-5xl">
       <Masthead date={date} />
-      <PreviewNotice data={data} />
       <main>
         <PageTitle name="Typical seasonal outlook" />
         <h1 className="mt-6 font-editorial text-3xl font-bold">Typical seasonal outlook</h1>
@@ -120,7 +118,6 @@ function MonthList({ rows, initial }: { rows: CalendarRow[]; initial: number }) 
                     <span className="flex min-w-0 flex-1 flex-wrap items-baseline gap-x-2">
                       <span className="font-editorial text-lg font-bold">{r.name}</span>
                       {r.alwaysGood && <span className="text-sm font-medium text-olive">Always good</span>}
-                      <StatusLabels draft={r.draft} synthetic={r.synthetic} />
                     </span>
                     <span className="sr-only">
                       {early === late
@@ -194,7 +191,6 @@ function Heatmap({ rows, current }: { rows: CalendarRow[]; current: number }) {
                     className={`flex min-h-8 flex-wrap items-baseline gap-x-1.5 rounded-sm underline-offset-4 hover:underline ${focus}`}
                   >
                     <span className="font-semibold">{r.name}</span>
-                    <StatusLabels draft={r.draft} synthetic={r.synthetic} />
                   </Link>
                 </th>
                 {windows.map((w) => (

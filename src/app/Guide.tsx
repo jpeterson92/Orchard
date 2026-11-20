@@ -23,7 +23,7 @@ import {
   traitChips,
 } from "./guide-view";
 import { VerdictMark } from "./icons";
-import { Masthead, PageTitle, PreviewNotice } from "./Masthead";
+import { Masthead, PageTitle } from "./Masthead";
 import { atDate, listNames, plainDate } from "./today-view";
 import { varietyPath } from "./variety-view";
 
@@ -40,7 +40,6 @@ export function Guide() {
   return (
     <div className="mx-auto max-w-2xl px-4 pb-12 sm:px-6 md:max-w-5xl">
       <Masthead date={date} shareTitle={view ? `${view.guide.name} variety guide · Orchard` : undefined} />
-      <PreviewNotice data={data} />
       {back && (
         <nav aria-label="Back">
           <Link to={`/items/${back}`} className={`${linkClass} mt-1`}>

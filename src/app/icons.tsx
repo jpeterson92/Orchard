@@ -93,16 +93,6 @@ export function VerdictMark({ verdict, size = "base" }: { verdict: Verdict; size
   );
 }
 
-/** Quiet preview labels beside a name: unreviewed guidance and made-up test data. */
-export function StatusLabels({ draft, synthetic }: { draft: boolean; synthetic: boolean }) {
-  if (!draft && !synthetic) return null;
-  return (
-    <span className="text-xs font-semibold tracking-wide text-ink-secondary uppercase">
-      {[draft && "Draft", synthetic && "Sample"].filter(Boolean).join(" · ")}
-    </span>
-  );
-}
-
 export function SearchIcon() {
   return (
     <svg aria-hidden="true" {...base} width={20} height={20} strokeWidth={1.8}>

@@ -1,14 +1,14 @@
 import { describe, expect, it } from "vitest";
 import { isStale, readinessText } from "./offline";
 
-const data = { builtOn: "2026-11-13", env: { snapshotTo: "2026-10" } } as Parameters<typeof readinessText>[1];
+const data = { builtOn: "2026-11-13" };
 
 describe("readinessText", () => {
   it.each([
     [{ state: "checking" } as const, null],
-    [{ state: "unavailable" } as const, "Offline copy isn't available in this browser"],
-    [{ state: "preparing", saved: 12, total: 30 } as const, "Preparing for offline… 12 of 30 items"],
-    [{ state: "ready", total: 30 } as const, "Ready offline · 30 items · supply data through Oct 2026"],
+    [{ state: "unavailable" } as const, null],
+    [{ state: "preparing", saved: 12, total: 30 } as const, null],
+    [{ state: "ready", total: 30 } as const, null],
     [{ state: "stale" } as const, "Offline copy is from Nov 13; reconnect to refresh"],
   ])("%o", (r, text) => expect(readinessText(r, data)).toBe(text));
 });

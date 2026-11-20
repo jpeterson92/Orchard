@@ -8,8 +8,8 @@ import { Art } from "./Art";
 import type { BackTo } from "./Browse";
 import { type Mode, useAppDate } from "./date";
 import { Overall, Score } from "./Guide";
-import { StatusLabels, VerdictMark } from "./icons";
-import { Masthead, PageTitle, PreviewNotice } from "./Masthead";
+import { VerdictMark } from "./icons";
+import { Masthead, PageTitle } from "./Masthead";
 import { useCount } from "./measure";
 import { MonthAxis, SeasonStrip, StripLegend } from "./SeasonStrip";
 import { atDate, plainDate } from "./today-view";
@@ -42,7 +42,6 @@ export function VarietyPage() {
         date={date}
         shareTitle={view ? `${view.variety.name} ${view.item.name.toLowerCase()} · Orchard` : undefined}
       />
-      <PreviewNotice data={data} />
       <nav aria-label="Back">
         <Link to={back.to} className={`${linkClass} mt-1`}>
           <span aria-hidden>←</span> {back.label}
@@ -70,7 +69,6 @@ function Body({ view, mode }: { view: VarietyView; mode: Mode }) {
           <PageTitle name={`${v.name} ${view.item.name.toLowerCase()}`} />
           <h1 className="font-editorial text-[2rem] leading-tight font-bold">{v.name}</h1>
           <p className="font-editorial text-lg text-ink-secondary">{view.item.name}</p>
-          <StatusLabels draft={view.draft} synthetic={view.synthetic} />
           {rating && (
             <p className="mt-1">
               {rating.inStore ? (

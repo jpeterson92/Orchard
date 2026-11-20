@@ -32,8 +32,6 @@ export interface BrowseRow {
   varietyLine: string | null;
   verdict: Verdict;
   tags: string[];
-  draft: boolean;
-  synthetic: boolean;
 }
 
 /** A category's items, A to Z: a lookup list, so names are easy to find. Null for an unknown category. */
@@ -51,8 +49,6 @@ export function categoryRows(data: AppData, categoryId: string, date: PlainDate)
         varietyLine: varietyLine(item, result, data),
         verdict: result.verdict,
         tags: tags(item, result.markers),
-        draft: item.status === "draft",
-        synthetic: item.synthetic,
       };
     });
 }

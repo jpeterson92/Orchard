@@ -27,9 +27,6 @@ const yamlFiles = (dir: string) =>
     .sort()
     .map((f) => ({ file: `${dir}/${f}`, data: yaml(join(dir, f)) }));
 
-// Synthetic fixtures (content/fixtures/: items, evidence and sources, all `synthetic: true`) show every Today
-// section in dev and preview builds; production builds leave them out.
-const fixtures = production ? null : "content/fixtures";
 const list = (file: string): unknown[] => (yaml(file) as unknown[] | null) ?? [];
 
 // The model panel (P15): each provider's latest run on the current prompt version, as one curve per target.
@@ -63,13 +60,13 @@ if (panel.errors.length > 0) {
 
 const raw: RawInputs = {
   rules: yaml("data/rules.yaml"),
-  sources: [...list("data/sources.yaml"), ...(fixtures ? list(`${fixtures}/sources.yaml`) : [])],
+  sources: list("data/sources.yaml"),
   categories: yaml("data/categories.yaml"),
   states,
-  items: [...yamlFiles("content/items"), ...(fixtures ? yamlFiles(`${fixtures}/items`) : [])],
+  items: yamlFiles("content/items"),
   guides: yaml("content/guides.yaml"),
   summaries: yaml("content/summaries.yaml"),
-  evidence: [...yamlFiles("content/evidence"), ...(fixtures ? yamlFiles(`${fixtures}/evidence`) : [])],
+  evidence: yamlFiles("content/evidence"),
   typicalOrigins: csv("data/usda/typical-origins.csv", ["item", "month", "rank", "origin", "major", "share"]),
   supplyIndex: csv("data/usda/supply-index.csv", ["item", "month", "origin", "value", "reason"]),
   varietyCalendar: csv("data/usda/variety-calendar.csv", ["item", "variety", "month", "share", "origins"]),
@@ -134,7 +131,7 @@ const app = appData(dataset, new Date().toISOString().slice(0, 10), art.art, abo
 writeFileSync("src/generated/app.json", JSON.stringify(app));
 
 // Precalculated assessments, committed so verdict changes are reviewable as diffs. Production builds leave them
-// alone: they drop the synthetic fixtures but must refuse drafts, so they never rebuild the committed set.
+// alone: they must refuse drafts, so they never rebuild the committed set.
 if (!production) {
   const files = renderAssessments(app);
   const stale = drift(ASSESSMENTS_DIR, files);
