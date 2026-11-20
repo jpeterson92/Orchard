@@ -17,7 +17,8 @@ items:
           - [oct-1, oct-2, fair, medium]
       - origin: us-ca
         windows:
-          - [jan-1, dec-2, fair, medium]
+          - [nov-1, feb-2, prime, medium]
+          - [mar-1, oct-2, fair, medium]
       - origin: us-sc
         windows:
           - [nov-1, feb-2, prime, medium]
@@ -26,6 +27,7 @@ items:
           - [oct-1, oct-2, fair, medium]
       - origin: us-tx
         windows:
-          - [nov-1, mar-2, fair, medium]
+          - [nov-1, feb-2, prime, medium]
+          - [mar-1, mar-2, fair, medium]
           - [apr-1, oct-2, poor, medium]
-    note: Cool-season Southeastern collards, sweetest after frost, are the best; hot-weather leaves are tough and bitter, while coastal California's are steady.
+    note: Cool-weather collards from November to February are the sweetest; hot-weather Southeastern leaves are tough, while coastal California summer collards stay good.

@@ -18,27 +18,27 @@ windows:
       rating: prime
       evidence: high
     weights: editorial
-    typical: [us-ga prime 33.3%, us-sc prime 33.3%, us-ca fair 33.3%, us-tx fair 0.0%]
+    typical: [us-ga prime 33.3%, us-sc prime 33.3%, us-ca prime 33.3%, us-tx prime 0.0%]
     peak:
-      share: 66.7%
-      available: "yes: counted share 66.7% ≥ 33.0%"
-      whole bin: no (≤ 75.0%)
-      origins: [us-ga prime 33.3%, us-sc prime 33.3%]
+      share: 100.0%
+      available: "yes: counted share 100.0% ≥ 33.0%"
+      whole bin: yes (> 75.0%)
+      origins: [us-ga prime 33.3%, us-sc prime 33.3%, us-ca prime 33.3%, us-tx prime 0.0%]
     good:
       share: 100.0%
       available: "yes: counted share 100.0% ≥ 33.0%"
       whole bin: yes (> 75.0%)
-      origins: [us-ga prime 33.3%, us-sc prime 33.3%, us-ca fair 33.3%, us-tx fair 0.0%]
-    look for: [us-ga, us-sc]
-    label note: true
-    reasons: [rated prime (origin us-ga), "look-for us-ga, us-sc"]
-    confidence: low (relevance, agreement)
-    markers: [check-label]
+      origins: [us-ga prime 33.3%, us-sc prime 33.3%, us-ca prime 33.3%, us-tx prime 0.0%]
+    look for: []
+    label note: false
+    reasons: [rated prime (origin us-ga)]
+    confidence: medium (relevance)
+    markers: []
     today:
       section: best right now
-      line: Look for ones from Georgia and South Carolina
+      line: none
       reason: none
-      origin: none
+      origin: Georgia
       avoid: none
       tags: []
   jan-2:
@@ -51,27 +51,27 @@ windows:
       rating: prime
       evidence: high
     weights: editorial
-    typical: [us-ga prime 33.3%, us-sc prime 33.3%, us-ca fair 33.3%, us-tx fair 0.0%]
+    typical: [us-ga prime 33.3%, us-sc prime 33.3%, us-ca prime 33.3%, us-tx prime 0.0%]
     peak:
-      share: 66.7%
-      available: "yes: counted share 66.7% ≥ 33.0%"
-      whole bin: no (≤ 75.0%)
-      origins: [us-ga prime 33.3%, us-sc prime 33.3%]
+      share: 100.0%
+      available: "yes: counted share 100.0% ≥ 33.0%"
+      whole bin: yes (> 75.0%)
+      origins: [us-ga prime 33.3%, us-sc prime 33.3%, us-ca prime 33.3%, us-tx prime 0.0%]
     good:
       share: 100.0%
       available: "yes: counted share 100.0% ≥ 33.0%"
       whole bin: yes (> 75.0%)
-      origins: [us-ga prime 33.3%, us-sc prime 33.3%, us-ca fair 33.3%, us-tx fair 0.0%]
-    look for: [us-ga, us-sc]
-    label note: true
-    reasons: [rated prime (origin us-ga), "look-for us-ga, us-sc"]
-    confidence: low (relevance, agreement)
-    markers: [check-label]
+      origins: [us-ga prime 33.3%, us-sc prime 33.3%, us-ca prime 33.3%, us-tx prime 0.0%]
+    look for: []
+    label note: false
+    reasons: [rated prime (origin us-ga)]
+    confidence: medium (relevance)
+    markers: []
     today:
       section: best right now
-      line: Look for ones from Georgia and South Carolina
+      line: none
       reason: none
-      origin: none
+      origin: Georgia
       avoid: none
       tags: []
   feb-1:
@@ -84,27 +84,27 @@ windows:
       rating: prime
       evidence: high
     weights: editorial
-    typical: [us-ga prime 33.3%, us-sc prime 33.3%, us-ca fair 33.3%, us-tx fair 0.0%]
+    typical: [us-ga prime 33.3%, us-sc prime 33.3%, us-ca prime 33.3%, us-tx prime 0.0%]
     peak:
-      share: 66.7%
-      available: "yes: counted share 66.7% ≥ 33.0%"
-      whole bin: no (≤ 75.0%)
-      origins: [us-ga prime 33.3%, us-sc prime 33.3%]
+      share: 100.0%
+      available: "yes: counted share 100.0% ≥ 33.0%"
+      whole bin: yes (> 75.0%)
+      origins: [us-ga prime 33.3%, us-sc prime 33.3%, us-ca prime 33.3%, us-tx prime 0.0%]
     good:
       share: 100.0%
       available: "yes: counted share 100.0% ≥ 33.0%"
       whole bin: yes (> 75.0%)
-      origins: [us-ga prime 33.3%, us-sc prime 33.3%, us-ca fair 33.3%, us-tx fair 0.0%]
-    look for: [us-ga, us-sc]
-    label note: true
-    reasons: [rated prime (origin us-ga), "look-for us-ga, us-sc"]
-    confidence: low (relevance, agreement)
-    markers: [last-call (fades by mar-1), check-label]
+      origins: [us-ga prime 33.3%, us-sc prime 33.3%, us-ca prime 33.3%, us-tx prime 0.0%]
+    look for: []
+    label note: false
+    reasons: [rated prime (origin us-ga)]
+    confidence: medium (relevance)
+    markers: [last-call (fades by mar-1)]
     today:
       section: best right now
-      line: Look for ones from Georgia and South Carolina
+      line: none
       reason: Fades by early March.
-      origin: none
+      origin: Georgia
       avoid: none
       tags: [Last call]
   feb-2:
@@ -117,27 +117,27 @@ windows:
       rating: prime
       evidence: high
     weights: editorial
-    typical: [us-ga prime 33.3%, us-sc prime 33.3%, us-ca fair 33.3%, us-tx fair 0.0%]
+    typical: [us-ga prime 33.3%, us-sc prime 33.3%, us-ca prime 33.3%, us-tx prime 0.0%]
     peak:
-      share: 66.7%
-      available: "yes: counted share 66.7% ≥ 33.0%"
-      whole bin: no (≤ 75.0%)
-      origins: [us-ga prime 33.3%, us-sc prime 33.3%]
+      share: 100.0%
+      available: "yes: counted share 100.0% ≥ 33.0%"
+      whole bin: yes (> 75.0%)
+      origins: [us-ga prime 33.3%, us-sc prime 33.3%, us-ca prime 33.3%, us-tx prime 0.0%]
     good:
       share: 100.0%
       available: "yes: counted share 100.0% ≥ 33.0%"
       whole bin: yes (> 75.0%)
-      origins: [us-ga prime 33.3%, us-sc prime 33.3%, us-ca fair 33.3%, us-tx fair 0.0%]
-    look for: [us-ga, us-sc]
-    label note: true
-    reasons: [rated prime (origin us-ga), "look-for us-ga, us-sc"]
-    confidence: low (relevance, agreement)
-    markers: [last-call (fades by mar-1), check-label]
+      origins: [us-ga prime 33.3%, us-sc prime 33.3%, us-ca prime 33.3%, us-tx prime 0.0%]
+    look for: []
+    label note: false
+    reasons: [rated prime (origin us-ga)]
+    confidence: medium (relevance)
+    markers: [last-call (fades by mar-1)]
     today:
       section: best right now
-      line: Look for ones from Georgia and South Carolina
+      line: none
       reason: Fades by early March.
-      origin: none
+      origin: Georgia
       avoid: none
       tags: [Last call]
   mar-1:
@@ -624,27 +624,27 @@ windows:
       rating: prime
       evidence: high
     weights: editorial
-    typical: [us-sc prime 33.3%, us-ga prime 33.3%, us-ca fair 33.3%]
+    typical: [us-sc prime 33.3%, us-ga prime 33.3%, us-ca prime 33.3%]
     peak:
-      share: 66.7%
-      available: "yes: counted share 66.7% ≥ 33.0%"
-      whole bin: no (≤ 75.0%)
-      origins: [us-sc prime 33.3%, us-ga prime 33.3%]
+      share: 100.0%
+      available: "yes: counted share 100.0% ≥ 33.0%"
+      whole bin: yes (> 75.0%)
+      origins: [us-sc prime 33.3%, us-ga prime 33.3%, us-ca prime 33.3%]
     good:
       share: 100.0%
-      available: "yes: counted share 66.7% ≥ 33.0%"
+      available: "yes: counted share 100.0% ≥ 33.0%"
       whole bin: yes (> 75.0%)
-      origins: [us-sc prime 33.3%, us-ga prime 33.3%, "us-ca fair 33.3% (low confidence, not counted)"]
-    look for: [us-sc, us-ga]
-    label note: true
-    reasons: [rated prime (origin us-sc), "look-for us-sc, us-ga"]
-    confidence: low (relevance, agreement)
-    markers: [check-label]
+      origins: [us-sc prime 33.3%, us-ga prime 33.3%, us-ca prime 33.3%]
+    look for: []
+    label note: false
+    reasons: [rated prime (origin us-sc)]
+    confidence: medium (relevance)
+    markers: []
     today:
       section: best right now
-      line: Look for ones from South Carolina and Georgia
+      line: none
       reason: none
-      origin: none
+      origin: South Carolina
       avoid: none
       tags: []
   nov-2:
@@ -657,27 +657,27 @@ windows:
       rating: prime
       evidence: high
     weights: editorial
-    typical: [us-sc prime 33.3%, us-ga prime 33.3%, us-ca fair 33.3%]
+    typical: [us-sc prime 33.3%, us-ga prime 33.3%, us-ca prime 33.3%]
     peak:
-      share: 66.7%
-      available: "yes: counted share 66.7% ≥ 33.0%"
-      whole bin: no (≤ 75.0%)
-      origins: [us-sc prime 33.3%, us-ga prime 33.3%]
+      share: 100.0%
+      available: "yes: counted share 100.0% ≥ 33.0%"
+      whole bin: yes (> 75.0%)
+      origins: [us-sc prime 33.3%, us-ga prime 33.3%, us-ca prime 33.3%]
     good:
       share: 100.0%
-      available: "yes: counted share 66.7% ≥ 33.0%"
+      available: "yes: counted share 100.0% ≥ 33.0%"
       whole bin: yes (> 75.0%)
-      origins: [us-sc prime 33.3%, us-ga prime 33.3%, "us-ca fair 33.3% (low confidence, not counted)"]
-    look for: [us-sc, us-ga]
-    label note: true
-    reasons: [rated prime (origin us-sc), "look-for us-sc, us-ga"]
-    confidence: low (relevance, agreement)
-    markers: [check-label]
+      origins: [us-sc prime 33.3%, us-ga prime 33.3%, us-ca prime 33.3%]
+    look for: []
+    label note: false
+    reasons: [rated prime (origin us-sc)]
+    confidence: medium (relevance)
+    markers: []
     today:
       section: best right now
-      line: Look for ones from South Carolina and Georgia
+      line: none
       reason: none
-      origin: none
+      origin: South Carolina
       avoid: none
       tags: []
   dec-1:
@@ -690,27 +690,27 @@ windows:
       rating: prime
       evidence: low
     weights: editorial
-    typical: [us-sc prime 33.3%, us-ga prime 33.3%, us-ca fair 33.3%]
+    typical: [us-sc prime 33.3%, us-ga prime 33.3%, us-ca prime 33.3%]
     peak:
-      share: 66.7%
+      share: 100.0%
       available: "yes: counted share 33.3% ≥ 33.0%"
-      whole bin: no (≤ 75.0%)
-      origins: [us-sc prime 33.3%, "us-ga prime 33.3% (low confidence, not counted)"]
+      whole bin: yes (> 75.0%)
+      origins: [us-sc prime 33.3%, "us-ga prime 33.3% (low confidence, not counted)", "us-ca prime 33.3% (low confidence, not counted)"]
     good:
       share: 100.0%
-      available: "yes: counted share 66.7% ≥ 33.0%"
+      available: "yes: counted share 33.3% ≥ 33.0%"
       whole bin: yes (> 75.0%)
-      origins: [us-sc prime 33.3%, "us-ga prime 33.3% (low confidence, not counted)", us-ca fair 33.3%]
-    look for: [us-sc, us-ga]
-    label note: true
-    reasons: [rated prime (origin us-sc), "look-for us-sc, us-ga"]
-    confidence: low (coverage, relevance, agreement)
-    markers: [check-label]
+      origins: [us-sc prime 33.3%, "us-ga prime 33.3% (low confidence, not counted)", "us-ca prime 33.3% (low confidence, not counted)"]
+    look for: []
+    label note: false
+    reasons: [rated prime (origin us-sc)]
+    confidence: low (coverage, relevance)
+    markers: []
     today:
       section: best right now
-      line: Look for ones from South Carolina and Georgia
+      line: none
       reason: none
-      origin: none
+      origin: South Carolina
       avoid: none
       tags: []
   dec-2:
@@ -723,26 +723,26 @@ windows:
       rating: prime
       evidence: medium
     weights: editorial
-    typical: [us-sc prime 33.3%, us-ga prime 33.3%, us-ca fair 33.3%]
+    typical: [us-sc prime 33.3%, us-ga prime 33.3%, us-ca prime 33.3%]
     peak:
-      share: 66.7%
-      available: "yes: counted share 66.7% ≥ 33.0%"
-      whole bin: no (≤ 75.0%)
-      origins: [us-sc prime 33.3%, us-ga prime 33.3%]
+      share: 100.0%
+      available: "yes: counted share 100.0% ≥ 33.0%"
+      whole bin: yes (> 75.0%)
+      origins: [us-sc prime 33.3%, us-ga prime 33.3%, us-ca prime 33.3%]
     good:
       share: 100.0%
       available: "yes: counted share 100.0% ≥ 33.0%"
       whole bin: yes (> 75.0%)
-      origins: [us-sc prime 33.3%, us-ga prime 33.3%, us-ca fair 33.3%]
-    look for: [us-sc, us-ga]
-    label note: true
-    reasons: [rated prime (origin us-sc), "look-for us-sc, us-ga"]
-    confidence: low (relevance, agreement)
-    markers: [check-label]
+      origins: [us-sc prime 33.3%, us-ga prime 33.3%, us-ca prime 33.3%]
+    look for: []
+    label note: false
+    reasons: [rated prime (origin us-sc)]
+    confidence: medium (relevance)
+    markers: []
     today:
       section: best right now
-      line: Look for ones from South Carolina and Georgia
+      line: none
       reason: none
-      origin: none
+      origin: South Carolina
       avoid: none
       tags: []

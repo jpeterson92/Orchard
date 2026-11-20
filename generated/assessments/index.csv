@@ -216,10 +216,10 @@ cherries,nov-1,2026-11-01,good,typical,cl,fair,low,medium,0.0%,no,100.0%,share,,
 cherries,nov-2,2026-11-16,good,typical,cl,fair,low,medium,0.0%,no,100.0%,share,,good buys,
 cherries,dec-1,2026-12-01,good,typical,cl,fair,medium,high,0.0%,no,100.0%,share,,good buys,
 cherries,dec-2,2026-12-16,good,typical,cl,fair,medium,high,0.0%,no,100.0%,share,,good buys,
-collard-greens,jan-1,2026-01-01,peak,typical,us-ga,prime,high,low,66.7%,share,100.0%,share,us-ga us-sc,best right now,Look for ones from Georgia and South Carolina
-collard-greens,jan-2,2026-01-16,peak,typical,us-ga,prime,high,low,66.7%,share,100.0%,share,us-ga us-sc,best right now,Look for ones from Georgia and South Carolina
-collard-greens,feb-1,2026-02-01,peak,typical,us-ga,prime,high,low,66.7%,share,100.0%,share,us-ga us-sc,best right now,Look for ones from Georgia and South Carolina
-collard-greens,feb-2,2026-02-16,peak,typical,us-ga,prime,high,low,66.7%,share,100.0%,share,us-ga us-sc,best right now,Look for ones from Georgia and South Carolina
+collard-greens,jan-1,2026-01-01,peak,typical,us-ga,prime,high,medium,100.0%,share,100.0%,share,,best right now,
+collard-greens,jan-2,2026-01-16,peak,typical,us-ga,prime,high,medium,100.0%,share,100.0%,share,,best right now,
+collard-greens,feb-1,2026-02-01,peak,typical,us-ga,prime,high,medium,100.0%,share,100.0%,share,,best right now,
+collard-greens,feb-2,2026-02-16,peak,typical,us-ga,prime,high,medium,100.0%,share,100.0%,share,,best right now,
 collard-greens,mar-1,2026-03-01,good,typical,us-ga,fair,medium,medium,0.0%,no,100.0%,share,,good buys,
 collard-greens,mar-2,2026-03-16,good,typical,us-ga,fair,medium,medium,0.0%,no,100.0%,share,,good buys,
 collard-greens,apr-1,2026-04-01,good,typical,us-sc,fair,medium,medium,0.0%,no,100.0%,share,,good buys,
@@ -236,10 +236,10 @@ collard-greens,sep-1,2026-09-01,skip,typical,us-sc,poor,low,low,0.0%,no,50.0%,no
 collard-greens,sep-2,2026-09-16,skip,typical,us-sc,poor,low,low,0.0%,no,50.0%,no,,,
 collard-greens,oct-1,2026-10-01,good,typical,us-sc,fair,low,low,0.0%,no,100.0%,share,,good buys,
 collard-greens,oct-2,2026-10-16,good,typical,us-sc,fair,low,low,0.0%,no,100.0%,share,,good buys,
-collard-greens,nov-1,2026-11-01,peak,typical,us-sc,prime,high,low,66.7%,share,100.0%,share,us-sc us-ga,best right now,Look for ones from South Carolina and Georgia
-collard-greens,nov-2,2026-11-16,peak,typical,us-sc,prime,high,low,66.7%,share,100.0%,share,us-sc us-ga,best right now,Look for ones from South Carolina and Georgia
-collard-greens,dec-1,2026-12-01,peak,typical,us-sc,prime,low,low,66.7%,share,100.0%,share,us-sc us-ga,best right now,Look for ones from South Carolina and Georgia
-collard-greens,dec-2,2026-12-16,peak,typical,us-sc,prime,medium,low,66.7%,share,100.0%,share,us-sc us-ga,best right now,Look for ones from South Carolina and Georgia
+collard-greens,nov-1,2026-11-01,peak,typical,us-sc,prime,high,medium,100.0%,share,100.0%,share,,best right now,
+collard-greens,nov-2,2026-11-16,peak,typical,us-sc,prime,high,medium,100.0%,share,100.0%,share,,best right now,
+collard-greens,dec-1,2026-12-01,peak,typical,us-sc,prime,low,low,100.0%,share,100.0%,share,,best right now,
+collard-greens,dec-2,2026-12-16,peak,typical,us-sc,prime,medium,medium,100.0%,share,100.0%,share,,best right now,
 figs,jan-1,2026-01-01,skip,typical,mx,poor,medium,medium,0.0%,no,0.0%,no,,,
 figs,jan-2,2026-01-16,skip,typical,mx,poor,medium,medium,0.0%,no,0.0%,no,,,
 figs,feb-1,2026-02-01,skip,typical,mx,poor,medium,medium,0.0%,no,0.0%,no,,,

@@ -1,6 +1,6 @@
 id: collard-greens
 name: Collard greens
-synonyms: [collards, collard, collard green, collards greens, southern greens]
+synonyms: [collards, collard, collard green, collards greens]
 misspellings: [colard greens, collard grens, colards, collord greens, collerd greens]
 category: leafy-greens
 purchaseRank: 55
@@ -66,19 +66,24 @@ origins:
   - origin: us-tx
     windows:
       - from: nov-1
-        to: mar-2
-        rating: fair
-        reason: South Texas winters rarely bring the frost that sweetens collards, so its winter greens stay fair with the panel.
+        to: feb-2
+        rating: prime
+        reason: Colorado State says cool temperatures sweeten collards as frost does, and South Texas winters are cool; the panel rates them prime with the Southeast's.
+      - { from: mar-1, to: mar-2, rating: fair }
       - from: apr-1
         to: oct-2
         rating: poor
         reason: Colorado State's fall starts in September, but South Texas is still hot then and leaves grown in heat are tough.
   - origin: us-ca
     windows:
-      - from: jan-1
-        to: dec-2
+      - from: nov-1
+        to: feb-2
+        rating: prime
+        reason: Colorado State says cool temperatures sweeten collards as frost does; California's winter collards grow in the cool Imperial Valley, so the panel rates them prime with the Southeast's.
+      - from: mar-1
+        to: oct-2
         rating: fair
-        reason: Colorado State's tough summer leaves come from hot summers; California's collards grow on the cool coast in summer and in the Imperial Valley in winter, so they stay fair all year with the panel.
+        reason: Colorado State's tough summer leaves come from hot summers; California's summer collards grow on the cool coast, so they stay fair with the panel.
 typicalOrigins:
   - from: jan
     to: mar
