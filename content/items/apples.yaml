@@ -174,6 +174,17 @@ varieties:
         to: may-2
         rating: fair
         reason: Cited eating-quality evidence from EatHealthy365, Home for the Harvest outweighs the panel here and supports fair.
+      - from: jun-1
+        to: jun-2
+        rating: fair
+        reason: Two importers list a fresh Chilean crop. Oppy reports characteristic flavor and crunch into summer, so Good is the best estimate despite the weak panel rating for this period.
+      - from: jul-1
+        to: aug-2
+        rating: fair
+      - from: sep-1
+        to: sep-1
+        rating: fair
+        reason: Some Chilean shipments continue into early September, close to the first U.S. harvest. The overlap supports Good while the origin on offer can vary.
     quotedAs: [ambrosia]
   - id: mcintosh
     name: McIntosh
@@ -195,6 +206,10 @@ varieties:
         reason: McIntosh softens fast once picked; Eat Like No One Else finds it worth eating only in September.
       - { from: nov-2, to: dec-2, rating: fair }
       - { from: jan-1, to: apr-2, rating: poor }
+      - from: may-1
+        to: aug-2
+        rating: poor
+        reason: USDA market quotes still show McIntosh. The previous September crop is beyond normal storage potential and is prone to softening, so Skip is the best estimate for typical stocked fruit.
     quotedAs: [mcintosh]
     recommended: false
   - id: braeburn
@@ -205,6 +220,22 @@ varieties:
     label: Braeburn
     plu: { codes: [4101, 4103], sources: [ifps-plu-codes] }
     sources: [veritable-apple-guide, fruitguys-sweetest-apples, atk-apples-for-cooking, umd-apple-cultivars]
+    windows:
+      - from: oct-1
+        to: oct-1
+        rating: fair
+      - from: oct-2
+        to: oct-2
+        rating: prime
+      - from: nov-1
+        to: mar-2
+        rating: fair
+    quotedAs: [braeburn]
+    inStores:
+      - from: oct
+        to: oct
+        sources:
+          - waapple-braeburn
   - id: jazz
     name: Jazz
     traits: { sweetness: 3, tartness: 3, crispness: 4, holds-shape: 4 }
@@ -213,6 +244,32 @@ varieties:
     label: Jazz or Scifresh
     plu: { codes: [3293, 3294], sources: [ifps-plu-codes] }
     sources: [veritable-apple-guide, almanac-best-apples-baking]
+    windows:
+      - from: sep-2
+        to: oct-1
+        rating: fair
+        reason: Use Good near the first arrivals where older imports and fresh Washington fruit can overlap.
+      - from: oct-2
+        to: oct-2
+        rating: prime
+        reason: The October harvest calendar and Oppy’s October 11 fresh Washington release support late October Peak. The broader marketing calendar also includes older fruit.
+      - from: nov-1
+        to: mar-2
+        rating: fair
+      - from: apr-1
+        to: may-2
+        rating: fair
+        reason: The Washington marketing calendars overlap through spring, and Oppy reported good crunch and flavor in late-season May fruit. Spring quality is an estimate.
+      - from: jun-1
+        to: jul-2
+        rating: fair
+        reason: Domestic marketing overlaps the New Zealand import program, and Washington fruit has still shown good texture and flavor near the handoff. Exact summer quality varies by origin and batch.
+    inStores:
+      - from: jan
+        to: dec
+        sources:
+          - jazz-us-faq
+          - waapple-jazz
   - id: envy
     name: Envy
     traits: { sweetness: 4, tartness: 2, crispness: 4, juiciness: 4 }
@@ -221,6 +278,25 @@ varieties:
     label: Envy
     plu: { codes: [3315, 3616], sources: [ifps-plu-codes] }
     sources: [veritable-apple-guide, specialtyproduce-envy]
+    windows:
+      - from: oct-2
+        to: nov-1
+        rating: prime
+        reason: Rainier reports flavor developing on the tree late in the Washington harvest. A grower report and a shipper release put new-crop fruit on either side of the late October and early November boundary.
+      - from: nov-2
+        to: apr-2
+        rating: fair
+        reason: Winter storage tests support Good. April has a lower-confidence basis in the reported cold-storage potential and overlapping Northwest shipping calendars.
+      - from: aug-1
+        to: aug-2
+        rating: fair
+        reason: A U.S. distributor reported good flavor and crunch in new New Zealand arrivals in August, within the grower’s export season. Arrival timing varies between years.
+    inStores:
+      - from: jan
+        to: dec
+        sources:
+          - oppy-envy-global
+          - allan-brothers-apples
   - id: sweetango
     name: SweeTango
     traits: { sweetness: 4, tartness: 3, crispness: 5, juiciness: 4 }
@@ -229,6 +305,24 @@ varieties:
     label: SweeTango
     plu: { codes: [3603], sources: [ifps-plu-codes] }
     sources: [umn-sweetango, fruitguys-sweetest-apples]
+    windows:
+      - from: sep-1
+        to: oct-2
+        rating: prime
+      - from: nov-1
+        to: dec-2
+        rating: fair
+        reason: The panel supports good fall and early-winter fruit. The co-op's usual U.S. retail season ends in November, though individual packers sell into December.
+      - from: aug-2
+        to: aug-2
+        rating: fair
+        reason: One packer starts harvest in August and one panel run rates late August prime, but the breeder and U.S. grower co-op put the usual new-crop timing around early September.
+    inStores:
+      - from: sep
+        to: nov
+        sources:
+          - sweetango-grower-faq
+          - stemilt-sweetango
   - id: sugarbee
     name: SugarBee
     traits: { sweetness: 5, tartness: 2, crispness: 4, juiciness: 4, holds-shape: 4 }
@@ -237,6 +331,24 @@ varieties:
     label: SugarBee
     plu: { codes: [3486, 3525], sources: [ifps-plu-codes] }
     sources: [specialtyproduce-sugarbee, fruitguys-sweetest-apples, eatlikenoone-sugarbee]
+    windows:
+      - from: oct-1
+        to: oct-2
+        rating: prime
+        reason: Early October starts the Washington crop. The wider October harvest supports Peak through the second half, with less precision about the end date.
+      - from: nov-1
+        to: mar-2
+        rating: fair
+      - from: apr-1
+        to: may-2
+        rating: fair
+        reason: The regional and national programs overlap in spring. Good is a conservative extrapolation from tested winter storage and marketed fruit; late-season eating quality has little direct verification.
+    inStores:
+      - from: jan
+        to: dec
+        sources:
+          - chelan-sugarbee-retail
+          - waapple-sugarbee
   - id: kanzi
     name: Kanzi
     traits: { sweetness: 3, tartness: 4, crispness: 4, juiciness: 4 }
@@ -245,6 +357,28 @@ varieties:
     label: Kanzi
     plu: { codes: [3605], sources: [ifps-plu-codes] }
     sources: [applerankings-kanzi, orangepippin-kanzi, kanzi-apple]
+    windows:
+      - from: sep-2
+        to: oct-1
+        rating: fair
+        reason: The Northwest crop is picked in September. Its U.S. packer reports improvement in storage, so harvest timing alone supports Good here.
+      - from: jan-1
+        to: apr-2
+        rating: fair
+      - from: oct-2
+        to: dec-2
+        rating: fair
+        reason: A current Northwest wholesale calendar shows continuous fall supply and describes good crispness and juiciness. The broader retail season varies by packer.
+      - from: jun-1
+        to: aug-2
+        rating: fair
+        reason: Domestic and import programs overlap. CMI reports good new-crop imports in summer, though the dated sales account makes the typical U.S. crop mix uncertain.
+    inStores:
+      - from: jan
+        to: dec
+        sources:
+          - cmi-kanzi
+          - eatlikenoone-kanzi
   - id: snapdragon
     name: SnapDragon
     traits: { sweetness: 4, tartness: 1, crispness: 5, juiciness: 5 }
@@ -253,4 +387,26 @@ varieties:
     label: SnapDragon
     plu: { codes: [3442], sources: [ifps-plu-codes] }
     sources: [applerankings-snapdragon, orangepippin-snapdragon, cornell-tree-fruits]
+    windows:
+      - from: oct-1
+        to: oct-2
+        rating: prime
+        reason: October is the first full retail month for the New York crop. This is the new-crop estimate; well-stored fruit can also taste excellent later.
+      - from: nov-1
+        to: may-2
+        rating: fair
+      - from: sep-2
+        to: sep-2
+        rating: fair
+        reason: The New York crop starts in September and some local fruit may arrive early. October is the first full retail month.
+    inStores:
+      - from: oct
+        to: apr
+        sources:
+          - snapdragon-retail
+      - from: may
+        to: may
+        sources:
+          - snapdragon-spring-sales
+          - snapdragon-commercial-storage
 status: draft

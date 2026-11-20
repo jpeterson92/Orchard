@@ -259,3 +259,489 @@ claims:
     specificity: season
     directness: eating-quality
     paraphrase: Ambrosia is best bought in late fall or early winter after harvest; stored fruit stays good through winter into spring.
+
+  # SweeTango research
+  - source: umn-sweetango
+    origin: us-mn
+    variety: sweetango
+    windows:
+      - from: sep-1
+        to: sep-1
+        rating: prime
+    specificity: half-month
+    directness: availability
+    paraphrase: The University of Minnesota breeder profile places normal Minneiska ripening in early September.
+  - source: stemilt-sweetango
+    origin: us-wa
+    variety: sweetango
+    windows:
+      - from: aug-1
+        to: sep-2
+        rating: prime
+    specificity: month
+    directness: availability
+    paraphrase: Stemilt harvests SweeTango in August and September and ships a limited season of fruit into the new year.
+  - source: sweetango-grower-faq
+    origin: us
+    variety: sweetango
+    windows:
+      - from: sep-1
+        to: nov-2
+        rating: fair
+    specificity: month
+    directness: availability
+    paraphrase: The grower co-op puts typical U.S. store availability from early September into November, with a broader season reaching early December in some markets.
+
+  # Braeburn research
+  - source: osu-apple-harvest
+    origin: us-or
+    variety: braeburn
+    windows:
+      - from: oct-2
+        to: oct-2
+        rating: prime
+    specificity: half-month
+    directness: availability
+    paraphrase: Oregon State Extension lists mid-October harvest maturity for Braeburn in its midseason growing regions.
+  - source: missouri-apple-cultivars
+    origin: us-mo
+    variety: braeburn
+    windows:
+      - from: oct-2
+        to: oct-2
+        rating: prime
+    specificity: half-month
+    directness: availability
+    paraphrase: Missouri Extension lists a mid-October harvest for Braeburn and describes the fruit as very firm with balanced flavor.
+  - source: waapple-braeburn
+    origin: us-wa
+    variety: braeburn
+    windows:
+      - from: oct-1
+        to: jul-2
+        rating: fair
+    specificity: month
+    directness: availability
+    paraphrase: The Washington Apple Commission lists Braeburn's sales season as October through July, which includes fruit held in storage.
+  - source: vce-apple-storage
+    origin: us-va
+    variety: braeburn
+    windows:
+      - from: nov-1
+        to: mar-2
+        rating: fair
+    specificity: month
+    directness: eating-quality
+    paraphrase: Virginia Cooperative Extension says Braeburn usually maintains good eating quality until at least March when appropriately cold-stored.
+
+  # Jazz research
+  - source: charlies-apple-catalog
+    origin: us-wa
+    variety: jazz
+    windows:
+      - from: oct-1
+        to: oct-2
+        rating: prime
+    specificity: month
+    directness: availability
+    paraphrase: Charlie’s Northwest catalog lists October as the Jazz harvest.
+  - source: waapple-jazz
+    origin: us-wa
+    variety: jazz
+    windows:
+      - from: sep-1
+        to: jul-2
+        rating: fair
+    specificity: month
+    directness: availability
+    paraphrase: The Washington Apple Commission lists a September through July marketing season for Jazz.
+  - source: scifresh-patent
+    origin: nz
+    variety: jazz
+    windows:
+      - from: nov-1
+        to: mar-2
+        rating: fair
+    specificity: month
+    directness: eating-quality
+    paraphrase: The Scifresh breeder measured strong eating quality after five months of cold storage in New Zealand, supporting a winter estimate when applied to the domestic October crop.
+  - source: oppy-jazz-strong-finish
+    origin: us-wa
+    variety: jazz
+    windows:
+      - from: may-1
+        to: may-2
+        rating: fair
+    specificity: month
+    directness: eating-quality
+    paraphrase: Oppy reported good crunch and sweet-tart balance at the end of its Washington Jazz season in May 2015.
+  - source: allan-brothers-apples
+    origin: us-wa
+    variety: jazz
+    windows:
+      - from: sep-1
+        to: jul-2
+        rating: fair
+    specificity: month
+    directness: availability
+    paraphrase: Washington packer Allan Brothers lists September through July availability for Jazz.
+  - source: oppy-apple-calendar
+    origin: nz
+    variety: jazz
+    windows:
+      - from: jun-1
+        to: jul-2
+        rating: prime
+    specificity: month
+    directness: availability
+    paraphrase: Oppy’s apple program brings New Zealand Jazz into North American stores during summer.
+
+  # Envy research
+  - source: waapple-envy
+    origin: us-wa
+    variety: envy
+    windows:
+      - from: oct-1
+        to: mar-2
+        rating: fair
+    specificity: month
+    directness: availability
+    paraphrase: The Washington Apple Commission lists an October through March Envy season.
+  - source: allan-brothers-apples
+    origin: us-wa
+    variety: envy
+    windows:
+      - from: oct-1
+        to: may-2
+        rating: fair
+    specificity: month
+    directness: availability
+    paraphrase: Washington packer Allan Brothers and Rainier Fruit list October through May availability for Envy.
+  - source: scilate-patent
+    origin: nz
+    variety: envy
+    windows:
+      - from: nov-1
+        to: jan-2
+        rating: fair
+    specificity: month
+    directness: eating-quality
+    paraphrase: The Scilate breeder recorded high firmness and soluble solids after three months of cold air storage. The range estimates the first months after an October domestic harvest.
+  - source: dalival-envy-storage
+    origin: fr
+    variety: envy
+    windows:
+      - from: feb-1
+        to: apr-2
+        rating: fair
+    specificity: month
+    directness: eating-quality
+    paraphrase: French license holder Dalival reports good cold-storage keeping through April. February to April is an estimate for the same cultivar, with U.S. keeping conditions uncertain.
+  - source: oppy-envy-global
+    origin: nz
+    variety: envy
+    windows:
+      - from: aug-1
+        to: aug-2
+        rating: fair
+    specificity: month
+    directness: eating-quality
+    paraphrase: In July 2025 Oppy described crisp, flavorful fresh New Zealand Envy arriving in early August ahead of Chilean and South African supply.
+  - source: golden-bay-envy
+    origin: nz
+    variety: envy
+    windows:
+      - from: apr-1
+        to: aug-2
+        rating: prime
+    specificity: month
+    directness: availability
+    paraphrase: New Zealand grower Golden Bay Fruit lists Envy availability from its April harvest through August.
+
+  # SugarBee research
+  - source: charlies-apple-catalog
+    origin: us-wa
+    variety: sugarbee
+    windows:
+      - from: oct-1
+        to: oct-2
+        rating: prime
+    specificity: month
+    directness: availability
+    paraphrase: Charlie’s Northwest catalog lists October for SugarBee harvest.
+  - source: chelan-apple-harvest
+    origin: us-wa
+    variety: sugarbee
+    windows:
+      - from: oct-1
+        to: oct-1
+        rating: prime
+    specificity: half-month
+    directness: availability
+    paraphrase: Chelan Fresh places the start of its Washington SugarBee harvest in early October.
+  - source: waapple-sugarbee
+    origin: us-wa
+    variety: sugarbee
+    windows:
+      - from: oct-1
+        to: may-2
+        rating: fair
+    specificity: month
+    directness: availability
+    paraphrase: The Washington Apple Commission lists October through May for SugarBee.
+  - source: cn121-patent
+    origin: us-wa
+    variety: sugarbee
+    windows:
+      - from: nov-1
+        to: mar-2
+        rating: fair
+    specificity: month
+    directness: eating-quality
+    paraphrase: The Washington breeder observed no detrimental effect after up to five months in cold storage. Applied to the usual October commercial crop, that supports acceptable quality through winter.
+  - source: eatlikenoone-sugarbee
+    origin: us
+    variety: sugarbee
+    windows:
+      - from: dec-1
+        to: feb-2
+        rating: fair
+    specificity: month
+    directness: eating-quality
+    paraphrase: A firsthand shopper found SugarBee crisp and juicy and regularly found it from December through February. The tasting date is approximate.
+
+  # Kanzi research
+  - source: charlies-apple-catalog
+    origin: us-wa
+    variety: kanzi
+    windows:
+      - from: sep-1
+        to: sep-2
+        rating: prime
+    specificity: month
+    directness: availability
+    paraphrase: Charlie’s Northwest catalog lists September as the Kanzi harvest.
+  - source: cmi-kanzi
+    origin: us
+    variety: kanzi
+    windows:
+      - from: jan-1
+        to: dec-2
+        rating: fair
+    specificity: month
+    directness: availability
+    paraphrase: CMI Orchards lists Kanzi year-round with domestic and imported supply.
+  - source: waapple-kanzi
+    origin: us-wa
+    variety: kanzi
+    windows:
+      - from: jan-1
+        to: sep-2
+        rating: fair
+    specificity: month
+    directness: availability
+    paraphrase: The Washington Apple Commission lists January through September for Washington Kanzi.
+  - source: cmi-kanzi-spring
+    origin: us-wa
+    variety: kanzi
+    windows:
+      - from: mar-2
+        to: apr-2
+        rating: fair
+    specificity: half-month
+    directness: eating-quality
+    paraphrase: CMI said Kanzi’s flavor develops in storage and that its Washington program sold most strongly from mid-March through April. The sales pattern is historical.
+  - source: eatlikenoone-kanzi
+    origin: us-wa
+    variety: kanzi
+    windows:
+      - from: mar-1
+        to: mar-2
+        rating: fair
+    specificity: month
+    directness: eating-quality
+    paraphrase: A U.S. grocery sample tasted in March had good flavor and retained its crispness.
+
+  # SnapDragon research
+  - source: snapdragon-fall-harvest
+    origin: us-ny
+    variety: snapdragon
+    windows:
+      - from: sep-1
+        to: oct-2
+        rating: prime
+    specificity: month
+    directness: availability
+    paraphrase: New York growers started the 2025 harvest in September and marketed the new crop in fall. They also report strong eating quality later in the season.
+  - source: snapdragon-retail
+    origin: us-ny
+    variety: snapdragon
+    windows:
+      - from: oct-1
+        to: apr-2
+        rating: fair
+    specificity: month
+    directness: availability
+    paraphrase: New York seller Yes! Apples lists October through April direct retail availability.
+  - source: snapdragon-commercial-storage
+    origin: us-ny
+    variety: snapdragon
+    windows:
+      - from: nov-1
+        to: may-2
+        rating: fair
+    specificity: month
+    directness: eating-quality
+    paraphrase: In 2026 the grower co-op reported retaining crunch, juiciness, and flavor in its extended commercial storage program. Some individual rooms opened with strong quality in July.
+  - source: cornell-snapdragon-storage
+    origin: us-ny
+    variety: snapdragon
+    windows:
+      - from: nov-1
+        to: may-2
+        rating: fair
+    specificity: month
+    directness: eating-quality
+    paraphrase: Cornell’s commercial trials confirmed that a specific controlled-atmosphere protocol preserves crispness and flavor and lowers browning even at nine months. The range ends in May, when commercial sales are documented.
+
+  # Ambrosia research
+  - source: oppy-apple-calendar
+    origin: cl
+    variety: ambrosia
+    windows:
+      - from: may-1
+        to: sep-1
+        rating: prime
+    specificity: half-month
+    directness: availability
+    paraphrase: Oppy’s live import calendar lists Chilean Ambrosia from May into early September.
+  - source: giumarra-apple-calendar
+    origin: cl
+    variety: ambrosia
+    windows:
+      - from: may-1
+        to: aug-2
+        rating: prime
+    specificity: month
+    directness: availability
+    paraphrase: Giumarra lists fresh Chilean Ambrosia for U.S. shipments from May through August.
+  - source: oppy-chile-ambrosia
+    origin: cl
+    variety: ambrosia
+    windows:
+      - from: jun-1
+        to: aug-2
+        rating: fair
+    specificity: season
+    directness: eating-quality
+    paraphrase: Oppy described the fresh Chilean crop that begins arriving in mid-May as retaining its signature flavor and crunch into summer.
+
+  # McIntosh research
+  - source: usda-apple-storage
+    origin: us
+    variety: mcintosh
+    windows:
+      - from: may-1
+        to: aug-2
+        rating: poor
+    specificity: month
+    directness: eating-quality
+    paraphrase: USDA gives McIntosh five to seven months under controlled atmosphere and warns that flesh softening can shorten storage. May through August is beyond that range for the September crop, so poor eating quality is inferred.
+  - source: umaine-mcintosh-storage
+    origin: us-me
+    variety: mcintosh
+    windows:
+      - from: may-1
+        to: aug-2
+        rating: poor
+    specificity: month
+    directness: eating-quality
+    paraphrase: Maine Extension reports that McIntosh softens quickly and that controlled atmosphere can suppress flavor. Late spring and summer are a conservative poor estimate for the previous September crop.
+
+  # Jazz research
+  - source: oppy-jazz-new-crop
+    origin: us-wa
+    variety: jazz
+    windows:
+      - from: oct-1
+        to: oct-1
+        rating: prime
+    specificity: half-month
+    directness: availability
+    paraphrase: Oppy reported shipping freshly harvested Washington Jazz to retailers on October 11.
+
+  # Envy research
+  - source: rainier-envy-harvest
+    origin: us-wa
+    variety: envy
+    windows:
+      - from: oct-2
+        to: oct-2
+        rating: prime
+    specificity: month
+    directness: eating-quality
+    paraphrase: Rainier Fruit describes its last-picked fall Envy as crisp and fragrant, with flavor developing during cool October weather.
+  - source: oppy-envy-new-crop
+    origin: us-wa
+    variety: envy
+    windows:
+      - from: nov-1
+        to: nov-1
+        rating: prime
+    specificity: half-month
+    directness: availability
+    paraphrase: Oppy reported freshly harvested Washington Envy ready for retailers by November 14.
+  - source: ogc-apple-primer
+    origin: us-wa
+    variety: envy
+    windows:
+      - from: oct-1
+        to: may-2
+        rating: fair
+    specificity: month
+    directness: availability
+    paraphrase: Organically Grown Company markets Northwest Envy from October through May.
+
+  # Kanzi research
+  - source: ogc-apple-primer
+    origin: us-wa
+    variety: kanzi
+    windows:
+      - from: sep-2
+        to: mar-1
+        rating: fair
+    specificity: half-month
+    directness: availability
+    paraphrase: Organically Grown Company markets crisp, juicy Northwest Kanzi from late September to mid-March.
+  - source: cmi-kanzi-imports
+    origin: nz
+    variety: kanzi
+    windows:
+      - from: jun-1
+        to: aug-2
+        rating: fair
+    specificity: month
+    directness: eating-quality
+    paraphrase: CMI reported sweet-tangy new-crop Kanzi from New Zealand and Chile and prior June to August U.S. sales. The historical report describes limited supply.
+
+  # SugarBee research
+  - source: chelan-sugarbee-retail
+    origin: us-wa
+    variety: sugarbee
+    windows:
+      - from: jan-1
+        to: dec-2
+        rating: fair
+    specificity: month
+    directness: availability
+    paraphrase: Chelan Fresh lists year-round SugarBee retail distribution in the U.S. and describes its usual crisp, juicy texture.
+  - source: gebbers-sugarbee
+    origin: us-wa
+    variety: sugarbee
+    windows:
+      - from: oct-1
+        to: jun-2
+        rating: fair
+    specificity: month
+    directness: availability
+    paraphrase: Washington grower Gebbers Farms lists October to June availability. It grows for the Chelan Fresh marketing program.

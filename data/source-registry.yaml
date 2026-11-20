@@ -21,6 +21,18 @@ items:
       golden delicious,
       ambrosia,
       mcintosh,
+      braeburn,
+      jazz,
+      scifresh,
+      envy,
+      scilate,
+      sweetango,
+      minneiska,
+      sugarbee,
+      sugar bee,
+      kanzi,
+      nicoter,
+      snapdragon,
     ]
   pears:
     [pear, pears, anjou, bartlett, bartletts, bosc, comice, seckel, forelle, starkrimson, concorde, packham]
@@ -2202,3 +2214,261 @@ pages:
     kind: item-page
     origin: za
     items: [plums]
+  - source: sweetango-grower-faq
+    url: https://sweetango.com/find-faqs/
+    kind: item-page
+    origin: us
+    items:
+      - apples
+  - source: stemilt-sweetango
+    url: https://www.stemilt.com/fruit/sweetango/
+    kind: item-page
+    origin: us-wa
+    items:
+      - apples
+  - source: osu-apple-harvest
+    url: https://extension.oregonstate.edu/catalog/fs-147-picking-storing-apples-pears
+    kind: item-page
+    origin: us-or
+    items:
+      - apples
+  - source: missouri-apple-cultivars
+    url: https://extension.missouri.edu/publications/g6022
+    kind: item-page
+    origin: us-mo
+    items:
+      - apples
+  - source: waapple-braeburn
+    url: https://waapple.org/varieties/braeburn/
+    kind: item-page
+    origin: us-wa
+    items:
+      - apples
+  - source: vce-apple-storage
+    url: https://www.pubs.ext.vt.edu/content/pubs_ext_vt_edu/en/422/422-023/422-023.html
+    kind: item-page
+    origin: us-va
+    items:
+      - apples
+  - source: umn-sweetango
+    url: https://mnhardy.umn.edu/sweetango
+    kind: item-page
+    origin: us-mn
+    items:
+      - apples
+  - source: charlies-apple-catalog
+    url: https://www.charliesproduce.com/wp-content/uploads/2025/10/APPLE-Catalog-202526_updated.pdf
+    kind: item-page
+    origin: us-wa
+    items:
+      - apples
+  - source: waapple-jazz
+    url: https://waapple.org/varieties/jazz/
+    kind: item-page
+    origin: us-wa
+    items:
+      - apples
+  - source: jazz-us-faq
+    url: https://jazzapple.com/us/faq/
+    kind: item-page
+    origin: us
+    items:
+      - apples
+  - source: oppy-jazz-strong-finish
+    url: https://oppy.com/strong-finish/
+    kind: item-page
+    origin: us-wa
+    items:
+      - apples
+  - source: scifresh-patent
+    url: https://patents.google.com/patent/USPP13888P3/en
+    kind: item-page
+    origin: nz
+    items:
+      - apples
+  - source: waapple-envy
+    url: https://waapple.org/varieties/envy/
+    kind: item-page
+    origin: us-wa
+    items:
+      - apples
+  - source: oppy-envy-global
+    url: https://oppy.com/oppys-global-program-delivers-uninterrupted-supply-of-envy-apples/
+    kind: item-page
+    origin: us
+    items:
+      - apples
+  - source: allan-brothers-apples
+    url: https://allanbrosfruit.com/fruit/
+    kind: item-page
+    origin: us-wa
+    items:
+      - apples
+  - source: dalival-envy-storage
+    url: https://www.dalival.com/pommes/envy-scilate-en/
+    kind: item-page
+    origin: fr
+    items:
+      - apples
+  - source: scilate-patent
+    url: https://patents.google.com/patent/USPP20477P3/en
+    kind: item-page
+    origin: nz
+    items:
+      - apples
+  - source: chelan-apple-harvest
+    url: https://chelanfresh.com/harvest/
+    kind: item-page
+    origin: us-wa
+    items:
+      - apples
+  - source: waapple-sugarbee
+    url: https://waapple.org/varieties/sugarbee/
+    kind: item-page
+    origin: us-wa
+    items:
+      - apples
+  - source: cn121-patent
+    url: https://patents.google.com/patent/USPP23777P3/en
+    kind: item-page
+    origin: us-wa
+    items:
+      - apples
+  - source: cmi-kanzi
+    url: https://www.cmiorchards.com/apple-varieties/kanzi
+    kind: item-page
+    origin: us
+    items:
+      - apples
+  - source: waapple-kanzi
+    url: https://waapple.org/varieties/kanzi/
+    kind: item-page
+    origin: us-wa
+    items:
+      - apples
+  - source: cmi-kanzi-spring
+    url: https://www.supermarketnews.com/grocery-operations/kanzi-apple-season-hits-peak-season-volume
+    kind: item-page
+    origin: us-wa
+    items:
+      - apples
+  - source: eatlikenoone-kanzi
+    url: https://www.eatlikenoone.com/kanzi-apple.htm
+    kind: item-page
+    origin: us-wa
+    items:
+      - apples
+  - source: snapdragon-retail
+    url: https://yesapples.com/products/snapdragon
+    kind: item-page
+    origin: us-ny
+    items:
+      - apples
+  - source: snapdragon-fall-harvest
+    url: https://www.freshplaza.com/north-america/article/9766694/2025-snapdragon-apple-harvest-kicks-off-with-largest-crop-yet/
+    kind: item-page
+    origin: us-ny
+    items:
+      - apples
+  - source: snapdragon-spring-sales
+    url: https://crunchtimeapplegrowers.com/news/record-breaking-season-for-snapdragon-apples/
+    kind: item-page
+    origin: us-ny
+    items:
+      - apples
+  - source: snapdragon-commercial-storage
+    url: https://www.freshfruitportal.com/news/2026/08/13/snapdragon-26/
+    kind: item-page
+    origin: us-ny
+    items:
+      - apples
+  - source: cornell-snapdragon-storage
+    url: https://cals.cornell.edu/news/2026/11/new-storage-strategy-extends-quality-and-shelf-life-of-snapdragonr-apples
+    kind: item-page
+    origin: us-ny
+    items:
+      - apples
+  - source: oppy-apple-calendar
+    url: https://oppy.com/produce_type/apples/
+    kind: item-page
+    origin: us
+    items:
+      - apples
+  - source: oppy-chile-ambrosia
+    url: https://oppy.com/chilean-ambrosia-flavors-oppys-spring-apple-line/
+    kind: item-page
+    origin: cl
+    items:
+      - apples
+  - source: giumarra-apple-calendar
+    url: https://static1.squarespace.com/static/530ba325e4b0f46761867225/t/5fe36b55ff501c09425c30ae/1608739670981/Giumarra_Apple_SalesSheet.pdf
+    kind: item-page
+    origin: cl
+    items:
+      - apples
+  - source: umaine-mcintosh-storage
+    url: https://extension.umaine.edu/fruit/harvest-and-storage-of-tree-fruits/controlled-atmosphere-storage/
+    kind: item-page
+    origin: us-me
+    items:
+      - apples
+  - source: usda-apple-storage
+    url: https://www.govinfo.gov/content/pkg/GOVPUB-A-PURL-gpo87416/pdf/GOVPUB-A-PURL-gpo87416.pdf
+    kind: item-page
+    origin: us
+    items:
+      - apples
+  - source: golden-bay-envy
+    url: https://www.goldenbayfruit.com/our-fruit/our-varieties/envy/
+    kind: item-page
+    origin: nz
+    items:
+      - apples
+  - source: eatlikenoone-sugarbee
+    url: https://www.eatlikenoone.com/what-is-a-sugar-bee-apple-2.htm
+    kind: item-page
+    origin: us
+    items:
+      - apples
+  - source: oppy-jazz-new-crop
+    url: https://oppy.com/hear-the-music-from-washington/
+    kind: item-page
+    origin: us-wa
+    items:
+      - apples
+  - source: rainier-envy-harvest
+    url: https://www.thesnack.net/core-article/featured/rainier-fruit-company/industry-spotlight-envy%E2%84%A2-apples/002817
+    kind: item-page
+    origin: us-wa
+    items:
+      - apples
+  - source: oppy-envy-new-crop
+    url: https://oppy.com/washington-grown-and-primed-to-grow-the-category/
+    kind: item-page
+    origin: us-wa
+    items:
+      - apples
+  - source: ogc-apple-primer
+    url: https://static1.squarespace.com/static/5f15d8f94a714761c64e0a1a/t/68c4541cc1caef7623e073e2/1757697052031/ApplePrimer_2025.pdf
+    kind: item-page
+    origin: us-wa
+    items:
+      - apples
+  - source: cmi-kanzi-imports
+    url: https://www.supermarketnews.com/fresh-produce/cmi-launches-import-kanzi-apple-season
+    kind: item-page
+    origin: nz
+    items:
+      - apples
+  - source: chelan-sugarbee-retail
+    url: https://chelanfresh.com/sugarbee/
+    kind: item-page
+    origin: us-wa
+    items:
+      - apples
+  - source: gebbers-sugarbee
+    url: https://gebbersfarms.com/apples/
+    kind: item-page
+    origin: us-wa
+    items:
+      - apples
