@@ -12,6 +12,7 @@ Updated: 2026-11-20 · Phase: build · Live: https://orchard.jpeterson92.workers
 - **Art:** all 30 items and 43 varieties have approved art in the app (73 paintings), including the nine round-1 repaints (folder 21).
 - **Brand and interface:** the leaf-topped O marks the app and its icons. The approved painted wordmark and blossom are on About and the share preview. The blossom also appears on the missing-page screen. The local design pass aligns the masthead across routes, keeps Search within reach, and makes picking, comparison, and calendar guidance easier to find.
 - **Always good:** Today groups illustrated cards by Browse category in a filtered two-column grid with linked variety exceptions. Search gives a named variety its own verdict and year-round status. The current catalog has no year-round entries, so the section appears as qualifying content is added.
+- **Release workflow:** `npm run deploy` builds once and publishes the files tested by Playwright. Local end-to-end tests use four workers. GitHub CI runs code checks, Chromium, and WebKit in parallel jobs. Compare hosted timings on the next GitHub sync.
 
 ## Task list
 

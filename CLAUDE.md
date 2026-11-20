@@ -60,9 +60,9 @@ When documents conflict: Jared's latest instruction > product spec for behavior 
   - `npm run dev`: app and Worker locally, with hot reload
   - `npm run check:changed`: typecheck, lint, and the unit tests affected by uncommitted changes (before each commit; `-- HEAD~3` widens it to recent commits)
   - `npm run check`: assessments drift check, typecheck, lint, all unit tests (before a GitHub sync or a deploy)
-  - `npm run e2e`: build, then Playwright smoke tests against the build running in workerd
+  - `npm run e2e`: build, then Playwright smoke tests in both browsers against the build running in workerd, with four local test workers
   - `npm run build`: client build plus the prerendered HTML (`scripts/prerender.ts`)
-  - `npm run deploy`: build, then `wrangler deploy` (wrangler is signed in on this machine)
+  - `npm run deploy`: from a clean `main`, check previous CI, run production validation and tests, push the tested commit, deploy that build, and smoke-test the live site. `npm run deploy -- --dry-run` runs the local checks and Wrangler dry run.
   - `npm run format`: Biome autofix (Markdown is excluded, so docs keep their formatting)
   - `npm run cf-typegen`: regenerate Worker types after changing `wrangler.jsonc`
   - `npm run data:build`: validate `content/` and `data/`, write `src/generated/data.json` and the committed assessments in `generated/assessments/`, print counts (`-- --production` refuses synthetic records and items without approved art). `npm run data:check` (first step of `check` and CI) fails when the committed assessments differ from a fresh build
@@ -76,9 +76,8 @@ When documents conflict: Jared's latest instruction > product spec for behavior 
 
 - Work on `main` in small commits. Each message says what changed and how it was checked. Never mix refactors, upgrades or formatting with feature work.
 - Commit locally after each increment. **Sync to GitHub (push `origin`, a private repository) only when Jared asks**, and before a deploy. Say in the summary how many commits are unsynced.
-- Before a sync: `npm run check` and `npm run e2e`, fixing any failures first. CI repeats the same checks on GitHub as a backstop. **Never wait on, poll or watch GitHub Actions after a push.**
-- Deploy only when Jared asks. Before deploying, check the previous CI run once (`gh run list --limit 1`); if it failed, read the log (`gh run view <id> --log-failed`) and fix it. Then sync and deploy. Live URL: https://orchard.jpeterson92.workers.dev
-- After a deploy, check the live URL once (single requests with a timeout), never in a retry loop. If it isn't up, report it and move on.
+- For a sync without deployment, run `npm run check` and `npm run e2e` before pushing. GitHub CI runs `npm run check` and both browser projects in parallel jobs as a backstop. **Never wait on, poll or watch GitHub Actions after a push.**
+- Deploy only when Jared asks. `npm run deploy` stops if the previous CI run failed. Read the failed log (`gh run view <id> --log-failed`) before resolving it. The command checks the homepage and Worker health once after publication. Live URL: https://orchard.jpeterson92.workers.dev
 - No secrets in git. `.env` and `.dev.vars` are ignored; `.env.example` lists variable names only.
 
 ## End of every session

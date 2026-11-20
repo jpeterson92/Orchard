@@ -128,9 +128,8 @@ writeFileSync("src/generated/data.json", JSON.stringify(dataset));
 const app = appData(dataset, new Date().toISOString().slice(0, 10), art.art, about);
 writeFileSync("src/generated/app.json", JSON.stringify(app));
 
-// Precalculated assessments, committed so verdict changes are reviewable as diffs. Dev builds keep them current;
-// production builds leave them alone.
-if (!production) {
+// Dev builds update the committed assessments. Release checks verify drift without rewriting them.
+if (!production || checkOnly) {
   const files = renderAssessments(app);
   const stale = drift(ASSESSMENTS_DIR, files);
   if (checkOnly && stale.length > 0) {
