@@ -30,12 +30,13 @@ export interface Card {
   verdict: Verdict;
   /** One short factual reason, or null when it would only repeat the section ("At its best this time of year"). */
   reason: string | null;
-  /** The origin the verdict rests on (see `cardOrigin`), named. */
+  /** Expanded card only: the origin the verdict rests on (see `cardOrigin`), named. The collapsed card names an
+   * origin only when it decides the pick, in `varietyLine`. */
   origin: string | null;
   tags: string[];
   group: FilterGroup;
   /** Expanded card: what to avoid when the shopper picks by the label ("Brussels sprouts from Mexico often
-   * disappoint now."), the pick cue and the typical storage range (product spec §5 "Card behavior"). */
+   * disappoint now."), the pick cue, the typical storage range and the origin (product spec §5 "Card behavior"). */
   avoid: string | null;
   pick: string;
   storage: string;

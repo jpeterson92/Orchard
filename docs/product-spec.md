@@ -161,7 +161,8 @@ An item that is both Peak and Last call appears once, under Best right now, carr
 
 ### Card behavior (the same everywhere)
 
-- **Tapping a card expands it in place.** The expanded card shows how to pick, the typical storage range, and a clear **Details →** button that opens the item page.
+- **The collapsed card shows only what's needed to shop well:** the verdict, markers, and what to look for when the verdict holds for only part of the bin (a variety, an origin or a selection). Nice-to-know facts wait for the expanded card.
+- **Tapping a card expands it in place.** The expanded card shows how to pick, the typical storage range, the origin the verdict rests on (unless the card already says which origins to look for), and a clear **Details →** button that opens the item page.
 - **Tapping a list row** (search results, Browse lists) opens the page directly, because a row is a lookup. Rows still show the verdict badge, so the answer is often visible without a tap.
 
 ### Item page

@@ -1,5 +1,6 @@
-// Today (product spec §5, design system §5–6). Built for scanning in a store aisle: compact rows, the verdict and
-// origin on one line, a reason only when it says more than the section heading, two columns of rows on wide screens.
+// Today (product spec §5, design system §5–6). Built for scanning in a store aisle: compact rows carrying only what
+// a shopper needs to choose (the origin waits for the expanded card), a reason only when it says more than the
+// section heading, two columns of rows on wide screens.
 import { useId, useState } from "react";
 import { Link } from "react-router";
 import appJson from "../generated/app.json";
@@ -151,7 +152,6 @@ function Row({ card }: { card: Card }) {
           {/* Inline, so a long line wraps inside its text rather than starting a line with a separator. */}
           <span className="mt-0.5 block">
             <VerdictMark verdict={card.verdict} />
-            {card.origin && <span className="text-sm text-ink-secondary"> · {card.origin}</span>}
           </span>
           {card.tags.length > 0 && (
             <span className="block text-sm font-medium text-olive">{card.tags.join(" · ")}</span>
@@ -181,6 +181,11 @@ function Row({ card }: { card: Card }) {
             <p>
               <span className="font-semibold">Store:</span> {card.storage}
             </p>
+            {card.origin && (
+              <p>
+                <span className="font-semibold">Origin:</span> {card.origin}
+              </p>
+            )}
             <Link
               to={`/items/${card.id}`}
               className="inline-flex min-h-11 items-center gap-1 font-semibold text-olive underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"

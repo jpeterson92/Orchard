@@ -241,7 +241,7 @@ One selected state with a restrained orange fill and a contrasting foreground. U
 Rows are compact so a shopper can scan many in an aisle (about 76 px tall on a phone, 10 px above and below). Collapsed content:
 - Recognizable watercolor image, 56 px.
 - Produce name as the strongest text, with no status labels beside it.
-- Subtle icon and verdict word, with the origin in small secondary text on the same line ("Peak · California"); markers (Last call, Reliable year-round) on a quiet olive line below. When the shopper must pick, a "Look for ones from California" line sits under the name in place of the origin.
+- Subtle icon and verdict word; markers (Last call, Reliable year-round) on a quiet olive line below. The collapsed row carries only what a shopper needs to choose well: the origin appears there only when it decides the pick, as a "Look for ones from California" line under the name. Otherwise the origin is in the expanded card ("Origin: California").
 - A short factual reason only when it says more than the section heading (when it fades, when it improves, why it can't be called); "At its best this time of year" is never shown.
 - For items rated by variety, a quieter variety line under the name ("Ataulfo", or "Honeycrisp, Gala, Fuji and Pink Lady"); the image is that variety's, or the item's when the line names more than two.
 - A rated variety without approved art uses its item's. In development and preview, missing art shows a mostly transparent placeholder of the same size.
