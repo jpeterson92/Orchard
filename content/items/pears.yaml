@@ -109,6 +109,8 @@ varieties:
     windows:
       - { from: sep-1, to: dec-2, rating: prime }
     quotedAs: [seckel]
+    inStores:
+      - { from: sep, to: feb, sources: [usapears-seckel, superfresh-seckel] }
   - id: starkrimson
     name: Starkrimson
     overallScore: { editorial: 82 }

@@ -104,6 +104,7 @@ varieties:
     inStores:
       - { from: dec, to: jan, sources: [ncsu-brunswick-cara-cara, pmg-california-citrus-early-2026] }
       - { from: feb, to: apr, sources: [ncsu-brunswick-cara-cara] }
+      - { from: may, to: may, sources: [sunkist-fs-oranges] }
 typicalOrigins:
   - from: nov
     to: nov

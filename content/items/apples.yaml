@@ -132,6 +132,8 @@ varieties:
         reason: Washington State University CAHNRS rates eating quality prime here, outweighing the model panel's fair.
       - { from: dec-1, to: dec-2, rating: fair }
     quotedAs: [cosmic-crisp]
+    inStores:
+      - { from: jan, to: dec, sources: [cosmic-crisp-retail-faq, stemilt-cosmic-crisp] }
   - id: red-delicious
     name: Red Delicious
     traits: { sweetness: 4, tartness: 1, crispness: 3, juiciness: 3, holds-shape: 1 }

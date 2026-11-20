@@ -32,8 +32,7 @@ windows:
       peak: [Anjou, Comice]
       good: [Bosc]
       skip: [Bartlett]
-      limited: [Starkrimson]
-      not in stores: [Seckel]
+      limited: [Seckel, Starkrimson]
   jan-2:
     when: late January (from 2026-01-16)
     verdict: peak
@@ -58,8 +57,7 @@ windows:
       peak: [Anjou, Comice]
       good: [Bosc]
       skip: [Bartlett]
-      limited: [Starkrimson]
-      not in stores: [Seckel]
+      limited: [Seckel, Starkrimson]
   feb-1:
     when: early February (from 2026-02-01)
     verdict: good
@@ -83,8 +81,7 @@ windows:
     varieties:
       good: [Anjou, Bosc, Comice]
       skip: [Bartlett]
-      limited: [Starkrimson]
-      not in stores: [Seckel]
+      limited: [Seckel, Starkrimson]
   feb-2:
     when: late February (from 2026-02-16)
     verdict: good
@@ -108,8 +105,7 @@ windows:
     varieties:
       good: [Anjou, Bosc, Comice]
       skip: [Bartlett]
-      limited: [Starkrimson]
-      not in stores: [Seckel]
+      limited: [Seckel, Starkrimson]
   mar-1:
     when: early March (from 2026-03-01)
     verdict: good
@@ -391,15 +387,14 @@ windows:
     markers: []
     today:
       section: best right now
-      line: Bartlett and Starkrimson
+      line: Bartlett, Seckel and Starkrimson
       reason: none
       avoid: none
       tags: []
     varieties:
-      peak: [Bartlett, Starkrimson]
+      peak: [Bartlett, Seckel, Starkrimson]
       good: [Anjou]
       limited: [Bosc, Comice]
-      not in stores: [Seckel]
   sep-2:
     when: late September (from 2026-09-16)
     verdict: peak
@@ -416,14 +411,13 @@ windows:
     markers: []
     today:
       section: best right now
-      line: Anjou, Bartlett, Bosc and Starkrimson
+      line: Anjou, Bartlett, Bosc and 2 more
       reason: none
       avoid: none
       tags: []
     varieties:
-      peak: [Anjou, Bartlett, Bosc, Starkrimson]
+      peak: [Anjou, Bartlett, Bosc, Seckel, Starkrimson]
       limited: [Comice]
-      not in stores: [Seckel]
   oct-1:
     when: early October (from 2026-10-01)
     verdict: peak
@@ -485,15 +479,14 @@ windows:
     markers: []
     today:
       section: best right now
-      line: Anjou, Bosc and Comice
+      line: Anjou, Bosc, Comice and Seckel
       reason: none
       avoid: none
       tags: []
     varieties:
-      peak: [Anjou, Bosc, Comice]
+      peak: [Anjou, Bosc, Comice, Seckel]
       good: [Bartlett]
       limited: [Starkrimson]
-      not in stores: [Seckel]
   nov-2:
     when: late November (from 2026-11-16)
     verdict: peak
@@ -510,15 +503,14 @@ windows:
     markers: []
     today:
       section: best right now
-      line: Anjou, Bosc and Comice
+      line: Anjou, Bosc, Comice and Seckel
       reason: none
       avoid: none
       tags: []
     varieties:
-      peak: [Anjou, Bosc, Comice]
+      peak: [Anjou, Bosc, Comice, Seckel]
       good: [Bartlett]
       limited: [Starkrimson]
-      not in stores: [Seckel]
   dec-1:
     when: early December (from 2026-12-01)
     verdict: peak

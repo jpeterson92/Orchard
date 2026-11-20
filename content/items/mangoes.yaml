@@ -79,6 +79,8 @@ varieties:
       - { from: oct-2, to: nov-1, rating: poor }
       - { from: dec-2, to: jan-1, rating: poor }
     quotedAs: [keitt]
+    inStores:
+      - { from: mar, to: apr, sources: [nmb-keitt] }
 origins:
   - origin: mx
     windows:

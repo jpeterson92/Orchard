@@ -20,8 +20,8 @@ apples,sep-1,2026-09-01,peak,variety,honeycrisp,prime,medium,high,,,,,,best righ
 apples,sep-2,2026-09-16,peak,variety,honeycrisp,prime,high,high,,,,,,best right now,Honeycrisp and Gala
 apples,oct-1,2026-10-01,peak,variety,honeycrisp,prime,high,high,,,,,,best right now,"Honeycrisp, Gala, Fuji and Ambrosia"
 apples,oct-2,2026-10-16,peak,variety,honeycrisp,prime,medium,high,,,,,,best right now,"Honeycrisp, Gala, Fuji and Ambrosia"
-apples,nov-1,2026-11-01,peak,variety,honeycrisp,prime,medium,high,,,,,,best right now,"Honeycrisp, Gala, Fuji and 2 more"
-apples,nov-2,2026-11-16,peak,variety,honeycrisp,prime,medium,high,,,,,,best right now,"Honeycrisp, Gala, Fuji and 2 more"
+apples,nov-1,2026-11-01,peak,variety,honeycrisp,prime,medium,high,,,,,,best right now,"Honeycrisp, Gala, Fuji and 3 more"
+apples,nov-2,2026-11-16,peak,variety,honeycrisp,prime,medium,high,,,,,,best right now,"Honeycrisp, Gala, Fuji and 3 more"
 apples,dec-1,2026-12-01,peak,variety,fuji,prime,medium,high,,,,,,best right now,"Fuji, Pink Lady and Ambrosia"
 apples,dec-2,2026-12-16,peak,variety,fuji,prime,medium,high,,,,,,best right now,"Fuji, Pink Lady and Ambrosia"
 apricots,jan-1,2026-01-01,limited,typical,,,,low,,,,,,,
@@ -496,12 +496,12 @@ pears,jul-1,2026-07-01,skip,variety,anjou,poor,medium,medium,,,,,,,
 pears,jul-2,2026-07-16,good,variety,bartlett,fair,medium,high,,,,,,good buys,Bartlett
 pears,aug-1,2026-08-01,peak,variety,bartlett,prime,medium,high,,,,,,best right now,Bartlett and Starkrimson
 pears,aug-2,2026-08-16,peak,variety,bartlett,prime,medium,high,,,,,,best right now,Bartlett and Starkrimson
-pears,sep-1,2026-09-01,peak,variety,bartlett,prime,medium,high,,,,,,best right now,Bartlett and Starkrimson
-pears,sep-2,2026-09-16,peak,variety,anjou,prime,medium,high,,,,,,best right now,"Anjou, Bartlett, Bosc and Starkrimson"
+pears,sep-1,2026-09-01,peak,variety,bartlett,prime,medium,high,,,,,,best right now,"Bartlett, Seckel and Starkrimson"
+pears,sep-2,2026-09-16,peak,variety,anjou,prime,medium,high,,,,,,best right now,"Anjou, Bartlett, Bosc and 2 more"
 pears,oct-1,2026-10-01,peak,variety,anjou,prime,medium,high,,,,,,best right now,"Anjou, Bartlett, Bosc and 2 more"
 pears,oct-2,2026-10-16,peak,variety,anjou,prime,medium,high,,,,,,best right now,"Anjou, Bartlett, Bosc and 3 more"
-pears,nov-1,2026-11-01,peak,variety,anjou,prime,medium,high,,,,,,best right now,"Anjou, Bosc and Comice"
-pears,nov-2,2026-11-16,peak,variety,anjou,prime,medium,high,,,,,,best right now,"Anjou, Bosc and Comice"
+pears,nov-1,2026-11-01,peak,variety,anjou,prime,medium,high,,,,,,best right now,"Anjou, Bosc, Comice and Seckel"
+pears,nov-2,2026-11-16,peak,variety,anjou,prime,medium,high,,,,,,best right now,"Anjou, Bosc, Comice and Seckel"
 pears,dec-1,2026-12-01,peak,variety,anjou,prime,medium,high,,,,,,best right now,"Anjou, Bosc, Comice and Seckel"
 pears,dec-2,2026-12-16,peak,variety,anjou,prime,medium,high,,,,,,best right now,"Anjou, Bosc, Comice and Seckel"
 persimmons,jan-1,2026-01-01,good,typical,es,fair,medium,medium,0.0%,no,100.0%,share,,good buys,

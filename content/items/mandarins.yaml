@@ -108,6 +108,8 @@ varieties:
       - { from: feb-2, to: feb-2, rating: poor }
       - { from: may-1, to: may-2, rating: prime }
     quotedAs: [tangerines-golden-nugget]
+    inStores:
+      - { from: mar, to: jun, sources: [sunkist-foodservice-mandarins] }
   - id: satsuma
     name: Satsuma
     traits: { sweetness: 4, acidity: 2, ease-of-peeling: 5, seeds: 1, juiciness: 4 }

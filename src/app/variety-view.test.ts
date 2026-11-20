@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import appJson from "../generated/app.json";
 import type { AppData, AppVariety } from "../shared/app-data";
 import { guideView } from "./guide-view";
+import { itemView, varietySummary } from "./item-view";
 import { prerenderPaths } from "./routes";
 import { alternatives, hasVarietyPage, MAX_ALTERNATIVES, varietyPath, varietyView } from "./variety-view";
 
@@ -86,6 +87,34 @@ describe("Can't find it? Try…", () => {
 });
 
 describe("Variety page", () => {
+  it("shows Cosmic Crisp in stores year-round and at Peak throughout November", () => {
+    for (let month = 1; month <= 12; month++) {
+      for (const day of [1, 16]) {
+        const at = { ...date, month, day };
+        const view = varietyView(data, "apples", "cosmic-crisp", at);
+        expect(view?.rating).toMatchObject({ inStore: true, verdict: month === 11 ? "peak" : "good" });
+        if (month === 11) {
+          const varieties = itemView(data, "apples", at)?.varieties ?? [];
+          const peak = varietySummary(varieties).find((group) => group.verdict === "peak");
+          expect(peak?.names).toContain("Cosmic Crisp");
+        }
+      }
+    }
+  });
+
+  it.each([
+    ["pears", "seckel", 11, true],
+    ["pears", "seckel", 8, false],
+    ["mangoes", "keitt", 3, true],
+    ["mangoes", "kent", 10, false],
+    ["mandarins", "gold-nugget", 3, true],
+    ["oranges", "cara-cara", 5, true],
+    ["oranges", "cara-cara", 11, false],
+  ])("shows %s / %s in month %i as in stores: %s", (item, variety, month, inStore) => {
+    const row = itemView(data, item, { ...date, month })?.varieties.find((row) => row.id === variety);
+    expect(row?.inStore).toBe(inStore);
+  });
+
   it("exists for every variety of a guide's items, and only those, each prerendered", () => {
     for (const item of data.items)
       for (const variety of item.varieties) {

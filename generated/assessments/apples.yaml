@@ -435,14 +435,13 @@ windows:
     markers: [reliable-year-round]
     today:
       section: best right now
-      line: Honeycrisp, Gala, Fuji and 2 more
+      line: Honeycrisp, Gala, Fuji and 3 more
       reason: none
       avoid: none
       tags: []
     varieties:
-      peak: [Honeycrisp, Gala, Fuji, Pink Lady, Ambrosia]
+      peak: [Honeycrisp, Gala, Fuji, Pink Lady, Ambrosia, Cosmic Crisp]
       good: [Granny Smith, McIntosh]
-      not in stores: [Cosmic Crisp]
   nov-2:
     when: late November (from 2026-11-16)
     verdict: peak
@@ -459,14 +458,13 @@ windows:
     markers: [reliable-year-round]
     today:
       section: best right now
-      line: Honeycrisp, Gala, Fuji and 2 more
+      line: Honeycrisp, Gala, Fuji and 3 more
       reason: none
       avoid: none
       tags: []
     varieties:
-      peak: [Honeycrisp, Gala, Fuji, Pink Lady, Ambrosia]
+      peak: [Honeycrisp, Gala, Fuji, Pink Lady, Ambrosia, Cosmic Crisp]
       good: [Granny Smith, McIntosh]
-      not in stores: [Cosmic Crisp]
   dec-1:
     when: early December (from 2026-12-01)
     verdict: peak

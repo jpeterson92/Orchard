@@ -198,8 +198,7 @@ windows:
     varieties:
       peak: [Valencia]
       good: [Navel]
-      limited: [Blood orange]
-      not in stores: [Cara Cara]
+      limited: [Blood orange, Cara Cara]
   may-2:
     when: late May (from 2026-05-16)
     verdict: good
@@ -219,8 +218,7 @@ windows:
     varieties:
       peak: [Valencia]
       good: [Navel]
-      limited: [Blood orange]
-      not in stores: [Cara Cara]
+      limited: [Blood orange, Cara Cara]
   jun-1:
     when: early June (from 2026-06-01)
     verdict: good

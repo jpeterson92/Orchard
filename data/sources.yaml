@@ -436,6 +436,12 @@
   url: https://www.freshplaza.com/north-america/article/9728930/it-s-prime-time-for-southern-hemisphere-fresh-organic-apples/
   accessed: 2026-11-17
   tier: mainstream
+- id: cosmic-crisp-retail-faq
+  title: Cosmic Crisp Apple FAQs
+  publisher: Cosmic Crisp
+  url: https://cosmiccrisp.com/faq/
+  accessed: 2026-11-20
+  tier: mainstream
 - id: stemilt-cosmic-crisp
   title: Cosmic Crisp
   publisher: Stemilt Growers
@@ -529,6 +535,12 @@
   url: https://www.usapears.org/seckel/
   accessed: 2026-11-19
   tier: authoritative
+- id: superfresh-seckel
+  title: Seckel
+  publisher: Superfresh Growers
+  url: https://superfreshgrowers.com/our-fruit/pears/seckel
+  accessed: 2026-11-20
+  tier: mainstream
 - id: usapears-forelle
   title: "Forelle Pears"
   publisher: USA Pears (Pear Bureau Northwest)
@@ -942,6 +954,12 @@
   publisher: "National Mango Board"
   url: https://www.mango.org/blog/when-are-mangos-in-season
   accessed: 2026-11-19
+  tier: authoritative
+- id: nmb-keitt
+  title: Keitt
+  publisher: National Mango Board
+  url: https://www.mango.org/mango-variety/keitt/
+  accessed: 2026-11-20
   tier: authoritative
 - id: nmb-varieties
   title: "Mango Varieties"

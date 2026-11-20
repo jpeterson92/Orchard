@@ -124,8 +124,7 @@ windows:
       tags: []
     varieties:
       peak: [W. Murcott and Tango, Minneola tangelo]
-      limited: [Clementine]
-      not in stores: [Gold Nugget]
+      limited: [Clementine, Gold Nugget]
   mar-2:
     when: late March (from 2026-03-16)
     verdict: peak
@@ -148,8 +147,7 @@ windows:
       tags: []
     varieties:
       peak: [W. Murcott and Tango, Minneola tangelo]
-      limited: [Clementine]
-      not in stores: [Gold Nugget]
+      limited: [Clementine, Gold Nugget]
   apr-1:
     when: early April (from 2026-04-01)
     verdict: peak

@@ -104,7 +104,7 @@ windows:
     varieties:
       peak: [Ataulfo (Honey)]
       good: [Kent]
-      not in stores: [Keitt]
+      skip: [Keitt]
   mar-2:
     when: late March (from 2026-03-16)
     verdict: peak
@@ -127,8 +127,7 @@ windows:
       tags: []
     varieties:
       peak: [Ataulfo (Honey)]
-      good: [Kent]
-      not in stores: [Keitt]
+      good: [Kent, Keitt]
   apr-1:
     when: early April (from 2026-04-01)
     verdict: peak
@@ -151,8 +150,8 @@ windows:
       tags: []
     varieties:
       peak: [Ataulfo (Honey)]
+      good: [Keitt]
       skip: [Kent]
-      not in stores: [Keitt]
   apr-2:
     when: late April (from 2026-04-16)
     verdict: peak
@@ -175,8 +174,7 @@ windows:
       tags: []
     varieties:
       peak: [Ataulfo (Honey)]
-      skip: [Kent]
-      not in stores: [Keitt]
+      skip: [Kent, Keitt]
   may-1:
     when: early May (from 2026-05-01)
     verdict: peak
