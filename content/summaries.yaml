@@ -1,6 +1,8 @@
 # The one-line Today summary for each half-month window, national (product spec §5). At most 18 words each,
 # periods only. Written from the verdicts in generated/assessments/; recheck them when ratings change.
-status: draft
+status: reviewed
+reviewer: Jared
+reviewedOn: 2026-11-19
 windows:
   jan-1: Citrus season in full swing. Navels, grapefruit and mandarins lead, with frost-sweet collards alongside.
   jan-2: Deep winter. Citrus carries the aisle, and well-stored apples and pears are still crisp and sweet.
