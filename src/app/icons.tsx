@@ -72,15 +72,6 @@ export function CalendarIcon() {
   );
 }
 
-export function LeafMark() {
-  return (
-    <svg aria-hidden="true" {...base} width={26} height={26} className="text-olive" strokeWidth={1.6}>
-      <path d="M4 20c2-6 6-11 15-15-1 8-5 13-12 14" />
-      <path d="M4 20c4-4 7-7 10-9" />
-    </svg>
-  );
-}
-
 /** The verdict as icon and word, announced once by its word (design system §6 "Verdicts"). */
 export function VerdictMark({ verdict, size = "base" }: { verdict: Verdict; size?: "base" | "lg" }) {
   return (

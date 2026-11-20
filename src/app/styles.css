@@ -1,4 +1,8 @@
 @import "tailwindcss";
+/* Lora, the editorial serif and the wordmark's face: Latin only, in the three styles the app uses. */
+@import "@fontsource/lora/latin-400.css";
+@import "@fontsource/lora/latin-700.css";
+@import "@fontsource/lora/latin-700-italic.css";
 
 /* Tokens from docs/design/design-system.md §3–4 (v1.3). Change values there first, then here. */
 @theme {
@@ -17,7 +21,7 @@
   --color-skip-icon: #8b5e3c;
   --color-limited-icon: #6f625a;
 
-  --font-editorial: Georgia, "Times New Roman", serif;
+  --font-editorial: Lora, Georgia, "Times New Roman", serif;
   --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 

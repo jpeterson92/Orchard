@@ -1,8 +1,8 @@
 // Brand, primary navigation from 600 px, and date chip, the same on every screen (design system §6 "Brand and date").
 import { type MouseEvent, useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
+import { LEAF_PATH, MARK_BOTTOM, MARK_TOP, O_ADVANCE, O_PATH, STEM_PATH } from "../shared/brand";
 import { type AppDate, DATE_PARAM, sharedLink, useChooseDate } from "./date";
-import { LeafMark } from "./icons";
 import { TopNav } from "./Nav";
 import { SearchField } from "./Search";
 import { plainDate } from "./today-view";
@@ -38,6 +38,35 @@ const chipDate = (iso: string) => {
 const bannerLink =
   "min-h-11 rounded-sm text-olive underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
 
+/**
+ * "Orchard" in Lora Bold, its O drawn as the mark (src/shared/brand.ts) so the leaf sits exactly on it. The SVG is
+ * sized in em and lowered by the O's overshoot, so it lines up with the letters that follow.
+ */
+function Wordmark() {
+  const height = (MARK_BOTTOM - MARK_TOP) / 1000;
+  return (
+    <span className="font-editorial text-[1.75rem] leading-none font-bold">
+      <span className="sr-only">Orchard</span>
+      <svg
+        aria-hidden="true"
+        focusable={false}
+        viewBox={`0 ${MARK_TOP} ${O_ADVANCE} ${MARK_BOTTOM - MARK_TOP}`}
+        style={{
+          width: `${O_ADVANCE / 1000}em`,
+          height: `${height}em`,
+          verticalAlign: `-${MARK_BOTTOM / 1000}em`,
+        }}
+        className="inline"
+      >
+        <path d={O_PATH} fill="currentColor" />
+        <path d={STEM_PATH} className="fill-olive" />
+        <path d={LEAF_PATH} className="fill-olive" />
+      </svg>
+      <span aria-hidden="true">rchard</span>
+    </span>
+  );
+}
+
 /** `shareTitle` offers "Share for this date" in the planning banner (item pages). */
 export function Masthead({ date, shareTitle }: { date: AppDate; shareTitle?: string }) {
   const choose = useChooseDate();
@@ -48,8 +77,7 @@ export function Masthead({ date, shareTitle }: { date: AppDate; shareTitle?: str
           to="/"
           className="flex min-h-11 items-center gap-2 rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
         >
-          <LeafMark />
-          <span className="font-editorial text-2xl font-bold">Orchard</span>
+          <Wordmark />
         </Link>
         <TopNav />
         <SearchField className="hidden shrink-0 sm:flex sm:max-md:w-11 sm:max-md:justify-center sm:max-md:px-0 md:w-44 lg:w-56" />

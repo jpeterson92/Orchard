@@ -8,7 +8,7 @@ This document defines Orchard's visual design for code: direction, tokens, layou
 
 The visual direction is **Orchard Editorial**: a practical produce companion with the warmth of an illustrated food journal—botanical watercolor, light ivory paper, plum typography, and an open, lightly ruled layout.
 
-Orchard is the project name and the in-app brand. The mark is still open.
+Orchard is the project name and the in-app brand. The mark is the wordmark's O as a fruit: Lora Bold's capital O with a short stem and leaf at its top centre (§6 "Brand and date").
 
 ## 1. Approved direction and source of truth
 
@@ -42,8 +42,8 @@ Preserve the selected identity when reconciling practical constraints. Explain c
 
 | Established visual decisions | Initial implementation baseline | Still to develop |
 | --- | --- | --- |
-| Warm ivory, plum ink, olive rules, restrained orange | Exact color tokens and type sizes below | Final webfont selection and brand mark |
-| Editorial serif hierarchy and clear functional text | System font stacks for a working first implementation | Item and variety page implementation |
+| Warm ivory, plum ink, olive rules, restrained orange | Exact color tokens and type sizes below | Painted wordmark and blossom ornament |
+| Editorial serif hierarchy and clear functional text | Lora for the editorial serif, system sans for functional text | Item and variety page implementation |
 | Rich botanical watercolor | Illustration sizes and responsive proportions | Responsive implementation verification |
 | Open produce rows | Component states described below | Dark-mode review and implementation |
 | Subtle icon-and-text verdicts | Motion and focus treatment | Reviewed production artwork |
@@ -152,7 +152,7 @@ Text sizes are in rem, so the phone's own text-size setting scales them.
 | Editorial subtitle | Short serif italic or restrained body treatment |
 | Verdict word | Compact serif or sans treatment, consistent throughout |
 
-Begin with Georgia and a system sans stack to make the design implementable without an external font dependency. These are prototype defaults, not a claim about the typeface pictured. Choose final webfonts after checking actual produce names, long text, mobile rendering, licensing, and the project’s font budget.
+The editorial serif is Lora (SIL Open Font License), self-hosted in Latin only: regular, bold and bold italic, about 65 KB together. It is the wordmark's face too, so headings and brand agree. Functional text stays on the system sans stack.
 
 Reserve serif italics for short editorial accents or verdicts. Practical instructions, errors, and form labels should remain easy to scan. Use sentence case for interface text and title case for produce names where appropriate. Do not alternate small-cap and title-case section systems arbitrarily.
 
@@ -182,7 +182,7 @@ Copy these values into the application’s token layer when implementation begin
   --color-skip-icon: #8b5e3c;
   --color-limited-icon: #6f625a;
 
-  --font-editorial: Georgia, "Times New Roman", serif;
+  --font-editorial: Lora, Georgia, "Times New Roman", serif;
   --font-functional: system-ui, -apple-system, BlinkMacSystemFont,
     "Segoe UI", sans-serif;
   --font-body-size: 1rem;
@@ -228,7 +228,7 @@ The phone view is the in-store view; there is no separate mode, and the screen s
 
 ### Brand and date
 
-The leaf mark is a provisional visual motif. Reuse a consistent asset rather than generating a different mark for every screen. The brand is Orchard.
+The masthead shows the wordmark: "Orchard" in Lora Bold at about 28 px, its O drawn as the mark with the stem and leaf in olive. In the interface the mark is always the flat vector in `src/shared/brand.ts`, never a painting; the painted wordmark is for large brand uses only. Browser and home-screen icons are the cream mark on a plum tile, generated from the same shapes (`npm run brand:icons`).
 
 The date is a recognizable interactive control. A rounded outline or restrained wash is acceptable. Show planning mode explicitly with a return-to-today action. Keep full values accessible when visible text must abbreviate.
 
@@ -338,7 +338,7 @@ The repository's CLAUDE.md carries this instruction; there is no separate AGENTS
 
 ## 9. Reference collection and acceptance criteria
 
-The original mobile Today synthesis is the visual anchor for the look. Eight complementary reference studies have since been generated. All of them are inspiration for color, type and illustration only, not specifications of controls, placement, layout or content. The text in this guide remains usable without any of these images.
+The original mobile Today synthesis is the visual anchor for the look. Ten complementary reference studies have since been generated. All of them are inspiration for color, type and illustration only, not specifications of controls, placement, layout or content. The text in this guide remains usable without any of these images.
 
 | Study | Purpose | Reference |
 | --- | --- | --- |
@@ -350,6 +350,8 @@ The original mobile Today synthesis is the visual anchor for the look. Eight com
 | 06 Mobile variety finder | Phone filters and open variety rows | [Open](references/06-mobile-variety-finder.png) |
 | 07 Mobile seasonal calendar | Month-based seasonal list | [Open](references/07-mobile-calendar.png) |
 | 08 Standard, dark, and in-store | Proposed mode adaptations | [Open](references/08-modes-standard-dark-instore.png) |
+| 09 Logo study | The leaf-topped O wordmark and app icon tiles | [Open](references/09-logo-study.png) |
+| 10 Botanical study | Pear, pomegranate and apple blossom paint handling | [Open](references/10-botanical-study.png) |
 
 The calendar study is a phone list, not an approved exact heatmap or season-strip mapping. The mode study does not establish measured accessibility compliance. Mockups sometimes use italic practical text or place search differently; implement the documented functional type and navigation behavior instead of copying those deviations. The anchor’s “Peak now” heading is an older label; use the product spec’s “Best right now”.
 

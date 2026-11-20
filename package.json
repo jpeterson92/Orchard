@@ -34,9 +34,11 @@
     "evidence:check": "tsx scripts/evidence-check.ts",
     "panel:check": "tsx scripts/panel-check.ts",
     "panel:import": "tsx scripts/panel-import.ts",
-    "art:process": "tsx scripts/art-process.ts"
+    "art:process": "tsx scripts/art-process.ts",
+    "brand:icons": "tsx scripts/brand-icons.ts"
   },
   "dependencies": {
+    "@fontsource/lora": "5.3.0",
     "hono": "4.13.19",
     "minisearch": "7.2.0",
     "react": "19.3.1",

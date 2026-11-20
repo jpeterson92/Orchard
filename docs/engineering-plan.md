@@ -34,7 +34,8 @@ Mature, widely used tools only. At scaffold time, take the newest release whose 
 | Validation and types | zod 4.6.7, yaml 2.9.1 | One schema per content and data file; types come from `z.infer`. Content and data files are YAML, parsed by `yaml` in `data:build` only. No code generation |
 | Search | MiniSearch 7.2.0 | Prefix and fuzzy matching over item names, synonyms, misspellings and variety names, built on the phone at first query. The overlay is a native `<dialog>` of result links (no combobox) |
 | Page text | marked 18.1.3 (dev only) | `data:build` renders `content/methods.md` and `content/privacy.md` to HTML for the bundle. Front matter gives `status: draft` or `reviewed` (tracking only; drafts ship); `{{name}}` fills a rule value from `rules.yaml` |
-| Images | sharp 0.35.5 (dev only) | `art:process`: checks painted masters and writes WebP derivatives |
+| Images | sharp 0.35.5 (dev only) | `art:process`: checks painted masters and writes WebP derivatives. `brand:icons`: writes the favicon and home-screen icons from the mark |
+| Fonts | @fontsource/lora 5.3.0 | Self-hosted Lora, Latin subset only, imported in `styles.css` |
 | Lint and format | Biome | One tool, one config |
 | Tests | Vitest, fast-check (property tests), Testing Library, Playwright + `@axe-core/playwright` | See §6 |
 | CI | GitHub Actions on `ubuntu-latest`, on each push to `main` | Typecheck, lint, unit tests, Playwright e2e against the build |
